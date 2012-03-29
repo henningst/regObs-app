@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>PhoneGap</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	
+	<script type="text/javascript" charset="utf-8" src="js/cordova-1.5.0.js"></script>
+			
+	<!-- CORE -->
+	<!-- Can be replaced by wink.min.js -->
+	<script type="text/javascript" src="js/wink_1.4.1.min.js"></script>
+	<link rel="stylesheet" href="js/wink/_themes/wink.css" type="text/css">
+	<!-- END CORE -->
+	
+	<!-- WINK INCLUDES -->
+	<script type="text/javascript" src="js/wink/ui/layout/slidingpanels/js/slidingpanels.js"></script>
+	<script type="text/javascript" src="js/wink/ui/xy/spinner/js/spinner.js"></script>
+	<script type="text/javascript" src="js/wink/plugins/asyncpanels/js/asyncpanels.js"></script>
+	
+	<link rel="stylesheet" href="js/wink/ui/layout/slidingpanels/css/slidingpanels.css" type="text/css">
+	<link rel="stylesheet" href="js/wink/ui/xy/spinner/css/spinner.css" type="text/css">
+	<link rel="stylesheet" href="js/wink/plugins/asyncpanels/css/asyncpanels.css" type="text/css">
+	<!-- END WINK INCLUDES -->
+	
+	<!-- THEME UTILITY -->
+	<link rel="stylesheet" href="js/wink/_themes/utils/loader.css" type="text/css">
+	<!-- END THEME UTILITY -->
+	
+	<link rel="stylesheet" href="js/wink/ui/xy/carousel/css/carousel.css" type="text/css">
+	<script type="text/javascript" src="js/wink/ui/xy/carousel/js/carousel.js"></script>
+	
+	<script type="text/javascript" src="js/nve.js"></script>
+	<link rel="stylesheet" href="css/nve.css" type="text/css">
+</head>	
+	
+<body>
+	
+	<div class="w_header_custom">
+    	<div id="back" class="w_button_custom w_back w_left">
+	        <input type="button" value="back" onclick="main.panels.slideBack();" />
+	    </div>
+	    <span>NVE</span>
+	</div>
+	<div id="page1">
+	    <div>
+	        <ul class="w_list w_border">
+	            <li class="w_list_item w_border_bottom">
+	                <a href="#" onclick="main.panels.slideTo('page2')">
+	                	presentation
+	                	<span class="w_icon w_chevron"></span>
+	                </a>
+	            </li>
+	            <li class="w_list_item w_border_bottom">
+	                <a href="#" onclick="main.panels.slideTo('page3')">
+	                	contact
+   	                    <span class="w_icon w_chevron"></span>
+                	</a>
+	            </li>
+	        </ul>
+	    </div>
+	</div>
+	<div id="page2">
+	    <!-- presentation content -->
+	</div>
+	<div id="page3">
+	    <!-- contact form -->
+	</div>
+</body>
+</html>
