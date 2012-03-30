@@ -1,0 +1,7 @@
+{
+  "name": "mattedesigner",
+  "version": "0.0.1",
+  "author": "Philipp Beau",
+  "description": "design a mat",
+  "main": "node.js"
+}

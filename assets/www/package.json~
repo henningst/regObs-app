@@ -1,0 +1,18 @@
+{
+  "name": "mattedesigner",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "0.6.x",
+    "npm": "1.0.x"
+  },
+  "author": "Philipp Beau",
+  "description": "design a mat",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nLink/mattedesigner.git"
+  },
+  "main": "node.js"
+}
