@@ -21,7 +21,7 @@
     text-shadow: #000 0px -1px 0px;
 }
  
-.w_button_custom input, .w_footer_custom .w_button_custom
+.c_notification_button input, .w_footer_custom .c_notification_button
 {
     display: block;
  
@@ -61,7 +61,7 @@
     -moz-border-radius: 5px;
 }
  
-.w_footer_custom .w_button_custom
+.w_footer_custom .c_notification_button
 {
     display: inline;
     top: -2px;
@@ -73,7 +73,7 @@
     -moz-border-radius: 0;
 }
  
-.w_footer_custom .w_button_custom.w_rounded_left
+.w_footer_custom .c_notification_button.w_rounded_left
 {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -84,7 +84,7 @@
     -moz-border-bottom-left-radius: 5px;
 }
  
-.w_footer_custom .w_button_custom.w_rounded_right
+.w_footer_custom .c_notification_button.w_rounded_right
 {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -95,7 +95,7 @@
     -moz-border-bottom-right-radius: 5px;
 }
  
-.w_footer_custom .w_button_custom.w_indice
+.w_footer_custom .c_notification_button.w_indice
 {
     display: inline-block;
 /*     height: 32px; */
@@ -103,13 +103,13 @@
     overflow: visible;
 }
  
-.w_footer_custom .w_button_custom.w_indice input
+.w_footer_custom .c_notification_button.w_indice input
 {
     border: 0;
 /*     height: 32px; */
 }
  
-.w_footer_custom .w_button_custom.w_indice span
+.w_footer_custom .c_notification_button.w_indice span
 {
     background: #f00;
     border: 2px solid #fff;
