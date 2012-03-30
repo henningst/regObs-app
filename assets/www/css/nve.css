@@ -1,46 +1,33 @@
+/* MAIN PAGE */
+.c_mainpage_button
+{
+	margin-bottom: 10px;
+	width: 200px;	
+}
 
-.w_border, .w_border_bottom
-{
-    border-color: #2785c7;  
-}
- 
-.w_list .w_list_item
-{
-    background-color: #e8e7e7;
-     
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e8e7e7));
-    background-image: -moz-linear-gradient(top, #fff, #e8e7e7);
-}
- 
+/* HEADER */
 .w_header_custom
 {
-    background-color: #405e87;
-     
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#206493), to(#2375ae), color-stop(85%, #2785c7));
-    background-image: -moz-linear-gradient(top, #206493, #2375ae, #2785c7 85%);
-     
-    color: #fff;
-     
-    -webkit-box-shadow: -5px 3px 5px rgba(0, 0, 0, 0.7);
-    -moz-box-shadow: -5px 3px 5px rgba(0, 0, 0, 0.7);
+	position: relative;
+
+	height: 45px;
+	line-height: 45px;
+
+	padding: 0 10px;
+
+	font-size: 24px;
+
+	text-align: center;
+
+	text-shadow: #000 0px -1px 0px;
+
+	-webkit-box-shadow: -5px 3px 5px rgba(0, 0, 0, 0.7);
+	-moz-box-shadow: -5px 3px 5px rgba(0, 0, 0, 0.7);
+    
+/*     margin-bottom: 10px; */
 }
 
 .w_button_custom 
 {
 	display: none;	
-}
-
-.w_radio_custom 
-{
-	width: 99px;
-	height: 99px;
-}
- 
-.w_button_custom input
-{
-    border-color: #12344c;
-    background-color: #405e87;
-     
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#2fa7fa), to(#2375ae), color-stop(30%, #2785c6));
-    background-image: -moz-linear-gradient(top, #2fa7fa, #2375ae, #2785c6 30%);
 }

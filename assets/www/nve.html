@@ -5,66 +5,117 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	
+	<link rel="stylesheet" href="js/wink/plugins/asyncpanels/css/asyncpanels.css" type="text/css">
+	<link rel="stylesheet" href="js/wink/ui/layout/slidingpanels/css/slidingpanels.css" type="text/css">
+	<link rel="stylesheet" href="js/wink/ui/xy/spinner/css/spinner.css" type="text/css">
+	<link rel="stylesheet" href="css/big.css" type="text/css">
+	<link rel="stylesheet" href="css/nve.css" type="text/css">
+	<link rel="stylesheet" href="css/btn.css" type="text/css">
+		
+	<script type="text/javascript" src="./js/wink/_themes/utils/loader.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/cordova-1.5.0.js"></script>
 			
 	<!-- CORE -->
-	<!-- Can be replaced by wink.min.js -->
-	<script type="text/javascript" src="js/wink_1.4.1.min.js"></script>
-	<link rel="stylesheet" href="js/wink/_themes/wink.css" type="text/css">
+	<script type="text/javascript" src="js/wink/wink_1.4.1.min.js"></script>
+	
 	<!-- END CORE -->
 	
 	<!-- WINK INCLUDES -->
 	<script type="text/javascript" src="js/wink/ui/layout/slidingpanels/js/slidingpanels.js"></script>
 	<script type="text/javascript" src="js/wink/ui/xy/spinner/js/spinner.js"></script>
 	<script type="text/javascript" src="js/wink/plugins/asyncpanels/js/asyncpanels.js"></script>
-	
-	<link rel="stylesheet" href="js/wink/ui/layout/slidingpanels/css/slidingpanels.css" type="text/css">
-	<link rel="stylesheet" href="js/wink/ui/xy/spinner/css/spinner.css" type="text/css">
-	<link rel="stylesheet" href="js/wink/plugins/asyncpanels/css/asyncpanels.css" type="text/css">
+	<script type="text/javascript" src="js/wink/ui/xy/carousel/js/carousel.js"></script>
 	<!-- END WINK INCLUDES -->
 	
-	<!-- THEME UTILITY -->
-	<link rel="stylesheet" href="js/wink/_themes/utils/loader.css" type="text/css">
-	<!-- END THEME UTILITY -->
-	
-	<link rel="stylesheet" href="js/wink/ui/xy/carousel/css/carousel.css" type="text/css">
-	<script type="text/javascript" src="js/wink/ui/xy/carousel/js/carousel.js"></script>
-	
 	<script type="text/javascript" src="js/nve.js"></script>
-	<link rel="stylesheet" href="css/nve.css" type="text/css">
+	
 </head>	
 	
 <body>
 	
-	<div class="w_header_custom">
+	<div class="w_header_custom w_bg_dark">
     	<div id="back" class="w_button_custom w_back w_left">
 	        <input type="button" value="back" onclick="main.panels.slideBack();" />
 	    </div>
 	    <span>NVE</span>
 	</div>
+	
 	<div id="page1">
-	    <div>
-	        <ul class="w_list w_border">
-	            <li class="w_list_item w_border_bottom">
-	                <a href="#" onclick="main.panels.slideTo('page2')">
-	                	presentation
-	                	<span class="w_icon w_chevron"></span>
-	                </a>
-	            </li>
-	            <li class="w_list_item w_border_bottom">
-	                <a href="#" onclick="main.panels.slideTo('page3')">
-	                	contact
-   	                    <span class="w_icon w_chevron"></span>
-                	</a>
-	            </li>
-	        </ul>
+		<img src="./img/nve.jpeg" width="100%" height="73" />
+	    <div class="greenBorder" style="display: table; height: 400px; #position: relative; overflow: hidden; width: 100%;">
+		    <div style=" #position: absolute; #top: 50%;display: table-cell; vertical-align: middle;">
+		      <div class="greenBorder" style=" #position: relative; #top: -50%; width: 200px; margin-left: auto; margin-right: auto;">
+		        <input class="c_mainpage_button w_button w_radius w_bg_dark" value="Snow" type="button" onclick="main.panels.slideTo('snow')" /> <br>
+		        <input class="c_mainpage_button w_button w_radius w_bg_dark" value="Ice" type="button" onclick="main.panels.slideTo('ice')" /> <br>
+		        <input class="c_mainpage_button w_button w_radius w_bg_dark" value="Water" type="button" onclick="main.panels.slideTo('water')" /> <br>
+		        <input class="c_mainpage_button w_button w_radius w_bg_dark" value="Dirt" type="button" onclick="main.panels.slideTo('dirt')" /> <br>
+		        
+	      </div>
 	    </div>
+	  </div>
 	</div>
-	<div id="page2">
-	    <!-- presentation content -->
+	
+	<div id="snow">
+		<div class="greenBorder" style="display: table; height: 400px; #position: relative; overflow: hidden; width: 100%;">
+		    <div style=" #position: absolute; #top: 50%;display: table-cell; vertical-align: middle;">
+		      <div class="greenBorder" style=" #position: relative; #top: -50%; width: 200px; margin-left: auto; margin-right: auto;">
+				<div class="w_footer_custom">
+				    <div class="w_button_custom w_indice" >
+				        <span id="report1">1</span>
+				        <input type="button" class="c_mainpage_button w_button w_radius w_bg_dark" value="Snow Report1" onclick="main.toolbar.add('report1');"/>
+				    </div>
+				</div>
+		      
+		      	<div class="w_footer_custom">
+				    <div class="w_button_custom w_indice" >
+				        <span id="report2">1</span>
+				        <input type="button" class="c_mainpage_button w_button w_radius w_bg_dark" value="Snow Report2" onclick="main.toolbar.add('report2');"/>
+				    </div>
+				</div>
+		        
+		        <div class="w_footer_custom">
+				    <div class="w_button_custom w_indice" >
+				        <span id="report3">1</span>
+				        <input type="button" class="c_mainpage_button w_button w_radius w_bg_dark" value="Snow Report3" onclick="main.toolbar.add('report3');"/>
+				    </div>
+				</div>
+				
+				<div class="w_footer_custom">
+				    <div class="w_button_custom w_indice" >
+				        <span id="report4">1</span>
+				        <input type="button" class="c_mainpage_button w_button w_radius w_bg_dark" value="Snow Report4" onclick="main.toolbar.add('report4');"/>
+				    </div>
+				</div>
+<!-- 		        <input class="c_mainpage_button w_button w_radius w_bg_dark" value="Test1" type="button" onclick="main.panels.slideTo('snow_test1')" /> <br> -->
+<!-- 		        <input class="c_mainpage_button w_button w_radius w_bg_dark" value="Test2" type="button" onclick="main.panels.slideTo('snow_test2')" /> <br> -->
+<!-- 		        <input class="c_mainpage_button w_button w_radius w_bg_dark" value="Test3" type="button" onclick="main.panels.slideTo('snow_test3')" /> <br> -->
+<!-- 		        <input class="c_mainpage_button w_button w_radius w_bg_dark" value="Test4" type="button" onclick="main.panels.slideTo('snow_test4')" /> <br> -->
+   			  </div>
+	       </div>
+   	  </div>
 	</div>
-	<div id="page3">
-	    <!-- contact form -->
+	
+	<div id="snow_test1">
+	
+	</div>
+	<div id="snow_test2">
+	
+	</div>
+	<div id="snow_test3">
+	
+	</div>
+	<div id="snow_test4">
+	
+	</div>
+	
+	<div id="ice">
+	    <h1> Ice </h1>
+	</div>
+	<div id="water">
+	    <h1> Water </h1>
+	</div>
+	<div id="dirt">
+	    <h1> Dirt </h1>
 	</div>
 </body>
 </html>
