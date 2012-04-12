@@ -2,13 +2,13 @@ var water_page = {
 	initialised: false,
 		
 	init : function() {
+		$('header_middle_text').innerHTML = "Vann";
 
 		if(water_page.initialised) {
 			return;
 		}
 		
 		water_page.initialised = true;
-		$('header_middle_text').innerHTML = "Vann";
 		
 		var properties1 = 
 		{
