@@ -22,7 +22,7 @@ var snow_page = {
 	},
 	
 	init: function() {
-		$('header_middle_text').innerHTML = "Snow";
+		$('header_middle_text').innerHTML = "Sn&oslash;";
 		
 		snow_page.doMeasurement();
 		/*

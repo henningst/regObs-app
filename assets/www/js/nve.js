@@ -24,6 +24,7 @@ var main = (function()
     	        	pages:
     	    		[
     	        		'home',
+    	        		'snowObservation',
     	        		'snow',
     	        		'ice',
     	        		'water',
@@ -51,6 +52,12 @@ var main = (function()
         			
         			if(status == 'start') {
         				main_page.init();
+        			}
+        			break;
+        			
+        		case 'snowObservation':
+        			if(status == 'start') {
+        				snow_observation.init();
         			}
         			break;
         			

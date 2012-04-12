@@ -2,7 +2,7 @@ var water_page = {
 	
 	init : function() {
 
-		$('header_middle_text').innerHTML = "Water";
+		$('header_middle_text').innerHTML = "Vann";
 		
 		var properties1 = 
 		{
