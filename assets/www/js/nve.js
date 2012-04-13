@@ -7,11 +7,30 @@ var main = (function()
     	toolbar : 
 		{
 
-		       add: function(id)
-		       {
-		               var i = parseInt($(id).innerHTML) +1;
-		               $(id).innerHTML = i;
-		       }
+	       add: function(id)
+	       {
+	               var i = parseInt($(id).innerHTML) +1;
+	               $(id).innerHTML = i;
+	       }
+		},
+		
+		popup: new wink.ui.xy.Popup(),
+		 
+		showPopup: function()
+		{
+			this.popup.popup({
+		        content: "<div class='w_bloc'>" +
+		            "<label>login</label><input type='text' /><br />" +
+		            "<label>password</label><input type='passwd' /><br />" +
+		            "<input type='button' value='Login' onclick='main.closePopup()' /><br />" +
+		        "</div>",
+		        layerCallback: { context: window, method: 'closePopup' }
+		    });
+		},
+		 
+		closePopup: function()
+		{
+			this.popup.hide();
 		},
     	
         init: function()
@@ -26,6 +45,7 @@ var main = (function()
     	        		'home',
     	        		'snowObservation',
     	        		'snow',
+    	        		'snow_hendelse',
     	        		'ice',
     	        		'water',
     	        		'dirt',
@@ -37,6 +57,7 @@ var main = (function()
     	        }
     	    );
             document.body.appendChild(this.panels.getDomNode());
+    		document.body.appendChild(this.popup.getDomNode());
             
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
