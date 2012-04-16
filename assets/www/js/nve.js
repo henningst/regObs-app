@@ -14,6 +14,17 @@ var main = (function()
 	       }
 		},
 		
+		clickLogin: function() {
+			main.closePopup();
+			var login = new Login("aslak@nlink.no", "aslak2aslak");
+			var store = new NveStore(login);
+			alert(store.isLoggedIn());
+		},
+		
+		loginCallback: function() {
+			alert("logged in !");
+		},
+		
 		popup: new wink.ui.xy.Popup(),
 		 
 		showPopup: function()
@@ -22,7 +33,7 @@ var main = (function()
 		        content: "<div class='w_bloc'>" +
 		            "<label>login</label><input type='text' /><br />" +
 		            "<label>password</label><input type='passwd' /><br />" +
-		            "<input type='button' value='Login' onclick='main.closePopup()' /><br />" +
+		            "<input type='button' value='Login' onclick='main.clickLogin()' /><br />" +
 		        "</div>",
 		        layerCallback: { context: window, method: 'closePopup' }
 		    });
@@ -64,7 +75,7 @@ var main = (function()
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
             
-            alert(document.body.clientHeight +" : " +document.body.clientWidth);
+//            alert(document.body.clientHeight +" : " +document.body.clientWidth);
         },
         
         toggleBackButtonDisplay: function(params, status) {
@@ -83,6 +94,12 @@ var main = (function()
         		case 'snow_picture':
         			if(status == 'start') {
         				snow_picture.init();
+        			}
+        			break;
+        			
+        		case 'snow_hendelse':
+        			if(status == 'start') {
+        				snow_hendelse.init();
         			}
         			break;
         			

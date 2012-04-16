@@ -1,7 +1,6 @@
 var snow_picture  = {
 	
 	onSuccess: function(imageData) {
-		alert('workds');
 		 // Uncomment to view the base64 encoded image data
 	      // console.log(imageData);
 
@@ -22,7 +21,7 @@ var snow_picture  = {
 	},
 
 	onFail :function(message) {
-	    alert('Failed because: ' + message);
+//	    alert('Failed because: ' + message);
 	},
 	
 	init : function () {	

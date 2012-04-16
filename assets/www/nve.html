@@ -15,7 +15,12 @@
 	<link rel="stylesheet" href="css/nve.css" type="text/css">
 	
 	<script type="text/javascript" src="js/config.js"> </script>	
+	<script type="text/javascript" src="js/dependencies/jquery.min.js"> </script>
+	<script type="text/javascript" src="js/dependencies/datajs-1.0.2.js"> </script>
+	<script type="text/javascript" src="js/dependencies/json2.js"> </script>
+		
 	<script type="text/javascript">
+		jQuery.noConflict();
 		// Function to allow one JavaScript file to be included by another.
 		// Copyright (C) 2006-08 www.cryer.co.uk
 		function IncludeJavaScript(jsFile)
@@ -24,7 +29,7 @@
 		}
 	</script>
 	<script type="text/javascript"> 
-		IncludeJavaScript("libs/" +device.platform +"-cordova-1.5.0.js");
+		IncludeJavaScript("js/" +device.platform +"-cordova-1.5.0.js");
         //IncludeJavaScript("libs/" +device.platform +"-LocalNotification.js");
 	</script>
 		
@@ -46,8 +51,10 @@
 	<script type="text/javascript" src="js/snow/snow_observation.js"></script>
 	<script type="text/javascript" src="js/snow/snow.js"></script>
 	<script type="text/javascript" src="js/snow/snow_picture.js"></script>
+	<script type="text/javascript" src="js/snow/snow_hendelse.js"></script>
 	<script type="text/javascript" src="js/water.js"></script>
 	<script type="text/javascript" src="js/nve.js"></script>
+	<script type="text/javascript" src="js/lib/nve-store.js"></script>
 	
 	<style>
 		.sl_container 
@@ -98,8 +105,8 @@
 	<div id="snowObservation">
 		<div class="c_align_central">
 			<input type="button" value="Ny obs !" class="c_big_button c_button w_button w_radius c_color_gradient" onclick="main.panels.slideTo('snow')"/> <br>
-			<input type="button" value="bla bla" class="c_button w_button w_radius c_color_gradient" /> <br>
-			<input type="button" value="bla bla bla" class="c_button w_button w_radius c_color_gradient" /> <br>
+			<input type="button" value="..." class="c_button w_button w_radius c_color_gradient" /> <br>
+			<input type="button" value="..." class="c_button w_button w_radius c_color_gradient" /> <br>
 		</div>
 	</div>
 	
@@ -139,10 +146,6 @@
 			    </div>
 			</div>
    	  </div>
-   	  
-<!--    	  <div class="c_footer"> -->
-<!--    	  	<input type="button" class="w_button w_radius c_color_gradient" style="left: auto; "value="send in" /> -->
-<!--    	  </div> -->
 	</div>
 	
 	<div id="snow_hendelse">

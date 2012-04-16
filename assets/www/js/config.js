@@ -1,3 +1,3 @@
-device {
-	platform = 'android';
+var device = {
+		platform: 'android'
 }
