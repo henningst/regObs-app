@@ -7,11 +7,30 @@ var main = (function()
     	toolbar : 
 		{
 
-		       add: function(id)
-		       {
-		               var i = parseInt($(id).innerHTML) +1;
-		               $(id).innerHTML = i;
-		       }
+	       add: function(id)
+	       {
+	               var i = parseInt($(id).innerHTML) +1;
+	               $(id).innerHTML = i;
+	       }
+		},
+		
+		popup: new wink.ui.xy.Popup(),
+		 
+		showPopup: function()
+		{
+			this.popup.popup({
+		        content: "<div class='w_bloc'>" +
+		            "<label>login</label><input type='text' /><br />" +
+		            "<label>password</label><input type='passwd' /><br />" +
+		            "<input type='button' value='Login' onclick='main.closePopup()' /><br />" +
+		        "</div>",
+		        layerCallback: { context: window, method: 'closePopup' }
+		    });
+		},
+		 
+		closePopup: function()
+		{
+			this.popup.hide();
 		},
     	
         init: function()
@@ -24,7 +43,11 @@ var main = (function()
     	        	pages:
     	    		[
     	        		'home',
+    	        		'snowObservation',
     	        		'snow',
+    	        		'snow_hendelse',
+    	        		'snow_second',
+    	        		'snow_picture',
     	        		'ice',
     	        		'water',
     	        		'dirt',
@@ -36,9 +59,12 @@ var main = (function()
     	        }
     	    );
             document.body.appendChild(this.panels.getDomNode());
+    		document.body.appendChild(this.popup.getDomNode());
             
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
+            
+            alert(document.body.clientHeight +" : " +document.body.clientWidth);
         },
         
         toggleBackButtonDisplay: function(params, status) {
@@ -51,6 +77,18 @@ var main = (function()
         			
         			if(status == 'start') {
         				main_page.init();
+        			}
+        			break;
+        			
+        		case 'snow_picture':
+        			if(status == 'start') {
+        				snow_picture.init();
+        			}
+        			break;
+        			
+        		case 'snowObservation':
+        			if(status == 'start') {
+        				snow_observation.init();
         			}
         			break;
         			

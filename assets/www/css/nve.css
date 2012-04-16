@@ -1,18 +1,102 @@
+/*
+1E7FF2
+333333
+484848
+5D3974
+*/
+
+.c_button 
+{
+	color: white;
+	width: 50%;	
+	margin-bottom: 13px;
+}
+
+.c_right_header_button
+{
+	display:block; 
+	top: 5px;
+	position: absolute;
+	right: 5px;
+}
+
+.c_right_header_button input
+{
+	display: block;
+	position: relative;
+	
+	border: 2px solid #ffffff;
+	overflow: hidden;
+	
+	padding: 0 15px;
+	
+	font-size: 14px; 
+	font-weight: bold;
+	
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	
+	text-align: right;
+	
+	height: 34px;
+	line-height: 32px;
+	
+	color: #fff;
+	
+	text-shadow: #000 0px -1px 0px;
+	
+	border-radius: 5px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+.c_align_central
+{
+	text-align: center;
+	margin-top: 25%;
+}
+
+.c_big_button
+{
+	height: 133px;
+}
+
+.c_color_gradient 
+{
+	background-image: linear-gradient(bottom, rgb(0,58,102) 16%, rgb(0,51,102) 58%, rgb(28,75,133) 79%);
+	background-image: -o-linear-gradient(bottom, rgb(0,58,102) 16%, rgb(0,51,102) 58%, rgb(28,75,133) 79%);
+	background-image: -moz-linear-gradient(bottom, rgb(0,58,102) 16%, rgb(0,51,102) 58%, rgb(28,75,133) 79%);
+	background-image: -webkit-linear-gradient(bottom, rgb(0,58,102) 16%, rgb(0,51,102) 58%, rgb(28,75,133) 79%);
+	background-image: -ms-linear-gradient(bottom, rgb(0,58,102) 16%, rgb(0,51,102) 58%, rgb(28,75,133) 79%);
+	
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.16, rgb(0,58,102)),
+		color-stop(0.58, rgb(0,51,102)),
+		color-stop(0.79, rgb(28,75,133))
+	);
+	
+	color: white;
+}
+
 /* MAIN PAGE */
 .c_mainpage_button
 {
-	margin-bottom: 10px;
-	width: 200px;	
+	margin-bottom: 10px;	
 }
 
 .c_position_header {
 	height: 100px;
-	background-color: gray;
+	background-color: #484848;
 	text-align: center;
 }
 
 .c_position_header span {
 	display: block;
+	color: white;
 	padding-top: 10px;
 }
 
@@ -25,6 +109,7 @@
 /* HEADER */
 .w_header_custom
 {
+	color: white;
 	position: relative;
 
 	height: 45px;
@@ -46,27 +131,12 @@
 .w_button_custom input
 {
 	display: block;
-	
-	border-color: #423d3d;
-	
-	background-image: linear-gradient(bottom, rgb(66,61,61) 11%, rgb(36,31,36) 71%, rgb(0,0,0) 86%);
-	background-image: -o-linear-gradient(bottom, rgb(66,61,61) 11%, rgb(36,31,36) 71%, rgb(0,0,0) 86%);
-	background-image: -moz-linear-gradient(bottom, rgb(66,61,61) 11%, rgb(36,31,36) 71%, rgb(0,0,0) 86%);
-	background-image: -webkit-linear-gradient(bottom, rgb(66,61,61) 11%, rgb(36,31,36) 71%, rgb(0,0,0) 86%);
-	background-image: -ms-linear-gradient(bottom, rgb(66,61,61) 11%, rgb(36,31,36) 71%, rgb(0,0,0) 86%);
-	
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0.11, rgb(66,61,61)),
-		color-stop(0.71, rgb(36,31,36)),
-		color-stop(0.86, rgb(0,0,0))
-	);
 	position: relative;
 	
-	border-width: 0;
-	border-style: solid;
+	border-bottom: 2px solid #ffffff;
+	border-top: 2px solid #ffffff;
+	border-right: 2px solid #ffffff;
+	border-left: 0;
 	
 	overflow: hidden;
 	
@@ -95,30 +165,10 @@
 
 .w_button_custom.w_back::after
 {
-/* 	border-bottom: 1px solid #375073; */
-/* 	border-left: 1px solid #375073; */
+	border-bottom: 2px solid #ffffff;
+	border-left: 2px solid #ffffff;
 	border-right: none;
 	border-top: none;
-	
-	background-image: linear-gradient(bottom, rgb(66,61,61) 11%, rgb(36,31,36) 71%, rgb(0,0,0) 86%);
-	background-image: -o-linear-gradient(bottom, rgb(66,61,61) 11%, rgb(36,31,36) 71%, rgb(0,0,0) 86%);
-	background-image: -moz-linear-gradient(bottom, rgb(66,61,61) 11%, rgb(36,31,36) 71%, rgb(0,0,0) 86%);
-	background-image: -webkit-linear-gradient(bottom, rgb(66,61,61) 11%, rgb(36,31,36) 71%, rgb(0,0,0) 86%);
-	background-image: -ms-linear-gradient(bottom, rgb(66,61,61) 11%, rgb(36,31,36) 71%, rgb(0,0,0) 86%);
-	
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0.11, rgb(66,61,61)),
-		color-stop(0.71, rgb(36,31,36)),
-		color-stop(0.86, rgb(0,0,0))
-	);
-	
-/* 	background-color: #808080; */
-	
-/* 	background-image: -webkit-gradient(linear, left top, right bottom, from(#2fa7fa), to(#2375ae), color-stop(30%, #2785c6)); */
-/* 	background-image: -moz-linear-gradient(left top, #2fa7fa, #2375ae, #2785c6 30%); */
 	 
 	position: absolute;
 	
@@ -151,4 +201,8 @@
 .w_button_custom 
 {
 	display: none;	
+}
+
+.pp_popup {
+	width: 70%;
 }

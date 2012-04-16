@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5107F8F152DA39D00BA56F8 /* www in Resources */ = {isa = PBXBuildFile; fileRef = B5107F8E152DA39D00BA56F8 /* www */; };
 		B5F0D5541525D3DB001774E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5531525D3DB001774E4 /* Foundation.framework */; };
 		B5F0D5561525D3DB001774E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5551525D3DB001774E4 /* UIKit.framework */; };
 		B5F0D5581525D3DB001774E4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5571525D3DB001774E4 /* CoreGraphics.framework */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B5107F8E152DA39D00BA56F8 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../assets/www; sourceTree = "<group>"; };
 		B5F0D54F1525D3DB001774E4 /* Nve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F0D5531525D3DB001774E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B5F0D5551525D3DB001774E4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -78,7 +80,6 @@
 		B5F0D5A31525D3DC001774E4 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
 		B5F0D5A41525D3DC001774E4 /* verify.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = verify.sh; sourceTree = "<group>"; };
 		B5F0D5B01525D4B7001774E4 /* Cordova.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cordova.framework; sourceTree = "<group>"; };
-		B5F0D5B21525D516001774E4 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../android/assets/www; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +117,7 @@
 		B5F0D5411525D3DB001774E4 = {
 			isa = PBXGroup;
 			children = (
-				B5F0D5B21525D516001774E4 /* www */,
+				B5107F8E152DA39D00BA56F8 /* www */,
 				B5F0D5B01525D4B7001774E4 /* Cordova.framework */,
 				B5F0D56D1525D3DB001774E4 /* Nve */,
 				B5F0D5521525D3DB001774E4 /* Frameworks */,
@@ -331,6 +332,7 @@
 				B5F0D5981525D3DC001774E4 /* Cordova.plist in Resources */,
 				B5F0D5A11525D3DC001774E4 /* MainViewController.xib in Resources */,
 				B5F0D5A51525D3DC001774E4 /* verify.sh in Resources */,
+				B5107F8F152DA39D00BA56F8 /* www in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +471,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					/Users/Shared/Cordova/Frameworks,
@@ -493,6 +496,7 @@
 					/usr/lib/libSystem.B.dylib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -502,6 +506,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -526,6 +531,7 @@
 					/usr/lib/libSystem.B.dylib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

@@ -9,12 +9,25 @@
 	<link rel="stylesheet" href="js/wink/ui/layout/slidingpanels/css/slidingpanels.css" type="text/css">
 	<link rel="stylesheet" href="js/wink/ui/xy/spinner/css/spinner.css" type="text/css">
 	<link rel="stylesheet" href="js/wink/ui/xy/carousel/css/carousel.css" type="text/css">
+	<link rel="stylesheet" href="js/wink/ui/xy/popup/css/popup.css" type="text/css">
 	<link rel="stylesheet" href="css/big.css" type="text/css">
-	<link rel="stylesheet" href="css/nve.css" type="text/css">
 	<link rel="stylesheet" href="css/btn.css" type="text/css">
+	<link rel="stylesheet" href="css/nve.css" type="text/css">
+	
+	<script type="text/javascript" src="js/config.js"> </script>	
+	<script type="text/javascript">
+		// Function to allow one JavaScript file to be included by another.
+		// Copyright (C) 2006-08 www.cryer.co.uk
+		function IncludeJavaScript(jsFile)
+		{
+			document.write('<script type="text/javascript" src="' + jsFile + '"><\/scr' + 'ipt>');
+		}
+	</script>
+	<script type="text/javascript"> 
+		IncludeJavaScript("libs/" +device.platform +"-cordova-1.5.0.js");
+        //IncludeJavaScript("libs/" +device.platform +"-LocalNotification.js");
+	</script>
 		
-	<script type="text/javascript" charset="utf-8" src="js/cordova-1.5.0.js"></script>
-			
 	<!-- CORE -->
 	<script type="text/javascript" src="js/wink/wink_1.4.1.min.js"></script>
 	<!-- END CORE -->
@@ -24,19 +37,22 @@
 	<script type="text/javascript" src="js/wink/ui/xy/spinner/js/spinner.js"></script>
 	<script type="text/javascript" src="js/wink/plugins/asyncpanels/js/asyncpanels.js"></script>
 	<script type="text/javascript" src="js/wink/ui/xy/carousel/js/carousel.js"></script>
+	<script type="text/javascript" src="js/wink/ui/xy/popup/js/popup.js"></script>
 	<!-- END WINK INCLUDES -->
 	
 	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript" src="js/ice.js"></script>
 	<script type="text/javascript" src="js/dirt.js"></script>
-	<script type="text/javascript" src="js/snow.js"></script>
+	<script type="text/javascript" src="js/snow/snow_observation.js"></script>
+	<script type="text/javascript" src="js/snow/snow.js"></script>
+	<script type="text/javascript" src="js/snow/snow_picture.js"></script>
 	<script type="text/javascript" src="js/water.js"></script>
 	<script type="text/javascript" src="js/nve.js"></script>
 	
 	<style>
 		.sl_container 
 		{
-			height: auto;
+ 			height: auto;
 		}
 	
 		.thumbnail
@@ -58,26 +74,33 @@
 	
 <body>
 	
-	<div class="w_header_custom w_bg_dark">
-    	<div id="back" class="w_button_custom w_back w_left">
-	        <input type="button" value="back" onclick="main.panels.slideBack();" />
+	<div class="w_header_custom c_color_gradient">
+    	<div id="back" class="w_button_custom w_back w_left c_color_gradient">
+	        <input type="button" value="tilbake" class="c_color_gradient" onclick="main.panels.slideBack();" />
 	    </div>
 	    <span id="header_middle_text">NVE</span>
+	    
+	    <div id="login" class="c_right_header_button w_right c_color_gradient">
+	        <input type="button" value="login" class="c_color_gradient" onclick="main.showPopup();" />
+	    </div>
 	</div>
 	
 	<div id="home">
-		<img src="./img/nve.jpeg" width="100%" height="73" />
-	    <div class="greenBorder" style="display: table; height: 200px; #position: relative; overflow: hidden; width: 100%;">
-		    <div style=" #position: absolute; #top: 50%;display: table-cell; vertical-align: middle;">
-		      <div class="greenBorder" style=" #position: relative; #top: -50%; width: 200px; margin-left: auto; margin-right: auto;">
-		        <input class="c_mainpage_button w_button w_radius w_bg_dark" value="Snow" type="button" onclick="main.panels.slideTo('snow')" /> <br>
-		        <input class="c_mainpage_button w_button w_radius w_bg_dark" value="Ice" type="button" onclick="main.panels.slideTo('ice')" /> <br>
-		        <input class="c_mainpage_button w_button w_radius w_bg_dark" value="Water" type="button" onclick="main.panels.slideTo('water')" /> <br>
-		        <input class="c_mainpage_button w_button w_radius w_bg_dark" value="Dirt" type="button" onclick="main.panels.slideTo('dirt')" /> <br>
-		        
-	      </div>
-	    </div>
-	  </div>
+		<img src="./img/nve_logo.png" width="100%" style="margin-top: -45px"/>
+		<div class="c_align_central">
+	        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Sn&oslash;" type="button" onclick="main.panels.slideTo('snowObservation')" /> <br>
+	        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Is" type="button" onclick="main.panels.slideTo('ice')" /> <br>
+	        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Vann" type="button" onclick="main.panels.slideTo('water')" /> <br>
+	        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="L&oslash;smasse" type="button" onclick="main.panels.slideTo('dirt')" /> <br>
+	     </div>   
+	</div>
+	
+	<div id="snowObservation">
+		<div class="c_align_central">
+			<input type="button" value="Ny obs !" class="c_big_button c_button w_button w_radius c_color_gradient" onclick="main.panels.slideTo('snow')"/> <br>
+			<input type="button" value="bla bla" class="c_button w_button w_radius c_color_gradient" /> <br>
+			<input type="button" value="bla bla bla" class="c_button w_button w_radius c_color_gradient" /> <br>
+		</div>
 	</div>
 	
 	<div id="snow">
@@ -86,45 +109,52 @@
 			<span id="position_header_town"></span>
 			<span id="position_header_county"></span>
 		</div>
-	
-		<div class="greenBorder" style="display: table; height: 200px; #position: relative; overflow: hidden; width: 100%;">
-		    <div style=" #position: absolute; #top: 50%;display: table-cell; vertical-align: middle;">
-		      <div class="greenBorder" style=" #position: relative; #top: -50%; width: 200px; margin-left: auto; margin-right: auto;">
-				
-				<div class="w_footer_custom">
-				    <div class="c_notification_button w_indice" >
-				        <span id="report1">0</span>
-				        <input type="button" class="c_mainpage_button w_button w_radius w_bg_dark" value="Snow Report1" onclick="main.toolbar.add('report1');"/>
-				    </div>
-				</div>
-		      
-		      	<div class="w_footer_custom">
-				    <div class="c_notification_button w_indice" >
-				        <span id="report2">0</span>
-				        <input type="button" class="c_mainpage_button w_button w_radius w_bg_dark" value="Snow Report2" onclick="main.toolbar.add('report2');"/>
-				    </div>
-				</div>
-		        
-		        <div class="w_footer_custom">
-				    <div class="c_notification_button w_indice" >
-				        <span id="report3">0</span>
-				        <input type="button" class="c_mainpage_button w_button w_radius w_bg_dark" value="Snow Report3" onclick="main.toolbar.add('report3');"/>
-				    </div>
-				</div>
-				
-				<div class="w_footer_custom">
-				    <div class="c_notification_button w_indice" >
-				        <span id="report4">0</span>
-				        <input type="button" class="c_mainpage_button w_button w_radius w_bg_dark" value="Snow Report4" onclick="main.toolbar.add('report4');"/>
-				    </div>
-				</div>
-   			  </div>
-	       </div>
+		
+		<div class="c_align_central">
+			<div class="w_footer_custom">
+			    <div class="c_notification_button w_indice" >
+			        <span id="report1">0</span>
+			        <input type="button" class="w_button w_radius c_color_gradient" value="Hendelse" onclick="main.panels.slideTo('snow_hendelse');"/>
+			    </div>
+			</div>
+	      
+	      	<div class="w_footer_custom">
+			    <div class="c_notification_button w_indice" >
+			        <span id="report2">0</span>
+			        <input type="button" class="w_button w_radius c_color_gradient" value="Faretegn" onclick="main.toolbar.add('report2');"/>
+			    </div>
+			</div>
+	        
+	        <div class="w_footer_custom">
+			    <div class="c_notification_button w_indice" >
+			        <span id="report3">0</span>
+			        <input type="button" class="w_button w_radius c_color_gradient" value="Bilde" onclick="main.panels.slideTo('snow_picture');"/>
+			    </div>
+			</div>
+			
+			<div class="w_footer_custom">
+			    <div class="c_notification_button w_indice" >
+			        <span id="report4">0</span>
+			        <input type="button" class="w_button w_radius c_color_gradient" value="..." onclick="main.toolbar.add('report4');"/>
+			    </div>
+			</div>
    	  </div>
    	  
-   	  <div class="c_footer">
-   	  	<input type="button" class="w_button w_radius w_bg_dark" style="left: auto; "value="send in" />
-   	  </div>
+<!--    	  <div class="c_footer"> -->
+<!--    	  	<input type="button" class="w_button w_radius c_color_gradient" style="left: auto; "value="send in" /> -->
+<!--    	  </div> -->
+	</div>
+	
+	<div id="snow_hendelse">
+		Snow Hendelse
+	</div>
+	
+	<div id="snow_second">
+		Snow Hendelse
+	</div>
+	
+	<div id="snow_picture">
+		<img id="picture" />
 	</div>
 	
 	<div id="snow_test1">
@@ -141,16 +171,17 @@
 	</div>
 	
 	<div id="ice">
-		
+		<h1>Is</h1>
 
 	</div>
+	
 	<div id="water">
-	    <h1> Water </h1>
+	    <h1> Vann </h1>
 	    <div id="c1">
 		</div>
 	</div>
 	<div id="dirt">
-	    <h1> Dirt </h1>
+	    <h1> L&oslash;smasse </h1>
 	</div>
 </body>
 </html>
