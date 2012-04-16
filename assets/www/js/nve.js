@@ -46,6 +46,8 @@ var main = (function()
     	        		'snowObservation',
     	        		'snow',
     	        		'snow_hendelse',
+    	        		'snow_second',
+    	        		'snow_picture',
     	        		'ice',
     	        		'water',
     	        		'dirt',
@@ -61,6 +63,8 @@ var main = (function()
             
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
+            
+            alert(document.body.clientHeight +" : " +document.body.clientWidth);
         },
         
         toggleBackButtonDisplay: function(params, status) {
@@ -73,6 +77,12 @@ var main = (function()
         			
         			if(status == 'start') {
         				main_page.init();
+        			}
+        			break;
+        			
+        		case 'snow_picture':
+        			if(status == 'start') {
+        				snow_picture.init();
         			}
         			break;
         			
