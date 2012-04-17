@@ -28,7 +28,7 @@ function NveStore(login, callback) {
   }).complete(function(data) {
     _this.loggedIn = true;
     if (callback) {
-      return callback(data);
+      callback(data);
     }
   });
 }
