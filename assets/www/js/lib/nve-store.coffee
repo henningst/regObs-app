@@ -9,7 +9,7 @@ class NveStore
       "Expires":"\/Date(" + new Date().getTime() + "-0100)\/"
     }
     
-    $.ajax({
+    jQuery.ajax({
       type: 'POST',
       url: "http://h-web01.nve.no/test_RegObsServices/Authentication_JSON_AppService.axd/Login",
       data: JSON.stringify(@cridentials),
