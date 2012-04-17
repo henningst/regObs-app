@@ -2,6 +2,8 @@ var main = (function()
 {
     var main =
     {	
+    	store: null,
+    		
     	panels: null,
     	
     	toolbar : 
@@ -9,19 +11,30 @@ var main = (function()
 
 	       add: function(id)
 	       {
-	               var i = parseInt($(id).innerHTML) +1;
-	               $(id).innerHTML = i;
+               var i = parseInt($(id).innerHTML) +1;
+               $(id).innerHTML = i;
 	       }
 		},
 		
 		clickLogin: function() {
 			main.closePopup();
-			var login = new Login("aslak@nlink.no", "aslak2aslak");
-			var store = new NveStore(login, this.loginCallback);
+			
+			var login = new Login(document.getElementById('login_username').value, document.getElementById('login_password').value);
+			this.store = new NveStore(login, this.loginCallback);
+		},
+		
+		pointsClicked: function() {
+
+			this.store.loggedInAs(this.calli);
 		},
 		
 		loginCallback: function(data) {
 			document.getElementById('loginButton').value = data.statusText;
+			
+		},
+		
+		calli: function(data) {
+			console.log(data);
 		},
 		
 		popup: new wink.ui.xy.Popup(),
@@ -30,8 +43,8 @@ var main = (function()
 		{
 			this.popup.popup({
 		        content: "<div class='w_bloc'>" +
-		            "<label>login</label><input type='text' /><br />" +
-		            "<label>password</label><input type='passwd' /><br />" +
+		            "<label>login</label><input type='text' id='login_username' value='aslak@nlink.no' /><br />" +
+		            "<label>password</label><input type='passwd' id='login_password' value='aslak2aslak' /><br />" +
 		            "<input type='button' value='Login' onclick='main.clickLogin()' /><br />" +
 		        "</div>",
 		        layerCallback: { context: window, method: 'closePopup' }
