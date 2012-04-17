@@ -43,8 +43,8 @@ var main = (function()
 		{
 			this.popup.popup({
 		        content: "<div class='w_bloc'>" +
-		            "<label>login</label><input type='text' id='login_username' value='aslak@nlink.no' /><br />" +
-		            "<label>password</label><input type='passwd' id='login_password' value='aslak2aslak' /><br />" +
+		            "<label>login</label><input type='text' id='login_username' value='philipp@nlink.no' /><br />" +
+		            "<label>password</label><input type='passwd' id='login_password' value='philipp2philipp' /><br />" +
 		            "<input type='button' value='Login' onclick='main.clickLogin()' /><br />" +
 		        "</div>",
 		        layerCallback: { context: window, method: 'closePopup' }

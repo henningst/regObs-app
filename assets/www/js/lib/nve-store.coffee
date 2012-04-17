@@ -1,5 +1,5 @@
 class NveStore
-  constructor: (@login) ->
+  constructor: (@login, callback) ->
     @loggedIn = false
     
     @cridentials = {
@@ -8,7 +8,6 @@ class NveStore
       "createPersistentCookie": true,
       "Expires":"\/Date(" + new Date().getTime() + "-0100)\/"
     }
-    
     
     $.ajax({
       type: 'POST',
@@ -21,6 +20,9 @@ class NveStore
       }
     }).complete( (data) => 
       @loggedIn = true
+      
+      callback(data) if callback
+      
     )  
 
   isLoggedIn: ()->

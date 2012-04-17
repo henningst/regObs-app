@@ -1,6 +1,6 @@
 
 describe("Nve store", function(){
-	var login = new Login("aslak@nlink.no", "aslak2aslak");
+	var login = new Login("philipp@nlink.no", "philipp2philipp");
 	it("should get insert a observation to regobs", function(){
 		
 		var location = new Location(null, 33, 103222, 6982346);
