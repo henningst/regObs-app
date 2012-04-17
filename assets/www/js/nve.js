@@ -19,8 +19,6 @@ var main = (function()
 		clickLogin: function() {
 			main.closePopup();
 			
-			var login = new Login(document.getElementById('login_username').value, document.getElementById('login_password').value);
-			this.store = new NveStore(login, this.loginCallback);
 		},
 		
 		pointsClicked: function() {
