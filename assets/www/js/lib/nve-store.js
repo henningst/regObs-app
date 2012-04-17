@@ -2,7 +2,7 @@ var Location, Login, NveStore, Registration, Result;
 
 NveStore = (function() {
 
-  function NveStore(login) {
+  function NveStore(login, callback) {
     var _this = this;
     this.login = login;
     this.loggedIn = false;
@@ -22,6 +22,9 @@ NveStore = (function() {
         "Content-Type": "application/json; charset=utf-8"
       }
     }).complete(function(data) {
+    	if(callback != null)
+    		callback(data);
+    	
       return _this.loggedIn = true;
     });
   }

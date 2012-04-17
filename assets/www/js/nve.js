@@ -17,12 +17,11 @@ var main = (function()
 		clickLogin: function() {
 			main.closePopup();
 			var login = new Login("aslak@nlink.no", "aslak2aslak");
-			var store = new NveStore(login);
-			alert(store.isLoggedIn());
+			var store = new NveStore(login, this.loginCallback);
 		},
 		
-		loginCallback: function() {
-			alert("logged in !");
+		loginCallback: function(data) {
+			document.getElementById('loginButton').value = data.statusText;
 		},
 		
 		popup: new wink.ui.xy.Popup(),
