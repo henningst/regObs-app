@@ -48,6 +48,23 @@ NveSend = (function() {
     return result;
   };
 
+  NveSend.prototype.sendStandart = function(a, b, c) {
+    var result;
+    result = new Result;
+    OData.request({
+      requestUri: "http://h-web01.nve.no/test_regobsservices/Odata.svc/" + b,
+      method: "POST",
+      data: a
+    }, function(data) {
+      result.ok = true;
+      result.data = data;
+      if (c) {
+        return c(data);
+      }
+    });
+    return result;
+  };
+
   NveSend.prototype.addRegistration = function(registration, callback) {
     var result;
     result = new Result;
@@ -73,8 +90,7 @@ NveSend = (function() {
       method: "GET"
     }, function(data) {
       result.ok = true;
-      result.data = data.results[0];
-      return console.log(data);
+      return result.data = data.results[0];
     });
     return result;
   };

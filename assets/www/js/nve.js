@@ -32,9 +32,13 @@ var main = (function()
 		},
 		
 		pointsClicked: function() {
-			console.log(main.login.data);
-			var location = new Location(null, 33, 103222, 6982346, new Date());
-			this.store.addObsLocation(location, this.yes);
+//			console.log(main.login.data);
+//			var location = new Location(null, 33, 103222, 6982346, new Date());
+//			this.store.addObsLocation(location);
+//			console.log(this.store.getObsLocations());
+			var obs = new AvalangeDangerObs(0, 12, 1, 1, "blablabla");
+			this.store.addAvalangeDanger(obs);
+			this.store.sendAll();
 		},
 		
 		calli: function(data) {

@@ -33,6 +33,19 @@ class NveSend
       callback(data) if callback
     )
     result
+    
+  sendStandart : (a, b, c) ->
+    result = new Result
+    OData.request({
+        requestUri: "http://h-web01.nve.no/test_regobsservices/Odata.svc/" +b,
+        method: "POST",
+        data: a
+    }, (data) ->
+      result.ok= true
+      result.data = data
+      c(data) if c
+    )
+    result
 
   addRegistration: (registration, callback) ->
     result = new Result
@@ -55,6 +68,5 @@ class NveSend
     }, (data) ->
       result.ok = true
       result.data = data.results[0]
-      console.log(data)
     )
     result
