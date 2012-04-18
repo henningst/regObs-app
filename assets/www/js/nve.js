@@ -22,8 +22,8 @@ var main = (function()
 			main.closePopup();
 			
 			var login = new Login(document.getElementById('login_username').value, document.getElementById('login_password').value);
-			var s = new NveStore();
-			s.login(document.getElementById('login_username').value, document.getElementById('login_password').value);
+			this.store = new NveStore();
+			this.store.login(document.getElementById('login_username').value, document.getElementById('login_password').value);
 		},
 		
 		loginCallback: function(data) {

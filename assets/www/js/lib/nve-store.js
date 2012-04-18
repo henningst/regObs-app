@@ -2,7 +2,7 @@
 var Location, Login, NveStore, Registration, Result;
 
 NveStore = (function() {
-  var send;
+  var m_isLoggedIn, send;
 
   NveStore.name = 'NveStore';
 
@@ -10,8 +10,31 @@ NveStore = (function() {
 
   send = new NveSend;
 
+  m_isLoggedIn = false;
+
   NveStore.prototype.login = function(userName, userPassword) {
-    return send.login(new Login(userName, userPassword));
+    return send.login(userName, userPassword, this.loginCallback);
+  };
+
+  NveStore.prototype.loginCallback = function(data) {
+    main.loginCallback(data);
+    return m_isLoggedIn = true;
+  };
+
+  NveStore.prototype.isLoggedIn = function() {
+    return m_isLoggedIn;
+  };
+
+  NveStore.prototype.loggedInAs = function() {
+    return send.loggedInAs();
+  };
+
+  NveStore.prototype.addObsLocation = function(location, callback) {
+    return send.addObsLocation(location, callback);
+  };
+
+  NveStore.prototype.addRegistration = function(registration, callback) {
+    return send.addRegistration(registration, callback);
   };
 
   return NveStore;

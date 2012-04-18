@@ -1,3 +1,9 @@
+var main = {
+		loginCallback: function(data) {
+			
+		}
+}
+
 describe("Nve store", function(){
 	var login = new Login("philipp@nlink.no", "philipp2philipp");
 	it("should get insert a observation to regobs", function(){
@@ -9,37 +15,38 @@ describe("Nve store", function(){
 		})
 		
 		runs(function (){
-//			waitsFor(function(){ return this.store.isLoggedIn()}, "Logging inn", 10000)
-//			this.result = this.store.addObsLocation(location);
+			waitsFor(function(){ return this.store.isLoggedIn()}, "Logging inn", 10000)
+			this.result = this.store.addObsLocation(location);
 		})
 		runs(function(){
-//			waitsFor(function(){ return this.result.ok }, "Loading the obslocation", 10000); 
+			waitsFor(function(){ return this.result.ok }, "Loading the obslocation", 10000); 
 		})
 
 		runs(function(){
-//			expect(this.result.data).toNotBe(null);
-//			var obsLocation = this.result.data;
-//			expect(obsLocation.ObsLocationID).toBeGreaterThan(0)
+			expect(this.result.data).toNotBe(null);
+			var obsLocation = this.result.data;
+			expect(obsLocation.ObsLocationID).toBeGreaterThan(0)
 		});
 	});
 	
 	it("should be able to log in", function(){
 		runs(function(){
-//			this.store = new NveStore(login);
+			this.store = new NveStore();
+			this.store.login(login.username, login.password);
 		})
 		runs(function(){
-//			waitsFor(function(){ return this.store.isLoggedIn(); }, "Logging in", 10000)
+			waitsFor(function(){ return this.store.isLoggedIn(); }, "Logging in", 10000)
 		})
 		
 		runs(function(){
-//			this.result = this.store.loggedInAs();
+			this.result = this.store.loggedInAs();
 		})
 		runs(function(){
-//			waitsFor(function(){ return this.result.ok }, "logged inn", 10000);
+			waitsFor(function(){ return this.result.ok }, "logged inn", 10000);
 		})	
 		runs(function(){
-//			console.log(this.result.data)
-//			expect(this.result.data.EMail).toBe(login.username)
+			console.log(this.result.data)
+			expect(this.result.data.EMail).toBe(login.username)
 		})
 	});
 //	it("should be able to register a location", function(){

@@ -1,10 +1,10 @@
 class NveSend
 
-  login : (login, callback) ->
+  login : (name, pass, callback) ->
   
 	  @cridentials = {
-	      "userName": @login.username,
-	      "password": @login.password,
+	      "userName": name,
+	      "password": pass,
 	      "createPersistentCookie": true,
 	      "Expires":"\/Date(" + new Date().getTime() + "-0100)\/"
 	    }
@@ -17,13 +17,9 @@ class NveSend
 	        Accept : "application/json; charset=utf-8",
 	        "Content-Type": "application/json; charset=utf-8"
 	      }
-	    }).complete( (data) => 
-	      @loggedIn = true
+	    }).complete( (data) =>
 	      callback(data) if callback
 	    )  
-
-  isLoggedIn: ()->
-    @loggedIn
 
   addObsLocation: (obsLocation, callback) ->
     result = new Result

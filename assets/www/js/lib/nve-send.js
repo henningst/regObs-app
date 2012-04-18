@@ -7,11 +7,11 @@ NveSend = (function() {
 
   function NveSend() {}
 
-  NveSend.prototype.login = function(login, callback) {
+  NveSend.prototype.login = function(name, pass, callback) {
     var _this = this;
     this.cridentials = {
-      "userName": this.login.username,
-      "password": this.login.password,
+      "userName": name,
+      "password": pass,
       "createPersistentCookie": true,
       "Expires": "\/Date(" + new Date().getTime() + "-0100)\/"
     };
@@ -25,15 +25,10 @@ NveSend = (function() {
         "Content-Type": "application/json; charset=utf-8"
       }
     }).complete(function(data) {
-      _this.loggedIn = true;
       if (callback) {
         return callback(data);
       }
     });
-  };
-
-  NveSend.prototype.isLoggedIn = function() {
-    return this.loggedIn;
   };
 
   NveSend.prototype.addObsLocation = function(obsLocation, callback) {

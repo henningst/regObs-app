@@ -1,9 +1,26 @@
 class NveStore
 	send = new NveSend
-
+	m_isLoggedIn = false
+	
 	login: (userName, userPassword) ->
-  		send.login(new Login(userName, userPassword))
-    
+		send.login(userName, userPassword, this.loginCallback)
+
+	loginCallback: (data) ->
+		main.loginCallback(data)
+		m_isLoggedIn = true
+
+	isLoggedIn: () ->
+		m_isLoggedIn
+
+	loggedInAs: () ->
+		send.loggedInAs()
+
+	addObsLocation: (location, callback) ->
+		send.addObsLocation(location, callback)
+		
+	addRegistration: (registration, callback) ->
+		send.addRegistration(registration, callback)
+
 class Login
 	constructor: (@username, @password)->
  
@@ -20,5 +37,4 @@ class Result
 		@data = null
   
 	isOk: () ->
-		@ok 
-  
+		@ok
