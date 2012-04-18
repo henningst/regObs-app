@@ -4,6 +4,8 @@ var main = (function()
     {	
     	store: null,
     		
+    	login: null,
+    	
     	panels: null,
     	
     	toolbar : 
@@ -19,20 +21,29 @@ var main = (function()
 		clickLogin: function() {
 			main.closePopup();
 			
-		},
-		
-		pointsClicked: function() {
-
-			this.store.loggedInAs(this.calli);
+			var login = new Login(document.getElementById('login_username').value, document.getElementById('login_password').value);
+			var s = new NveStore();
+			s.login(document.getElementById('login_username').value, document.getElementById('login_password').value);
 		},
 		
 		loginCallback: function(data) {
+			main.login = main.store.loggedInAs();
 			document.getElementById('loginButton').value = data.statusText;
-			
+		},
+		
+		pointsClicked: function() {
+			console.log(main.login.data);
+			var location = new Location(null, 33, 103222, 6982346, new Date());
+			this.store.addObsLocation(location, this.yes);
 		},
 		
 		calli: function(data) {
 			console.log(data);
+		},
+		
+		yes: function(data) {
+			var registration = new Registration(null, main.login.data.ObserverID, data.ObsLocationID, new Date(), new Date());
+			main.store.addRegistration(registration, this.calli);
 		},
 		
 		popup: new wink.ui.xy.Popup(),
@@ -155,3 +166,35 @@ var main = (function()
      
     return main;
 }());
+
+//Bin !
+/*
+###
+constructor: (@login, callback) ->
+    @loggedIn = false
+    
+    @cridentials = {
+      "userName": @login.username,
+      "password": @login.password,
+      "createPersistentCookie": true,
+      "Expires":"\/Date(" + new Date().getTime() + "-0100)\/"
+    }
+    
+    jQuery.ajax({
+      type: 'POST',
+      url: "http://h-web01.nve.no/test_RegObsServices/Authentication_JSON_AppService.axd/Login",
+      data: JSON.stringify(@cridentials),
+      dataType: 'json',
+      headers: { 
+        Accept : "application/json; charset=utf-8",
+        "Content-Type": "application/json; charset=utf-8"
+      }
+    }).complete( (data) => 
+      @loggedIn = true
+      callback(data) if callback
+    )  
+###
+
+ */
+
+

@@ -1,80 +1,24 @@
 class NveStore
-  constructor: (@login, callback) ->
-    @loggedIn = false
-    
-    @cridentials = {
-      "userName": @login.username,
-      "password": @login.password,
-      "createPersistentCookie": true,
-      "Expires":"\/Date(" + new Date().getTime() + "-0100)\/"
-    }
-    
-    jQuery.ajax({
-      type: 'POST',
-      url: "http://h-web01.nve.no/test_RegObsServices/Authentication_JSON_AppService.axd/Login",
-      data: JSON.stringify(@cridentials),
-      dataType: 'json',
-      headers: { 
-        Accept : "application/json; charset=utf-8",
-        "Content-Type": "application/json; charset=utf-8"
-      }
-    }).complete( (data) => 
-      @loggedIn = true
-      
-      callback(data) if callback
-      
-    )  
+	send = new NveSend
 
-  isLoggedIn: ()->
-    @loggedIn
-
-  addObsLocation: (obsLocation, callback) ->
-    result = new Result
-    OData.request({
-        requestUri: "http://h-web01.nve.no/test_regobsservices/Odata.svc/ObsLocation",
-        method: "POST",
-        data: obsLocation
-    }, (data) ->
-      result.ok= true
-      result.data = data
-      callback(data) if callback
-    )
-    result
-
-  addRegistration: (test, callback) ->
-    test
-  
-  loggedInAs: () ->
-    result = new Result
-    OData.request({
-      requestUri: "http://h-web01.nve.no/test_regobsservices/Odata.svc/Observer",
-      method: "GET",
-    }, (data) ->
-      result.ok = true
-      result.data = data.results[0]
-      console.log(data)
-    )
-    result
+	login: (userName, userPassword) ->
+  		send.login(new Login(userName, userPassword))
     
 class Login
-  constructor: (@username, @password)->
-    
+	constructor: (@username, @password)->
  
 class Location
-  constructor: (@ObsLocationID, @UTMZone, @UTMEast, @UTMNorth) -> 
+	constructor: (@ObsLocationID, @UTMZone, @UTMEast, @UTMNorth, @DtRegTime) -> 
   
 class Registration
-  url: "http://h-web01.nve.no/test_regobsservices/Odata.svc/Registration"
-  constructor: (@location) ->
-  
-  id: @id
-  
+	url: "http://h-web01.nve.no/test_regobsservices/Odata.svc/Registration"
+	constructor: (@RegID, @ObserverID, @ObsLocationID, @DtRegTime, @DtObsTime) ->
   
 class Result
-  constructor: () ->
-    @ok = false
-    @data = null
+	constructor: () ->
+		@ok = false
+		@data = null
   
-  isOk: () ->
-    @ok 
+	isOk: () ->
+		@ok 
   
