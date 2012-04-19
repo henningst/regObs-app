@@ -48,6 +48,43 @@ NveSend = (function() {
     return result;
   };
 
+  NveSend.prototype.getDangerSign = function(callback) {
+    var result;
+    result = new Result;
+    OData.request({
+      requestUri: "http://h-web01.nve.no/test_regobsservices/OData.svc/DangerSignKD",
+      method: "GET",
+      data: ""
+    }, function(data) {
+      result.ok = true;
+      result.data = data;
+      console.log(data);
+      if (callback) {
+        return callback(data);
+      }
+    });
+    return result;
+  };
+
+  NveSend.prototype.sendObjectToServer = function(obj, callback) {
+    var result;
+    console.log(obj.url);
+    result = new Result;
+    OData.request({
+      requestUri: obj.url,
+      method: "POST",
+      data: obj
+    }, function(data) {
+      result.ok = true;
+      result.data = data;
+      console.log(data);
+      if (callback) {
+        return callback(data);
+      }
+    });
+    return result;
+  };
+
   NveSend.prototype.sendStandart = function(a, b, c) {
     var result;
     result = new Result;

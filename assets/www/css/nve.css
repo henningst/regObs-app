@@ -12,6 +12,17 @@
 	margin-bottom: 13px;
 }
 
+.c_center_page 
+{
+	text-align: center;
+}
+
+.c_textarea 
+{
+	height: 200px;
+	width: 90%
+}
+
 .c_right_header_button
 {
 	display:block; 
@@ -25,8 +36,9 @@
 	display: block;
 	position: relative;
 	
-	border: 2px solid #ffffff;
+	border: 2px solid;
 	overflow: hidden;
+	border-color: #555;
 	
 	padding: 0 15px;
 	
@@ -40,9 +52,7 @@
 	
 	height: 34px;
 	line-height: 32px;
-	
-	color: #fff;
-	
+		
 	text-shadow: #000 0px -1px 0px;
 	
 	border-radius: 5px;
@@ -64,22 +74,21 @@
 
 .c_color_gradient 
 {
-	background-image: linear-gradient(bottom, rgb(0,58,102) 16%, rgb(0,51,102) 58%, rgb(28,75,133) 79%);
-	background-image: -o-linear-gradient(bottom, rgb(0,58,102) 16%, rgb(0,51,102) 58%, rgb(28,75,133) 79%);
-	background-image: -moz-linear-gradient(bottom, rgb(0,58,102) 16%, rgb(0,51,102) 58%, rgb(28,75,133) 79%);
-	background-image: -webkit-linear-gradient(bottom, rgb(0,58,102) 16%, rgb(0,51,102) 58%, rgb(28,75,133) 79%);
-	background-image: -ms-linear-gradient(bottom, rgb(0,58,102) 16%, rgb(0,51,102) 58%, rgb(28,75,133) 79%);
+	background-image: linear-gradient(bottom, rgb(223,223,223) 47%, rgb(237,237,237) 74%);
+	background-image: -o-linear-gradient(bottom, rgb(223,223,223) 47%, rgb(237,237,237) 74%);
+	background-image: -moz-linear-gradient(bottom, rgb(223,223,223) 47%, rgb(237,237,237) 74%);
+	background-image: -webkit-linear-gradient(bottom, rgb(223,223,223) 47%, rgb(237,237,237) 74%);
+	background-image: -ms-linear-gradient(bottom, rgb(223,223,223) 47%, rgb(237,237,237) 74%);
 	
 	background-image: -webkit-gradient(
 		linear,
 		left bottom,
 		left top,
-		color-stop(0.16, rgb(0,58,102)),
-		color-stop(0.58, rgb(0,51,102)),
-		color-stop(0.79, rgb(28,75,133))
+		color-stop(0.47, rgb(223,223,223)),
+		color-stop(0.74, rgb(237,237,237))
 	);
 	
-	color: white;
+	color: #555;
 }
 
 /* MAIN PAGE */
@@ -109,7 +118,6 @@
 /* HEADER */
 .w_header_custom
 {
-	color: white;
 	position: relative;
 
 	height: 45px;
@@ -133,9 +141,9 @@
 	display: block;
 	position: relative;
 	
-	border-bottom: 2px solid #ffffff;
-	border-top: 2px solid #ffffff;
-	border-right: 2px solid #ffffff;
+	border-bottom: 2px solid;
+	border-top: 2px solid;
+	border-right: 2px solid;
 	border-left: 0;
 	
 	overflow: hidden;
@@ -153,7 +161,7 @@
 	height: 34px;
 	line-height: 32px;
 	
-	color: #fff;
+	border-color: #555;
 	
 	text-shadow: #000 0px -1px 0px;
 	
@@ -165,10 +173,11 @@
 
 .w_button_custom.w_back::after
 {
-	border-bottom: 2px solid #ffffff;
-	border-left: 2px solid #ffffff;
+	border-bottom: 2px solid;
+	border-left: 2px solid;
 	border-right: none;
 	border-top: none;
+	border-color: #555;
 	 
 	position: absolute;
 	

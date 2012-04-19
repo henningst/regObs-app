@@ -40,13 +40,11 @@
 .c_notification_button
 {
 	width: 50%;
-	color: white;
 }
  
 .c_notification_button input
 {
 	width: 100%;
-	color: white;
 }
  
 .w_footer_custom .c_notification_button

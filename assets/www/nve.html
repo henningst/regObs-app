@@ -54,6 +54,7 @@
 	<script type="text/javascript" src="js/snow/snow.js"></script>
 	<script type="text/javascript" src="js/snow/snow_picture.js"></script>
 	<script type="text/javascript" src="js/snow/snow_hendelse.js"></script>
+	<script type="text/javascript" src="js/snow/snow_danger_sign.js"></script>
 	<script type="text/javascript" src="js/water.js"></script>
 	<script type="text/javascript" src="js/nve.js"></script>
 	
@@ -122,14 +123,14 @@
 			<div class="w_footer_custom">
 			    <div class="c_notification_button w_indice" >
 			        <span id="report1">0</span>
-			        <input type="button" class="w_button w_radius c_color_gradient" value="Hendelse" onclick="main.panels.slideTo('snow_hendelse');"/>
+			        <input type="button" class="w_button w_radius c_color_gradient" value="Hendelse" onclick="main.panels.slideTo('snow_danger_sign');"/>
 			    </div>
 			</div>
 	      
 	      	<div class="w_footer_custom">
 			    <div class="c_notification_button w_indice" >
 			        <span id="report2">0</span>
-			        <input type="button" class="w_button w_radius c_color_gradient" value="Faretegn" onclick="main.toolbar.add('report2');"/>
+			        <input type="button" class="w_button w_radius c_color_gradient" value="Faretegn" onclick="main.panels.slideTo('snow_danger_sign');"/>
 			    </div>
 			</div>
 	        
@@ -155,6 +156,18 @@
 	
 	<div id="snow_second">
 		Snow Hendelse
+	</div>
+	
+	<div id="snow_danger_sign" class="c_center_page">
+		<h1>Faresign</h1>
+		
+		<div id="step1" >
+            <select id="snow_danger_sign_list" class="w_select" style="margin-bottom: 20px;"></select>	
+		</div>
+		
+		<textarea id="snow_danger_sign_comment" class="c_textarea" rows="10" cols="10"></textarea>
+		
+		<button onclick="snow_danger_sign.addFaresign();">Leg til</button>
 	</div>
 	
 	<div id="snow_picture">

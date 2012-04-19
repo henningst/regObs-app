@@ -5,10 +5,10 @@ var main = {
 }
 
 describe("Nve store", function(){
-	var login = new Login("philipp@nlink.no", "philipp2philipp");
+	var login = {username : "philipp@nlink.no", password :"philipp2philipp"};
 	it("should get insert a observation to regobs", function(){
 		
-		var location = new Location(null, 33, 103222, 6982346);
+		var location = new ObsLocation(33, 103222, 6982346, new Date());
 		runs(function(){
 			this.store = new NveStore();
 			this.store.login(login.username, login.password);
@@ -16,7 +16,7 @@ describe("Nve store", function(){
 		
 		runs(function (){
 			waitsFor(function(){ return this.store.isLoggedIn()}, "Logging inn", 10000)
-			this.result = this.store.addObsLocation(location);
+			this.result = this.store.send.addObsLocation(location);
 		})
 		runs(function(){
 			waitsFor(function(){ return this.result.ok }, "Loading the obslocation", 10000); 

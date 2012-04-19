@@ -2,7 +2,7 @@ var main = (function()
 {
     var main =
     {	
-    	store: null,
+    	store: new NveStore(),
     		
     	login: null,
     	
@@ -21,8 +21,6 @@ var main = (function()
 		clickLogin: function() {
 			main.closePopup();
 			
-			var login = new Login(document.getElementById('login_username').value, document.getElementById('login_password').value);
-			this.store = new NveStore();
 			this.store.login(document.getElementById('login_username').value, document.getElementById('login_password').value);
 		},
 		
@@ -32,13 +30,18 @@ var main = (function()
 		},
 		
 		pointsClicked: function() {
-//			console.log(main.login.data);
-//			var location = new Location(null, 33, 103222, 6982346, new Date());
-//			this.store.addObsLocation(location);
-//			console.log(this.store.getObsLocations());
-			var obs = new AvalangeDangerObs(0, 12, 1, 1, "blablabla");
-			this.store.addAvalangeDanger(obs);
 			this.store.sendAll();
+		},
+		
+		fill_snow_danger_sign: function(data) {
+			var list = $("snow_danger_sign_list");
+			var i=0;
+			for (i = 0; i < data.results.length; i++)
+			{
+				if(data.results[i].LangKey == 1) {
+					list.add(new Option(data.results[i].DangerSignName, data.results[i].DangerSignTID));	
+				}
+			}
 		},
 		
 		calli: function(data) {
@@ -84,6 +87,7 @@ var main = (function()
     	        		'snow_hendelse',
     	        		'snow_second',
     	        		'snow_picture',
+    	        		'snow_danger_sign',
     	        		'ice',
     	        		'water',
     	        		'dirt',
@@ -99,6 +103,9 @@ var main = (function()
             
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
+
+            //init snow danger signs
+			this.store.getDangerSign(main.fill_snow_danger_sign);
             
 //            alert(document.body.clientHeight +" : " +document.body.clientWidth);
         },
@@ -131,6 +138,12 @@ var main = (function()
         		case 'snowObservation':
         			if(status == 'start') {
         				snow_observation.init();
+        			}
+        			break;
+        			
+        		case 'snow_danger_sign':
+        			if(status == 'start') {
+        				snow_danger_sign.init();
         			}
         			break;
         			
@@ -170,35 +183,3 @@ var main = (function()
      
     return main;
 }());
-
-//Bin !
-/*
-###
-constructor: (@login, callback) ->
-    @loggedIn = false
-    
-    @cridentials = {
-      "userName": @login.username,
-      "password": @login.password,
-      "createPersistentCookie": true,
-      "Expires":"\/Date(" + new Date().getTime() + "-0100)\/"
-    }
-    
-    jQuery.ajax({
-      type: 'POST',
-      url: "http://h-web01.nve.no/test_RegObsServices/Authentication_JSON_AppService.axd/Login",
-      data: JSON.stringify(@cridentials),
-      dataType: 'json',
-      headers: { 
-        Accept : "application/json; charset=utf-8",
-        "Content-Type": "application/json; charset=utf-8"
-      }
-    }).complete( (data) => 
-      @loggedIn = true
-      callback(data) if callback
-    )  
-###
-
- */
-
-

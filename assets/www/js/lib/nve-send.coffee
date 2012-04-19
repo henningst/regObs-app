@@ -34,6 +34,37 @@ class NveSend
     )
     result
     
+  getDangerSign : (callback) ->
+    result = new Result
+    OData.request({
+    	requestUri: "http://h-web01.nve.no/test_regobsservices/OData.svc/DangerSignKD",
+    	method: "GET",
+    	data: ""
+    }, (data) ->
+    	result.ok = true
+    	result.data = data
+    	
+    	console.log(data)
+    	callback(data) if callback
+    )
+    result
+    
+  sendObjectToServer : (obj, callback) ->
+    console.log(obj.url)
+    result = new Result
+    OData.request({
+    	requestUri: obj.url,
+    	method: "POST",
+    	data: obj
+    }, (data) ->
+    	result.ok = true
+    	result.data = data
+    	
+    	console.log(data)
+    	callback(data) if callback
+    )
+    result
+    
   sendStandart : (a, b, c) ->
     result = new Result
     OData.request({
