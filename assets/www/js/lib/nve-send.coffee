@@ -57,6 +57,8 @@ class NveSend
     	result.ok = true
     	result.data = data
     	callback(data) if callback
+    , (err) -> 
+      alert("Error occurred " + err.message)
     )
     result
     

@@ -78,6 +78,8 @@ NveSend = (function() {
       if (callback) {
         return callback(data);
       }
+    }, function(err) {
+      return alert("Error occurred " + err.message);
     });
     return result;
   };

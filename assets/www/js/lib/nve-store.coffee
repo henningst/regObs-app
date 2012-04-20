@@ -35,7 +35,7 @@ class NveStore
 		send.getDangerSign(callback)
 
 	sendAll: () ->
-		location = new ObsLocation("Sogndal", 33, snow_page.latitute, snow_page.longitude, 0, 0, 0, 250, 250, false, null, new Date());
+		location = new ObsLocation("Sogndal", 33, snow_page.longitude, snow_page.latitute, 0, 0, 0, 250, 250, false, null, new Date());
 		console.log(location)
 		send.sendObjectToServer(location, this.zweiter)
 		

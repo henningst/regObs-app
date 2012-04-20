@@ -15,12 +15,15 @@
 	<link rel="stylesheet" href="css/nve.css" type="text/css">
 	
 	<script type="text/javascript" src="js/config.js"> </script>	
+	<script type="text/javascript" src="js/dependencies/proj4js-compressed.js"> </script>
 	<script type="text/javascript" src="js/dependencies/datajs-1.0.2.js"> </script>
 	<script type="text/javascript" src="js/dependencies/json2.js"> </script>
 	<script type="text/javascript" src="js/dependencies/jquery.min.js"> </script>
 		
 	<script type="text/javascript">
 		jQuery.noConflict();
+		Proj4js.defs["EPSG:32633"] = "+title=Zone33NOR +proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs";
+		
 		// Function to allow one JavaScript file to be included by another.
 		// Copyright (C) 2006-08 www.cryer.co.uk
 		function IncludeJavaScript(jsFile)

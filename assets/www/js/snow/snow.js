@@ -4,15 +4,23 @@ var snow_page = {
 		
 	latitute: 0,
 	
-	longiude: 0,
+	longitude: 0,
 		
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
 	//   the current GPS coordinates
 	//
 	onSuccess: function(position) {
-		snow_page.latitute = position.coords.latitude;
-		snow_page.longitude = position.coords.longitude;
+		var source = new Proj4js.Proj('EPSG:4326');    //source coordinates will be in Longitude/Latitude
+		var dest = new Proj4js.Proj('EPSG:32633');     //destination coordinates in LCC, south of France
+		
+		var p = new Proj4js.Point(position.coords.longitude, position.coords.latitude);   //any object will do as long as it has 'x' and 'y' properties
+		Proj4js.transform(source, dest, p);      //do the transformation.  x and y are modified in place
+		
+		alert(Math.round(p.x) +" : " +Math.round(p.y));
+		
+		snow_page.longitude= Math.round(p.x);
+		snow_page.latitute  = Math.round(p.y);
 		
 		$('position_header_position').innerHTML = Math.round(position.coords.latitude * NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA +" , " 
 		+Math.round(position.coords.longitude* NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA;
