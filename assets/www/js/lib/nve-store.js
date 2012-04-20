@@ -4,7 +4,7 @@ var ActivityInfluencedKD, ActivityInfluencedW, AllRegistrationsV, AreaUsageKD, A
 SERVER_URL = "http://h-web01.nve.no/test_regobsservices/Odata.svc/";
 
 NveStore = (function() {
-  var m_isLoggedIn, m_locations, m_observations, send;
+  var m_avalancheDangerObs, m_isLoggedIn, send;
 
   NveStore.name = 'NveStore';
 
@@ -14,9 +14,7 @@ NveStore = (function() {
 
   m_isLoggedIn = false;
 
-  m_observations = [];
-
-  m_locations = [];
+  m_avalancheDangerObs = [];
 
   NveStore.prototype.login = function(userName, userPassword) {
     return send.login(userName, userPassword, this.loginCallback);
@@ -35,16 +33,12 @@ NveStore = (function() {
     return send.loggedInAs();
   };
 
-  NveStore.prototype.addObsLocation = function(location) {
-    return m_locations.push(location);
-  };
-
-  NveStore.prototype.getObsLocations = function() {
-    return m_locations;
-  };
-
   NveStore.prototype.addObservation = function(obs) {
     return m_observations.push(obs);
+  };
+
+  NveStore.prototype.addAvalancheDangerObs = function(avaObs) {
+    return m_avalancheDangerObs.push(avaObs);
   };
 
   NveStore.prototype.getObservations = function() {
@@ -61,8 +55,7 @@ NveStore = (function() {
 
   NveStore.prototype.sendAll = function() {
     var location;
-    console.log("sendAll()");
-    location = new ObsLocation("Sogndal", 33, 103222, 6982346, 0, 0, 0, 250, 250, false, null, new Date());
+    location = new ObsLocation("Sogndal", 33, snow_page.latitute, snow_page.longitude, 0, 0, 0, 250, 250, false, null, new Date());
     console.log(location);
     return send.sendObjectToServer(location, this.zweiter);
   };
@@ -74,17 +67,19 @@ NveStore = (function() {
   };
 
   NveStore.prototype.calli = function(data) {
-    var obs, _i, _len, _results;
+    var i, obs, _fn, _i, _len;
     console.log(data);
-    _results = [];
-    for (_i = 0, _len = m_observations.length; _i < _len; _i++) {
-      obs = m_observations[_i];
-      _results.push((function(obs) {
-        obs.RegID = data.RegID;
-        return send.sendObjectToServer(obs, this.p);
-      })(obs));
+    i = 0;
+    _fn = function(obs) {
+      obs.RegID = data.RegID;
+      obs.AvalancheDangerObsID = i++;
+      return send.sendObjectToServer(obs, this.p);
+    };
+    for (_i = 0, _len = m_avalancheDangerObs.length; _i < _len; _i++) {
+      obs = m_avalancheDangerObs[_i];
+      _fn(obs);
     }
-    return _results;
+    return m_avalancheDangerObs.length = 0;
   };
 
   NveStore.prototype.p = function(data) {

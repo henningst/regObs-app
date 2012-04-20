@@ -11,7 +11,7 @@ var snow_danger_sign = {
 		addFaresign: function() {
 
 			var obs = new AvalancheDangerObs(snow_danger_sign.i++, null, $("snow_danger_sign_list").selectedIndex, 0, $("snow_danger_sign_comment").value);
-			main.store.addObservation(obs);
+			main.store.addAvalancheDangerObs(obs);
 		},
 		
 		init: function() {

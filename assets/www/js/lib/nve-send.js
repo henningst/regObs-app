@@ -58,7 +58,6 @@ NveSend = (function() {
     }, function(data) {
       result.ok = true;
       result.data = data;
-      console.log(data);
       if (callback) {
         return callback(data);
       }
@@ -68,7 +67,6 @@ NveSend = (function() {
 
   NveSend.prototype.sendObjectToServer = function(obj, callback) {
     var result;
-    console.log(obj.url);
     result = new Result;
     OData.request({
       requestUri: obj.url,
@@ -77,7 +75,6 @@ NveSend = (function() {
     }, function(data) {
       result.ok = true;
       result.data = data;
-      console.log(data);
       if (callback) {
         return callback(data);
       }

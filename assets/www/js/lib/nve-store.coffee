@@ -4,8 +4,7 @@ class NveStore
 	send = new NveSend
 	m_isLoggedIn = false
 	
-	m_observations = []
-	m_locations = []
+	m_avalancheDangerObs = []
 	
 	login: (userName, userPassword) ->
 		send.login(userName, userPassword, this.loginCallback)
@@ -20,14 +19,11 @@ class NveStore
 	loggedInAs: () ->
 		send.loggedInAs()
 
-	addObsLocation: (location) ->
-		m_locations.push(location)
-
-	getObsLocations: () ->
-		m_locations
-		
 	addObservation: (obs) ->
 		m_observations.push(obs)
+
+	addAvalancheDangerObs: (avaObs) ->
+		m_avalancheDangerObs.push(avaObs)
 		
 	getObservations: () ->
 		m_observations
@@ -39,8 +35,7 @@ class NveStore
 		send.getDangerSign(callback)
 
 	sendAll: () ->
-		console.log("sendAll()")
-		location = new ObsLocation("Sogndal", 33, 103222, 6982346, 0, 0, 0, 250, 250, false, null, new Date());
+		location = new ObsLocation("Sogndal", 33, snow_page.latitute, snow_page.longitude, 0, 0, 0, 250, 250, false, null, new Date());
 		console.log(location)
 		send.sendObjectToServer(location, this.zweiter)
 		
@@ -51,10 +46,14 @@ class NveStore
 	calli: (data) ->
 		console.log(data)
 
-		for obs in m_observations
+		i = 0
+		for obs in m_avalancheDangerObs
 			do(obs) ->
 				obs.RegID = data.RegID
+				obs.AvalancheDangerObsID = i++
 				send.sendObjectToServer(obs, this.p)
+				
+		m_avalancheDangerObs.length = 0
 
 	p : (data) ->
 		console.log(data)

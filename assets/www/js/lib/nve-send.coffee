@@ -43,14 +43,11 @@ class NveSend
     }, (data) ->
     	result.ok = true
     	result.data = data
-    	
-    	console.log(data)
     	callback(data) if callback
     )
     result
     
   sendObjectToServer : (obj, callback) ->
-    console.log(obj.url)
     result = new Result
     OData.request({
     	requestUri: obj.url,
@@ -59,8 +56,6 @@ class NveSend
     }, (data) ->
     	result.ok = true
     	result.data = data
-    	
-    	console.log(data)
     	callback(data) if callback
     )
     result
