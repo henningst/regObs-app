@@ -16,8 +16,8 @@ class NveStore
 	isLoggedIn: () ->
 		m_isLoggedIn
 
-	loggedInAs: () ->
-		send.loggedInAs()
+	loggedInAs: (callback) ->
+		send.loggedInAs(callback)
 
 	addObservation: (obs) ->
 		m_observations.push(obs)
@@ -35,8 +35,11 @@ class NveStore
 		send.getDangerSign(callback)
 
 	sendAll: () ->
+		if main.login is null or main.login.data is null
+			alert('login')
+			return
+	
 		location = new ObsLocation("Sogndal", 33, snow_page.longitude, snow_page.latitute, 0, 0, 0, 250, 250, false, null, new Date());
-		console.log(location)
 		send.sendObjectToServer(location, this.zweiter)
 		
 	zweiter: (data) ->
@@ -54,6 +57,9 @@ class NveStore
 				send.sendObjectToServer(obs, this.p)
 				
 		m_avalancheDangerObs.length = 0
+		snow_observation.afterSendRegistration()
+		
+		alert('Takk for observasjon')
 
 	p : (data) ->
 		console.log(data)

@@ -118,7 +118,7 @@ NveSend = (function() {
     return result;
   };
 
-  NveSend.prototype.loggedInAs = function() {
+  NveSend.prototype.loggedInAs = function(callback) {
     var result;
     result = new Result;
     OData.request({
@@ -126,7 +126,10 @@ NveSend = (function() {
       method: "GET"
     }, function(data) {
       result.ok = true;
-      return result.data = data.results[0];
+      result.data = data.results[0];
+      if (callback) {
+        return callback(data.results[0]);
+      }
     });
     return result;
   };

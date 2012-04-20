@@ -5,6 +5,15 @@
 5D3974
 */
 
+.c_selectBox
+{
+	margin: 25px 40px 25px 40px;
+    text-align:center;
+    height: 30px;
+    width: 200px; 
+    -webkit-border-radius:0px;
+}
+
 .c_button 
 {
 	color: white;
@@ -53,7 +62,7 @@
 	height: 34px;
 	line-height: 32px;
 		
-	text-shadow: #000 0px -1px 0px;
+/* 	text-shadow: #000 0px -1px 0px; */
 	
 	border-radius: 5px;
 	
@@ -129,7 +138,7 @@
 
 	text-align: center;
 
-	text-shadow: #000 0px -1px 0px;
+/* 	text-shadow: #000 0px -1px 0px; */
 
 	-webkit-box-shadow: -5px 3px 5px rgba(0, 0, 0, 0.7);
 	-moz-box-shadow: -5px 3px 5px rgba(0, 0, 0, 0.7);
@@ -163,7 +172,7 @@
 	
 	border-color: #555;
 	
-	text-shadow: #000 0px -1px 0px;
+/* 	text-shadow: #000 0px -1px 0px; */
 	
 	border-radius: 5px;
 	

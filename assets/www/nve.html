@@ -67,6 +67,10 @@
  			height: auto;
 		}
 	
+		.disabled
+		{
+			background-image :-webkit-gradient( linear, left bottom, left top, color-stop(0.47, #AAA), color-stop(0.74, #AAA) );
+		}
 		.thumbnail
 		{
 			width: 90px;
@@ -100,7 +104,7 @@
 	<div id="home">
 		<img src="./img/nve_logo.png" width="100%" style="margin-top: -45px"/>
 		<div class="c_align_central">
-	        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Sn&oslash;" type="button" onclick="main.panels.slideTo('snowObservation')" /> <br>
+	        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Sn&oslash;" type="button" onclick="main.panels.slideTo('snow')" /> <br>
 	        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Is" type="button" onclick="main.panels.slideTo('ice')" /> <br>
 	        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Vann" type="button" onclick="main.panels.slideTo('water')" /> <br>
 	        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="L&oslash;smasse" type="button" onclick="main.panels.slideTo('dirt')" /> <br>
@@ -125,31 +129,33 @@
 		<div class="c_align_central">
 			<div class="w_footer_custom">
 			    <div class="c_notification_button w_indice" >
-			        <span id="report1">0</span>
-			        <input type="button" class="w_button w_radius c_color_gradient" value="Hendelse" onclick="main.panels.slideTo('snow_danger_sign');"/>
+			        <span id="report1">x</span>
+			        <input type="button" class="disabled w_button w_radius c_color_gradient" value="Hendelse" onclick=""/>
 			    </div>
 			</div>
 	      
 	      	<div class="w_footer_custom">
 			    <div class="c_notification_button w_indice" >
-			        <span id="report2">0</span>
+			        <span id="snow_faretegn">0</span>
 			        <input type="button" class="w_button w_radius c_color_gradient" value="Faretegn" onclick="main.panels.slideTo('snow_danger_sign');"/>
 			    </div>
 			</div>
 	        
 	        <div class="w_footer_custom">
 			    <div class="c_notification_button w_indice" >
-			        <span id="report3">0</span>
-			        <input type="button" class="w_button w_radius c_color_gradient" value="Bilde" onclick="main.panels.slideTo('snow_picture');"/>
+			        <span id="report3">x</span>
+			        <input type="button" class="disabled w_button w_radius c_color_gradient" value="Bilde" onclick=""/>
 			    </div>
 			</div>
 			
 			<div class="w_footer_custom">
 			    <div class="c_notification_button w_indice" >
-			        <span id="report4">0</span>
-			        <input type="button" class="w_button w_radius c_color_gradient" value="..." onclick="main.toolbar.add('report4');"/>
+			        <span id="report4">x</span>
+			        <input type="button" class="disabled w_button w_radius c_color_gradient" value="..." onclick=""/>
 			    </div>
 			</div>
+			
+			<input type="button" value="Send in" style="width: 60%" class="c_button w_button w_radius c_color_gradient" onclick="main.store.sendAll();"/> <br>
    	  </div>
 	</div>
 	
@@ -165,12 +171,12 @@
 		<h1>Faresign</h1>
 		
 		<div id="step1" >
-            <select id="snow_danger_sign_list" class="w_select" style="margin-bottom: 20px;"></select>	
+            <select id="snow_danger_sign_list" class="w_select c_selectBox" style="margin-bottom: 20px;"></select>	
 		</div>
 		
 		<textarea id="snow_danger_sign_comment" class="c_textarea" rows="10" cols="10"></textarea>
 		
-		<button onclick="snow_danger_sign.addFaresign();">Leg til</button>
+		<button class="w_button w_radius c_color_gradient" onclick="snow_danger_sign.addFaresign();">Leg til</button>
 	</div>
 	
 	<div id="snow_picture">

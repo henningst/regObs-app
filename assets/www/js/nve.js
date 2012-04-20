@@ -4,29 +4,19 @@ var main = (function()
     {	
     	store: new NveStore(),
     		
-    	login: null,
+    	login: {data: {"EMail" : "anonym@nve.no", "FirstName" : "Anonym", "ObserverID" : 105}},
     	
     	panels: null,
     	
-    	toolbar : 
-		{
-
-	       add: function(id)
-	       {
-               var i = parseInt($(id).innerHTML) +1;
-               $(id).innerHTML = i;
-	       }
-		},
-		
 		clickLogin: function() {
 			main.closePopup();
-			
+
 			this.store.login(document.getElementById('login_username').value, document.getElementById('login_password').value);
 		},
 		
 		loginCallback: function(data) {
-			main.login = main.store.loggedInAs();
-			document.getElementById('loginButton').value = data.statusText;
+			main.login = main.store.loggedInAs(main.loggedInAsCallback);
+//			document.getElementById('loginButton').value = data.statusText;
 		},
 		
 		pointsClicked: function() {
@@ -48,20 +38,15 @@ var main = (function()
 			console.log(data);
 		},
 		
-		yes: function(data) {
-			var registration = new Registration(null, main.login.data.ObserverID, data.ObsLocationID, new Date(), new Date());
-			main.store.addRegistration(registration, this.calli);
-		},
-		
 		popup: new wink.ui.xy.Popup(),
 		 
 		showPopup: function()
 		{
 			this.popup.popup({
 		        content: "<div class='w_bloc'>" +
-		            "<label>login</label><input type='text' id='login_username' value='philipp@nlink.no' /><br />" +
-		            "<label>password</label><input type='passwd' id='login_password' value='philipp2philipp' /><br />" +
-		            "<input type='button' value='Login' onclick='main.clickLogin()' /><br />" +
+		            "<label>login</label><input type='text' id='login_username' value='' /><br />" +
+		            "<label>password</label><input type='passwd' id='login_password' value='' /><br />" +
+		            "<input type='button' style='color: white;' value='Login' onclick='main.clickLogin()' /><br />" +
 		        "</div>",
 		        layerCallback: { context: window, method: 'closePopup' }
 		    });
@@ -106,8 +91,11 @@ var main = (function()
 
             //init snow danger signs
 			this.store.getDangerSign(main.fill_snow_danger_sign);
-            
-//            alert(document.body.clientHeight +" : " +document.body.clientWidth);
+			main.login = main.store.loggedInAs(main.loggedInAsCallback);
+        },
+        
+        loggedInAsCallback: function (data) {
+        	document.getElementById('loginButton').value = data.FirstName;
         },
         
         toggleBackButtonDisplay: function(params, status) {

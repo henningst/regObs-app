@@ -29,8 +29,8 @@ NveStore = (function() {
     return m_isLoggedIn;
   };
 
-  NveStore.prototype.loggedInAs = function() {
-    return send.loggedInAs();
+  NveStore.prototype.loggedInAs = function(callback) {
+    return send.loggedInAs(callback);
   };
 
   NveStore.prototype.addObservation = function(obs) {
@@ -55,8 +55,11 @@ NveStore = (function() {
 
   NveStore.prototype.sendAll = function() {
     var location;
+    if (main.login === null || main.login.data === null) {
+      alert('login');
+      return;
+    }
     location = new ObsLocation("Sogndal", 33, snow_page.longitude, snow_page.latitute, 0, 0, 0, 250, 250, false, null, new Date());
-    console.log(location);
     return send.sendObjectToServer(location, this.zweiter);
   };
 
@@ -79,7 +82,9 @@ NveStore = (function() {
       obs = m_avalancheDangerObs[_i];
       _fn(obs);
     }
-    return m_avalancheDangerObs.length = 0;
+    m_avalancheDangerObs.length = 0;
+    snow_observation.afterSendRegistration();
+    return alert('Takk for observasjon');
   };
 
   NveStore.prototype.p = function(data) {

@@ -8,9 +8,11 @@
  
     text-align: center;
  
+ 	margin-bottom: 10px;
+ 
     color: #fff;
  
-    text-shadow: #000 0px -1px 0px;
+/*     text-shadow: #000 0px -1px 0px; */
 }
  
 .c_notification_button input, .w_footer_custom .c_notification_button
@@ -29,7 +31,7 @@
     text-overflow:ellipsis;
     line-height: 32px;
  
-    text-shadow: #000 0px -1px 0px;
+/*     text-shadow: #000 0px -1px 0px; */
  
     border-radius: 5px;
  
@@ -39,7 +41,11 @@
  
 .c_notification_button
 {
-	width: 50%;
+	width: 80%;
+	border: 1px solid;
+	border-color: #8A8A8A;
+	margin-bottom: 10px;
+	
 }
  
 .c_notification_button input
@@ -51,12 +57,12 @@
 {
     display: inline;
     top: -2px;
-    margin: 0 -4px;
+    margin: 0 -4px 10px;
  
     border-radius: 0;
  
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
 }
  
 .w_footer_custom .c_notification_button.w_rounded_left
