@@ -86,6 +86,8 @@ var main = (function()
 
             //init snow danger signs
 			this.store.getDangerSign(main.fill_snow_danger_sign);
+			this.store.getObjectFromServer(new ActivityInfluencedKD(), snow_hendelse.fill_activity_influenced);s
+			
 			main.login = main.store.loggedInAs(main.loggedInAsCallback);
         },
         

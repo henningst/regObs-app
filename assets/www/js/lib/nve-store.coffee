@@ -38,8 +38,8 @@ class NveStore
 	getDangerSign: (callback) ->
 		send.getDangerSign(callback)
 		
-	getActivityInfluenced: (callback) ->
-		send.getActivityInfluenced(callback)
+	getObjectFromServer: (call, callback) ->
+		send.getObjectFromServer(call, callback)
 
 	sendAll: () ->
 		if main.login is null or main.login.data is null
@@ -96,7 +96,6 @@ class Registration
 
 class ActivityInfluencedKD
 	url : "#{SERVER_URL}ActivityInfluencedKD"
-	constructor: (@LangKey ,@ActivityInfluencedName, @ActivityInfluencedDescr) ->
 	
 class AreaUsageKD
 	url : "#{SERVER_URL}AreaUsageKD"
@@ -385,4 +384,3 @@ class AvalancheWarningPublishedSummaryV
 
 class ObsLocationV
 	constructor: ( ) ->
-

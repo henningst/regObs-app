@@ -59,8 +59,8 @@ NveStore = (function() {
     return send.getDangerSign(callback);
   };
 
-  NveStore.prototype.getActivityInfluenced = function(callback) {
-    return send.getActivityInfluenced(callback);
+  NveStore.prototype.getObjectFromServer = function(call, callback) {
+    return send.getObjectFromServer(call, callback);
   };
 
   NveStore.prototype.sendAll = function() {
@@ -159,13 +159,9 @@ ActivityInfluencedKD = (function() {
 
   ActivityInfluencedKD.name = 'ActivityInfluencedKD';
 
-  ActivityInfluencedKD.prototype.url = "" + SERVER_URL + "ActivityInfluencedKD";
+  function ActivityInfluencedKD() {}
 
-  function ActivityInfluencedKD(LangKey, ActivityInfluencedName, ActivityInfluencedDescr) {
-    this.LangKey = LangKey;
-    this.ActivityInfluencedName = ActivityInfluencedName;
-    this.ActivityInfluencedDescr = ActivityInfluencedDescr;
-  }
+  ActivityInfluencedKD.prototype.url = "" + SERVER_URL + "ActivityInfluencedKD";
 
   return ActivityInfluencedKD;
 

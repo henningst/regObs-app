@@ -65,6 +65,23 @@ NveSend = (function() {
     return result;
   };
 
+  NveSend.prototype.getObjectFromServer = function(call, callback) {
+    var result;
+    result = new Result;
+    OData.request({
+      requestUri: call.url,
+      method: "GET",
+      data: ""
+    }, function(data) {
+      result.ok = true;
+      result.data = data;
+      if (callback) {
+        return callback(data);
+      }
+    });
+    return result;
+  };
+
   NveSend.prototype.sendObjectToServer = function(obj, callback) {
     var result;
     result = new Result;
@@ -80,23 +97,6 @@ NveSend = (function() {
       }
     }, function(err) {
       return alert("Error occurred " + err.message);
-    });
-    return result;
-  };
-
-  NveSend.prototype.sendStandart = function(a, b, c) {
-    var result;
-    result = new Result;
-    OData.request({
-      requestUri: "http://h-web01.nve.no/test_regobsservices/Odata.svc/" + b,
-      method: "POST",
-      data: a
-    }, function(data) {
-      result.ok = true;
-      result.data = data;
-      if (c) {
-        return c(data);
-      }
     });
     return result;
   };
