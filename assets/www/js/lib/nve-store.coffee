@@ -7,6 +7,7 @@ class NveStore
 	
 	m_avalancheDangerObs = []
 	m_incident = null
+	m_pictures = []
 	
 	login: (userName, userPassword) ->
 		send.login(userName, userPassword, this.loginCallback)
@@ -26,6 +27,12 @@ class NveStore
 
 	addAvalancheDangerObs: (avaObs) ->
 		m_avalancheDangerObs.push(avaObs)
+		
+	addPicture: (picture) ->
+		m_pictures.push(picture)
+		
+	getPictures: () ->
+		m_pictures
 		
 	addIncident: (incident) ->
 		m_incident = incident
@@ -76,6 +83,15 @@ class NveStore
 		send.sendObjectToServer(m_incident, this.p)
 		m_incident = null
 
+		i = 0
+		for picture in m_pictures
+			do(picture) ->
+				picture.RegID = data.RegID
+				picture.PictureID = i++
+				send.sendObjectToServer(picture, this.p)
+
+		m_pictures.length = 0
+		
 		snow_hendelse.afterSendRegistration()
 		snow_observation.afterSendRegistration()
 		

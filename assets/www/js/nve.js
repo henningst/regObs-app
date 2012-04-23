@@ -19,8 +19,8 @@ var main = (function()
 //			document.getElementById('loginButton').value = data.statusText;
 		},
 		
-		pointsClicked: function() {
-			this.store.sendAll();
+		testMethod: function() {
+			alert(this.store.getPictures());
 		},
 		
 		fill_snow_danger_sign: function(data) {

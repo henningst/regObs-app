@@ -6,7 +6,7 @@ SERVER_URL = "http://h-web01.nve.no/test_regobsservices/Odata.svc/";
 LANGUAGE = 1;
 
 NveStore = (function() {
-  var m_avalancheDangerObs, m_incident, m_isLoggedIn, send;
+  var m_avalancheDangerObs, m_incident, m_isLoggedIn, m_pictures, send;
 
   NveStore.name = 'NveStore';
 
@@ -19,6 +19,8 @@ NveStore = (function() {
   m_avalancheDangerObs = [];
 
   m_incident = null;
+
+  m_pictures = [];
 
   NveStore.prototype.login = function(userName, userPassword) {
     return send.login(userName, userPassword, this.loginCallback);
@@ -43,6 +45,14 @@ NveStore = (function() {
 
   NveStore.prototype.addAvalancheDangerObs = function(avaObs) {
     return m_avalancheDangerObs.push(avaObs);
+  };
+
+  NveStore.prototype.addPicture = function(picture) {
+    return m_pictures.push(picture);
+  };
+
+  NveStore.prototype.getPictures = function() {
+    return m_pictures;
   };
 
   NveStore.prototype.addIncident = function(incident) {
@@ -90,7 +100,7 @@ NveStore = (function() {
   };
 
   NveStore.prototype.calli = function(data) {
-    var i, obs, _fn, _i, _len;
+    var i, obs, picture, _fn, _fn1, _i, _j, _len, _len1;
     console.log(data);
     i = 0;
     _fn = function(obs) {
@@ -106,6 +116,17 @@ NveStore = (function() {
     m_incident.RegID = data.RegID;
     send.sendObjectToServer(m_incident, this.p);
     m_incident = null;
+    i = 0;
+    _fn1 = function(picture) {
+      picture.RegID = data.RegID;
+      picture.PictureID = i++;
+      return send.sendObjectToServer(picture, this.p);
+    };
+    for (_j = 0, _len1 = m_pictures.length; _j < _len1; _j++) {
+      picture = m_pictures[_j];
+      _fn1(picture);
+    }
+    m_pictures.length = 0;
     snow_hendelse.afterSendRegistration();
     snow_observation.afterSendRegistration();
     return alert('Takk for observasjon');
