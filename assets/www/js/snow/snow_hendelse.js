@@ -68,8 +68,8 @@ var snow_hendelse = {
 			var incident = main.store.getIncident();
 			
 			if(incident != null) {
-				$("snow_hendelse_activity_list").selectedIndex = incident.ActivityInfluencedTID;
-				$("snow_hendelse_radius_list").selectedIndex = incident.DamageExtentTID;
+				$("snow_hendelse_activity_list").value = incident.ActivityInfluencedTID;
+				$("snow_hendelse_radius_list").value = incident.DamageExtentTID;
 				$("snow_hendelse_comment").value = incident.IncidentHeader +"." +incident.IncidentIngress;
 			}
 		}
