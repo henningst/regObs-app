@@ -28,7 +28,7 @@ var snow_picture  = {
 		navigator.camera.getPicture(
 				snow_picture.onSuccess, 
 				snow_picture.onFail, 
-				{ quality: 50, destinationType: navigator.camera.DestinationType.DATA_URL }
+				{ quality: 25, destinationType: navigator.camera.DestinationType.DATA_URL }
 				); 		
 	}
 }

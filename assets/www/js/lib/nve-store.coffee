@@ -265,7 +265,8 @@ class ObsLocation
 	constructor: (@LocationName, @UTMZone, @UTMEast, @UTMNorth, @UTMSourceTID, @AreaUsageTID, @ForecastRegionTID, @HeigthMax, @HeigthMin, @Area, @HeigthTreeLine, @DtRegTime, @AreaSize, @SlopeAngel, @SlopeDirection, @MunicipalNo, @Comment) ->
 
 class Picture
-	constructor: ( ) ->
+	url: "#{SERVER_URL}Picture"
+	constructor: (@PictureID, @RegID, @PictureImage, @Photographer, @Copyright, @Aspect, @Comment) ->
 
 class PrecipitationKD
 	constructor: ( ) ->

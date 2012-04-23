@@ -5,11 +5,10 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	
-	<link rel="stylesheet" href="js/wink/plugins/asyncpanels/css/asyncpanels.css" type="text/css">
-	<link rel="stylesheet" href="js/wink/ui/layout/slidingpanels/css/slidingpanels.css" type="text/css">
-	<link rel="stylesheet" href="js/wink/ui/xy/spinner/css/spinner.css" type="text/css">
-	<link rel="stylesheet" href="js/wink/ui/xy/carousel/css/carousel.css" type="text/css">
-	<link rel="stylesheet" href="js/wink/ui/xy/popup/css/popup.css" type="text/css">
+<!-- 	wink_1.4.1.min.js -->
+	<link rel="stylesheet" href="js/wink-1.4.1-nve-default.min.css" type="text/css">
+	<script type="text/javascript" src="js/wink-1.4.1-nve-default.min.js"></script>
+	
 	<link rel="stylesheet" href="css/big.css" type="text/css">
 	<link rel="stylesheet" href="css/btn.css" type="text/css">
 	<link rel="stylesheet" href="css/nve.css" type="text/css">
@@ -35,18 +34,6 @@
 		IncludeJavaScript("js/" +device.platform +"-cordova-1.5.0.js");
         //IncludeJavaScript("libs/" +device.platform +"-LocalNotification.js");
 	</script>
-		
-	<!-- CORE -->
-	<script type="text/javascript" src="js/wink/wink_1.4.1.min.js"></script>
-	<!-- END CORE -->
-	
-	<!-- WINK INCLUDES -->
-	<script type="text/javascript" src="js/wink/ui/layout/slidingpanels/js/slidingpanels.js"></script>
-	<script type="text/javascript" src="js/wink/ui/xy/spinner/js/spinner.js"></script>
-	<script type="text/javascript" src="js/wink/plugins/asyncpanels/js/asyncpanels.js"></script>
-	<script type="text/javascript" src="js/wink/ui/xy/carousel/js/carousel.js"></script>
-	<script type="text/javascript" src="js/wink/ui/xy/popup/js/popup.js"></script>
-	<!-- END WINK INCLUDES -->
 	
 	<script type="text/javascript" src="js/lib/nve-send.js"></script>
 	<script type="text/javascript" src="js/lib/nve-store.js"></script>
@@ -139,8 +126,8 @@
 	        
 	        <div class="w_footer_custom">
 			    <div class="c_notification_button w_indice" >
-			        <span id="report3">x</span>
-			        <input type="button" class="disabled w_button w_radius c_color_gradient" value="Bilde" onclick=""/>
+			        <span id="snow_picture">0</span>
+			        <input type="button" class="w_button w_radius c_color_gradient" value="Bilde" onclick="main.panels.slideTo('snow_picture');"/>
 			    </div>
 			</div>
 			
@@ -181,8 +168,8 @@
 		<button class="w_button w_radius c_color_gradient" onclick="snow_faresign.addFaresign();">Leg til</button>
 	</div>
 	
-	<div id="snow_picture">
-		<img id="picture" />
+	<div id="snow_picture" class="c_center_page">
+		<img id="picture" width="250" height="250" />
 	</div>
 	
 <!-- 	ICE - PAGES -->
