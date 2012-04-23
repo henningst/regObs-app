@@ -28,9 +28,7 @@ var main = (function()
 			var i=0;
 			for (i = 0; i < data.results.length; i++)
 			{
-				if(data.results[i].LangKey == 1) {
-					list.add(new Option(data.results[i].DangerSignName, data.results[i].DangerSignTID));	
-				}
+				list.add(new Option(data.results[i].DangerSignName, data.results[i].DangerSignTID));
 			}
 		},
 		
@@ -85,8 +83,9 @@ var main = (function()
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
 
             //init snow danger signs
-			this.store.getDangerSign(main.fill_snow_danger_sign);
-			this.store.getObjectFromServer(new ActivityInfluencedKD(), snow_hendelse.fill_activity_influenced);s
+			this.store.getObjectFromServer(new DangerSignKD(), main.fill_snow_danger_sign);
+			this.store.getObjectFromServer(new ActivityInfluencedKD(), snow_hendelse.fill_activity_influenced);
+			this.store.getObjectFromServer(new DamageExtentKD(), snow_hendelse.fill_radius);
 			
 			main.login = main.store.loggedInAs(main.loggedInAsCallback);
         },

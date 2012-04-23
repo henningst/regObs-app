@@ -119,6 +119,7 @@
 		</div>
 	</div>
 	
+<!-- 	SNOW - PAGES -->
 	<div id="snow">
 		<div class="c_position_header">
 			<span id="position_header_position">,</span> 
@@ -127,13 +128,8 @@
 		</div>
 		
 		<div class="c_align_central">
-			<div class="w_footer_custom">
-			    <div class="c_notification_button w_indice" >
-			        <span id="snow_hendelse">0</span>
-			        <input type="button" class="w_button w_radius c_color_gradient" value="Hendelse" onclick="main.panels.slideTo('snow_hendelse');"/>
-			    </div>
-			</div>
-	      
+	        <input type="button" class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Hendelse" onclick="main.panels.slideTo('snow_hendelse');"/>
+			
 	      	<div class="w_footer_custom">
 			    <div class="c_notification_button w_indice" >
 			        <span id="snow_faresign">0</span>
@@ -163,9 +159,12 @@
 		<h1>Hendelse</h1>
 		
 		<textarea id="snow_hendelse_comment" class="c_textarea" rows="10" cols="10"></textarea>		
-        <select id="snow_hendelse_list" class="w_select c_selectBox" style="margin-bottom: 20px;"></select>		
-		<select id="snow_hendelse_list1" class="w_select c_selectBox" style="margin-bottom: 20px;"></select> <br>	
-
+		
+		<label for="snow_hendelse_activity_list">Aktivitet:</label>
+        <select id="snow_hendelse_activity_list" class="w_select c_selectBox" style="margin-bottom: 20px;"></select>
+        
+        <label for="example_select_1">Radius:</label>		
+		<select id="snow_hendelse_radius_list" class="w_select c_selectBox" style="margin-bottom: 20px;"></select> <br>	
 		
 		<button class="w_button w_radius c_color_gradient" onclick="snow_hendelse.addHendelse();">Leg til</button>
 	</div>
@@ -186,16 +185,20 @@
 		<img id="picture" />
 	</div>
 	
+<!-- 	ICE - PAGES -->
 	<div id="ice">
 		<h1>Is</h1>
 
 	</div>
 	
+<!-- 	WATER - PAGES -->
 	<div id="water">
 	    <h1> Vann </h1>
 	    <div id="c1">
 		</div>
 	</div>
+	
+<!-- 	DIRT PAGES -->
 	<div id="dirt">
 	    <h1> L&oslash;smasse </h1>
 	</div>

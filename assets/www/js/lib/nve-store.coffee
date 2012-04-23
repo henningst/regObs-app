@@ -1,11 +1,12 @@
 SERVER_URL = "http://h-web01.nve.no/test_regobsservices/Odata.svc/"
+LANGUAGE = 1
 
 class NveStore
 	send = new NveSend
 	m_isLoggedIn = false
 	
 	m_avalancheDangerObs = []
-	m_incidents = []
+	m_incident = null
 	
 	login: (userName, userPassword) ->
 		send.login(userName, userPassword, this.loginCallback)
@@ -27,7 +28,10 @@ class NveStore
 		m_avalancheDangerObs.push(avaObs)
 		
 	addIncident: (incident) ->
-		m_incidents.push(incident)
+		m_incident = incident
+
+	getIncident: () ->
+		m_incident
 
 	getObservations: () ->
 		m_observations
@@ -68,13 +72,11 @@ class NveStore
 				
 		m_avalancheDangerObs.length = 0
 		
-		i = 0
-		for incident in m_incidents
-			do(incident) ->
-				incident.RegID = data.RegID
-				
-		m_incidents.length = 0
+		m_incident.RegID = data.RegID
+		send.sendObjectToServer(m_incident, this.p)
+		m_incident = null
 
+		snow_hendelse.afterSendRegistration()
 		snow_observation.afterSendRegistration()
 		
 		alert('Takk for observasjon')
@@ -95,7 +97,7 @@ class Registration
 	constructor: (@ObserverID, @ObsLocationID, @DtRegTime, @DtObsTime, @CompetenceLevelTID, @ObserverGroupID, @Comment) -> 
 
 class ActivityInfluencedKD
-	url : "#{SERVER_URL}ActivityInfluencedKD"
+	url : "#{SERVER_URL}Language(#{LANGUAGE})/ActivityInfluencedKD"
 	
 class AreaUsageKD
 	url : "#{SERVER_URL}AreaUsageKD"
@@ -169,10 +171,10 @@ class CriticalLayerKD
 	constructor: ( ) ->
 
 class DamageExtentKD
-	constructor: ( ) ->
+	url : "#{SERVER_URL}Language(#{LANGUAGE})/DamageExtentKD"
 
 class DangerSignKD
-	constructor: ( ) ->
+	url : "#{SERVER_URL}Language(#{LANGUAGE})/DangerSignKD"
 
 class DestructiveSizeKD
 	constructor: ( ) ->
