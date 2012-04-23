@@ -46,6 +46,9 @@ class NveStore
 		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, new Date(), new Date(), 0)
 		send.sendObjectToServer(registration, main.store.calli)
 
+	sendObjectToServer : (obj, callback) ->
+		this.send.sendObjectToServer(obj, callback)
+
 	calli: (data) ->
 		console.log(data)
 

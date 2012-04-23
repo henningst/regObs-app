@@ -69,6 +69,10 @@ NveStore = (function() {
     return send.sendObjectToServer(registration, main.store.calli);
   };
 
+  NveStore.prototype.sendObjectToServer = function(obj, callback) {
+    return this.send.sendObjectToServer(obj, callback);
+  };
+
   NveStore.prototype.calli = function(data) {
     var i, obs, _fn, _i, _len;
     console.log(data);
