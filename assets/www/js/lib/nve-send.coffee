@@ -34,6 +34,7 @@ class NveSend
     )
     result
     
+    
   getDangerSign : (callback) ->
     result = new Result
     OData.request({

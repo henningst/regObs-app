@@ -57,7 +57,7 @@
 	<script type="text/javascript" src="js/snow/snow.js"></script>
 	<script type="text/javascript" src="js/snow/snow_picture.js"></script>
 	<script type="text/javascript" src="js/snow/snow_hendelse.js"></script>
-	<script type="text/javascript" src="js/snow/snow_danger_sign.js"></script>
+	<script type="text/javascript" src="js/snow/snow_faresign.js"></script>
 	<script type="text/javascript" src="js/water.js"></script>
 	<script type="text/javascript" src="js/nve.js"></script>
 	
@@ -129,15 +129,15 @@
 		<div class="c_align_central">
 			<div class="w_footer_custom">
 			    <div class="c_notification_button w_indice" >
-			        <span id="report1">x</span>
-			        <input type="button" class="disabled w_button w_radius c_color_gradient" value="Hendelse" onclick=""/>
+			        <span id="snow_hendelse">0</span>
+			        <input type="button" class="w_button w_radius c_color_gradient" value="Hendelse" onclick="main.panels.slideTo('snow_hendelse');"/>
 			    </div>
 			</div>
 	      
 	      	<div class="w_footer_custom">
 			    <div class="c_notification_button w_indice" >
-			        <span id="snow_faretegn">0</span>
-			        <input type="button" class="w_button w_radius c_color_gradient" value="Faretegn" onclick="main.panels.slideTo('snow_danger_sign');"/>
+			        <span id="snow_faresign">0</span>
+			        <input type="button" class="w_button w_radius c_color_gradient" value="Faretegn" onclick="main.panels.slideTo('snow_faresign');"/>
 			    </div>
 			</div>
 	        
@@ -159,41 +159,31 @@
    	  </div>
 	</div>
 	
-	<div id="snow_hendelse">
-		Snow Hendelse
+	<div id="snow_hendelse" class="c_center_page">
+		<h1>Hendelse</h1>
+		
+		<textarea id="snow_hendelse_comment" class="c_textarea" rows="10" cols="10"></textarea>		
+        <select id="snow_hendelse_list" class="w_select c_selectBox" style="margin-bottom: 20px;"></select>		
+		<select id="snow_hendelse_list1" class="w_select c_selectBox" style="margin-bottom: 20px;"></select> <br>	
+
+		
+		<button class="w_button w_radius c_color_gradient" onclick="snow_hendelse.addHendelse();">Leg til</button>
 	</div>
 	
-	<div id="snow_second">
-		Snow Hendelse
-	</div>
-	
-	<div id="snow_danger_sign" class="c_center_page">
+	<div id="snow_faresign" class="c_center_page">
 		<h1>Faresign</h1>
 		
-		<div id="step1" >
+		<div>
             <select id="snow_danger_sign_list" class="w_select c_selectBox" style="margin-bottom: 20px;"></select>	
 		</div>
 		
 		<textarea id="snow_danger_sign_comment" class="c_textarea" rows="10" cols="10"></textarea>
 		
-		<button class="w_button w_radius c_color_gradient" onclick="snow_danger_sign.addFaresign();">Leg til</button>
+		<button class="w_button w_radius c_color_gradient" onclick="snow_faresign.addFaresign();">Leg til</button>
 	</div>
 	
 	<div id="snow_picture">
 		<img id="picture" />
-	</div>
-	
-	<div id="snow_test1">
-	
-	</div>
-	<div id="snow_test2">
-	
-	</div>
-	<div id="snow_test3">
-	
-	</div>
-	<div id="snow_test4">
-	
 	</div>
 	
 	<div id="ice">

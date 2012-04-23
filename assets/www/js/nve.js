@@ -70,16 +70,11 @@ var main = (function()
     	        		'snowObservation',
     	        		'snow',
     	        		'snow_hendelse',
-    	        		'snow_second',
     	        		'snow_picture',
-    	        		'snow_danger_sign',
+    	        		'snow_faresign',
     	        		'ice',
     	        		'water',
-    	        		'dirt',
-    	        		'snow_test1',
-    	        		'snow_test2',
-    	        		'snow_test3',
-    	        		'snow_test4'
+    	        		'dirt'
     	        	]
     	        }
     	    );
@@ -129,9 +124,9 @@ var main = (function()
         			}
         			break;
         			
-        		case 'snow_danger_sign':
+        		case 'snow_faresign':
         			if(status == 'start') {
-        				snow_danger_sign.init();
+        				snow_faresign.init();
         			}
         			break;
         			

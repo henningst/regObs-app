@@ -4,7 +4,7 @@ var ActivityInfluencedKD, ActivityInfluencedW, AllRegistrationsV, AreaUsageKD, A
 SERVER_URL = "http://h-web01.nve.no/test_regobsservices/Odata.svc/";
 
 NveStore = (function() {
-  var m_avalancheDangerObs, m_isLoggedIn, send;
+  var m_avalancheDangerObs, m_incidents, m_isLoggedIn, send;
 
   NveStore.name = 'NveStore';
 
@@ -15,6 +15,8 @@ NveStore = (function() {
   m_isLoggedIn = false;
 
   m_avalancheDangerObs = [];
+
+  m_incidents = [];
 
   NveStore.prototype.login = function(userName, userPassword) {
     return send.login(userName, userPassword, this.loginCallback);
@@ -41,6 +43,10 @@ NveStore = (function() {
     return m_avalancheDangerObs.push(avaObs);
   };
 
+  NveStore.prototype.addIncident = function(incident) {
+    return m_incidents.push(incident);
+  };
+
   NveStore.prototype.getObservations = function() {
     return m_observations;
   };
@@ -51,6 +57,10 @@ NveStore = (function() {
 
   NveStore.prototype.getDangerSign = function(callback) {
     return send.getDangerSign(callback);
+  };
+
+  NveStore.prototype.getActivityInfluenced = function(callback) {
+    return send.getActivityInfluenced(callback);
   };
 
   NveStore.prototype.sendAll = function() {
@@ -74,7 +84,7 @@ NveStore = (function() {
   };
 
   NveStore.prototype.calli = function(data) {
-    var i, obs, _fn, _i, _len;
+    var i, incident, obs, _fn, _fn1, _i, _j, _len, _len1;
     console.log(data);
     i = 0;
     _fn = function(obs) {
@@ -87,6 +97,15 @@ NveStore = (function() {
       _fn(obs);
     }
     m_avalancheDangerObs.length = 0;
+    i = 0;
+    _fn1 = function(incident) {
+      return incident.RegID = data.RegID;
+    };
+    for (_j = 0, _len1 = m_incidents.length; _j < _len1; _j++) {
+      incident = m_incidents[_j];
+      _fn1(incident);
+    }
+    m_incidents.length = 0;
     snow_observation.afterSendRegistration();
     return alert('Takk for observasjon');
   };

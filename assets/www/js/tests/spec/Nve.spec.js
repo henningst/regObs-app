@@ -16,8 +16,6 @@ describe("Nve store", function(){
 
 		runs(function(){
 			expect(location).toNotBe(null);
-//			var obsLocation = this.result.data;
-//			expect(obsLocation.ObsLocationID).toBeGreaterThan(0)
 		});
 	});
 	

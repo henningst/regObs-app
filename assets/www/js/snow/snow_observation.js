@@ -7,8 +7,8 @@ var snow_observation = {
    },
    
    afterSendRegistration: function() {
-	   $('snow_faretegn').innerHTML = 0;
-	   $('report1').innerHTML = 0;
+	   $('snow_faresign').innerHTML = 0;
+	   $('snow_hendelse').innerHTML = 0;
 	   $('report3').innerHTML = 0;
 	   $('report4').innerHTML = 0;
 	   

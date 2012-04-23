@@ -5,6 +5,7 @@ class NveStore
 	m_isLoggedIn = false
 	
 	m_avalancheDangerObs = []
+	m_incidents = []
 	
 	login: (userName, userPassword) ->
 		send.login(userName, userPassword, this.loginCallback)
@@ -25,6 +26,9 @@ class NveStore
 	addAvalancheDangerObs: (avaObs) ->
 		m_avalancheDangerObs.push(avaObs)
 		
+	addIncident: (incident) ->
+		m_incidents.push(incident)
+
 	getObservations: () ->
 		m_observations
 		
@@ -33,6 +37,9 @@ class NveStore
 
 	getDangerSign: (callback) ->
 		send.getDangerSign(callback)
+		
+	getActivityInfluenced: (callback) ->
+		send.getActivityInfluenced(callback)
 
 	sendAll: () ->
 		if main.login is null or main.login.data is null
@@ -60,6 +67,14 @@ class NveStore
 				send.sendObjectToServer(obs, this.p)
 				
 		m_avalancheDangerObs.length = 0
+		
+		i = 0
+		for incident in m_incidents
+			do(incident) ->
+				incident.RegID = data.RegID
+				
+		m_incidents.length = 0
+
 		snow_observation.afterSendRegistration()
 		
 		alert('Takk for observasjon')
