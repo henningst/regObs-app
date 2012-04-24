@@ -12,10 +12,10 @@ var snow_page = {
 	//
 	onSuccess: function(position) {
 		var source = new Proj4js.Proj('EPSG:4326');    //source coordinates will be in Longitude/Latitude
-		var dest = new Proj4js.Proj('EPSG:32633');     //destination coordinates in LCC, south of France
+		var dest = new Proj4js.Proj('EPSG:32633');     //destination coordinates for Norway
 		
-		var p = new Proj4js.Point(position.coords.longitude, position.coords.latitude);   //any object will do as long as it has 'x' and 'y' properties
-		Proj4js.transform(source, dest, p);      //do the transformation.  x and y are modified in place
+		var p = new Proj4js.Point(position.coords.longitude, position.coords.latitude);  
+		Proj4js.transform(source, dest, p);
 		
 		snow_page.longitude= Math.round(p.x);
 		snow_page.latitute  = Math.round(p.y);

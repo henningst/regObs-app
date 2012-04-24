@@ -1,9 +1,3 @@
-function ActivityInfluenced(id, name) 
-{
-	this.id		= id;
-	this.name	= name;	
-}
-
 var snow_hendelse = {
 		
 		fill_activity_influenced: function(data) {
@@ -32,7 +26,8 @@ var snow_hendelse = {
 		},
 		
 		addHendelse: function() {
-	
+			//save hendelse
+			
 			var string = $("snow_hendelse_comment").value;
 			var index = string.indexOf('.', 0);
 			
@@ -65,6 +60,7 @@ var snow_hendelse = {
 		},
 		
 		init: function() {
+			//restore old incident if available
 			var incident = main.store.getIncident();
 			
 			if(incident != null) {

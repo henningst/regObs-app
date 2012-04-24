@@ -10,30 +10,11 @@ var main = (function()
     	
 		clickLogin: function() {
 			main.closePopup();
-
 			this.store.login(document.getElementById('login_username').value, document.getElementById('login_password').value);
 		},
 		
 		loginCallback: function(data) {
 			main.login = main.store.loggedInAs(main.loggedInAsCallback);
-//			document.getElementById('loginButton').value = data.statusText;
-		},
-		
-		testMethod: function() {
-//			alert(this.store.getPictures());
-		},
-		
-		fill_snow_danger_sign: function(data) {
-			var list = $("snow_danger_sign_list");
-			var i=0;
-			for (i = 0; i < data.results.length; i++)
-			{
-				list.add(new Option(data.results[i].DangerSignName, data.results[i].DangerSignTID));
-			}
-		},
-		
-		calli: function(data) {
-			console.log(data);
 		},
 		
 		popup: new wink.ui.xy.Popup(),
@@ -65,7 +46,6 @@ var main = (function()
     	        	pages:
     	    		[
     	        		'home',
-    	        		'snowObservation',
     	        		'snow',
     	        		'snow_hendelse',
     	        		'snow_picture',
@@ -83,7 +63,7 @@ var main = (function()
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
 
             //init snow danger signs
-			this.store.getObjectFromServer(new DangerSignKD(), main.fill_snow_danger_sign);
+			this.store.getObjectFromServer(new DangerSignKD(), snow_faresign.fill_snow_danger_sign);
 			this.store.getObjectFromServer(new ActivityInfluencedKD(), snow_hendelse.fill_activity_influenced);
 			this.store.getObjectFromServer(new DamageExtentKD(), snow_hendelse.fill_radius);
 			
@@ -116,12 +96,6 @@ var main = (function()
         		case 'snow_hendelse':
         			if(status == 'start') {
         				snow_hendelse.init();
-        			}
-        			break;
-        			
-        		case 'snowObservation':
-        			if(status == 'start') {
-        				snow_observation.init();
         			}
         			break;
         			

@@ -16,25 +16,24 @@ var snow_picture  = {
 	onSuccess: function(imageData) {
 		snow_picture.pictureData = imageData;
 
-		// Get image handle
 		var smallImage = document.getElementById('snow_picture_img');
 		smallImage.src = "data:image/jpeg;base64," +imageData;
 	},
 
-	onFail :function(message) {
-		alert(message);
+	onFail: function(message) {
+		alert("Lagre bilde feil");
 	},
 	
 	init : function () {
-//		navigator.camera.getPicture(
-//			snow_picture.onSuccess, 
-//			snow_picture.onFail, 
-//			{ 
-//				quality: 50, 
-//				destinationType: navigator.camera.DestinationType.DATA_URL,
-//				allowEdit : true,
-//                correctOrientation: true
-//            }
-//		); 		
+		navigator.camera.getPicture(
+			snow_picture.onSuccess, 
+			snow_picture.onFail, 
+			{ 
+				quality: 50, 
+				destinationType: navigator.camera.DestinationType.DATA_URL,
+				allowEdit : true,
+                correctOrientation: true
+            }
+		); 		
 	}
 }
