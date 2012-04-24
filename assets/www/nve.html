@@ -118,14 +118,14 @@
 			
 	      	<div class="w_footer_custom">
 			    <div class="c_notification_button w_indice" >
-			        <span id="snow_faresign">0</span>
+			        <span id="snow_faresign_count">0</span>
 			        <input type="button" class="w_button w_radius c_color_gradient" value="Faretegn" onclick="main.panels.slideTo('snow_faresign');"/>
 			    </div>
 			</div>
 	        
 	        <div class="w_footer_custom">
 			    <div class="c_notification_button w_indice" >
-			        <span id="snow_picture">0</span>
+			        <span id="snow_picture_count">0</span>
 			        <input type="button" class="w_button w_radius c_color_gradient" value="Bilde" onclick="main.panels.slideTo('snow_picture');"/>
 			    </div>
 			</div>
@@ -168,9 +168,10 @@
 	</div>
 	
 	<div id="snow_picture" class="c_center_page">
-		<img id="picture" width="250" height="250" />
+		<img id="snow_picture_img" class="c_image" src=""/>
+
+		<textarea id="snow_picture_comment" class="c_textarea" rows="10" cols="10"></textarea>
 		<button class="w_button w_radius c_color_gradient" onclick="snow_picture.addPicture();">Leg til</button>
-		
 	</div>
 	
 <!-- 	ICE - PAGES -->

@@ -20,7 +20,7 @@ var main = (function()
 		},
 		
 		testMethod: function() {
-			alert(this.store.getPictures());
+//			alert(this.store.getPictures());
 		},
 		
 		fill_snow_danger_sign: function(data) {

@@ -22,12 +22,23 @@ var snow_page = {
 		
 		$('position_header_position').innerHTML = Math.round(position.coords.latitude * NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA +" , " 
 		+Math.round(position.coords.longitude* NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA;
+		
+		main.store.getObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
 	},
 
 	// onError Callback receives a PositionError object
 	//
 	onError: function(error) {
 		$('position_header_position').innerHTML = "no" +" , " +"geodata";
+	},
+	
+	onKommuneResult : function(data) {
+		var res = JSON.parse(data);
+
+		if(res != null) {
+			$("position_header_town").innerHTML = res.features[0].attributes.KOMMNAVN;
+			$("position_header_county").innerHTML = res.features[0].attributes.FYLKENAVN;
+		}
 	},
 	
 	doMeasurement: function() {
@@ -38,11 +49,6 @@ var snow_page = {
 		$('header_middle_text').innerHTML = "Sn&oslash;";
 		
 		snow_page.doMeasurement();
-		/*
-		 * Do some querys to get more information about the point;
-		 */
-		$('position_header_town').innerHTML = "Sogndal";
-		$('position_header_county').innerHTML = "Sognefjorane";
 	},
 }
 

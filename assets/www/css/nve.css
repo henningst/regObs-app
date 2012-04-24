@@ -5,6 +5,13 @@
 5D3974
 */
 
+.c_image
+{
+	width: 70%;
+	height: 40%;
+	margin: 10px;
+}
+
 .c_selectBox
 {
 	margin: 25px 40px 25px 40px;
@@ -29,7 +36,9 @@
 .c_textarea 
 {
 	height: 200px;
-	width: 90%
+	width: 80%;
+	height: 40%;
+	margin: 10px;
 }
 
 .c_right_header_button

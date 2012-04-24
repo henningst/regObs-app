@@ -7,10 +7,8 @@ var snow_observation = {
    },
    
    afterSendRegistration: function() {
-	   $('snow_faresign').innerHTML = 0;
-	   $('snow_hendelse').innerHTML = 0;
-	   $('snow_picture').innerHTML = 0;
-//	   $('report4').innerHTML = 0;
+	   $('snow_faresign_count').innerHTML = 0;
+	   $('snow_picture_count').innerHTML = 0;
 	   
    },
 		

@@ -12,7 +12,7 @@ var snow_faresign = {
 
 			var obs = new AvalancheDangerObs(snow_faresign.i++, null, $("snow_danger_sign_list").selectedIndex, 0, $("snow_danger_sign_comment").value);
 			main.store.addAvalancheDangerObs(obs);
-			snow_observation.add('snow_faresign');
+			snow_observation.add('snow_faresign_count');
 			main.panels.slideBack();
 			
 			$("snow_danger_sign_list").selectedIndex = 0;

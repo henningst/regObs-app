@@ -57,7 +57,7 @@ class NveStore
 			alert('login')
 			return
 	
-		location = new ObsLocation("Sogndal", 33, snow_page.longitude, snow_page.latitute, 0, 0, 0, 250, 250, false, null, new Date());
+		location = new ObsLocation($("position_header_town").innerHTML, 33, snow_page.longitude, snow_page.latitute, 0, 0, 0, 250, 250, false, null, new Date());
 		send.sendObjectToServer(location, this.zweiter)
 		
 	zweiter: (data) ->
@@ -79,9 +79,10 @@ class NveStore
 				
 		m_avalancheDangerObs.length = 0
 		
-		m_incident.RegID = data.RegID
-		send.sendObjectToServer(m_incident, this.p)
-		m_incident = null
+		if m_incident is not null
+			m_incident.RegID = data.RegID
+			send.sendObjectToServer(m_incident, this.p)
+			m_incident = null
 
 		i = 0
 		for picture in m_pictures
@@ -118,7 +119,26 @@ class ActivityInfluencedKD
 class AreaUsageKD
 	url : "#{SERVER_URL}AreaUsageKD"
 	constructor: (@LangKey, @AreaUsageName, @AreaUsageDescr, @Language ) ->
-	
+
+###
+?text=&geometry=75793,6814257&geometryType=esriGeometryPoint&
+inSR=32633&spatialRel=esriSpatialRelIntersects&
+relationParam=&objectIds=&where=&time=&
+returnCountOnly=false&returnIdsOnly=false&
+returnGeometry=false&maxAllowableOffset=&
+outSR=&outFields=*&f=pjson
+###
+
+class PositionDetails
+	url : ""
+	constructor: (@Lat, @Long) ->
+		this.url = "http://gis.nve.no/ArcGIS/rest/services/Mapservices/Bakgrunnsdata/MapServer/36/query?text=&geometry=#{Long},#{Lat}&geometryType=esriGeometryPoint&
+inSR=32633&spatialRel=esriSpatialRelIntersects&
+relationParam=&objectIds=&where=&time=&
+returnCountOnly=false&returnIdsOnly=false&
+returnGeometry=false&maxAllowableOffset=&
+outSR=&outFields=*&f=pjson"
+
 class AvalancheActivityObs
 	url : "#{SERVER_URL}AvalancheActivityObs"
 	constructor: (@RegID, @Aspect, @HeigthStartZone, @DestructiveSizeTID, @EstimatedNumTID, @AvalancheTID, @AvalancheTriggerTID, @TerrainStartZoneTID, @DtAvalancheTime, @SnowLine, @UsageFlagTID, @Comment) ->

@@ -67,6 +67,7 @@ NveSend = (function() {
 
   NveSend.prototype.getObjectFromServer = function(call, callback) {
     var result;
+    console.log(call.url);
     result = new Result;
     OData.request({
       requestUri: call.url,
@@ -96,7 +97,9 @@ NveSend = (function() {
         return callback(data);
       }
     }, function(err) {
-      return alert("Error occurred " + err.message);
+      alert("Error occurred in sendObjectToServer" + err.message);
+      console.log(obj);
+      return console.log(err);
     });
     return result;
   };
