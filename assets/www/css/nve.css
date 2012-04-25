@@ -5,6 +5,30 @@
 5D3974
 */
 
+.standartTextSize
+{
+	font-size: 1.4em;
+}
+
+.settings 
+{
+	position: absolute;
+	top: 47px;
+	display: none;
+	margin-top: 15px;
+	margin-left: 15px;
+}
+
+input.large 
+{
+	padding: 10px;
+	padding-left: 0;
+	padding-right: 0;
+	text-align: center;
+	background: #E8E8E8;
+	border: 1px solid #949393;
+}
+
 .c_image
 {
 	width: 70%;

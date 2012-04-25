@@ -30,7 +30,7 @@
 		}
 	</script>
 	<script type="text/javascript"> 
-		IncludeJavaScript("js/" +device.platform +"-cordova-1.5.0.js");
+		IncludeJavaScript("js/" +device.platform +"-cordova-1.6.1.js");
         //IncludeJavaScript("libs/" +device.platform +"-LocalNotification.js");
 	</script>
 	
@@ -53,6 +53,10 @@
  			height: auto;
 		}
 	
+		.sl_page
+		{
+			background-color: #EEE;
+		}
 		.disabled
 		{
 			background-image :-webkit-gradient( linear, left bottom, left top, color-stop(0.47, #AAA), color-stop(0.74, #AAA) );
@@ -75,106 +79,118 @@
 </head>	
 	
 <body>
-	
-	<div class="w_header_custom c_color_gradient">
-    	<div id="back" class="w_button_custom w_back w_left c_color_gradient">
-	        <input type="button" value="tilbake" class="c_color_gradient" onclick="main.panels.slideBack();" />
-	    </div>
-	    <span id="header_middle_text">NVE</span>
-	    
-	    <div id="login" class="c_right_header_button w_right c_color_gradient">
-	        <input type="button" id="loginButton" value="login" class="c_color_gradient" onclick="main.showPopup();" />
-	    </div>
-	</div>
-	
-	<div id="home">
-		<img src="./img/nve_logo.png" width="100%" style="margin-top: -45px"/>
-		<div class="c_align_central">
-	        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Sn&oslash;" type="button" onclick="main.panels.slideTo('snow')" /> <br>
-	        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Is" type="button" onclick="main.panels.slideTo('ice')" /> <br>
-	        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Vann" type="button" onclick="main.panels.slideTo('water')" /> <br>
-	        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="L&oslash;smasse" type="button" onclick="main.panels.slideTo('dirt')" /> <br>
-	     </div>   
-	</div>
-	
-<!-- 	SNOW - PAGES -->
-	<div id="snow">
-		<div class="c_position_header">
-			<span id="position_header_position">,</span> 
-			<span id="position_header_town"></span>
-			<span id="position_header_county"></span>
+	<div class="wrapper">
+		<div id="settings" class="settings">
+			<div class="standartTextSize">
+	            <label for="login_username">Login</label> <br>
+	            <input type="text" id="login_username" class="large" value="" /> <br>
+	            <label for="login_possword">Password</label> <br> 
+	            <input type="password" id="login_password" class="large" value="" /> <br>
+	            <input type='button' class="c_button w_button w_radius c_color_gradient" value='Login' onclick="main.clickLogin();" />
+		    </div>
+		</div>
+		<div class="w_header_custom c_color_gradient">
+	    	<div id="back" class="w_button_custom w_back w_left c_color_gradient">
+		        <input type="button" value="tilbake" class="c_color_gradient" onclick="main.panels.slideBack();" />
+		    </div>
+		    <span id="header_middle_text">NVE</span>
+		    
+		    <div id="login" class="c_right_header_button w_right c_color_gradient">
+		        <a type="button" id="loginButton" class="c_color_gradient" onclick="main.toggle();" >
+	            	<img alt="" style="height: 32px; border: 2px solid; border-radius: 5px;" src="img/settings.png">
+		        </a>
+		    </div>
 		</div>
 		
-		<div class="c_align_central">
-	        <input type="button" class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Hendelse" onclick="main.panels.slideTo('snow_hendelse');"/>
-			
-	      	<div class="w_footer_custom">
-			    <div class="c_notification_button w_indice" >
-			        <span id="snow_faresign_count">0</span>
-			        <input type="button" class="w_button w_radius c_color_gradient" value="Faretegn" onclick="main.panels.slideTo('snow_faresign');"/>
-			    </div>
+		<div id="home">
+			<img src="./img/regObs.png" width="100%" style="margin-top: -45px"/>
+			<div class="c_align_central">
+		        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Sn&oslash;" type="button" onclick="main.panels.slideTo('snow')" /> <br>
+		        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Is" type="button" onclick="main.panels.slideTo('ice')" /> <br>
+		        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Vann" type="button" onclick="main.panels.slideTo('water')" /> <br>
+		        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="L&oslash;smasse" type="button" onclick="main.panels.slideTo('dirt')" /> <br>
+		     </div>   
+		</div>
+		
+	<!-- 	SNOW - PAGES -->
+		<div id="snow">
+			<div class="c_position_header">
+				<span id="position_header_position">,</span> 
+				<span id="position_header_town"></span>
+				<span id="position_header_county"></span>
 			</div>
+			
+			<div class="c_align_central">
+		        <input type="button" class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Hendelse" onclick="main.panels.slideTo('snow_hendelse');"/>
+				
+		      	<div class="w_footer_custom">
+				    <div class="c_notification_button w_indice" >
+				        <span id="snow_faresign_count">0</span>
+				        <input type="button" class="w_button w_radius c_color_gradient" value="Faretegn" onclick="main.panels.slideTo('snow_faresign');"/>
+				    </div>
+				</div>
+		        
+		        <div class="w_footer_custom">
+				    <div class="c_notification_button w_indice" >
+				        <span id="snow_picture_count">0</span>
+				        <input type="button" class="w_button w_radius c_color_gradient" value="Bilde" onclick="main.panels.slideTo('snow_picture');"/>
+				    </div>
+				</div>
+				
+				<input type="button" value="Send in" style="width: 60%" class="c_button w_button w_radius c_color_gradient" onclick="main.store.sendAll();"/> <br>
+	   	  </div>
+		</div>
+		
+		<div id="snow_hendelse" class="c_center_page">
+			<h1>Hendelse</h1>
+			
+			<textarea id="snow_hendelse_comment" class="c_textarea" rows="10" cols="10"></textarea>		
+			
+			<label for="snow_hendelse_activity_list">Aktivitet:</label>
+	        <select id="snow_hendelse_activity_list" class="w_select c_selectBox" style="margin-bottom: 20px;"></select>
 	        
-	        <div class="w_footer_custom">
-			    <div class="c_notification_button w_indice" >
-			        <span id="snow_picture_count">0</span>
-			        <input type="button" class="w_button w_radius c_color_gradient" value="Bilde" onclick="main.panels.slideTo('snow_picture');"/>
-			    </div>
+	        <label for="example_select_1">Radius:</label>		
+			<select id="snow_hendelse_radius_list" class="w_select c_selectBox" style="margin-bottom: 20px;"></select> <br>	
+			
+			<button class="w_button w_radius c_color_gradient" onclick="snow_hendelse.addHendelse();">Leg til</button>
+		</div>
+		
+		<div id="snow_faresign" class="c_center_page">
+			<h1>Faresign</h1>
+			
+			<div>
+	            <select id="snow_danger_sign_list" class="w_select c_selectBox" style="margin-bottom: 20px;"></select>	
 			</div>
 			
-			<input type="button" value="Send in" style="width: 60%" class="c_button w_button w_radius c_color_gradient" onclick="main.store.sendAll();"/> <br>
-   	  </div>
-	</div>
-	
-	<div id="snow_hendelse" class="c_center_page">
-		<h1>Hendelse</h1>
-		
-		<textarea id="snow_hendelse_comment" class="c_textarea" rows="10" cols="10"></textarea>		
-		
-		<label for="snow_hendelse_activity_list">Aktivitet:</label>
-        <select id="snow_hendelse_activity_list" class="w_select c_selectBox" style="margin-bottom: 20px;"></select>
-        
-        <label for="example_select_1">Radius:</label>		
-		<select id="snow_hendelse_radius_list" class="w_select c_selectBox" style="margin-bottom: 20px;"></select> <br>	
-		
-		<button class="w_button w_radius c_color_gradient" onclick="snow_hendelse.addHendelse();">Leg til</button>
-	</div>
-	
-	<div id="snow_faresign" class="c_center_page">
-		<h1>Faresign</h1>
-		
-		<div>
-            <select id="snow_danger_sign_list" class="w_select c_selectBox" style="margin-bottom: 20px;"></select>	
+			<textarea id="snow_danger_sign_comment" class="c_textarea" rows="10" cols="10"></textarea>
+			
+			<button class="w_button w_radius c_color_gradient" onclick="snow_faresign.addFaresign();">Leg til</button>
 		</div>
 		
-		<textarea id="snow_danger_sign_comment" class="c_textarea" rows="10" cols="10"></textarea>
-		
-		<button class="w_button w_radius c_color_gradient" onclick="snow_faresign.addFaresign();">Leg til</button>
-	</div>
+		<div id="snow_picture" class="c_center_page">
+			<img id="snow_picture_img" class="c_image" src=""/>
 	
-	<div id="snow_picture" class="c_center_page">
-		<img id="snow_picture_img" class="c_image" src=""/>
-
-		<textarea id="snow_picture_comment" class="c_textarea" rows="10" cols="10"></textarea>
-		<button class="w_button w_radius c_color_gradient" onclick="snow_picture.addPicture();">Leg til</button>
-	</div>
-	
-<!-- 	ICE - PAGES -->
-	<div id="ice">
-		<h1>Is</h1>
-
-	</div>
-	
-<!-- 	WATER - PAGES -->
-	<div id="water">
-	    <h1> Vann </h1>
-	    <div id="c1">
+			<textarea id="snow_picture_comment" class="c_textarea" rows="10" cols="10"></textarea>
+			<button class="w_button w_radius c_color_gradient" onclick="snow_picture.addPicture();">Leg til</button>
 		</div>
-	</div>
+		
+	<!-- 	ICE - PAGES -->
+		<div id="ice">
+			<h1>Is</h1>
 	
-<!-- 	DIRT PAGES -->
-	<div id="dirt">
-	    <h1> L&oslash;smasse </h1>
+		</div>
+		
+	<!-- 	WATER - PAGES -->
+		<div id="water">
+		    <h1> Vann </h1>
+		    <div id="c1">
+			</div>
+		</div>
+		
+	<!-- 	DIRT PAGES -->
+		<div id="dirt">
+		    <h1> L&oslash;smasse </h1>
+		</div>
 	</div>
 </body>
 </html>

@@ -2,6 +2,8 @@ var main = (function()
 {
     var main =
     {	
+    	optionsDisplayed: 0,
+    		
     	store: new NveStore(),
     		
     	login: {data: {"EMail" : "anonym@nve.no", "FirstName" : "Anonym", "ObserverID" : 105}},
@@ -15,6 +17,22 @@ var main = (function()
 		
 		loginCallback: function(data) {
 			main.login = main.store.loggedInAs(main.loggedInAsCallback);
+		},
+		
+		toggle: function ()
+		{
+
+			if ( main.optionsDisplayed == 0 )
+			{
+				$('pages').translate(window.innerWidth - 81, 0);
+				main.optionsDisplayed = 1;
+				$('settings').style.display = 'block';
+			} else
+			{
+				$('pages').translate(0, 0);
+				main.optionsDisplayed = 0;
+				$('settings').style.display = 'none';
+			}
 		},
 		
 		popup: new wink.ui.xy.Popup(),
@@ -43,6 +61,7 @@ var main = (function()
     	        {
     	        	duration: 500,
     	        	transitionType: 'default',
+    	        	uId: 5,
     	        	pages:
     	    		[
     	        		'home',
@@ -66,9 +85,47 @@ var main = (function()
 			this.store.getObjectFromServer(new DangerSignKD(), snow_faresign.fill_snow_danger_sign);
 			this.store.getObjectFromServer(new ActivityInfluencedKD(), snow_hendelse.fill_activity_influenced);
 			this.store.getObjectFromServer(new DamageExtentKD(), snow_hendelse.fill_radius);
+
+			jQuery('.sl_container').attr('id', 'pages');
+			jQuery('.sl_container').css('webkit-transition-duration', '500ms');
+			jQuery('.sl_container').css('webkit-transition-delay', '1ms');
 			
+			wink.fx.apply($('pages'), {'transition-timing-function': 'ease-in-out'});
+			
+//			{'webkit-transition-property': '-webkit-transform},
+//			{'webkit-transform': 'translate3d(-100%, 0px, 0px)'}
 			main.login = main.store.loggedInAs(main.loggedInAsCallback);
         },
+        
+        sizeElements: function()
+    	{
+    		scrollTo(0, 0, 0);
+    		
+    		var _h = window.innerHeight;
+    		var _w = window.innerWidth;
+    		
+    		$('wrapper').style.height = _h + 'px';
+    		$('wrapper').style.width = _w + 'px';
+    		
+    		if ( wink.isSet($('splash')) )
+    		{
+    			$('splash').style.height = _h + 'px';
+    		}
+    		
+    		$('tests_scroller').style.height = _h - 64 + 'px';
+    		$('tests_scroller').style.width = _w + 'px';
+    		
+    		$('about_scroller').style.height = _h - 54 + 'px';
+    		$('about_scroller').style.width = _w - 81 + 'px';
+    		
+    		$('container').style.height = _h + 'px';
+    		
+    		$('options').style.width = (_w - 81) + 'px';
+    		$('tests').style.width = _w + 'px';
+    		$('test').style.width = _w + 'px';
+    		
+    		$('testContent').style.minHeight = _h + 'px';
+    	},
         
         loggedInAsCallback: function (data) {
         	document.getElementById('loginButton').value = data.FirstName;
@@ -141,3 +198,4 @@ var main = (function()
      
     return main;
 }());
+
