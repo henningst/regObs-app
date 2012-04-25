@@ -94,7 +94,7 @@ class NveStore
 		m_pictures.length = 0
 		
 		snow_hendelse.afterSendRegistration()
-		snow_observation.afterSendRegistration()
+		snow_page.afterSendRegistration()
 		
 		alert('Takk for observasjon')
 

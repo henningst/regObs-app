@@ -130,7 +130,7 @@ NveStore = (function() {
     }
     m_pictures.length = 0;
     snow_hendelse.afterSendRegistration();
-    snow_observation.afterSendRegistration();
+    snow_page.afterSendRegistration();
     return alert('Takk for observasjon');
   };
 

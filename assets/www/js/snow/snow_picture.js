@@ -8,7 +8,7 @@ var snow_picture  = {
 			main.store.addPicture(picture);
 			snow_picture.pictureData = null;
 
-			snow_observation.add('snow_picture_count');
+			snow_page.add('snow_picture_count');
 			main.panels.slideBack();
 		}
 	},

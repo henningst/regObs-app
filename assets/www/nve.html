@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="js/wink-1.4.1-nve-default.min.css" type="text/css">
 	<script type="text/javascript" src="js/wink-1.4.1-nve-default.min.js"></script>
 	
-	<link rel="stylesheet" href="css/big.css" type="text/css">
+<!-- 	<link rel="stylesheet" href="css/big.css" type="text/css"> -->
 	<link rel="stylesheet" href="css/btn.css" type="text/css">
 	<link rel="stylesheet" href="css/nve.css" type="text/css">
 	
@@ -82,10 +82,10 @@
 	<div class="wrapper">
 		<div id="settings" class="settings">
 			<div class="standartTextSize">
-	            <label for="login_username">Login</label> <br>
-	            <input type="text" id="login_username" class="large" value="" /> <br>
-	            <label for="login_possword">Password</label> <br> 
-	            <input type="password" id="login_password" class="large" value="" /> <br>
+	            <label for="login_username">Login</label>
+	            <input type="text" id="login_username" class="large settingsInput" value="" />
+	            <label for="login_possword">Password</label>
+	            <input type="password" id="login_password" class="large settingsInput" value="" />
 	            <input type='button' class="c_button w_button w_radius c_color_gradient" value='Login' onclick="main.clickLogin();" />
 		    </div>
 		</div>
@@ -104,12 +104,33 @@
 		
 		<div id="home">
 			<img src="./img/regObs.png" width="100%" style="margin-top: -45px"/>
-			<div class="c_align_central">
-		        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Sn&oslash;" type="button" onclick="main.panels.slideTo('snow')" /> <br>
-		        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Is" type="button" onclick="main.panels.slideTo('ice')" /> <br>
-		        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="Vann" type="button" onclick="main.panels.slideTo('water')" /> <br>
-		        <input class="c_mainpage_button c_button w_button w_radius c_color_gradient" value="L&oslash;smasse" type="button" onclick="main.panels.slideTo('dirt')" /> <br>
-		     </div>   
+			
+			
+			<div class="c_align_central" style="display: table; width: 100%;">
+				
+				<div class="table_row">
+					<a onclick="main.panels.slideTo('snow')">
+						<span>Sn&oslash;</span>
+						<img alt="" src="img/snow_button.png">
+					</a>
+					<a onclick="main.panels.slideTo('ice')">
+						<span >Is</span>
+						<img alt="" src="img/ice_button.png">
+					</a>
+				</div>
+				
+				<div class="table_row">
+					<a onclick="main.panels.slideTo('water')">
+						<span >Vann</span>
+						<img alt="" src="img/water_button.png">
+					</a>
+					
+					<a onclick="main.panels.slideTo('dirt')">
+						<span >L&oslash;smasse</span>
+						<img alt="" src="img/dirt_button.png">
+					</a>
+				</div>
+			</div>
 		</div>
 		
 	<!-- 	SNOW - PAGES -->
@@ -152,7 +173,7 @@
 	        <label for="example_select_1">Radius:</label>		
 			<select id="snow_hendelse_radius_list" class="w_select c_selectBox" style="margin-bottom: 20px;"></select> <br>	
 			
-			<button class="w_button w_radius c_color_gradient" onclick="snow_hendelse.addHendelse();">Leg til</button>
+			<button class="w_button w_radius c_color_gradient" onclick="snow_hendelse.addHendelse();">Legg til</button>
 		</div>
 		
 		<div id="snow_faresign" class="c_center_page">
@@ -164,14 +185,14 @@
 			
 			<textarea id="snow_danger_sign_comment" class="c_textarea" rows="10" cols="10"></textarea>
 			
-			<button class="w_button w_radius c_color_gradient" onclick="snow_faresign.addFaresign();">Leg til</button>
+			<button class="w_button w_radius c_color_gradient" onclick="snow_faresign.addFaresign();">Legg til</button>
 		</div>
 		
 		<div id="snow_picture" class="c_center_page">
 			<img id="snow_picture_img" class="c_image" src=""/>
 	
 			<textarea id="snow_picture_comment" class="c_textarea" rows="10" cols="10"></textarea>
-			<button class="w_button w_radius c_color_gradient" onclick="snow_picture.addPicture();">Leg til</button>
+			<button class="w_button w_radius c_color_gradient" onclick="snow_picture.addPicture();">Legg til</button>
 		</div>
 		
 	<!-- 	ICE - PAGES -->

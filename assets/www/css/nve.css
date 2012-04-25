@@ -5,6 +5,36 @@
 5D3974
 */
 
+input.settingsInput 
+{
+	width: 100%;
+	font-size: 0.8em;
+    color: #2F2F2F;
+    -webkit-border-radius:2px;
+    -webkit-appearance:textfield; 
+}
+
+.table_row
+{
+	display: table-row;
+}
+
+.table_row a
+{
+	display: inline-block;
+	margin: 0px 15px 15px 15px;
+}
+
+.table_row span
+{
+	display: block;
+}
+
+.button_image
+{
+	margin: 15px;
+}
+
 .standartTextSize
 {
 	font-size: 1.4em;
@@ -17,6 +47,7 @@
 	display: none;
 	margin-top: 15px;
 	margin-left: 15px;
+	width: 60%;
 }
 
 input.large 
@@ -106,7 +137,7 @@ input.large
 .c_align_central
 {
 	text-align: center;
-	margin-top: 25%;
+	margin-top: 20%;
 }
 
 .c_big_button
