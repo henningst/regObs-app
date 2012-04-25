@@ -1,22 +1,17 @@
 var snow_hendelse = {
 		
 		fill_activity_influenced: function(data) {
-			var list = $("snow_hendelse_activity_list");
-			var i=0;
-			for (i = 0; i < data.results.length; i++)
-			{
-				if(data.results[i].ActivityInfluencedTID < 200)
-					list.add(new Option(data.results[i].ActivityInfluencedName, data.results[i].ActivityInfluencedTID));	
-			}
+			var options = jQuery("#snow_hendelse_activity_list");
+			jQuery.each(data.results, function() {
+			    options.append(jQuery("<option />").val(this.ActivityInfluencedTID).text(this.ActivityInfluencedName));
+			});
 		},
 		
 		fill_radius: function(data) {
-			var list = $("snow_hendelse_radius_list");
-			var i=0;
-			for (i = 0; i < data.results.length; i++)
-			{
-				list.add(new Option(data.results[i].DamageExtentName, data.results[i].DamageExtentTID));	
-			}
+			var options = jQuery("#snow_hendelse_radius_list");
+			jQuery.each(data.results, function() {
+			    options.append(jQuery("<option />").val(this.DamageExtentTID).text(this.DamageExtentName));
+			});
 		},
 		
 		afterSendRegistration: function() {

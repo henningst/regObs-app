@@ -11,7 +11,7 @@ var main = (function()
     	panels: null,
     	
 		clickLogin: function() {
-			main.closePopup();
+//			main.closePopup();
 			this.store.login(document.getElementById('login_username').value, document.getElementById('login_password').value);
 		},
 		
@@ -35,24 +35,24 @@ var main = (function()
 			}
 		},
 		
-		popup: new wink.ui.xy.Popup(),
-		 
-		showPopup: function()
-		{
-			this.popup.popup({
-		        content: "<div class='w_bloc'>" +
-		            "<label>login</label><input type='text' id='login_username' value='' /><br />" +
-		            "<label>password</label><input type='passwd' id='login_password' value='' /><br />" +
-		            "<input type='button' style='color: white;' value='Login' onclick='main.clickLogin()' /><br />" +
-		        "</div>",
-		        layerCallback: { context: window, method: 'closePopup' }
-		    });
-		},
-		 
-		closePopup: function()
-		{
-			this.popup.hide();
-		},
+//		popup: new wink.ui.xy.Popup(),
+//		 
+//		showPopup: function()
+//		{
+//			this.popup.popup({
+//		        content: "<div class='w_bloc'>" +
+//		            "<label>login</label><input type='text' id='login_username' value='' /><br />" +
+//		            "<label>password</label><input type='passwd' id='login_password' value='' /><br />" +
+//		            "<input type='button' style='color: white;' value='Login' onclick='main.clickLogin()' /><br />" +
+//		        "</div>",
+//		        layerCallback: { context: window, method: 'closePopup' }
+//		    });
+//		},
+//		 
+//		closePopup: function()
+//		{
+//			this.popup.hide();
+//		},
     	
         init: function()
         {
@@ -76,7 +76,7 @@ var main = (function()
     	        }
     	    );
             document.body.appendChild(this.panels.getDomNode());
-    		document.body.appendChild(this.popup.getDomNode());
+//    		document.body.appendChild(this.popup.getDomNode());
             
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
@@ -128,7 +128,7 @@ var main = (function()
     	},
         
         loggedInAsCallback: function (data) {
-        	document.getElementById('loginButton').value = data.FirstName;
+//        	document.getElementById('loginButton').value = data.FirstName;
         },
         
         toggleBackButtonDisplay: function(params, status) {

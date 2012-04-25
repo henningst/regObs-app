@@ -3,12 +3,10 @@ var snow_faresign = {
 		i: 0,
 		
 		fill_snow_danger_sign: function(data) {
-			var list = $("snow_danger_sign_list");
-			var i=0;
-			for (i = 0; i < data.results.length; i++)
-			{
-				list.add(new Option(data.results[i].DangerSignName, data.results[i].DangerSignTID));
-			}
+			var options = jQuery("#snow_danger_sign_list");
+			jQuery.each(data.results, function() {
+			    options.append(jQuery("<option />").val(this.DangerSignTID).text(this.DangerSignName));
+			});
 		},
 		
 		addFaresign: function() {
