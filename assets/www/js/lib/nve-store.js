@@ -71,9 +71,11 @@ NveStore = (function() {
     return send.addRegistration(registration, callback);
   };
 
-  NveStore.prototype.getDangerSign = function(callback) {
-    return send.getDangerSign(callback);
-  };
+  /*
+  	getDangerSign: (callback) ->
+  		send.getDangerSign(callback)
+  */
+
 
   NveStore.prototype.getObjectFromServer = function(call, callback) {
     return send.getObjectFromServer(call, callback);

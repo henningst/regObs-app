@@ -85,14 +85,12 @@ input.large
 
 .c_center_page 
 {
-	text-align: center;
+	text-align: center; 
 }
 
 .c_textarea 
 {
-	height: 200px;
 	width: 80%;
-	height: 40%;
 	margin: 10px;
 }
 

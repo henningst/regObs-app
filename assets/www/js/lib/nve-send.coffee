@@ -32,7 +32,7 @@ class NveSend
 				callback(data) if callback
 			)
 		result
-	
+	###	
 	getDangerSign : (callback) ->
 		result = new Result
 		OData.request({
@@ -43,9 +43,11 @@ class NveSend
 			result.ok = true
 			result.data = data
 			callback(data) if callback
+		, (error) ->
+			alert("Error occurred in getDangerSign" +error.message)
 		)
 		result
-	
+	###
 	getObjectFromServer : (call, callback) ->
 		console.log(call.url)
 		result = new Result
@@ -57,6 +59,8 @@ class NveSend
 			result.ok = true
 			result.data = data
 			callback(data) if callback
+		, (error) ->
+			alert("Error occurred in getObjectFromServer" +error.message)
 		)
 		result
 	

@@ -34,25 +34,6 @@ var main = (function()
 				$('settings').style.display = 'none';
 			}
 		},
-		
-//		popup: new wink.ui.xy.Popup(),
-//		 
-//		showPopup: function()
-//		{
-//			this.popup.popup({
-//		        content: "<div class='w_bloc'>" +
-//		            "<label>login</label><input type='text' id='login_username' value='' /><br />" +
-//		            "<label>password</label><input type='passwd' id='login_password' value='' /><br />" +
-//		            "<input type='button' style='color: white;' value='Login' onclick='main.clickLogin()' /><br />" +
-//		        "</div>",
-//		        layerCallback: { context: window, method: 'closePopup' }
-//		    });
-//		},
-//		 
-//		closePopup: function()
-//		{
-//			this.popup.hide();
-//		},
     	
         init: function()
         {
@@ -76,7 +57,6 @@ var main = (function()
     	        }
     	    );
             document.body.appendChild(this.panels.getDomNode());
-//    		document.body.appendChild(this.popup.getDomNode());
             
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
@@ -92,8 +72,6 @@ var main = (function()
 			
 			wink.fx.apply($('pages'), {'transition-timing-function': 'ease-in-out'});
 			
-//			{'webkit-transition-property': '-webkit-transform},
-//			{'webkit-transform': 'translate3d(-100%, 0px, 0px)'}
 			main.login = main.store.loggedInAs(main.loggedInAsCallback);
         },
         

@@ -48,22 +48,23 @@ NveSend = (function() {
     return result;
   };
 
-  NveSend.prototype.getDangerSign = function(callback) {
-    var result;
-    result = new Result;
-    OData.request({
-      requestUri: "http://h-web01.nve.no/test_regobsservices/OData.svc/DangerSignKD",
-      method: "GET",
-      data: ""
-    }, function(data) {
-      result.ok = true;
-      result.data = data;
-      if (callback) {
-        return callback(data);
-      }
-    });
-    return result;
-  };
+  /*	
+  	getDangerSign : (callback) ->
+  		result = new Result
+  		OData.request({
+  		requestUri: "http://h-web01.nve.no/test_regobsservices/OData.svc/DangerSignKD",
+  		method: "GET",
+  		data: ""
+  		}, (data) ->
+  			result.ok = true
+  			result.data = data
+  			callback(data) if callback
+  		, (error) ->
+  			alert("Error occurred in getDangerSign" +error.message)
+  		)
+  		result
+  */
+
 
   NveSend.prototype.getObjectFromServer = function(call, callback) {
     var result;
@@ -79,6 +80,8 @@ NveSend = (function() {
       if (callback) {
         return callback(data);
       }
+    }, function(error) {
+      return alert("Error occurred in getObjectFromServer" + error.message);
     });
     return result;
   };

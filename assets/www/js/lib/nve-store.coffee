@@ -46,9 +46,11 @@ class NveStore
 	addRegistration: (registration, callback) ->
 		send.addRegistration(registration, callback)
 
+	###
 	getDangerSign: (callback) ->
 		send.getDangerSign(callback)
-		
+	###
+	
 	getObjectFromServer: (call, callback) ->
 		send.getObjectFromServer(call, callback)
 
