@@ -55,6 +55,8 @@ var snow_hendelse = {
 		},
 		
 		init: function() {
+			$('header_middle_text').innerHTML = "Hendelse";
+			
 			//restore old incident if available
 			var incident = main.store.getIncident();
 			

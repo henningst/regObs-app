@@ -49,7 +49,6 @@ class NveSend
 		result
 	###
 	getObjectFromServer : (call, callback) ->
-		console.log(call.url)
 		result = new Result
 		OData.request({
 		requestUri: call.url,
@@ -65,19 +64,19 @@ class NveSend
 		result
 	
 	sendObjectToServer : (obj, callback) ->
+		console.log(obj)
 		result = new Result
 		OData.request({
 		requestUri: obj.url,
 		method: "POST",
 		data: obj
 		}, (data) ->
+			console.log(data)
 			result.ok = true
 			result.data = data
 			callback(data) if callback
 		, (err) -> 
 			alert("Error occurred in sendObjectToServer" + err.message)
-			console.log(obj)
-			console.log(err)
 		)
 		result
 	

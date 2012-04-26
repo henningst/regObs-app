@@ -70,20 +70,18 @@ class NveStore
 		this.send.sendObjectToServer(obj, callback)
 
 	calli: (data) ->
-		console.log(data)
-
 		i = 0
 		for obs in m_avalancheDangerObs
 			do(obs) ->
 				obs.RegID = data.RegID
 				obs.AvalancheDangerObsID = i++
-				send.sendObjectToServer(obs, this.p)
+				send.sendObjectToServer(obs, main.store.p)
 				
 		m_avalancheDangerObs.length = 0
 		
-		if m_incident is not null
+		if m_incident
 			m_incident.RegID = data.RegID
-			send.sendObjectToServer(m_incident, this.p)
+			send.sendObjectToServer(m_incident, main.store.p)
 			m_incident = null
 
 		i = 0
@@ -91,7 +89,7 @@ class NveStore
 			do(picture) ->
 				picture.RegID = data.RegID
 				picture.PictureID = i++
-				send.sendObjectToServer(picture, this.p)
+				send.sendObjectToServer(picture, main.store.p)
 
 		m_pictures.length = 0
 		
@@ -101,7 +99,6 @@ class NveStore
 		alert('Takk for observasjon')
 
 	p : (data) ->
-		console.log(data)
 		
 class Result
 	constructor: () ->

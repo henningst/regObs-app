@@ -103,28 +103,27 @@ NveStore = (function() {
 
   NveStore.prototype.calli = function(data) {
     var i, obs, picture, _fn, _fn1, _i, _j, _len, _len1;
-    console.log(data);
     i = 0;
     _fn = function(obs) {
       obs.RegID = data.RegID;
       obs.AvalancheDangerObsID = i++;
-      return send.sendObjectToServer(obs, this.p);
+      return send.sendObjectToServer(obs, main.store.p);
     };
     for (_i = 0, _len = m_avalancheDangerObs.length; _i < _len; _i++) {
       obs = m_avalancheDangerObs[_i];
       _fn(obs);
     }
     m_avalancheDangerObs.length = 0;
-    if (m_incident === !null) {
+    if (m_incident) {
       m_incident.RegID = data.RegID;
-      send.sendObjectToServer(m_incident, this.p);
+      send.sendObjectToServer(m_incident, main.store.p);
       m_incident = null;
     }
     i = 0;
     _fn1 = function(picture) {
       picture.RegID = data.RegID;
       picture.PictureID = i++;
-      return send.sendObjectToServer(picture, this.p);
+      return send.sendObjectToServer(picture, main.store.p);
     };
     for (_j = 0, _len1 = m_pictures.length; _j < _len1; _j++) {
       picture = m_pictures[_j];
@@ -136,9 +135,7 @@ NveStore = (function() {
     return alert('Takk for observasjon');
   };
 
-  NveStore.prototype.p = function(data) {
-    return console.log(data);
-  };
+  NveStore.prototype.p = function(data) {};
 
   return NveStore;
 

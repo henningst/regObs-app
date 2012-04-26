@@ -11,7 +11,6 @@ var main = (function()
     	panels: null,
     	
 		clickLogin: function() {
-//			main.closePopup();
 			this.store.login(document.getElementById('login_username').value, document.getElementById('login_password').value);
 		},
 		
@@ -34,6 +33,17 @@ var main = (function()
 				$('settings').style.display = 'none';
 			}
 		},
+		
+		sizeElements: function()
+    	{
+//    		scrollTo(0, 0, 0);
+    		
+    		var _h = window.innerHeight - jQuery('#header').height();
+    		var _w = window.innerWidth;
+
+    		jQuery('.sl_container').css('height' , _h + 'px');
+    		jQuery('.sl_container').css('width' , _w + 'px');
+    	},
     	
         init: function()
         {
@@ -46,6 +56,7 @@ var main = (function()
     	        	pages:
     	    		[
     	        		'home',
+    	        		'settings',
     	        		'snow',
     	        		'snow_hendelse',
     	        		'snow_picture',
@@ -61,63 +72,46 @@ var main = (function()
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
 
+            //remove all select options
+            jQuery.each(jQuery("select"), function() {jQuery(this).find('option').remove()});
+            
             //init snow danger signs
 			this.store.getObjectFromServer(new DangerSignKD(), snow_faresign.fill_snow_danger_sign);
 			this.store.getObjectFromServer(new ActivityInfluencedKD(), snow_hendelse.fill_activity_influenced);
 			this.store.getObjectFromServer(new DamageExtentKD(), snow_hendelse.fill_radius);
 
-			jQuery('.sl_container').attr('id', 'pages');
-			jQuery('.sl_container').css('webkit-transition-duration', '500ms');
-			jQuery('.sl_container').css('webkit-transition-delay', '1ms');
-			
-			wink.fx.apply($('pages'), {'transition-timing-function': 'ease-in-out'});
-			
+//			jQuery('.sl_container').attr('id', 'pages');
+//			jQuery('#header').css('webkit-transition-duration', '500ms');
+//			jQuery('#header').css('webkit-transition-delay', '1ms');
+////			
+//			wink.fx.apply($('header'), {'transition-timing-function': 'ease-in-out'});
+			 
 			main.login = main.store.loggedInAs(main.loggedInAsCallback);
+
+//			$('header').style.display = 'none';
+			main.sizeElements();
         },
         
-        sizeElements: function()
-    	{
-    		scrollTo(0, 0, 0);
-    		
-    		var _h = window.innerHeight;
-    		var _w = window.innerWidth;
-    		
-    		$('wrapper').style.height = _h + 'px';
-    		$('wrapper').style.width = _w + 'px';
-    		
-    		if ( wink.isSet($('splash')) )
-    		{
-    			$('splash').style.height = _h + 'px';
-    		}
-    		
-    		$('tests_scroller').style.height = _h - 64 + 'px';
-    		$('tests_scroller').style.width = _w + 'px';
-    		
-    		$('about_scroller').style.height = _h - 54 + 'px';
-    		$('about_scroller').style.width = _w - 81 + 'px';
-    		
-    		$('container').style.height = _h + 'px';
-    		
-    		$('options').style.width = (_w - 81) + 'px';
-    		$('tests').style.width = _w + 'px';
-    		$('test').style.width = _w + 'px';
-    		
-    		$('testContent').style.minHeight = _h + 'px';
-    	},
-        
         loggedInAsCallback: function (data) {
-//        	document.getElementById('loginButton').value = data.FirstName;
+        	
+        	if(data.EMail != 'anonym@nve.no') {
+        		$('settings_img').style.backgroundColor = 'green';
+        	} else {
+        		$('settings_img').style.backgroundColor = 'red';
+        	}
+        	
+        	$('login_username').value = data.EMail;
         },
         
         toggleBackButtonDisplay: function(params, status) {
         	
         	switch(params.id) {
         		case 'home':
-        			if(status == 'start') {
-        				$('back').style.display = 'none';
+        			if(status == 'end') {
         			}
         			
         			if(status == 'start') {
+        				$('back').style.display = 'none';
         				main_page.init();
         			}
         			break;
@@ -165,8 +159,9 @@ var main = (function()
         			break;
         	}
         	if(params.id != 'home') {
-        		if(status == 'end') {
+        		if(status == 'start') {
     				$('back').style.display = 'block';
+//    				$('header').style.display = 'block';
     			}
         	}
         }

@@ -7,11 +7,16 @@
 
 input.settingsInput 
 {
-	width: 100%;
 	font-size: 0.8em;
     color: #2F2F2F;
+    margin-bottom: 18px;
     -webkit-border-radius:2px;
     -webkit-appearance:textfield; 
+}
+
+label
+{
+	display: block;	
 }
 
 .table_row
@@ -47,11 +52,11 @@ input.settingsInput
 	display: none;
 	margin-top: 15px;
 	margin-left: 15px;
-	width: 60%;
 }
 
 input.large 
 {
+	width: 80%;
 	padding: 10px;
 	padding-left: 0;
 	padding-right: 0;
@@ -79,7 +84,6 @@ input.large
 .c_button 
 {
 	color: #2F2F2F;
-	width: 80%;	
 	margin-bottom: 13px;
 }
 
@@ -90,7 +94,6 @@ input.large
 
 .c_textarea 
 {
-	width: 80%;
 	margin: 10px;
 }
 
@@ -287,4 +290,20 @@ input.large
 
 .pp_popup {
 	width: 70%;
+}
+
+
+.bigWidth
+{
+	width: 80%;
+}
+
+.mediumWidth
+{
+	width: 60%;
+}
+
+.smallWidth
+{
+	width: 60%;
 }

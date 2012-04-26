@@ -25,6 +25,8 @@ var snow_picture  = {
 	},
 	
 	init : function () {
+		$('header_middle_text').innerHTML = "Bilde";
+		
 		navigator.camera.getPicture(
 			snow_picture.onSuccess, 
 			snow_picture.onFail, 
