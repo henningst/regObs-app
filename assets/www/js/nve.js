@@ -20,7 +20,6 @@ var main = (function()
 		
 		toggle: function ()
 		{
-
 			if ( main.optionsDisplayed == 0 )
 			{
 				$('pages').translate(window.innerWidth - 81, 0);

@@ -93,6 +93,7 @@ class NveStore
 
 		m_pictures.length = 0
 		
+		snow_picture.afterSendRegistration()
 		snow_hendelse.afterSendRegistration()
 		snow_page.afterSendRegistration()
 		

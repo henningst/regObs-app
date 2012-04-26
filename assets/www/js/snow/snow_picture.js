@@ -21,7 +21,12 @@ var snow_picture  = {
 	},
 
 	onFail: function(message) {
-		alert("Lagre bilde feil");
+//		alert("Lagre bilde feil");
+	},
+	
+	afterSendRegistration: function() {
+		$('snow_picture_img').src = "";
+		$("snow_picture_comment").value = "";
 	},
 	
 	init : function () {
