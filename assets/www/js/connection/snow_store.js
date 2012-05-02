@@ -56,7 +56,7 @@ SnowStore = (function() {
     _fn = function(obs) {
       obs.RegID = data.RegID;
       obs.AvalancheDangerObsID = i++;
-      return SendObjectToServer(obs, main.store.p);
+      return SendObjectToServer(obs);
     };
     for (_i = 0, _len = m_snowObs.length; _i < _len; _i++) {
       obs = m_snowObs[_i];
@@ -65,14 +65,14 @@ SnowStore = (function() {
     m_snowObs.length = 0;
     if (m_incident) {
       m_incident.RegID = data.RegID;
-      SendObjectToServer(m_incident, main.store.p);
+      SendObjectToServer(m_incident);
       m_incident = null;
     }
     i = 0;
     _fn1 = function(picture) {
       picture.RegID = data.RegID;
       picture.PictureID = i++;
-      return SendObjectToServer(picture, main.store.p);
+      return SendObjectToServer(picture);
     };
     for (_j = 0, _len1 = m_pictures.length; _j < _len1; _j++) {
       picture = m_pictures[_j];
@@ -82,10 +82,6 @@ SnowStore = (function() {
     snow_picture.afterSendRegistration();
     snow_hendelse.afterSendRegistration();
     return snow_page.afterSendRegistration();
-  };
-
-  SnowStore.prototype.print = function(obj) {
-    return console.log(obj);
   };
 
   return SnowStore;

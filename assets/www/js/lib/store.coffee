@@ -2,13 +2,13 @@ class NveStore
 	send = new NveSend
 	m_isLoggedIn = false
 	
-	m_avalancheDangerObs = []
-	m_incident = null
-	m_pictures = []
-	
 	m_waterStore = null
 	
 	m_snowStore = null
+	
+	m_dirtStore = null
+	
+	m_iceStore = null
 	
 	login: (userName, userPassword) ->
 		send.login(userName, userPassword, this.loginCallback)
@@ -36,12 +36,37 @@ class NveStore
 		
 		callback() if callback
 
+	getDirt: () ->
+		if m_dirtStore
+			m_dirtStore
+		else
+			m_dirtStore = new DirtStore()
+			
+	sendDirt: (callback) ->
+		if m_dirtStore
+			m_dirtStore.send()
+			m_dirtStore = null
+		
+		callback() if callback
+		
+	getIce: () ->
+		if m_iceStore
+			m_iceStore
+		else
+			m_iceStore = new IceStore()
+			
+	sendIce: (callback) ->
+		if m_iceStore
+			m_iceStore.send()
+			m_iceStore = null
+		
+		callback() if callback
+
 	getWater: () ->
 		if m_waterStore
 			m_waterStore
 		else
 			m_waterStore = new WaterStore()
-			m_waterStore
 			
 	sendWater: (callback) ->
 		if m_waterStore

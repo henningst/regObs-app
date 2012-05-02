@@ -1,29 +1,29 @@
-var water_hendelse = {
+var dirt_hendelse = {
 		
 		fill_activity_influenced: function(data) {
-			var options = jQuery("#water_hendelse_activity_list");
+			var options = jQuery("#dirt_hendelse_activity_list");
 			jQuery.each(data.results, function() {
 			    options.append(jQuery("<option />").val(this.ActivityInfluencedTID).text(this.ActivityInfluencedName));
 			});
 		},
 		
 		fill_radius: function(data) {
-			var options = jQuery("#water_hendelse_radius_list");
+			var options = jQuery("#dirt_hendelse_radius_list");
 			jQuery.each(data.results, function() {
 			    options.append(jQuery("<option />").val(this.DamageExtentTID).text(this.DamageExtentName));
 			});
 		},
 		
 		afterSendRegistration: function() {
-			$("water_hendelse_activity_list").selectedIndex = 0;
-			$("water_hendelse_radius_list").selectedIndex = 0;
-			$("water_hendelse_comment").value = "";
+			$("dirt_hendelse_activity_list").selectedIndex = 0;
+			$("dirt_hendelse_radius_list").selectedIndex = 0;
+			$("dirt_hendelse_comment").value = "";
 		},
 		
 		addHendelse: function() {
 			//save hendelse
 			
-			var string = $("water_hendelse_comment").value;
+			var string = $("dirt_hendelse_comment").value;
 			var index = string.indexOf('.', 0);
 			
 			var header = string;
@@ -33,12 +33,12 @@ var water_hendelse = {
 				rest = string.substr(index+1);
 			}
 
-			var activityList = $("water_hendelse_activity_list");
-			var radiusList = $("water_hendelse_radius_list");
+			var activityList = $("dirt_hendelse_activity_list");
+			var radiusList = $("dirt_hendelse_radius_list");
 			
 			var incident = new Incident(
 					null, 
-					60, 
+					20, 
 					activityList[activityList.selectedIndex].value,
 					radiusList[radiusList.selectedIndex].value,
 					0,
@@ -58,12 +58,12 @@ var water_hendelse = {
 			$('header_middle_text').innerHTML = "Hendelse";
 			
 			//restore old incident if available
-			var incident = main.store.getWater().getIncident();
+			var incident = main.store.getDirt().getIncident();
 			
 			if(incident != null) {
-				$("water_hendelse_activity_list").value = incident.ActivityInfluencedTID;
-				$("water_hendelse_radius_list").value = incident.DamageExtentTID;
-				$("water_hendelse_comment").value = incident.IncidentHeader +"." +incident.IncidentIngress;
+				$("dirt_hendelse_activity_list").value = incident.ActivityInfluencedTID;
+				$("dirt_hendelse_radius_list").value = incident.DamageExtentTID;
+				$("dirt_hendelse_comment").value = incident.IncidentHeader +"." +incident.IncidentIngress;
 			}
 		}
 }

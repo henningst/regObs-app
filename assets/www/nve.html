@@ -34,26 +34,33 @@
         //IncludeJavaScript("libs/" +device.platform +"-LocalNotification.js");
 	</script>
 	
-	<script type="text/javascript" src="js/lib/nve_data_objects.js"></script>
-	<script type="text/javascript" src="js/lib/nve-send.js"></script>
+	<script type="text/javascript" src="js/connection/data_objects.js"></script>
+	<script type="text/javascript" src="js/connection/send.js"></script>
 	
-	<script type="text/javascript" src="js/lib/vann_store.js"></script>
-	<script type="text/javascript" src="js/lib/snow_store.js"></script>
+	<script type="text/javascript" src="js/connection/vann_store.js"></script>
+	<script type="text/javascript" src="js/connection/snow_store.js"></script>
+	<script type="text/javascript" src="js/connection/dirt_store.js"></script>
+	<script type="text/javascript" src="js/connection/ice_store.js"></script>
 	
-	<script type="text/javascript" src="js/lib/nve-store.js"></script>
+	<script type="text/javascript" src="js/connection/store.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
-	<script type="text/javascript" src="js/ice.js"></script>
-	<script type="text/javascript" src="js/dirt.js"></script>
 	
 	<script type="text/javascript" src="js/snow/snow.js"></script>
 	<script type="text/javascript" src="js/snow/snow_picture.js"></script>
 	<script type="text/javascript" src="js/snow/snow_hendelse.js"></script>
 	<script type="text/javascript" src="js/snow/snow_faresign.js"></script>
 	
+	<script type="text/javascript" src="js/dirt/dirt.js"></script>
+	<script type="text/javascript" src="js/dirt/dirt_picture.js"></script>
+	<script type="text/javascript" src="js/dirt/dirt_hendelse.js"></script>
+	
+	<script type="text/javascript" src="js/ice/ice.js"></script>
+	<script type="text/javascript" src="js/ice/ice_picture.js"></script>
+	<script type="text/javascript" src="js/ice/ice_hendelse.js"></script>
+	
 	<script type="text/javascript" src="js/water/water.js"></script>
 	<script type="text/javascript" src="js/water/water_picture.js"></script>
 	<script type="text/javascript" src="js/water/water_hendelse.js"></script>
-	<script type="text/javascript" src="js/water/water_faresign.js"></script>
 	<script type="text/javascript" src="js/nve.js"></script>
 	
 	<style>
@@ -100,8 +107,8 @@
 	    </div>
 	    <span id="header_middle_text">regObs</span>
 	    
-	    <div id="login" class="c_right_header_button w_right c_color_gradient">
-	        <a type="button" id="loginButton" class="c_color_gradient" onclick="main.panels.slideTo('settings');" >
+	    <div id="login" class="c_right_header_button w_right">
+	        <a type="button" id="loginButton" onclick="main.panels.slideTo('settings');" >
             	<img id="settings_img" alt="" style="height: 32px; border: 2px solid; border-radius: 5px;" src="img/settings.png">
 	        </a>
 	    </div>
@@ -212,7 +219,47 @@
 	
 <!-- 	ICE - PAGES -->
 	<div id="ice">
-		<h1>Is</h1>
+		<div class="c_position_header">
+			<span id="ice_position_header_position">,</span> 
+			<span id="ice_position_header_town"></span>
+			<span id="ice_position_header_county"></span>
+		</div>
+		
+		<div class="c_align_central">
+	        <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Hendelse" onclick="main.panels.slideTo('ice_hendelse');"/>
+	        
+	        <div class="w_footer_custom">
+			    <div class="c_notification_button w_indice" >
+			        <span id="ice_picture_count">0</span>
+			        <input type="button" class="w_button w_radius w_bg_light" value="Bilde" onclick="main.panels.slideTo('ice_picture');"/>
+			    </div>
+			</div>
+			
+			<input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getIce().send();"/> <br>
+   	  </div>
+	</div>
+	
+	<div id="ice_hendelse" class="c_center_page standartTextSize">
+        <label for="ice_hendelse_comment">Comment:</label>
+		<textarea id="ice_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
+		
+		<label for="ice_hendelse_activity_list">Aktivitet:</label>
+        <select id="ice_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+        </select>
+        
+        <label for="ice_hendelse_radius_list">Radius:</label>		
+		<select id="ice_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+		</select>
+		
+		<button class="smallWidth w_button w_radius c_color_gradient" onclick="ice_hendelse.addHendelse();">Legg til</button>
+	</div>
+	
+	<div id="ice_picture" class="c_center_page">
+		<img id="ice_picture_img" class="c_image" src=""/>
+
+		<label for="ice_picture_comment">Comment:</label>
+		<textarea id="ice_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
+		<button class="smallWidth w_button w_radius c_color_gradient" onclick="ice_picture.addPicture();">Legg til</button>
 	</div>
 	
 <!-- 	WATER - PAGES -->
@@ -225,13 +272,6 @@
 		
 		<div class="c_align_central">
 	        <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Hendelse" onclick="main.panels.slideTo('water_hendelse');"/>
-			
-	      	<div class="w_footer_custom">
-			    <div class="c_notification_button w_indice" >
-			        <span id="water_faresign_count">0</span>
-			        <input type="button" class="w_button w_radius w_bg_light" value="Faretegn" onclick="main.panels.slideTo('water_faresign');"/>
-			    </div>
-			</div>
 	        
 	        <div class="w_footer_custom">
 			    <div class="c_notification_button w_indice" >
@@ -240,7 +280,7 @@
 			    </div>
 			</div>
 			
-			<input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.sendAll();"/> <br>
+			<input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getWater().send();"/> <br>
    	  </div>
 	</div>
 	
@@ -259,18 +299,6 @@
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="water_hendelse.addHendelse();">Legg til</button>
 	</div>
 	
-	<div id="water_faresign" class="c_center_page standartTextSize">
-	
-	
-        <label for="water_danger_sign_list" style="margin: 15px;">Faresign:</label>
-           <select id="water_danger_sign_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
-           </select>
-		
-        <label for="water_danger_sign_comment">Comment:</label>
-		<textarea id="water_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
-		<button class="smallWidth w_button w_radius c_color_gradient" onclick="water_faresign.addFaresign();">Legg til</button>
-	</div>
-	
 	<div id="water_picture" class="c_center_page">
 		<img id="water_picture_img" class="c_image" src=""/>
 
@@ -281,7 +309,47 @@
 	
 <!-- 	DIRT PAGES -->
 	<div id="dirt">
-	    <h1> L&oslash;smasse </h1>
+		<div class="c_position_header">
+			<span id="dirt_position_header_position">,</span> 
+			<span id="dirt_position_header_town"></span>
+			<span id="dirt_position_header_county"></span>
+		</div>
+		
+		<div class="c_align_central">
+	        <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Hendelse" onclick="main.panels.slideTo('dirt_hendelse');"/>
+	        
+	        <div class="w_footer_custom">
+			    <div class="c_notification_button w_indice" >
+			        <span id="dirt_picture_count">0</span>
+			        <input type="button" class="w_button w_radius w_bg_light" value="Bilde" onclick="main.panels.slideTo('dirt_picture');"/>
+			    </div>
+			</div>
+			
+			<input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getDirt().send();"/> <br>
+   	  </div>
+	</div>
+	
+	<div id="dirt_hendelse" class="c_center_page standartTextSize">
+        <label for="dirt_hendelse_comment">Comment:</label>
+		<textarea id="dirt_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
+		
+		<label for="dirt_hendelse_activity_list">Aktivitet:</label>
+        <select id="dirt_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+        </select>
+        
+        <label for="dirt_hendelse_radius_list">Radius:</label>		
+		<select id="dirt_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+		</select>
+		
+		<button class="smallWidth w_button w_radius c_color_gradient" onclick="dirt_hendelse.addHendelse();">Legg til</button>
+	</div>
+	
+	<div id="dirt_picture" class="c_center_page">
+		<img id="dirt_picture_img" class="c_image" src=""/>
+
+		<label for="dirt_picture_comment">Comment:</label>
+		<textarea id="dirt_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
+		<button class="smallWidth w_button w_radius c_color_gradient" onclick="dirt_picture.addPicture();">Legg til</button>
 	</div>
 </body>
 </html>

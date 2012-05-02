@@ -1,6 +1,6 @@
 var NUMBERS_AFTER_KOMMA = 1000000; //6 numbers precision
 
-var water_page = {
+var ice_page = {
 		
 	latitute: 0,
 	
@@ -17,32 +17,32 @@ var water_page = {
 		var p = new Proj4js.Point(position.coords.longitude, position.coords.latitude);  
 		Proj4js.transform(source, dest, p);
 		
-		water_page.longitude= Math.round(p.x);
-		water_page.latitute  = Math.round(p.y);
+		ice_page.longitude= Math.round(p.x);
+		ice_page.latitute  = Math.round(p.y);
 		
-		$('water_position_header_position').innerHTML = Math.round(position.coords.latitude * NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA +" , " 
+		$('ice_position_header_position').innerHTML = Math.round(position.coords.latitude * NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA +" , " 
 		+Math.round(position.coords.longitude* NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA;
 		
-		main.store.getObjectFromServer(new PositionDetails(water_page.latitute, water_page.longitude), water_page.onKommuneResult);
+		GetObjectFromServer(new PositionDetails(ice_page.latitute, ice_page.longitude), ice_page.onKommuneResult);
 	},
 
 	// onError Callback receives a PositionError object
 	//
 	onError: function(error) {
-		$('water_position_header_position').innerHTML = "no" +" , " +"geodata";
+		$('ice_position_header_position').innerHTML = "no" +" , " +"geodata";
 	},
 	
 	onKommuneResult : function(data) {
 		var res = JSON.parse(data);
 
 		if(res != null) {
-			$("water_position_header_town").innerHTML = res.features[0].attributes.KOMMNAVN;
-			$("water_position_header_county").innerHTML = res.features[0].attributes.FYLKENAVN;
+			$("ice_position_header_town").innerHTML = res.features[0].attributes.KOMMNAVN;
+			$("ice_position_header_county").innerHTML = res.features[0].attributes.FYLKENAVN;
 		}
 	},
 	
 	doMeasurement: function() {
-		navigator.geolocation.getCurrentPosition(water_page.onSuccess, water_page.onError);
+		navigator.geolocation.getCurrentPosition(ice_page.onSuccess, ice_page.onError);
 	},
 	
 	add: function(id)
@@ -52,13 +52,13 @@ var water_page = {
 	},
    
 	afterSendRegistration: function() {
-		$('water_picture_count').innerHTML = 0;
+		$('ice_picture_count').innerHTML = 0;
 	},
 	
 	init: function() {
-		$('header_middle_text').innerHTML = "Vann";
+		$('header_middle_text').innerHTML = "Is";
 		
-		water_page.doMeasurement();
+		ice_page.doMeasurement();
 	},
 }
 

@@ -61,11 +61,14 @@ var main = (function()
     	        		'snow_picture',
     	        		'snow_faresign',
     	        		'ice',
+    	        		'ice_hendelse',
+    	        		'ice_picture',
     	        		'water',
     	        		'water_hendelse',
     	        		'water_picture',
-    	        		'water_faresign',
-    	        		'dirt'
+    	        		'dirt',
+    	        		'dirt_hendelse',
+    	        		'dirt_picture'
     	        	]
     	        }
     	    );
@@ -79,23 +82,26 @@ var main = (function()
             
             //init snow danger signs
 			this.store.getObjectFromServer(new DangerSignKD(), snow_faresign.fill_snow_danger_sign);
-			this.store.getObjectFromServer(new ActivityInfluencedKD(), snow_hendelse.fill_activity_influenced);
-			this.store.getObjectFromServer(new DamageExtentKD(), snow_hendelse.fill_radius);
-
-			this.store.getObjectFromServer(new DangerSignKD(), water_faresign.fill_water_danger_sign);
-			this.store.getObjectFromServer(new ActivityInfluencedKD(), water_hendelse.fill_activity_influenced);
-			this.store.getObjectFromServer(new DamageExtentKD(), water_hendelse.fill_radius);
-
-//			jQuery('.sl_container').attr('id', 'pages');
-//			jQuery('#header').css('webkit-transition-duration', '500ms');
-//			jQuery('#header').css('webkit-transition-delay', '1ms');
-////			
-//			wink.fx.apply($('header'), {'transition-timing-function': 'ease-in-out'});
+			this.store.getObjectFromServer(new ActivityInfluencedKD(), this.fillActivityInfluenced);
+			this.store.getObjectFromServer(new DamageExtentKD(), this.fillDamageExtent);
 			 
 			main.login = main.store.loggedInAs(main.loggedInAsCallback);
 
-//			$('header').style.display = 'none';
 			main.sizeElements();
+        },
+        
+        fillActivityInfluenced: function(data) {
+			snow_hendelse.fill_activity_influenced(data);
+        	water_hendelse.fill_activity_influenced(data);
+        	dirt_hendelse.fill_activity_influenced(data);
+        	ice_hendelse.fill_activity_influenced(data);
+        },
+        
+        fillDamageExtent: function(data) {
+			snow_hendelse.fill_radius(data);
+			water_hendelse.fill_radius(data);
+			dirt_hendelse.fill_radius(data);
+			ice_hendelse.fill_radius(data);
         },
         
         loggedInAsCallback: function (data) {
@@ -151,7 +157,6 @@ var main = (function()
         		case 'water':
         			if(status == 'start') {
         				water_page.init();
-//        				$('mainBody').style.backgroundImage = "url('img/water_background.png')";
         			}
         			break;
         			
@@ -167,27 +172,43 @@ var main = (function()
         			}
         			break;
         			
-        		case 'water_faresign':
-        			if(status == 'start') {
-        				water_faresign.init();
-        			}
-        			break;
-        			
         		case 'ice':
         			if(status == 'start') {
         				ice_page.init();
         			}
         			break;
-        		case 'water':
+        			
+        		case 'ice_picture':
         			if(status == 'start') {
-        				water_page.init();
+        				ice_picture.init();
         			}
-        		break;
+        			break;
+        			
+        		case 'ice_hendelse':
+        			if(status == 'start') {
+        				ice_hendelse.init();
+        			}
+        			break;
+        			
+        			
         		case 'dirt':
         			if(status == 'start') {
         				dirt_page.init();
         			}
         			break;
+        			
+        		case 'dirt_picture':
+        			if(status == 'start') {
+        				dirt_picture.init();
+        			}
+        			break;
+        			
+        		case 'dirt_hendelse':
+        			if(status == 'start') {
+        				dirt_hendelse.init();
+        			}
+        			break;
+        			
         		
         		default:
         			break;

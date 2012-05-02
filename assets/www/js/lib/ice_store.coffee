@@ -1,8 +1,6 @@
-class SnowStore
+class IceStore
 
 	m_incident = null
-	
-	m_snowObs = []
 	
 	m_pictures = []
 	
@@ -12,35 +10,21 @@ class SnowStore
 	getIncident: () ->
 		m_incident
 		
-	addSnowObs: (obs) ->
-		m_snowObs.push(obs)
-		
-	getSnowObs: () ->
-		m_snowObs
-		
 	addPicture: (picture) ->
 		m_pictures.push(picture)
 		
 	getPictures: () ->
 		m_pictures
-		
+
 	send: () ->
 		location = new ObsLocation($("position_header_town").innerHTML, 33, snow_page.longitude, snow_page.latitute, 0, 0, 0, 250, 250, false, null, new Date());
-		SendObjectToServer(location, main.store.getSnow().afterLocation)
+		SendObjectToServer(location, main.store.getIce().afterLocation)
 		
 	afterLocation: (data) ->
 		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, new Date(), new Date(), 0)
-		SendObjectToServer(registration, main.store.getSnow().afterRegistration)
+		SendObjectToServer(registration, main.store.getIce().afterRegistration)
 	
 	afterRegistration: (data) ->
-		i = 0
-		for obs in m_snowObs
-			do(obs) ->
-				obs.RegID = data.RegID
-				obs.AvalancheDangerObsID = i++
-				SendObjectToServer(obs)
-				
-		m_snowObs.length = 0
 		
 		if m_incident
 			m_incident.RegID = data.RegID
@@ -56,6 +40,6 @@ class SnowStore
 
 		m_pictures.length = 0
 		
-		snow_picture.afterSendRegistration()
-		snow_hendelse.afterSendRegistration()
-		snow_page.afterSendRegistration()
+		ice_picture.afterSendRegistration()
+		ice_hendelse.afterSendRegistration()
+		ice_page.afterSendRegistration()

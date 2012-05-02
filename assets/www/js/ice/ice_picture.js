@@ -1,22 +1,22 @@
-var water_picture  = {
+var ice_picture  = {
 	
 	pictureData: null,
 		
 	addPicture: function() {
-		if(water_picture.pictureData != null) {
-			var picture = new Picture(null, null, water_picture.pictureData, null, null, null, $("water_picture_comment").value);
-			main.store.getWater().addPicture(picture);
-			water_picture.pictureData = null;
+		if(ice_picture.pictureData != null) {
+			var picture = new Picture(null, null, ice_picture.pictureData, null, null, null, $("ice_picture_comment").value);
+			main.store.getIce().addPicture(picture);
+			ice_picture.pictureData = null;
 
-			water_page.add('water_picture_count');
+			ice_page.add('ice_picture_count');
 			main.panels.slideBack();
 		}
 	},
 	
 	onSuccess: function(imageData) {
-		water_picture.pictureData = imageData;
+		ice_picture.pictureData = imageData;
 
-		var smallImage = document.getElementById('water_picture_img');
+		var smallImage = document.getElementById('ice_picture_img');
 		smallImage.src = "data:image/jpeg;base64," +imageData;
 	},
 
@@ -25,16 +25,16 @@ var water_picture  = {
 	},
 	
 	afterSendRegistration: function() {
-		$('water_picture_img').src = "";
-		$("water_picture_comment").value = "";
+		$('ice_picture_img').src = "";
+		$("ice_picture_comment").value = "";
 	},
 	
 	init : function () {
 		$('header_middle_text').innerHTML = "Bilde";
 		
 		navigator.camera.getPicture(
-			water_picture.onSuccess, 
-			water_picture.onFail, 
+			ice_picture.onSuccess, 
+			ice_picture.onFail, 
 			{ 
 				quality: 50, 
 				destinationType: navigator.camera.DestinationType.DATA_URL,

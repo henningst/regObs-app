@@ -26,7 +26,7 @@ var snow_hendelse = {
 			var string = $("snow_hendelse_comment").value;
 			var index = string.indexOf('.', 0);
 			
-			var header = "";
+			var header = string;
 			var rest = "";
 			if(index != -1) {
 				header = string.substr(0,index);
@@ -38,7 +38,7 @@ var snow_hendelse = {
 			
 			var incident = new Incident(
 					null, 
-					0, 
+					10, 
 					activityList[activityList.selectedIndex].value,
 					radiusList[radiusList.selectedIndex].value,
 					0,
@@ -58,7 +58,7 @@ var snow_hendelse = {
 			$('header_middle_text').innerHTML = "Hendelse";
 			
 			//restore old incident if available
-			var incident = main.store.getIncident();
+			var incident = main.store.getSnow().getIncident();
 			
 			if(incident != null) {
 				$("snow_hendelse_activity_list").value = incident.ActivityInfluencedTID;
