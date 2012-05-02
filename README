@@ -1,6 +1,5 @@
 ## Nve Regobs 
 
-
 ### Testing
 
 We use Ripple, which is a hybrid app emulator, and will support many of the features that we use in each device. However it wount replace testing in a device.
@@ -13,3 +12,11 @@ To start ripple, start chrome with --disable-web-security
 3. Then brows to the /assets/www/js/tests.html 
 4. And select phonegap
 5. make sure that the "Cross Domain Proxy" is set to disabled. 
+
+### Bugreporting
+
+A form for submiting bugs.
+http://tinyurl.com/regobs-bugs
+
+A list of bugs being fixed
+https://docs.google.com/spreadsheet/ccc?key=0Ag_YI21OOJmtdEExUW5ubDhYMDB3Z1FURmNTUU45Vnc#gid=0
