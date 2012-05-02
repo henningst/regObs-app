@@ -62,6 +62,9 @@ var main = (function()
     	        		'snow_faresign',
     	        		'ice',
     	        		'water',
+    	        		'water_hendelse',
+    	        		'water_picture',
+    	        		'water_faresign',
     	        		'dirt'
     	        	]
     	        }
@@ -78,6 +81,10 @@ var main = (function()
 			this.store.getObjectFromServer(new DangerSignKD(), snow_faresign.fill_snow_danger_sign);
 			this.store.getObjectFromServer(new ActivityInfluencedKD(), snow_hendelse.fill_activity_influenced);
 			this.store.getObjectFromServer(new DamageExtentKD(), snow_hendelse.fill_radius);
+
+			this.store.getObjectFromServer(new DangerSignKD(), water_faresign.fill_water_danger_sign);
+			this.store.getObjectFromServer(new ActivityInfluencedKD(), water_hendelse.fill_activity_influenced);
+			this.store.getObjectFromServer(new DamageExtentKD(), water_hendelse.fill_radius);
 
 //			jQuery('.sl_container').attr('id', 'pages');
 //			jQuery('#header').css('webkit-transition-duration', '500ms');
@@ -111,7 +118,15 @@ var main = (function()
         			
         			if(status == 'start') {
         				$('back').style.display = 'none';
+        				$('mainBody').style.backgroundImage = '';
         				main_page.init();
+        			}
+        			break;
+        			
+        		case 'snow':
+        			if(status == 'start') {
+        				snow_page.init();
+        				$('mainBody').style.backgroundImage = "url('img/snow_background.png')";
         			}
         			break;
         			
@@ -133,11 +148,31 @@ var main = (function()
         			}
         			break;
         			
-        		case 'snow':
+        		case 'water':
         			if(status == 'start') {
-        				snow_page.init();
+        				water_page.init();
+//        				$('mainBody').style.backgroundImage = "url('img/water_background.png')";
         			}
         			break;
+        			
+        		case 'water_picture':
+        			if(status == 'start') {
+        				water_picture.init();
+        			}
+        			break;
+        			
+        		case 'water_hendelse':
+        			if(status == 'start') {
+        				water_hendelse.init();
+        			}
+        			break;
+        			
+        		case 'water_faresign':
+        			if(status == 'start') {
+        				water_faresign.init();
+        			}
+        			break;
+        			
         		case 'ice':
         			if(status == 'start') {
         				ice_page.init();

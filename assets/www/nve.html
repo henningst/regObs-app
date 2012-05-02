@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="css/btn.css" type="text/css">
 	<link rel="stylesheet" href="css/nve.css" type="text/css">
 	
-	<script type="text/javascript" src="js/config.js"> </script>	
+	<script type="text/javascript" src="js/nve_config.js"> </script>	
 	<script type="text/javascript" src="js/dependencies/proj4js-compressed.js"> </script>
 	<script type="text/javascript" src="js/dependencies/datajs-1.0.2.js"> </script>
 	<script type="text/javascript" src="js/dependencies/json2.js"> </script>
@@ -34,16 +34,26 @@
         //IncludeJavaScript("libs/" +device.platform +"-LocalNotification.js");
 	</script>
 	
+	<script type="text/javascript" src="js/lib/nve_data_objects.js"></script>
 	<script type="text/javascript" src="js/lib/nve-send.js"></script>
+	
+	<script type="text/javascript" src="js/lib/vann_store.js"></script>
+	<script type="text/javascript" src="js/lib/snow_store.js"></script>
+	
 	<script type="text/javascript" src="js/lib/nve-store.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript" src="js/ice.js"></script>
 	<script type="text/javascript" src="js/dirt.js"></script>
+	
 	<script type="text/javascript" src="js/snow/snow.js"></script>
 	<script type="text/javascript" src="js/snow/snow_picture.js"></script>
 	<script type="text/javascript" src="js/snow/snow_hendelse.js"></script>
 	<script type="text/javascript" src="js/snow/snow_faresign.js"></script>
-	<script type="text/javascript" src="js/water.js"></script>
+	
+	<script type="text/javascript" src="js/water/water.js"></script>
+	<script type="text/javascript" src="js/water/water_picture.js"></script>
+	<script type="text/javascript" src="js/water/water_hendelse.js"></script>
+	<script type="text/javascript" src="js/water/water_faresign.js"></script>
 	<script type="text/javascript" src="js/nve.js"></script>
 	
 	<style>
@@ -83,7 +93,7 @@
 	</style>
 </head>	
 	
-<body style="background-image: url('img/snow_background.png')">
+<body id="mainBody">
 	<div id="header" class="w_header_custom c_color_gradient">
     	<div id="back" class="w_button_custom w_back w_left c_color_gradient">
 	        <input type="button" value="tilbake" class="c_color_gradient" onclick="main.panels.slideBack();" />
@@ -129,9 +139,9 @@
 	<div id="settings">
 		<div class="standartTextSize c_align_central">
             <label for="login_username">Login</label>
-            <input type="text" id="login_username" class="large settingsInput" value="" />
+            <input type="text" id="login_username" class="large settingsInput" value="philipp@nlink.no" />
             <label for="login_possword">Password</label>
-            <input type="password" id="login_password" class="large settingsInput" value="" />
+            <input type="password" id="login_password" class="large settingsInput" value="philipp2philipp" />
             <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Login' onclick="main.clickLogin();" />
 	    </div>
 	</div> 
@@ -161,7 +171,7 @@
 			    </div>
 			</div>
 			
-			<input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.sendAll();"/> <br>
+			<input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getSnow().send();"/> <br>
    	  </div>
 	</div>
 	
@@ -173,7 +183,7 @@
         <select id="snow_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
         </select>
         
-        <label for="example_select_1">Radius:</label>		
+        <label for="snow_hendelse_radius_list">Radius:</label>		
 		<select id="snow_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
 		</select>
 		
@@ -207,9 +217,66 @@
 	
 <!-- 	WATER - PAGES -->
 	<div id="water">
-	    <h1> Vann </h1>
-	    <div id="c1">
+		<div class="c_position_header">
+			<span id="water_position_header_position">,</span> 
+			<span id="water_position_header_town"></span>
+			<span id="water_position_header_county"></span>
 		</div>
+		
+		<div class="c_align_central">
+	        <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Hendelse" onclick="main.panels.slideTo('water_hendelse');"/>
+			
+	      	<div class="w_footer_custom">
+			    <div class="c_notification_button w_indice" >
+			        <span id="water_faresign_count">0</span>
+			        <input type="button" class="w_button w_radius w_bg_light" value="Faretegn" onclick="main.panels.slideTo('water_faresign');"/>
+			    </div>
+			</div>
+	        
+	        <div class="w_footer_custom">
+			    <div class="c_notification_button w_indice" >
+			        <span id="water_picture_count">0</span>
+			        <input type="button" class="w_button w_radius w_bg_light" value="Bilde" onclick="main.panels.slideTo('water_picture');"/>
+			    </div>
+			</div>
+			
+			<input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.sendAll();"/> <br>
+   	  </div>
+	</div>
+	
+	<div id="water_hendelse" class="c_center_page standartTextSize">
+        <label for="water_hendelse_comment">Comment:</label>
+		<textarea id="water_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
+		
+		<label for="water_hendelse_activity_list">Aktivitet:</label>
+        <select id="water_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+        </select>
+        
+        <label for="water_hendelse_radius_list">Radius:</label>		
+		<select id="water_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+		</select>
+		
+		<button class="smallWidth w_button w_radius c_color_gradient" onclick="water_hendelse.addHendelse();">Legg til</button>
+	</div>
+	
+	<div id="water_faresign" class="c_center_page standartTextSize">
+	
+	
+        <label for="water_danger_sign_list" style="margin: 15px;">Faresign:</label>
+           <select id="water_danger_sign_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+           </select>
+		
+        <label for="water_danger_sign_comment">Comment:</label>
+		<textarea id="water_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
+		<button class="smallWidth w_button w_radius c_color_gradient" onclick="water_faresign.addFaresign();">Legg til</button>
+	</div>
+	
+	<div id="water_picture" class="c_center_page">
+		<img id="water_picture_img" class="c_image" src=""/>
+
+		<label for="water_picture_comment">Comment:</label>
+		<textarea id="water_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
+		<button class="smallWidth w_button w_radius c_color_gradient" onclick="water_picture.addPicture();">Legg til</button>
 	</div>
 	
 <!-- 	DIRT PAGES -->

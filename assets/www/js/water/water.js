@@ -1,53 +1,48 @@
 var NUMBERS_AFTER_KOMMA = 1000000; //6 numbers precision
 
-var snow_page = {
+var water_page = {
 		
 	latitute: 0,
 	
 	longitude: 0,
-	
-	pos_obj: null,
 		
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
 	//   the current GPS coordinates
 	//
 	onSuccess: function(position) {
-		position.taken = new Date();
-		snow_page.pos_obj = position;
-		
 		var source = new Proj4js.Proj('EPSG:4326');    //source coordinates will be in Longitude/Latitude
 		var dest = new Proj4js.Proj('EPSG:32633');     //destination coordinates for Norway
 		
 		var p = new Proj4js.Point(position.coords.longitude, position.coords.latitude);  
 		Proj4js.transform(source, dest, p);
 		
-		snow_page.longitude= Math.round(p.x);
-		snow_page.latitute  = Math.round(p.y);
+		water_page.longitude= Math.round(p.x);
+		water_page.latitute  = Math.round(p.y);
 		
-		$('position_header_position').innerHTML = Math.round(position.coords.latitude * NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA +" , " 
+		$('water_position_header_position').innerHTML = Math.round(position.coords.latitude * NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA +" , " 
 		+Math.round(position.coords.longitude* NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA;
 		
-		main.store.getObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
+		main.store.getObjectFromServer(new PositionDetails(water_page.latitute, water_page.longitude), water_page.onKommuneResult);
 	},
 
 	// onError Callback receives a PositionError object
 	//
 	onError: function(error) {
-		$('position_header_position').innerHTML = "no" +" , " +"geodata";
+		$('water_position_header_position').innerHTML = "no" +" , " +"geodata";
 	},
 	
 	onKommuneResult : function(data) {
 		var res = JSON.parse(data);
 
 		if(res != null) {
-			$("position_header_town").innerHTML = res.features[0].attributes.KOMMNAVN;
-			$("position_header_county").innerHTML = res.features[0].attributes.FYLKENAVN;
+			$("water_position_header_town").innerHTML = res.features[0].attributes.KOMMNAVN;
+			$("water_position_header_county").innerHTML = res.features[0].attributes.FYLKENAVN;
 		}
 	},
 	
 	doMeasurement: function() {
-		navigator.geolocation.getCurrentPosition(snow_page.onSuccess, snow_page.onError);
+		navigator.geolocation.getCurrentPosition(water_page.onSuccess, water_page.onError);
 	},
 	
 	add: function(id)
@@ -57,14 +52,14 @@ var snow_page = {
 	},
    
 	afterSendRegistration: function() {
-		$('snow_faresign_count').innerHTML = 0;
-		$('snow_picture_count').innerHTML = 0;
+		$('water_faresign_count').innerHTML = 0;
+		$('water_picture_count').innerHTML = 0;
 	},
 	
 	init: function() {
-		$('header_middle_text').innerHTML = "Sn&oslash;";
+		$('header_middle_text').innerHTML = "Vann";
 		
-		snow_page.doMeasurement();
+		water_page.doMeasurement();
 	},
 }
 

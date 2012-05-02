@@ -104,3 +104,36 @@ class NveSend
 			callback(data.results[0]) if callback
 		)
 		result
+		
+GetObjectFromServer = (call, callback) ->
+	result = new Result
+	OData.request({
+	requestUri: call.url,
+	method: "GET",
+	data: ""
+	}, (data) ->
+		result.ok = true
+		result.data = data
+		callback(data) if callback
+	, (error) ->
+		console.log(error)
+		alert("Error occurred in ::GetObjectFromServer #{error.message} #{call.url}")
+	)
+	result
+
+SendObjectToServer = (obj, callback) ->
+	result = new Result
+	OData.request({
+	requestUri: obj.url,
+	method: "POST",
+	data: obj
+	}, (data) ->
+		result.ok = true
+		result.data = data
+		callback(data) if callback
+	, (err) -> 
+		console.log(err)
+		alert("Error occurred in ::SendObjectToServer #{err.message} #{obj.url}")
+	)
+	result
+	
