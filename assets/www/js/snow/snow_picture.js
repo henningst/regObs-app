@@ -5,7 +5,7 @@ var snow_picture  = {
 	addPicture: function() {
 		if(snow_picture.pictureData != null) {
 			var picture = new Picture(null, null, snow_picture.pictureData, null, null, null, $("snow_picture_comment").value);
-			main.store.addPicture(picture);
+			main.store.getSnow().addPicture(picture);
 			snow_picture.pictureData = null;
 
 			snow_page.add('snow_picture_count');

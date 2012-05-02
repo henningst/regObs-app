@@ -40,21 +40,18 @@ SnowStore = (function() {
 
   SnowStore.prototype.send = function() {
     var location;
-    alert("send");
     location = new ObsLocation($("position_header_town").innerHTML, 33, snow_page.longitude, snow_page.latitute, 0, 0, 0, 250, 250, false, null, new Date());
     return SendObjectToServer(location, main.store.getSnow().afterLocation);
   };
 
   SnowStore.prototype.afterLocation = function(data) {
     var registration;
-    alert("afterSend " + data.ObsLocationID + " " + main.login.data.ObserverID + " " + data.ObsLocationID);
     registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, new Date(), new Date(), 0);
     return SendObjectToServer(registration, main.store.getSnow().afterRegistration);
   };
 
   SnowStore.prototype.afterRegistration = function(data) {
     var i, obs, picture, _fn, _fn1, _i, _j, _len, _len1;
-    alert("afterReg" + " " + data.RegID);
     i = 0;
     _fn = function(obs) {
       obs.RegID = data.RegID;

@@ -25,17 +25,14 @@ class SnowStore
 		m_pictures
 		
 	send: () ->
-		alert("send")
 		location = new ObsLocation($("position_header_town").innerHTML, 33, snow_page.longitude, snow_page.latitute, 0, 0, 0, 250, 250, false, null, new Date());
 		SendObjectToServer(location, main.store.getSnow().afterLocation)
 		
 	afterLocation: (data) ->
-		alert("afterSend #{data.ObsLocationID} #{main.login.data.ObserverID} #{data.ObsLocationID}")
 		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, new Date(), new Date(), 0)
 		SendObjectToServer(registration, main.store.getSnow().afterRegistration)
 	
 	afterRegistration: (data) ->
-		alert("afterReg" +" " +data.RegID)
 		i = 0
 		for obs in m_snowObs
 			do(obs) ->
