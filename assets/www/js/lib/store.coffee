@@ -150,6 +150,5 @@ class NveStore
 		snow_hendelse.afterSendRegistration()
 		snow_page.afterSendRegistration()
 		
-		alert('Takk for observasjon')
 
 	p : (data) ->

@@ -203,8 +203,7 @@ NveStore = (function() {
     m_pictures.length = 0;
     snow_picture.afterSendRegistration();
     snow_hendelse.afterSendRegistration();
-    snow_page.afterSendRegistration();
-    return alert('Takk for observasjon');
+    return snow_page.afterSendRegistration();
   };
 
   NveStore.prototype.p = function(data) {};

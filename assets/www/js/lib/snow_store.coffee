@@ -25,7 +25,17 @@ class SnowStore
 		m_pictures
 		
 	send: () ->
-		location = new ObsLocation($("position_header_town").innerHTML, 33, snow_page.longitude, snow_page.latitute, 0, 0, 0, 250, 250, false, null, new Date());
+		source = 0
+		
+		pos = snow_page.pos_obj
+		if pos
+			elapsedInMinutes = ((new Date()).getTime() - pos.taken.getTime()) / 1000 / 60
+			if elapsedInMinutes < GPS_TIMEOUT_IN_MINUTES
+				source = GPS_POSITION
+			else
+				source = OLD_GPS_POSITION
+		
+		location = new ObsLocation($("position_header_town").innerHTML, 33, snow_page.longitude, snow_page.latitute, source, 0, 0, 250, 250, false, null, new Date());
 		SendObjectToServer(location, main.store.getSnow().afterLocation)
 		
 	afterLocation: (data) ->
@@ -59,3 +69,5 @@ class SnowStore
 		snow_picture.afterSendRegistration()
 		snow_hendelse.afterSendRegistration()
 		snow_page.afterSendRegistration()
+		
+		alert('Takk for observasjon')

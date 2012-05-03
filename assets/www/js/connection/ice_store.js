@@ -29,8 +29,18 @@ IceStore = (function() {
   };
 
   IceStore.prototype.send = function() {
-    var location;
-    location = new ObsLocation($("position_header_town").innerHTML, 33, snow_page.longitude, snow_page.latitute, 0, 0, 0, 250, 250, false, null, new Date());
+    var elapsedInMinutes, location, pos, source;
+    source = 0;
+    pos = ice_page.pos_obj;
+    if (pos) {
+      elapsedInMinutes = ((new Date()).getTime() - pos.taken.getTime()) / 1000 / 60;
+      if (elapsedInMinutes < GPS_TIMEOUT_IN_MINUTES) {
+        source = GPS_POSITION;
+      } else {
+        source = OLD_GPS_POSITION;
+      }
+    }
+    location = new ObsLocation($("ice_position_header_town").innerHTML, 33, ice_page.longitude, ice_page.latitute, source, 0, 0, 250, 250, false, null, new Date());
     return SendObjectToServer(location, main.store.getIce().afterLocation);
   };
 
@@ -60,7 +70,8 @@ IceStore = (function() {
     m_pictures.length = 0;
     ice_picture.afterSendRegistration();
     ice_hendelse.afterSendRegistration();
-    return ice_page.afterSendRegistration();
+    ice_page.afterSendRegistration();
+    return alert('Takk for observasjon');
   };
 
   return IceStore;

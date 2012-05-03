@@ -5,12 +5,17 @@ var ice_page = {
 	latitute: 0,
 	
 	longitude: 0,
+
+	pos_obj: null,
 		
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
 	//   the current GPS coordinates
 	//
 	onSuccess: function(position) {
+		position.taken = new Date();
+		snow_page.pos_obj = position;
+		
 		var source = new Proj4js.Proj('EPSG:4326');    //source coordinates will be in Longitude/Latitude
 		var dest = new Proj4js.Proj('EPSG:32633');     //destination coordinates for Norway
 		

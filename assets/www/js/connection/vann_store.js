@@ -37,15 +37,25 @@ WaterStore = (function() {
   };
 
   WaterStore.prototype.send = function() {
-    var location;
-    location = new ObsLocation($("position_header_town").innerHTML, 33, snow_page.longitude, snow_page.latitute, 0, 0, 0, 250, 250, false, null, new Date());
-    return SendObjectToServer(location, main.store.getSnow().afterLocation);
+    var elapsedInMinutes, location, pos, source;
+    source = 0;
+    pos = water_page.pos_obj;
+    if (pos) {
+      elapsedInMinutes = ((new Date()).getTime() - pos.taken.getTime()) / 1000 / 60;
+      if (elapsedInMinutes < GPS_TIMEOUT_IN_MINUTES) {
+        source = GPS_POSITION;
+      } else {
+        source = OLD_GPS_POSITION;
+      }
+    }
+    location = new ObsLocation($("water_position_header_town").innerHTML, 33, water_page.longitude, water_page.latitute, source, 0, 0, 250, 250, false, null, new Date());
+    return SendObjectToServer(location, main.store.getWater().afterLocation);
   };
 
   WaterStore.prototype.afterLocation = function(data) {
     var registration;
     registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, new Date(), new Date(), 0);
-    return SendObjectToServer(registration, main.store.getSnow().afterRegistration);
+    return SendObjectToServer(registration, main.store.getWter().afterRegistration);
   };
 
   WaterStore.prototype.afterRegistration = function(data) {
@@ -66,9 +76,10 @@ WaterStore = (function() {
       _fn(picture);
     }
     m_pictures.length = 0;
-    vann_picture.afterSendRegistration();
-    vann_hendelse.afterSendRegistration();
-    return vann_page.afterSendRegistration();
+    water_picture.afterSendRegistration();
+    water_hendelse.afterSendRegistration();
+    water_page.afterSendRegistration();
+    return alert('Takk for observasjon');
   };
 
   return WaterStore;

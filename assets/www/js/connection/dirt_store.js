@@ -29,8 +29,18 @@ DirtStore = (function() {
   };
 
   DirtStore.prototype.send = function() {
-    var location;
-    location = new ObsLocation($("position_header_town").innerHTML, 33, snow_page.longitude, snow_page.latitute, 0, 0, 0, 250, 250, false, null, new Date());
+    var elapsedInMinutes, location, pos, source;
+    source = 0;
+    pos = dirt_page.pos_obj;
+    if (pos) {
+      elapsedInMinutes = ((new Date()).getTime() - pos.taken.getTime()) / 1000 / 60;
+      if (elapsedInMinutes < GPS_TIMEOUT_IN_MINUTES) {
+        source = GPS_POSITION;
+      } else {
+        source = OLD_GPS_POSITION;
+      }
+    }
+    location = new ObsLocation($("dirt_position_header_town").innerHTML, 33, dirt_page.longitude, dirt_page.latitute, source, 0, 0, 250, 250, false, null, new Date());
     return SendObjectToServer(location, main.store.getDirt().afterLocation);
   };
 
@@ -60,7 +70,8 @@ DirtStore = (function() {
     m_pictures.length = 0;
     dirt_picture.afterSendRegistration();
     dirt_hendelse.afterSendRegistration();
-    return dirt_page.afterSendRegistration();
+    dirt_page.afterSendRegistration();
+    return alert('Takk for observasjon');
   };
 
   return DirtStore;

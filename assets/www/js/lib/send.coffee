@@ -59,7 +59,9 @@ class NveSend
 			result.data = data
 			callback(data) if callback
 		, (error) ->
+			###
 			alert("Error occurred in getObjectFromServer" +error.message)
+			###
 		)
 		result
 	
@@ -76,7 +78,9 @@ class NveSend
 			result.data = data
 			callback(data) if callback
 		, (err) -> 
+			###
 			alert("Error occurred in sendObjectToServer" + err.message)
+			###
 		)
 		result
 	
@@ -116,8 +120,10 @@ GetObjectFromServer = (call, callback) ->
 		result.data = data
 		callback(data) if callback
 	, (error) ->
+		###
 		console.log(error)
 		alert("Error occurred in ::GetObjectFromServer #{error.message} #{call.url}")
+		###
 	)
 	result
 
@@ -132,8 +138,10 @@ SendObjectToServer = (obj, callback) ->
 		result.data = data
 		callback(data) if callback
 	, (err) -> 
+		###
 		console.log(err)
 		alert("Error occurred in ::SendObjectToServer #{err.message} #{obj.url}")
+		###
 	)
 	result
 	

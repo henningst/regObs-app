@@ -80,7 +80,10 @@ NveSend = (function() {
         return callback(data);
       }
     }, function(error) {
-      return alert("Error occurred in getObjectFromServer" + error.message);
+      /*
+      			alert("Error occurred in getObjectFromServer" +error.message)
+      */
+
     });
     return result;
   };
@@ -101,7 +104,10 @@ NveSend = (function() {
         return callback(data);
       }
     }, function(err) {
-      return alert("Error occurred in sendObjectToServer" + err.message);
+      /*
+      			alert("Error occurred in sendObjectToServer" + err.message)
+      */
+
     });
     return result;
   };
@@ -157,8 +163,11 @@ GetObjectFromServer = function(call, callback) {
       return callback(data);
     }
   }, function(error) {
-    console.log(error);
-    return alert("Error occurred in ::GetObjectFromServer " + error.message + " " + call.url);
+    /*
+    		console.log(error)
+    		alert("Error occurred in ::GetObjectFromServer #{error.message} #{call.url}")
+    */
+
   });
   return result;
 };
@@ -177,8 +186,11 @@ SendObjectToServer = function(obj, callback) {
       return callback(data);
     }
   }, function(err) {
-    console.log(err);
-    return alert("Error occurred in ::SendObjectToServer " + err.message + " " + obj.url);
+    /*
+    		console.log(err)
+    		alert("Error occurred in ::SendObjectToServer #{err.message} #{obj.url}")
+    */
+
   });
   return result;
 };
