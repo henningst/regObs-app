@@ -54,8 +54,8 @@ WaterStore = (function() {
 
   WaterStore.prototype.afterLocation = function(data) {
     var registration;
-    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, new Date(), new Date(), 0);
-    return SendObjectToServer(registration, main.store.getWter().afterRegistration);
+    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, new Date(), 0);
+    return SendObjectToServer(registration, main.store.getWater().afterRegistration);
   };
 
   WaterStore.prototype.afterRegistration = function(data) {

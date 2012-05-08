@@ -47,7 +47,7 @@ var water_page = {
 	},
 	
 	doMeasurement: function() {
-		navigator.geolocation.getCurrentPosition(water_page.onSuccess, water_page.onError);
+		navigator.geolocation.getCurrentPosition(water_page.onSuccess, water_page.onError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
 	},
 	
 	add: function(id)
@@ -64,6 +64,14 @@ var water_page = {
 		$('header_middle_text').innerHTML = "Vann";
 		
 		water_page.doMeasurement();
+		
+		if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == WATER) {
+
+			jQuery("#star").attr('src', 'img/stared.png');
+		} else {
+
+			jQuery("#star").attr('src', 'img/notstared.png');
+		}
 	},
 }
 

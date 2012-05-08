@@ -2,6 +2,8 @@ var snow_hendelse = {
 		
 		fill_activity_influenced: function(data) {
 			var options = jQuery("#snow_hendelse_activity_list");
+			//remove if previously inserted
+			jQuery.each(options, function() {jQuery(this).find('option').remove()});
 			jQuery.each(data.results, function() {
 			    options.append(jQuery("<option />").val(this.ActivityInfluencedTID).text(this.ActivityInfluencedName));
 			});
@@ -9,6 +11,9 @@ var snow_hendelse = {
 		
 		fill_radius: function(data) {
 			var options = jQuery("#snow_hendelse_radius_list");
+			//remove if previously inserted
+			jQuery.each(options, function() {jQuery(this).find('option').remove()});
+			
 			jQuery.each(data.results, function() {
 			    options.append(jQuery("<option />").val(this.DamageExtentTID).text(this.DamageExtentName));
 			});

@@ -2,7 +2,7 @@ var main = (function()
 {
     var main =
     {	
-    	optionsDisplayed: 0,
+    	actualPage: 0,
     		
     	store: new NveStore(),
     		
@@ -18,30 +18,21 @@ var main = (function()
 			main.login = main.store.loggedInAs(main.loggedInAsCallback);
 		},
 		
-		toggle: function ()
-		{
-			if ( main.optionsDisplayed == 0 )
-			{
-				$('pages').translate(window.innerWidth - 81, 0);
-				main.optionsDisplayed = 1;
-				$('settings').style.display = 'block';
-			} else
-			{
-				$('pages').translate(0, 0);
-				main.optionsDisplayed = 0;
-				$('settings').style.display = 'none';
-			}
+		starred: function() {
+			DataAccess.save(STARTUP_PAGE, main.actualPage);
+
+			jQuery("#star").attr('src', 'img/stared.png');
 		},
 		
 		sizeElements: function()
     	{
 //    		scrollTo(0, 0, 0);
     		
-    		var _h = window.innerHeight - jQuery('#header').height();
-    		var _w = window.innerWidth;
-
-    		jQuery('.sl_container').css('height' , _h + 'px');
-    		jQuery('.sl_container').css('width' , _w + 'px');
+//    		var _h = window.innerHeight - jQuery('#header').height();
+//    		var _w = window.innerWidth;
+//
+//    		jQuery('.sl_container').css('height' , _h + 'px');
+//    		jQuery('.sl_container').css('width' , _w + 'px');
     	},
     	
         init: function()
@@ -78,7 +69,7 @@ var main = (function()
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
 
             //remove all select options
-            jQuery.each(jQuery("select"), function() {jQuery(this).find('option').remove()});
+            //jQuery.each(jQuery("select"), function() {jQuery(this).find('option').remove()});
             
             //init snow danger signs
 			this.store.getObjectFromServer(new DangerSignKD(), snow_faresign.fill_snow_danger_sign);
@@ -88,6 +79,24 @@ var main = (function()
 			main.login = main.store.loggedInAs(main.loggedInAsCallback);
 
 			main.sizeElements();
+			
+			switch (DataAccess.get(STARTUP_PAGE)) {
+			case '1':
+				main.panels.slideTo('snow');
+				break;
+			case '2':
+				main.panels.slideTo('ice');
+				break;
+			case '3':
+				main.panels.slideTo('water');
+				break;
+			case '4':
+				main.panels.slideTo('dirt');
+				break;
+
+			default:
+				break;
+			}
         },
         
         fillActivityInfluenced: function(data) {
@@ -117,6 +126,14 @@ var main = (function()
         
         toggleBackButtonDisplay: function(params, status) {
         	
+
+        	if(params.id != 'home') {
+        		if(status == 'start') {
+    				$('back').style.display = 'block';
+    				$('star').style.display = 'inline-table';
+    			}
+        	}
+        	
         	switch(params.id) {
         		case 'home':
         			if(status == 'end') {
@@ -124,15 +141,26 @@ var main = (function()
         			
         			if(status == 'start') {
         				$('back').style.display = 'none';
+        				$('star').style.display = 'none';
+        				
         				$('mainBody').style.backgroundImage = '';
         				main_page.init();
+        				main.actualPage = 0;
         			}
+        			break;
+        			
+        		case 'settings':
+        			settings_page.init();
+    				$('star').style.display = 'none';
+        			
         			break;
         			
         		case 'snow':
         			if(status == 'start') {
         				snow_page.init();
         				$('mainBody').style.backgroundImage = "url('img/snow_background.png')";
+        				
+        				main.actualPage = SNOW;
         			}
         			break;
         			
@@ -157,6 +185,8 @@ var main = (function()
         		case 'water':
         			if(status == 'start') {
         				water_page.init();
+        				
+        				main.actualPage = WATER;
         			}
         			break;
         			
@@ -175,6 +205,8 @@ var main = (function()
         		case 'ice':
         			if(status == 'start') {
         				ice_page.init();
+        				
+        				main.actualPage = ICE;
         			}
         			break;
         			
@@ -194,6 +226,8 @@ var main = (function()
         		case 'dirt':
         			if(status == 'start') {
         				dirt_page.init();
+        				
+        				main.actualPage = DIRT;
         			}
         			break;
         			
@@ -212,12 +246,6 @@ var main = (function()
         		
         		default:
         			break;
-        	}
-        	if(params.id != 'home') {
-        		if(status == 'start') {
-    				$('back').style.display = 'block';
-//    				$('header').style.display = 'block';
-    			}
         	}
         }
     }

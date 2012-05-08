@@ -39,7 +39,7 @@ class SnowStore
 		SendObjectToServer(location, main.store.getSnow().afterLocation)
 		
 	afterLocation: (data) ->
-		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, new Date(), new Date(), 0)
+		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, new Date(), 0)
 		SendObjectToServer(registration, main.store.getSnow().afterRegistration)
 	
 	afterRegistration: (data) ->

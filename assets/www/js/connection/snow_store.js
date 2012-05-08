@@ -56,7 +56,7 @@ SnowStore = (function() {
 
   SnowStore.prototype.afterLocation = function(data) {
     var registration;
-    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, new Date(), new Date(), 0);
+    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, new Date(), 0);
     return SendObjectToServer(registration, main.store.getSnow().afterRegistration);
   };
 

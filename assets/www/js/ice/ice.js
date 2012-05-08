@@ -47,7 +47,7 @@ var ice_page = {
 	},
 	
 	doMeasurement: function() {
-		navigator.geolocation.getCurrentPosition(ice_page.onSuccess, ice_page.onError);
+		navigator.geolocation.getCurrentPosition(ice_page.onSuccess, ice_page.onError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
 	},
 	
 	add: function(id)
@@ -64,6 +64,14 @@ var ice_page = {
 		$('header_middle_text').innerHTML = "Is";
 		
 		ice_page.doMeasurement();
+		
+		if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == ICE) {
+
+			jQuery("#star").attr('src', 'img/stared.png');
+		} else {
+
+			jQuery("#star").attr('src', 'img/notstared.png');
+		}
 	},
 }
 

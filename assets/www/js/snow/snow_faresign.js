@@ -5,6 +5,9 @@ var snow_faresign = {
 		fill_snow_danger_sign: function(data) {
 			var options = jQuery("#snow_danger_sign_list");
 			
+			//remove if previously inserted
+			jQuery.each(options, function() {jQuery(this).find('option').remove()});
+			
 			jQuery.each(data.results, function() {
 			    options.append(jQuery("<option />").val(this.DangerSignTID).text(this.DangerSignName));
 			});

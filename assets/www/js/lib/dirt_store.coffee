@@ -31,7 +31,7 @@ class DirtStore
 		SendObjectToServer(location, main.store.getDirt().afterLocation)
 		
 	afterLocation: (data) ->
-		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, new Date(), new Date(), 0)
+		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, new Date(), 0)
 		SendObjectToServer(registration, main.store.getDirt().afterRegistration)
 	
 	afterRegistration: (data) ->

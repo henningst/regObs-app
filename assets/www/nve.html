@@ -34,6 +34,8 @@
         //IncludeJavaScript("libs/" +device.platform +"-LocalNotification.js");
 	</script>
 	
+	<script type="text/javascript" src="js/database/database.js"></script>
+	
 	<script type="text/javascript" src="js/connection/data_objects.js"></script>
 	<script type="text/javascript" src="js/connection/send.js"></script>
 	
@@ -44,6 +46,7 @@
 	
 	<script type="text/javascript" src="js/connection/store.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/settings_page.js"></script>
 	
 	<script type="text/javascript" src="js/snow/snow.js"></script>
 	<script type="text/javascript" src="js/snow/snow_picture.js"></script>
@@ -105,7 +108,13 @@
     	<div id="back" class="w_button_custom w_back w_left c_color_gradient">
 	        <input type="button" value="tilbake" class="c_color_gradient" onclick="main.panels.slideBack();" />
 	    </div>
-	    <span id="header_middle_text">regObs</span>
+	    
+	    <div>
+	    	<span id="header_middle_text">regObs</span>
+	    	<a type="button" id="loginButton" onclick="main.starred();" >
+            	<img id="star" alt="" src="img/stared.png" style="position: absolute; top: 5px; margin-left: 5px; height: 32px; width: 32px;">
+	        </a>
+	    </div>
 	    
 	    <div id="login" class="c_right_header_button w_right">
 	        <a type="button" id="loginButton" onclick="main.panels.slideTo('settings');" >

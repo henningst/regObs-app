@@ -31,7 +31,7 @@ class IceStore
 		SendObjectToServer(location, main.store.getIce().afterLocation)
 		
 	afterLocation: (data) ->
-		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, new Date(), new Date(), 0)
+		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, new Date(), 0)
 		SendObjectToServer(registration, main.store.getIce().afterRegistration)
 	
 	afterRegistration: (data) ->

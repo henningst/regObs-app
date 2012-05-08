@@ -47,7 +47,7 @@ var snow_page = {
 	},
 	
 	doMeasurement: function() {
-		navigator.geolocation.getCurrentPosition(snow_page.onSuccess, snow_page.onError);
+		navigator.geolocation.getCurrentPosition(snow_page.onSuccess, snow_page.onError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
 	},
 	
 	add: function(id)
@@ -65,6 +65,14 @@ var snow_page = {
 		$('header_middle_text').innerHTML = "Sn&oslash;";
 		
 		snow_page.doMeasurement();
+		
+		if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == SNOW) {
+
+			jQuery("#star").attr('src', 'img/stared.png');
+		} else {
+
+			jQuery("#star").attr('src', 'img/notstared.png');
+		}
 	},
 }
 

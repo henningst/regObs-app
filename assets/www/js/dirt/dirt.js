@@ -47,7 +47,7 @@ var dirt_page = {
 	},
 	
 	doMeasurement: function() {
-		navigator.geolocation.getCurrentPosition(dirt_page.onSuccess, dirt_page.onError);
+		navigator.geolocation.getCurrentPosition(dirt_page.onSuccess, dirt_page.onError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
 	},
 	
 	add: function(id)
@@ -64,6 +64,14 @@ var dirt_page = {
 		$('header_middle_text').innerHTML = "L&oslash;smasse";
 		
 		dirt_page.doMeasurement();
+		
+		if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == DIRT) {
+
+			jQuery("#star").attr('src', 'img/stared.png');
+		} else {
+
+			jQuery("#star").attr('src', 'img/notstared.png');
+		}
 	},
 }
 

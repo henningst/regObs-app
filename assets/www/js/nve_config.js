@@ -12,13 +12,26 @@ var GPS_TIMEOUT_IN_MINUTES = 20;
 SERVER_URL = "http://h-web01.nve.no/test_regobsservices/Odata.svc/"
 
 /*
- * 1 = Norsk
- */	
-LANGUAGE = 1
-
-/*
  * Platform
  */
 var device = {
 		platform: 'android'
 }
+
+/*
+ * 1 = Norsk
+ */	
+LANGUAGE = 1;
+
+/*
+ * Enums for snow, water, ice and dirt 
+ */
+SNOW = 1;
+ICE = 2;
+WATER = 3;
+DIRT = 4;
+
+/*
+ * DB colums
+ */
+STARTUP_PAGE = "regobs_startup_page";

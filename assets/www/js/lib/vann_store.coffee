@@ -37,8 +37,8 @@ class WaterStore
 		SendObjectToServer(location, main.store.getWater().afterLocation)
 		
 	afterLocation: (data) ->
-		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, new Date(), new Date(), 0)
-		SendObjectToServer(registration, main.store.getWter().afterRegistration)
+		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, new Date(), 0)
+		SendObjectToServer(registration, main.store.getWater().afterRegistration)
 	
 	afterRegistration: (data) ->
 		
