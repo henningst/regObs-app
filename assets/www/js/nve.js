@@ -11,29 +11,40 @@ var main = (function()
     	panels: null,
     	
 		clickLogin: function() {
-			this.store.login(document.getElementById('login_username').value, document.getElementById('login_password').value);
+			var username = document.getElementById('login_username').value;
+			var password = document.getElementById('login_password').value;
+
+			DataAccess.save(USERNAME, username);
+			DataAccess.save(PASSWORD, password);
+			this.store.login(username, password);
 		},
 		
 		loginCallback: function(data) {
 			main.login = main.store.loggedInAs(main.loggedInAsCallback);
 		},
 		
-		starred: function() {
-			DataAccess.save(STARTUP_PAGE, main.actualPage);
-
-			jQuery("#star").attr('src', 'img/stared.png');
+		clickLogOut: function() {
+			document.getElementById('login_username').value = "";
+			document.getElementById('login_password').value = "";
+			
+			DataAccess.save(USERNAME, "");
+			DataAccess.save(PASSWORD, "");
+			this.store.logout(main.logoutCallback);
 		},
 		
-		sizeElements: function()
-    	{
-//    		scrollTo(0, 0, 0);
-    		
-//    		var _h = window.innerHeight - jQuery('#header').height();
-//    		var _w = window.innerWidth;
-//
-//    		jQuery('.sl_container').css('height' , _h + 'px');
-//    		jQuery('.sl_container').css('width' , _w + 'px');
-    	},
+		logoutCallback: function() {
+        	$('settings_img').style.backgroundColor = 'red';
+		},
+		
+		starred: function() {
+			if(DataAccess.get(STARTUP_PAGE) == main.actualPage) {
+				DataAccess.save(STARTUP_PAGE, 0);
+				jQuery("#star").attr('src', 'img/notstared.png');	
+			} else {
+				DataAccess.save(STARTUP_PAGE, main.actualPage);
+				jQuery("#star").attr('src', 'img/stared.png');	
+			}	
+		},
     	
         init: function()
         {
@@ -68,29 +79,31 @@ var main = (function()
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
 
-            //remove all select options
-            //jQuery.each(jQuery("select"), function() {jQuery(this).find('option').remove()});
-            
             //init snow danger signs
-			this.store.getObjectFromServer(new DangerSignKD(), snow_faresign.fill_snow_danger_sign);
-			this.store.getObjectFromServer(new ActivityInfluencedKD(), this.fillActivityInfluenced);
-			this.store.getObjectFromServer(new DamageExtentKD(), this.fillDamageExtent);
-			 
-			main.login = main.store.loggedInAs(main.loggedInAsCallback);
-
-			main.sizeElements();
+			GetObjectFromServer(new DangerSignKD(), snow_faresign.fill_snow_danger_sign);
+			GetObjectFromServer(new ActivityInfluencedKD(), main.fillActivityInfluenced);
+			GetObjectFromServer(new DamageExtentKD(), main.fillDamageExtent);
+			
+			var username = DataAccess.get(USERNAME);
+			var password = DataAccess.get(PASSWORD);
+			
+			if(username != undefined && password != undefined) {
+				this.store.login(username, password);
+        	} else {
+        		$('settings_img').style.backgroundColor = 'red';
+			}
 			
 			switch (DataAccess.get(STARTUP_PAGE)) {
-			case '1':
+			case 1:
 				main.panels.slideTo('snow');
 				break;
-			case '2':
+			case 2:
 				main.panels.slideTo('ice');
 				break;
-			case '3':
+			case 3:
 				main.panels.slideTo('water');
 				break;
-			case '4':
+			case 4:
 				main.panels.slideTo('dirt');
 				break;
 
@@ -120,8 +133,6 @@ var main = (function()
         	} else {
         		$('settings_img').style.backgroundColor = 'red';
         	}
-        	
-        	$('login_username').value = data.EMail;
         },
         
         toggleBackButtonDisplay: function(params, status) {
@@ -221,7 +232,6 @@ var main = (function()
         				ice_hendelse.init();
         			}
         			break;
-        			
         			
         		case 'dirt':
         			if(status == 'start') {

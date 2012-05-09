@@ -17,7 +17,7 @@ NveSend = (function() {
     };
     return jQuery.ajax({
       type: 'POST',
-      url: "http://h-web01.nve.no/test_RegObsServices/Authentication_JSON_AppService.axd/Login",
+      url: "http://h-web01.nve.no/stage_RegObsServices/Authentication_JSON_AppService.axd/Login",
       data: JSON.stringify(this.cridentials),
       dataType: 'json',
       headers: {
@@ -31,109 +31,29 @@ NveSend = (function() {
     });
   };
 
-  NveSend.prototype.addObsLocation = function(obsLocation, callback) {
-    var result;
-    result = new Result;
-    OData.request({
-      requestUri: "http://h-web01.nve.no/test_regobsservices/Odata.svc/ObsLocation",
-      method: "POST",
-      data: obsLocation
-    }, function(data) {
-      result.ok = true;
-      result.data = data;
+  NveSend.prototype.logout = function(callback) {
+    var _this = this;
+    return jQuery.ajax({
+      type: 'POST',
+      url: "http://h-web01.nve.no/stage_RegObsServices/Authentication_JSON_AppService.axd/Logout",
+      data: "",
+      dataType: 'json',
+      headers: {
+        Accept: "application/json; charset=utf-8",
+        "Content-Type": "application/json; charset=utf-8"
+      }
+    }).complete(function(data) {
       if (callback) {
         return callback(data);
       }
     });
-    return result;
-  };
-
-  /*	
-  	getDangerSign : (callback) ->
-  		result = new Result
-  		OData.request({
-  		requestUri: "http://h-web01.nve.no/test_regobsservices/OData.svc/DangerSignKD",
-  		method: "GET",
-  		data: ""
-  		}, (data) ->
-  			result.ok = true
-  			result.data = data
-  			callback(data) if callback
-  		, (error) ->
-  			alert("Error occurred in getDangerSign" +error.message)
-  		)
-  		result
-  */
-
-
-  NveSend.prototype.getObjectFromServer = function(call, callback) {
-    var result;
-    result = new Result;
-    OData.request({
-      requestUri: call.url,
-      method: "GET",
-      data: ""
-    }, function(data) {
-      result.ok = true;
-      result.data = data;
-      if (callback) {
-        return callback(data);
-      }
-    }, function(error) {
-      /*
-      			alert("Error occurred in getObjectFromServer" +error.message)
-      */
-
-    });
-    return result;
-  };
-
-  NveSend.prototype.sendObjectToServer = function(obj, callback) {
-    var result;
-    console.log(obj);
-    result = new Result;
-    OData.request({
-      requestUri: obj.url,
-      method: "POST",
-      data: obj
-    }, function(data) {
-      console.log(data);
-      result.ok = true;
-      result.data = data;
-      if (callback) {
-        return callback(data);
-      }
-    }, function(err) {
-      /*
-      			alert("Error occurred in sendObjectToServer" + err.message)
-      */
-
-    });
-    return result;
-  };
-
-  NveSend.prototype.addRegistration = function(registration, callback) {
-    var result;
-    result = new Result;
-    OData.request({
-      requestUri: "http://h-web01.nve.no/test_regobsservices/Odata.svc/Registration",
-      method: "POST",
-      data: registration
-    }, function(data) {
-      result.ok = true;
-      result.data = data;
-      if (callback) {
-        return callback(data);
-      }
-    });
-    return result;
   };
 
   NveSend.prototype.loggedInAs = function(callback) {
     var result;
     result = new Result;
     OData.request({
-      requestUri: "http://h-web01.nve.no/test_regobsservices/Odata.svc/Observer",
+      requestUri: "http://h-web01.nve.no/stage_regobsservices/Odata.svc/Observer",
       method: "GET"
     }, function(data) {
       result.ok = true;

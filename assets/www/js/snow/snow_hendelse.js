@@ -4,8 +4,10 @@ var snow_hendelse = {
 			var options = jQuery("#snow_hendelse_activity_list");
 			//remove if previously inserted
 			jQuery.each(options, function() {jQuery(this).find('option').remove()});
+			
 			jQuery.each(data.results, function() {
-			    options.append(jQuery("<option />").val(this.ActivityInfluencedTID).text(this.ActivityInfluencedName));
+				if(this.ActivityInfluencedTID > 99 && this.ActivityInfluencedTID < 200)
+					options.append(jQuery("<option />").val(this.ActivityInfluencedTID).text(this.ActivityInfluencedName));
 			});
 		},
 		
@@ -64,6 +66,7 @@ var snow_hendelse = {
 			
 			//restore old incident if available
 			var incident = main.store.getSnow().getIncident();
+			console.log(incident);
 			
 			if(incident != null) {
 				$("snow_hendelse_activity_list").value = incident.ActivityInfluencedTID;

@@ -2,53 +2,55 @@
 var NveStore;
 
 NveStore = (function() {
-  var m_dirtStore, m_iceStore, m_isLoggedIn, m_snowStore, m_waterStore, send;
 
   NveStore.name = 'NveStore';
 
-  function NveStore() {}
-
-  send = new NveSend;
-
-  m_isLoggedIn = false;
-
-  m_waterStore = null;
-
-  m_snowStore = null;
-
-  m_dirtStore = null;
-
-  m_iceStore = null;
+  function NveStore() {
+    this.m_waterStore = null;
+    this.m_snowStore = null;
+    this.m_dirtStore = null;
+    this.m_iceStore = null;
+    this.m_isLoggedIn = false;
+    this.m_send = new NveSend();
+  }
 
   NveStore.prototype.login = function(userName, userPassword) {
-    return send.login(userName, userPassword, this.loginCallback);
+    return this.m_send.login(userName, userPassword, this.loginCallback);
+  };
+
+  NveStore.prototype.logout = function(callback) {
+    return this.m_send.logout(callback);
   };
 
   NveStore.prototype.loginCallback = function(data) {
     main.loginCallback(data);
-    return m_isLoggedIn = true;
+    return this.m_isLoggedIn = true;
   };
 
   NveStore.prototype.isLoggedIn = function() {
-    return m_isLoggedIn;
+    return this.m_isLoggedIn;
   };
 
   NveStore.prototype.loggedInAs = function(callback) {
-    return send.loggedInAs(callback);
+    return this.m_send.loggedInAs(callback);
   };
 
   NveStore.prototype.getSnow = function() {
-    if (m_snowStore) {
-      return m_snowStore;
+    if (this.m_snowStore) {
+      return this.m_snowStore;
     } else {
-      return m_snowStore = new SnowStore();
+      this.m_snowStore = DataAccess.get(SnowStore.name, new SnowStore());
+      if (this.m_snowStore) {
+        return this.m_snowStore;
+      } else {
+        return this.m_snowStore = new SnowStore();
+      }
     }
   };
 
   NveStore.prototype.sendSnow = function(callback) {
-    if (m_snowStore) {
-      m_snowStore.send();
-      m_snowStore = null;
+    if (this.m_snowStore) {
+      this.m_snowStore.send();
     }
     if (callback) {
       return callback();
@@ -56,17 +58,21 @@ NveStore = (function() {
   };
 
   NveStore.prototype.getDirt = function() {
-    if (m_dirtStore) {
-      return m_dirtStore;
+    if (this.m_dirtStore) {
+      return this.m_dirtStore;
     } else {
-      return m_dirtStore = new DirtStore();
+      this.m_dirtStore = DataAccess.get(DirtStore.name, new DirtStore());
+      if (this.m_dirtStore) {
+        return this.m_dirtStore;
+      } else {
+        return this.m_dirtStore = new DirtStore();
+      }
     }
   };
 
   NveStore.prototype.sendDirt = function(callback) {
-    if (m_dirtStore) {
-      m_dirtStore.send();
-      m_dirtStore = null;
+    if (this.m_dirtStore) {
+      this.m_dirtStore.send();
     }
     if (callback) {
       return callback();
@@ -74,17 +80,21 @@ NveStore = (function() {
   };
 
   NveStore.prototype.getIce = function() {
-    if (m_iceStore) {
-      return m_iceStore;
+    if (this.m_iceStore) {
+      return this.m_iceStore;
     } else {
-      return m_iceStore = new IceStore();
+      this.m_iceStore = DataAccess.get(IceStore.name, new IceStore());
+      if (this.m_iceStore) {
+        return this.m_iceStore;
+      } else {
+        return this.m_iceStore = new IceStore();
+      }
     }
   };
 
   NveStore.prototype.sendIce = function(callback) {
-    if (m_iceStore) {
-      m_iceStore.send();
-      m_iceStore = null;
+    if (this.m_iceStore) {
+      this.m_iceStore.send();
     }
     if (callback) {
       return callback();
@@ -92,121 +102,26 @@ NveStore = (function() {
   };
 
   NveStore.prototype.getWater = function() {
-    if (m_waterStore) {
-      return m_waterStore;
+    if (this.m_waterStore) {
+      return this.m_waterStore;
     } else {
-      return m_waterStore = new WaterStore();
+      this.m_waterStore = DataAccess.get(WaterStore.name, new WaterStore());
+      if (this.m_waterStore) {
+        return this.m_waterStore;
+      } else {
+        return this.m_waterStore = new WaterStore();
+      }
     }
   };
 
   NveStore.prototype.sendWater = function(callback) {
-    if (m_waterStore) {
-      m_waterStore.send();
-      m_waterStore = null;
+    if (this.m_waterStore) {
+      this.m_waterStore.send();
     }
     if (callback) {
       return callback();
     }
   };
-
-  NveStore.prototype.addObservation = function(obs) {
-    return m_observations.push(obs);
-  };
-
-  NveStore.prototype.addAvalancheDangerObs = function(avaObs) {
-    return m_avalancheDangerObs.push(avaObs);
-  };
-
-  NveStore.prototype.addPicture = function(picture) {
-    return m_pictures.push(picture);
-  };
-
-  NveStore.prototype.getPictures = function() {
-    return m_pictures;
-  };
-
-  NveStore.prototype.addIncident = function(incident) {
-    var m_incident;
-    return m_incident = incident;
-  };
-
-  NveStore.prototype.getIncident = function() {
-    return m_incident;
-  };
-
-  NveStore.prototype.getObservations = function() {
-    return m_observations;
-  };
-
-  NveStore.prototype.addRegistration = function(registration, callback) {
-    return send.addRegistration(registration, callback);
-  };
-
-  /*
-  	getDangerSign: (callback) ->
-  		send.getDangerSign(callback)
-  */
-
-
-  NveStore.prototype.getObjectFromServer = function(call, callback) {
-    return send.getObjectFromServer(call, callback);
-  };
-
-  NveStore.prototype.sendAll = function() {
-    var location;
-    if (main.login === null || main.login.data === null) {
-      alert('login');
-      return;
-    }
-    location = new ObsLocation($("position_header_town").innerHTML, 33, snow_page.longitude, snow_page.latitute, 0, 0, 0, 250, 250, false, null, new Date());
-    return send.sendObjectToServer(location, this.zweiter);
-  };
-
-  NveStore.prototype.zweiter = function(data) {
-    var registration;
-    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, new Date(), new Date(), 0);
-    return send.sendObjectToServer(registration, main.store.calli);
-  };
-
-  NveStore.prototype.sendObjectToServer = function(obj, callback) {
-    return this.send.sendObjectToServer(obj, callback);
-  };
-
-  NveStore.prototype.calli = function(data) {
-    var i, m_incident, obs, picture, _fn, _fn1, _i, _j, _len, _len1;
-    i = 0;
-    _fn = function(obs) {
-      obs.RegID = data.RegID;
-      obs.AvalancheDangerObsID = i++;
-      return send.sendObjectToServer(obs, main.store.p);
-    };
-    for (_i = 0, _len = m_avalancheDangerObs.length; _i < _len; _i++) {
-      obs = m_avalancheDangerObs[_i];
-      _fn(obs);
-    }
-    m_avalancheDangerObs.length = 0;
-    if (m_incident) {
-      m_incident.RegID = data.RegID;
-      send.sendObjectToServer(m_incident, main.store.p);
-      m_incident = null;
-    }
-    i = 0;
-    _fn1 = function(picture) {
-      picture.RegID = data.RegID;
-      picture.PictureID = i++;
-      return send.sendObjectToServer(picture, main.store.p);
-    };
-    for (_j = 0, _len1 = m_pictures.length; _j < _len1; _j++) {
-      picture = m_pictures[_j];
-      _fn1(picture);
-    }
-    m_pictures.length = 0;
-    snow_picture.afterSendRegistration();
-    snow_hendelse.afterSendRegistration();
-    return snow_page.afterSendRegistration();
-  };
-
-  NveStore.prototype.p = function(data) {};
 
   return NveStore;
 

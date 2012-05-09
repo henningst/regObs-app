@@ -7,7 +7,8 @@ var ice_hendelse = {
 			jQuery.each(options, function() {jQuery(this).find('option').remove()});
 			
 			jQuery.each(data.results, function() {
-			    options.append(jQuery("<option />").val(this.ActivityInfluencedTID).text(this.ActivityInfluencedName));
+				if(this.ActivityInfluencedTID > 699 && this.ActivityInfluencedTID < 800)
+					options.append(jQuery("<option />").val(this.ActivityInfluencedTID).text(this.ActivityInfluencedName));
 			});
 		},
 		
@@ -57,7 +58,7 @@ var ice_hendelse = {
 					null,
 					"");
 			
-			main.store.addIncident(incident);
+			main.store.getIce().setIncident(incident);
 			main.panels.slideBack();			
 		},
 		

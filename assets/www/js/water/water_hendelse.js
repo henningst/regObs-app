@@ -7,7 +7,8 @@ var water_hendelse = {
 			jQuery.each(options, function() {jQuery(this).find('option').remove()});
 			
 			jQuery.each(data.results, function() {
-			    options.append(jQuery("<option />").val(this.ActivityInfluencedTID).text(this.ActivityInfluencedName));
+				if(this.ActivityInfluencedTID > 599 && this.ActivityInfluencedTID < 700)
+					options.append(jQuery("<option />").val(this.ActivityInfluencedTID).text(this.ActivityInfluencedName));
 			});
 		},
 		
@@ -58,7 +59,7 @@ var water_hendelse = {
 					null,
 					"");
 			
-			main.store.addIncident(incident);
+			main.store.getWater().setIncident(incident);
 			main.panels.slideBack();			
 		},
 		

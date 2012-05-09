@@ -2,44 +2,45 @@
 var SnowStore;
 
 SnowStore = (function() {
-  var m_incident, m_pictures, m_snowObs;
 
   SnowStore.name = 'SnowStore';
 
-  function SnowStore() {}
-
-  m_incident = null;
-
-  m_snowObs = [];
-
-  m_pictures = [];
+  function SnowStore() {
+    this.m_snowObs = [];
+    this.m_incident = null;
+    this.m_pictures = [];
+  }
 
   SnowStore.prototype.setIncident = function(incident) {
-    return m_incident = incident;
+    this.m_incident = incident;
+    return DataAccess.save(SnowStore.name, this);
   };
 
   SnowStore.prototype.getIncident = function() {
-    return m_incident;
+    return this.m_incident;
   };
 
   SnowStore.prototype.addSnowObs = function(obs) {
-    return m_snowObs.push(obs);
+    this.m_snowObs.push(obs);
+    return DataAccess.save(SnowStore.name, this);
   };
 
   SnowStore.prototype.getSnowObs = function() {
-    return m_snowObs;
+    return this.m_snowObs;
   };
 
   SnowStore.prototype.addPicture = function(picture) {
-    return m_pictures.push(picture);
+    this.m_pictures.push(picture);
+    return DataAccess.save(SnowStore.name, this);
   };
 
   SnowStore.prototype.getPictures = function() {
-    return m_pictures;
+    return this.m_pictures;
   };
 
   SnowStore.prototype.send = function() {
-    var elapsedInMinutes, location, pos, source;
+    var elapsedInMinutes, location, pos, source,
+      _this = this;
     source = 0;
     pos = snow_page.pos_obj;
     if (pos) {
@@ -51,47 +52,56 @@ SnowStore = (function() {
       }
     }
     location = new ObsLocation($("position_header_town").innerHTML, 33, snow_page.longitude, snow_page.latitute, source, 0, 0, 250, 250, false, null, new Date());
-    return SendObjectToServer(location, main.store.getSnow().afterLocation);
+    return SendObjectToServer(location, function(data) {
+      return _this.afterLocation(data);
+    });
   };
 
   SnowStore.prototype.afterLocation = function(data) {
-    var registration;
+    var registration,
+      _this = this;
     registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, new Date(), 0);
-    return SendObjectToServer(registration, main.store.getSnow().afterRegistration);
+    return SendObjectToServer(registration, function(data) {
+      return _this.afterRegistration(data);
+    });
   };
 
   SnowStore.prototype.afterRegistration = function(data) {
-    var i, obs, picture, _fn, _fn1, _i, _j, _len, _len1;
+    var i, obs, picture, _fn, _fn1, _i, _j, _len, _len1, _ref, _ref1;
+    console.log(this);
     i = 0;
+    _ref = this.m_snowObs;
     _fn = function(obs) {
       obs.RegID = data.RegID;
       obs.AvalancheDangerObsID = i++;
       return SendObjectToServer(obs);
     };
-    for (_i = 0, _len = m_snowObs.length; _i < _len; _i++) {
-      obs = m_snowObs[_i];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      obs = _ref[_i];
       _fn(obs);
     }
-    m_snowObs.length = 0;
-    if (m_incident) {
-      m_incident.RegID = data.RegID;
-      SendObjectToServer(m_incident);
-      m_incident = null;
+    this.m_snowObs.length = 0;
+    if (this.m_incident) {
+      this.m_incident.RegID = data.RegID;
+      SendObjectToServer(this.m_incident);
+      this.m_incident = null;
     }
     i = 0;
+    _ref1 = this.m_pictures;
     _fn1 = function(picture) {
       picture.RegID = data.RegID;
       picture.PictureID = i++;
       return SendObjectToServer(picture);
     };
-    for (_j = 0, _len1 = m_pictures.length; _j < _len1; _j++) {
-      picture = m_pictures[_j];
+    for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+      picture = _ref1[_j];
       _fn1(picture);
     }
-    m_pictures.length = 0;
+    this.m_pictures.length = 0;
     snow_picture.afterSendRegistration();
     snow_hendelse.afterSendRegistration();
     snow_page.afterSendRegistration();
+    DataAccess.save(SnowStore.name, this);
     return alert('Takk for observasjon');
   };
 

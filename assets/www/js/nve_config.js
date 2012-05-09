@@ -9,14 +9,15 @@ var GPS_TIMEOUT_IN_MINUTES = 20;
 /*
  * 
  */
-SERVER_URL = "http://h-web01.nve.no/test_regobsservices/Odata.svc/"
+SERVER_URL = "http://h-web01.nve.no/stage_regobsservices/Odata.svc/";
+//SERVER_URL = "http://h-web01.nve.no/test_regobsservices/Odata.svc/";
 
 /*
  * Platform
  */
 var device = {
 		platform: 'android'
-}
+};
 
 /*
  * 1 = Norsk
@@ -30,8 +31,3 @@ SNOW = 1;
 ICE = 2;
 WATER = 3;
 DIRT = 4;
-
-/*
- * DB colums
- */
-STARTUP_PAGE = "regobs_startup_page";

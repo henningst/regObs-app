@@ -111,8 +111,8 @@
 	    
 	    <div>
 	    	<span id="header_middle_text">regObs</span>
-	    	<a type="button" id="loginButton" onclick="main.starred();" >
-            	<img id="star" alt="" src="img/stared.png" style="position: absolute; top: 5px; margin-left: 5px; height: 32px; width: 32px;">
+	    	<a type="button" onclick="main.starred();" >
+            	<img id="star" alt="" src="img/stared.png" style="display: none; position: absolute; top: 5px; margin-left: 5px; height: 32px; width: 32px;">
 	        </a>
 	    </div>
 	    
@@ -155,10 +155,11 @@
 	<div id="settings">
 		<div class="standartTextSize c_align_central">
             <label for="login_username">Login</label>
-            <input type="text" id="login_username" class="large settingsInput" value="philipp@nlink.no" />
+            <input type="text" id="login_username" class="large settingsInput" value="" />
             <label for="login_possword">Password</label>
-            <input type="password" id="login_password" class="large settingsInput" value="philipp2philipp" />
+            <input type="password" id="login_password" class="large settingsInput" value="" />
             <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Login' onclick="main.clickLogin();" />
+            <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logout' onclick="main.clickLogOut();" />
 	    </div>
 	</div> 
 	

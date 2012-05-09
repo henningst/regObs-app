@@ -9,7 +9,7 @@ class NveSend
 		}
 		jQuery.ajax({
 			type: 'POST',
-			url: "http://h-web01.nve.no/test_RegObsServices/Authentication_JSON_AppService.axd/Login",
+			url: "http://h-web01.nve.no/stage_RegObsServices/Authentication_JSON_AppService.axd/Login",
 			data: JSON.stringify(@cridentials),
 			dataType: 'json',
 			headers: { 
@@ -19,88 +19,25 @@ class NveSend
 			}).complete( (data) =>
 				callback(data) if callback
 		)
-	
-	addObsLocation: (obsLocation, callback) ->
-		result = new Result
-		OData.request({
-			requestUri: "http://h-web01.nve.no/test_regobsservices/Odata.svc/ObsLocation",
-			method: "POST",
-			data: obsLocation
-			}, (data) ->
-				result.ok= true
-				result.data = data
+		
+	logout : (callback) ->
+		jQuery.ajax({
+			type: 'POST',
+			url: "http://h-web01.nve.no/stage_RegObsServices/Authentication_JSON_AppService.axd/Logout",
+			data: "",
+			dataType: 'json',
+			headers: { 
+				Accept : "application/json; charset=utf-8",
+				"Content-Type": "application/json; charset=utf-8"
+			}
+			}).complete( (data) =>
 				callback(data) if callback
-			)
-		result
-	###	
-	getDangerSign : (callback) ->
-		result = new Result
-		OData.request({
-		requestUri: "http://h-web01.nve.no/test_regobsservices/OData.svc/DangerSignKD",
-		method: "GET",
-		data: ""
-		}, (data) ->
-			result.ok = true
-			result.data = data
-			callback(data) if callback
-		, (error) ->
-			alert("Error occurred in getDangerSign" +error.message)
-		)
-		result
-	###
-	getObjectFromServer : (call, callback) ->
-		result = new Result
-		OData.request({
-		requestUri: call.url,
-		method: "GET",
-		data: ""
-		}, (data) ->
-			result.ok = true
-			result.data = data
-			callback(data) if callback
-		, (error) ->
-			###
-			alert("Error occurred in getObjectFromServer" +error.message)
-			###
-		)
-		result
-	
-	sendObjectToServer : (obj, callback) ->
-		console.log(obj)
-		result = new Result
-		OData.request({
-		requestUri: obj.url,
-		method: "POST",
-		data: obj
-		}, (data) ->
-			console.log(data)
-			result.ok = true
-			result.data = data
-			callback(data) if callback
-		, (err) -> 
-			###
-			alert("Error occurred in sendObjectToServer" + err.message)
-			###
-		)
-		result
-	
-	addRegistration: (registration, callback) ->
-		result = new Result
-		OData.request({
-		requestUri: "http://h-web01.nve.no/test_regobsservices/Odata.svc/Registration",
-		method: "POST",
-		data: registration
-		}, (data) ->
-			result.ok= true
-			result.data = data
-			callback(data) if callback
-		)
-		result
+		)	
 	 
 	loggedInAs: (callback) ->
 		result = new Result
 		OData.request({
-		requestUri: "http://h-web01.nve.no/test_regobsservices/Odata.svc/Observer",
+		requestUri: "http://h-web01.nve.no/stage_regobsservices/Odata.svc/Observer",
 		method: "GET",
 		}, (data) ->
 			result.ok = true

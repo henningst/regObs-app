@@ -7,7 +7,8 @@ var dirt_hendelse = {
 			jQuery.each(options, function() {jQuery(this).find('option').remove()});
 			
 			jQuery.each(data.results, function() {
-			    options.append(jQuery("<option />").val(this.ActivityInfluencedTID).text(this.ActivityInfluencedName));
+				if(this.ActivityInfluencedTID > 199 && this.ActivityInfluencedTID < 300)
+					options.append(jQuery("<option />").val(this.ActivityInfluencedTID).text(this.ActivityInfluencedName));
 			});
 		},
 		
@@ -58,7 +59,7 @@ var dirt_hendelse = {
 					null,
 					"");
 			
-			main.store.addIncident(incident);
+			main.store.getDirt().setIncident(incident);
 			main.panels.slideBack();			
 		},
 		

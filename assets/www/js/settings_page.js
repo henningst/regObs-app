@@ -4,6 +4,15 @@ var settings_page = {
 
 		$('header_middle_text').innerHTML = "Instellinger";
 		
+		var username = DataAccess.get(USERNAME);
+		var password = DataAccess.get(PASSWORD);
+		
+		if(username != undefined)
+			$('login_username').value = username;
+		
+		if(password != undefined)
+			$('login_password').value = password;
+		
 //		switch (DataAccess.get(STARTUP_PAGE)) {
 //		case '1':
 //			$("settings_preselect").selectedIndex = 1;
