@@ -35,6 +35,8 @@ var snow_page = {
 	//
 	onError: function(error) {
 		$('position_header_position').innerHTML = "no" +" , " +"geodata";
+//		$('position_header_position').innerHTML = snow_page.latitute +" , " +snow_page.longitude;
+//		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
 	},
 	
 	onKommuneResult : function(data) {

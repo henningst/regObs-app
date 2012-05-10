@@ -16,11 +16,16 @@ var main = (function()
 
 			DataAccess.save(USERNAME, username);
 			DataAccess.save(PASSWORD, password);
-			this.store.login(username, password);
+			Login(username, password, main.loginCallback, main.loginErrorCallback);
 		},
 		
 		loginCallback: function(data) {
-			main.login = main.store.loggedInAs(main.loggedInAsCallback);
+			main.login = LoggedInAs(main.loggedInAsCallback);
+		},
+		
+		loginErrorCallback: function(data) {
+    		$('settings_img').style.backgroundColor = 'red';
+			alert("No internet ?!");
 		},
 		
 		clickLogOut: function() {
@@ -29,7 +34,7 @@ var main = (function()
 			
 			DataAccess.save(USERNAME, "");
 			DataAccess.save(PASSWORD, "");
-			this.store.logout(main.logoutCallback);
+			Logout(main.logoutCallback);
 		},
 		
 		logoutCallback: function() {
@@ -79,16 +84,32 @@ var main = (function()
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
 
-            //init snow danger signs
-			GetObjectFromServer(new DangerSignKD(), snow_faresign.fill_snow_danger_sign);
-			GetObjectFromServer(new ActivityInfluencedKD(), main.fillActivityInfluenced);
-			GetObjectFromServer(new DamageExtentKD(), main.fillDamageExtent);
-			
+            //init danger signs
+            var dangerSign = DataAccess.get(DangerSignKD.name);
+            var activityInfluenced = DataAccess.get(ActivityInfluencedKD.name);
+            var damageExtent = DataAccess.get(DamageExtentKD.name);
+            
+            if(dangerSign == null) {
+            	GetObjectFromServer(new DangerSignKD(), main.fillDangerSign);
+            } else {
+            	snow_faresign.fill_snow_danger_sign(dangerSign);
+            }
+            if(activityInfluenced == null) {
+            	GetObjectFromServer(new ActivityInfluencedKD(), main.fillActivityInfluenced);
+            } else {
+            	main.fillActivityInfluenced(activityInfluenced);
+            }
+            if(damageExtent == null) {
+            	GetObjectFromServer(new DamageExtentKD(), main.fillDamageExtent);
+            } else {
+            	main.fillDamageExtent(damageExtent);
+            }
+            
 			var username = DataAccess.get(USERNAME);
 			var password = DataAccess.get(PASSWORD);
 			
 			if(username != undefined && password != undefined) {
-				this.store.login(username, password);
+				Login(username, password, main.loginCallback);
         	} else {
         		$('settings_img').style.backgroundColor = 'red';
 			}
@@ -112,7 +133,15 @@ var main = (function()
 			}
         },
         
+        fillDangerSign: function(data) {
+        	DataAccess.save(DangerSignKD.name, data);
+        	
+        	snow_faresign.fill_snow_danger_sign(data);
+        },
+        
         fillActivityInfluenced: function(data) {
+        	DataAccess.save(ActivityInfluencedKD.name, data);
+        	
 			snow_hendelse.fill_activity_influenced(data);
         	water_hendelse.fill_activity_influenced(data);
         	dirt_hendelse.fill_activity_influenced(data);
@@ -120,6 +149,8 @@ var main = (function()
         },
         
         fillDamageExtent: function(data) {
+        	DataAccess.save(DamageExtentKD.name, data);
+        	
 			snow_hendelse.fill_radius(data);
 			water_hendelse.fill_radius(data);
 			dirt_hendelse.fill_radius(data);
@@ -127,7 +158,7 @@ var main = (function()
         },
         
         loggedInAsCallback: function (data) {
-        	
+        	console.log(data);
         	if(data.EMail != 'anonym@nve.no') {
         		$('settings_img').style.backgroundColor = 'green';
         	} else {
@@ -253,7 +284,6 @@ var main = (function()
         			}
         			break;
         			
-        		
         		default:
         			break;
         	}

@@ -66,7 +66,6 @@ var snow_hendelse = {
 			
 			//restore old incident if available
 			var incident = main.store.getSnow().getIncident();
-			console.log(incident);
 			
 			if(incident != null) {
 				$("snow_hendelse_activity_list").value = incident.ActivityInfluencedTID;

@@ -10,30 +10,7 @@ NveStore = (function() {
     this.m_snowStore = null;
     this.m_dirtStore = null;
     this.m_iceStore = null;
-    this.m_isLoggedIn = false;
-    this.m_send = new NveSend();
   }
-
-  NveStore.prototype.login = function(userName, userPassword) {
-    return this.m_send.login(userName, userPassword, this.loginCallback);
-  };
-
-  NveStore.prototype.logout = function(callback) {
-    return this.m_send.logout(callback);
-  };
-
-  NveStore.prototype.loginCallback = function(data) {
-    main.loginCallback(data);
-    return this.m_isLoggedIn = true;
-  };
-
-  NveStore.prototype.isLoggedIn = function() {
-    return this.m_isLoggedIn;
-  };
-
-  NveStore.prototype.loggedInAs = function(callback) {
-    return this.m_send.loggedInAs(callback);
-  };
 
   NveStore.prototype.getSnow = function() {
     if (this.m_snowStore) {

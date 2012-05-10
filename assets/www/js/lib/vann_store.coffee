@@ -1,4 +1,4 @@
-class WaterStore
+class WaterStore extends AbstractStore
 
 	constructor: () ->
 		@m_incident = null
@@ -30,11 +30,11 @@ class WaterStore
 				source = OLD_GPS_POSITION
 				
 		location = new ObsLocation($("water_position_header_town").innerHTML, 33, water_page.longitude, water_page.latitute, source, 0, 0, 250, 250, false, null, new Date());
-		SendObjectToServer(location, (data) => @afterLocation(data))
+		SendObjectToServer(location, ((data) => @afterLocation(data)) , (error) => @onError(error))
 		
 	afterLocation: (data) ->
 		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, new Date(), 0)
-		SendObjectToServer(registration, (data) => @afterRegistration(data))
+		SendObjectToServer(registration, ((data) => @afterRegistration(data)) , (error) => @onError(error))
 	
 	afterRegistration: (data) ->
 		

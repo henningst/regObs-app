@@ -5,24 +5,6 @@ class NveStore
 		@m_snowStore = null
 		@m_dirtStore = null
 		@m_iceStore = null
-		@m_isLoggedIn = false
-		@m_send = new NveSend()
-	
-	login: (userName, userPassword) ->
-		@m_send.login(userName, userPassword, this.loginCallback)
-
-	logout: (callback) ->
-		@m_send.logout(callback)
-
-	loginCallback: (data) ->
-		main.loginCallback(data)
-		@m_isLoggedIn = true
-
-	isLoggedIn: () ->
-		@m_isLoggedIn
-
-	loggedInAs: (callback) ->
-		@m_send.loggedInAs(callback)
 
 	getSnow: () ->
 		if @m_snowStore

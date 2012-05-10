@@ -1,4 +1,4 @@
-class IceStore
+class IceStore extends AbstractStore
 
 	constructor: () ->
 		@m_incident = null
@@ -30,11 +30,11 @@ class IceStore
 				source = OLD_GPS_POSITION
 				
 		location = new ObsLocation($("ice_position_header_town").innerHTML, 33, ice_page.longitude, ice_page.latitute, source, 0, 0, 250, 250, false, null, new Date());
-		SendObjectToServer(location, (data) => @afterLocation(data))
+		SendObjectToServer(location, ((data) => @afterLocation(data)) , (error) => @onError(error))
 		
 	afterLocation: (data) ->
 		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, new Date(), 0)
-		SendObjectToServer(registration, (data) => @afterRegistration(data))
+		SendObjectToServer(registration, ((data) => @afterRegistration(data)) , (error) => @onError(error))
 	
 	afterRegistration: (data) ->
 		
