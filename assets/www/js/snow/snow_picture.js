@@ -35,10 +35,14 @@ var snow_picture  = {
 		navigator.camera.getPicture(
 			snow_picture.onSuccess, 
 			snow_picture.onFail, 
-			{ 
-				quality: 50, 
-				destinationType: navigator.camera.DestinationType.DATA_URL,
+			{
+				quality : 50, 
+				destinationType : Camera.DestinationType.DATA_URL, 
+				sourceType : Camera.PictureSourceType.CAMERA, 
 				allowEdit : true,
+				encodingType: Camera.EncodingType.JPEG,
+				targetWidth: 1024,
+				targetHeight: 1024,
                 correctOrientation: true
             }
 		); 		
