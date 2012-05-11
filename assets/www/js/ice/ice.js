@@ -5,6 +5,10 @@ var ice_page = {
 	latitute: 0,
 	
 	longitude: 0,
+	
+	komm_nr: 0,
+	
+	omrade_id: 0,
 
 	pos_obj: null,
 		
@@ -29,6 +33,15 @@ var ice_page = {
 		+Math.round(position.coords.longitude* NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA;
 		
 		GetObjectFromServer(new PositionDetails(ice_page.latitute, ice_page.longitude), ice_page.onKommuneResult);
+		GetObjectFromServer(new AreaInformation(ice_page.latitute, ice_page.longitude), ice_page.onAreaInformationResult);
+	},
+
+	onAreaInformationResult: function(data) {
+		var res = JSON.parse(data);
+
+		if(res != null) {
+			ice_page.omrade_id = res.features[0].attributes.OMRAADEID;
+		}		
 	},
 
 	// onError Callback receives a PositionError object
@@ -43,6 +56,7 @@ var ice_page = {
 		if(res != null) {
 			$("ice_position_header_town").innerHTML = res.features[0].attributes.KOMMNAVN;
 			$("ice_position_header_county").innerHTML = res.features[0].attributes.FYLKENAVN;
+			ice_page.komm_nr = KOMM_NR;
 		}
 	},
 	
@@ -63,7 +77,13 @@ var ice_page = {
 	init: function() {
 		$('header_middle_text').innerHTML = "Is";
 		
-		ice_page.doMeasurement();
+		if(ice_page.pos_obj != null) {
+			if(((new Date()).getTime() - pos.taken.getTime()) / 1000 / 60 < 1) {
+				ice_page.doMeasurement();
+			}
+		} else {
+			ice_page.doMeasurement();
+		}
 		
 		if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == ICE) {
 

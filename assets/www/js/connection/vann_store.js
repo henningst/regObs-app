@@ -33,35 +33,11 @@ WaterStore = (function(_super) {
   };
 
   WaterStore.prototype.send = function() {
-    var elapsedInMinutes, location, pos, source,
-      _this = this;
-    source = 0;
-    pos = water_page.pos_obj;
-    if (pos) {
-      elapsedInMinutes = ((new Date()).getTime() - pos.taken.getTime()) / 1000 / 60;
-      if (elapsedInMinutes < GPS_TIMEOUT_IN_MINUTES) {
-        source = GPS_POSITION;
-      } else {
-        source = OLD_GPS_POSITION;
-      }
-    }
-    location = new ObsLocation($("water_position_header_town").innerHTML, 33, water_page.longitude, water_page.latitute, source, 0, 0, 250, 250, false, null, new Date());
-    return SendObjectToServer(location, (function(data) {
-      return _this.afterLocation(data);
-    }), function(error) {
-      return _this.onError(error);
-    });
+    return this.onSend(water_page);
   };
 
   WaterStore.prototype.afterLocation = function(data) {
-    var registration,
-      _this = this;
-    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, new Date(), 0);
-    return SendObjectToServer(registration, (function(data) {
-      return _this.afterRegistration(data);
-    }), function(error) {
-      return _this.onError(error);
-    });
+    return this.onAfterLocation(data);
   };
 
   WaterStore.prototype.afterRegistration = function(data) {
@@ -75,7 +51,8 @@ WaterStore = (function(_super) {
     _ref = this.m_pictures;
     _fn = function(picture) {
       picture.RegID = data.RegID;
-      picture.PictureID = i++;
+      picture.PictureID = i;
+      i += 1;
       return SendObjectToServer(picture);
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {

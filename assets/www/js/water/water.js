@@ -5,6 +5,10 @@ var water_page = {
 	latitute: 0,
 	
 	longitude: 0,
+	
+	komm_nr: 0,
+	
+	omrade_id: 0,
 
 	pos_obj: null,
 		
@@ -29,6 +33,15 @@ var water_page = {
 		+Math.round(position.coords.longitude* NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA;
 		
 		GetObjectFromServer(new PositionDetails(water_page.latitute, water_page.longitude), water_page.onKommuneResult);
+		GetObjectFromServer(new AreaInformation(water_page.latitute, water_page.longitude), water_page.onAreaInformationResult);
+	},
+
+	onAreaInformationResult: function(data) {
+		var res = JSON.parse(data);
+
+		if(res != null) {
+			water_page.omrade_id = res.features[0].attributes.OMRAADEID;
+		}		
 	},
 
 	// onError Callback receives a PositionError object
@@ -43,6 +56,7 @@ var water_page = {
 		if(res != null) {
 			$("water_position_header_town").innerHTML = res.features[0].attributes.KOMMNAVN;
 			$("water_position_header_county").innerHTML = res.features[0].attributes.FYLKENAVN;
+			water_page.komm_nr = KOMM_NR;
 		}
 	},
 	
@@ -63,7 +77,13 @@ var water_page = {
 	init: function() {
 		$('header_middle_text').innerHTML = "Vann";
 		
-		water_page.doMeasurement();
+		if(water_page.pos_obj != null) {
+			if(((new Date()).getTime() - pos.taken.getTime()) / 1000 / 60 < 1) {
+				water_page.doMeasurement();
+			}
+		} else {
+			water_page.doMeasurement();
+		}
 		
 		if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == WATER) {
 

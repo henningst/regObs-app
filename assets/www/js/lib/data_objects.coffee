@@ -27,10 +27,18 @@ returnGeometry=false&maxAllowableOffset=&
 outSR=&outFields=*&f=pjson
 ###
 
+class AreaInformation
+	url : ""
+	constructor: (@Lat, @Long) ->
+		@url = "http://gis.nve.no/ArcGIS/rest/services/Mapservices/seNorge/MapServer/35/query?text=&geometry=#{Long},#{Lat}
+&geometryType=esriGeometryPoint&inSR=32633&spatialRel=esriSpatialRelIntersects&
+relationParam=&objectIds=&where=&time=&returnCountOnly=false&returnIdsOnly=false&
+returnGeometry=false&maxAllowableOffset=&outSR=&outFields=*&f=pjson"
+
 class PositionDetails
 	url : ""
 	constructor: (@Lat, @Long) ->
-		this.url = "http://gis.nve.no/ArcGIS/rest/services/Mapservices/Bakgrunnsdata/MapServer/36/query?text=&geometry=#{Long},#{Lat}&geometryType=esriGeometryPoint&
+		@url = "http://gis.nve.no/ArcGIS/rest/services/Mapservices/Bakgrunnsdata/MapServer/36/query?text=&geometry=#{Long},#{Lat}&geometryType=esriGeometryPoint&
 inSR=32633&spatialRel=esriSpatialRelIntersects&
 relationParam=&objectIds=&where=&time=&
 returnCountOnly=false&returnIdsOnly=false&

@@ -158,7 +158,6 @@ var main = (function()
         },
         
         loggedInAsCallback: function (data) {
-        	console.log(data);
         	if(data.EMail != 'anonym@nve.no') {
         		$('settings_img').style.backgroundColor = 'green';
         	} else {

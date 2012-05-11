@@ -6,6 +6,10 @@ var snow_page = {
 	
 	longitude: 0,
 	
+	komm_nr: 0,
+	
+	omrade_id: 0,
+	
 	pos_obj: null,
 		
 	// onSuccess Callback
@@ -27,10 +31,19 @@ var snow_page = {
 		
 		$('position_header_position').innerHTML = Math.round(position.coords.latitude * NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA +" , " 
 		+Math.round(position.coords.longitude* NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA;
-		
+
 		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
+		GetObjectFromServer(new AreaInformation(snow_page.latitute, snow_page.longitude), snow_page.onAreaInformationResult);
 	},
 
+	onAreaInformationResult: function(data) {
+		var res = JSON.parse(data);
+
+		if(res != null) {
+			snow_page.omrade_id = res.features[0].attributes.OMRAADEID;
+		}		
+	},
+	
 	// onError Callback receives a PositionError object
 	//
 	onError: function(error) {
@@ -45,6 +58,7 @@ var snow_page = {
 		if(res != null) {
 			$("position_header_town").innerHTML = res.features[0].attributes.KOMMNAVN;
 			$("position_header_county").innerHTML = res.features[0].attributes.FYLKENAVN;
+			snow_page.komm_nr = res.features[0].attributes.KOMM_NR;
 		}
 	},
 	
@@ -66,7 +80,14 @@ var snow_page = {
 	init: function() {
 		$('header_middle_text').innerHTML = "Sn&oslash;";
 		
-		snow_page.doMeasurement();
+		//only update if its older than a minute
+		if(snow_page.pos_obj != null) {
+			if(((new Date()).getTime() - pos.taken.getTime()) / 1000 / 60 < 1) {
+				snow_page.doMeasurement();
+			}
+		} else {
+			snow_page.doMeasurement();
+		}
 		
 		if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == SNOW) {
 
