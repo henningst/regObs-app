@@ -56,7 +56,7 @@ var ice_page = {
 		if(res != null) {
 			$("ice_position_header_town").innerHTML = res.features[0].attributes.KOMMNAVN;
 			$("ice_position_header_county").innerHTML = res.features[0].attributes.FYLKENAVN;
-			ice_page.komm_nr = KOMM_NR;
+			ice_page.komm_nr = res.features[0].attributes.KOMM_NR;
 		}
 	},
 	
@@ -78,7 +78,7 @@ var ice_page = {
 		$('header_middle_text').innerHTML = "Is";
 		
 		if(ice_page.pos_obj != null) {
-			if(((new Date()).getTime() - pos.taken.getTime()) / 1000 / 60 < 1) {
+			if(((new Date()).getTime() - ice_page.pos_obj.taken.getTime()) / 1000 / 60 < 1) {
 				ice_page.doMeasurement();
 			}
 		} else {

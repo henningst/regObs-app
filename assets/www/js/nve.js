@@ -64,16 +64,20 @@ var main = (function()
     	        		'home',
     	        		'settings',
     	        		'snow',
+    	        		'snow_obs',
     	        		'snow_hendelse',
     	        		'snow_picture',
     	        		'snow_faresign',
     	        		'ice',
+    	        		'ice_obs',
     	        		'ice_hendelse',
     	        		'ice_picture',
     	        		'water',
+    	        		'water_obs',
     	        		'water_hendelse',
     	        		'water_picture',
     	        		'dirt',
+    	        		'dirt_obs',
     	        		'dirt_hendelse',
     	        		'dirt_picture'
     	        	]
@@ -166,7 +170,6 @@ var main = (function()
         },
         
         toggleBackButtonDisplay: function(params, status) {
-        	
 
         	if(params.id != 'home') {
         		if(status == 'start') {

@@ -56,7 +56,7 @@ var water_page = {
 		if(res != null) {
 			$("water_position_header_town").innerHTML = res.features[0].attributes.KOMMNAVN;
 			$("water_position_header_county").innerHTML = res.features[0].attributes.FYLKENAVN;
-			water_page.komm_nr = KOMM_NR;
+			water_page.komm_nr = res.features[0].attributes.KOMM_NR;
 		}
 	},
 	
@@ -78,7 +78,7 @@ var water_page = {
 		$('header_middle_text').innerHTML = "Vann";
 		
 		if(water_page.pos_obj != null) {
-			if(((new Date()).getTime() - pos.taken.getTime()) / 1000 / 60 < 1) {
+			if(((new Date()).getTime() - water_page.pos_obj.taken.getTime()) / 1000 / 60 < 1) {
 				water_page.doMeasurement();
 			}
 		} else {

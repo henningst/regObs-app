@@ -82,7 +82,7 @@ var snow_page = {
 		
 		//only update if its older than a minute
 		if(snow_page.pos_obj != null) {
-			if(((new Date()).getTime() - pos.taken.getTime()) / 1000 / 60 < 1) {
+			if(((new Date()).getTime() - snow_page.pos_obj.taken.getTime()) / 1000 / 60 < 1) {
 				snow_page.doMeasurement();
 			}
 		} else {

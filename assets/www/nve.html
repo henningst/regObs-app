@@ -149,11 +149,21 @@
             <input type="password" id="login_password" class="large settingsInput" value="" />
             <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Login' onclick="main.clickLogin();" />
             <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logout' onclick="main.clickLogOut();" />
+            <br><span>versjon: 0.6.0</span>
 	    </div>
 	</div> 
 	
 <!-- 	SNOW - PAGES -->
 	<div id="snow">
+		<div class="c_align_central">
+	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('snow_obs');"/>
+	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="gammel" onclick=""/>
+		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="jop" onclick=""/>
+			
+		</div>
+	</div>
+	
+	<div id="snow_obs">
 		<div class="c_position_header">
 			<span id="position_header_position">,</span> 
 			<span id="position_header_town"></span>
@@ -218,6 +228,15 @@
 	
 <!-- 	ICE - PAGES -->
 	<div id="ice">
+		<div class="c_align_central">
+	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('snow_obs');"/>
+	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="gammel" onclick=""/>
+		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="jop" onclick=""/>
+			
+		</div>
+	</div>
+	
+	<div id="ice_obs">
 		<div class="c_position_header">
 			<span id="ice_position_header_position">,</span> 
 			<span id="ice_position_header_town"></span>
@@ -263,6 +282,15 @@
 	
 <!-- 	WATER - PAGES -->
 	<div id="water">
+		<div class="c_align_central">
+	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('snow_obs');"/>
+	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="gammel" onclick=""/>
+		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="jop" onclick=""/>
+			
+		</div>
+	</div>
+	
+	<div id="water_obs">
 		<div class="c_position_header">
 			<span id="water_position_header_position">,</span> 
 			<span id="water_position_header_town"></span>
@@ -308,6 +336,14 @@
 	
 <!-- 	DIRT PAGES -->
 	<div id="dirt">
+		<div class="c_align_central">
+	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('snow_obs');"/>
+	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="gammel" onclick=""/>
+		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="jop" onclick=""/>
+			
+		</div>
+	</div>
+	<div id="dirt_obs">
 		<div class="c_position_header">
 			<span id="dirt_position_header_position">,</span> 
 			<span id="dirt_position_header_town"></span>
