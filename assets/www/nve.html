@@ -156,13 +156,12 @@
 <!-- 	SNOW - PAGES -->
 	<div id="snow">
 		<div class="c_align_central">
-	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('snow_obs');"/>
-	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se opservasjoner" onclick=""/>
-		  	  <input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
-			
+	    <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('snow_obs');"/>
+	  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se opservasjoner" onclick=""/>
+  	  <input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
 		</div>
 	</div>
-	
+		
 	<div id="snow_obs">
 		<div class="c_position_header">
 			<span id="position_header_position">,</span> 
@@ -231,9 +230,9 @@
 <!-- 	ICE - PAGES -->
 	<div id="ice">
 		<div class="c_align_central">
-	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('snow_obs');"/>
-	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="gammel" onclick=""/>
-		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="jop" onclick=""/>
+	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('ice_obs');"/>
+	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick=""/>
+		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
 			
 		</div>
 	</div>
@@ -245,18 +244,21 @@
 			<span id="ice_position_header_county"></span>
 		</div>
 		
+    <ul class="w_list w_border actions">
+       <li class="w_list_item w_border_bottom"  onclick="main.panels.slideTo('ice_hendelse');">		
+         Hendelse
+         <span class="w_icon arrow"></span>
+       </li>
+       <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('ice_picture');">
+	        Bilde    
+	        <span id="ice_picture_count" class="notification_buble">0</span>
+	        <span class="w_icon arrow"></span>
+	    </li>
+	    
+		</ul>
 		<div class="c_align_central">
-	        <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Hendelse" onclick="main.panels.slideTo('ice_hendelse');"/>
-	        
-	        <div class="w_footer_custom">
-			    <div class="c_notification_button w_indice" >
-			        <span id="ice_picture_count">0</span>
-			        <input type="button" class="w_button w_radius w_bg_light" value="Bilde" onclick="main.panels.slideTo('ice_picture');"/>
-			    </div>
-			</div>
-			
-			<input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getIce().send();"/> <br>
-   	  </div>
+		 <input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getIce().send();"/>
+ 	  </div>
 	</div>
 	
 	<div id="ice_hendelse" class="c_center_page standartTextSize">
@@ -285,9 +287,9 @@
 <!-- 	WATER - PAGES -->
 	<div id="water">
 		<div class="c_align_central">
-	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('snow_obs');"/>
-	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="gammel" onclick=""/>
-		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="jop" onclick=""/>
+	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('water_obs');"/>
+	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick=""/>
+		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
 			
 		</div>
 	</div>
@@ -298,18 +300,21 @@
 			<span id="water_position_header_town"></span>
 			<span id="water_position_header_county"></span>
 		</div>
-		
-		<div class="c_align_central">
-	        <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Hendelse" onclick="main.panels.slideTo('water_hendelse');"/>
-	        
-	        <div class="w_footer_custom">
-			    <div class="c_notification_button w_indice" >
-			        <span id="water_picture_count">0</span>
-			        <input type="button" class="w_button w_radius w_bg_light" value="Bilde" onclick="main.panels.slideTo('water_picture');"/>
-			    </div>
-			</div>
+		  
+		  <ul class="w_list w_border actions">
+		    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_hendelse');">
+  		    Hendelse
+  		    <span class="w_icon arrow"></span>
+	      </li>  
+        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_picture');">
+          Bilde
+	        <span id="water_picture_count" class="notification_buble">0</span>
+	        <span class="w_icon arrow"></span>
+		    </li>
+	    </ul>
 			
-			<input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getWater().send();"/> <br>
+			<div class="c_align_central">
+			 <input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getWater().send();"/> <br>
    	  </div>
 	</div>
 	
@@ -339,9 +344,9 @@
 <!-- 	DIRT PAGES -->
 	<div id="dirt">
 		<div class="c_align_central">
-	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('snow_obs');"/>
-	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="gammel" onclick=""/>
-		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="jop" onclick=""/>
+	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('dirt_obs');"/>
+	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick=""/>
+		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
 			
 		</div>
 	</div>
@@ -352,17 +357,19 @@
 			<span id="dirt_position_header_county"></span>
 		</div>
 		
-		<div class="c_align_central">
-	        <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Hendelse" onclick="main.panels.slideTo('dirt_hendelse');"/>
-	        
-	        <div class="w_footer_custom">
-			    <div class="c_notification_button w_indice" >
-			        <span id="dirt_picture_count">0</span>
-			        <input type="button" class="w_button w_radius w_bg_light" value="Bilde" onclick="main.panels.slideTo('dirt_picture');"/>
-			    </div>
-			</div>
-			
-			<input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getDirt().send();"/> <br>
+		  <ul class="w_list w_border actions">
+        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('dirt_hendelse');">
+          Hendelse
+          <span class="w_icon arrow"></span>
+        </li>
+        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('dirt_picture');">
+              Bilde 
+			        <span id="dirt_picture_count" class="notification_buble">0</span>
+			        <span class="w_icon arrow"></span>
+        </li>
+      </ul>			
+			<div class="c_align_central">
+			 <input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getDirt().send();"/> <br>
    	  </div>
 	</div>
 	
