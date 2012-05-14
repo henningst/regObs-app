@@ -307,3 +307,16 @@ input.large
 {
 	width: 60%;
 }
+
+.w_icon.arrow{
+  background-image: url("../img/arrow.png");
+  background-size: 50%;	
+}
+
+ul.actions li{
+  background-color: #F8F8F8;
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#F8F8F8),to(#A1A1A1));
+	background-image: -moz-linear-gradient(top,#F8F8F8,#A1A1A1);
+	color: #2F2F2F;
+  border-bottom: 1px solid white;	
+}

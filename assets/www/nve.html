@@ -157,8 +157,8 @@
 	<div id="snow">
 		<div class="c_align_central">
 	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('snow_obs');"/>
-	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="gammel" onclick=""/>
-		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="jop" onclick=""/>
+	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se opservasjoner" onclick=""/>
+		  	  <input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
 			
 		</div>
 	</div>
@@ -170,26 +170,28 @@
 			<span id="position_header_county"></span>
 		</div>
 		
-		<div class="c_align_central">
-	        <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Hendelse" onclick="main.panels.slideTo('snow_hendelse');"/>
-			
-	      	<div class="w_footer_custom">
-			    <div class="c_notification_button w_indice" >
-			        <span id="snow_faresign_count">0</span>
-			        <input type="button" class="w_button w_radius w_bg_light" value="Faretegn" onclick="main.panels.slideTo('snow_faresign');"/>
-			    </div>
-			</div>
-	        
-	        <div class="w_footer_custom">
-			    <div class="c_notification_button w_indice" >
-			        <span id="snow_picture_count">0</span>
-			        <input type="button" class="w_button w_radius w_bg_light" value="Bilde" onclick="main.panels.slideTo('snow_picture');"/>
-			    </div>
-			</div>
-			
-			<input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getSnow().send();"/> <br>
-   	  </div>
+    <ul class="w_list w_border actions" >
+	    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_hendelse');">
+        Hendelse
+        <span class="w_icon arrow"></span>
+			</li>
+	    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_faresign');">
+        Faretegn
+        <span id="snow_faresign_count" class="notification_buble">0</span>
+        <span class="w_icon arrow"></span>
+      </li>
+      <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_picture');">
+        Bilde
+        <span id="snow_picture_count" class="notification_buble">0</span>
+        <span class="w_icon arrow"></span>
+      </li>
+		</ul>
+		
+	  <div class="c_align_central">
+      <input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getSnow().send();"/> <br>
+    </div>	
 	</div>
+	
 	
 	<div id="snow_hendelse" class="c_center_page standartTextSize">
         <label for="snow_hendelse_comment">Comment:</label>
