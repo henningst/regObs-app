@@ -2,7 +2,7 @@ var settings_page = {
 		
 	init: function() {
 
-		$('header_middle_text').innerHTML = "Instellinger";
+		$('header_middle_text').innerHTML = "Instillinger";
 		
 		var username = DataAccess.get(USERNAME);
 		var password = DataAccess.get(PASSWORD);
