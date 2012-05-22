@@ -13,7 +13,7 @@ class AbstractStore
 			else
 				source = OLD_GPS_POSITION
 		
-		location = new ObsLocation("", 33, page.longitude, page.latitute, source, 0, page.komm_nr, 250, 250, false, null, new Date(), null, null, null, page.omrade_id);
+		location = new ObsLocation("", 33, page.longitude, page.latitute, source, 0, 0, 250, 250, false, null, new Date());
 		SendObjectToServer(location, ((data) => @afterLocation(data)) , (error) => @onError(error))
 		
 	onAfterLocation: (data) ->

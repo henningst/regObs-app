@@ -21,7 +21,7 @@ AbstractStore = (function() {
         source = OLD_GPS_POSITION;
       }
     }
-    location = new ObsLocation("", 33, page.longitude, page.latitute, source, 0, page.komm_nr, 250, 250, false, null, new Date(), null, null, null, page.omrade_id);
+    location = new ObsLocation("", 33, page.longitude, page.latitute, source, 0, 0, 250, 250, false, null, new Date());
     return SendObjectToServer(location, (function(data) {
       return _this.afterLocation(data);
     }), function(error) {
