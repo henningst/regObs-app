@@ -14,7 +14,7 @@ var snow_page = {
 		
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
-	//   the current GPS coordinates
+	//   the current GPS coordinates       
 	//
 	onSuccess: function(position) {
 		position.taken = new Date();
