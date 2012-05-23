@@ -18,10 +18,12 @@ var snow_picture  = {
 
 		var smallImage = document.getElementById('snow_picture_img');
 		smallImage.src = "data:image/jpeg;base64," +imageData;
+		main.hideDialog();
 	},
 
 	onFail: function(message) {
 //		alert("Lagre bilde feil");
+		main.hideDialog();
 	},
 	
 	afterSendRegistration: function() {
@@ -31,6 +33,8 @@ var snow_picture  = {
 	
 	init : function () {
 		$('header_middle_text').innerHTML = "Bilde";
+
+		main.showWaitingDialogWithMessage(PROCESS_PICTURE);
 		
 		navigator.camera.getPicture(
 			snow_picture.onSuccess, 

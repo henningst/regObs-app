@@ -31,3 +31,8 @@ SNOW = 1;
 ICE = 2;
 WATER = 3;
 DIRT = 4;
+
+LOGGED_IN  = "Logget inn !";
+ERROR_LOGIN =  "No internet ?!";
+LOGGING_IN = "Logger inn... ";
+PROCESS_PICTURE = "Prosess bilde... ";

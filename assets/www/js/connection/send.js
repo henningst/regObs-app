@@ -96,11 +96,6 @@ GetObjectFromServer = function(call, callback, onError) {
     if (onError) {
       return onError(error);
     }
-    /*
-    		console.log(error)
-    		alert("Error occurred in ::GetObjectFromServer #{error.message} #{call.url}")
-    */
-
   });
   return result;
 };
@@ -122,11 +117,6 @@ SendObjectToServer = function(obj, callback, onError) {
     if (onError) {
       return onError(err);
     }
-    /*
-    		console.log(err)
-    		alert("Error occurred in ::SendObjectToServer #{err.message} #{obj.url}")
-    */
-
   });
   return result;
 };

@@ -47,4 +47,5 @@ class WaterStore extends AbstractStore
 		
 		DataAccess.save(WaterStore.name, this)
 		
+		main.hideDialog();
 		alert('Takk for observasjon')

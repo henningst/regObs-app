@@ -5,18 +5,32 @@ var main = (function()
     	actualPage: 0,
     		
     	store: new NveStore(),
-    		
+    	
     	login: {data: {"EMail" : "anonym@nve.no", "FirstName" : "Anonym", "ObserverID" : 105}},
+    	
+    	popup: null,
+    	
+    	waitingDialog: null,
     	
     	panels: null,
     	
 		clickLogin: function() {
 			var username = document.getElementById('login_username').value;
 			var password = document.getElementById('login_password').value;
-
+			
+			main.showWaitingDialogWithMessage(LOGGING_IN);
+			
 			DataAccess.save(USERNAME, username);
 			DataAccess.save(PASSWORD, password);
 			Login(username, password, main.loginCallback, main.loginErrorCallback);
+		},
+		
+		ok: function(data) {
+			alert("ok");
+		},
+		
+		cancel: function(data) {
+			alert("cancel");
 		},
 		
 		loginCallback: function(data) {
@@ -25,7 +39,9 @@ var main = (function()
 		
 		loginErrorCallback: function(data) {
     		$('settings_img').style.backgroundColor = 'red';
-			alert("No internet ?!");
+
+        	main.hideDialog();
+			alert(ERROR_LOGIN);
 		},
 		
 		clickLogOut: function() {
@@ -85,6 +101,10 @@ var main = (function()
     	    );
             document.body.appendChild(this.panels.getDomNode());
             
+            waitingDialog = new wink.ui.xy.Popup();
+			 
+			document.body.appendChild(waitingDialog.getDomNode());
+			
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
 
@@ -137,6 +157,28 @@ var main = (function()
 			}
         },
         
+        showDialogWithMessage: function(message) 
+        {
+        	waitingDialog.popup({
+		        content: "<div class='waitingDialog'>" +
+		        	message +
+		        "</div>",
+		    });
+        },
+        
+        showWaitingDialogWithMessage: function(message) 
+        {
+        	waitingDialog.popup({
+		        content: "<div class='waitingDialog'>" +
+		        	message + "<img src='img/ajax-loader.gif' />" +
+		        "</div>",
+		    });
+        },
+        
+        hideDialog: function() {
+        	waitingDialog.hide();
+        },
+        
         fillDangerSign: function(data) {
         	DataAccess.save(DangerSignKD.name, data);
         	
@@ -167,6 +209,12 @@ var main = (function()
         	} else {
         		$('settings_img').style.backgroundColor = 'red';
         	}
+        	
+        	if(waitingDialog.displayed) 
+    		{
+        		main.hideDialog();
+        		alert(LOGGED_IN);
+    		}
         },
         
         toggleBackButtonDisplay: function(params, status) {

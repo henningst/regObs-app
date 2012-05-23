@@ -5,6 +5,16 @@
 5D3974
 */
 
+.pp_popup
+{
+	left: 15%;
+}
+
+.waitingDialog
+{
+	text-align: center;
+}
+
 input.settingsInput 
 {
 	font-size: 0.8em;
