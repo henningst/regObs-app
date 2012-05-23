@@ -58,29 +58,29 @@ var main = (function()
     	        {
     	        	duration: 500,
     	        	transitionType: 'default',
-    	        	uId: 5,
-    	        	pages:
-    	    		[
-    	        		'home',
-    	        		'settings',
-    	        		'snow',
-    	        		'snow_obs',
-    	        		'snow_hendelse',
-    	        		'snow_picture',
-    	        		'snow_faresign',
-    	        		'ice',
-    	        		'ice_obs',
-    	        		'ice_hendelse',
-    	        		'ice_picture',
-    	        		'water',
-    	        		'water_obs',
-    	        		'water_hendelse',
-    	        		'water_picture',
-    	        		'dirt',
-    	        		'dirt_obs',
-    	        		'dirt_hendelse',
-    	        		'dirt_picture'
-    	        	]
+    	        	uId: 5,pages:
+        	    		[
+	      	        		'home',
+	      	        		'settings',
+	      	        		'snow',
+	      	        		'snow_obs',
+	      	        		'snow_hendelse',
+	      	        		'snow_picture',
+	      	        		'snow_faresign',
+	      	        		'ice',
+	      	        		'ice_obs',
+	      	        		'ice_hendelse',
+	      	        		'ice_picture',
+	      	        		'water',
+	      	        		'water_obs',
+	      	        		'water_hendelse',
+	      	        		'water_picture',
+	      	        		'dirt',
+	      	        		'dirt_obs',
+	      	        		'dirt_hendelse',
+	      	        		'dirt_picture'
+        	    		 ]
+    	        	
     	        }
     	    );
             document.body.appendChild(this.panels.getDomNode());
@@ -187,7 +187,7 @@ var main = (function()
         				$('back').style.display = 'none';
         				$('star').style.display = 'none';
         				
-        				$('mainBody').style.backgroundImage = '';
+        				//$('mainBody').style.backgroundImage = '';
         				main_page.init();
         				main.actualPage = 0;
         			}
@@ -202,7 +202,7 @@ var main = (function()
         		case 'snow':
         			if(status == 'start') {
         				snow_page.init();
-        				$('mainBody').style.backgroundImage = "url('img/snow_background.png')";
+        				//$('mainBody').style.backgroundImage = "url('img/snow_background.png')";
         				
         				main.actualPage = SNOW;
         			}
