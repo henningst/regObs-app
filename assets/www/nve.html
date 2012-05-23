@@ -99,7 +99,7 @@
 <body id="mainBody">
 	<div id="header" class="w_header_custom c_color_gradient">
     	<div id="back" class="w_button_custom w_back w_left c_color_gradient">
-	        <input type="button" value="tilbake" class="c_color_gradient" onclick="main.panels.slideBack();" />
+	        <input type="button" value="Tilbake" class="c_color_gradient" onclick="main.panels.slideBack();" />
 	    </div>
 	    
 	    <div>
@@ -147,12 +147,12 @@
 	
 	<div id="settings">
 		<div class="standartTextSize c_align_central">
-            <label for="login_username">Login</label>
+            <label for="login_username">Brukernavn</label>
             <input type="text" id="login_username" class="large settingsInput" value="" />
-            <label for="login_possword">Password</label>
+            <label for="login_possword">Passord</label>
             <input type="password" id="login_password" class="large settingsInput" value="" />
-            <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Login' onclick="main.clickLogin();" />
-            <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logout' onclick="main.clickLogOut();" />
+            <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logg inn' onclick="main.clickLogin();" />
+            <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logg ut' onclick="main.clickLogOut();" />
             <br><span>versjon: 0.6.0</span>
 	    </div>
 	</div> 
@@ -160,50 +160,50 @@
 <!-- 	SNOW - PAGES -->
 	<div id="snow">
 		<div class="c_align_central">
-	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('snow_obs');"/>
-	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="gammel" onclick=""/>
-		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="jop" onclick=""/>
-			
+	    <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('snow_obs');"/>
+	  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se opservasjoner" onclick=""/>
+  	  <input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
 		</div>
 	</div>
-	
+		
 	<div id="snow_obs">
 		<div class="c_position_header">
 			<span id="position_header_position">,</span> 
 			<span id="position_header_town"></span>
 			<span id="position_header_county"></span>
 		</div>
+    <ul class="w_list w_border actions" >
+	    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_hendelse');">
+        Hendelse
+        <span class="w_icon arrow"></span>
+			</li>
+	    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_faresign');">
+        Faretegn
+        <span id="snow_faresign_count" class="notification_buble">0</span>
+        <span class="w_icon arrow"></span>
+      </li>
+      <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_picture');">
+        Bilde
+        <span id="snow_picture_count" class="notification_buble">0</span>
+        <span class="w_icon arrow"></span>
+      </li>
+		</ul>
 		
-		<div class="c_align_central">
-	        <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Hendelse" onclick="main.panels.slideTo('snow_hendelse');"/>
-			
-	      	<div class="w_footer_custom">
-			    <div class="c_notification_button w_indice" >
-			        <span id="snow_faresign_count">0</span>
-			        <input type="button" class="w_button w_radius w_bg_light" value="Faretegn" onclick="main.panels.slideTo('snow_faresign');"/>
-			    </div>
-			</div>
-	        
-	        <div class="w_footer_custom">
-			    <div class="c_notification_button w_indice" >
-			        <span id="snow_picture_count">0</span>
-			        <input type="button" class="w_button w_radius w_bg_light" value="Bilde" onclick="main.panels.slideTo('snow_picture');"/>
-			    </div>
-			</div>
-			
-			<input id="snow_sendIn" type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getSnow().send();"/> <br>
-   	  </div>
+	  <div class="c_align_central">
+      <input type="button" value="Send inn" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getSnow().send();"/> <br>
+    </div>
 	</div>
 	
+	
 	<div id="snow_hendelse" class="c_center_page standartTextSize">
-        <label for="snow_hendelse_comment">Comment:</label>
+        <label for="snow_hendelse_comment">Beskrivelse:</label>
 		<textarea id="snow_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
 		
 		<label for="snow_hendelse_activity_list">Aktivitet:</label>
         <select id="snow_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
         </select>
         
-        <label for="snow_hendelse_radius_list">Radius:</label>		
+        <label for="snow_hendelse_radius_list">Omfang:</label>		
 		<select id="snow_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
 		</select>
 		
@@ -217,7 +217,7 @@
            <select id="snow_danger_sign_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
            </select>
 		
-        <label for="snow_danger_sign_comment">Comment:</label>
+        <label for="snow_danger_sign_comment">Beskrivelse:</label>
 		<textarea id="snow_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="snow_faresign.addFaresign();">Legg til</button>
 	</div>
@@ -225,7 +225,7 @@
 	<div id="snow_picture" class="c_center_page">
 		<img id="snow_picture_img" class="c_image" src=""/>
 
-		<label for="snow_picture_comment">Comment:</label>
+		<label for="snow_picture_comment">Beskrivelse:</label>
 		<textarea id="snow_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="snow_picture.addPicture();">Legg til</button>
 	</div>
@@ -233,9 +233,10 @@
 <!-- 	ICE - PAGES -->
 	<div id="ice">
 		<div class="c_align_central">
-	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('ice_obs');"/>
-	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="gammel" onclick=""/>
-		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="jop" onclick=""/>
+
+	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('ice_obs');"/>
+	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick=""/>
+		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
 			
 		</div>
 	</div>
@@ -247,29 +248,32 @@
 			<span id="ice_position_header_county"></span>
 		</div>
 		
+    <ul class="w_list w_border actions">
+       <li class="w_list_item w_border_bottom"  onclick="main.panels.slideTo('ice_hendelse');">		
+         Hendelse
+         <span class="w_icon arrow"></span>
+       </li>
+       <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('ice_picture');">
+	        Bilde    
+	        <span id="ice_picture_count" class="notification_buble">0</span>
+	        <span class="w_icon arrow"></span>
+	    </li>
+	    
+		</ul>
 		<div class="c_align_central">
-	        <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Hendelse" onclick="main.panels.slideTo('ice_hendelse');"/>
-	        
-	        <div class="w_footer_custom">
-			    <div class="c_notification_button w_indice" >
-			        <span id="ice_picture_count">0</span>
-			        <input type="button" class="w_button w_radius w_bg_light" value="Bilde" onclick="main.panels.slideTo('ice_picture');"/>
-			    </div>
-			</div>
-			
-			<input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getIce().send();"/> <br>
-   	  </div>
+		 <input type="button" value="Send inn" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getIce().send();"/>
+ 	  </div>
 	</div>
 	
 	<div id="ice_hendelse" class="c_center_page standartTextSize">
-        <label for="ice_hendelse_comment">Comment:</label>
+        <label for="ice_hendelse_comment">Beskrivelse:</label>
 		<textarea id="ice_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
 		
 		<label for="ice_hendelse_activity_list">Aktivitet:</label>
         <select id="ice_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
         </select>
         
-        <label for="ice_hendelse_radius_list">Radius:</label>		
+        <label for="ice_hendelse_radius_list">Omfang:</label>		
 		<select id="ice_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
 		</select>
 		
@@ -279,7 +283,7 @@
 	<div id="ice_picture" class="c_center_page">
 		<img id="ice_picture_img" class="c_image" src=""/>
 
-		<label for="ice_picture_comment">Comment:</label>
+		<label for="ice_picture_comment">Beskrivelse:</label>
 		<textarea id="ice_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="ice_picture.addPicture();">Legg til</button>
 	</div>
@@ -287,9 +291,9 @@
 <!-- 	WATER - PAGES -->
 	<div id="water">
 		<div class="c_align_central">
-	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('water_obs');"/>
-	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="gammel" onclick=""/>
-		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="jop" onclick=""/>
+	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('water_obs');"/>
+	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick=""/>
+		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
 			
 		</div>
 	</div>
@@ -300,30 +304,33 @@
 			<span id="water_position_header_town"></span>
 			<span id="water_position_header_county"></span>
 		</div>
-		
-		<div class="c_align_central">
-	        <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Hendelse" onclick="main.panels.slideTo('water_hendelse');"/>
-	        
-	        <div class="w_footer_custom">
-			    <div class="c_notification_button w_indice" >
-			        <span id="water_picture_count">0</span>
-			        <input type="button" class="w_button w_radius w_bg_light" value="Bilde" onclick="main.panels.slideTo('water_picture');"/>
-			    </div>
-			</div>
+		  
+		  <ul class="w_list w_border actions">
+		    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_hendelse');">
+  		    Hendelse
+  		    <span class="w_icon arrow"></span>
+	      </li>  
+        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_picture');">
+          Bilde
+	        <span id="water_picture_count" class="notification_buble">0</span>
+	        <span class="w_icon arrow"></span>
+		    </li>
+	    </ul>
 			
-			<input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getWater().send();"/> <br>
+			<div class="c_align_central">
+			 <input type="button" value="Send inn" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getWater().send();"/> <br>
    	  </div>
 	</div>
 	
 	<div id="water_hendelse" class="c_center_page standartTextSize">
-        <label for="water_hendelse_comment">Comment:</label>
+        <label for="water_hendelse_comment">Beskrivelse:</label>
 		<textarea id="water_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
 		
 		<label for="water_hendelse_activity_list">Aktivitet:</label>
         <select id="water_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
         </select>
         
-        <label for="water_hendelse_radius_list">Radius:</label>		
+        <label for="water_hendelse_radius_list">Omfang:</label>		
 		<select id="water_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
 		</select>
 		
@@ -333,7 +340,7 @@
 	<div id="water_picture" class="c_center_page">
 		<img id="water_picture_img" class="c_image" src=""/>
 
-		<label for="water_picture_comment">Comment:</label>
+		<label for="water_picture_comment">Beskrivelse:</label>
 		<textarea id="water_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="water_picture.addPicture();">Legg til</button>
 	</div>
@@ -354,29 +361,31 @@
 			<span id="dirt_position_header_county"></span>
 		</div>
 		
-		<div class="c_align_central">
-	        <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Hendelse" onclick="main.panels.slideTo('dirt_hendelse');"/>
-	        
-	        <div class="w_footer_custom">
-			    <div class="c_notification_button w_indice" >
-			        <span id="dirt_picture_count">0</span>
-			        <input type="button" class="w_button w_radius w_bg_light" value="Bilde" onclick="main.panels.slideTo('dirt_picture');"/>
-			    </div>
-			</div>
-			
-			<input type="button" value="Send in" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getDirt().send();"/> <br>
+		  <ul class="w_list w_border actions">
+        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('dirt_hendelse');">
+          Hendelse
+          <span class="w_icon arrow"></span>
+        </li>
+        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('dirt_picture');">
+              Bilde 
+			        <span id="dirt_picture_count" class="notification_buble">0</span>
+			        <span class="w_icon arrow"></span>
+        </li>
+      </ul>			
+			<div class="c_align_central">
+			 <input type="button" value="Send inn" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getDirt().send();"/> <br>
    	  </div>
 	</div>
 	
 	<div id="dirt_hendelse" class="c_center_page standartTextSize">
-        <label for="dirt_hendelse_comment">Comment:</label>
+        <label for="dirt_hendelse_comment">Beskrivelse:</label>
 		<textarea id="dirt_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
 		
 		<label for="dirt_hendelse_activity_list">Aktivitet:</label>
         <select id="dirt_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
         </select>
         
-        <label for="dirt_hendelse_radius_list">Radius:</label>		
+        <label for="dirt_hendelse_radius_list">Omfang:</label>		
 		<select id="dirt_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
 		</select>
 		
@@ -386,7 +395,7 @@
 	<div id="dirt_picture" class="c_center_page">
 		<img id="dirt_picture_img" class="c_image" src=""/>
 
-		<label for="dirt_picture_comment">Comment:</label>
+		<label for="dirt_picture_comment">Beskrivelse:</label>
 		<textarea id="dirt_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="dirt_picture.addPicture();">Legg til</button>
 	</div>

@@ -4,7 +4,7 @@ class AbstractStore
 		alert("an error occured")
 	
 	onSend: (page) ->
-		main.showWaitingDialogWithMessage("Laster opp... ");
+		main.showWaitingDialogWithMessage(UPLOADING);
 	
 		source = 0
 		pos = page.pos_obj
@@ -15,7 +15,7 @@ class AbstractStore
 			else
 				source = OLD_GPS_POSITION
 		
-		location = new ObsLocation("", 33, page.longitude, page.latitute, source, 0, page.omrade_id, 250, 250, false, null, new Date(), null, null, null, page.komm_nr.toString());
+		location = new ObsLocation("", 33, page.longitude, page.latitute, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
 		SendObjectToServer(location, ((data) => @afterLocation(data)) , (error) => @onError(error))
 		
 	onAfterLocation: (data) ->

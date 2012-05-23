@@ -32,7 +32,16 @@ ICE = 2;
 WATER = 3;
 DIRT = 4;
 
+/*
+ * Omraade id 
+ */
+OMRAADE_ID_OFFSET = 100;
+
+/*
+ * Text
+ */
 LOGGED_IN  = "Logget inn !";
 ERROR_LOGIN =  "No internet ?!";
 LOGGING_IN = "Logger inn... ";
 PROCESS_PICTURE = "Prosess bilde... ";
+UPLOADING = "Laster opp... ";

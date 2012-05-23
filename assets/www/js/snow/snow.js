@@ -40,7 +40,7 @@ var snow_page = {
 		var res = JSON.parse(data);
 
 		if(res != null) {
-			snow_page.omrade_id = res.features[0].attributes.OMRAADEID +100;
+			snow_page.omrade_id = res.features[0].attributes.OMRAADEID +OMRAADE_ID_OFFSET;
 		}		
 	},
 	

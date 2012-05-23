@@ -14,7 +14,7 @@ AbstractStore = (function() {
   AbstractStore.prototype.onSend = function(page) {
     var elapsedInMinutes, location, pos, source,
       _this = this;
-    main.showWaitingDialogWithMessage("Laster opp... ");
+    main.showWaitingDialogWithMessage(UPLOADING);
     source = 0;
     pos = page.pos_obj;
     if (pos) {
@@ -25,7 +25,7 @@ AbstractStore = (function() {
         source = OLD_GPS_POSITION;
       }
     }
-    location = new ObsLocation("", 33, page.longitude, page.latitute, source, 0, page.omrade_id, 250, 250, false, null, new Date(), null, null, null, page.komm_nr.toString());
+    location = new ObsLocation("", 33, page.longitude, page.latitute, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
     return SendObjectToServer(location, (function(data) {
       return _this.afterLocation(data);
     }), function(error) {

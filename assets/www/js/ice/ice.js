@@ -40,7 +40,7 @@ var ice_page = {
 		var res = JSON.parse(data);
 
 		if(res != null) {
-			ice_page.omrade_id = res.features[0].attributes.OMRAADEID +100;
+			ice_page.omrade_id = res.features[0].attributes.OMRAADEID +OMRAADE_ID_OFFSET;
 		}		
 	},
 
