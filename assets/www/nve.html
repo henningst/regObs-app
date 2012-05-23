@@ -64,6 +64,9 @@
 	<script type="text/javascript" src="js/water/water.js"></script>
 	<script type="text/javascript" src="js/water/water_picture.js"></script>
 	<script type="text/javascript" src="js/water/water_hendelse.js"></script>
+	
+	<script type="text/javascript" src="js/learning/learning.js"></script>
+	
 	<script type="text/javascript" src="js/nve.js"></script>
 	
 	<style>
@@ -378,7 +381,7 @@
 	</div>
 	
 	<div id="dirt_hendelse" class="c_center_page standartTextSize">
-        <label for="dirt_hendelse_comment">Beskrivelse:</label>
+        <label for="dirt_hendelse_comment" style="display: inline">Beskrivelse:</label><a style="margin-left: 10px; margin-top: 5px;" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
 		<textarea id="dirt_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
 		
 		<label for="dirt_hendelse_activity_list">Aktivitet:</label>
@@ -398,6 +401,10 @@
 		<label for="dirt_picture_comment">Beskrivelse:</label>
 		<textarea id="dirt_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="dirt_picture.addPicture();">Legg til</button>
+	</div>
+	
+	<div id="learning_page" class="c_center_page">
+		<span>Beskrivende tekst!</span>
 	</div>
 </body>
 </html>

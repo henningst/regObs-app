@@ -63,5 +63,4 @@ class SnowStore extends AbstractStore
 		
 		DataAccess.save(SnowStore.name, this)
 		
-		main.hideDialog();
-		alert('Takk for observasjon')
+		main.hideDialog()

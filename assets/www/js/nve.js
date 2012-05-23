@@ -94,16 +94,16 @@ var main = (function()
 	      	        		'dirt',
 	      	        		'dirt_obs',
 	      	        		'dirt_hendelse',
-	      	        		'dirt_picture'
+	      	        		'dirt_picture',
+	      	        		'learning_page'
         	    		 ]
-    	        	
     	        }
     	    );
             document.body.appendChild(this.panels.getDomNode());
             
-            waitingDialog = new wink.ui.xy.Popup();
-			 
-			document.body.appendChild(waitingDialog.getDomNode());
+            main.waitingDialog = new wink.ui.xy.Popup();
+            
+			document.body.appendChild(main.waitingDialog.getDomNode());
 			
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
@@ -157,9 +157,18 @@ var main = (function()
 			}
         },
         
+        showFinishedUploadMessage: function()
+        {
+        	main.waitingDialog.popup({
+		        content: "<div class='waitingDialog'>" +
+			        	"Do it " +
+			        "</div>",
+			    });
+        },
+        
         showDialogWithMessage: function(message) 
         {
-        	waitingDialog.popup({
+        	main.waitingDialog.popup({
 		        content: "<div class='waitingDialog'>" +
 		        	message +
 		        "</div>",
@@ -168,15 +177,23 @@ var main = (function()
         
         showWaitingDialogWithMessage: function(message) 
         {
-        	waitingDialog.popup({
+//        	jQuery('body').add('div').addClass('waitingDialog').html('TEST');
+        	main.startDialog();
+        	main.waitingDialog.popup({
 		        content: "<div class='waitingDialog'>" +
 		        	message + "<img src='img/ajax-loader.gif' />" +
 		        "</div>",
 		    });
         },
         
+        startDialog: function()
+        {
+        	jQuery('.pp_popup').css('z-index', 999);
+        },
+        
         hideDialog: function() {
-        	waitingDialog.hide();
+        	main.waitingDialog.hide();
+        	jQuery('.pp_popup').css('z-index', -99);
         },
         
         fillDangerSign: function(data) {
@@ -210,7 +227,7 @@ var main = (function()
         		$('settings_img').style.backgroundColor = 'red';
         	}
         	
-        	if(waitingDialog.displayed) 
+        	if(main.waitingDialog.displayed) 
     		{
         		main.hideDialog();
         		alert(LOGGED_IN);
@@ -331,6 +348,12 @@ var main = (function()
         		case 'dirt_hendelse':
         			if(status == 'start') {
         				dirt_hendelse.init();
+        			}
+        			break;
+        			
+        		case 'learning_page':
+        			if(status == 'start') {
+        				learning_page.init();
         			}
         			break;
         			
