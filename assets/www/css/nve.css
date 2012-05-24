@@ -382,12 +382,13 @@ ul.actions li{
 
 .shortcut{
 	display: inline-block;
-	width: 24%;
+	width: 23.5%;
 	height: 100%;
 	text-align: center;
 	border-right: 1px solid #ccc;
 	background-repeat: no-repeat;
 	background-position: center;
+	background-size: auto 50%;
 	overflow:hidden;
 }
 
