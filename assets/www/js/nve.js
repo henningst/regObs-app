@@ -2,7 +2,6 @@ var main = (function()
 {
     var main =
     {	
-        
     	actualPage: 0,
     		
     	store: new NveStore(),
