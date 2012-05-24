@@ -9,24 +9,19 @@
 /* Begin PBXBuildFile section */
 		B5107F8F152DA39D00BA56F8 /* www in Resources */ = {isa = PBXBuildFile; fileRef = B5107F8E152DA39D00BA56F8 /* www */; };
 		B5F0D5541525D3DB001774E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5531525D3DB001774E4 /* Foundation.framework */; };
-		B5F0D5561525D3DB001774E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5551525D3DB001774E4 /* UIKit.framework */; };
+		B5F0D5561525D3DB001774E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5551525D3DB001774E4 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B5F0D5581525D3DB001774E4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5571525D3DB001774E4 /* CoreGraphics.framework */; };
 		B5F0D55A1525D3DB001774E4 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5591525D3DB001774E4 /* AddressBook.framework */; };
 		B5F0D55C1525D3DB001774E4 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D55B1525D3DB001774E4 /* AddressBookUI.framework */; };
 		B5F0D55E1525D3DB001774E4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D55D1525D3DB001774E4 /* AudioToolbox.framework */; };
-		B5F0D5601525D3DB001774E4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D55F1525D3DB001774E4 /* AVFoundation.framework */; };
+		B5F0D5601525D3DB001774E4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D55F1525D3DB001774E4 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B5F0D5621525D3DB001774E4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5611525D3DB001774E4 /* CoreLocation.framework */; };
 		B5F0D5641525D3DB001774E4 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5631525D3DB001774E4 /* MediaPlayer.framework */; };
 		B5F0D5661525D3DB001774E4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5651525D3DB001774E4 /* QuartzCore.framework */; };
 		B5F0D5681525D3DB001774E4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5671525D3DB001774E4 /* SystemConfiguration.framework */; };
 		B5F0D56A1525D3DB001774E4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5691525D3DB001774E4 /* MobileCoreServices.framework */; };
-		B5F0D56C1525D3DB001774E4 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D56B1525D3DB001774E4 /* CoreMedia.framework */; };
-		B5F0D5721525D3DC001774E4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5F0D5701525D3DC001774E4 /* InfoPlist.strings */; };
+		B5F0D56C1525D3DB001774E4 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D56B1525D3DB001774E4 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B5F0D5741525D3DC001774E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F0D5731525D3DC001774E4 /* main.m */; };
-		B5F0D57C1525D3DC001774E4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5F0D57A1525D3DC001774E4 /* Localizable.strings */; };
-		B5F0D5801525D3DC001774E4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5F0D57E1525D3DC001774E4 /* Localizable.strings */; };
-		B5F0D5841525D3DC001774E4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5F0D5821525D3DC001774E4 /* Localizable.strings */; };
-		B5F0D5881525D3DC001774E4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5F0D5861525D3DC001774E4 /* Localizable.strings */; };
 		B5F0D58B1525D3DC001774E4 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F0D58A1525D3DC001774E4 /* icon.png */; };
 		B5F0D58D1525D3DC001774E4 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F0D58C1525D3DC001774E4 /* icon@2x.png */; };
 		B5F0D58F1525D3DC001774E4 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F0D58E1525D3DC001774E4 /* icon-72.png */; };
@@ -39,11 +34,14 @@
 		B5F0D5A11525D3DC001774E4 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F0D5A01525D3DC001774E4 /* MainViewController.xib */; };
 		B5F0D5A51525D3DC001774E4 /* verify.sh in Resources */ = {isa = PBXBuildFile; fileRef = B5F0D5A41525D3DC001774E4 /* verify.sh */; };
 		B5F0D5B11525D4B7001774E4 /* Cordova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5B01525D4B7001774E4 /* Cordova.framework */; };
+		CE8C9BD9156D2F2900D940C3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8C9BD8156D2F2900D940C3 /* Default@2x.png */; };
+		CE8C9BDB156D2F5500D940C3 /* regobs-114.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8C9BDA156D2F5500D940C3 /* regobs-114.png */; };
+		CE8C9BDD156D2F6E00D940C3 /* regobs-57.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8C9BDC156D2F6E00D940C3 /* regobs-57.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B5107F8E152DA39D00BA56F8 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../assets/www; sourceTree = "<group>"; };
-		B5F0D54F1525D3DB001774E4 /* Nve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nve.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5F0D54F1525D3DB001774E4 /* regObs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = regObs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F0D5531525D3DB001774E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B5F0D5551525D3DB001774E4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B5F0D5571525D3DB001774E4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -57,14 +55,9 @@
 		B5F0D5671525D3DB001774E4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B5F0D5691525D3DB001774E4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		B5F0D56B1525D3DB001774E4 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		B5F0D56F1525D3DC001774E4 /* Nve-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Nve-Info.plist"; sourceTree = "<group>"; };
-		B5F0D5711525D3DC001774E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B5F0D56F1525D3DC001774E4 /* regObs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "regObs-Info.plist"; sourceTree = "<group>"; };
 		B5F0D5731525D3DC001774E4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B5F0D5751525D3DC001774E4 /* Nve-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nve-Prefix.pch"; sourceTree = "<group>"; };
-		B5F0D57B1525D3DC001774E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B5F0D57F1525D3DC001774E4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B5F0D5831525D3DC001774E4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Resources/de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B5F0D5871525D3DC001774E4 /* se */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = se; path = Resources/se.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B5F0D5751525D3DC001774E4 /* regObs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "regObs-Prefix.pch"; sourceTree = "<group>"; };
 		B5F0D58A1525D3DC001774E4 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Resources/icons/icon.png; sourceTree = "<group>"; };
 		B5F0D58C1525D3DC001774E4 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "Resources/icons/icon@2x.png"; sourceTree = "<group>"; };
 		B5F0D58E1525D3DC001774E4 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-72.png"; path = "Resources/icons/icon-72.png"; sourceTree = "<group>"; };
@@ -80,6 +73,9 @@
 		B5F0D5A31525D3DC001774E4 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
 		B5F0D5A41525D3DC001774E4 /* verify.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = verify.sh; sourceTree = "<group>"; };
 		B5F0D5B01525D4B7001774E4 /* Cordova.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cordova.framework; sourceTree = "<group>"; };
+		CE8C9BD8156D2F2900D940C3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		CE8C9BDA156D2F5500D940C3 /* regobs-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "regobs-114.png"; sourceTree = "<group>"; };
+		CE8C9BDC156D2F6E00D940C3 /* regobs-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "regobs-57.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +113,9 @@
 		B5F0D5411525D3DB001774E4 = {
 			isa = PBXGroup;
 			children = (
+				CE8C9BDC156D2F6E00D940C3 /* regobs-57.png */,
+				CE8C9BDA156D2F5500D940C3 /* regobs-114.png */,
+				CE8C9BD8156D2F2900D940C3 /* Default@2x.png */,
 				B5107F8E152DA39D00BA56F8 /* www */,
 				B5F0D5B01525D4B7001774E4 /* Cordova.framework */,
 				B5F0D56D1525D3DB001774E4 /* Nve */,
@@ -128,7 +127,7 @@
 		B5F0D5501525D3DB001774E4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B5F0D54F1525D3DB001774E4 /* Nve.app */,
+				B5F0D54F1525D3DB001774E4 /* regObs.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,10 +166,9 @@
 		B5F0D56E1525D3DC001774E4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B5F0D56F1525D3DC001774E4 /* Nve-Info.plist */,
-				B5F0D5701525D3DC001774E4 /* InfoPlist.strings */,
+				B5F0D56F1525D3DC001774E4 /* regObs-Info.plist */,
 				B5F0D5731525D3DC001774E4 /* main.m */,
-				B5F0D5751525D3DC001774E4 /* Nve-Prefix.pch */,
+				B5F0D5751525D3DC001774E4 /* regObs-Prefix.pch */,
 				B5F0D5971525D3DC001774E4 /* Cordova.plist */,
 				B5F0D5A01525D3DC001774E4 /* MainViewController.xib */,
 				B5F0D5A41525D3DC001774E4 /* verify.sh */,
@@ -195,7 +193,6 @@
 		B5F0D5791525D3DC001774E4 /* en.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				B5F0D57A1525D3DC001774E4 /* Localizable.strings */,
 			);
 			name = en.lproj;
 			sourceTree = "<group>";
@@ -203,7 +200,6 @@
 		B5F0D57D1525D3DC001774E4 /* es.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				B5F0D57E1525D3DC001774E4 /* Localizable.strings */,
 			);
 			name = es.lproj;
 			sourceTree = "<group>";
@@ -211,7 +207,6 @@
 		B5F0D5811525D3DC001774E4 /* de.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				B5F0D5821525D3DC001774E4 /* Localizable.strings */,
 			);
 			name = de.lproj;
 			sourceTree = "<group>";
@@ -219,7 +214,6 @@
 		B5F0D5851525D3DC001774E4 /* se.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				B5F0D5861525D3DC001774E4 /* Localizable.strings */,
 			);
 			name = se.lproj;
 			sourceTree = "<group>";
@@ -265,9 +259,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B5F0D54E1525D3DB001774E4 /* Nve */ = {
+		B5F0D54E1525D3DB001774E4 /* regObs */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B5F0D5A81525D3DC001774E4 /* Build configuration list for PBXNativeTarget "Nve" */;
+			buildConfigurationList = B5F0D5A81525D3DC001774E4 /* Build configuration list for PBXNativeTarget "regObs" */;
 			buildPhases = (
 				B5F0D5481525D3DB001774E4 /* Sources */,
 				B5F0D5491525D3DB001774E4 /* Frameworks */,
@@ -280,9 +274,9 @@
 			);
 			dependencies = (
 			);
-			name = Nve;
+			name = regObs;
 			productName = Nve;
-			productReference = B5F0D54F1525D3DB001774E4 /* Nve.app */;
+			productReference = B5F0D54F1525D3DB001774E4 /* regObs.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -293,7 +287,7 @@
 			attributes = {
 				LastUpgradeCheck = 0420;
 			};
-			buildConfigurationList = B5F0D5461525D3DB001774E4 /* Build configuration list for PBXProject "Nve" */;
+			buildConfigurationList = B5F0D5461525D3DB001774E4 /* Build configuration list for PBXProject "regObs" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -308,7 +302,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B5F0D54E1525D3DB001774E4 /* Nve */,
+				B5F0D54E1525D3DB001774E4 /* regObs */,
 			);
 		};
 /* End PBXProject section */
@@ -318,11 +312,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5F0D5721525D3DC001774E4 /* InfoPlist.strings in Resources */,
-				B5F0D57C1525D3DC001774E4 /* Localizable.strings in Resources */,
-				B5F0D5801525D3DC001774E4 /* Localizable.strings in Resources */,
-				B5F0D5841525D3DC001774E4 /* Localizable.strings in Resources */,
-				B5F0D5881525D3DC001774E4 /* Localizable.strings in Resources */,
 				B5F0D58B1525D3DC001774E4 /* icon.png in Resources */,
 				B5F0D58D1525D3DC001774E4 /* icon@2x.png in Resources */,
 				B5F0D58F1525D3DC001774E4 /* icon-72.png in Resources */,
@@ -333,6 +322,9 @@
 				B5F0D5A11525D3DC001774E4 /* MainViewController.xib in Resources */,
 				B5F0D5A51525D3DC001774E4 /* verify.sh in Resources */,
 				B5107F8F152DA39D00BA56F8 /* www in Resources */,
+				CE8C9BD9156D2F2900D940C3 /* Default@2x.png in Resources */,
+				CE8C9BDB156D2F5500D940C3 /* regobs-114.png in Resources */,
+				CE8C9BDD156D2F6E00D940C3 /* regobs-57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,49 +366,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		B5F0D5701525D3DC001774E4 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5F0D5711525D3DC001774E4 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		B5F0D57A1525D3DC001774E4 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5F0D57B1525D3DC001774E4 /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		B5F0D57E1525D3DC001774E4 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5F0D57F1525D3DC001774E4 /* es */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		B5F0D5821525D3DC001774E4 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5F0D5831525D3DC001774E4 /* de */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		B5F0D5861525D3DC001774E4 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5F0D5871525D3DC001774E4 /* se */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B5F0D5A61525D3DC001774E4 /* Debug */ = {
@@ -471,6 +420,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: nLink AS";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -479,12 +429,12 @@
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Nve/Nve-Prefix.pch";
+				GCC_PREFIX_HEADER = "Nve/regObs-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1,",
 					"CORDOVA_FRAMEWORK=1",
 				);
-				INFOPLIST_FILE = "Nve/Nve-Info.plist";
+				INFOPLIST_FILE = "Nve/regObs-Info.plist";
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					UIKit,
@@ -495,9 +445,10 @@
 					"-weak_library",
 					/usr/lib/libSystem.B.dylib,
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = regObs;
+				PROVISIONING_PROFILE = "8720EC85-2FE6-406D-A056-781E92F0A349";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -506,7 +457,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: nLink AS";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nLink AS";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -514,12 +466,12 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Nve/Nve-Prefix.pch";
+				GCC_PREFIX_HEADER = "Nve/regObs-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"NDEBUG=1,",
 					"CORDOVA_FRAMEWORK=1",
 				);
-				INFOPLIST_FILE = "Nve/Nve-Info.plist";
+				INFOPLIST_FILE = "Nve/regObs-Info.plist";
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					UIKit,
@@ -530,9 +482,10 @@
 					"-weak_library",
 					/usr/lib/libSystem.B.dylib,
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PRODUCT_NAME = regObs;
+				PROVISIONING_PROFILE = "8720EC85-2FE6-406D-A056-781E92F0A349";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8720EC85-2FE6-406D-A056-781E92F0A349";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -541,7 +494,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B5F0D5461525D3DB001774E4 /* Build configuration list for PBXProject "Nve" */ = {
+		B5F0D5461525D3DB001774E4 /* Build configuration list for PBXProject "regObs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5F0D5A61525D3DC001774E4 /* Debug */,
@@ -550,7 +503,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B5F0D5A81525D3DC001774E4 /* Build configuration list for PBXNativeTarget "Nve" */ = {
+		B5F0D5A81525D3DC001774E4 /* Build configuration list for PBXNativeTarget "regObs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5F0D5A91525D3DC001774E4 /* Debug */,

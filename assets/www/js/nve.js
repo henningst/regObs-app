@@ -2,6 +2,7 @@ var main = (function()
 {
     var main =
     {	
+        
     	actualPage: 0,
     		
     	store: new NveStore(),
@@ -38,9 +39,11 @@ var main = (function()
 		},
 		
 		loginErrorCallback: function(data) {
-    		$('settings_img').style.backgroundColor = 'red';
 
-        	main.hideDialog();
+    		main.showLoginStatus(false);
+           	main.hideDialog();
+			alert("No internet ?!");
+
 			alert(ERROR_LOGIN);
 		},
 		
@@ -54,7 +57,7 @@ var main = (function()
 		},
 		
 		logoutCallback: function() {
-        	$('settings_img').style.backgroundColor = 'red';
+        	main.showLoginStatus(false);
 		},
 		
 		starred: function() {
@@ -69,8 +72,7 @@ var main = (function()
     	
         init: function()
         {
-        	this.panels = new wink.ui.layout.SlidingPanels
-            (
+        	this.panels = new wink.ui.layout.SlidingPanels(
     	        {
     	        	duration: 500,
     	        	transitionType: 'default',
@@ -135,7 +137,7 @@ var main = (function()
 			if(username != undefined && password != undefined) {
 				Login(username, password, main.loginCallback);
         	} else {
-        		$('settings_img').style.backgroundColor = 'red';
+        		main.showLoginStatus(false);	
 			}
 			
 			switch (DataAccess.get(STARTUP_PAGE)) {
@@ -249,9 +251,17 @@ var main = (function()
         
         loggedInAsCallback: function (data) {
         	if(data.EMail != 'anonym@nve.no') {
-        		$('settings_img').style.backgroundColor = 'green';
+        		main.showLoginStatus(true);
         	} else {
-        		$('settings_img').style.backgroundColor = 'red';
+        		main.showLoginStatus(false);
+        	}
+        },
+        
+        showLoginStatus: function(loggedIn){
+        	if(loggedIn == true) {
+        		jQuery('#login').attr("style", 'background-image: url(img/loggedin.png)');
+        	} else {
+        		jQuery('#login').attr("style", 'background-image: url(img/loggedout.png)');
         	}
         	
         	if(main.waitingDialog.displayed) 
@@ -261,25 +271,34 @@ var main = (function()
     		}
         },
         
+        hideNve: function(){
+        	jQuery("#regobs-info").hide();
+        },
+        showNve: function(){
+        	jQuery("#regobs-info").show();
+        },
+        
         toggleBackButtonDisplay: function(params, status) {
 
         	if(params.id != 'home') {
         		if(status == 'start') {
     				$('back').style.display = 'block';
     				$('star').style.display = 'inline-table';
+    				main.hideNve();
     			}
         	}
         	
         	switch(params.id) {
         		case 'home':
         			if(status == 'end') {
+        				
         			}
         			
         			if(status == 'start') {
         				$('back').style.display = 'none';
         				$('star').style.display = 'none';
         				
-        				//$('mainBody').style.backgroundImage = '';
+        				main.showNve();        				
         				main_page.init();
         				main.actualPage = 0;
         			}

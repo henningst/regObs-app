@@ -106,6 +106,8 @@
     	<div id="back" class="w_button_custom w_back w_left c_color_gradient">
 	        <input type="button" value="Tilbake" class="c_color_gradient" onclick="main.panels.slideBack();" />
 	    </div>
+	    <div id="regobs-info" class="w_left header-button">
+	    </div>
 	    
 	    <div>
 	    	<span id="header_middle_text">regObs</span>
@@ -114,15 +116,11 @@
 	        </a>
 	    </div>
 	    
-	    <div id="login" class="c_right_header_button w_right">
-	        <a type="button" id="loginButton" onclick="main.panels.slideTo('settings');" >
-            	<img id="settings_img" alt="" style="background-color: red; height: 32px; border: 2px solid; border-radius: 5px;" src="img/settings.png">
-	        </a>
+	    <div id="login" class="c_right_header_button w_right header-button" onclick="main.panels.slideTo('settings');">
 	    </div>
 	</div>
 	
 	<div id="home">
-		<img src="./img/regObs.png" width="100%" />
 		<div class="c_align_central" style="display: table; width: 100%;margin-top: 10%">
 			
 			<div class="table_row">
@@ -164,6 +162,12 @@
 	
 <!-- 	SNOW - PAGES -->
 	<div id="snow">
+	  <div class="c_position_header">
+      <span id="position_header_position">,</span> 
+      <span id="position_header_town"></span>
+      <span id="position_header_county"></span>
+    </div>
+    
 		<div class="c_align_central">
 	    <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('snow_obs');"/>
 	  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se opservasjoner" onclick=""/>
@@ -237,6 +241,13 @@
 	
 <!-- 	ICE - PAGES -->
 	<div id="ice">
+	 <div class="c_position_header">
+      <span id="ice_position_header_position">,</span> 
+      <span id="ice_position_header_town"></span>
+      <span id="ice_position_header_county"></span>
+    </div>
+    
+	
 		<div class="c_align_central">
 
 	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('ice_obs');"/>
@@ -295,6 +306,12 @@
 	
 <!-- 	WATER - PAGES -->
 	<div id="water">
+	 <div class="c_position_header">
+      <span id="water_position_header_position">,</span> 
+      <span id="water_position_header_town"></span>
+      <span id="water_position_header_county"></span>
+    </div>
+	
 		<div class="c_align_central">
 	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('water_obs');"/>
 	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick=""/>
@@ -352,6 +369,13 @@
 	
 <!-- 	DIRT PAGES -->
 	<div id="dirt">
+	 <div class="c_position_header">
+      <span id="dirt_position_header_position">,</span> 
+      <span id="dirt_position_header_town"></span>
+      <span id="dirt_position_header_county"></span>
+    </div>
+    
+	
 		<div class="c_align_central">
 	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('dirt_obs');"/>
 	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se opservasjoner" onclick=""/>

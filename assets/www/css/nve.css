@@ -148,7 +148,7 @@ input.large
 .c_align_central
 {
 	text-align: center;
-	margin-top: 20%;
+	margin-top: 5%;
 }
 
 .c_big_button
@@ -335,4 +335,35 @@ ul.actions li{
 	background-image: -moz-linear-gradient(top,#F8F8F8,#A1A1A1);
 	color: #2F2F2F;
   border-bottom: 1px solid white;	
+}
+
+.sl_container{
+  background-image: url("../img/bakgrunn.png");
+  background-repeat: no-repeat;
+  background-size: auto 100%;	
+}
+.w_header_custom{
+	z-index: 200;
+}
+
+#regobs-info{
+  background-image: url("../img/regObs-logo.png");
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;	
+}
+
+.header-button{
+  height: 35px;
+  width: 35px;	
+  position: absolute;
+}
+
+#login{
+	
+	background: url(../img/loggedout.png);
+	background-size: 90%;
+	background-repeat: no-repeat;
+	background-position: center;
 }
