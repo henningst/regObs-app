@@ -140,24 +140,34 @@ var main = (function()
         		main.showLoginStatus(false);	
 			}
 			
-			switch (DataAccess.get(STARTUP_PAGE)) {
-			case 1:
-				main.panels.slideTo('snow');
-				break;
-			case 2:
-				main.panels.slideTo('ice');
-				break;
-			case 3:
-				main.panels.slideTo('water');
-				break;
-			case 4:
-				main.panels.slideTo('dirt');
-				break;
-
-			default:
-				break;
-			}
+			main.slideToFavorite();
 			
+        },
+        
+        favoritePage: function(){
+        	switch (DataAccess.get(STARTUP_PAGE)) {
+				case 1:
+					return 'snow';
+				case 2:
+					return 'ice';
+				case 3:
+					return 'water';
+				case 4:
+					return 'dirt';
+	
+				default:
+					return 'home';
+	    	}
+        },
+        
+        slideToFavorite: function(){
+        	var page = main.favoritePage();
+        	main.panels.slideTo(page);
+        },
+        
+        slideToFavoritePicture: function(){
+        	var page = main.favoritePage();
+        	main.panels.slideTo(page + "_picture");
         },
         
         showFinishedUploadMessage: function()
@@ -254,6 +264,9 @@ var main = (function()
         		alert(LOGGED_IN);
     		}
         },
+        
+        
+        
         
         hideNve: function(){
         	jQuery("#regobs-info").hide();
