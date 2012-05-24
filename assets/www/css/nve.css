@@ -372,7 +372,7 @@ ul.actions li{
 .footer {
 	height: 50px;
 	padding: 0;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	width: 100%;
   z-index: 100;
