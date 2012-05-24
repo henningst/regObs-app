@@ -16,7 +16,7 @@ SERVER_URL = "http://h-web01.nve.no/stage_regobsservices/Odata.svc/";
  * Platform
  */
 var device = {
-		platform: 'android'
+		platform: 'iphone'
 };
 
 /*

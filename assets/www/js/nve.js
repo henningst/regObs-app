@@ -67,7 +67,18 @@ var main = (function()
 			} else {
 				DataAccess.save(STARTUP_PAGE, main.actualPage);
 				jQuery("#star").attr('src', 'img/stared.png');	
-			}	
+			}
+			
+			main.toogleFavorite();
+		},
+		
+		toogleFavorite: function(){
+			if(DataAccess.get(STARTUP_PAGE) > 0){
+				jQuery(".footer .fav-inactive").removeClass("fav-inactive");
+			} else {
+				jQuery(".footer .fav, .footer .camera").addClass("fav-inactive");
+			}
+				
 		},
     	
         init: function()
@@ -140,23 +151,10 @@ var main = (function()
         		main.showLoginStatus(false);	
 			}
 			
-			switch (DataAccess.get(STARTUP_PAGE)) {
-			case 1:
-				main.panels.slideTo('snow');
-				break;
-			case 2:
-				main.panels.slideTo('ice');
-				break;
-			case 3:
-				main.panels.slideTo('water');
-				break;
-			case 4:
-				main.panels.slideTo('dirt');
-				break;
-
-			default:
-				break;
-			}
+			main.slideToFavorite();
+			main.toogleFavorite();
+			
+			
         },
         
         initPhonegap: function()
@@ -176,6 +174,32 @@ var main = (function()
     		}
         },
         
+        favoritePage: function(){
+        	switch (DataAccess.get(STARTUP_PAGE)) {
+				case 1:
+					return 'snow';
+				case 2:
+					return 'ice';
+				case 3:
+					return 'water';
+				case 4:
+					return 'dirt';
+	
+				default:
+					return 'home';
+	    	}
+        },
+        
+        slideToFavorite: function(){
+        	var page = main.favoritePage();
+        	main.panels.slideTo(page);
+        },
+        
+        slideToFavoritePicture: function(){
+        	var page = main.favoritePage();
+        	main.panels.slideTo(page + "_picture");
+        },
+        
         showFinishedUploadMessage: function()
         {
         	jQuery('.waitingDialog').html( "" +
@@ -189,6 +213,8 @@ var main = (function()
 	        			"</button>" +
         			"</div>");
         },
+        
+        
         
         showDialogWithMessage: function(message) 
         {
@@ -263,17 +289,13 @@ var main = (function()
         	} else {
         		jQuery('#login').attr("style", 'background-image: url(img/loggedout.png)');
         	}
-        	
-        	if(main.waitingDialog.displayed) 
-    		{
-        		main.hideDialog();
-        		alert(LOGGED_IN);
-    		}
+        	main.hideDialog();
         },
         
         hideNve: function(){
         	jQuery("#regobs-info").hide();
         },
+        
         showNve: function(){
         	jQuery("#regobs-info").show();
         },
@@ -287,6 +309,8 @@ var main = (function()
     				main.hideNve();
     			}
         	}
+        	
+        	main.toogleFavorite();
         	
         	switch(params.id) {
         		case 'home':

@@ -88,10 +88,6 @@
 			width: 90px;
 			text-align: center;
 		}
-		.sl_container
-		{
-			height: auto;
-		}
 		
 		.text
 		{
@@ -166,9 +162,9 @@
 <!-- 	SNOW - PAGES -->
 	<div id="snow">
 	  <div class="c_position_header">
-      <span id="position_header_position">,</span> 
-      <span id="position_header_town"></span>
-      <span id="position_header_county"></span>
+      <span class="position_header_position">,</span> 
+      <span class="position_header_town"></span>
+      <span class="position_header_county"></span>
     </div>
     
 		<div class="c_align_central">
@@ -180,10 +176,10 @@
 		
 	<div id="snow_obs">
 		<div class="c_position_header">
-			<span id="position_header_position">,</span> 
-			<span id="position_header_town"></span>
-			<span id="position_header_county"></span>
-		</div>
+      <span class="position_header_position">,</span> 
+      <span class="position_header_town"></span>
+      <span class="position_header_county"></span>
+    </div>
     <ul class="w_list w_border actions" >
 	    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_hendelse');">
         Ulykke / Hendelse
@@ -348,7 +344,7 @@
 	</div>
 	
 	<div id="water_hendelse" class="c_center_page standartTextSize">
-        <label for="water_hendelse_comment" style="display: inline">Beskrivelse:</label><a style="margin-left: 10px; margin-top: 5px;" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+        <label for="water_hendelse_comment" style="display: inline">Beskrivelse:</label><a style="margin-left: 10px; margin-top: 5px;" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a> 
 		<textarea id="water_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
 		
 		<label for="water_hendelse_activity_list">Aktivitet:</label>
@@ -435,5 +431,14 @@
 	<div id="learning_page" class="c_center_page">
 		<span>Beskrivende tekst!</span>
 	</div>
+	
+	
+  <div id="footer" class="footer">
+      <div class="shortcut home" onclick="main.panels.slideTo('home')"></div>
+      <div class="shortcut fav" onclick="main.slideToFavorite()"></div>
+      <div class="shortcut camera" onclick="main.slideToFavoritePicture()"></div>
+      <div class="shortcut setting last" onclick="main.panels.slideTo('settings')"></div>
+  </div>
+  
 </body>
 </html>
