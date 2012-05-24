@@ -155,15 +155,21 @@ var main = (function()
 			default:
 				break;
 			}
+			
         },
         
         showFinishedUploadMessage: function()
         {
-        	main.waitingDialog.popup({
-		        content: "<div class='waitingDialog'>" +
-			        	"Do it " +
-			        "</div>",
-			    });
+        	jQuery('.waitingDialog').html( "" +
+        			"<div> " +
+	        			"<p> Takk for observasjon </p>" +
+	        			"<button type='button' style='width: auto; display: inline' " +
+	        				"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +OK + 
+	        			"</button>" +
+	        			"<button type='button' style='width: auto; display: inline' " +
+	        				"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +SEND_EMAIL + 
+	        			"</button>" +
+        			"</div>");
         },
         
         showDialogWithMessage: function(message) 
@@ -177,13 +183,18 @@ var main = (function()
         
         showWaitingDialogWithMessage: function(message) 
         {
-//        	jQuery('body').add('div').addClass('waitingDialog').html('TEST');
         	main.startDialog();
         	main.waitingDialog.popup({
 		        content: "<div class='waitingDialog'>" +
 		        	message + "<img src='img/ajax-loader.gif' />" +
 		        "</div>",
+		        layerCallback: { context: main, method: 'nothing' } ,
 		    });
+        },
+        
+        nothing: function()
+        {
+        	
         },
         
         startDialog: function()

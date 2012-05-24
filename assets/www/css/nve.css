@@ -183,6 +183,12 @@ input.large
 	margin-bottom: 10px;	
 }
 
+.c_popup_button
+{
+	width: auto;
+	display: inline;
+}
+
 .c_position_header {
 	height: 100px;
 	background-color: #484848;
