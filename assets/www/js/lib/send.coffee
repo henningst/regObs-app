@@ -21,7 +21,6 @@ Login = (name, pass, callback, onError) ->
 		error: (data) ->
 			onError(data) if onError
 		}
-		
 	)
 		
 Logout = (callback, onError) ->
@@ -65,10 +64,6 @@ GetObjectFromServer = (call, callback, onError) ->
 		callback(data) if callback
 	, (error) ->
 		onError(error) if onError
-		###
-		console.log(error)
-		alert("Error occurred in ::GetObjectFromServer #{error.message} #{call.url}")
-		###
 	)
 	result
 
@@ -84,10 +79,6 @@ SendObjectToServer = (obj, callback, onError) ->
 		callback(data) if callback
 	, (err) ->
 		onError(err) if onError 
-		###
-		console.log(err)
-		alert("Error occurred in ::SendObjectToServer #{err.message} #{obj.url}")
-		###
 	)
 	result
 	

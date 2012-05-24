@@ -5,6 +5,16 @@
 5D3974
 */
 
+.pp_popup
+{
+	left: 15%;
+}
+
+.waitingDialog
+{
+	text-align: center;
+}
+
 input.settingsInput 
 {
 	font-size: 0.8em;
@@ -171,6 +181,12 @@ input.large
 .c_mainpage_button
 {
 	margin-bottom: 10px;	
+}
+
+.c_popup_button
+{
+	width: auto;
+	display: inline;
 }
 
 .c_position_header {

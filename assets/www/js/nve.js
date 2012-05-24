@@ -6,18 +6,32 @@ var main = (function()
     	actualPage: 0,
     		
     	store: new NveStore(),
-    		
+    	
     	login: {data: {"EMail" : "anonym@nve.no", "FirstName" : "Anonym", "ObserverID" : 105}},
+    	
+    	popup: null,
+    	
+    	waitingDialog: null,
     	
     	panels: null,
     	
 		clickLogin: function() {
 			var username = document.getElementById('login_username').value;
 			var password = document.getElementById('login_password').value;
-
+			
+			main.showWaitingDialogWithMessage(LOGGING_IN);
+			
 			DataAccess.save(USERNAME, username);
 			DataAccess.save(PASSWORD, password);
 			Login(username, password, main.loginCallback, main.loginErrorCallback);
+		},
+		
+		ok: function(data) {
+			alert("ok");
+		},
+		
+		cancel: function(data) {
+			alert("cancel");
 		},
 		
 		loginCallback: function(data) {
@@ -25,8 +39,12 @@ var main = (function()
 		},
 		
 		loginErrorCallback: function(data) {
+
     		main.showLoginStatus(false);
+           	main.hideDialog();
 			alert("No internet ?!");
+
+			alert(ERROR_LOGIN);
 		},
 		
 		clickLogOut: function() {
@@ -58,33 +76,37 @@ var main = (function()
     	        {
     	        	duration: 500,
     	        	transitionType: 'default',
-    	        	uId: 5,
-    	        	pages:
-    	    		[
-    	        		'home',
-    	        		'settings',
-    	        		'snow',
-    	        		'snow_obs',
-    	        		'snow_hendelse',
-    	        		'snow_picture',
-    	        		'snow_faresign',
-    	        		'ice',
-    	        		'ice_obs',
-    	        		'ice_hendelse',
-    	        		'ice_picture',
-    	        		'water',
-    	        		'water_obs',
-    	        		'water_hendelse',
-    	        		'water_picture',
-    	        		'dirt',
-    	        		'dirt_obs',
-    	        		'dirt_hendelse',
-    	        		'dirt_picture'
-    	        	]
+    	        	uId: 5,pages:
+        	    		[
+	      	        		'home',
+	      	        		'settings',
+	      	        		'snow',
+	      	        		'snow_obs',
+	      	        		'snow_hendelse',
+	      	        		'snow_picture',
+	      	        		'snow_faresign',
+	      	        		'ice',
+	      	        		'ice_obs',
+	      	        		'ice_hendelse',
+	      	        		'ice_picture',
+	      	        		'water',
+	      	        		'water_obs',
+	      	        		'water_hendelse',
+	      	        		'water_picture',
+	      	        		'dirt',
+	      	        		'dirt_obs',
+	      	        		'dirt_hendelse',
+	      	        		'dirt_picture',
+	      	        		'learning_page'
+        	    		 ]
     	        }
     	    );
             document.body.appendChild(this.panels.getDomNode());
             
+            main.waitingDialog = new wink.ui.xy.Popup();
+            
+			document.body.appendChild(main.waitingDialog.getDomNode());
+			
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
 
@@ -135,6 +157,56 @@ var main = (function()
 			default:
 				break;
 			}
+			
+        },
+        
+        showFinishedUploadMessage: function()
+        {
+        	jQuery('.waitingDialog').html( "" +
+        			"<div> " +
+	        			"<p> Takk for observasjon </p>" +
+	        			"<button type='button' style='width: auto; display: inline' " +
+	        				"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +OK + 
+	        			"</button>" +
+	        			"<button type='button' style='width: auto; display: inline' " +
+	        				"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +SEND_EMAIL + 
+	        			"</button>" +
+        			"</div>");
+        },
+        
+        showDialogWithMessage: function(message) 
+        {
+        	main.waitingDialog.popup({
+		        content: "<div class='waitingDialog'>" +
+		        	message +
+		        "</div>",
+		    });
+        },
+        
+        showWaitingDialogWithMessage: function(message) 
+        {
+        	main.startDialog();
+        	main.waitingDialog.popup({
+		        content: "<div class='waitingDialog'>" +
+		        	message + "<img src='img/ajax-loader.gif' />" +
+		        "</div>",
+		        layerCallback: { context: main, method: 'nothing' } ,
+		    });
+        },
+        
+        nothing: function()
+        {
+        	
+        },
+        
+        startDialog: function()
+        {
+        	jQuery('.pp_popup').css('z-index', 999);
+        },
+        
+        hideDialog: function() {
+        	main.waitingDialog.hide();
+        	jQuery('.pp_popup').css('z-index', -99);
         },
         
         fillDangerSign: function(data) {
@@ -175,6 +247,12 @@ var main = (function()
         	} else {
         		jQuery('#login').attr("style", 'background-image: url(img/loggedout.png)');
         	}
+        	
+        	if(main.waitingDialog.displayed) 
+    		{
+        		main.hideDialog();
+        		alert(LOGGED_IN);
+    		}
         },
         
         hideNve: function(){
@@ -204,7 +282,6 @@ var main = (function()
         				$('back').style.display = 'none';
         				$('star').style.display = 'none';
         				
-        				$('mainBody').style.backgroundImage = '';
         				main.showNve();        				
         				main_page.init();
         				main.actualPage = 0;
@@ -220,7 +297,7 @@ var main = (function()
         		case 'snow':
         			if(status == 'start') {
         				snow_page.init();
-        				$('mainBody').style.backgroundImage = "url('img/snow_background.png')";
+        				//$('mainBody').style.backgroundImage = "url('img/snow_background.png')";
         				
         				main.actualPage = SNOW;
         			}
@@ -301,6 +378,12 @@ var main = (function()
         		case 'dirt_hendelse':
         			if(status == 'start') {
         				dirt_hendelse.init();
+        			}
+        			break;
+        			
+        		case 'learning_page':
+        			if(status == 'start') {
+        				learning_page.init();
         			}
         			break;
         			

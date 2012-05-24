@@ -6,9 +6,9 @@ var water_page = {
 	
 	longitude: 0,
 	
-	komm_nr: 0,
+	komm_nr: 1420,
 	
-	omrade_id: 0,
+	omrade_id: 122,
 
 	pos_obj: null,
 		
@@ -40,7 +40,7 @@ var water_page = {
 		var res = JSON.parse(data);
 
 		if(res != null) {
-			water_page.omrade_id = res.features[0].attributes.OMRAADEID;
+			water_page.omrade_id = res.features[0].attributes.OMRAADEID +OMRAADE_ID_OFFSET;
 		}		
 	},
 
@@ -89,7 +89,6 @@ var water_page = {
 
 			jQuery("#star").attr('src', 'img/stared.png');
 		} else {
-
 			jQuery("#star").attr('src', 'img/notstared.png');
 		}
 	},

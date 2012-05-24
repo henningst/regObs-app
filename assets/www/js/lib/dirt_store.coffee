@@ -46,4 +46,5 @@ class DirtStore extends AbstractStore
 		
 		DataAccess.save(DirtStore.name, this)
 		
+		main.hideDialog();
 		alert('Takk for observasjon')

@@ -46,4 +46,5 @@ class IceStore extends AbstractStore
 		
 		DataAccess.save(IceStore.name, this)
 		
+		main.hideDialog();
 		alert('Takk for observasjon')

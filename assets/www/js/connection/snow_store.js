@@ -83,7 +83,7 @@ SnowStore = (function(_super) {
     snow_hendelse.afterSendRegistration();
     snow_page.afterSendRegistration();
     DataAccess.save(SnowStore.name, this);
-    return alert('Takk for observasjon');
+    return main.showFinishedUploadMessage();
   };
 
   return SnowStore;

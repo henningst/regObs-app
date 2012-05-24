@@ -60,6 +60,7 @@ IceStore = (function(_super) {
     ice_hendelse.afterSendRegistration();
     ice_page.afterSendRegistration();
     DataAccess.save(IceStore.name, this);
+    main.hideDialog();
     return alert('Takk for observasjon');
   };
 

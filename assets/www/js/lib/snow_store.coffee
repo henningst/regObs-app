@@ -33,6 +33,7 @@ class SnowStore extends AbstractStore
 		@onAfterLocation(data)
 	
 	afterRegistration: (data) ->
+		
 		console.log(this)
 		i = 0
 		for obs in @m_snowObs
@@ -62,5 +63,4 @@ class SnowStore extends AbstractStore
 		snow_page.afterSendRegistration()
 		
 		DataAccess.save(SnowStore.name, this)
-		
-		alert('Takk for observasjon')
+		main.showFinishedUploadMessage()
