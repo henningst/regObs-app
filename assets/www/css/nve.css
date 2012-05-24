@@ -343,3 +343,11 @@ ul.actions li{
   width: 35px;	
   position: absolute;
 }
+
+#login{
+	
+	background: url(../img/loggedout.png);
+	background-size: 90%;
+	background-repeat: no-repeat;
+	background-position: center;
+}

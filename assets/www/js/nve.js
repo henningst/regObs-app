@@ -25,7 +25,7 @@ var main = (function()
 		},
 		
 		loginErrorCallback: function(data) {
-    		$('settings_img').style.backgroundColor = 'red';
+    		main.showLoginStatus(false);
 			alert("No internet ?!");
 		},
 		
@@ -39,7 +39,7 @@ var main = (function()
 		},
 		
 		logoutCallback: function() {
-        	$('settings_img').style.backgroundColor = 'red';
+        	main.showLoginStatus(false);
 		},
 		
 		starred: function() {
@@ -115,7 +115,7 @@ var main = (function()
 			if(username != undefined && password != undefined) {
 				Login(username, password, main.loginCallback);
         	} else {
-        		$('settings_img').style.backgroundColor = 'red';
+        		main.showLoginStatus(false);	
 			}
 			
 			switch (DataAccess.get(STARTUP_PAGE)) {
@@ -163,10 +163,25 @@ var main = (function()
         
         loggedInAsCallback: function (data) {
         	if(data.EMail != 'anonym@nve.no') {
-        		$('settings_img').style.backgroundColor = 'green';
+        		main.showLoginStatus(true);
         	} else {
-        		$('settings_img').style.backgroundColor = 'red';
+        		main.showLoginStatus(false);
         	}
+        },
+        
+        showLoginStatus: function(loggedIn){
+        	if(loggedIn == true) {
+        		jQuery('#login').attr("style", 'background-image: url(img/loggedin.png)');
+        	} else {
+        		jQuery('#login').attr("style", 'background-image: url(img/loggedout.png)');
+        	}
+        },
+        
+        hideNve: function(){
+        	jQuery("#regobs-info").hide();
+        },
+        showNve: function(){
+        	jQuery("#regobs-info").show();
         },
         
         toggleBackButtonDisplay: function(params, status) {
@@ -175,12 +190,14 @@ var main = (function()
         		if(status == 'start') {
     				$('back').style.display = 'block';
     				$('star').style.display = 'inline-table';
+    				main.hideNve();
     			}
         	}
         	
         	switch(params.id) {
         		case 'home':
         			if(status == 'end') {
+        				
         			}
         			
         			if(status == 'start') {
@@ -188,6 +205,7 @@ var main = (function()
         				$('star').style.display = 'none';
         				
         				$('mainBody').style.backgroundImage = '';
+        				main.showNve();        				
         				main_page.init();
         				main.actualPage = 0;
         			}

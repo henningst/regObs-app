@@ -80,7 +80,7 @@ var snow_page = {
 	
 	init: function() {
 		$('header_middle_text').innerHTML = "Sn&oslash;";
-		console.log("test");
+		
 		
 		//only update if its older than a minute
 		if(snow_page.pos_obj != null) {
