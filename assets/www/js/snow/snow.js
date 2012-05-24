@@ -34,6 +34,7 @@ var snow_page = {
 
 		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(snow_page.latitute, snow_page.longitude), snow_page.onAreaInformationResult);
+		console.log("snow init done");
 	},
 
 	onAreaInformationResult: function(data) {
@@ -79,6 +80,7 @@ var snow_page = {
 	
 	init: function() {
 		$('header_middle_text').innerHTML = "Sn&oslash;";
+		console.log("test");
 		
 		//only update if its older than a minute
 		if(snow_page.pos_obj != null) {
@@ -88,6 +90,7 @@ var snow_page = {
 		} else {
 			snow_page.doMeasurement();
 		}
+		
 		
 		if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == SNOW) {
 

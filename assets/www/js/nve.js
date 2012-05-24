@@ -2,6 +2,7 @@ var main = (function()
 {
     var main =
     {	
+        
     	actualPage: 0,
     		
     	store: new NveStore(),
@@ -53,8 +54,7 @@ var main = (function()
     	
         init: function()
         {
-        	this.panels = new wink.ui.layout.SlidingPanels
-            (
+        	this.panels = new wink.ui.layout.SlidingPanels(
     	        {
     	        	duration: 500,
     	        	transitionType: 'default',

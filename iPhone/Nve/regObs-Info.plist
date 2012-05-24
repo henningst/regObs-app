@@ -12,12 +12,26 @@
 	<string>icon.png</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>icon.png</string>
-		<string>icon@2x.png</string>
+		<string>regobs-57.png</string>
+		<string>regobs-114.png</string>
 		<string>icon-72.png</string>
 	</array>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>regobs-57.png</string>
+				<string>regobs-114.png</string>
+				<string>icon-72.png</string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>no.nlink.Nve</string>
+	<string>no.varsom.regobs</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -37,6 +51,9 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
