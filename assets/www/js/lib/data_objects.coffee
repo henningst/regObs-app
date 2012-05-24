@@ -118,6 +118,11 @@ class DamageExtentKD
 class DangerSignKD
 	url : "#{SERVER_URL}Language(#{LANGUAGE})/DangerSignKD"
 
+class DangerObs
+	url : "#{SERVER_URL}DangerObs"
+	constructor: (@DangerObsID, @RegID, @GeoHazardID, @DangerSignTID, @UsageFlagTID, @Comment) ->
+	
+
 class DestructiveSizeKD
 	constructor: ( ) ->
 
