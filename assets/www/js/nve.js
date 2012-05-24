@@ -67,7 +67,18 @@ var main = (function()
 			} else {
 				DataAccess.save(STARTUP_PAGE, main.actualPage);
 				jQuery("#star").attr('src', 'img/stared.png');	
-			}	
+			}
+			
+			main.toogleFavorite();
+		},
+		
+		toogleFavorite: function(){
+			if(DataAccess.get(STARTUP_PAGE) > 0){
+				jQuery(".footer .fav-inactive").removeClass("fav-inactive");
+			} else {
+				jQuery(".footer .fav, .footer .camera").addClass("fav-inactive");
+			}
+				
 		},
     	
         init: function()
@@ -141,6 +152,7 @@ var main = (function()
 			}
 			
 			main.slideToFavorite();
+			main.toogleFavorite();
 			
         },
         
@@ -284,6 +296,8 @@ var main = (function()
     				main.hideNve();
     			}
         	}
+        	
+        	main.toogleFavorite();
         	
         	switch(params.id) {
         		case 'home':

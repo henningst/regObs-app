@@ -391,6 +391,10 @@ ul.actions li{
 	overflow:hidden;
 }
 
+.fav-inactive{
+	opacity: .3;
+}
+
 .shortcut.last{
 	border-right: none;
 }
