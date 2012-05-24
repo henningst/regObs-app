@@ -16,7 +16,7 @@ SERVER_URL = "http://h-web01.nve.no/stage_regobsservices/Odata.svc/";
  * Platform
  */
 var device = {
-		platform: 'iphone'
+		platform: 'android'
 };
 
 /*
@@ -32,18 +32,13 @@ ICE = 2;
 WATER = 3;
 DIRT = 4;
 
+SNOW_GEO_HAZARD = 10;
+DIRT_GEO_HAZARD = 20;
+ICE_GEO_HAZARD = 70;
+WATER_GEO_HAZARD = 60;
+
 /*
  * Omraade id 
  */
 OMRAADE_ID_OFFSET = 100;
 
-/*
- * Text
- */
-LOGGED_IN  = "Logget inn !";
-ERROR_LOGIN =  "No internet ?!";
-LOGGING_IN = "Logger inn... ";
-PROCESS_PICTURE = "Prosess bilde... ";
-UPLOADING = "Laster opp... ";
-OK = "Ok";
-SEND_EMAIL = "Send epost";

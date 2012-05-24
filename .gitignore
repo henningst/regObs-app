@@ -12,6 +12,8 @@
 bin/
 gen/
 
+assets/www/js/nve_config.js
+
 # Local configuration file (sdk path, etc)
 local.properties
 

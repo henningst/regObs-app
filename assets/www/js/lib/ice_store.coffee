@@ -45,6 +45,4 @@ class IceStore extends AbstractStore
 		ice_page.afterSendRegistration()
 		
 		DataAccess.save(IceStore.name, this)
-		
-		main.hideDialog();
-		alert('Takk for observasjon')
+		main.showFinishedUploadMessage()

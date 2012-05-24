@@ -61,8 +61,7 @@ WaterStore = (function(_super) {
     water_hendelse.afterSendRegistration();
     water_page.afterSendRegistration();
     DataAccess.save(WaterStore.name, this);
-    main.hideDialog();
-    return alert('Takk for observasjon');
+    return main.showFinishedUploadMessage();
   };
 
   return WaterStore;

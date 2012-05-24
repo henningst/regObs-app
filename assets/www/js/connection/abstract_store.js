@@ -5,6 +5,7 @@ AbstractStore = (function() {
   function AbstractStore() {}
 
   AbstractStore.prototype.onError = function(data) {
+    alert(data.response.body);
     return alert("an error occured");
   };
 

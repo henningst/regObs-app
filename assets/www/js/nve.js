@@ -154,6 +154,24 @@ var main = (function()
 			main.slideToFavorite();
 			main.toogleFavorite();
 			
+			
+        },
+        
+        initPhonegap: function()
+        {
+        	document.addEventListener("backbutton", main.backKeyDown, true);
+        },
+        
+        backKeyDown: function() 
+        {
+        	if(main.actualPage != 0) {
+
+            	main.panels.slideBack();
+        	}
+        	else 
+    		{
+        		navigator.app.exitApp();
+    		}
         },
         
         favoritePage: function(){
@@ -330,6 +348,12 @@ var main = (function()
         			}
         			break;
         			
+        		case 'snow_obs':
+        			if(status == 'start') {
+        				snow_page.init();
+        			}
+        			break;
+        			
         		case 'snow_picture':
         			if(status == 'start') {
         				snow_picture.init();
@@ -355,6 +379,12 @@ var main = (function()
         				main.actualPage = WATER;
         			}
         			break;
+
+        		case 'water_obs':
+        			if(status == 'start') {
+        				water_page.init();
+        			}
+        			break;
         			
         		case 'water_picture':
         			if(status == 'start') {
@@ -376,6 +406,12 @@ var main = (function()
         			}
         			break;
         			
+        		case 'ice_obs':
+        			if(status == 'start') {
+        				ice_page.init();
+        			}
+        			break;
+        			
         		case 'ice_picture':
         			if(status == 'start') {
         				ice_picture.init();
@@ -393,6 +429,12 @@ var main = (function()
         				dirt_page.init();
         				
         				main.actualPage = DIRT;
+        			}
+        			break;
+        			
+        		case 'dirt_obs':
+        			if(status == 'start') {
+        				dirt_page.init();
         			}
         			break;
         			
@@ -421,7 +463,8 @@ var main = (function()
     }
      
     window.addEventListener('load', wink.bind(main.init, main), false);
-     
+    document.addEventListener("deviceready", main.initPhonegap, false);
+
     return main;
 }());
 

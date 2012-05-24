@@ -60,8 +60,7 @@ DirtStore = (function(_super) {
     dirt_hendelse.afterSendRegistration();
     dirt_page.afterSendRegistration();
     DataAccess.save(DirtStore.name, this);
-    main.hideDialog();
-    return alert('Takk for observasjon');
+    return main.showFinishedUploadMessage();
   };
 
   return DirtStore;

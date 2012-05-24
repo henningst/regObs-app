@@ -13,6 +13,10 @@ To start ripple, start chrome with --disable-web-security
 4. And select phonegap
 5. make sure that the "Cross Domain Proxy" is set to disabled. 
 
+! There is a problem with the newest version of Google Chrome, Mac and the winktoolkit, if you want to test inside the browser, you have to install an older version !
+
+Use http://mac.oldapps.com/google_chrome.php and version 16.0.912.63 (5 month ago)
+
 ### Bugreporting
 
 A form for submiting bugs.
