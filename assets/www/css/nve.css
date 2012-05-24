@@ -320,3 +320,26 @@ ul.actions li{
 	color: #2F2F2F;
   border-bottom: 1px solid white;	
 }
+
+.sl_container{
+  background-image: url("../img/bakgrunn.png");
+  background-repeat: no-repeat;
+  background-size: auto 100%;	
+}
+.w_header_custom{
+	z-index: 200;
+}
+
+#regobs-info{
+  background-image: url("../img/regObs-logo.png");
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;	
+}
+
+.header-button{
+  height: 35px;
+  width: 35px;	
+  position: absolute;
+}
