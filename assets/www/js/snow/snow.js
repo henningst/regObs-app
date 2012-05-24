@@ -34,7 +34,7 @@ var snow_page = {
 
 		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(snow_page.latitute, snow_page.longitude), snow_page.onAreaInformationResult);
-		console.log("snow init done");
+		
 	},
 
 	onAreaInformationResult: function(data) {
