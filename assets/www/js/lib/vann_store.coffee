@@ -46,6 +46,4 @@ class WaterStore extends AbstractStore
 		water_page.afterSendRegistration()
 		
 		DataAccess.save(WaterStore.name, this)
-		
-		main.hideDialog();
-		alert('Takk for observasjon')
+		main.showFinishedUploadMessage()

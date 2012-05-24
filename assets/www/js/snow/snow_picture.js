@@ -4,7 +4,7 @@ var snow_picture  = {
 		
 	addPicture: function() {
 		if(snow_picture.pictureData != null) {
-			var picture = new Picture(null, null, snow_picture.pictureData, null, null, null, $("snow_picture_comment").value);
+			var picture = new Picture(null, null, snow_picture.pictureData, null, null, null, SNOW_GEO_HAZARD, $("snow_picture_comment").value);
 			main.store.getSnow().addPicture(picture);
 			snow_picture.pictureData = null;
 

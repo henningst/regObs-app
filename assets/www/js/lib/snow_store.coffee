@@ -33,8 +33,6 @@ class SnowStore extends AbstractStore
 		@onAfterLocation(data)
 	
 	afterRegistration: (data) ->
-		
-		console.log(this)
 		i = 0
 		for obs in @m_snowObs
 			do(obs) ->

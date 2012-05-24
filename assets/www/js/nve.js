@@ -164,7 +164,14 @@ var main = (function()
         
         backKeyDown: function() 
         {
-        	main.panels.slideBack();
+        	if(main.actualPage != 0) {
+
+            	main.panels.slideBack();
+        	}
+        	else 
+    		{
+        		navigator.app.exitApp();
+    		}
         },
         
         showFinishedUploadMessage: function()

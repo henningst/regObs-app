@@ -45,6 +45,4 @@ class DirtStore extends AbstractStore
 		dirt_page.afterSendRegistration()
 		
 		DataAccess.save(DirtStore.name, this)
-		
-		main.hideDialog();
-		alert('Takk for observasjon')
+		main.showFinishedUploadMessage()

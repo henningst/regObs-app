@@ -32,6 +32,11 @@ ICE = 2;
 WATER = 3;
 DIRT = 4;
 
+SNOW_GEO_HAZARD = 10;
+DIRT_GEO_HAZARD = 20;
+ICE_GEO_HAZARD = 70;
+WATER_GEO_HAZARD = 60;
+
 /*
  * Omraade id 
  */

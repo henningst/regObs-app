@@ -4,7 +4,7 @@ var water_picture  = {
 		
 	addPicture: function() {
 		if(water_picture.pictureData != null) {
-			var picture = new Picture(null, null, water_picture.pictureData, null, null, null, $("water_picture_comment").value);
+			var picture = new Picture(null, null, water_picture.pictureData, null, null, null, WATER_GEO_HAZARD, $("water_picture_comment").value);
 			main.store.getWater().addPicture(picture);
 			water_picture.pictureData = null;
 

@@ -4,7 +4,7 @@ var dirt_picture  = {
 		
 	addPicture: function() {
 		if(dirt_picture.pictureData != null) {
-			var picture = new Picture(null, null, dirt_picture.pictureData, null, null, null, $("dirt_picture_comment").value);
+			var picture = new Picture(null, null, dirt_picture.pictureData, null, null, null, DIRT_GEO_HAZARD, $("dirt_picture_comment").value);
 			main.store.getDirt().addPicture(picture);
 			dirt_picture.pictureData = null;
 

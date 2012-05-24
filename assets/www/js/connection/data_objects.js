@@ -593,13 +593,14 @@ Picture = (function() {
 
   Picture.prototype.url = "" + SERVER_URL + "Picture";
 
-  function Picture(PictureID, RegID, PictureImage, Photographer, Copyright, Aspect, Comment) {
+  function Picture(PictureID, RegID, PictureImage, Photographer, Copyright, Aspect, GeoHazardTID, Comment) {
     this.PictureID = PictureID;
     this.RegID = RegID;
     this.PictureImage = PictureImage;
     this.Photographer = Photographer;
     this.Copyright = Copyright;
     this.Aspect = Aspect;
+    this.GeoHazardTID = GeoHazardTID;
     this.Comment = Comment;
   }
 

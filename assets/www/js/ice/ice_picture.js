@@ -4,7 +4,7 @@ var ice_picture  = {
 		
 	addPicture: function() {
 		if(ice_picture.pictureData != null) {
-			var picture = new Picture(null, null, ice_picture.pictureData, null, null, null, $("ice_picture_comment").value);
+			var picture = new Picture(null, null, ice_picture.pictureData, null, null, null, ICE_GEO_HAZARD, $("ice_picture_comment").value);
 			main.store.getIce().addPicture(picture);
 			ice_picture.pictureData = null;
 

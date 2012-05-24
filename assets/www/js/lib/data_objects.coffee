@@ -208,7 +208,7 @@ class ObsLocation
 
 class Picture
 	url: "#{SERVER_URL}Picture"
-	constructor: (@PictureID, @RegID, @PictureImage, @Photographer, @Copyright, @Aspect, @Comment) ->
+	constructor: (@PictureID, @RegID, @PictureImage, @Photographer, @Copyright, @Aspect, @GeoHazardTID, @Comment) ->
 
 class PrecipitationKD
 	constructor: ( ) ->

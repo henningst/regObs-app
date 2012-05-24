@@ -52,7 +52,6 @@ SnowStore = (function(_super) {
 
   SnowStore.prototype.afterRegistration = function(data) {
     var i, obs, picture, _fn, _fn1, _i, _j, _len, _len1, _ref, _ref1;
-    console.log(this);
     i = 0;
     _ref = this.m_snowObs;
     _fn = function(obs) {

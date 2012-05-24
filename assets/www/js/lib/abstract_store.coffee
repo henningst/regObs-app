@@ -1,6 +1,7 @@
 class AbstractStore
 
 	onError: (data) ->
+		alert(data.response.body)
 		alert("an error occured")
 	
 	onSend: (page) ->
