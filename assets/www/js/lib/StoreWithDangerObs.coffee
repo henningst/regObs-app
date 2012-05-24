@@ -1,6 +1,6 @@
 class StoreWithDangerObs extends AbstractStore
 
-	constructor: () ->
+	superConstructor: () ->
 		@m_dangerObs = []
 		@m_incident = null
 		@m_pictures = []
@@ -12,35 +12,35 @@ class StoreWithDangerObs extends AbstractStore
 	getIncident: () ->
 		@m_incident
 		
-	addSnowObs: (obs) ->
-		@m_snowObs.push(obs)
-		DataAccess.save(SnowStore.name, this)
+	addObs: (obs) ->
+		@m_dangerObs.push(obs)
+		DataAccess.save(@name, this)
 		
-	getSnowObs: () ->
-		@m_snowObs
+	getObs: () ->
+		@m_dangerObs
 		
 	addPicture: (picture) ->
 		@m_pictures.push(picture)
-		DataAccess.save(SnowStore.name, this)
+		DataAccess.save(@name, this)
 		
 	getPictures: () ->
 		@m_pictures
 		
 	send: () ->
-		@onSend(snow_page)
+		@onSend(@page)
 		
 	afterLocation: (data) ->
 		@onAfterLocation(data)
 	
 	afterRegistration: (data) ->
 		i = 0
-		for obs in @m_snowObs
+		for obs in @m_dangerObs
 			do(obs) ->
 				obs.RegID = data.RegID
-				obs.AvalancheDangerObsID = i++
+				obs.DangerObsID = i++
 				SendObjectToServer(obs)
 				
-		@m_snowObs.length = 0
+		@m_dangerObs.length = 0
 		
 		if @m_incident
 			@m_incident.RegID = data.RegID
@@ -56,9 +56,9 @@ class StoreWithDangerObs extends AbstractStore
 
 		@m_pictures.length = 0
 		
-		snow_picture.afterSendRegistration()
-		snow_hendelse.afterSendRegistration()
-		snow_page.afterSendRegistration()
+		@picturePage.afterSendRegistration()
+		@hendelsePage.afterSendRegistration()
+		@page.afterSendRegistration()
 		
-		DataAccess.save(SnowStore.name, this)
+		DataAccess.save(@name, this)
 		main.showFinishedUploadMessage()
