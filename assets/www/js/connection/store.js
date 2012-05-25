@@ -18,9 +18,12 @@ NveStore = (function() {
     } else {
       this.m_snowStore = DataAccess.get(SnowStore.name, new SnowStore());
       if (this.m_snowStore) {
+        this.m_snowStore.init();
         return this.m_snowStore;
       } else {
-        return this.m_snowStore = new SnowStore();
+        this.m_snowStore = new SnowStore();
+        this.m_snowStore.init();
+        return this.m_snowStore;
       }
     }
   };
@@ -40,9 +43,12 @@ NveStore = (function() {
     } else {
       this.m_dirtStore = DataAccess.get(DirtStore.name, new DirtStore());
       if (this.m_dirtStore) {
+        this.m_dirtStore.init();
         return this.m_dirtStore;
       } else {
-        return this.m_dirtStore = new DirtStore();
+        this.m_dirtStore = new DirtStore();
+        this.m_dirtStore.init();
+        return this.m_dirtStore;
       }
     }
   };
@@ -62,9 +68,12 @@ NveStore = (function() {
     } else {
       this.m_iceStore = DataAccess.get(IceStore.name, new IceStore());
       if (this.m_iceStore) {
+        this.m_iceStore.init();
         return this.m_iceStore;
       } else {
-        return this.m_iceStore = new IceStore();
+        this.m_iceStore = new IceStore();
+        this.m_iceStore.init();
+        return this.m_iceStore;
       }
     }
   };
@@ -84,9 +93,12 @@ NveStore = (function() {
     } else {
       this.m_waterStore = DataAccess.get(WaterStore.name, new WaterStore());
       if (this.m_waterStore) {
+        this.m_waterStore.init();
         return this.m_waterStore;
       } else {
-        return this.m_waterStore = new WaterStore();
+        this.m_waterStore = new WaterStore();
+        this.m_waterStore.init();
+        return this.m_waterStore;
       }
     }
   };

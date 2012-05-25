@@ -4,6 +4,11 @@ class SnowStore extends AbstractStore
 		@m_snowObs = []
 		@m_incident = null
 		@m_pictures = []
+		
+	init: () ->
+		@m_snowObs = (@fillAvalancheDangerObs obs for obs in @m_snowObs)
+		@m_pictures = (@fillPicture picture for picture in @m_pictures)
+		@m_incident = @fillIncident @m_incident if @m_incident
 	
 	setIncident: (incident) ->
 		@m_incident = incident
@@ -62,3 +67,13 @@ class SnowStore extends AbstractStore
 		
 		DataAccess.save(SnowStore.name, this)
 		main.showFinishedUploadMessage()
+		
+	fillIncident: (incident) =>	
+		new Incident(incident.RegID, incident.GeoHazardTID, incident.ActivityInfluencedTID, incident.DamageExtentTID, incident.ForecastAccurateTID, incident.DtEndTime, incident.IncidentHeader, incident.IncidentIngress, incident.IncidentText, incident.SensitiveText, incident.UsageFlagTID, incident.Comment)
+		
+	fillPicture: (picture) =>
+		new Picture(picture.PictureID, picture.RegID, picture.PictureImage, picture.Photographer, picture.Copyright, picture.Aspect, picture.GeoHazardTID, picture.Comment)
+		
+	fillAvalancheDangerObs: (obs) =>
+		new AvalancheDangerObs(obs.AvalancheDangerObsID, obs.RegID, obs.DangerSignTID, obs.UsageFlagTID, obs.Comment)
+		

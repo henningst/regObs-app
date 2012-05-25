@@ -120,7 +120,7 @@ class DangerSignKD
 
 class DangerObs
 	url : "#{SERVER_URL}DangerObs"
-	constructor: (@DangerObsID, @RegID, @GeoHazardID, @DangerSignTID, @UsageFlagTID, @Comment) ->
+	constructor: (@DangerObsID, @RegID, @GeoHazardTID, @DangerSignTID, @UsageFlagTID, @Comment) ->
 	
 
 class DestructiveSizeKD

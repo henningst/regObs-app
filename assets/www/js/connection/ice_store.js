@@ -10,12 +10,15 @@ IceStore = (function(_super) {
   IceStore.name = 'IceStore';
 
   function IceStore() {
+    this.superConstructor();
+  }
+
+  IceStore.prototype.init = function() {
     this.name = 'IceStore';
     this.page = ice_page;
     this.picturePage = ice_picture;
-    this.hendelsePage = ice_hendelse;
-    this.superConstructor();
-  }
+    return this.hendelsePage = ice_hendelse;
+  };
 
   return IceStore;
 

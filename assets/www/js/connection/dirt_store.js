@@ -10,12 +10,16 @@ DirtStore = (function(_super) {
   DirtStore.name = 'DirtStore';
 
   function DirtStore() {
+    this.superConstructor();
+  }
+
+  DirtStore.prototype.init = function() {
     this.name = 'DirtStore';
     this.page = dirt_page;
     this.picturePage = dirt_picture;
     this.hendelsePage = dirt_hendelse;
-    this.superConstructor();
-  }
+    return this.superInit();
+  };
 
   return DirtStore;
 

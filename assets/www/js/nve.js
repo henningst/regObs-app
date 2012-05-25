@@ -93,19 +93,22 @@ var main = (function()
 	      	        		'snow',
 	      	        		'snow_obs',
 	      	        		'snow_hendelse',
-	      	        		'snow_picture',
 	      	        		'snow_faresign',
+	      	        		'snow_picture',
 	      	        		'ice',
 	      	        		'ice_obs',
 	      	        		'ice_hendelse',
+	      	        		'ice_faresign',
 	      	        		'ice_picture',
 	      	        		'water',
 	      	        		'water_obs',
 	      	        		'water_hendelse',
+	      	        		'water_faresign',
 	      	        		'water_picture',
 	      	        		'dirt',
 	      	        		'dirt_obs',
 	      	        		'dirt_hendelse',
+	      	        		'dirt_faresign',
 	      	        		'dirt_picture',
 	      	        		'learning_page'
         	    		 ]
@@ -128,7 +131,7 @@ var main = (function()
             if(dangerSign == null) {
             	GetObjectFromServer(new DangerSignKD(), main.fillDangerSign);
             } else {
-            	snow_faresign.fill_snow_danger_sign(dangerSign);
+            	main.fillDangerSign(dangerSign);
             }
             if(activityInfluenced == null) {
             	GetObjectFromServer(new ActivityInfluencedKD(), main.fillActivityInfluenced);
@@ -152,8 +155,6 @@ var main = (function()
 			
 			main.slideToFavorite();
 			main.toogleFavorite();
-			
-			
         },
         
         initPhonegap: function()
@@ -213,7 +214,16 @@ var main = (function()
         			"</div>");
         },
         
-        
+        errorDialog: function() 
+        {
+        	jQuery('.waitingDialog').html( "" +
+        			"<div> " +
+	        			"<p> " +AN_ERROR_OCCURED  +"</p>" +
+	        			"<button type='button' style='width: auto; display: inline' " +
+	        				"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +OK + 
+	        			"</button>" +
+        			"</div>");
+        },
         
         showDialogWithMessage: function(message) 
         {
@@ -253,7 +263,12 @@ var main = (function()
         fillDangerSign: function(data) {
         	DataAccess.save(DangerSignKD.name, data);
         	
-        	snow_faresign.fill_snow_danger_sign(data);
+        	console.log(data);
+        	
+        	snow_faresign.fillDangerSign(data);
+        	water_faresign.fillDangerSign(data);
+        	ice_faresign.fillDangerSign(data);
+        	dirt_faresign.fillDangerSign(data);
         },
         
         fillActivityInfluenced: function(data) {
@@ -392,6 +407,12 @@ var main = (function()
         			}
         			break;
         			
+        		case 'water_faresign':
+        			if(status == 'start') {
+        				water_faresign.init();
+        			}
+        			break;
+        			
         		case 'ice':
         			if(status == 'start') {
         				ice_page.init();
@@ -418,6 +439,12 @@ var main = (function()
         			}
         			break;
         			
+        		case 'ice_faresign':
+        			if(status == 'start') {
+        				ice_faresign.init();
+        			}
+        			break;
+        			
         		case 'dirt':
         			if(status == 'start') {
         				dirt_page.init();
@@ -441,6 +468,12 @@ var main = (function()
         		case 'dirt_hendelse':
         			if(status == 'start') {
         				dirt_hendelse.init();
+        			}
+        			break;
+        			
+        		case 'dirt_faresign':
+        			if(status == 'start') {
+        				dirt_faresign.init();
         			}
         			break;
         			

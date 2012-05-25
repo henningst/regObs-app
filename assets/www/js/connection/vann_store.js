@@ -10,12 +10,15 @@ WaterStore = (function(_super) {
   WaterStore.name = 'WaterStore';
 
   function WaterStore() {
+    this.superConstructor();
+  }
+
+  WaterStore.prototype.init = function() {
     this.name = 'WaterStore';
     this.page = water_page;
     this.picturePage = water_picture;
-    this.hendelsePage = water_hendelse;
-    this.superConstructor();
-  }
+    return this.hendelsePage = water_hendelse;
+  };
 
   return WaterStore;
 

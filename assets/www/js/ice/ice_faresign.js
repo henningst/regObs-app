@@ -1,28 +1,28 @@
-var snow_faresign = {
+var ice_faresign = {
 
 		i: 0,
 		
 		fillDangerSign: function(data) {
-			var options = jQuery("#snow_danger_sign_list");
+			var options = jQuery("#ice_danger_sign_list");
 			
 			//remove if previously inserted
 			jQuery.each(options, function() {jQuery(this).find('option').remove()});
 			
 			jQuery.each(data.results, function() {
-				if(this.DangerSignTID < 10)
+				if(this.DangerSignTID > 699 && this.DangerSignTID < 800)
 					options.append(jQuery("<option />").val(this.DangerSignTID).text(this.DangerSignName));
 			});
 		},
 		
 		addFaresign: function() {
+			var obs = new DangerObs(ice_faresign.i++, null, ICE_GEO_HAZARD, $("ice_danger_sign_list").selectedIndex, 0, $("ice_danger_sign_comment").value);
+			main.store.getIce().addObs(obs);
 			
-			var obs = new AvalancheDangerObs(snow_faresign.i++, null, $("snow_danger_sign_list").selectedIndex, 0, $("snow_danger_sign_comment").value);
-			main.store.getSnow().addSnowObs(obs);
-			snow_page.add('snow_faresign_count');
+			ice_page.add('ice_faresign_count');
 			main.panels.slideBack();
 			
-			$("snow_danger_sign_list").selectedIndex = 0;
-			$("snow_danger_sign_comment").value = "";
+			$("ice_danger_sign_list").selectedIndex = 0;
+			$("ice_danger_sign_comment").value = "";
 		},
 		
 		init: function() {

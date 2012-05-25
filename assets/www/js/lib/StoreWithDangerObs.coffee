@@ -5,6 +5,11 @@ class StoreWithDangerObs extends AbstractStore
 		@m_incident = null
 		@m_pictures = []
 	
+	superInit: () ->
+		@m_dangerObs = (@fillDangerObs obs for obs in @m_dangerObs)
+		@m_pictures = (@fillPicture picture for picture in @m_pictures)
+		@m_incident = @fillIncident @m_incident if @m_incident
+	
 	setIncident: (incident) ->
 		@m_incident = incident
 		DataAccess.save(@name, this)
@@ -62,3 +67,13 @@ class StoreWithDangerObs extends AbstractStore
 		
 		DataAccess.save(@name, this)
 		main.showFinishedUploadMessage()
+		
+	fillIncident: (incident) =>	
+		new Incident(incident.RegID, incident.GeoHazardTID, incident.ActivityInfluencedTID, incident.DamageExtentTID, incident.ForecastAccurateTID, incident.DtEndTime, incident.IncidentHeader, incident.IncidentIngress, incident.IncidentText, incident.SensitiveText, incident.UsageFlagTID, incident.Comment)
+		
+	fillPicture: (picture) =>
+		new Picture(picture.PictureID, picture.RegID, picture.PictureImage, picture.Photographer, picture.Copyright, picture.Aspect, picture.GeoHazardTID, picture.Comment)
+		
+	fillDangerObs: (obs) =>
+		new DangerObs(obs.DangerObsID, obs.RegID, obs.GeoHazardTID, obs.DangerSignTID, obs.UsageFlagTID, obs.Comment)
+		

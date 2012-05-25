@@ -356,10 +356,10 @@ DangerObs = (function() {
 
   DangerObs.prototype.url = "" + SERVER_URL + "DangerObs";
 
-  function DangerObs(DangerObsID, RegID, GeoHazardID, DangerSignTID, UsageFlagTID, Comment) {
+  function DangerObs(DangerObsID, RegID, GeoHazardTID, DangerSignTID, UsageFlagTID, Comment) {
     this.DangerObsID = DangerObsID;
     this.RegID = RegID;
-    this.GeoHazardID = GeoHazardID;
+    this.GeoHazardTID = GeoHazardTID;
     this.DangerSignTID = DangerSignTID;
     this.UsageFlagTID = UsageFlagTID;
     this.Comment = Comment;
