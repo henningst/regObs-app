@@ -124,23 +124,45 @@ var main = (function()
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
 
             //init danger signs
+            //TODO what if we want to update the mobile clients?
+            var registrationKD = DataAccess.get(RegistrationKD.name);
             var dangerSign = DataAccess.get(DangerSignKD.name);
             var activityInfluenced = DataAccess.get(ActivityInfluencedKD.name);
             var damageExtent = DataAccess.get(DamageExtentKD.name);
             
-            if(dangerSign == null) {
+            if(registrationKD == null) 
+        	{
+            	GetObjectFromServer(new RegistrationKD(), main.fillRegistrationKD);
+        	}
+            else 
+            {
+            	main.fillRegistrationKD(registrationKD);
+            }
+            
+            if(dangerSign == null) 
+            {
             	GetObjectFromServer(new DangerSignKD(), main.fillDangerSign);
-            } else {
+            } 
+            else 
+            {
             	main.fillDangerSign(dangerSign);
             }
-            if(activityInfluenced == null) {
+            
+            if(activityInfluenced == null) 
+            {
             	GetObjectFromServer(new ActivityInfluencedKD(), main.fillActivityInfluenced);
-            } else {
+            } 
+            else 
+            {
             	main.fillActivityInfluenced(activityInfluenced);
             }
-            if(damageExtent == null) {
+            
+            if(damageExtent == null) 
+            {
             	GetObjectFromServer(new DamageExtentKD(), main.fillDamageExtent);
-            } else {
+            } 
+            else 
+            {
             	main.fillDamageExtent(damageExtent);
             }
             
@@ -258,6 +280,16 @@ var main = (function()
         hideDialog: function() {
         	main.waitingDialog.hide();
         	jQuery('.pp_popup').css('z-index', -99);
+        },
+        
+        fillRegistrationKD: function(data)
+        {
+        	DataAccess.save(RegistrationKD.name, data);
+
+        	snow_picture.fillRegistrationKD(data);
+        	water_picture.fillRegistrationKD(data);
+        	ice_picture.fillRegistrationKD(data);
+        	dirt_picture.fillRegistrationKD(data);
         },
         
         fillDangerSign: function(data) {

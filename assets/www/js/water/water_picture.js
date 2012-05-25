@@ -4,13 +4,26 @@ var water_picture  = {
 		
 	addPicture: function() {
 		if(water_picture.pictureData != null) {
-			var picture = new Picture(null, null, water_picture.pictureData, null, null, null, WATER_GEO_HAZARD, $("water_picture_comment").value);
+			var list = $('water_picture_spec_list');
+			
+			var picture = new Picture(null, null, water_picture.pictureData, null, null, null, WATER_GEO_HAZARD, $("water_picture_comment").value, list[list.selectedIndex].value);
 			main.store.getWater().addPicture(picture);
 			water_picture.pictureData = null;
 
 			water_page.add('water_picture_count');
 			main.panels.slideBack();
 		}
+	},
+	
+	fillRegistrationKD: function(data) {
+		var options = jQuery("#water_picture_spec_list");
+		//remove if previously inserted
+		jQuery.each(options, function() {jQuery(this).find('option').remove()});
+		
+		jQuery.each(data.results, function() {
+			if(this.RegistrationTID >= 60 && this.RegistrationTID < 70 || this.RegistrationTID == 11 || this.RegistrationTID == 13 || this.RegistrationTID == 99)
+				options.append(jQuery("<option />").val(this.RegistrationTID).text(this.RegistrationName));
+		});
 	},
 	
 	onSuccess: function(imageData) {

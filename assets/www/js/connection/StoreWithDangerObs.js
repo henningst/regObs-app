@@ -130,7 +130,7 @@ StoreWithDangerObs = (function(_super) {
   };
 
   StoreWithDangerObs.prototype.fillPicture = function(picture) {
-    return new Picture(picture.PictureID, picture.RegID, picture.PictureImage, picture.Photographer, picture.Copyright, picture.Aspect, picture.GeoHazardTID, picture.Comment);
+    return new Picture(picture.PictureID, picture.RegID, picture.PictureImage, picture.Photographer, picture.Copyright, picture.Aspect, picture.GeoHazardTID, picture.Comment, picture.RegistrationTID);
   };
 
   StoreWithDangerObs.prototype.fillDangerObs = function(obs) {

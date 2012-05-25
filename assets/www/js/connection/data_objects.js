@@ -612,7 +612,7 @@ Picture = (function() {
 
   Picture.prototype.url = "" + SERVER_URL + "Picture";
 
-  function Picture(PictureID, RegID, PictureImage, Photographer, Copyright, Aspect, GeoHazardTID, Comment) {
+  function Picture(PictureID, RegID, PictureImage, Photographer, Copyright, Aspect, GeoHazardTID, Comment, RegistrationTID) {
     this.PictureID = PictureID;
     this.RegID = RegID;
     this.PictureImage = PictureImage;
@@ -621,6 +621,7 @@ Picture = (function() {
     this.Aspect = Aspect;
     this.GeoHazardTID = GeoHazardTID;
     this.Comment = Comment;
+    this.RegistrationTID = RegistrationTID;
   }
 
   return Picture;
@@ -650,6 +651,8 @@ PropagationKD = (function() {
 RegistrationKD = (function() {
 
   RegistrationKD.name = 'RegistrationKD';
+
+  RegistrationKD.prototype.url = "" + SERVER_URL + "Language(" + LANGUAGE + ")/RegistrationKD";
 
   function RegistrationKD() {}
 

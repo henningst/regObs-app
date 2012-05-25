@@ -18,7 +18,7 @@ var water_page = {
 	//
 	onSuccess: function(position) {
 		position.taken = new Date();
-		snow_page.pos_obj = position;
+		water_page.pos_obj = position;
 		
 		var source = new Proj4js.Proj('EPSG:4326');    //source coordinates will be in Longitude/Latitude
 		var dest = new Proj4js.Proj('EPSG:32633');     //destination coordinates for Norway
