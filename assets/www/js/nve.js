@@ -14,6 +14,8 @@ var main = (function()
     	
     	panels: null,
     	
+    	lastRegID: -1,
+    	
 		clickLogin: function() {
 			var username = document.getElementById('login_username').value;
 			var password = document.getElementById('login_password').value;
@@ -231,7 +233,7 @@ var main = (function()
 	        				"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +OK + 
 	        			"</button>" +
 	        			"<button type='button' style='width: auto; display: inline' " +
-	        				"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +SEND_EMAIL + 
+	        				"class='w_bg_light c_button w_button w_radius' onclick='main.sendEmail();'>" +SEND_EMAIL + 
 	        			"</button>" +
         			"</div>");
         },
@@ -272,6 +274,12 @@ var main = (function()
         	
         },
         
+        sendEmail: function()
+        {
+        	main.hideDialog();
+        	console.log(GetObjectFromServer(new SendEmail(main.lastRegID)));
+        },
+        
         startDialog: function()
         {
         	jQuery('.pp_popup').css('z-index', 999);
@@ -294,8 +302,6 @@ var main = (function()
         
         fillDangerSign: function(data) {
         	DataAccess.save(DangerSignKD.name, data);
-        	
-        	console.log(data);
         	
         	snow_faresign.fillDangerSign(data);
         	water_faresign.fillDangerSign(data);
@@ -330,6 +336,7 @@ var main = (function()
         },
         
         showLoginStatus: function(loggedIn){
+
         	if(loggedIn == true) {
         		jQuery('#login').attr("style", 'background-image: url(img/loggedin.png)');
         	} else {

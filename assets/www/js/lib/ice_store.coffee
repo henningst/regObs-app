@@ -8,3 +8,5 @@ class IceStore extends StoreWithDangerObs
 		@page = ice_page
 		@picturePage = ice_picture
 		@hendelsePage = ice_hendelse
+		
+		@superInit()

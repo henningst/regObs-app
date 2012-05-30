@@ -92,7 +92,7 @@ var snow_page = {
 
 		var snowStore = main.store.getSnow();
 
-		$('snow_faresign_count').innerHTML = snowStore.getSnowObs().length
+		$('snow_faresign_count').innerHTML = snowStore.getObs().length
 		$('snow_picture_count').innerHTML = snowStore.getPictures().length
 		
 		if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == SNOW) {

@@ -6,7 +6,7 @@ var dirt_picture  = {
 		if(dirt_picture.pictureData != null) {
 			var list = $('dirt_picture_spec_list');
 			
-			var picture = new Picture(null, null, dirt_picture.pictureData, null, null, null, DIRT_GEO_HAZARD, $("dirt_picture_comment").value. list[list.selectedIndex].value);
+			var picture = new Picture(null, null, dirt_picture.pictureData, null, null, null, DIRT_GEO_HAZARD, $("dirt_picture_comment").value, parseInt(list[list.selectedIndex].value));
 			main.store.getDirt().addPicture(picture);
 			dirt_picture.pictureData = null;
 

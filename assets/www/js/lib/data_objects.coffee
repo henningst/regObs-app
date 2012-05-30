@@ -6,6 +6,11 @@ class Result
 
 	isOk: () ->
 		@ok
+		
+class SendEmail
+	url : ""
+	constructor: (@RegID ) ->
+		@url = "#{SERVER_URL}RegistrationNotification?RegID=#{RegID}"
 
 class Registration
 	url : "#{SERVER_URL}Registration"

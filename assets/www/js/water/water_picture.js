@@ -6,7 +6,7 @@ var water_picture  = {
 		if(water_picture.pictureData != null) {
 			var list = $('water_picture_spec_list');
 			
-			var picture = new Picture(null, null, water_picture.pictureData, null, null, null, WATER_GEO_HAZARD, $("water_picture_comment").value, list[list.selectedIndex].value);
+			var picture = new Picture(null, null, water_picture.pictureData, null, null, null, WATER_GEO_HAZARD, $("water_picture_comment").value, parseInt(list[list.selectedIndex].value));
 			main.store.getWater().addPicture(picture);
 			water_picture.pictureData = null;
 

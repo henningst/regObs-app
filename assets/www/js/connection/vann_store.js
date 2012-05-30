@@ -17,7 +17,8 @@ WaterStore = (function(_super) {
     this.name = 'WaterStore';
     this.page = water_page;
     this.picturePage = water_picture;
-    return this.hendelsePage = water_hendelse;
+    this.hendelsePage = water_hendelse;
+    return this.superInit();
   };
 
   return WaterStore;

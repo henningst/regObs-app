@@ -7,4 +7,6 @@ class WaterStore extends StoreWithDangerObs
 		@name = 'WaterStore'
 		@page = water_page
 		@picturePage = water_picture
-		@hendelsePage = water_hendelse	
+		@hendelsePage = water_hendelse
+			
+		@superInit()

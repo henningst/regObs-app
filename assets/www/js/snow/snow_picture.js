@@ -6,9 +6,9 @@ var snow_picture  = {
 		if(snow_picture.pictureData != null) {
 			var list = $('snow_picture_spec_list');
 			
-			var picture = new Picture(null, null, snow_picture.pictureData, null, null, null, SNOW_GEO_HAZARD, $("snow_picture_comment").value, list[list.selectedIndex].value);
+			var picture = new Picture(null, null, snow_picture.pictureData, null, null, null, SNOW_GEO_HAZARD, $("snow_picture_comment").value, parseInt(list[list.selectedIndex].value));
 			main.store.getSnow().addPicture(picture);
-			snow_picture.pictureData = null;
+			snow_picture.pictureData = null; 
 
 			snow_page.add('snow_picture_count');
 			main.panels.slideBack();
@@ -16,6 +16,7 @@ var snow_picture  = {
 	},
 
 	fillRegistrationKD: function(data) {
+
 		var options = jQuery("#snow_picture_spec_list");
 		//remove if previously inserted
 		jQuery.each(options, function() {jQuery(this).find('option').remove()});

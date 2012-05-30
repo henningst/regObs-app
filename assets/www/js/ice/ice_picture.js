@@ -6,7 +6,7 @@ var ice_picture  = {
 		if(ice_picture.pictureData != null) {
 			var list = $('ice_picture_spec_list');
 			
-			var picture = new Picture(null, null, ice_picture.pictureData, null, null, null, ICE_GEO_HAZARD, $("ice_picture_comment").value, list[list.selectedIndex].value);
+			var picture = new Picture(null, null, ice_picture.pictureData, null, null, null, ICE_GEO_HAZARD, $("ice_picture_comment").value, parseInt(list[list.selectedIndex].value));
 			main.store.getIce().addPicture(picture);
 			ice_picture.pictureData = null;
 

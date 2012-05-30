@@ -17,7 +17,8 @@ IceStore = (function(_super) {
     this.name = 'IceStore';
     this.page = ice_page;
     this.picturePage = ice_picture;
-    return this.hendelsePage = ice_hendelse;
+    this.hendelsePage = ice_hendelse;
+    return this.superInit();
   };
 
   return IceStore;

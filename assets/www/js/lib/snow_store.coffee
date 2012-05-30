@@ -1,15 +1,17 @@
 class SnowStore extends AbstractStore
 	
 	constructor: () ->
-		@m_snowObs = []
-		@m_incident = null
-		@m_pictures = []
+		@absConstructor()
 		
 	init: () ->
-		@m_snowObs = (@fillAvalancheDangerObs obs for obs in @m_snowObs)
-		@m_pictures = (@fillPicture picture for picture in @m_pictures)
-		@m_incident = @fillIncident @m_incident if @m_incident
+		@name = 'SnowStore'
+		@page = snow_page
+		@picturePage = snow_picture
+		@hendelsePage = snow_hendelse	
+		
+		@superInit()
 	
+	###
 	setIncident: (incident) ->
 		@m_incident = incident
 		DataAccess.save(SnowStore.name, this)
@@ -18,11 +20,11 @@ class SnowStore extends AbstractStore
 		@m_incident
 		
 	addSnowObs: (obs) ->
-		@m_snowObs.push(obs)
+		@m_dangerObs.push(obs)
 		DataAccess.save(SnowStore.name, this)
 		
 	getSnowObs: () ->
-		@m_snowObs
+		@m_dangerObs
 		
 	addPicture: (picture) ->
 		@m_pictures.push(picture)
@@ -32,28 +34,60 @@ class SnowStore extends AbstractStore
 		@m_pictures
 		
 	send: () ->
-		@onSend(snow_page)
+		if area? 
+			@onSend(snow_page, area) 
+		else 
+			@onSend(snow_page, true)
 		
-	afterLocation: (data) ->
-		@onAfterLocation(data)
+	afterLocation: (data, area, force) ->
+		@onAfterLocation(data, area, force)
 	
-	afterRegistration: (data) ->
+	afterRegistration: (data, area, force) ->
+		if area
+			@completeAreaRegistration(data, force)
+		else 
+			@completePointRegistration(data)
+		
+	completeAreaRegistration: (data, force) ->
 		i = 0
-		for obs in @m_snowObs
+		for obs in @m_dangerObs 
 			do(obs) ->
 				obs.RegID = data.RegID
 				obs.AvalancheDangerObsID = i++
 				SendObjectToServer(obs)
 				
-		@m_snowObs.length = 0
+		@m_dangerObs.length = 0
+
+		i = 0
+		bilde = @cutOutPictures(true)
+		for picture in bilde
+			do(picture) ->
+				picture.RegID = data.RegID
+				picture.PictureID = i++
+				SendObjectToServer(picture)
+
+		if @m_incident and (i isnt 0 or force)
+			@m_incident.RegID = data.RegID
+			SendObjectToServer(@m_incident)
+			@m_incident = null
+
+		snow_picture.afterSendRegistration()
+		snow_hendelse.afterSendRegistration()
 		
+		DataAccess.save(SnowStore.name, this)
+		
+		if not force
+			@onSend(snow_page, false)
+	
+	completePointRegistration: (data) ->
 		if @m_incident
 			@m_incident.RegID = data.RegID
 			SendObjectToServer(@m_incident)
 			@m_incident = null
 
 		i = 0
-		for picture in @m_pictures
+		bilde = @cutOutPictures(false)
+		for picture in bilde
 			do(picture) ->
 				picture.RegID = data.RegID
 				picture.PictureID = i++
@@ -65,15 +99,16 @@ class SnowStore extends AbstractStore
 		snow_hendelse.afterSendRegistration()
 		snow_page.afterSendRegistration()
 		
+		main.lastRegID = data.RegID
 		DataAccess.save(SnowStore.name, this)
 		main.showFinishedUploadMessage()
-		
+				
 	fillIncident: (incident) =>	
 		new Incident(incident.RegID, incident.GeoHazardTID, incident.ActivityInfluencedTID, incident.DamageExtentTID, incident.ForecastAccurateTID, incident.DtEndTime, incident.IncidentHeader, incident.IncidentIngress, incident.IncidentText, incident.SensitiveText, incident.UsageFlagTID, incident.Comment)
 		
 	fillPicture: (picture) =>
-		new Picture(picture.PictureID, picture.RegID, picture.PictureImage, picture.Photographer, picture.Copyright, picture.Aspect, picture.GeoHazardTID, picture.Comment)
+		new Picture(picture.PictureID, picture.RegID, picture.PictureImage, picture.Photographer, picture.Copyright, picture.Aspect, picture.GeoHazardTID, picture.Comment, picture.RegistrationTID)
 		
 	fillAvalancheDangerObs: (obs) =>
 		new AvalancheDangerObs(obs.AvalancheDangerObsID, obs.RegID, obs.DangerSignTID, obs.UsageFlagTID, obs.Comment)
-		
+	###

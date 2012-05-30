@@ -39,7 +39,7 @@ Logout = (callback, onError) ->
 			onError(data) if onError
 		}
 	)	
-	 
+
 LoggedInAs = (callback) ->
 	result = new Result
 	OData.request({
@@ -51,7 +51,7 @@ LoggedInAs = (callback) ->
 		callback(data.results[0]) if callback
 	)
 	result
-		
+	
 GetObjectFromServer = (call, callback, onError) ->
 	result = new Result
 	OData.request({
