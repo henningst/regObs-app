@@ -160,18 +160,18 @@ class AbstractStore
 	cutOutPictures: (area) ->
 		i = 0
 		erg = []
-		alert(@m_pictures.length)
 		while i < @m_pictures.length
 			picture = @m_pictures[i]
-			
 			if area
 				if picture.RegistrationTID not in [21, 22, 23, 25, 26, 50, 51, 61, 71]
-					erg.push @m_pictures.splice(i, 1)
+					erg.push picture
+					@m_pictures.splice(i, 1)
 				else
 					i++
 			else
 				if picture.RegistrationTID in [21, 22, 23, 25, 26, 50, 51, 61, 71]
-					erg.push @m_pictures.splice(i, 1)
+					erg.push picture 
+					@m_pictures.splice(i, 1)
 				else
 					i++
 		erg

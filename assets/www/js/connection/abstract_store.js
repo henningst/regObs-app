@@ -257,18 +257,19 @@ AbstractStore = (function() {
     var erg, i, picture, _ref, _ref1;
     i = 0;
     erg = [];
-    alert(this.m_pictures.length);
     while (i < this.m_pictures.length) {
       picture = this.m_pictures[i];
       if (area) {
         if ((_ref = picture.RegistrationTID) !== 21 && _ref !== 22 && _ref !== 23 && _ref !== 25 && _ref !== 26 && _ref !== 50 && _ref !== 51 && _ref !== 61 && _ref !== 71) {
-          erg.push(this.m_pictures.splice(i, 1));
+          erg.push(picture);
+          this.m_pictures.splice(i, 1);
         } else {
           i++;
         }
       } else {
         if ((_ref1 = picture.RegistrationTID) === 21 || _ref1 === 22 || _ref1 === 23 || _ref1 === 25 || _ref1 === 26 || _ref1 === 50 || _ref1 === 51 || _ref1 === 61 || _ref1 === 71) {
-          erg.push(this.m_pictures.splice(i, 1));
+          erg.push(picture);
+          this.m_pictures.splice(i, 1);
         } else {
           i++;
         }

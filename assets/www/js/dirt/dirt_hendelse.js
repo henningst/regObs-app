@@ -47,7 +47,7 @@ var dirt_hendelse = {
 			
 			var incident = new Incident(
 					null, 
-					20, 
+					DIRT_GEO_HAZARD, 
 					activityList[activityList.selectedIndex].value,
 					radiusList[radiusList.selectedIndex].value,
 					0,
