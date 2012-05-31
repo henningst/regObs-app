@@ -110,8 +110,5 @@ DIRT_DANGERSIGN = "DIRT_DANGERSIGN";
 
 DIRT_INCIDENT = "DIRT_INCIDENT";
 
-/*
- * Om appen slik funnet bak logoen paa forsiden
- */
 ABOUT_REGOBS = "Mer text her. ABOUT_REGOBS";
 
