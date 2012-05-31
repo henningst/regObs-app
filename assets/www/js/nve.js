@@ -130,6 +130,7 @@ var main = (function()
 				'autoPlay': 1,
 				'autoPlayDuration': 4000,
 				'firstItemIndex': 2,
+				'uId': SNOW,
 				'items':
         		[
 	            	{'type': 'string', 'content': TEXT_1},
@@ -145,6 +146,9 @@ var main = (function()
         	$('snow_carusel').appendChild(carousel1.getDomNode());
             
 			document.body.appendChild(main.waitingDialog.getDomNode());
+			
+			wink.subscribe('/carousel/events/switch', {context: this, method: 'logData'}); 
+//            wink.subscribe('/carousel/events/switch ', {context: this, method: 'logData', arguments: 'log'});
 			
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
@@ -203,6 +207,37 @@ var main = (function()
 			
 			main.slideToFavorite();
 			main.toogleFavorite();
+        },
+        
+        carouselMoved: function(data)
+        {
+        	switch(data.carouselId)
+        	{
+        	case SNOW:
+        		snow_hendelse.changeCarouselTo(data.currentItemIndex);
+        		
+        		break;
+        		
+        	case DIRT:
+        		dirt_hendelse.changeCarouselTo(data.currentItemIndex);
+        		
+        		break;
+        		
+        	case ICE:
+        		ice_hendelse.changeCarouselTo(data.currentItemIndex);
+        		
+        		break;
+        		
+        	case WATER:
+        		water_hendelse.changeCarouselTo(data.currentItemIndex);
+        		
+        		break;
+        	}
+        },
+        
+        logData: function (data)
+        {
+        	console.log(data);
         },
         
         initPhonegap: function()

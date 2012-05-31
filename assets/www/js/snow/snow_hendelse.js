@@ -21,6 +21,11 @@ var snow_hendelse = {
 			});
 		},
 		
+		changeCarouselTo: function(id) 
+		{
+			
+		},
+		
 		afterSendRegistration: function() {
 			$("snow_hendelse_activity_list").selectedIndex = 0;
 			$("snow_hendelse_radius_list").selectedIndex = 0;
