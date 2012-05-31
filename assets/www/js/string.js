@@ -55,6 +55,46 @@ DIRT_TEXT =
 		"Gjelder for fylket/ varslingsregionen.",
 	 ];
 
-SNOW_PICTURE ="<H3>Hvordan ta et godt bilde</H3><ul><li>Tenk på at et bilde skal beskrive noe som kan nyttes av andre når de skal gjøre seg en vurdering av forholdene.</li><li>Hvis bildet skal sees i sammenheng med en annen observasjon, velg den i nedtrekksmenyen.</li><li>Svært nyttige bilder å få inn er: snøfordelig i området, skred, skavler, snøprofilet ift terrenget rundt, fete skibilder.</li><li>Ikke så nyttige bilder å få inn: noen som graver et snøprofil.</li></ul>";
+SNOW_PICTURE =  "<H3>Hvordan ta et godt bilde</H3>"
+              + "<ul>" 
+              + "<li>Tenk på at et bilde skal beskrive noe som kan nyttes av andre når de skal gjøre seg en vurdering av forholdene.</li>"
+              + "<li>Hvis bildet skal sees i sammenheng med en annen observasjon, velg den i nedtrekksmenyen.</li>"
+              + "<li>Svært nyttige bilder å få inn er: snøfordelig i området, skred, skavler, snøprofilet ift terrenget rundt, fete skibilder.</li>"
+              + "<li>Ikke så nyttige bilder å få inn: noen som graver et snøprofil.</li>"
+              + "</ul>";
+              
+SNOW_DANGERSIGN =  "<H3>Hvordan ta et godt bilde</H3>"
+              + "<ul>" 
+              + "<li>Tenk på at et bilde skal beskrive noe som kan nyttes av andre når de skal gjøre seg en vurdering av forholdene.</li>"
+              + "<li>Hvis bildet skal sees i sammenheng med en annen observasjon, velg den i nedtrekksmenyen.</li>"
+              + "<li>Svært nyttige bilder å få inn er: snøfordelig i området, skred, skavler, snøprofilet ift terrenget rundt, fete skibilder.</li>"
+              + "<li>Ikke så nyttige bilder å få inn: noen som graver et snøprofil.</li>"
+              + "</ul>";
+
+SNOW_INCIDENT =  "<H3>Hvordan ta et godt bilde</H3>"
+              + "<ul>" 
+              + "<li>Tenk på at et bilde skal beskrive noe som kan nyttes av andre når de skal gjøre seg en vurdering av forholdene.</li>"
+              + "<li>Hvis bildet skal sees i sammenheng med en annen observasjon, velg den i nedtrekksmenyen.</li>"
+              + "<li>Svært nyttige bilder å få inn er: snøfordelig i området, skred, skavler, snøprofilet ift terrenget rundt, fete skibilder.</li>"
+              + "<li>Ikke så nyttige bilder å få inn: noen som graver et snøprofil.</li>"
+              + "</ul>";
+
+ICE_PICTURE =  "<H3>Hvordan ta et godt isbilde</H3>";
+              
+ICE_DANGERSIGN = "";
+
+ICE_INCIDENT = "";
+
+WATER_PICTURE =  "<H3>Hvordan ta et godt vannbilde</H3>";
+              
+WATER_DANGERSIGN = "";
+
+WATER_INCIDENT = "";
+
+DIRT_PICTURE =  "<H3>Hvordan ta et godt vannbilde</H3>";
+              
+DIRT_DANGERSIGN = "";
+
+DIRT_INCIDENT = "";
 
 ABOUT_REGOBS = "Mer text her";
