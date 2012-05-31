@@ -80,8 +80,8 @@ SNOW_DANGERSIGN =
 	+ "<p>Derfor er det ogs&aring; viktig at man legger til ansl&aring;tt utstrekning p&aring; faretegnet.</p>";
 
 SNOW_INCIDENT =  
-	" <h3>Ulykker, nestenulykker og hendelser</h3>"
-	+ "<div>Vi &oslash;nkser &aring; l&aelig;re av deres feil. Vi &oslash;nsker at dere skal l&aelig;re av andres feil.</div>
+	"<h3>Ulykker, nestenulykker og hendelser</h3>"
+	+ "<div>Vi &oslash;nkser &aring; l&aelig;re av deres feil. Vi &oslash;nsker at dere skal l&aelig;re av andres feil.</div>"
 	+ "<ul>"
 	+ "<li>Hvis man legger inn info n&aring;r det skjer noe kan alle l&aelig;re av ulykken og den kan ha en forebyggende effekt.</li>"
 	+ "<li>Ut fra en beredskapstankegang er det nyttig &aring; f&aring; vite om hendelser for &aring; kunne oppdatere innholdet s&aring; det blir mer relevant for det som skjer.</li>"
