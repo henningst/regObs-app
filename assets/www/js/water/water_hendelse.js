@@ -23,6 +23,12 @@ var water_hendelse = {
 			});
 		},
 		
+
+		changeCarouselTo: function(id) 
+		{
+			$("water_hendelse_comment").value = WATER_TEXT[id];
+		},
+		
 		afterSendRegistration: function() {
 			$("water_hendelse_activity_list").selectedIndex = 0;
 			$("water_hendelse_radius_list").selectedIndex = 0;

@@ -120,34 +120,37 @@ var main = (function()
             document.body.appendChild(this.panels.getDomNode());
             
             main.waitingDialog = new wink.ui.xy.Popup();
-            
-            var properties1 = 
-            {
-				'itemsWidth': 150,
-				'itemsHeight': 35,
-				'autoAdjust': 1,
-				'autoAdjustDuration': 400,
-				'autoPlay': 1,
-				'autoPlayDuration': 4000,
-				'firstItemIndex': 2,
-				'uId': SNOW,
-				'items':
-        		[
-	            	{'type': 'string', 'content': TEXT_1},
-	            	{'type': 'string', 'content': TEXT_2},
-	            	{'type': 'string', 'content': TEXT_3},
-	            	{'type': 'string', 'content': TEXT_4},
-	            	{'type': 'string', 'content': TEXT_5},
-	            	{'type': 'string', 'content': TEXT_6}
-            	]
-        	};
-
-        	carousel1 = new wink.ui.xy.Carousel(properties1);
-        	$('snow_carusel').appendChild(carousel1.getDomNode());
-            
 			document.body.appendChild(main.waitingDialog.getDomNode());
+            
+//            var properties = 
+//            {
+//				'itemsWidth': 150,
+//				'itemsHeight': 35,
+//				'autoAdjust': 1,
+//				'autoAdjustDuration': 400,
+//				'autoPlay': 1,
+//				'autoPlayDuration': 4000,
+//				'firstItemIndex': 2,
+//				'uId': SNOW,
+//				'items':
+//        		[
+//	            	{'type': 'string', 'content': SNOW_TEXT[0]},
+//	            	{'type': 'string', 'content': SNOW_TEXT[1]},
+//	            	{'type': 'string', 'content': SNOW_TEXT[2]},
+//	            	{'type': 'string', 'content': SNOW_TEXT[3]},
+//	            	{'type': 'string', 'content': SNOW_TEXT[4]},
+//	            	{'type': 'string', 'content': SNOW_TEXT[5]}
+//            	]
+//        	};
+//
+//        	carousel = new wink.ui.xy.Carousel(properties);
+        	$('snow_carusel').appendChild(main.createCarousel(SNOW, SNOW_TEXT).getDomNode());
+        	$('ice_carusel').appendChild(main.createCarousel(ICE, ICE_TEXT).getDomNode());
+        	$('dirt_carusel').appendChild(main.createCarousel(DIRT, DIRT_TEXT).getDomNode());
+        	$('water_carusel').appendChild(main.createCarousel(WATER, WATER_TEXT).getDomNode());
+            
 			
-			wink.subscribe('/carousel/events/switch', {context: this, method: 'logData'}); 
+			wink.subscribe('/carousel/events/switch', {context: this, method: 'carouselChanged'}); 
 //            wink.subscribe('/carousel/events/switch ', {context: this, method: 'logData', arguments: 'log'});
 			
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
@@ -231,6 +234,25 @@ var main = (function()
         	case WATER:
         		water_hendelse.changeCarouselTo(data.currentItemIndex);
         		
+        		break;
+        	}
+        },
+
+        carouselChanged: function (data)
+        {
+        	switch(data.carouselId)
+        	{
+        	case SNOW:
+        		snow_hendelse.changeCarouselTo(data.currentItemIndex);
+        		break;
+        	case ICE:
+        		ice_hendelse.changeCarouselTo(data.currentItemIndex);
+        		break;
+        	case WATER:
+        		water_hendelse.changeCarouselTo(data.currentItemIndex);
+        		break;
+        	case DIRT:
+        		dirt_hendelse.changeCarouselTo(data.currentItemIndex);
         		break;
         	}
         },
@@ -326,6 +348,30 @@ var main = (function()
 		        "</div>",
 		        layerCallback: { context: main, method: 'nothing' } ,
 		    });
+        },
+        
+        createCarousel: function(id, items)
+        {
+        	var properties = 
+            {
+				'itemsWidth': 150,
+				'itemsHeight': 35,
+				'autoAdjust': 1,
+				'autoAdjustDuration': 400,
+				'firstItemIndex': 2,
+				'uId': id,
+				'items':
+        		[
+            	]
+        	};
+        	
+        	for(var i = 0; i < items.length; ++i)
+        	{
+        		properties.items.push({'type': 'string', 'content': items[i]});
+        	}
+
+        	return new wink.ui.xy.Carousel(properties);
+        	
         },
         
         nothing: function()

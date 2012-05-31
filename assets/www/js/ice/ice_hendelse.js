@@ -21,6 +21,11 @@ var ice_hendelse = {
 			    options.append(jQuery("<option />").val(this.DamageExtentTID).text(this.DamageExtentName));
 			});
 		},
+
+		changeCarouselTo: function(id) 
+		{
+			$("ice_hendelse_comment").value = ICE_TEXT[id];
+		},
 		
 		afterSendRegistration: function() {
 			$("ice_hendelse_activity_list").selectedIndex = 0;

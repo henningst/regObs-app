@@ -35,7 +35,7 @@ var snow_page = {
 		GetObjectFromServer(new AreaInformation(snow_page.latitute, snow_page.longitude), snow_page.onAreaInformationResult);
 		
 	},
-
+	
 	onAreaInformationResult: function(data) {
 		var res = JSON.parse(data);
 

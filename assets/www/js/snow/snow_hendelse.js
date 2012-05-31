@@ -23,7 +23,7 @@ var snow_hendelse = {
 		
 		changeCarouselTo: function(id) 
 		{
-			
+			$("snow_hendelse_comment").value = SNOW_TEXT[id];
 		},
 		
 		afterSendRegistration: function() {
