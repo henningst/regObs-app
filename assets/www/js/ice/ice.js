@@ -29,8 +29,8 @@ var ice_page = {
 		ice_page.longitude= Math.round(p.x);
 		ice_page.latitute  = Math.round(p.y);
 		
-		$('ice_position_header_position').innerHTML = Math.round(position.coords.latitude * NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA +" , " 
-		+Math.round(position.coords.longitude* NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA;
+		jQuery('position_header_position').html(Math.round(position.coords.latitude * NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA +" , " 
+		+Math.round(position.coords.longitude* NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA);
 		
 		GetObjectFromServer(new PositionDetails(ice_page.latitute, ice_page.longitude), ice_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(ice_page.latitute, ice_page.longitude), ice_page.onAreaInformationResult);
@@ -47,15 +47,15 @@ var ice_page = {
 	// onError Callback receives a PositionError object
 	//
 	onError: function(error) {
-		$('ice_position_header_position').innerHTML = "no" +" , " +"geodata";
+		jQuery('position_header_position').html("no" +" , " +"geodata");
 	},
 	
 	onKommuneResult : function(data) {
 		var res = JSON.parse(data);
 
 		if(res != null) {
-			$("ice_position_header_town").innerHTML = res.features[0].attributes.KOMMNAVN;
-			$("ice_position_header_county").innerHTML = res.features[0].attributes.FYLKENAVN;
+			jQuery("position_header_town").html(res.features[0].attributes.KOMMNAVN);
+			jQuery("position_header_county").html(res.features[0].attributes.FYLKENAVN);
 			ice_page.komm_nr = res.features[0].attributes.KOMM_NR;
 		}
 	},

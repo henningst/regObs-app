@@ -29,8 +29,8 @@ var water_page = {
 		water_page.longitude= Math.round(p.x);
 		water_page.latitute  = Math.round(p.y);
 		
-		$('water_position_header_position').innerHTML = Math.round(position.coords.latitude * NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA +" , " 
-		+Math.round(position.coords.longitude* NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA;
+		jQuery('position_header_position').html(Math.round(position.coords.latitude * NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA +" , " 
+		+Math.round(position.coords.longitude* NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA);
 		
 		GetObjectFromServer(new PositionDetails(water_page.latitute, water_page.longitude), water_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(water_page.latitute, water_page.longitude), water_page.onAreaInformationResult);
@@ -47,15 +47,15 @@ var water_page = {
 	// onError Callback receives a PositionError object
 	//
 	onError: function(error) {
-		$('water_position_header_position').innerHTML = "no" +" , " +"geodata";
+		jQuery('position_header_position').html("no" +" , " +"geodata");
 	},
 	
 	onKommuneResult : function(data) {
 		var res = JSON.parse(data);
 
 		if(res != null) {
-			$("water_position_header_town").innerHTML = res.features[0].attributes.KOMMNAVN;
-			$("water_position_header_county").innerHTML = res.features[0].attributes.FYLKENAVN;
+			jQuery("position_header_town").html(res.features[0].attributes.KOMMNAVN);
+			jQuery("position_header_county").html(res.features[0].attributes.FYLKENAVN);
 			water_page.komm_nr = res.features[0].attributes.KOMM_NR;
 		}
 	},
