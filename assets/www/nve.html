@@ -73,6 +73,7 @@
 	<script type="text/javascript" src="js/connection/ice_store.js"></script>
 	
 	<script type="text/javascript" src="js/learning/learning.js"></script>
+	<script type="text/javascript" src="js/information/information.js"></script>
 	
 	
 	<script type="text/javascript" src="js/nve.js"></script>
@@ -81,7 +82,7 @@
 		body
 		{
 			background-color: white;
-			padding-bottom: 40px;
+			
 		}
 		.disabled
 		{
@@ -109,7 +110,7 @@
     	<div id="back" class="w_button_custom w_back w_left c_color_gradient">
 	        <input type="button" value="Tilbake" class="c_color_gradient" onclick="main.panels.slideBack();" />
 	    </div>
-	    <div id="regobs-info" class="w_left header-button">
+	    <div id="regobs-info" class="w_left header-button" onclick="main.panels.slideTo('information')">
 	    </div>
 	    
 	    <div>
@@ -159,9 +160,15 @@
             <input type="password" id="login_password" class="large settingsInput" value="" />
             <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logg inn' onclick="main.clickLogin();" />
             <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logg ut' onclick="main.clickLogOut();" />
-            <br><span>versjon: 0.7.1</span>
+            <br>
 	    </div>
 	</div> 
+	
+	<div id="information">
+	 <div class="standartTextSize c_align_central">
+	   <span>Versjon: 0.7.1</span>
+	 </div>
+	</div>
 	
 <!-- 	SNOW - PAGES -->
 	<div id="snow">
