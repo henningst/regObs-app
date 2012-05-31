@@ -24,7 +24,7 @@ var ice_hendelse = {
 
 		changeCarouselTo: function(id) 
 		{
-			$("ice_hendelse_comment").value = ICE_TEXT[id];
+//			$("ice_hendelse_comment").value = ICE_TEXT[id];
 		},
 		
 		afterSendRegistration: function() {

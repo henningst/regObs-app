@@ -25,7 +25,7 @@ var dirt_hendelse = {
 
 		changeCarouselTo: function(id) 
 		{
-			$("dirt_hendelse_comment").value = DIRT_TEXT[id];
+//			$("dirt_hendelse_comment").value = DIRT_TEXT[id];
 		},
 		
 		afterSendRegistration: function() {
