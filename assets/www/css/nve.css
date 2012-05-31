@@ -348,11 +348,11 @@ ul.actions li{
 }
 
 #regobs-info{
-  background-image: url("../img/regObs-logo.png");
+  background: url("../img/regobs-logo.png");
   background-size: 90%;
   background-repeat: no-repeat;
   background-position: center;
-  cursor: pointer;	
+  top:5px;
 }
 
 .header-button{
@@ -385,7 +385,6 @@ ul.actions li{
 	width: 23.5%;
 	height: 100%;
 	text-align: center;
-	border-right: 1px solid #ccc;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: auto 50%;
