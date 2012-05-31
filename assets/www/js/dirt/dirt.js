@@ -41,6 +41,7 @@ var dirt_page = {
 
 		if(res != null) {
 			dirt_page.omrade_id = res.features[0].attributes.OMRAADEID +OMRAADE_ID_OFFSET
+			jQuery('.county_b').html(res.features[0].attributes.OMRAADENAVN);
 		}		
 	},
 
@@ -54,8 +55,7 @@ var dirt_page = {
 		var res = JSON.parse(data);
 
 		if(res != null) {
-			jQuery("position_header_town").html(res.features[0].attributes.KOMMNAVN);
-			jQuery("position_header_county").html(res.features[0].attributes.FYLKENAVN);
+			jQuery(".county_a").html(res.features[0].attributes.KOMMNAVN);
 			dirt_page.komm_nr = res.features[0].attributes.KOMM_NR
 		}
 	},

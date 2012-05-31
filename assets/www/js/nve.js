@@ -371,7 +371,6 @@ var main = (function()
         	}
 
         	return new wink.ui.xy.Carousel(properties);
-        	
         },
         
         nothing: function()

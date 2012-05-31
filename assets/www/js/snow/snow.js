@@ -29,7 +29,7 @@ var snow_page = {
 		snow_page.longitude= Math.round(p.x);
 		snow_page.latitute  = Math.round(p.y);
 		
-		jQuery('.position_header_town').html("N:" +position.coords.longitude +" ¯:" +position.coords.latitude);
+		jQuery('.position_header_town').html("N:" +Math.round(p.x) +" &Oslash;:" +Math.round(p.y));
 
 		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(snow_page.latitute, snow_page.longitude), snow_page.onAreaInformationResult);
@@ -41,6 +41,7 @@ var snow_page = {
 
 		if(res != null) {
 			snow_page.omrade_id = res.features[0].attributes.OMRAADEID +OMRAADE_ID_OFFSET;
+			jQuery('.county_b').html(res.features[0].attributes.OMRAADENAVN);
 		}		
 	},
 	
@@ -56,8 +57,7 @@ var snow_page = {
 		var res = JSON.parse(data);
 
 		if(res != null) {
-			jQuery(".position_header_town.snow_a").html(res.features[0].attributes.KOMMNAVN);
-			jQuery(".position_header_county.snow_b").html(res.features[0].attributes.FYLKENAVN);
+			jQuery(".county_a").html(res.features[0].attributes.KOMMNAVN);
 			snow_page.komm_nr = res.features[0].attributes.KOMM_NR;
 		}
 	},
