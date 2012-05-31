@@ -2,7 +2,6 @@ var main = (function()
 {
     var main =
     {	
-        
     	actualPage: 0,
     		
     	store: new NveStore(),
@@ -94,19 +93,22 @@ var main = (function()
 	      	        		'snow',
 	      	        		'snow_obs',
 	      	        		'snow_hendelse',
-	      	        		'snow_picture',
 	      	        		'snow_faresign',
+	      	        		'snow_picture',
 	      	        		'ice',
 	      	        		'ice_obs',
 	      	        		'ice_hendelse',
+	      	        		'ice_faresign',
 	      	        		'ice_picture',
 	      	        		'water',
 	      	        		'water_obs',
 	      	        		'water_hendelse',
+	      	        		'water_faresign',
 	      	        		'water_picture',
 	      	        		'dirt',
 	      	        		'dirt_obs',
 	      	        		'dirt_hendelse',
+	      	        		'dirt_faresign',
 	      	        		'dirt_picture',
 	      	        		'learning_page'
         	    		 ]
@@ -122,23 +124,45 @@ var main = (function()
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
 
             //init danger signs
+            //TODO what if we want to update the mobile clients?
+            var registrationKD = DataAccess.get(RegistrationKD.name);
             var dangerSign = DataAccess.get(DangerSignKD.name);
             var activityInfluenced = DataAccess.get(ActivityInfluencedKD.name);
             var damageExtent = DataAccess.get(DamageExtentKD.name);
             
-            if(dangerSign == null) {
-            	GetObjectFromServer(new DangerSignKD(), main.fillDangerSign);
-            } else {
-            	snow_faresign.fill_snow_danger_sign(dangerSign);
+            if(registrationKD == null) 
+        	{
+            	GetObjectFromServer(new RegistrationKD(), main.fillRegistrationKD);
+        	}
+            else 
+            {
+            	main.fillRegistrationKD(registrationKD);
             }
-            if(activityInfluenced == null) {
+            
+            if(dangerSign == null) 
+            {
+            	GetObjectFromServer(new DangerSignKD(), main.fillDangerSign);
+            } 
+            else 
+            {
+            	main.fillDangerSign(dangerSign);
+            }
+            
+            if(activityInfluenced == null) 
+            {
             	GetObjectFromServer(new ActivityInfluencedKD(), main.fillActivityInfluenced);
-            } else {
+            } 
+            else 
+            {
             	main.fillActivityInfluenced(activityInfluenced);
             }
-            if(damageExtent == null) {
+            
+            if(damageExtent == null) 
+            {
             	GetObjectFromServer(new DamageExtentKD(), main.fillDamageExtent);
-            } else {
+            } 
+            else 
+            {
             	main.fillDamageExtent(damageExtent);
             }
             
@@ -153,8 +177,6 @@ var main = (function()
 			
 			main.slideToFavorite();
 			main.toogleFavorite();
-			
-			
         },
         
         initPhonegap: function()
@@ -214,6 +236,17 @@ var main = (function()
         			"</div>");
         },
         
+        errorDialog: function() 
+        {
+        	jQuery('.waitingDialog').html( "" +
+        			"<div> " +
+	        			"<p> " +AN_ERROR_OCCURED  +"</p>" +
+	        			"<button type='button' style='width: auto; display: inline' " +
+	        				"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +OK + 
+	        			"</button>" +
+        			"</div>");
+        },
+        
         showDialogWithMessage: function(message) 
         {
         	main.waitingDialog.popup({
@@ -249,10 +282,25 @@ var main = (function()
         	jQuery('.pp_popup').css('z-index', -99);
         },
         
+        fillRegistrationKD: function(data)
+        {
+        	DataAccess.save(RegistrationKD.name, data);
+
+        	snow_picture.fillRegistrationKD(data);
+        	water_picture.fillRegistrationKD(data);
+        	ice_picture.fillRegistrationKD(data);
+        	dirt_picture.fillRegistrationKD(data);
+        },
+        
         fillDangerSign: function(data) {
         	DataAccess.save(DangerSignKD.name, data);
         	
-        	snow_faresign.fill_snow_danger_sign(data);
+        	console.log(data);
+        	
+        	snow_faresign.fillDangerSign(data);
+        	water_faresign.fillDangerSign(data);
+        	ice_faresign.fillDangerSign(data);
+        	dirt_faresign.fillDangerSign(data);
         },
         
         fillActivityInfluenced: function(data) {
@@ -287,20 +335,13 @@ var main = (function()
         	} else {
         		jQuery('#login').attr("style", 'background-image: url(img/loggedout.png)');
         	}
-        	
-        	if(main.waitingDialog.displayed) 
-    		{
-        		main.hideDialog();
-        		alert(LOGGED_IN);
-    		}
+        	main.hideDialog();
         },
-        
-        
-        
         
         hideNve: function(){
         	jQuery("#regobs-info").hide();
         },
+        
         showNve: function(){
         	jQuery("#regobs-info").show();
         },
@@ -398,6 +439,12 @@ var main = (function()
         			}
         			break;
         			
+        		case 'water_faresign':
+        			if(status == 'start') {
+        				water_faresign.init();
+        			}
+        			break;
+        			
         		case 'ice':
         			if(status == 'start') {
         				ice_page.init();
@@ -424,6 +471,12 @@ var main = (function()
         			}
         			break;
         			
+        		case 'ice_faresign':
+        			if(status == 'start') {
+        				ice_faresign.init();
+        			}
+        			break;
+        			
         		case 'dirt':
         			if(status == 'start') {
         				dirt_page.init();
@@ -447,6 +500,12 @@ var main = (function()
         		case 'dirt_hendelse':
         			if(status == 'start') {
         				dirt_hendelse.init();
+        			}
+        			break;
+        			
+        		case 'dirt_faresign':
+        			if(status == 'start') {
+        				dirt_faresign.init();
         			}
         			break;
         			

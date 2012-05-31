@@ -39,12 +39,8 @@
 	
 	<script type="text/javascript" src="js/connection/data_objects.js"></script>
 	<script type="text/javascript" src="js/connection/abstract_store.js"></script>
-	<script type="text/javascript" src="js/connection/send.js"></script>
 	
-	<script type="text/javascript" src="js/connection/vann_store.js"></script>
-	<script type="text/javascript" src="js/connection/snow_store.js"></script>
-	<script type="text/javascript" src="js/connection/dirt_store.js"></script>
-	<script type="text/javascript" src="js/connection/ice_store.js"></script>
+	<script type="text/javascript" src="js/connection/send.js"></script>
 	
 	<script type="text/javascript" src="js/connection/store.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
@@ -58,16 +54,26 @@
 	<script type="text/javascript" src="js/dirt/dirt.js"></script>
 	<script type="text/javascript" src="js/dirt/dirt_picture.js"></script>
 	<script type="text/javascript" src="js/dirt/dirt_hendelse.js"></script>
+	<script type="text/javascript" src="js/dirt/dirt_faresign.js"></script>
 	
 	<script type="text/javascript" src="js/ice/ice.js"></script>
 	<script type="text/javascript" src="js/ice/ice_picture.js"></script>
 	<script type="text/javascript" src="js/ice/ice_hendelse.js"></script>
+	<script type="text/javascript" src="js/ice/ice_faresign.js"></script>
 	
 	<script type="text/javascript" src="js/water/water.js"></script>
 	<script type="text/javascript" src="js/water/water_picture.js"></script>
 	<script type="text/javascript" src="js/water/water_hendelse.js"></script>
+	<script type="text/javascript" src="js/water/water_faresign.js"></script>
+	
+	<script type="text/javascript" src="js/connection/StoreWithDangerObs.js"></script>
+	<script type="text/javascript" src="js/connection/vann_store.js"></script>
+	<script type="text/javascript" src="js/connection/snow_store.js"></script>
+	<script type="text/javascript" src="js/connection/dirt_store.js"></script>
+	<script type="text/javascript" src="js/connection/ice_store.js"></script>
 	
 	<script type="text/javascript" src="js/learning/learning.js"></script>
+	
 	
 	<script type="text/javascript" src="js/nve.js"></script>
 	
@@ -179,26 +185,25 @@
     </div>
     <ul class="w_list w_border actions" >
 	    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_hendelse');">
-        Ulykke / Hendelse
-        <span class="w_icon arrow"></span>
-			</li>
+	        Ulykke / Hendelse
+	        <span class="w_icon arrow"></span>
+		</li>
 	    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_faresign');">
-        Faretegn
-        <span id="snow_faresign_count" class="notification_buble">0</span>
-        <span class="w_icon arrow"></span>
-      </li>
-      <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_picture');">
-        Bilde
-        <span id="snow_picture_count" class="notification_buble">0</span>
-        <span class="w_icon arrow"></span>
-      </li>
-		</ul>
+	      Faretegn
+	      <span id="snow_faresign_count" class="notification_buble">0</span>
+	      <span class="w_icon arrow"></span>
+	   	</li>
+	   	<li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_picture');">
+	      Bilde
+	      <span id="snow_picture_count" class="notification_buble">0</span>
+	      <span class="w_icon arrow"></span>
+	    </li>
+	</ul>
 		
 	  <div class="c_align_central">
       <input type="button" value="Send inn" class="smallWidth confirmButton c_button bigWidth w_button w_radius w_bg_light" onclick="main.store.getSnow().send();"/> <br>
     </div>
 	</div>
-	
 	
 	<div id="snow_hendelse" class="c_center_page standartTextSize">
         <label for="snow_hendelse_comment" style="display: inline">Beskrivelse:</label><a style="margin-left: 10px; margin-top: 5px;" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
@@ -229,7 +234,10 @@
 	
 	<div id="snow_picture" class="c_center_page">
 		<img id="snow_picture_img" class="c_image" src=""/>
-
+ 		
+ 		<select id="snow_picture_spec_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+        </select>
+		
 		<label for="snow_picture_comment">Beskrivelse:</label>
 		<textarea id="snow_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="snow_picture.addPicture();">Legg til</button>
@@ -242,8 +250,6 @@
       <span class="position_header_town"></span>
       <span class="position_header_county"></span>
     </div>
-    
-	
 		<div class="c_align_central">
 
 	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('ice_obs');"/>
@@ -265,6 +271,11 @@
          Ulykke / Hendelse
          <span class="w_icon arrow"></span>
        </li>
+	    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('ice_faresign');">
+	      Faretegn
+	      <span id="ice_faresign_count" class="notification_buble">0</span>
+	      <span class="w_icon arrow"></span>
+	   	</li>
        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('ice_picture');">
 	        Bilde    
 	        <span id="ice_picture_count" class="notification_buble">0</span>
@@ -292,9 +303,24 @@
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="ice_hendelse.addHendelse();">Legg til</button>
 	</div>
 	
+	<div id="ice_faresign" class="c_center_page standartTextSize">
+	
+	
+        <label for="ice_danger_sign_list" style="margin: 15px; display: inline">Faresign:</label><a style="margin-left: 10px; margin-top: 5px;" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+        <select id="ice_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+        </select>
+		
+        <label for="ice_danger_sign_comment">Beskrivelse:</label>
+		<textarea id="ice_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
+		<button class="smallWidth w_button w_radius c_color_gradient" onclick="ice_faresign.addFaresign();">Legg til</button>
+	</div>
+	
 	<div id="ice_picture" class="c_center_page">
 		<img id="ice_picture_img" class="c_image" src=""/>
 
+ 		<select id="ice_picture_spec_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+        </select>
+        
 		<label for="ice_picture_comment">Beskrivelse:</label>
 		<textarea id="ice_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="ice_picture.addPicture();">Legg til</button>
@@ -327,7 +353,12 @@
 		    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_hendelse');">
   		    Ulykke / Hendelse
   		    <span class="w_icon arrow"></span>
-	      </li>  
+	      </li>
+	    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_faresign');">
+	      Faretegn
+	      <span id="water_faresign_count" class="notification_buble">0</span>
+	      <span class="w_icon arrow"></span>
+	   	</li>  
         <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_picture');">
           Bilde
 	        <span id="water_picture_count" class="notification_buble">0</span>
@@ -355,9 +386,24 @@
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="water_hendelse.addHendelse();">Legg til</button>
 	</div>
 	
+	<div id="water_faresign" class="c_center_page standartTextSize">
+	
+	
+        <label for="water_danger_sign_list" style="margin: 15px; display: inline">Faresign:</label><a style="margin-left: 10px; margin-top: 5px;" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+        <select id="water_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+        </select>
+		
+        <label for="water_danger_sign_comment">Beskrivelse:</label>
+		<textarea id="water_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
+		<button class="smallWidth w_button w_radius c_color_gradient" onclick="water_faresign.addFaresign();">Legg til</button>
+	</div>
+	
 	<div id="water_picture" class="c_center_page">
 		<img id="water_picture_img" class="c_image" src=""/>
 
+ 		<select id="water_picture_spec_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+        </select>
+        
 		<label for="water_picture_comment">Beskrivelse:</label>
 		<textarea id="water_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="water_picture.addPicture();">Legg til</button>
@@ -379,6 +425,7 @@
 			
 		</div>
 	</div>
+	
 	<div id="dirt_obs">
 		<div class="c_position_header">
       <span class="position_header_position">,</span> 
@@ -391,10 +438,15 @@
           Ulykke / Hendelse
           <span class="w_icon arrow"></span>
         </li>
+	    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('dirt_faresign');">
+	      Faretegn
+	      <span id="dirt_faresign_count" class="notification_buble">0</span>
+	      <span class="w_icon arrow"></span>
+	   	</li>
         <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('dirt_picture');">
-              Bilde 
-			        <span id="dirt_picture_count" class="notification_buble">0</span>
-			        <span class="w_icon arrow"></span>
+            Bilde 
+	        <span id="dirt_picture_count" class="notification_buble">0</span>
+	        <span class="w_icon arrow"></span>
         </li>
       </ul>			
 			<div class="c_align_central">
@@ -417,9 +469,24 @@
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="dirt_hendelse.addHendelse();">Legg til</button>
 	</div>
 	
+	<div id="dirt_faresign" class="c_center_page standartTextSize">
+	
+	
+        <label for="dirt_danger_sign_list" style="margin: 15px; display: inline">Faresign:</label><a style="margin-left: 10px; margin-top: 5px;" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+        <select id="dirt_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+        </select>
+		
+        <label for="dirt_danger_sign_comment">Beskrivelse:</label>
+		<textarea id="dirt_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
+		<button class="smallWidth w_button w_radius c_color_gradient" onclick="dirt_faresign.addFaresign();">Legg til</button>
+	</div>
+	
 	<div id="dirt_picture" class="c_center_page">
 		<img id="dirt_picture_img" class="c_image" src=""/>
 
+ 		<select id="dirt_picture_spec_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+        </select>
+        
 		<label for="dirt_picture_comment" style="display: inline">Beskrivelse:</label><a style="margin-left: 10px; margin-top: 5px;" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
 		<textarea id="dirt_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="dirt_picture.addPicture();">Legg til</button>
@@ -429,13 +496,12 @@
 		<span>Beskrivende tekst!</span>
 	</div>
 	
-	
-  <div id="footer" class="footer">
-      <div class="shortcut home" onclick="main.panels.slideTo('home')"></div>
-      <div class="shortcut fav" onclick="main.slideToFavorite()"></div>
-      <div class="shortcut camera" onclick="main.slideToFavoritePicture()"></div>
-      <div class="shortcut setting last" onclick="main.panels.slideTo('settings')"></div>
-  </div>
+<!--   <div id="footer" class="footer"> -->
+<!--       <div class="shortcut home" onclick="main.panels.slideTo('home')"></div> -->
+<!--       <div class="shortcut fav" onclick="main.slideToFavorite()"></div> -->
+<!--       <div class="shortcut camera" onclick="main.slideToFavoritePicture()"></div> -->
+<!--       <div class="shortcut setting last" onclick="main.panels.slideTo('settings')"></div> -->
+<!--   </div> -->
   
 </body>
 </html>

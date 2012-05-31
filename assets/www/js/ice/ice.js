@@ -6,9 +6,9 @@ var ice_page = {
 	
 	longitude: 0,
 	
-	komm_nr: 1420,
+	komm_nr: 0,
 	
-	omrade_id: 122,
+	omrade_id: 0,
 
 	pos_obj: null,
 		
@@ -18,7 +18,7 @@ var ice_page = {
 	//
 	onSuccess: function(position) {
 		position.taken = new Date();
-		snow_page.pos_obj = position;
+		ice_page.pos_obj = position;
 		
 		var source = new Proj4js.Proj('EPSG:4326');    //source coordinates will be in Longitude/Latitude
 		var dest = new Proj4js.Proj('EPSG:32633');     //destination coordinates for Norway
@@ -72,6 +72,7 @@ var ice_page = {
    
 	afterSendRegistration: function() {
 		$('ice_picture_count').innerHTML = 0;
+		$('ice_faresign_count').innerHTML = 0;
 	},
 	
 	init: function() {
@@ -85,11 +86,15 @@ var ice_page = {
 			ice_page.doMeasurement();
 		}
 		
+		var iceStore = main.store.getIce();
+
+		$('ice_faresign_count').innerHTML = iceStore.getObs().length
+		$('ice_picture_count').innerHTML = iceStore.getPictures().length
+		
 		if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == ICE) {
 
 			jQuery("#star").attr('src', 'img/stared.png');
 		} else {
-
 			jQuery("#star").attr('src', 'img/notstared.png');
 		}
 	},

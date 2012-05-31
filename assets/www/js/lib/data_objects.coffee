@@ -118,6 +118,11 @@ class DamageExtentKD
 class DangerSignKD
 	url : "#{SERVER_URL}Language(#{LANGUAGE})/DangerSignKD"
 
+class DangerObs
+	url : "#{SERVER_URL}DangerObs"
+	constructor: (@DangerObsID, @RegID, @GeoHazardTID, @DangerSignTID, @UsageFlagTID, @Comment) ->
+	
+
 class DestructiveSizeKD
 	constructor: ( ) ->
 
@@ -208,7 +213,7 @@ class ObsLocation
 
 class Picture
 	url: "#{SERVER_URL}Picture"
-	constructor: (@PictureID, @RegID, @PictureImage, @Photographer, @Copyright, @Aspect, @GeoHazardTID, @Comment) ->
+	constructor: (@PictureID, @RegID, @PictureImage, @Photographer, @Copyright, @Aspect, @GeoHazardTID, @Comment, @RegistrationTID) ->
 
 class PrecipitationKD
 	constructor: ( ) ->
@@ -217,6 +222,7 @@ class PropagationKD
 	constructor: ( ) ->
 
 class RegistrationKD
+	url: "#{SERVER_URL}Language(#{LANGUAGE})/RegistrationKD"
 	constructor: ( ) ->
 
 class SnowCoverObs

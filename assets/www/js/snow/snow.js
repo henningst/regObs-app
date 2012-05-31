@@ -6,9 +6,9 @@ var snow_page = {
 	
 	longitude: 0,
 	
-	komm_nr: 1420,
+	komm_nr: 0,
 	
-	omrade_id: 122,
+	omrade_id: 0,
 	
 	pos_obj: null,
 		
@@ -81,7 +81,6 @@ var snow_page = {
 	init: function() {
 		$('header_middle_text').innerHTML = "Sn&oslash;";
 		
-		
 		//only update if its older than a minute
 		if(snow_page.pos_obj != null) {
 			if(((new Date()).getTime() - snow_page.pos_obj.taken.getTime()) / 1000 / 60 < 1) {
@@ -90,7 +89,11 @@ var snow_page = {
 		} else {
 			snow_page.doMeasurement();
 		}
-		
+
+		var snowStore = main.store.getSnow();
+
+		$('snow_faresign_count').innerHTML = snowStore.getSnowObs().length
+		$('snow_picture_count').innerHTML = snowStore.getPictures().length
 		
 		if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == SNOW) {
 

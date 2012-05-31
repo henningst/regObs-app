@@ -1,8 +1,7 @@
 class AbstractStore
 
 	onError: (data) ->
-		alert(data.response.body)
-		alert("an error occured")
+		main.errorDialog()
 	
 	onSend: (page) ->
 		main.showWaitingDialogWithMessage(UPLOADING);

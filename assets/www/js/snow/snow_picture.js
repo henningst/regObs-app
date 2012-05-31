@@ -4,13 +4,26 @@ var snow_picture  = {
 		
 	addPicture: function() {
 		if(snow_picture.pictureData != null) {
-			var picture = new Picture(null, null, snow_picture.pictureData, null, null, null, SNOW_GEO_HAZARD, $("snow_picture_comment").value);
+			var list = $('snow_picture_spec_list');
+			
+			var picture = new Picture(null, null, snow_picture.pictureData, null, null, null, SNOW_GEO_HAZARD, $("snow_picture_comment").value, list[list.selectedIndex].value);
 			main.store.getSnow().addPicture(picture);
 			snow_picture.pictureData = null;
 
 			snow_page.add('snow_picture_count');
 			main.panels.slideBack();
 		}
+	},
+
+	fillRegistrationKD: function(data) {
+		var options = jQuery("#snow_picture_spec_list");
+		//remove if previously inserted
+		jQuery.each(options, function() {jQuery(this).find('option').remove()});
+		
+		jQuery.each(data.results, function() {
+			if((this.RegistrationTID >= 20 && this.RegistrationTID < 30 ) || this.RegistrationTID == 11 || this.RegistrationTID == 13 || this.RegistrationTID == 99)
+				options.append(jQuery("<option />").val(this.RegistrationTID).text(this.RegistrationName));
+		});
 	},
 	
 	onSuccess: function(imageData) {
@@ -33,7 +46,7 @@ var snow_picture  = {
 	
 	init : function () {
 		$('header_middle_text').innerHTML = "Bilde";
-
+		
 		main.showWaitingDialogWithMessage(PROCESS_PICTURE);
 		
 		navigator.camera.getPicture(

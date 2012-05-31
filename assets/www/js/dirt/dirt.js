@@ -6,9 +6,9 @@ var dirt_page = {
 	
 	longitude: 0,
 	
-	komm_nr: 1420,
+	komm_nr: 0,
 	
-	omrade_id: 122,
+	omrade_id: 0,
 	
 	pos_obj: null,
 		
@@ -18,7 +18,7 @@ var dirt_page = {
 	//
 	onSuccess: function(position) {
 		position.taken = new Date();
-		snow_page.pos_obj = position;
+		dirt_page.pos_obj = position;
 		
 		var source = new Proj4js.Proj('EPSG:4326');    //source coordinates will be in Longitude/Latitude
 		var dest = new Proj4js.Proj('EPSG:32633');     //destination coordinates for Norway
@@ -71,6 +71,7 @@ var dirt_page = {
 	},
    
 	afterSendRegistration: function() {
+		$('dirt_faresign_count').innerHTML = 0;
 		$('dirt_picture_count').innerHTML = 0;
 	},
 	
@@ -84,6 +85,11 @@ var dirt_page = {
 		} else {
 			dirt_page.doMeasurement();
 		}
+
+		var dirtStore = main.store.getDirt();
+
+		$('dirt_faresign_count').innerHTML = dirtStore.getObs().length
+		$('dirt_picture_count').innerHTML = dirtStore.getPictures().length
 		
 		if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == DIRT) {
 
