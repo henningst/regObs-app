@@ -120,6 +120,29 @@ var main = (function()
             
             main.waitingDialog = new wink.ui.xy.Popup();
             
+            var properties1 = 
+            {
+				'itemsWidth': 150,
+				'itemsHeight': 35,
+				'autoAdjust': 1,
+				'autoAdjustDuration': 400,
+				'autoPlay': 1,
+				'autoPlayDuration': 4000,
+				'firstItemIndex': 2,
+				'items':
+        		[
+	            	{'type': 'string', 'content': TEXT_1},
+	            	{'type': 'string', 'content': TEXT_2},
+	            	{'type': 'string', 'content': TEXT_3},
+	            	{'type': 'string', 'content': TEXT_4},
+	            	{'type': 'string', 'content': TEXT_5},
+	            	{'type': 'string', 'content': TEXT_6}
+            	]
+        	};
+
+        	carousel1 = new wink.ui.xy.Carousel(properties1);
+        	$('snow_carusel').appendChild(carousel1.getDomNode());
+            
 			document.body.appendChild(main.waitingDialog.getDomNode());
 			
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});

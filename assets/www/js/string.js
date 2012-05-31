@@ -17,4 +17,17 @@ OK = "Ok";
 
 SEND_EMAIL = "Send epost";
 
-HENDELSE = "Ulykke / Hendelse"
+/*
+ * Utbredelse text
+ */
+TEXT_1 = "Item Nr 1";
+
+TEXT_2 = "Item Nr 2";
+
+TEXT_3 = "Item Nr 3";
+
+TEXT_4 = "Item Nr 4";
+
+TEXT_5 = "Item Nr 5";
+
+TEXT_6 = "Item Nr 6";

@@ -165,9 +165,9 @@
 <!-- 	SNOW - PAGES -->
 	<div id="snow">
 	  <div class="c_position_header">
-      <span class="position_header_position">,</span> 
+      <span class="position_header_position">UTM33</span> 
       <span class="position_header_town"></span>
-      <span class="position_header_county"></span>
+      <div class="position_header_county"> <div id="snow_a"></div> / <div id="snow_b"></div> </div>
     </div>
     
 		<div class="c_align_central">
@@ -208,6 +208,8 @@
 	<div id="snow_hendelse" class="c_center_page standartTextSize">
         <label for="snow_hendelse_comment" style="display: inline">Beskrivelse:</label><a style="margin-left: 10px; margin-top: 5px;" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
 		<textarea id="snow_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
+		
+		<div id="snow_carusel" ></div>
 		
 		<label for="snow_hendelse_activity_list">Aktivitet:</label>
         <select id="snow_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
