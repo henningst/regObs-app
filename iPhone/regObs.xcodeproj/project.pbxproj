@@ -420,6 +420,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = (
+					armv7,
+					armv6,
+				);
 				CODE_SIGN_IDENTITY = "iPhone Distribution: nLink AS";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -457,6 +461,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = (
+					armv7,
+					armv6,
+				);
 				CODE_SIGN_IDENTITY = "iPhone Distribution: nLink AS";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nLink AS";
 				COPY_PHASE_STRIP = YES;

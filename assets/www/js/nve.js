@@ -112,7 +112,8 @@ var main = (function()
 	      	        		'dirt_hendelse',
 	      	        		'dirt_faresign',
 	      	        		'dirt_picture',
-	      	        		'learning_page'
+	      	        		'learning_page',
+	      	        		'information'
         	    		 ]
     	        }
     	    );
@@ -542,6 +543,12 @@ var main = (function()
         		case 'learning_page':
         			if(status == 'start') {
         				learning_page.init();
+        			}
+        			break;
+        			
+        		case 'information':
+        			if(status == 'start') {
+        				information_page.init();
         			}
         			break;
         			

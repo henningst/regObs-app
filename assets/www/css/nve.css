@@ -233,57 +233,16 @@ input.large
 	display: block;
 	position: relative;
 	
-	border-bottom: 2px solid;
-	border-top: 2px solid;
-	border-right: 2px solid;
-	border-left: 0;
-	
-	overflow: hidden;
-	
-	padding: 0 15px;
-	
-	font-size: 14px; 
-	font-weight: bold;
-	
-	white-space:nowrap;
-	text-overflow:ellipsis;
-	
-	text-align: left;
-	
-	height: 34px;
-	line-height: 32px;
-	
-/* 	border-color: black; */
-	
-/* 	text-shadow: #000 0px -1px 0px; */
-	
-	border-radius: 5px;
-	
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
+	background: url(../img/back.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 75%;
+	border: 0;
+	width: 30px;
+	height: 30px;
 }
 
-.w_button_custom.w_back::after
-{
-	border-bottom: 2px solid;
-	border-left: 2px solid;
-	border-right: none;
-	border-top: none;
-/* 	border-color: #555; */
-	 
-	position: absolute;
-	
-	content: "";
-	
-	width: 19px;
-    height: 19px;
-    
-	top: 7px;
-    left: -6px;
-    
-    -webkit-transform: rotate(52deg) skew(15deg);;
-    -moz-transform: rotate(52deg) skew(15deg);;
-}
+
 
 .w_button_custom.w_left
 {
@@ -348,11 +307,11 @@ ul.actions li{
 }
 
 #regobs-info{
-  background-image: url("../img/regObs-logo.png");
+  background: url("../img/regobs-logo.png");
   background-size: 90%;
   background-repeat: no-repeat;
   background-position: center;
-  cursor: pointer;	
+  top:5px;
 }
 
 .header-button{
@@ -385,7 +344,6 @@ ul.actions li{
 	width: 23.5%;
 	height: 100%;
 	text-align: center;
-	border-right: 1px solid #ccc;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: auto 50%;
@@ -416,6 +374,7 @@ ul.actions li{
   background-image: url(../img/instillinger.png);
 }
 	
-	
-	
+.c_center_page{
+	padding-bottom: 60px;
+}
 	
