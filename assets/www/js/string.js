@@ -90,7 +90,7 @@ SNOW_INCIDENT =
 	+ "<ul>"
 	+ "<li>Hvis det registreres at skred ofte g&aring;r langt ned mot bebyggelse, kan det danne grunnlag for sikkring.&nbsp;</li>"
 	+ "<li>Hvis det registreres mange nestenulykker hvor ABS sekker har v&aelig;rt involvert, kan man f&aring; gode tall p&aring; virkningen.</li>"
-	+ "</ul>;
+	+ "</ul>";
 
 ICE_PICTURE =  "ICE_PICTURE";
               
@@ -110,5 +110,8 @@ DIRT_DANGERSIGN = "DIRT_DANGERSIGN";
 
 DIRT_INCIDENT = "DIRT_INCIDENT";
 
+/*
+ * Utbredelse text
+ */
 ABOUT_REGOBS = "Mer text her. ABOUT_REGOBS";
 
