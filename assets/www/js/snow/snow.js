@@ -29,7 +29,8 @@ var snow_page = {
 		snow_page.longitude= Math.round(p.x);
 		snow_page.latitute  = Math.round(p.y);
 
-		jQuery('.position_header_position').html("N:" +Math.round(p.y) +" &Oslash;:" +Math.round(p.x));
+		jQuery('.position_header_position').html("UTM33 ( " +position.coords.accuracy +"m )");
+		jQuery('.position_header_town').html("N:" +Math.round(p.y) +" &Oslash;:" +Math.round(p.x));
 
 		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(snow_page.latitute, snow_page.longitude), snow_page.onAreaInformationResult);
@@ -48,7 +49,7 @@ var snow_page = {
 	// onError Callback receives a PositionError object
 	//
 	onError: function(error) {
-		jQuery('.position_header_position').html("no" +" , " +"geodata");
+		jQuery('.position_header_town').html("no" +" , " +"geodata");
 //		$('position_header_position').innerHTML = snow_page.latitute +" , " +snow_page.longitude;
 //		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
 	},

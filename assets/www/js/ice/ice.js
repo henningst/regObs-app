@@ -29,7 +29,8 @@ var ice_page = {
 		ice_page.longitude= Math.round(p.x);
 		ice_page.latitute  = Math.round(p.y);
 
-		jQuery('.position_header_position').html("N:" +Math.round(p.y) +" &Oslash;:" +Math.round(p.x));
+		jQuery('.position_header_position').html("UTM33 ( " +position.coords.accuracy +"m )");
+		jQuery('.position_header_town').html("N:" +Math.round(p.y) +" &Oslash;:" +Math.round(p.x));
 		
 		GetObjectFromServer(new PositionDetails(ice_page.latitute, ice_page.longitude), ice_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(ice_page.latitute, ice_page.longitude), ice_page.onAreaInformationResult);
@@ -47,7 +48,7 @@ var ice_page = {
 	// onError Callback receives a PositionError object
 	//
 	onError: function(error) {
-		jQuery('position_header_position').html("no" +" , " +"geodata");
+		jQuery('position_header_town').html("no" +" , " +"geodata");
 	},
 	
 	onKommuneResult : function(data) {
