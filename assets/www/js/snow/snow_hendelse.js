@@ -30,6 +30,12 @@ var snow_hendelse = {
 		addHendelse: function() {
 			//save hendelse
 			
+			if($("snow_hendelse_comment").value == "")
+			{
+				main.showDialogWithMessage(HENDELSE_ERROR);
+				return;
+			}
+			
 			var string = $("snow_hendelse_comment").value;
 			var index = string.indexOf('.', 0);
 			

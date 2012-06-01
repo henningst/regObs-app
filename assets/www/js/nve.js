@@ -341,10 +341,15 @@ var main = (function()
         
         showDialogWithMessage: function(message) 
         {
+        	main.startDialog();
         	main.waitingDialog.popup({
 		        content: "<div class='waitingDialog'>" +
 		        	message +
+		        	"<button type='button' style='width: auto; display: inline' " +
+    				"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +OK + 
+    			"</button>" +
 		        "</div>",
+		        layerCallback: { context: main, method: 'nothing' },
 		    });
         },
         

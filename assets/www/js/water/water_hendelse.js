@@ -31,6 +31,12 @@ var water_hendelse = {
 		
 		addHendelse: function() {
 			//save hendelse
+
+			if($("water_hendelse_comment").value == "")
+			{
+				main.showDialogWithMessage(HENDELSE_ERROR);
+				return;
+			}
 			
 			var string = $("water_hendelse_comment").value;
 			var index = string.indexOf('.', 0);

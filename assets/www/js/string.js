@@ -21,6 +21,8 @@ USE_TESTMODE_BUTTON = "Bruk testmode";
 
 USE_PROD_BUTTON = "Bruk normal mode";
 
+HENDELSE_ERROR = "You have to write a bit of a comment";
+
 /*
  * Utbredelse text
  */
