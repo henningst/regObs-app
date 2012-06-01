@@ -96,21 +96,25 @@ var main = (function()
 	      	        		'home',
 	      	        		'settings',
 	      	        		'snow',
+	      	        		'snow_see_obs',
 	      	        		'snow_obs',
 	      	        		'snow_hendelse',
 	      	        		'snow_faresign',
 	      	        		'snow_picture',
 	      	        		'ice',
+	      	        		'ice_see_obs',
 	      	        		'ice_obs',
 	      	        		'ice_hendelse',
 	      	        		'ice_faresign',
 	      	        		'ice_picture',
 	      	        		'water',
+	      	        		'water_see_obs',
 	      	        		'water_obs',
 	      	        		'water_hendelse',
 	      	        		'water_faresign',
 	      	        		'water_picture',
 	      	        		'dirt',
+	      	        		'dirt_see_obs',
 	      	        		'dirt_obs',
 	      	        		'dirt_hendelse',
 	      	        		'dirt_faresign',
@@ -135,12 +139,29 @@ var main = (function()
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
 
-            //init danger signs
+            main.populateBoxes(true);
+            
+			var username = DataAccess.get(USERNAME);
+			var password = DataAccess.get(PASSWORD);
+			
+			if(username != undefined && password != undefined) {
+				Login(username, password, main.loginCallback);
+        	} else {
+        		main.showLoginStatus(false);	
+			}
+			
+			main.slideToFavorite();
+			main.toogleFavorite();
+        },
+        
+        populateBoxes: function(force)
+        {
+        	//init danger signs
             //TODO what if we want to update the mobile clients?
-            var registrationKD = DataAccess.get(RegistrationKD.name);
-            var dangerSign = DataAccess.get(DangerSignKD.name);
-            var activityInfluenced = DataAccess.get(ActivityInfluencedKD.name);
-            var damageExtent = DataAccess.get(DamageExtentKD.name);
+            var registrationKD = (force ? null : DataAccess.get(RegistrationKD.name)) ;
+            var dangerSign = (force ? null : DataAccess.get(DangerSignKD.name));
+            var activityInfluenced = (force ? null : DataAccess.get(ActivityInfluencedKD.name));
+            var damageExtent = (force ? null : DataAccess.get(DamageExtentKD.name));
             
             if(registrationKD == null) 
         	{
@@ -177,18 +198,6 @@ var main = (function()
             {
             	main.fillDamageExtent(damageExtent);
             }
-            
-			var username = DataAccess.get(USERNAME);
-			var password = DataAccess.get(PASSWORD);
-			
-			if(username != undefined && password != undefined) {
-				Login(username, password, main.loginCallback);
-        	} else {
-        		main.showLoginStatus(false);	
-			}
-			
-			main.slideToFavorite();
-			main.toogleFavorite();
         },
         
         carouselMoved: function(data)
@@ -494,6 +503,12 @@ var main = (function()
         				//$('mainBody').style.backgroundImage = "url('img/snow_background.png')";
         				
         				main.actualPage = SNOW;
+        			}
+        			break;
+        			
+        		case 'snow_see_obs':
+        			if(status == 'start') {
+//        				snow_see_obs.init();
         			}
         			break;
         			
