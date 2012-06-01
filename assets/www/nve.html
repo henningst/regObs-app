@@ -113,7 +113,7 @@
 	    <div id="regobs-info" class="w_left header-button" onclick="main.panels.slideTo('information')">
 	    </div>
 	    
-	    <div>
+	    <div id="over_header">
 	    	<span id="header_middle_text">regObs</span>
 	    	<a type="button" onclick="main.starred();" >
             	<img id="star" alt="" src="img/stared.png" style="display: none; position: absolute; top: 5px; margin-left: 5px; height: 32px; width: 32px;">
@@ -160,6 +160,7 @@
             <input type="password" id="login_password" class="large settingsInput" value="" />
             <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logg inn' onclick="main.clickLogin();" />
             <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logg ut' onclick="main.clickLogOut();" />
+            <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Bruk testmode' onclick="main.gotoTest();" />
             <br>
 	    </div>
 	</div> 

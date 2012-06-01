@@ -17,6 +17,10 @@ OK = "Ok";
 
 SEND_EMAIL = "Send epost";
 
+USE_TESTMODE_BUTTON = "Bruk testmode";
+
+USE_PROD_BUTTON = "Bruk normal mode";
+
 /*
  * Utbredelse text
  */

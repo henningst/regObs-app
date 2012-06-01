@@ -18,6 +18,8 @@ var main = (function()
     	
     	lastRegID: -1,
     	
+    	inTestMode: false,
+    	
 		clickLogin: function() {
 			var username = document.getElementById('login_username').value;
 			var password = document.getElementById('login_password').value;
@@ -231,6 +233,24 @@ var main = (function()
         	case DIRT:
         		dirt_faresign.changeCarouselTo(data.currentItemIndex);
         		break;
+        	}
+        },
+        
+        gotoTest: function ()
+        {
+        	if(main.inTestMode)
+        	{
+        		SERVER_URL = STAGE;
+        		main.inTestMode = false;
+        		$('test_button').value = USE_TESTMODE_BUTTON;
+        		jQuery('#over_header').removeClass('testMode');
+        	}
+        	else 
+        	{
+        		SERVER_URL = TEST;
+        		main.inTestMode = true;
+        		$('test_button').value = USE_PROD_BUTTON;
+        		jQuery('#over_header').addClass('testMode');
         	}
         },
         
