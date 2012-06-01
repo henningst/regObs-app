@@ -28,8 +28,8 @@ var snow_page = {
 		
 		snow_page.longitude= Math.round(p.x);
 		snow_page.latitute  = Math.round(p.y);
-		
-		jQuery('.position_header_town').html("N:" +Math.round(p.x) +" &Oslash;:" +Math.round(p.y));
+
+		jQuery('.position_header_position').html("N:" +Math.round(p.y) +" &Oslash;:" +Math.round(p.x));
 
 		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(snow_page.latitute, snow_page.longitude), snow_page.onAreaInformationResult);

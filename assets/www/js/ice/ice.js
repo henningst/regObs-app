@@ -29,7 +29,7 @@ var ice_page = {
 		ice_page.longitude= Math.round(p.x);
 		ice_page.latitute  = Math.round(p.y);
 
-		jQuery('.position_header_position').html("N:" +Math.round(p.x) +" &Oslash;:" +Math.round(p.y));
+		jQuery('.position_header_position').html("N:" +Math.round(p.y) +" &Oslash;:" +Math.round(p.x));
 		
 		GetObjectFromServer(new PositionDetails(ice_page.latitute, ice_page.longitude), ice_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(ice_page.latitute, ice_page.longitude), ice_page.onAreaInformationResult);

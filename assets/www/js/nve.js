@@ -12,6 +12,8 @@ var main = (function()
     	
     	waitingDialog: null,
     	
+    	lastPage: "",
+    	
     	panels: null,
     	
     	lastRegID: -1,
@@ -433,7 +435,7 @@ var main = (function()
         },
         
         toggleBackButtonDisplay: function(params, status) {
-
+        	
         	if(params.id != 'home') {
         		if(status == 'start') {
     				$('back').style.display = 'block';
@@ -597,7 +599,7 @@ var main = (function()
         			
         		case 'learning_page':
         			if(status == 'start') {
-        				learning_page.init();
+        				learning_page.init(main.lastPage);
         			}
         			break;
         			
@@ -610,6 +612,8 @@ var main = (function()
         		default:
         			break;
         	}
+        	
+        	main.lastPage = params.id;
         }
     }
      
