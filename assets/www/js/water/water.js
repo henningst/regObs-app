@@ -29,7 +29,7 @@ var water_page = {
 		water_page.longitude= Math.round(p.x);
 		water_page.latitute  = Math.round(p.y);
 
-		jQuery('.position_header_position').html("UTM33 ( " +position.coords.accuracy +"m )");
+		jQuery('.position_header_position').html("UTM33 ( &plusmn;" +position.coords.accuracy +"m )");
 		jQuery('.position_header_town').html("N:" +Math.round(p.y) +" &Oslash;:" +Math.round(p.x));
 		
 		GetObjectFromServer(new PositionDetails(water_page.latitute, water_page.longitude), water_page.onKommuneResult);

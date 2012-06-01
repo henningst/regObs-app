@@ -26,9 +26,9 @@ USE_PROD_BUTTON = "Bruk normal mode";
  */
 SNOW_TEXT = 
 	[
-		"Gjelder p&aring; dette stedet.",
+		"Gjelder på dette stedet.",
 		"Gjelder i denne fjellsiden.",
-		"Gjelder generelt p&aring; fjellet.",
+		"Gjelder generelt på fjellet.",
 		"Gjelder i dalen/fjorden.",
 		"Gjelder for kommunen.",
 		"Gjelder for fylket/ varslingsregionen.",
@@ -36,24 +36,24 @@ SNOW_TEXT =
 
 ICE_TEXT = 
 	[
-		"Gjelder p&aring; dette stedet.",
-		"Gjelder p&aring; denne siden av vannet.",
-		"Gjelder p&aring; hele vannet.",
-		"Gjelder i omr&aring;det.",
+		"Gjelder på dette stedet.",
+		"Gjelder på denne siden av vannet.",
+		"Gjelder på hele vannet.",
+		"Gjelder i området.",
 	 ];
 
 WATER_TEXT = 
 	[
-		"Gjelder p&aring; dette stedet.",
-		"Gjelder p&aring; dette elvestrekket.",
+		"Gjelder på dette stedet.",
+		"Gjelder på dette elvestrekket.",
 		"Gjelder i vassdraget.",
 	 ];
 
 DIRT_TEXT = 
 	[
-		"Gjelder p&aring; dette stedet.",
+		"Gjelder på dette stedet.",
 		"Gjelder i denne fjellsiden.",
-		"Gjelder generelt p&aring; fjellet.",
+		"Gjelder generelt på fjellet.",
 		"Gjelder i dalen/fjorden.",
 		"Gjelder for kommunen.",
 		"Gjelder for fylket/ varslingsregionen.",
@@ -74,26 +74,26 @@ SNOW_PICTURE =
 
 SNOW_DANGERSIGN =
 	" </h3>Hva er det med disse faretegnene egentlig?</h3>"
-	+ "<p>Faretegn kan man bruke til &aring; vurdere hvor stabil sn&oslash;en er.</p>"
+	+ "<p>Faretegn kan man bruke til å vurdere hvor stabil snøen er.</p>"
 	+ "<ul>"
-	+ "<li>Hvis det dr&oslash;nner eller g&aring;r naturlige skred vet vi at vi trolig er p&aring; en faregrad 3-Markert.</li>"
-	+ "<li>Hvis det m&aring; en skil&oslash;per til for &aring; l&oslash;se ut skredet og det er lite naturlig utl&oslash;ste skred s&aring; er vi kanksje p&aring; en 2-Moderat.</li>"
-	+ "<li>Hvis det ikke registreres faretegn, kanskje vi er p&aring; 1-Liten.</li>"
+	+ "<li>Hvis det drønner eller går naturlige skred vet vi at vi trolig er på en faregrad 3-Markert.</li>"
+	+ "<li>Hvis det må en skiløper til for å løse ut skredet og det er lite naturlig utløste skred så er vi kanksje på en 2-Moderat.</li>"
+	+ "<li>Hvis det ikke registreres faretegn, kanskje vi er på 1-Liten.</li>"
 	+ "</ul>"
 	+ "<p>Det er noen ”kanksje’er” og ”trolig’er” i teksten over. Faretegn forteller bare en liten del av totalbildet. De er indikatorer.</p>"
-	+ "<p>Derfor er det ogs&aring; viktig at man legger til ansl&aring;tt utstrekning p&aring; faretegnet.</p>";
+	+ "<p>Derfor er det også viktig at man legger til anslått utstrekning på faretegnet.</p>";
 
 SNOW_INCIDENT =  
 	"<h3>Ulykker, nestenulykker og hendelser</h3>"
-	+ "<div>Vi &oslash;nkser &aring; l&aelig;re av deres feil. Vi &oslash;nsker at dere skal l&aelig;re av andres feil.</div>"
+	+ "<div>Vi ønkser å lære av deres feil. Vi ønsker at dere skal lære av andres feil.</div>"
 	+ "<ul>"
-	+ "<li>Hvis man legger inn info n&aring;r det skjer noe kan alle l&aelig;re av ulykken og den kan ha en forebyggende effekt.</li>"
-	+ "<li>Ut fra en beredskapstankegang er det nyttig &aring; f&aring; vite om hendelser for &aring; kunne oppdatere innholdet s&aring; det blir mer relevant for det som skjer.</li>"
+	+ "<li>Hvis man legger inn info når det skjer noe kan alle lære av ulykken og den kan ha en forebyggende effekt.</li>"
+	+ "<li>Ut fra en beredskapstankegang er det nyttig å få vite om hendelser for å kunne oppdatere innholdet så det blir mer relevant for det som skjer.</li>"
 	+ "</ul>"
-	+ "<div>Vi kan ogs&aring; l&aelig;re av mange hendelser over tid.</div>"
+	+ "<div>Vi kan også lære av mange hendelser over tid.</div>"
 	+ "<ul>"
-	+ "<li>Hvis det registreres at skred ofte g&aring;r langt ned mot bebyggelse, kan det danne grunnlag for sikkring.&nbsp;</li>"
-	+ "<li>Hvis det registreres mange nestenulykker hvor ABS sekker har v&aelig;rt involvert, kan man f&aring; gode tall p&aring; virkningen.</li>"
+	+ "<li>Hvis det registreres at skred ofte går langt ned mot bebyggelse, kan det danne grunnlag for sikkring.&nbsp;</li>"
+	+ "<li>Hvis det registreres mange nestenulykker hvor ABS sekker har vært involvert, kan man få gode tall på virkningen.</li>"
 	+ "</ul>";
 
 ICE_PICTURE =  "ICE_PICTURE";

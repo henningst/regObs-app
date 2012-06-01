@@ -97,18 +97,21 @@ var main = (function()
 	      	        		'settings',
 	      	        		'snow',
 	      	        		'snow_see_obs',
+	      	        		'snow_see_varsel',
 	      	        		'snow_obs',
 	      	        		'snow_hendelse',
 	      	        		'snow_faresign',
 	      	        		'snow_picture',
 	      	        		'ice',
 	      	        		'ice_see_obs',
+	      	        		'ice_see_varsel',
 	      	        		'ice_obs',
 	      	        		'ice_hendelse',
 	      	        		'ice_faresign',
 	      	        		'ice_picture',
 	      	        		'water',
 	      	        		'water_see_obs',
+	      	        		'water_see_varsel',
 	      	        		'water_obs',
 	      	        		'water_hendelse',
 	      	        		'water_faresign',
@@ -128,7 +131,7 @@ var main = (function()
             
             main.waitingDialog = new wink.ui.xy.Popup();
 			document.body.appendChild(main.waitingDialog.getDomNode());
-            
+            	
         	$('snow_carusel').appendChild(main.createCarousel(SNOW, SNOW_TEXT).getDomNode());
         	$('ice_carusel').appendChild(main.createCarousel(ICE, ICE_TEXT).getDomNode());
         	$('dirt_carusel').appendChild(main.createCarousel(DIRT, DIRT_TEXT).getDomNode());
@@ -508,8 +511,18 @@ var main = (function()
         			
         		case 'snow_see_obs':
         			if(status == 'start') {
+        				if( $('snow_see_obs').innerHTML == "")
+        					$('snow_see_obs').innerHTML = '<iframe src="http://regobs.varsom.no/Avalanche"></iframe>';
 //        				snow_see_obs.init();
         			}
+        			break;
+        			
+        		case 'snow_see_varsel':
+        			if(status == 'start') 
+    				{
+        				if ( $('snow_see_varsel').innerHTML == "" )
+        					$('snow_see_varsel').innerHTML = '<iframe src="http://regobs.varsom.no/AvalancheWarning/Published"></iframe>';
+    				}
         			break;
         			
         		case 'snow_obs':
@@ -543,7 +556,22 @@ var main = (function()
         				main.actualPage = WATER;
         			}
         			break;
-
+        			
+        		case 'water_see_obs':
+        			if(status == 'start') {
+        				if( $('water_see_obs').innerHTML == "" )
+        					$('water_see_obs').innerHTML = '<iframe src="http://regobs.varsom.no/Flood"></iframe>';
+        			}
+        			break;
+        			
+        		case 'water_see_varsel':
+        			if(status == 'start') 
+    				{
+        				if($('water_see_varsel').innerHTML == "")
+        					$('water_see_varsel').innerHTML = '<iframe src="http://www.nve.no/no/Flom-og-skred/Flomvarsling-og-beredskap/Flomvarsling-og-meldinger---arkiv/"></iframe>';
+    				}
+        			break;
+        			
         		case 'water_obs':
         			if(status == 'start') {
         				water_page.init();
@@ -574,6 +602,21 @@ var main = (function()
         				
         				main.actualPage = ICE;
         			}
+        			break;
+        			
+        		case 'ice_see_obs':
+        			if(status == 'start') {
+        				if( $('ice_see_obs').innerHTML == "" )
+        					$('ice_see_obs').innerHTML = '<iframe src="http://regobs.varsom.no/Ice"></iframe>';
+        			}
+        			break;
+        			
+        		case 'ice_see_varsel':
+        			if(status == 'start') 
+    				{
+        				if( $('ice_see_varsel').innerHTML == "" )
+        					$('ice_see_varsel').innerHTML = '<iframe src="http://www.nve.no/no/Vann-og-vassdrag/Hydrologi/Is-og-vanntemperatur/Ismelding/Landsoversikt/"></iframe>';
+    				}
         			break;
         			
         		case 'ice_obs':
@@ -607,6 +650,21 @@ var main = (function()
         				main.actualPage = DIRT;
         			}
         			break;
+
+        		case 'dirt_see_obs':
+        			if(status == 'start') {
+        				if($('dirt_see_obs').innerHTML == "")
+        					$('dirt_see_obs').innerHTML = '<iframe src="http://regobs.varsom.no/LandSlide"></iframe>';
+        			}
+        			break;
+        			
+        			//Not available by now
+//        		case 'dirt_see_varsel':
+//        			if(status == 'start') 
+//    				{
+//        				$('dirt_see_varsel').innerHTML = '<iframe src="http://regobs.varsom.no/AvalancheWarning/Published"></iframe>';
+//    				}
+//        			break;
         			
         		case 'dirt_obs':
         			if(status == 'start') {
