@@ -9,8 +9,11 @@ var GPS_TIMEOUT_IN_MINUTES = 20;
 /*
  * 
  */
-SERVER_URL = "http://h-web01.nve.no/stage_regobsservices/Odata.svc/";
-//SERVER_URL = "http://h-web01.nve.no/test_regobsservices/Odata.svc/";
+TEST = "http://h-web01.nve.no/test_regobsservices/Odata.svc/";
+STAGE = "http://h-web01.nve.no/stage_regobsservices/Odata.svc/";
+
+SERVER_URL = STAGE;
+//SERVER_URL = 
 
 /*
  * Platform
@@ -36,6 +39,11 @@ SNOW_GEO_HAZARD = 10;
 DIRT_GEO_HAZARD = 20;
 ICE_GEO_HAZARD = 70;
 WATER_GEO_HAZARD = 60;
+
+/*
+ * 
+ */
+CAROUSEL_STANDART = 2;
 
 /*
  * Omraade id 

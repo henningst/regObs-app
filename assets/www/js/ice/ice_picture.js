@@ -21,7 +21,7 @@ var ice_picture  = {
 		jQuery.each(options, function() {jQuery(this).find('option').remove()});
 		
 		jQuery.each(data.results, function() {
-			if(this.RegistrationTID >= 50 && this.RegistrationTID < 60 || this.RegistrationTID == 11 || this.RegistrationTID == 13 || this.RegistrationTID == 99)
+			if(this.RegistrationTID >= 50 && this.RegistrationTID < 60 || this.RegistrationTID == 11 || this.RegistrationTID == 13 || this.RegistrationTID == 99 || this.RegistrationTID == 0)
 				options.append(jQuery("<option />").val(this.RegistrationTID).text(this.RegistrationName));
 		});
 	},

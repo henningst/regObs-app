@@ -12,9 +12,13 @@ var main = (function()
     	
     	waitingDialog: null,
     	
+    	lastPage: "",
+    	
     	panels: null,
     	
     	lastRegID: -1,
+    	
+    	inTestMode: false,
     	
 		clickLogin: function() {
 			var username = document.getElementById('login_username').value;
@@ -78,8 +82,7 @@ var main = (function()
 				jQuery(".footer .fav-inactive").removeClass("fav-inactive");
 			} else {
 				jQuery(".footer .fav, .footer .camera").addClass("fav-inactive");
-			}
-				
+			}	
 		},
     	
         init: function()
@@ -93,21 +96,25 @@ var main = (function()
 	      	        		'home',
 	      	        		'settings',
 	      	        		'snow',
+	      	        		'snow_see_obs',
 	      	        		'snow_obs',
 	      	        		'snow_hendelse',
 	      	        		'snow_faresign',
 	      	        		'snow_picture',
 	      	        		'ice',
+	      	        		'ice_see_obs',
 	      	        		'ice_obs',
 	      	        		'ice_hendelse',
 	      	        		'ice_faresign',
 	      	        		'ice_picture',
 	      	        		'water',
+	      	        		'water_see_obs',
 	      	        		'water_obs',
 	      	        		'water_hendelse',
 	      	        		'water_faresign',
 	      	        		'water_picture',
 	      	        		'dirt',
+	      	        		'dirt_see_obs',
 	      	        		'dirt_obs',
 	      	        		'dirt_hendelse',
 	      	        		'dirt_faresign',
@@ -122,46 +129,39 @@ var main = (function()
             main.waitingDialog = new wink.ui.xy.Popup();
 			document.body.appendChild(main.waitingDialog.getDomNode());
             
-//            var properties = 
-//            {
-//				'itemsWidth': 150,
-//				'itemsHeight': 35,
-//				'autoAdjust': 1,
-//				'autoAdjustDuration': 400,
-//				'autoPlay': 1,
-//				'autoPlayDuration': 4000,
-//				'firstItemIndex': 2,
-//				'uId': SNOW,
-//				'items':
-//        		[
-//	            	{'type': 'string', 'content': SNOW_TEXT[0]},
-//	            	{'type': 'string', 'content': SNOW_TEXT[1]},
-//	            	{'type': 'string', 'content': SNOW_TEXT[2]},
-//	            	{'type': 'string', 'content': SNOW_TEXT[3]},
-//	            	{'type': 'string', 'content': SNOW_TEXT[4]},
-//	            	{'type': 'string', 'content': SNOW_TEXT[5]}
-//            	]
-//        	};
-//
-//        	carousel = new wink.ui.xy.Carousel(properties);
         	$('snow_carusel').appendChild(main.createCarousel(SNOW, SNOW_TEXT).getDomNode());
         	$('ice_carusel').appendChild(main.createCarousel(ICE, ICE_TEXT).getDomNode());
         	$('dirt_carusel').appendChild(main.createCarousel(DIRT, DIRT_TEXT).getDomNode());
         	$('water_carusel').appendChild(main.createCarousel(WATER, WATER_TEXT).getDomNode());
             
-			
 			wink.subscribe('/carousel/events/switch', {context: this, method: 'carouselChanged'}); 
-//            wink.subscribe('/carousel/events/switch ', {context: this, method: 'logData', arguments: 'log'});
 			
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
 
-            //init danger signs
+            main.populateBoxes(true);
+            
+			var username = DataAccess.get(USERNAME);
+			var password = DataAccess.get(PASSWORD);
+			
+			if(username != undefined && password != undefined) {
+				Login(username, password, main.loginCallback);
+        	} else {
+        		main.showLoginStatus(false);	
+			}
+			
+			main.slideToFavorite();
+			main.toogleFavorite();
+        },
+        
+        populateBoxes: function(force)
+        {
+        	//init danger signs
             //TODO what if we want to update the mobile clients?
-            var registrationKD = DataAccess.get(RegistrationKD.name);
-            var dangerSign = DataAccess.get(DangerSignKD.name);
-            var activityInfluenced = DataAccess.get(ActivityInfluencedKD.name);
-            var damageExtent = DataAccess.get(DamageExtentKD.name);
+            var registrationKD = (force ? null : DataAccess.get(RegistrationKD.name)) ;
+            var dangerSign = (force ? null : DataAccess.get(DangerSignKD.name));
+            var activityInfluenced = (force ? null : DataAccess.get(ActivityInfluencedKD.name));
+            var damageExtent = (force ? null : DataAccess.get(DamageExtentKD.name));
             
             if(registrationKD == null) 
         	{
@@ -198,18 +198,6 @@ var main = (function()
             {
             	main.fillDamageExtent(damageExtent);
             }
-            
-			var username = DataAccess.get(USERNAME);
-			var password = DataAccess.get(PASSWORD);
-			
-			if(username != undefined && password != undefined) {
-				Login(username, password, main.loginCallback);
-        	} else {
-        		main.showLoginStatus(false);	
-			}
-			
-			main.slideToFavorite();
-			main.toogleFavorite();
         },
         
         carouselMoved: function(data)
@@ -243,17 +231,35 @@ var main = (function()
         	switch(data.carouselId)
         	{
         	case SNOW:
-        		snow_hendelse.changeCarouselTo(data.currentItemIndex);
+        		snow_faresign.changeCarouselTo(data.currentItemIndex);
         		break;
         	case ICE:
-        		ice_hendelse.changeCarouselTo(data.currentItemIndex);
+        		ice_faresign.changeCarouselTo(data.currentItemIndex);
         		break;
         	case WATER:
-        		water_hendelse.changeCarouselTo(data.currentItemIndex);
+        		water_faresign.changeCarouselTo(data.currentItemIndex);
         		break;
         	case DIRT:
-        		dirt_hendelse.changeCarouselTo(data.currentItemIndex);
+        		dirt_faresign.changeCarouselTo(data.currentItemIndex);
         		break;
+        	}
+        },
+        
+        gotoTest: function ()
+        {
+        	if(main.inTestMode)
+        	{
+        		SERVER_URL = STAGE;
+        		main.inTestMode = false;
+        		$('test_button').value = USE_TESTMODE_BUTTON;
+        		jQuery('#over_header').removeClass('testMode');
+        	}
+        	else 
+        	{
+        		SERVER_URL = TEST;
+        		main.inTestMode = true;
+        		$('test_button').value = USE_PROD_BUTTON;
+        		jQuery('#over_header').addClass('testMode');
         	}
         },
         
@@ -354,11 +360,11 @@ var main = (function()
         {
         	var properties = 
             {
-				'itemsWidth': 150,
+				'itemsWidth': 200,
 				'itemsHeight': 35,
 				'autoAdjust': 1,
 				'autoAdjustDuration': 400,
-				'firstItemIndex': 2,
+				'firstItemIndex': CAROUSEL_STANDART,
 				'uId': id,
 				'items':
         		[
@@ -367,7 +373,7 @@ var main = (function()
         	
         	for(var i = 0; i < items.length; ++i)
         	{
-        		properties.items.push({'type': 'string', 'content': items[i]});
+        		properties.items.push({'type': 'string', 'content': "<div style='font-size: 0.8em'>" +items[i] +"</div>"});
         	}
 
         	return new wink.ui.xy.Carousel(properties);
@@ -458,7 +464,7 @@ var main = (function()
         },
         
         toggleBackButtonDisplay: function(params, status) {
-
+        	
         	if(params.id != 'home') {
         		if(status == 'start') {
     				$('back').style.display = 'block';
@@ -497,6 +503,12 @@ var main = (function()
         				//$('mainBody').style.backgroundImage = "url('img/snow_background.png')";
         				
         				main.actualPage = SNOW;
+        			}
+        			break;
+        			
+        		case 'snow_see_obs':
+        			if(status == 'start') {
+//        				snow_see_obs.init();
         			}
         			break;
         			
@@ -622,7 +634,7 @@ var main = (function()
         			
         		case 'learning_page':
         			if(status == 'start') {
-        				learning_page.init();
+        				learning_page.init(main.lastPage);
         			}
         			break;
         			
@@ -635,6 +647,8 @@ var main = (function()
         		default:
         			break;
         	}
+        	
+        	main.lastPage = params.id;
         }
     }
      

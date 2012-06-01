@@ -2,6 +2,8 @@ var ice_faresign = {
 
 		i: 0,
 		
+		carouselId: CAROUSEL_STANDART,
+		
 		fillDangerSign: function(data) {
 			var options = jQuery("#ice_danger_sign_list");
 			
@@ -13,9 +15,18 @@ var ice_faresign = {
 					options.append(jQuery("<option />").val(this.DangerSignTID).text(this.DangerSignName));
 			});
 		},
+
+		changeCarouselTo: function(id) 
+		{
+			ice_faresign.carouselId = id;
+		},
 		
 		addFaresign: function() {
-			var obs = new DangerObs(ice_faresign.i++, null, ICE_GEO_HAZARD, $("ice_danger_sign_list").selectedIndex, 0, $("ice_danger_sign_comment").value);
+			
+			var comment = $("ice_danger_sign_comment").value;
+			comment += " " +ICE_TEXT[ice_faresign.carouselId];
+			
+			var obs = new DangerObs(ice_faresign.i++, null, ICE_GEO_HAZARD, $("ice_danger_sign_list").selectedIndex, 0, comment);
 			main.store.getIce().addObs(obs);
 			
 			ice_page.add('ice_faresign_count');

@@ -28,9 +28,9 @@ var dirt_page = {
 		
 		dirt_page.longitude= Math.round(p.x);
 		dirt_page.latitute  = Math.round(p.y);
-		
-		jQuery('position_header_position').html(Math.round(position.coords.latitude * NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA +" , " 
-		+Math.round(position.coords.longitude* NUMBERS_AFTER_KOMMA)/NUMBERS_AFTER_KOMMA);
+
+		jQuery('.position_header_position').html("UTM33 ( " +position.coords.accuracy +"m )");
+		jQuery('.position_header_town').html("N: " +Math.round(p.y) +" &Oslash;: " +Math.round(p.x));
 		
 		GetObjectFromServer(new PositionDetails(dirt_page.latitute, dirt_page.longitude), dirt_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(dirt_page.latitute, dirt_page.longitude), dirt_page.onAreaInformationResult);
@@ -48,7 +48,7 @@ var dirt_page = {
 	// onError Callback receives a PositionError object
 	//
 	onError: function(error) {
-		jQuery('position_header_position').html("no" +" , " +"geodata");
+		jQuery('position_header_town').html("no" +" , " +"geodata");
 	},
 	
 	onKommuneResult : function(data) {

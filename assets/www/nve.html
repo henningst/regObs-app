@@ -47,6 +47,7 @@
 	<script type="text/javascript" src="js/settings_page.js"></script>
 	
 	<script type="text/javascript" src="js/snow/snow.js"></script>
+	<script type="text/javascript" src="js/snow/snow_see_obs.js"></script>
 	<script type="text/javascript" src="js/snow/snow_picture.js"></script>
 	<script type="text/javascript" src="js/snow/snow_hendelse.js"></script>
 	<script type="text/javascript" src="js/snow/snow_faresign.js"></script>
@@ -113,7 +114,7 @@
 	    <div id="regobs-info" class="w_left header-button" onclick="main.panels.slideTo('information')">
 	    </div>
 	    
-	    <div>
+	    <div id="over_header">
 	    	<span id="header_middle_text">regObs</span>
 	    	<a type="button" onclick="main.starred();" >
             	<img id="star" alt="" src="img/stared.png" style="display: none; position: absolute; top: 5px; margin-left: 5px; height: 32px; width: 32px;">
@@ -160,6 +161,7 @@
             <input type="password" id="login_password" class="large settingsInput" value="" />
             <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logg inn' onclick="main.clickLogin();" />
             <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logg ut' onclick="main.clickLogOut();" />
+            <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Bruk testmode' onclick="main.gotoTest();" />
             <br>
 	    </div>
 	</div> 
@@ -183,9 +185,13 @@
     
 		<div class="c_align_central">
 	    <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('snow_obs');"/>
-	  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick=""/>
+	  	<input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('snow_see_obs')"/>
   	  <input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
 		</div>
+	</div>
+	
+	<div id="snow_see_obs">
+		<iframe src="http://regobs.varsom.no/Avalanche"></iframe> 
 	</div>
 		
 	<div id="snow_obs">
@@ -220,8 +226,6 @@
         <label for="snow_hendelse_comment" style="display: inline">Beskrivelse:</label><a style="margin-left: 10px; margin-top: 5px;" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
 		<textarea id="snow_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
 		
-		<div id="snow_carusel" ></div>
-		
 		<label for="snow_hendelse_activity_list">Aktivitet:</label>
         <select id="snow_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
         </select>
@@ -239,6 +243,8 @@
         <label for="snow_danger_sign_list" style="margin: 15px; display: inline">Faresign:</label><a style="margin-left: 10px; margin-top: 5px;" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
         <select id="snow_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
         </select>
+        
+		<div id="snow_carusel" ></div>
 		
         <label for="snow_danger_sign_comment">Beskrivelse:</label>
 		<textarea id="snow_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
@@ -266,10 +272,14 @@
 		<div class="c_align_central">
 
 	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('ice_obs');"/>
-	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick=""/>
+	      	<input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('ice_see_obs')"/>
 		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
 			
 		</div>
+	</div>
+	
+	<div id="ice_see_obs">
+		<iframe src="http://regobs.varsom.no/Ice"></iframe> 
 	</div>
 	
 	<div id="ice_obs">
@@ -305,8 +315,6 @@
         <label for="ice_hendelse_comment" style="display: inline">Beskrivelse:</label><a style="margin-left: 10px; margin-top: 5px;" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
 		<textarea id="ice_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
 		
-		<div id="ice_carusel" ></div>
-		
 		<label for="ice_hendelse_activity_list">Aktivitet:</label>
         <select id="ice_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
         </select>
@@ -336,6 +344,8 @@
  		<select id="ice_picture_spec_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
         </select>
         
+		<div id="ice_carusel" ></div>
+		
 		<label for="ice_picture_comment">Beskrivelse:</label>
 		<textarea id="ice_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="ice_picture.addPicture();">Legg til</button>
@@ -351,10 +361,14 @@
 	
 		<div class="c_align_central">
 	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('water_obs');"/>
-	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick=""/>
+	      	<input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('water_see_obs')"/>
 		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
 			
 		</div>
+	</div>
+	
+	<div id="water_see_obs">
+		<iframe src="http://regobs.varsom.no/Flood"></iframe> 
 	</div>
 	
 	<div id="water_obs">
@@ -390,8 +404,6 @@
         <label for="water_hendelse_comment" style="display: inline">Beskrivelse:</label><a style="margin-left: 10px; margin-top: 5px;" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a> 
 		<textarea id="water_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
 		
-		<div id="water_carusel" ></div>
-		
 		<label for="water_hendelse_activity_list">Aktivitet:</label>
         <select id="water_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
         </select>
@@ -409,6 +421,8 @@
         <label for="water_danger_sign_list" style="margin: 15px; display: inline">Faresign:</label><a style="margin-left: 10px; margin-top: 5px;" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
         <select id="water_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
         </select>
+		
+		<div id="water_carusel" ></div>
 		
         <label for="water_danger_sign_comment">Beskrivelse:</label>
 		<textarea id="water_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
@@ -437,10 +451,14 @@
 	
 		<div class="c_align_central">
 	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('dirt_obs');"/>
-	      	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick=""/>
+	      	<input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('dirt_see_obs')"/>
 		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
 			
 		</div>
+	</div>
+	
+	<div id="dirt_see_obs">
+		<iframe src="http://regobs.varsom.no/LandSlide"></iframe> 
 	</div>
 	
 	<div id="dirt_obs">
@@ -475,8 +493,6 @@
         <label for="dirt_hendelse_comment" style="display: inline">Beskrivelse:</label><a style="margin-left: 10px; margin-top: 5px;" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
 		<textarea id="dirt_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
 		
-		<div id="dirt_carusel" ></div>
-		
 		<label for="dirt_hendelse_activity_list">Aktivitet:</label>
         <select id="dirt_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
         </select>
@@ -495,6 +511,8 @@
         <select id="dirt_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
         </select>
 		
+		<div id="dirt_carusel" ></div>
+		
         <label for="dirt_danger_sign_comment">Beskrivelse:</label>
 		<textarea id="dirt_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
 		<button class="smallWidth w_button w_radius c_color_gradient" onclick="dirt_faresign.addFaresign();">Legg til</button>
@@ -512,7 +530,7 @@
 	</div>
 	
 	<div id="learning_page" class="c_center_page">
-		<span>Beskrivende tekst!</span>
+		<div id="learning_content"></div>
 	</div>
 	
   <div id="footer" class="footer">

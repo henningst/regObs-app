@@ -2,6 +2,8 @@ var snow_faresign = {
 
 		i: 0,
 		
+		carouselId: CAROUSEL_STANDART,
+		
 		fillDangerSign: function(data) {
 			var options = jQuery("#snow_danger_sign_list");
 			
@@ -14,9 +16,17 @@ var snow_faresign = {
 			});
 		},
 		
+		changeCarouselTo: function(id) 
+		{
+			snow_faresign.carouselId = id;
+		},
+		
 		addFaresign: function() {
 			
-			var obs = new AvalancheDangerObs(snow_faresign.i++, null, $("snow_danger_sign_list").selectedIndex, 0, $("snow_danger_sign_comment").value);
+			var comment = $("snow_danger_sign_comment").value;
+			comment += " " +SNOW_TEXT[snow_faresign.carouselId];
+			
+			var obs = new AvalancheDangerObs(snow_faresign.i++, null, $("snow_danger_sign_list").selectedIndex, 0, comment);
 			main.store.getSnow().addObs(obs);
 			snow_page.add('snow_faresign_count');
 			main.panels.slideBack();

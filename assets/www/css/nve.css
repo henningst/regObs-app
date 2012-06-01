@@ -5,6 +5,11 @@
 5D3974
 */
 
+.testMode
+{
+	background-color: red;
+}
+
 .pp_popup
 {
 	left: 15%;
