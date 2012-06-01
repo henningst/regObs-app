@@ -20,7 +20,7 @@ class NveStore
 				@m_snowStore
 			
 	sendSnow: (callback) ->
-		if @m_snowStore
+		if @m_snowStore and not IsEmpty(@m_snowStore)
 			@m_snowStore.send()
 		
 		callback() if callback
@@ -39,7 +39,7 @@ class NveStore
 				@m_dirtStore
 			
 	sendDirt: (callback) ->
-		if @m_dirtStore
+		if @m_dirtStore and not IsEmpty(@m_dirtStore)
 			@m_dirtStore.send()
 		
 		callback() if callback
@@ -58,7 +58,7 @@ class NveStore
 				@m_iceStore
 			
 	sendIce: (callback) ->
-		if @m_iceStore
+		if @m_iceStore and not IsEmpty(@m_iceStore)
 			@m_iceStore.send()
 		
 		callback() if callback
@@ -77,7 +77,20 @@ class NveStore
 				@m_waterStore
 			
 	sendWater: (callback) ->
-		if @m_waterStore
+		if @m_waterStore and not IsEmpty(@m_waterStore)
 			@m_waterStore.send()
 		
 		callback() if callback
+		
+	IsEmpty: (store) =>
+		
+		if store.getObs().length isnt 0
+			return false 
+		
+		if store.getIncident() isnt null
+			return false
+			
+		if store.getPictures() isnt 0
+			return false
+			
+		true

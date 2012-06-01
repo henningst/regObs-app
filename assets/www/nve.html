@@ -47,7 +47,6 @@
 	<script type="text/javascript" src="js/settings_page.js"></script>
 	
 	<script type="text/javascript" src="js/snow/snow.js"></script>
-	<script type="text/javascript" src="js/snow/snow_see_obs.js"></script>
 	<script type="text/javascript" src="js/snow/snow_picture.js"></script>
 	<script type="text/javascript" src="js/snow/snow_hendelse.js"></script>
 	<script type="text/javascript" src="js/snow/snow_faresign.js"></script>
@@ -186,13 +185,13 @@
 		<div class="c_align_central">
 	    <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('snow_obs');"/>
 	  	<input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('snow_see_obs')"/>
-  	  <input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
+  	  <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick="main.panels.slideTo('snow_see_varsel')"/>
 		</div>
 	</div>
 	
-	<div id="snow_see_obs">
-		<iframe src="http://regobs.varsom.no/Avalanche"></iframe> 
-	</div>
+	<div id="snow_see_obs"></div>
+	
+	<div id="snow_see_varsel"></div>
 		
 	<div id="snow_obs">
 	  <div class="c_position_header">
@@ -273,14 +272,14 @@
 
 	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('ice_obs');"/>
 	      	<input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('ice_see_obs')"/>
-		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
+		  	<input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick="main.panels.slideTo('ice_see_varsel')"/>
 			
 		</div>
 	</div>
 	
-	<div id="ice_see_obs">
-		<iframe src="http://regobs.varsom.no/Ice"></iframe> 
-	</div>
+	<div id="ice_see_obs"></div>
+	
+	<div id="ice_see_varsel"></div>
 	
 	<div id="ice_obs">
 		<div class="c_position_header">
@@ -362,14 +361,14 @@
 		<div class="c_align_central">
 	        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('water_obs');"/>
 	      	<input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('water_see_obs')"/>
-		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
+		  	<input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick="main.panels.slideTo('water_see_varsel')"/>
 			
 		</div>
 	</div>
 	
-	<div id="water_see_obs">
-		<iframe src="http://regobs.varsom.no/Flood"></iframe> 
-	</div>
+	<div id="water_see_obs"></div>
+	
+	<div id="water_see_varsel"></div>
 	
 	<div id="water_obs">
 		<div class="c_position_header">
@@ -457,9 +456,12 @@
 		</div>
 	</div>
 	
-	<div id="dirt_see_obs">
-		<iframe src="http://regobs.varsom.no/LandSlide"></iframe> 
-	</div>
+	<div id="dirt_see_obs" ></div>
+		 
+	
+<!-- 	<div id="dirt_see_varsel"> -->
+<!-- 		<iframe src="http://regobs.varsom.no/LandSlide"></iframe>  -->
+<!-- 	</div> -->
 	
 	<div id="dirt_obs">
 		<div class="c_position_header">
