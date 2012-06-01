@@ -1,7 +1,5 @@
 var water_hendelse = {
 		
-		id: -1,
-		
 		fill_activity_influenced: function(data) {
 			var options = jQuery("#water_hendelse_activity_list");
 			
@@ -23,13 +21,6 @@ var water_hendelse = {
 			jQuery.each(data.results, function() {
 			    options.append(jQuery("<option />").val(this.DamageExtentTID).text(this.DamageExtentName));
 			});
-		},
-		
-
-		changeCarouselTo: function(id) 
-		{
-			water_hendelse.id = id;
-//			$("water_hendelse_comment").value = WATER_TEXT[id];
 		},
 		
 		afterSendRegistration: function() {

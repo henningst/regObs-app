@@ -2,6 +2,8 @@ var dirt_faresign = {
 
 		i: 0,
 		
+		carouselId: CAROUSEL_STANDART,
+		
 		fillDangerSign: function(data) {
 			var options = jQuery("#dirt_danger_sign_list");
 			
@@ -14,9 +16,17 @@ var dirt_faresign = {
 					options.append(jQuery("<option />").val(this.DangerSignTID).text(this.DangerSignName));
 			});
 		},
+
+		changeCarouselTo: function(id) 
+		{
+			dirt_faresign.carouselId = id;
+		},
 		
 		addFaresign: function() {
-			var obs = new DangerObs(dirt_faresign.i++, null, DIRT_GEO_HAZARD, $("dirt_danger_sign_list").selectedIndex, 0, $("dirt_danger_sign_comment").value);
+			var comment = $("ice_danger_sign_comment").value;
+			comment += " " +DIRT_TEXT[dirt_faresign.carouselId]; 
+			
+			var obs = new DangerObs(dirt_faresign.i++, null, DIRT_GEO_HAZARD, $("dirt_danger_sign_list").selectedIndex, 0, comment);
 			
 			main.store.getDirt().addObs(obs);
 			dirt_page.add('dirt_faresign_count');

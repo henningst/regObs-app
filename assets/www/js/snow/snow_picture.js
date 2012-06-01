@@ -22,7 +22,7 @@ var snow_picture  = {
 		jQuery.each(options, function() {jQuery(this).find('option').remove()});
 		
 		jQuery.each(data.results, function() {
-			if((this.RegistrationTID >= 20 && this.RegistrationTID < 30 ) || this.RegistrationTID == 11 || this.RegistrationTID == 13 || this.RegistrationTID == 99)
+			if((this.RegistrationTID >= 20 && this.RegistrationTID < 30 ) || this.RegistrationTID == 11 || this.RegistrationTID == 13 || this.RegistrationTID == 99 || this.RegistrationTID == 0)
 				options.append(jQuery("<option />").val(this.RegistrationTID).text(this.RegistrationName));
 		});
 	},

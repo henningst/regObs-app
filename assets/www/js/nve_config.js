@@ -38,6 +38,11 @@ ICE_GEO_HAZARD = 70;
 WATER_GEO_HAZARD = 60;
 
 /*
+ * 
+ */
+CAROUSEL_STANDART = 2;
+
+/*
  * Omraade id 
  */
 OMRAADE_ID_OFFSET = 100;

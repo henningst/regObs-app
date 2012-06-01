@@ -2,6 +2,8 @@ var water_faresign = {
 
 		i: 0,
 		
+		carouselId : CAROUSEL_STANDART,
+		
 		fillDangerSign: function(data) {
 			var options = jQuery("#water_danger_sign_list");
 			
@@ -14,10 +16,19 @@ var water_faresign = {
 					options.append(jQuery("<option />").val(this.DangerSignTID).text(this.DangerSignName));
 			});
 		},
+
+		changeCarouselTo: function(id) 
+		{
+			water_faresign.carouselId = id;
+		},
 		
 		addFaresign: function() {
 			var list = $('water_danger_sign_list');
-			var obs = new DangerObs(water_faresign.i++, null, WATER_GEO_HAZARD, list[list.selectedIndex].value, 0, $("water_danger_sign_comment").value);
+			
+			var comment = $("water_danger_sign_comment").value;
+			comment += " " +WATER_TEXT[water_faresign.carouselId];
+			
+			var obs = new DangerObs(water_faresign.i++, null, WATER_GEO_HAZARD, list[list.selectedIndex].value, 0, comment);
 			
 			main.store.getWater().addObs(obs);
 			snow_page.add('water_faresign_count');

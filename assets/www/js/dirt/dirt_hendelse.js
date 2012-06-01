@@ -22,11 +22,6 @@ var dirt_hendelse = {
 			    options.append(jQuery("<option />").val(this.DamageExtentTID).text(this.DamageExtentName));
 			});
 		},
-
-		changeCarouselTo: function(id) 
-		{
-//			$("dirt_hendelse_comment").value = DIRT_TEXT[id];
-		},
 		
 		afterSendRegistration: function() {
 			$("dirt_hendelse_activity_list").selectedIndex = 0;
