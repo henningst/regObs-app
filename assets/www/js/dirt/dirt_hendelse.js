@@ -31,6 +31,12 @@ var dirt_hendelse = {
 		
 		addHendelse: function() {
 			//save hendelse
+
+			if($("dirt_hendelse_comment").value == "")
+			{
+				main.showDialogWithMessage(HENDELSE_ERROR);
+				return;
+			}
 			
 			var string = $("dirt_hendelse_comment").value;
 			var index = string.indexOf('.', 0);

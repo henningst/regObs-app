@@ -30,6 +30,12 @@ var ice_hendelse = {
 		
 		addHendelse: function() {
 			//save hendelse
+
+			if($("ice_hendelse_comment").value == "")
+			{
+				main.showDialogWithMessage(HENDELSE_ERROR);
+				return;
+			}
 			
 			var string = $("ice_hendelse_comment").value;
 			var index = string.indexOf('.', 0);
