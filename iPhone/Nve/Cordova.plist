@@ -19,9 +19,10 @@
 	<key>AllowInlineMediaPlayback</key>
 	<false/>
 	<key>OpenAllWhitelistURLsInWebView</key>
-	<false/>
+	<true/>
 	<key>ExternalHosts</key>
 	<array>
+		<string>regobs.varsom.no*</string>
 		<string>h-web01.nve.no*</string>
 		<string>gis.nve.no</string>
 		<string>localhost</string>

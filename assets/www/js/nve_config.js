@@ -19,7 +19,7 @@ SERVER_URL = TEST;
  * Platform
  */
 var device = {
-		platform: 'iphone'
+		platform: 'android'
 };
 
 /*
