@@ -18,6 +18,8 @@ var main = (function()
     	
     	lastRegID: -1,
     	
+    	scroller : null,
+    	
     	inTestMode: false,
     	
 		clickLogin: function() {
@@ -127,7 +129,7 @@ var main = (function()
         	    		 ]
     	        }
     	    );
-            document.body.appendChild(this.panels.getDomNode());
+            $("wrapper").appendChild(this.panels.getDomNode());
             
             main.waitingDialog = new wink.ui.xy.Popup();
 			document.body.appendChild(main.waitingDialog.getDomNode());
@@ -155,6 +157,11 @@ var main = (function()
 			
 			main.slideToFavorite();
 			main.toogleFavorite();
+			
+			var wrapperHeight = wink.ux.window.height - 2* 45;
+			$('wrapper').style.height = wrapperHeight + "px";
+			//main.scroller = new iScroll('wrapper');
+			
         },
         
         populateBoxes: function(force)
@@ -483,6 +490,7 @@ var main = (function()
         	
         	main.toogleFavorite();
         	
+        	
         	switch(params.id) {
         		case 'home':
         			if(status == 'end') {
@@ -712,6 +720,8 @@ var main = (function()
         	}
         	
         	main.lastPage = params.id;
+        	
+        	
         }
     }
      

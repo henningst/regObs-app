@@ -19,7 +19,7 @@ SERVER_URL = STAGE;
  * Platform
  */
 var device = {
-		platform: 'android'
+		platform: 'iphone'
 };
 
 /*
