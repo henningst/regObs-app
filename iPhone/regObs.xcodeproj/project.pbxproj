@@ -425,7 +425,7 @@
 					armv6,
 				);
 				CODE_SIGN_IDENTITY = "iPhone Distribution: nLink AS";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nLink AS";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					/Users/Shared/Cordova/Frameworks,
@@ -450,8 +450,8 @@
 					/usr/lib/libSystem.B.dylib,
 				);
 				PRODUCT_NAME = regObs;
-				PROVISIONING_PROFILE = "8720EC85-2FE6-406D-A056-781E92F0A349";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "430DBE23-660D-4117-8959-F8658EE5A7E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "430DBE23-660D-4117-8959-F8658EE5A7E8";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -491,8 +491,8 @@
 					/usr/lib/libSystem.B.dylib,
 				);
 				PRODUCT_NAME = regObs;
-				PROVISIONING_PROFILE = "8720EC85-2FE6-406D-A056-781E92F0A349";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8720EC85-2FE6-406D-A056-781E92F0A349";
+				PROVISIONING_PROFILE = "430DBE23-660D-4117-8959-F8658EE5A7E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "430DBE23-660D-4117-8959-F8658EE5A7E8";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

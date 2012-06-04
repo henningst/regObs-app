@@ -74,6 +74,7 @@ var main = (function()
 		
 		logoutCallback: function() {
         	main.showLoginStatus(false);
+        	main.login = LoggedInAs(main.loggedInAsCallback);
 		},
 		
 		starred: function() {
