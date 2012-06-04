@@ -11,6 +11,8 @@ var ice_page = {
 	omrade_id: 0,
 
 	pos_obj: null,
+	
+	last_pos_obj: null,
 		
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
@@ -34,6 +36,11 @@ var ice_page = {
 		
 		GetObjectFromServer(new PositionDetails(ice_page.latitute, ice_page.longitude), ice_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(ice_page.latitute, ice_page.longitude), ice_page.onAreaInformationResult);
+	},
+	
+	updateLocation : function() 
+	{
+		ice_page.last_pos_obj = { 'lat' : ice_page.latitute, 'long' : ice_page.longitude };
 	},
 
 	onAreaInformationResult: function(data) {

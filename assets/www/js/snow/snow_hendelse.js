@@ -63,6 +63,7 @@ var snow_hendelse = {
 					null,
 					"");
 			
+			snow_page.updateLocation();
 			main.store.getSnow().setIncident(incident);
 			main.panels.slideBack();			
 		},

@@ -9,7 +9,8 @@ var snow_picture  = {
 			var picture = new Picture(null, null, snow_picture.pictureData, null, null, null, SNOW_GEO_HAZARD, $("snow_picture_comment").value, parseInt(list[list.selectedIndex].value));
 			main.store.getSnow().addPicture(picture);
 			snow_picture.pictureData = null; 
-
+			
+			snow_page.updateLocation();
 			snow_page.add('snow_picture_count');
 			main.panels.slideBack();
 		}
@@ -59,8 +60,8 @@ var snow_picture  = {
 				sourceType : Camera.PictureSourceType.CAMERA, 
 				allowEdit : true,
 				encodingType: Camera.EncodingType.JPEG,
-				targetWidth: 1024,
-				targetHeight: 1024,
+//				targetWidth: 1024,
+//				targetHeight: 1024,
                 correctOrientation: true
             }
 		); 		

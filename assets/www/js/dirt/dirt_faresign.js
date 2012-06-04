@@ -34,6 +34,7 @@ var dirt_faresign = {
 			
 			$("dirt_danger_sign_list").selectedIndex = 0;
 			$("dirt_danger_sign_comment").value = "";
+			dirt_page.updateLocation();
 		},
 		
 		init: function() {

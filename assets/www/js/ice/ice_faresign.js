@@ -34,6 +34,8 @@ var ice_faresign = {
 			
 			$("ice_danger_sign_list").selectedIndex = 0;
 			$("ice_danger_sign_comment").value = "";
+			
+			ice_page.updateLocation();
 		},
 		
 		init: function() {

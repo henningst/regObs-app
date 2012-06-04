@@ -34,6 +34,7 @@ var water_faresign = {
 			snow_page.add('water_faresign_count');
 			main.panels.slideBack();
 			
+			water_page.updateLocation();
 			$("water_danger_sign_list").selectedIndex = 0;
 			$("water_danger_sign_comment").value = "";
 		},

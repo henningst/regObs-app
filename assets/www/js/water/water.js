@@ -11,6 +11,8 @@ var water_page = {
 	omrade_id: 0,
 
 	pos_obj: null,
+	
+	last_pos_obj: null,
 		
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
@@ -26,7 +28,7 @@ var water_page = {
 		var p = new Proj4js.Point(position.coords.longitude, position.coords.latitude);  
 		Proj4js.transform(source, dest, p);
 		
-		water_page.longitude= Math.round(p.x);
+		water_page.longitude = Math.round(p.x);
 		water_page.latitute  = Math.round(p.y);
 
 		jQuery('.position_header_position').html("UTM33 ( &plusmn;" +position.coords.accuracy +"m )");
@@ -34,6 +36,11 @@ var water_page = {
 		
 		GetObjectFromServer(new PositionDetails(water_page.latitute, water_page.longitude), water_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(water_page.latitute, water_page.longitude), water_page.onAreaInformationResult);
+	},
+	
+	updateLocation : function() 
+	{
+		water_page.last_pos_obj = { 'lat' : water_page.latitute, 'long' : water_page.longitude };
 	},
 
 	onAreaInformationResult: function(data) {

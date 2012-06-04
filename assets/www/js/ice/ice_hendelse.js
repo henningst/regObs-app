@@ -64,6 +64,7 @@ var ice_hendelse = {
 					null,
 					"");
 			
+			ice_page.updateLocation();
 			main.store.getIce().setIncident(incident);
 			main.panels.slideBack();			
 		},

@@ -23,14 +23,23 @@ var main = (function()
     	inTestMode: false,
     	
 		clickLogin: function() {
-			var username = document.getElementById('login_username').value;
-			var password = document.getElementById('login_password').value;
-			
-			main.showWaitingDialogWithMessage(LOGGING_IN);
-			
-			DataAccess.save(USERNAME, username);
-			DataAccess.save(PASSWORD, password);
-			Login(username, password, main.loginCallback, main.loginErrorCallback);
+			if(main.login.data.EMail == 'anonym@nve.no')
+			{
+				//login
+				var username = document.getElementById('login_username').value;
+				var password = document.getElementById('login_password').value;
+				
+				main.showWaitingDialogWithMessage(LOGGING_IN);
+				
+				DataAccess.save(USERNAME, username);
+				DataAccess.save(PASSWORD, password);
+				Login(username, password, main.loginCallback, main.loginErrorCallback);
+			}
+			else 
+			{
+				//logout
+				main.clickLogOut();
+			}
 		},
 		
 		ok: function(data) {
@@ -157,6 +166,7 @@ var main = (function()
 			
 			main.slideToFavorite();
 			main.toogleFavorite();
+			main.gotoTest();
 			
 			var wrapperHeight = wink.ux.window.height - 2* 45;
 			$('wrapper').style.height = wrapperHeight + "px";
@@ -259,7 +269,7 @@ var main = (function()
         {
         	if(main.inTestMode)
         	{
-        		SERVER_URL = STAGE;
+        		SERVER_URL = TEST;
         		main.inTestMode = false;
         		$('test_button').value = USE_TESTMODE_BUTTON;
         		jQuery('#over_header').removeClass('testMode');
@@ -464,8 +474,10 @@ var main = (function()
 
         	if(loggedIn == true) {
         		jQuery('#login').attr("style", 'background-image: url(img/loggedin.png)');
+        		$('loginLogoutButton').value = LOGOUT_BUTTON;
         	} else {
         		jQuery('#login').attr("style", 'background-image: url(img/loggedout.png)');
+        		$('loginLogoutButton').value = LOGIN_BUTTON;
         	}
         	main.hideDialog();
         },

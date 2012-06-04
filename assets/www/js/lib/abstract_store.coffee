@@ -139,22 +139,23 @@ class AbstractStore
 				
 		if area
 			if @filterPicture(true).length isnt 0 || @m_dangerObs isnt 0
-				location = new ObsLocation("", 33, page.longitude, page.latitute, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
+				location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
 				SendObjectToServer(location, ((data) => @afterLocation(data, true, false)) , (error) => @onError(error))
 			else 
 				if @filterPicture(false).length isnt 0
 					@onSend(page, false)
 				else
-					location = new ObsLocation("", 33, page.longitude, page.latitute, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
+					location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
 					SendObjectToServer(location, ((data) => @afterLocation(data, true, true)) , (error) => @onError(error))
 
 		else
-			location = new ObsLocation("", 33, page.longitude, page.latitute, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
+			location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
 			SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
 		
 		
 	onAfterLocation: (data, area, force) ->
-		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, new Date(), 0)
+		date = new Date(new Date().getTime() + 1000 * 60 * 120);
+		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, date, 0)
 		SendObjectToServer(registration, ((data) => @afterRegistration(data, area, force)) , (error) => @onError(error))
 		
 	cutOutPictures: (area) ->

@@ -65,6 +65,7 @@ var water_hendelse = {
 					null,
 					"");
 			
+			water_page.updateLocation();
 			main.store.getWater().setIncident(incident);
 			main.panels.slideBack();			
 		},

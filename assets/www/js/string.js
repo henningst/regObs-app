@@ -1,27 +1,50 @@
 /*
- * Text
+ * Feedback after user is logged in
  */
 LOGGED_IN  = "Logget inn !";
 
+LOGIN_BUTTON = "Logg inn";
+
+LOGOUT_BUTTON = "Logg ut";
+
+/*
+ * Error messages
+ */
 ERROR_LOGIN =  "No internet ?!";
 
+//General error message
 AN_ERROR_OCCURED = "En feil oppstod, do you have internet ?";
 
 LOGGING_IN = "Logger inn... ";
 
+/*
+ * Message shown while loading the picture from the camera
+ */
 PROCESS_PICTURE = "Prosess bilde... ";
 
+/*
+ * Uploading progress message
+ */
 UPLOADING = "Laster opp... ";
 
+/*
+ * Buttons for after registration is uploaded
+ */
 OK = "Ok";
 
 SEND_EMAIL = "Send epost";
 
+/*
+ * 
+ */
 USE_TESTMODE_BUTTON = "Bruk testmode";
 
 USE_PROD_BUTTON = "Bruk normal mode";
 
-HENDELSE_ERROR = "You have to write a bit of a comment";
+/*
+ * Error message if the user does not enter a comment in the Hendelse comment field
+ */
+HENDELSE_ERROR = "Du må skrive en kommentar!";
 
 /*
  * Utbredelse text

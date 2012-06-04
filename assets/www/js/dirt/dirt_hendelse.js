@@ -65,6 +65,7 @@ var dirt_hendelse = {
 					null,
 					"");
 			
+			dirt_page.updateLocation();
 			main.store.getDirt().setIncident(incident);
 			main.panels.slideBack();			
 		},

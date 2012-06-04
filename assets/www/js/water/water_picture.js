@@ -10,6 +10,7 @@ var water_picture  = {
 			main.store.getWater().addPicture(picture);
 			water_picture.pictureData = null;
 
+			water_page.updateLocation();
 			water_page.add('water_picture_count');
 			main.panels.slideBack();
 		}
@@ -59,8 +60,8 @@ var water_picture  = {
 				sourceType : Camera.PictureSourceType.CAMERA, 
 				allowEdit : true,
 				encodingType: Camera.EncodingType.JPEG,
-				targetWidth: 1024,
-				targetHeight: 1024,
+//				targetWidth: 1024,
+//				targetHeight: 1024,
                 correctOrientation: true
             }
 		); 		

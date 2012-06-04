@@ -10,6 +10,7 @@ var ice_picture  = {
 			main.store.getIce().addPicture(picture);
 			ice_picture.pictureData = null;
 
+			ice_page.updateLocation();
 			ice_page.add('ice_picture_count');
 			main.panels.slideBack();
 		}
@@ -58,8 +59,8 @@ var ice_picture  = {
 				sourceType : Camera.PictureSourceType.CAMERA, 
 				allowEdit : true,
 				encodingType: Camera.EncodingType.JPEG,
-				targetWidth: 1024,
-				targetHeight: 1024,
+//				targetWidth: 1024,
+//				targetHeight: 1024,
                 correctOrientation: true
             }
 		); 		

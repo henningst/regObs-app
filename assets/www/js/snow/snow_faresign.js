@@ -33,6 +33,7 @@ var snow_faresign = {
 			
 			$("snow_danger_sign_list").selectedIndex = 0;
 			$("snow_danger_sign_comment").value = "";
+			snow_page.updateLocation();
 		},
 		
 		init: function() {

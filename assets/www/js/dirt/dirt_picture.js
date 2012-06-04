@@ -10,6 +10,7 @@ var dirt_picture  = {
 			main.store.getDirt().addPicture(picture);
 			dirt_picture.pictureData = null;
 
+			dirt_page.updateLocation();
 			dirt_page.add('dirt_picture_count');
 			main.panels.slideBack();
 		}
@@ -58,8 +59,8 @@ var dirt_picture  = {
 				sourceType : Camera.PictureSourceType.CAMERA, 
 				allowEdit : true,
 				encodingType: Camera.EncodingType.JPEG,
-				targetWidth: 1024,
-				targetHeight: 1024,
+//				targetWidth: 1024,
+//				targetHeight: 1024,
                 correctOrientation: true
             }
 		); 		

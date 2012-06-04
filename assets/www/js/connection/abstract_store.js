@@ -214,7 +214,7 @@ AbstractStore = (function() {
     }
     if (area) {
       if (this.filterPicture(true).length !== 0 || this.m_dangerObs !== 0) {
-        location = new ObsLocation("", 33, page.longitude, page.latitute, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
+        location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
         return SendObjectToServer(location, (function(data) {
           return _this.afterLocation(data, true, false);
         }), function(error) {
@@ -224,7 +224,7 @@ AbstractStore = (function() {
         if (this.filterPicture(false).length !== 0) {
           return this.onSend(page, false);
         } else {
-          location = new ObsLocation("", 33, page.longitude, page.latitute, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
+          location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
           return SendObjectToServer(location, (function(data) {
             return _this.afterLocation(data, true, true);
           }), function(error) {
@@ -233,7 +233,7 @@ AbstractStore = (function() {
         }
       }
     } else {
-      location = new ObsLocation("", 33, page.longitude, page.latitute, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
+      location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
       return SendObjectToServer(location, (function(data) {
         return _this.afterLocation(data, false);
       }), function(error) {
@@ -243,9 +243,10 @@ AbstractStore = (function() {
   };
 
   AbstractStore.prototype.onAfterLocation = function(data, area, force) {
-    var registration,
+    var date, registration,
       _this = this;
-    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, new Date(), 0);
+    date = new Date(new Date().getTime() + 1000 * 60 * 120);
+    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, date, 0);
     return SendObjectToServer(registration, (function(data) {
       return _this.afterRegistration(data, area, force);
     }), function(error) {
