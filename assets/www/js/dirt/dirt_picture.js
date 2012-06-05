@@ -7,7 +7,9 @@ var dirt_picture  = {
 			var list = $('dirt_picture_spec_list');
 			var picture = new Picture(null, null, dirt_picture.pictureData, null, null, null, DIRT_GEO_HAZARD, $("dirt_picture_comment").value, parseInt(list[list.selectedIndex].value));
 			main.store.getDirt().addPicture(picture);
+			
 			dirt_picture.pictureData = null;
+			$("dirt_picture_img").src ="";
 
 			dirt_page.updateLocation();
 			dirt_page.add('dirt_picture_count');

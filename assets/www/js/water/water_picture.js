@@ -8,7 +8,9 @@ var water_picture  = {
 			
 			var picture = new Picture(null, null, water_picture.pictureData, null, null, null, WATER_GEO_HAZARD, $("water_picture_comment").value, parseInt(list[list.selectedIndex].value));
 			main.store.getWater().addPicture(picture);
+			
 			water_picture.pictureData = null;
+			$("water_picture_img").src ="";
 
 			water_page.updateLocation();
 			water_page.add('water_picture_count');

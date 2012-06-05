@@ -8,8 +8,10 @@ var ice_picture  = {
 			
 			var picture = new Picture(null, null, ice_picture.pictureData, null, null, null, ICE_GEO_HAZARD, $("ice_picture_comment").value, parseInt(list[list.selectedIndex].value));
 			main.store.getIce().addPicture(picture);
+			
 			ice_picture.pictureData = null;
-
+			$("ice_picture_img").src ="";
+			
 			ice_page.updateLocation();
 			ice_page.add('ice_picture_count');
 			main.panels.slideBack();
