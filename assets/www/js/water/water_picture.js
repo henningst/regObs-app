@@ -60,8 +60,6 @@ var water_picture  = {
 				sourceType : Camera.PictureSourceType.CAMERA, 
 				allowEdit : true,
 				encodingType: Camera.EncodingType.JPEG,
-				targetWidth: 1024,
-				targetHeight: 1024,
                 correctOrientation: true
             }
 		); 		
