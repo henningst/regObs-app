@@ -11,6 +11,7 @@ var water_picture  = {
 			
 			water_picture.pictureData = null;
 			$("water_picture_img").src ="";
+			$('water_picture_spec_list').selectedIndex = 0;
 
 			water_page.updateLocation();
 			water_page.add('water_picture_count');

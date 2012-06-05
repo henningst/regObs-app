@@ -11,6 +11,7 @@ var snow_picture  = {
 			
 			snow_picture.pictureData = null;
 			$("snow_picture_img").src =""; 
+			$('snow_picture_spec_list').selectedIndex = 0;
 			
 			snow_page.updateLocation();
 			snow_page.add('snow_picture_count');
