@@ -69,7 +69,6 @@ class AbstractStore
 
 		i = 0
 		bilde = @cutOutPictures(true)
-		alert(bilde.length)
 		for picture in bilde
 			do(picture) ->
 				picture.RegID = data.RegID
@@ -97,7 +96,6 @@ class AbstractStore
 
 		i = 0
 		bilde = @cutOutPictures(false)
-		alert(bilde.length)
 		for picture in bilde
 			do(picture) ->
 				picture.RegID = data.RegID

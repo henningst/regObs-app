@@ -22,11 +22,11 @@ var ice_faresign = {
 		},
 		
 		addFaresign: function() {
-			
+			var list = $("ice_danger_sign_list");
 			var comment = $("ice_danger_sign_comment").value;
 			comment += " " +ICE_TEXT[ice_faresign.carouselId];
 			
-			var obs = new DangerObs(ice_faresign.i++, null, ICE_GEO_HAZARD, $("ice_danger_sign_list").selectedIndex, 0, comment);
+			var obs = new DangerObs(ice_faresign.i++, null, ICE_GEO_HAZARD, list[list.selectedIndex].value, 0, comment);
 			main.store.getIce().addObs(obs);
 			
 			ice_page.add('ice_faresign_count');

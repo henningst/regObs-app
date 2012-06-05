@@ -22,11 +22,12 @@ var snow_faresign = {
 		},
 		
 		addFaresign: function() {
+			var list = $("snow_danger_sign_list");
 			
 			var comment = $("snow_danger_sign_comment").value;
 			comment += " " +SNOW_TEXT[snow_faresign.carouselId];
 			
-			var obs = new AvalancheDangerObs(snow_faresign.i++, null, $("snow_danger_sign_list").selectedIndex, 0, comment);
+			var obs = new AvalancheDangerObs(snow_faresign.i++, null, list[list.selectedIndex].value, 0, comment);
 			main.store.getSnow().addObs(obs);
 			snow_page.add('snow_faresign_count');
 			main.panels.slideBack();

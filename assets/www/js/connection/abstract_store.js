@@ -131,7 +131,6 @@ AbstractStore = (function() {
     this.m_dangerObs.length = 0;
     i = 0;
     bilde = this.cutOutPictures(true);
-    alert(bilde.length);
     _fn1 = function(picture) {
       picture.RegID = data.RegID;
       picture.PictureID = i++;
@@ -163,7 +162,6 @@ AbstractStore = (function() {
     }
     i = 0;
     bilde = this.cutOutPictures(false);
-    alert(bilde.length);
     _fn = function(picture) {
       picture.RegID = data.RegID;
       picture.PictureID = i++;

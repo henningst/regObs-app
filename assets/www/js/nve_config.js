@@ -12,14 +12,14 @@ var GPS_TIMEOUT_IN_MINUTES = 20;
 TEST = "http://h-web01.nve.no/test_regobsservices/Odata.svc/";
 STAGE = "http://h-web01.nve.no/stage_regobsservices/Odata.svc/";
 
-SERVER_URL = STAGE;
+SERVER_URL = TEST;
 //SERVER_URL = 
 
 /*
  * Platform
  */
 var device = {
-		platform: 'android'
+	platform: 'android'
 };
 
 /*

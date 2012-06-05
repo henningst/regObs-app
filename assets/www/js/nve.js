@@ -270,14 +270,14 @@ var main = (function()
         {
         	if(main.inTestMode)
         	{
-        		SERVER_URL = STAGE;
+        		SERVER_URL = TEST;
         		main.inTestMode = false;
         		$('test_button').value = USE_TESTMODE_BUTTON;
         		jQuery('#over_header').removeClass('testMode');
         	}
         	else 
         	{
-        		SERVER_URL = STAGE;
+        		SERVER_URL = TEST;
         		main.inTestMode = true;
         		$('test_button').value = USE_PROD_BUTTON;
         		jQuery('#over_header').addClass('testMode');
