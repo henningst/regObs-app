@@ -114,6 +114,10 @@ SendObjectToServer = function(obj, callback, onError) {
       return callback(data);
     }
   }, function(err) {
+	  
+	  alert(JSON.stringify(err));
+
+
     if (onError) {
       return onError(err);
     }

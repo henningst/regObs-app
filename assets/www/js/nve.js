@@ -292,6 +292,14 @@ var main = (function()
         initPhonegap: function()
         {
         	document.addEventListener("backbutton", main.backKeyDown, true);
+ 
+			window.plugins.Analytics.start("UA-32403556-1", main.startTrack, function(){alert("Start: failure");});
+        },
+        
+        startTrack: function() 
+        {
+//        	alert("go");
+//			window.plugins.Analytics.trackPageView("category", "action", "event", 1, function(){alert("Track: success");}, function(){alert("Track: failure");});
         },
         
         backKeyDown: function() 
@@ -503,6 +511,10 @@ var main = (function()
         	
         	main.toogleFavorite();
         	
+        	if(status == 'start') {
+        		//google analytics
+    			window.plugins.Analytics.trackPageView(params.id, function(){}, function(){});
+        	}
         	
         	switch(params.id) {
         		case 'home':

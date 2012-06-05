@@ -112,8 +112,8 @@ class AbstractStore
 		
 		main.lastRegID = data.RegID
 		DataAccess.save(@name, this)
-		main.showFinishedUploadMessage()
-		
+		main.showFinishedUploadMessage()	
+	
 	fillIncident: (incident) =>	
 		new Incident(incident.RegID, incident.GeoHazardTID, incident.ActivityInfluencedTID, incident.DamageExtentTID, incident.ForecastAccurateTID, incident.DtEndTime, incident.IncidentHeader, incident.IncidentIngress, incident.IncidentText, incident.SensitiveText, incident.UsageFlagTID, incident.Comment)
 		
