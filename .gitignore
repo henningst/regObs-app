@@ -34,3 +34,5 @@ build/*
 xcuserdata
 profile
 *.moved-aside
+
+iPhone/DerivedData/*
