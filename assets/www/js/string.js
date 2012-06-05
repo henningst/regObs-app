@@ -133,7 +133,17 @@ ICE_PICTURE =
 	+ "<div>Et tips til hvordan ta gode bilder: gå på regObs og se hvilke bilder du syns var bra og kunne tenke deg å se mer av.</div>";
 
               
-ICE_DANGERSIGN = "ICE_DANGERSIGN";
+ICE_DANGERSIGN = 
+	" <h3>Hva er det med disse faretegnene egentlig?</h3>"
+	+ "<p>Faretegn kan man bruke til å vurdere hvor trygg isen er.</p>"
+	+ "<ul>"
+	+ "<li>Kanskje det er ting som du har lagt merketil som ikke er så lett å vite om? Kanskje du vet at vannføringen har økt og isen tæres fra undersiden?</li>"
+	+ "<li>Kanskje man bør holde seg unna den ene enden av vannet da osen er åpen?</li>"
+	+ "<li>Eller rett og slett, du har borret og vet at det er bare 5cm is under snøen.</li>"
+	+ "</ul>"
+	+ "<p>Det er noen ”kanksje’er” og i teksten over. Faretegn forteller bare en liten del av totalbildet. De er indikatorer, men er veldig nyttige som tilleggsinfomasjon når man skal ferdes på isen.</p>"
+	+ "<p>Legg merke til at man kan annslå utstrekning på faretegnet og dette kommer med i kommentarfeltet.</p>";
+
 
 ICE_INCIDENT = "ICE_INCIDENT";
 
