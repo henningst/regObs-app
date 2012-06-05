@@ -89,7 +89,7 @@ DIRT_TEXT =
  * Hjelpetekst til observasjonene
  */
 SNOW_PICTURE =  
-	"<H3>Hvordan ta et godt bilde</H3>"
+	  "<H3>Hvordan ta et godt bilde</H3>"
 	+ "<ul>" 
 	+ "<li>Tenk på at et bilde skal beskrive noe som kan nyttes av andre når de skal gjøre seg en vurdering av forholdene.</li>"
 	+ "<li>Hvis bildet skal sees i sammenheng med en annen observasjon, velg den i nedtrekksmenyen.</li>"
@@ -99,7 +99,7 @@ SNOW_PICTURE =
 	+ "<div>Et tips til hvordan ta gode bilder: gå på regObs og se hvilke bilder du syns var bra og kunne tenke deg å se mer av.</div>";
 
 SNOW_DANGERSIGN =
-	" </h3>Hva er det med disse faretegnene egentlig?</h3>"
+	  "</h3>Hva er det med disse faretegnene egentlig?</h3>"
 	+ "<p>Faretegn kan man bruke til å vurdere hvor stabil snøen er.</p>"
 	+ "<ul>"
 	+ "<li>Hvis det drønner eller går naturlige skred vet vi at vi trolig er på en faregrad 3-Markert.</li>"
@@ -110,7 +110,7 @@ SNOW_DANGERSIGN =
 	+ "<p>Derfor er det også viktig at man legger til anslått utstrekning på faretegnet.</p>";
 
 SNOW_INCIDENT =  
-	"<h3>Ulykker, nestenulykker og hendelser</h3>"
+	  "<h3>Ulykker, nestenulykker og hendelser</h3>"
 	+ "<div>Vi ønkser å lære av deres feil. Vi ønsker at dere skal lære av andres feil.</div>"
 	+ "<ul>"
 	+ "<li>Hvis man legger inn info når det skjer noe kan alle lære av ulykken og den kan ha en forebyggende effekt.</li>"
@@ -118,12 +118,12 @@ SNOW_INCIDENT =
 	+ "</ul>"
 	+ "<div>Vi kan også lære av mange hendelser over tid.</div>"
 	+ "<ul>"
-	+ "<li>Hvis det registreres at skred ofte går langt ned mot bebyggelse, kan det danne grunnlag for sikkring.&nbsp;</li>"
+	+ "<li>Hvis det registreres at skred ofte går langt ned mot bebyggelse, kan det danne grunnlag for sikkring.</li>"
 	+ "<li>Hvis det registreres mange nestenulykker hvor ABS sekker har vært involvert, kan man få gode tall på virkningen.</li>"
 	+ "</ul>";
 
 ICE_PICTURE =  
-	"<H3>Hvordan ta et godt bilde</H3>"
+	  "<H3>Hvordan ta et godt bilde</H3>"
 	+ "<ul>" 
 	+ "<li>Tenk på at et bilde skal beskrive noe som kan nyttes av andre når de skal gjøre seg en vurdering av forholdene.</li>"
 	+ "<li>Hvis bildet skal sees i sammenheng med en annen observasjon, velg den i nedtrekksmenyen.</li>"
@@ -134,7 +134,7 @@ ICE_PICTURE =
 
               
 ICE_DANGERSIGN = 
-	" <h3>Hva er det med disse faretegnene egentlig?</h3>"
+	  "<h3>Hva er det med disse faretegnene egentlig?</h3>"
 	+ "<p>Faretegn kan man bruke til å vurdere hvor trygg isen er.</p>"
 	+ "<ul>"
 	+ "<li>Kanskje det er ting som du har lagt merketil som ikke er så lett å vite om? Kanskje du vet at vannføringen har økt og isen tæres fra undersiden?</li>"
@@ -145,7 +145,18 @@ ICE_DANGERSIGN =
 	+ "<p>Legg merke til at man kan annslå utstrekning på faretegnet og dette kommer med i kommentarfeltet.</p>";
 
 
-ICE_INCIDENT = "ICE_INCIDENT";
+ICE_INCIDENT =
+	  "<h3>Ulykker, nestenulykker og hendelser</h3>"
+	+ "<div>Vi ønkser å lære av deres feil. Vi ønsker at dere skal lære av andres feil.</div>"
+	+ "<ul>"
+	+ "<li>Hvis man legger inn info når det skjer noe kan alle lære av ulykken og den kan ha en forebyggende effekt.</li>"
+	+ "<li>Ut fra en beredskapstankegang er det nyttig å få vite om hendelser for å kunne oppdatere innholdet så det blir mer relevant for det som skjer.</li>"
+	+ "</ul>"
+	+ "<div>Vi kan også lære av mange hendelser over tid.</div>"
+	+ "<ul>"
+	+ "<li>Hvis man kan få tall på hvor ofte ulike typer ulykker eller nestenulykker forrekommer gir man grunnlaget for å jobbe prevantivt med opplæring og informasjon.</li>"
+	+ "</ul>";
+
 
 WATER_PICTURE =  "WATER_PICTURE";
               
