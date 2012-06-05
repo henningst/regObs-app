@@ -9,7 +9,7 @@
 /**
  * Constructor
  */
-function Analytics() {
+function GoogleAnalyticsPlugin() {
 }
 
 /**
@@ -22,7 +22,7 @@ function Analytics() {
  * @param failureCallback
  *            The error callback
  */
-Analytics.prototype.start = function(accountId, successCallback,
+GoogleAnalyticsPlugin.prototype.start = function(accountId, successCallback,
 		failureCallback) {
 	return PhoneGap.exec(successCallback, failureCallback,
 			'GoogleAnalyticsTracker', 'start', [ accountId ]);
@@ -39,7 +39,7 @@ Analytics.prototype.start = function(accountId, successCallback,
  * @param failureCallback
  *            The error callback
  */
-Analytics.prototype.trackPageView = function(key, successCallback,
+GoogleAnalyticsPlugin.prototype.trackPageView = function(key, successCallback,
 		failureCallback) {
 	return PhoneGap.exec(successCallback, failureCallback,
 			'GoogleAnalyticsTracker', 'trackPageView', [ key ]);
@@ -66,7 +66,7 @@ Analytics.prototype.trackPageView = function(key, successCallback,
  *            The error callback
  */
 
-Analytics.prototype.trackEvent = function(category, action, label, value,
+GoogleAnalyticsPlugin.prototype.trackEvent = function(category, action, label, value,
 		successCallback, failureCallback) {
 	return PhoneGap.exec(successCallback, failureCallback,
 			'GoogleAnalyticsTracker', 'trackEvent', [ category, action,
@@ -74,7 +74,7 @@ Analytics.prototype.trackEvent = function(category, action, label, value,
 					(isNaN(parseInt(value, 10))) ? 0 : parseInt(value, 10) ]);
 };
 
-Analytics.prototype.setCustomVar = function(index, label, value, scope,
+GoogleAnalyticsPlugin.prototype.setCustomVar = function(index, label, value, scope,
 		successCallback, failureCallback) {
 	return PhoneGap.exec(successCallback, failureCallback,
 			'GoogleAnalyticsTracker', 'setCustomVariable', [
@@ -87,7 +87,7 @@ Analytics.prototype.setCustomVar = function(index, label, value, scope,
  * Load Analytics
  */
 PhoneGap.addConstructor(function() {
-	PhoneGap.addPlugin('Analytics', new Analytics());
+	PhoneGap.addPlugin('GoogleAnalyticsPlugin', new GoogleAnalyticsPlugin());
 
 	// @deprecated: No longer needed in PhoneGap 1.0. Uncomment the addService
 	// code for earlier

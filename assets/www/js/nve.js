@@ -290,10 +290,12 @@ var main = (function()
         },
         
         initPhonegap: function()
-        {
+            {
+            alert("start");
         	document.addEventListener("backbutton", main.backKeyDown, true);
  
-			window.plugins.Analytics.start("UA-32403556-1", main.startTrack, function(){alert("Start: failure");});
+			window.plugins.googleAnalyticsPlugin.start("UA-32403556-1");
+            alert("start finsihed");
         },
         
         startTrack: function() 
@@ -513,7 +515,9 @@ var main = (function()
         	
         	if(status == 'start') {
         		//google analytics
-    			window.plugins.Analytics.trackPageView(params.id, function(){}, function(){});
+            alert("before");
+    			window.plugins.googleAnalyticsPlugin.trackEvent("category", "action", "label", "value");
+            alert("after");
         	}
         	
         	switch(params.id) {
@@ -746,13 +750,10 @@ var main = (function()
         	
         	main.lastPage = params.id;
         	
-        	
         }
     }
-     
     window.addEventListener('load', wink.bind(main.init, main), false);
     document.addEventListener("deviceready", main.initPhonegap, false);
-
+            
     return main;
 }());
-

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1784EC13157E238A00287D8E /* GoogleAnalyticsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1784EC0D157E238A00287D8E /* GoogleAnalyticsPlugin.m */; };
+		1784EC14157E238A00287D8E /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1784EC10157E238A00287D8E /* libGoogleAnalytics.a */; };
+		1784EC15157E238A00287D8E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1784EC11157E238A00287D8E /* README.md */; };
+		17A12458157E1F07008D76E8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A12457157E1F07008D76E8 /* CFNetwork.framework */; };
+		17A1245A157E1F4D008D76E8 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A12459157E1F4D008D76E8 /* libsqlite3.0.dylib */; };
 		B5107F8F152DA39D00BA56F8 /* www in Resources */ = {isa = PBXBuildFile; fileRef = B5107F8E152DA39D00BA56F8 /* www */; };
 		B5F0D5541525D3DB001774E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5531525D3DB001774E4 /* Foundation.framework */; };
 		B5F0D5561525D3DB001774E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5551525D3DB001774E4 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -40,6 +45,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1784EC0B157E238A00287D8E /* GoogleAnalyticsPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalyticsPlugin.h; sourceTree = "<group>"; };
+		1784EC0D157E238A00287D8E /* GoogleAnalyticsPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalyticsPlugin.m; sourceTree = "<group>"; };
+		1784EC0F157E238A00287D8E /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GANTracker.h; sourceTree = "<group>"; };
+		1784EC10157E238A00287D8E /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
+		1784EC11157E238A00287D8E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		17A12457157E1F07008D76E8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		17A12459157E1F4D008D76E8 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		B5107F8E152DA39D00BA56F8 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../assets/www; sourceTree = "<group>"; };
 		B5F0D54F1525D3DB001774E4 /* regObs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = regObs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F0D5531525D3DB001774E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -83,6 +95,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17A1245A157E1F4D008D76E8 /* libsqlite3.0.dylib in Frameworks */,
+				17A12458157E1F07008D76E8 /* CFNetwork.framework in Frameworks */,
 				B5F0D5541525D3DB001774E4 /* Foundation.framework in Frameworks */,
 				B5F0D5561525D3DB001774E4 /* UIKit.framework in Frameworks */,
 				B5F0D5581525D3DB001774E4 /* CoreGraphics.framework in Frameworks */,
@@ -97,6 +111,7 @@
 				B5F0D56A1525D3DB001774E4 /* MobileCoreServices.framework in Frameworks */,
 				B5F0D56C1525D3DB001774E4 /* CoreMedia.framework in Frameworks */,
 				B5F0D5B11525D4B7001774E4 /* Cordova.framework in Frameworks */,
+				1784EC14157E238A00287D8E /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,9 +125,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1784EC0A157E238A00287D8E /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				1784EC0B157E238A00287D8E /* GoogleAnalyticsPlugin.h */,
+				1784EC0D157E238A00287D8E /* GoogleAnalyticsPlugin.m */,
+				1784EC0E157E238A00287D8E /* GoogSDK */,
+				1784EC11157E238A00287D8E /* README.md */,
+			);
+			name = GoogleAnalytics;
+			path = "../../../../../../Downloads/phonegap-phonegap-plugins-5f49cb0/iPhone/GoogleAnalytics";
+			sourceTree = "<group>";
+		};
+		1784EC0E157E238A00287D8E /* GoogSDK */ = {
+			isa = PBXGroup;
+			children = (
+				1784EC0F157E238A00287D8E /* GANTracker.h */,
+				1784EC10157E238A00287D8E /* libGoogleAnalytics.a */,
+			);
+			path = GoogSDK;
+			sourceTree = "<group>";
+		};
 		B5F0D5411525D3DB001774E4 = {
 			isa = PBXGroup;
 			children = (
+				17A12459157E1F4D008D76E8 /* libsqlite3.0.dylib */,
+				17A12457157E1F07008D76E8 /* CFNetwork.framework */,
 				CE8C9BDC156D2F6E00D940C3 /* regobs-57.png */,
 				CE8C9BDA156D2F5500D940C3 /* regobs-114.png */,
 				CE8C9BD8156D2F2900D940C3 /* Default@2x.png */,
@@ -251,6 +289,7 @@
 		B5F0D5A21525D3DC001774E4 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				1784EC0A157E238A00287D8E /* GoogleAnalytics */,
 				B5F0D5A31525D3DC001774E4 /* README */,
 			);
 			name = Plugins;
@@ -325,6 +364,7 @@
 				CE8C9BD9156D2F2900D940C3 /* Default@2x.png in Resources */,
 				CE8C9BDB156D2F5500D940C3 /* regobs-114.png in Resources */,
 				CE8C9BDD156D2F6E00D940C3 /* regobs-57.png in Resources */,
+				1784EC15157E238A00287D8E /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +395,7 @@
 				B5F0D5741525D3DC001774E4 /* main.m in Sources */,
 				B5F0D59C1525D3DC001774E4 /* AppDelegate.m in Sources */,
 				B5F0D59F1525D3DC001774E4 /* MainViewController.m in Sources */,
+				1784EC13157E238A00287D8E /* GoogleAnalyticsPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +480,11 @@
 					"CORDOVA_FRAMEWORK=1",
 				);
 				INFOPLIST_FILE = "Nve/regObs-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Nve/GoogleAnalytics/GoogSDK\"",
+					"\"$(SRCROOT)/../../../../../Downloads/phonegap-phonegap-plugins-5f49cb0/iPhone/GoogleAnalytics/GoogSDK\"",
+				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					UIKit,
@@ -480,6 +526,11 @@
 					"CORDOVA_FRAMEWORK=1",
 				);
 				INFOPLIST_FILE = "Nve/regObs-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Nve/GoogleAnalytics/GoogSDK\"",
+					"\"$(SRCROOT)/../../../../../Downloads/phonegap-phonegap-plugins-5f49cb0/iPhone/GoogleAnalytics/GoogSDK\"",
+				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					UIKit,
