@@ -290,12 +290,9 @@ var main = (function()
         },
         
         initPhonegap: function()
-            {
-            alert("start");
+        {
         	document.addEventListener("backbutton", main.backKeyDown, true);
- 
 			window.plugins.googleAnalyticsPlugin.start("UA-32403556-1");
-            alert("start finsihed");
         },
         
         startTrack: function() 
@@ -515,9 +512,7 @@ var main = (function()
         	
         	if(status == 'start') {
         		//google analytics
-            alert("before");
-    			window.plugins.googleAnalyticsPlugin.trackEvent("category", "action", "label", "value");
-            alert("after");
+    			window.plugins.googleAnalyticsPlugin.trackPageView(params.id);
         	}
         	
         	switch(params.id) {
