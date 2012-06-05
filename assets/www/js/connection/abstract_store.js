@@ -20,7 +20,9 @@ AbstractStore = (function() {
   AbstractStore.prototype.absConstructor = function() {
     this.m_dangerObs = [];
     this.m_incident = null;
-    return this.m_pictures = [];
+    this.m_pictures = [];
+    this.lat = 0;
+    return this.long = 0;
   };
 
   AbstractStore.prototype.onError = function(data) {
@@ -74,6 +76,11 @@ AbstractStore = (function() {
 
   AbstractStore.prototype.getIncident = function() {
     return this.m_incident;
+  };
+
+  AbstractStore.prototype.setLatLong = function(lat, long) {
+    this.lat = lat;
+    return this.long = long;
   };
 
   AbstractStore.prototype.addObs = function(obs) {
@@ -214,7 +221,7 @@ AbstractStore = (function() {
     }
     if (area) {
       if (this.filterPicture(true).length !== 0 || this.m_dangerObs !== 0) {
-        location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
+        location = new ObsLocation("", 33, this.long, this.lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
         return SendObjectToServer(location, (function(data) {
           return _this.afterLocation(data, true, false);
         }), function(error) {
@@ -224,7 +231,7 @@ AbstractStore = (function() {
         if (this.filterPicture(false).length !== 0) {
           return this.onSend(page, false);
         } else {
-          location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
+          location = new ObsLocation("", 33, this.long, this.lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
           return SendObjectToServer(location, (function(data) {
             return _this.afterLocation(data, true, true);
           }), function(error) {
@@ -233,8 +240,8 @@ AbstractStore = (function() {
         }
       }
     } else {
-      if (this.filterPicture(true).length !== 0) {
-        location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
+      if (this.filterPicture(false).length !== 0) {
+        location = new ObsLocation("", 33, this.long, this.lat, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
         return SendObjectToServer(location, (function(data) {
           return _this.afterLocation(data, false);
         }), function(error) {

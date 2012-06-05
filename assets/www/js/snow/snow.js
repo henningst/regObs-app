@@ -11,8 +11,6 @@ var snow_page = {
 	omrade_id: 0,
 	
 	pos_obj: null,
-	
-	last_pos_obj: null,
 		
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
@@ -41,7 +39,7 @@ var snow_page = {
 	
 	updateLocation : function() 
 	{
-		snow_page.last_pos_obj = { 'lat' : snow_page.latitute, 'long' : snow_page.longitude };
+		main.store.getSnow().setLatLong(snow_page.latitute, snow_page.longitude);
 	},
 	
 	onAreaInformationResult: function(data) {

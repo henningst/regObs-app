@@ -4,6 +4,8 @@ class AbstractStore
 		@m_dangerObs = []
 		@m_incident = null
 		@m_pictures = []
+		@lat = 0
+		@long = 0
 
 	onError: (data) ->
 		main.errorDialog()
@@ -24,6 +26,10 @@ class AbstractStore
 		
 	getIncident: () ->
 		@m_incident
+		
+	setLatLong: (lat, long) ->
+		@lat = lat
+		@long = long
 		
 	addObs: (obs) ->
 		@m_dangerObs.push(obs)
@@ -139,18 +145,18 @@ class AbstractStore
 				
 		if area
 			if @filterPicture(true).length isnt 0 || @m_dangerObs isnt 0
-				location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
+				location = new ObsLocation("", 33, @long, @lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
 				SendObjectToServer(location, ((data) => @afterLocation(data, true, false)) , (error) => @onError(error))
 			else 
 				if @filterPicture(false).length isnt 0
 					@onSend(page, false)
 				else
-					location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
+					location = new ObsLocation("", 33, @long, @lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
 					SendObjectToServer(location, ((data) => @afterLocation(data, true, true)) , (error) => @onError(error))
 
 		else
-			if @filterPicture(true).length isnt 0
-				location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
+			if @filterPicture(false).length isnt 0
+				location = new ObsLocation("", 33, @long, @lat, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
 				SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
 			else
 				@page.afterSendRegistration()

@@ -12,8 +12,6 @@ var water_page = {
 
 	pos_obj: null,
 	
-	last_pos_obj: null,
-		
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
 	//   the current GPS coordinates
@@ -40,7 +38,7 @@ var water_page = {
 	
 	updateLocation : function() 
 	{
-		water_page.last_pos_obj = { 'lat' : water_page.latitute, 'long' : water_page.longitude };
+		main.store.getWater().setLatLong(water_page.latitute, water_page.longitude);
 	},
 
 	onAreaInformationResult: function(data) {

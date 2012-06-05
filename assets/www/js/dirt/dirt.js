@@ -11,8 +11,6 @@ var dirt_page = {
 	omrade_id: 0,
 	
 	pos_obj: null,
-	
-	last_pos_obj: null,
 		
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
@@ -40,7 +38,8 @@ var dirt_page = {
 	
 	updateLocation : function() 
 	{
-		dirt_page.last_pos_obj = { 'lat' : dirt_page.latitute, 'long' : dirt_page.longitude };
+		main.store.getDirt().setLatLong(dirt_page.latitute, dirt_page.longitude);
+//		dirt_page.last_pos_obj = { 'lat' : dirt_page.latitute, 'long' : dirt_page.longitude };
 	},
 
 	onAreaInformationResult: function(data) {
