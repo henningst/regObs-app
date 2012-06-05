@@ -46,9 +46,8 @@ var water_picture  = {
 		$("water_picture_comment").value = "";
 	},
 	
-	init : function () {
-		$('header_middle_text').innerHTML = "Bilde";
-
+	make: function()
+	{
 		main.showWaitingDialogWithMessage(PROCESS_PICTURE);
 		
 		navigator.camera.getPicture(
@@ -62,6 +61,10 @@ var water_picture  = {
 				encodingType: Camera.EncodingType.JPEG,
                 correctOrientation: true
             }
-		); 		
+		);
+	},
+	
+	init : function () {
+		$('header_middle_text').innerHTML = "Bilde"; 		
 	}
 }

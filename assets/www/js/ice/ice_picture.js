@@ -45,9 +45,8 @@ var ice_picture  = {
 		$("ice_picture_comment").value = "";
 	},
 	
-	init : function () {
-		$('header_middle_text').innerHTML = "Bilde";
-		
+	make: function()
+	{
 		main.showWaitingDialogWithMessage(PROCESS_PICTURE);
 		
 		navigator.camera.getPicture(
@@ -62,5 +61,9 @@ var ice_picture  = {
                 correctOrientation: true
             }
 		); 		
+	},
+	
+	init : function () {
+		$('header_middle_text').innerHTML = "Bilde";
 	}
 }

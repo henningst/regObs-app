@@ -5,7 +5,6 @@ var dirt_picture  = {
 	addPicture: function() {
 		if(dirt_picture.pictureData != null) {
 			var list = $('dirt_picture_spec_list');
-			
 			var picture = new Picture(null, null, dirt_picture.pictureData, null, null, null, DIRT_GEO_HAZARD, $("dirt_picture_comment").value, parseInt(list[list.selectedIndex].value));
 			main.store.getDirt().addPicture(picture);
 			dirt_picture.pictureData = null;
@@ -45,9 +44,8 @@ var dirt_picture  = {
 		$("dirt_picture_comment").value = "";
 	},
 	
-	init : function () {
-		$('header_middle_text').innerHTML = "Bilde";
-
+	make: function()
+	{
 		main.showWaitingDialogWithMessage(PROCESS_PICTURE);
 		
 		navigator.camera.getPicture(
@@ -62,5 +60,9 @@ var dirt_picture  = {
                 correctOrientation: true
             }
 		); 		
+	},
+	
+	init : function () {
+		$('header_middle_text').innerHTML = "Bilde";
 	}
 }
