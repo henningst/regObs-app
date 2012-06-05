@@ -128,8 +128,6 @@ class AbstractStore
 		if area
 			main.showWaitingDialogWithMessage(UPLOADING);
 	
-		alert( " #{page.last_pos_obj.long}  #{page.last_pos_obj.lat}")
-	
 		source = 0
 		pos = page.pos_obj 
 		if pos
@@ -151,8 +149,12 @@ class AbstractStore
 					SendObjectToServer(location, ((data) => @afterLocation(data, true, true)) , (error) => @onError(error))
 
 		else
-			location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
-			SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
+			if @filterPicture(true).length isnt 0
+				location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
+				SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
+			else
+				@page.afterSendRegistration()
+				main.showFinishedUploadMessage()	
 		
 		
 	onAfterLocation: (data, area, force) ->

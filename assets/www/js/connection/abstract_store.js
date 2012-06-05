@@ -202,7 +202,6 @@ AbstractStore = (function() {
     if (area) {
       main.showWaitingDialogWithMessage(UPLOADING);
     }
-    alert(" " + page.last_pos_obj.long + "  " + page.last_pos_obj.lat);
     source = 0;
     pos = page.pos_obj;
     if (pos) {
@@ -234,12 +233,17 @@ AbstractStore = (function() {
         }
       }
     } else {
-      location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
-      return SendObjectToServer(location, (function(data) {
-        return _this.afterLocation(data, false);
-      }), function(error) {
-        return _this.onError(error);
-      });
+      if (this.filterPicture(true).length !== 0) {
+        location = new ObsLocation("", 33, page.last_pos_obj.long, page.last_pos_obj.lat, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
+        return SendObjectToServer(location, (function(data) {
+          return _this.afterLocation(data, false);
+        }), function(error) {
+          return _this.onError(error);
+        });
+      } else {
+        this.page.afterSendRegistration();
+        return main.showFinishedUploadMessage();
+      }
     }
   };
 
