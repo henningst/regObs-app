@@ -131,6 +131,7 @@ AbstractStore = (function() {
     this.m_dangerObs.length = 0;
     i = 0;
     bilde = this.cutOutPictures(true);
+    alert(bilde.length);
     _fn1 = function(picture) {
       picture.RegID = data.RegID;
       picture.PictureID = i++;
@@ -162,6 +163,7 @@ AbstractStore = (function() {
     }
     i = 0;
     bilde = this.cutOutPictures(false);
+    alert(bilde.length);
     _fn = function(picture) {
       picture.RegID = data.RegID;
       picture.PictureID = i++;
@@ -202,6 +204,7 @@ AbstractStore = (function() {
     if (area) {
       main.showWaitingDialogWithMessage(UPLOADING);
     }
+    alert(" " + page.last_pos_obj.long + "  " + page.last_pos_obj.lat);
     source = 0;
     pos = page.pos_obj;
     if (pos) {

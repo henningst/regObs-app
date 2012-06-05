@@ -69,6 +69,7 @@ class AbstractStore
 
 		i = 0
 		bilde = @cutOutPictures(true)
+		alert(bilde.length)
 		for picture in bilde
 			do(picture) ->
 				picture.RegID = data.RegID
@@ -96,6 +97,7 @@ class AbstractStore
 
 		i = 0
 		bilde = @cutOutPictures(false)
+		alert(bilde.length)
 		for picture in bilde
 			do(picture) ->
 				picture.RegID = data.RegID
@@ -127,6 +129,8 @@ class AbstractStore
 	onSend: (page, area) ->
 		if area
 			main.showWaitingDialogWithMessage(UPLOADING);
+	
+		alert( " #{page.last_pos_obj.long}  #{page.last_pos_obj.lat}")
 	
 		source = 0
 		pos = page.pos_obj 
