@@ -16,7 +16,8 @@ var dirt_page = {
 	//   This method accepts a `Position` object, which contains
 	//   the current GPS coordinates
 	//
-	onSuccess: function(position) {
+	onSuccess: function(lat,long,acc) {
+		var position = geo.convertToPosition(lat,long,acc)
 		position.taken = new Date();
 		dirt_page.pos_obj = position;
 		
@@ -67,7 +68,7 @@ var dirt_page = {
 	},
 	
 	doMeasurement: function() {
-		navigator.geolocation.getCurrentPosition(dirt_page.onSuccess, dirt_page.onError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
+		geo.requestPosition('dirt_page.onSuccess');
 	},
 	
 	add: function(id)

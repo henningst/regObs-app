@@ -1,3 +1,22 @@
+var geo = {
+	requestPosition: function(callback){
+		PhoneGap.exec(function(){console.log("ok");}, function(){console.log("fail");}, 
+				'NativeLocation', callback, []);
+	},
+	
+	convertToPosition: function(lat, long, acc){
+		return {
+			coords: {
+				latitude: lat,
+				longitude: long,
+				accuracy: acc
+			}
+		};
+	}
+
+}
+
+
 var main = (function()
 {
     var main =
@@ -384,6 +403,19 @@ var main = (function()
         	main.waitingDialog.popup({
 		        content: "<div class='waitingDialog'>" +
 		        	message + "<img src='img/ajax-loader.gif' />" +
+		        "</div>",
+		        layerCallback: { context: main, method: 'nothing' } ,
+		    });
+        },
+        noGoodAccuracyFound: function() 
+        {
+        	main.startDialog();
+        	main.waitingDialog.popup({
+		        content: "<div class='waitingDialog'>" +
+		        	"Ingen nøyaktig posisjon er motatt. Kontroller at du har gode GPS forhold, og forsøk igjen." +
+		        	"<button type='button' style='width: auto; display: inline' " +
+    					"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +Ok+ 
+    				"</button>" +
 		        "</div>",
 		        layerCallback: { context: main, method: 'nothing' } ,
 		    });

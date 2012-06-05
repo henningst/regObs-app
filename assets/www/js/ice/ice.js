@@ -16,7 +16,8 @@ var ice_page = {
 	//   This method accepts a `Position` object, which contains
 	//   the current GPS coordinates
 	//
-	onSuccess: function(position) {
+	onSuccess: function(lat, long, acc) {
+		var position = geo.convertToPosition(lat,long, acc);
 		position.taken = new Date();
 		ice_page.pos_obj = position;
 		
@@ -66,7 +67,7 @@ var ice_page = {
 	},
 	
 	doMeasurement: function() {
-		navigator.geolocation.getCurrentPosition(ice_page.onSuccess, ice_page.onError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
+		geo.requestPosition('ice_page.onSuccess');
 	},
 	
 	add: function(id)

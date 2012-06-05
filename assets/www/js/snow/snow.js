@@ -16,8 +16,10 @@ var snow_page = {
 	//   This method accepts a `Position` object, which contains
 	//   the current GPS coordinates       
 	//
-	onSuccess: function(position) {
+	onSuccess: function(latitude, longitude, accuracy) {
+		var position = geo.convertToPosition(latitude, longitude, accuracy);
 		position.taken = new Date();
+		
 		snow_page.pos_obj = position;
 		
 		var source = new Proj4js.Proj('EPSG:4326');    //source coordinates will be in Longitude/Latitude
@@ -29,7 +31,7 @@ var snow_page = {
 		snow_page.longitude= Math.round(p.x);
 		snow_page.latitute  = Math.round(p.y);
 
-		jQuery('.position_header_position').html("UTM33 ( &plusmn;" +position.coords.accuracy +"m )");
+		jQuery('.position_header_position').html("UTM33 ( &plusmn;" + position.coords.accuracy +"m )");
 		jQuery('.position_header_town').html("N:" +Math.round(p.y) +" &Oslash;:" +Math.round(p.x));
 
 		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
@@ -62,6 +64,7 @@ var snow_page = {
 	onKommuneResult : function(data) {
 		var res = JSON.parse(data);
 
+		
 		if(res != null) {
 			jQuery(".county_a").html(res.features[0].attributes.KOMMNAVN);
 			snow_page.komm_nr = res.features[0].attributes.KOMM_NR;
@@ -69,7 +72,7 @@ var snow_page = {
 	},
 	
 	doMeasurement: function() {
-		navigator.geolocation.getCurrentPosition(snow_page.onSuccess, snow_page.onError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
+		geo.requestPosition('snow_page.onSuccess');
 	},
 	
 	add: function(id)
@@ -110,3 +113,6 @@ var snow_page = {
 	},
 }
 
+function locationTest(en){
+	console.log(en)
+}
