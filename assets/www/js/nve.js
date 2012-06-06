@@ -768,7 +768,7 @@ var geo = {
 				'NativeLocation', callback, []);
 		}else{
 			navigator.geolocation.getCurrentPosition(
-					callback, 
+					eval(callback), 
                     function(e){ console.log("error," + e); }, 
                     { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }
                   );
