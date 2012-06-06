@@ -508,7 +508,9 @@ var main = (function()
         },
         
         toggleBackButtonDisplay: function(params, status) {
-        	
+        	console.log("-------backbutton display");
+        	console.log(params.id);
+        	console.log(status);
         	if(params.id != 'home') {
         		if(status == 'start') {
     				$('back').style.display = 'block';
@@ -547,12 +549,9 @@ var main = (function()
         			break;
         			
         		case 'snow':
-        			if(status == 'start') {
-        				snow_page.init();
-        				//$('mainBody').style.backgroundImage = "url('img/snow_background.png')";
-        				
-        				main.actualPage = SNOW;
-        			}
+    				snow_page.init();
+    				
+    				main.actualPage = SNOW;
         			break;
         			
         		case 'snow_see_obs':
@@ -765,7 +764,7 @@ var main = (function()
 
 var geo = {
 	requestPosition: function(callback){
-		console.log(device.platform);
+		console.log("henter geo position");
 		if(device.platform == "Android")
 		{
 			PhoneGap.exec(function(){console.log("ok");}, function(){console.log("fail");}, 
@@ -789,17 +788,5 @@ var geo = {
 		};
 	},
 
-	noGoodAccuracyFound: function() 
-    {
-    	main.startDialog();
-    	main.waitingDialog.popup({
-	        content: "<div class='noGoodAccuracy'>" +
-	        	"<h3 class='center'>Gps problem</h3><p>Ingen nøyaktig posisjon er motatt. Kontroller at du har gode GPS forhold, og forsøk igjen.</p>" +
-	        	"<button type='button' style='width: auto; display: inline' " +
-					"class='w_bg_light c_button w_button w_radius center' onclick='main.hideDialog();'>" + "Ok" + 
-				"</button>" +
-	        "</div>",
-	        layerCallback: { context: main, method: 'nothing' } ,
-	    });
-    }
+	noGoodAccuracyFound: function() { }
 }

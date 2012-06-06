@@ -19,6 +19,17 @@ var snow_page = {
 	onSuccess: function(position) {
 		position.taken = new Date();
 		
+		snow_page.updatePagePosition(position);
+
+		jQuery('.position_header_position').html("UTM33 ( &plusmn;" + position.coords.accuracy +"m )");
+		jQuery('.position_header_town').html("N: " +snow_page.latitute +" &Oslash;: " +snow_page.longitude);
+
+		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
+		GetObjectFromServer(new AreaInformation(snow_page.latitute, snow_page.longitude), snow_page.onAreaInformationResult);
+		
+	},
+	
+	updatePagePosition: function(position){
 		snow_page.pos_obj = position;
 		
 		var source = new Proj4js.Proj('EPSG:4326');    //source coordinates will be in Longitude/Latitude
@@ -29,18 +40,17 @@ var snow_page = {
 		
 		snow_page.longitude= Math.round(p.x);
 		snow_page.latitute  = Math.round(p.y);
-
-		jQuery('.position_header_position').html("UTM33 ( &plusmn;" + position.coords.accuracy +"m )");
-		jQuery('.position_header_town').html("N:" +Math.round(p.y) +" &Oslash;:" +Math.round(p.x));
-
-		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
-		GetObjectFromServer(new AreaInformation(snow_page.latitute, snow_page.longitude), snow_page.onAreaInformationResult);
-		
+	},
+	
+	setStoredLocation : function(position){
+		snow_page.updatePagePosition(position);
+		main.store.getSnow().setLatLong(snow_page.latitute, snow_page.longitude);
 	},
 	
 	updateLocation : function() 
 	{
-		main.store.getSnow().setLatLong(snow_page.latitute, snow_page.longitude);
+		console.log("updateing position");
+		geo.requestPosition('snow_page.setStoredLocation');
 	},
 	
 	onAreaInformationResult: function(data) {
@@ -74,6 +84,7 @@ var snow_page = {
 	},
 	
 	doMeasurement: function() {
+		
 		geo.requestPosition('snow_page.onSuccess');
 	},
 	
@@ -91,14 +102,7 @@ var snow_page = {
 	init: function() {
 		$('header_middle_text').innerHTML = "Sn&oslash;";
 		
-		//only update if its older than a minute
-		if(snow_page.pos_obj != null) {
-			if(((new Date()).getTime() - snow_page.pos_obj.taken.getTime()) / 1000 / 60 < 1) {
-				snow_page.doMeasurement();
-			}
-		} else {
-			snow_page.doMeasurement();
-		}
+		snow_page.doMeasurement();
 
 		var snowStore = main.store.getSnow();
 
