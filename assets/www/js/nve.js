@@ -22,6 +22,8 @@ var main = (function()
     	
     	inTestMode: false,
     	
+    	initialised: false,
+    	
 		clickLogin: function() {
 			if(main.login.data.EMail == 'anonym@nve.no')
 			{
@@ -290,6 +292,8 @@ var main = (function()
         	} else {
         		main.showLoginStatus(false);	
 			}
+			
+			main.initialised = true;
         },
         
         backKeyDown: function() 
@@ -513,7 +517,7 @@ var main = (function()
         	
         	main.toogleFavorite();
         	
-        	if(status == 'start') {
+        	if(status == 'start' && main.initialised) {
         		//google analytics
     			window.plugins.googleAnalyticsPlugin.trackPageView(params.id);
         	}
