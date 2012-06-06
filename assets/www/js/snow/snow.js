@@ -55,8 +55,11 @@ var snow_page = {
 	//
 	onError: function(error) {
 		jQuery('.position_header_town').html("no" +" , " +"geodata");
-//		$('position_header_position').innerHTML = snow_page.latitute +" , " +snow_page.longitude;
-//		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
+
+		snow_page.longitude = 0;
+		snow_page.latitute  = 0;
+		snow_page.komm_nr = 0;
+		snow_page.omrade_id = 0;
 	},
 	
 	onKommuneResult : function(data) {

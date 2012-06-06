@@ -54,6 +54,10 @@ var water_page = {
 	//
 	onError: function(error) {
 		jQuery('.position_header_town').html("no" +" , " +"geodata");
+		water_page.longitude = 0;
+		water_page.latitute  = 0;
+		water_page.komm_nr = 0;
+		water_page.omrade_id = 0;
 	},
 	
 	onKommuneResult : function(data) {
