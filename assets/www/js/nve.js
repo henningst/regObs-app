@@ -415,7 +415,7 @@ var main = (function()
         sendEmail: function()
         {
         	main.hideDialog();
-        	console.log(GetObjectFromServer(new SendEmail(main.lastRegID)));
+        	GetObjectFromServer(new SendEmail(main.lastRegID));
         },
         
         startDialog: function()
