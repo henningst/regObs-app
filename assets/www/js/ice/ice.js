@@ -54,6 +54,11 @@ var ice_page = {
 	//
 	onError: function(error) {
 		jQuery('.position_header_town').html("no" +" , " +"geodata");
+
+		ice_page.longitude = 0;
+		ice_page.latitute  = 0;
+		ice_page.komm_nr = 0;
+		ice_page.omrade_id = 0;
 	},
 	
 	onKommuneResult : function(data) {

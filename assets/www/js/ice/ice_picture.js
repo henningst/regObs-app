@@ -54,8 +54,8 @@ var ice_picture  = {
 		
 		if(device.platform == 'iphone') {
 			navigator.camera.getPicture(
-				water_picture.onSuccess, 
-				water_picture.onFail, 
+				ice_picture.onSuccess, 
+				ice_picture.onFail, 
 				{ 
 					quality : 50, 
 					destinationType : Camera.DestinationType.DATA_URL, 
@@ -69,8 +69,8 @@ var ice_picture  = {
 		else
 		{			
 			navigator.camera.getPicture(
-				snow_picture.onSuccess,
-				snow_picture.onFail,
+				ice_picture.onSuccess,
+				ice_picture.onFail,
 				{
 					quality : 50,
 					destinationType : Camera.DestinationType.DATA_URL,

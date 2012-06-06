@@ -55,6 +55,11 @@ var dirt_page = {
 	//
 	onError: function(error) {
 		jQuery('.position_header_town').html("no" +" , " +"geodata");
+
+		dirt_page.longitude = 0;
+		dirt_page.latitute  = 0;
+		dirt_page.komm_nr = 0;
+		dirt_page.omrade_id = 0;
 	},
 	
 	onKommuneResult : function(data) {
