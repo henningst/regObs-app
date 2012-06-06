@@ -53,8 +53,8 @@ var dirt_picture  = {
 		
 		if(device.platform == 'iphone') {
 			navigator.camera.getPicture(
-				water_picture.onSuccess, 
-				water_picture.onFail, 
+				dirt_picture.onSuccess, 
+				dirt_picture.onFail, 
 				{ 
 					quality : 50, 
 					destinationType : Camera.DestinationType.DATA_URL, 
@@ -68,8 +68,8 @@ var dirt_picture  = {
 		else
 		{			
 			navigator.camera.getPicture(
-				snow_picture.onSuccess,
-				snow_picture.onFail,
+				dirt_picture.onSuccess,
+				dirt_picture.onFail,
 				{
 					quality : 50,
 					destinationType : Camera.DestinationType.DATA_URL,

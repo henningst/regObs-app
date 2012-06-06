@@ -69,8 +69,8 @@ var water_picture  = {
 		else
 		{			
 			navigator.camera.getPicture(
-				snow_picture.onSuccess,
-				snow_picture.onFail,
+				water_picture.onSuccess,
+				water_picture.onFail,
 				{
 					quality : 50,
 					destinationType : Camera.DestinationType.DATA_URL,
