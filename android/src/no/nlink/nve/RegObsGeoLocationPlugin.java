@@ -70,8 +70,8 @@ public class RegObsGeoLocationPlugin extends Plugin {
     }catch(Throwable e){
       Log.e("GeoPlugin", "register failed", e);
     }
-    return new PluginResult(Status.OK);
     
+    return new PluginResult(Status.OK);
   }
   
   
@@ -88,7 +88,7 @@ public class RegObsGeoLocationPlugin extends Plugin {
   }
 
   private void noGoodAccuracyIsFound() {
-    sendJavascript("main.noGoodAccuracyFound()");
+    sendJavascript("geo.noGoodAccuracyFound()");
   }
   
   private boolean goodEnoughPosition(){
@@ -108,7 +108,7 @@ public class RegObsGeoLocationPlugin extends Plugin {
     if(accuracy > location.getAccuracy())
         accuracy = location.getAccuracy();
     
-    String javascript = action + "(" +location.getLatitude()  +","+  location.getLongitude() +","+ location.getAccuracy() +")";
+    String javascript = action + "(geo.convertToPosition(" +location.getLatitude()  +","+  location.getLongitude() +","+ location.getAccuracy() +"))";
     Log.d("GeoPlugin", "calling: " + javascript);
     sendJavascript(javascript);
   }

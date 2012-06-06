@@ -1,20 +1,3 @@
-var geo = {
-	requestPosition: function(callback){
-		PhoneGap.exec(function(){console.log("ok");}, function(){console.log("fail");}, 
-				'NativeLocation', callback, []);
-	},
-	
-	convertToPosition: function(lat, long, acc){
-		return {
-			coords: {
-				latitude: lat,
-				longitude: long,
-				accuracy: acc
-			}
-		};
-	}
-
-}
 
 
 var main = (function()
@@ -407,19 +390,6 @@ var main = (function()
 		        layerCallback: { context: main, method: 'nothing' } ,
 		    });
         },
-        noGoodAccuracyFound: function() 
-        {
-        	main.startDialog();
-        	main.waitingDialog.popup({
-		        content: "<div class='waitingDialog'>" +
-		        	"Ingen nøyaktig posisjon er motatt. Kontroller at du har gode GPS forhold, og forsøk igjen." +
-		        	"<button type='button' style='width: auto; display: inline' " +
-    					"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +Ok+ 
-    				"</button>" +
-		        "</div>",
-		        layerCallback: { context: main, method: 'nothing' } ,
-		    });
-        },
         
         createCarousel: function(id, items)
         {
@@ -784,3 +754,45 @@ var main = (function()
             
     return main;
 }());
+
+
+var geo = {
+	requestPosition: function(callback){
+		console.log(device.platform);
+		if(device.platform == "Android")
+		{
+			PhoneGap.exec(function(){console.log("ok");}, function(){console.log("fail");}, 
+				'NativeLocation', callback, []);
+		}else{
+			navigator.geolocation.getCurrentPosition(
+					callback, 
+                    function(e){ console.log("error," + e); }, 
+                    { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }
+                  );
+		}
+	},
+	
+	convertToPosition: function(lat, long, acc){
+		return {
+			coords: {
+				latitude: lat,
+				longitude: long,
+				accuracy: acc
+			}
+		};
+	},
+
+	noGoodAccuracyFound: function() 
+    {
+    	main.startDialog();
+    	main.waitingDialog.popup({
+	        content: "<div class='noGoodAccuracy'>" +
+	        	"<h3 class='center'>Gps problem</h3><p>Ingen nøyaktig posisjon er motatt. Kontroller at du har gode GPS forhold, og forsøk igjen.</p>" +
+	        	"<button type='button' style='width: auto; display: inline' " +
+					"class='w_bg_light c_button w_button w_radius center' onclick='main.hideDialog();'>" + "Ok" + 
+				"</button>" +
+	        "</div>",
+	        layerCallback: { context: main, method: 'nothing' } ,
+	    });
+    }
+}

@@ -16,8 +16,7 @@ var water_page = {
 	//   This method accepts a `Position` object, which contains
 	//   the current GPS coordinates
 	//
-	onSuccess: function(lat,long,acc) {
-		var position = geo.convertToPosition(lat,long,acc)
+	onSuccess: function(position) {
 		position.taken = new Date();
 		water_page.pos_obj = position;
 		

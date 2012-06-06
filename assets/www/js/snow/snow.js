@@ -16,8 +16,7 @@ var snow_page = {
 	//   This method accepts a `Position` object, which contains
 	//   the current GPS coordinates       
 	//
-	onSuccess: function(latitude, longitude, accuracy) {
-		var position = geo.convertToPosition(latitude, longitude, accuracy);
+	onSuccess: function(position) {
 		position.taken = new Date();
 		
 		snow_page.pos_obj = position;
