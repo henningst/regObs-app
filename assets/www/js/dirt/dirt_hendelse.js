@@ -1,6 +1,9 @@
 var dirt_hendelse = {
 		
 		fill_activity_influenced: function(data) {
+			if(data == null)
+				return;
+			
 			var options = jQuery("#dirt_hendelse_activity_list");
 			
 			//remove if previously inserted

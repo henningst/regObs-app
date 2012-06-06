@@ -40,7 +40,6 @@ var water_picture  = {
 	},
 
 	onFail: function(message) {
-//		alert("Lagre bilde feil");
 		main.hideDialog();
 	},
 	
@@ -53,18 +52,37 @@ var water_picture  = {
 	{
 		main.showWaitingDialogWithMessage(PROCESS_PICTURE);
 		
-		navigator.camera.getPicture(
-			water_picture.onSuccess, 
-			water_picture.onFail, 
-			{ 
-				quality : 50, 
-				destinationType : Camera.DestinationType.DATA_URL, 
-				sourceType : Camera.PictureSourceType.CAMERA, 
-				allowEdit : true,
-				encodingType: Camera.EncodingType.JPEG,
-                correctOrientation: true
-            }
-		);
+		if(device.platform == 'iphone') {
+			navigator.camera.getPicture(
+				water_picture.onSuccess, 
+				water_picture.onFail, 
+				{ 
+					quality : 50, 
+					destinationType : Camera.DestinationType.DATA_URL, 
+					sourceType : Camera.PictureSourceType.CAMERA, 
+					allowEdit : true,
+					encodingType: Camera.EncodingType.JPEG,
+	                correctOrientation: true
+	            }
+			);
+		} 
+		else
+		{			
+			navigator.camera.getPicture(
+				snow_picture.onSuccess,
+				snow_picture.onFail,
+				{
+					quality : 50,
+					destinationType : Camera.DestinationType.DATA_URL,
+					sourceType : Camera.PictureSourceType.CAMERA,
+					allowEdit : true,
+					encodingType: Camera.EncodingType.JPEG,
+					targetWidth: 1024,
+					targetHeight: 1024,
+	                correctOrientation: true
+	            }
+			); 
+		}
 	},
 	
 	init : function () {

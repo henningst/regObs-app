@@ -1,6 +1,9 @@
 var ice_hendelse = {
 		
 		fill_activity_influenced: function(data) {
+			if(data == null)
+				return;
+			
 			var options = jQuery("#ice_hendelse_activity_list");
 			
 			//remove if previously inserted

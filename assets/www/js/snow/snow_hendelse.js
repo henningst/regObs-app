@@ -1,6 +1,9 @@
 var snow_hendelse = {
 		
 		fill_activity_influenced: function(data) {
+			if(data == null)
+				return;
+			
 			var options = jQuery("#snow_hendelse_activity_list");
 			//remove if previously inserted
 			jQuery.each(options, function() {jQuery(this).find('option').remove()});
