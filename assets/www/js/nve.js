@@ -44,25 +44,15 @@ var main = (function()
 			}
 		},
 		
-		ok: function(data) {
-			alert("ok");
-		},
-		
-		cancel: function(data) {
-			alert("cancel");
-		},
-		
 		loginCallback: function(data) {
 			main.login = LoggedInAs(main.loggedInAsCallback);
 		},
 		
 		loginErrorCallback: function(data) {
-
-    		main.showLoginStatus(false);
-           	main.hideDialog();
-			alert("No internet ?!");
-
-			alert(ERROR_LOGIN);
+//			alert("errir");
+//    		main.showLoginStatus(false);
+//    		setTimeout(main.errorDialog, 5000);
+			main.errorDialog();
 		},
 		
 		clickLogOut: function() {
@@ -71,10 +61,16 @@ var main = (function()
 			
 			DataAccess.save(USERNAME, "");
 			DataAccess.save(PASSWORD, "");
-			Logout(main.logoutCallback);
+			Logout(main.logoutCallback, main.ert);
+		},
+		
+		ert: function(data) 
+		{
+			alert("error");
 		},
 		
 		logoutCallback: function() {
+			main.login = {data: {"EMail" : "anonym@nve.no", "FirstName" : "Anonym", "ObserverID" : 105}};
         	main.showLoginStatus(false);
         	main.login = LoggedInAs(main.loggedInAsCallback);
 		},
@@ -156,16 +152,6 @@ var main = (function()
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
 
-            main.populateBoxes(true);
-            
-			var username = DataAccess.get(USERNAME);
-			var password = DataAccess.get(PASSWORD);
-			
-			if(username != undefined && password != undefined) {
-				Login(username, password, main.loginCallback);
-        	} else {
-        		main.showLoginStatus(false);	
-			}
 			
 			main.slideToFavorite();
 			main.toogleFavorite();
@@ -188,7 +174,7 @@ var main = (function()
             
             if(registrationKD == null) 
         	{
-            	GetObjectFromServer(new RegistrationKD(), main.fillRegistrationKD);
+            	GetObjectFromServer(new RegistrationKD(), main.fillRegistrationKD, function(error) { main.fillRegistrationKD(DataAccess.get(RegistrationKD.name)); });
         	}
             else 
             {
@@ -197,7 +183,7 @@ var main = (function()
             
             if(dangerSign == null) 
             {
-            	GetObjectFromServer(new DangerSignKD(), main.fillDangerSign);
+            	GetObjectFromServer(new DangerSignKD(), main.fillDangerSign, function(error) { main.fillDangerSign(DataAccess.get(DangerSignKD.name)); });
             } 
             else 
             {
@@ -206,7 +192,7 @@ var main = (function()
             
             if(activityInfluenced == null) 
             {
-            	GetObjectFromServer(new ActivityInfluencedKD(), main.fillActivityInfluenced);
+            	GetObjectFromServer(new ActivityInfluencedKD(), main.fillActivityInfluenced, function(error) { main.fillActivityInfluenced(DataAccess.get(ActivityInfluencedKD.name)); });
             } 
             else 
             {
@@ -215,7 +201,7 @@ var main = (function()
             
             if(damageExtent == null) 
             {
-            	GetObjectFromServer(new DamageExtentKD(), main.fillDamageExtent);
+            	GetObjectFromServer(new DamageExtentKD(), main.fillDamageExtent, function(error) { main.fillDamageExtent(DataAccess.get(DamageExtentKD.name)); });
             } 
             else 
             {
@@ -295,12 +281,17 @@ var main = (function()
         {
         	document.addEventListener("backbutton", main.backKeyDown, true);
 			window.plugins.googleAnalyticsPlugin.start("UA-32403556-1");
-        },
-        
-        startTrack: function() 
-        {
-//        	alert("go");
-//			window.plugins.Analytics.trackPageView("category", "action", "event", 1, function(){alert("Track: success");}, function(){alert("Track: failure");});
+
+            main.populateBoxes(true);
+            
+			var username = DataAccess.get(USERNAME);
+			var password = DataAccess.get(PASSWORD);
+			
+			if(username != undefined && password != undefined) {
+				Login(username, password, main.loginCallback);
+        	} else {
+        		main.showLoginStatus(false);	
+			}
         },
         
         backKeyDown: function() 
@@ -437,6 +428,9 @@ var main = (function()
         
         fillRegistrationKD: function(data)
         {
+			if(data == null)
+				return;
+			
         	DataAccess.save(RegistrationKD.name, data);
 
         	snow_picture.fillRegistrationKD(data);
@@ -446,6 +440,9 @@ var main = (function()
         },
         
         fillDangerSign: function(data) {
+			if(data == null)
+				return;
+			
         	DataAccess.save(DangerSignKD.name, data);
         	
         	snow_faresign.fillDangerSign(data);
@@ -455,6 +452,9 @@ var main = (function()
         },
         
         fillActivityInfluenced: function(data) {
+			if(data == null)
+				return;
+			
         	DataAccess.save(ActivityInfluencedKD.name, data);
         	
 			snow_hendelse.fill_activity_influenced(data);
@@ -464,6 +464,9 @@ var main = (function()
         },
         
         fillDamageExtent: function(data) {
+			if(data == null)
+				return;
+			
         	DataAccess.save(DamageExtentKD.name, data);
         	
 			snow_hendelse.fill_radius(data);

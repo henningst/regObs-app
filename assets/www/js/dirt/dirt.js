@@ -54,7 +54,7 @@ var dirt_page = {
 	// onError Callback receives a PositionError object
 	//
 	onError: function(error) {
-		jQuery('position_header_town').html("no" +" , " +"geodata");
+		jQuery('.position_header_town').html("no" +" , " +"geodata");
 	},
 	
 	onKommuneResult : function(data) {

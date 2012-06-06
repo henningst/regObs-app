@@ -82,15 +82,14 @@ class NveStore
 		
 		callback() if callback
 		
-	IsEmpty: (store) =>
+IsEmpty = (store) ->
+	if store.getObs().length isnt 0
+		return false 
+	
+	if store.getIncident() isnt null
+		return false
 		
-		if store.getObs().length isnt 0
-			return false 
+	if store.getPictures().length isnt 0
+		return false
 		
-		if store.getIncident() isnt null
-			return false
-			
-		if store.getPictures() isnt 0
-			return false
-			
-		true
+	true

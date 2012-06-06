@@ -93,6 +93,10 @@ class AbstractStore
 		
 		if not force
 			@onSend(@page, false)
+		else
+			@page.afterSendRegistration()
+			main.showFinishedUploadMessage()	
+			
 	
 	completePointRegistration: (data) ->
 		if @m_incident
@@ -144,7 +148,7 @@ class AbstractStore
 				source = OLD_GPS_POSITION
 				
 		if area
-			if @filterPicture(true).length isnt 0 || @m_dangerObs isnt 0
+			if @filterPicture(true).length isnt 0 || @m_dangerObs.length isnt 0
 				location = new ObsLocation("", 33, @long, @lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
 				SendObjectToServer(location, ((data) => @afterLocation(data, true, false)) , (error) => @onError(error))
 			else 
@@ -160,7 +164,7 @@ class AbstractStore
 				SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
 			else
 				@page.afterSendRegistration()
-				main.showFinishedUploadMessage()	
+				main.showFinishedUploadMessage()
 		
 		
 	onAfterLocation: (data, area, force) ->

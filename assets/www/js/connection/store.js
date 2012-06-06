@@ -1,10 +1,9 @@
-var NveStore,
-  __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+var IsEmpty, NveStore;
 
 NveStore = (function() {
 
   function NveStore() {
-    this.IsEmpty = __bind(this.IsEmpty, this);    this.m_waterStore = null;
+    this.m_waterStore = null;
     this.m_snowStore = null;
     this.m_dirtStore = null;
     this.m_iceStore = null;
@@ -94,13 +93,13 @@ NveStore = (function() {
     if (callback) return callback();
   };
 
-  NveStore.prototype.IsEmpty = function(store) {
-    if (store.getObs().length !== 0) return false;
-    if (store.getIncident() !== null) return false;
-    if (store.getPictures() !== 0) return false;
-    return true;
-  };
-
   return NveStore;
 
 })();
+
+IsEmpty = function(store) {
+  if (store.getObs().length !== 0) return false;
+  if (store.getIncident() !== null) return false;
+  if (store.getPictures().length !== 0) return false;
+  return true;
+};
