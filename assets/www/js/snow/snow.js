@@ -21,7 +21,7 @@ var snow_page = {
 		
 		snow_page.updatePagePosition(position);
 
-		jQuery('.position_header_position').html("UTM33 ( &plusmn;" + position.coords.accuracy +"m )");
+		jQuery('.position_header_position').html("UTM33 ( &plusmn;" + position.coords.accuracy +"m )" + new Date().getTime());
 		jQuery('.position_header_town').html("N: " +snow_page.latitute +" &Oslash;: " +snow_page.longitude);
 
 		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
@@ -84,7 +84,6 @@ var snow_page = {
 	},
 	
 	doMeasurement: function() {
-		
 		geo.requestPosition('snow_page.onSuccess');
 	},
 	
@@ -117,8 +116,4 @@ var snow_page = {
 			jQuery("#star").attr('src', 'img/notstared.png');
 		}
 	},
-}
-
-function locationTest(en){
-	console.log(en)
 }

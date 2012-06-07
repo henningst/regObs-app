@@ -1,4 +1,42 @@
+var geo = {
+	last_callback : null,
+	requestPosition: function(callback){
+		geo.last_callback = callback;
+		console.log("henter geo position");
+		
+		if(device.platform == "Android")
+		{
+			PhoneGap.exec(function(){console.log("geo plugin ok");}, function(){console.log("geo plugin fail");}, 
+				'NativeLocation', callback, []);
+		}else{
+			navigator.geolocation.getCurrentPosition(
+					eval(callback), 
+                    function(e){ console.log("error," + e); }, 
+                    { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }
+                  );
+		}
+	},
+	
+	resume : function(){
+		geo.requestPosition(geo.last_callback);
+	},
+	
+	pause: function(){
+		console.log("pauseing the phone");
+	},
+	
+	convertToPosition: function(lat, long, acc){
+		return {
+			coords: {
+				latitude: lat,
+				longitude: long,
+				accuracy: acc
+			}
+		};
+	},
 
+	noGoodAccuracyFound: function() { }
+};
 
 var main = (function()
 {
@@ -754,39 +792,15 @@ var main = (function()
         	main.lastPage = params.id;
         	
         }
-    }
+    };
+    
     window.addEventListener('load', wink.bind(main.init, main), false);
     document.addEventListener("deviceready", main.initPhonegap, false);
             
+    document.addEventListener("resume", geo.resume, false);
+    document.addEventListener("pause", geo.pause, false);
     return main;
 }());
 
 
-var geo = {
-	requestPosition: function(callback){
-		console.log("henter geo position");
-		if(device.platform == "Android")
-		{
-			PhoneGap.exec(function(){console.log("ok");}, function(){console.log("fail");}, 
-				'NativeLocation', callback, []);
-		}else{
-			navigator.geolocation.getCurrentPosition(
-					eval(callback), 
-                    function(e){ console.log("error," + e); }, 
-                    { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }
-                  );
-		}
-	},
-	
-	convertToPosition: function(lat, long, acc){
-		return {
-			coords: {
-				latitude: lat,
-				longitude: long,
-				accuracy: acc
-			}
-		};
-	},
 
-	noGoodAccuracyFound: function() { }
-}

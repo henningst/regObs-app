@@ -416,7 +416,8 @@
 					armv6,
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: nLink AS";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nLink AS";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -431,6 +432,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PROVISIONING_PROFILE = "A9F1E3A1-E97A-48AF-9F45-550CFBABD3A4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A9F1E3A1-E97A-48AF-9F45-550CFBABD3A4";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -443,7 +446,8 @@
 					armv6,
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: nLink AS";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nLink AS";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -451,6 +455,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PROVISIONING_PROFILE = "A9F1E3A1-E97A-48AF-9F45-550CFBABD3A4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A9F1E3A1-E97A-48AF-9F45-550CFBABD3A4";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -495,8 +501,6 @@
 					/usr/lib/libSystem.B.dylib,
 				);
 				PRODUCT_NAME = regObs;
-				PROVISIONING_PROFILE = "430DBE23-660D-4117-8959-F8658EE5A7E8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "430DBE23-660D-4117-8959-F8658EE5A7E8";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -541,8 +545,6 @@
 					/usr/lib/libSystem.B.dylib,
 				);
 				PRODUCT_NAME = regObs;
-				PROVISIONING_PROFILE = "430DBE23-660D-4117-8959-F8658EE5A7E8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "430DBE23-660D-4117-8959-F8658EE5A7E8";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

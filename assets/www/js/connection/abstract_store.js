@@ -73,7 +73,8 @@ AbstractStore = (function() {
 
   AbstractStore.prototype.setLatLong = function(lat, long) {
     this.lat = lat;
-    return this.long = long;
+    this.long = long;
+    return DataAccess.save(this.name, this);
   };
 
   AbstractStore.prototype.addObs = function(obs) {

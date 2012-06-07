@@ -30,6 +30,7 @@ class AbstractStore
 	setLatLong: (lat, long) ->
 		@lat = lat
 		@long = long
+		DataAccess.save(@name, this)
 		
 	addObs: (obs) ->
 		@m_dangerObs.push(obs)
