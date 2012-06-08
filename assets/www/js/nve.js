@@ -305,14 +305,14 @@ var main = (function()
         		SERVER_URL = TEST;
         		main.inTestMode = false;
         		$('test_button').value = USE_TESTMODE_BUTTON;
-        		jQuery('#over_header').removeClass('testMode');
+        		jQuery('#header').removeClass('testMode');
         	}
         	else 
         	{
         		SERVER_URL = TEST;
         		main.inTestMode = true;
         		$('test_button').value = USE_PROD_BUTTON;
-        		jQuery('#over_header').addClass('testMode');
+        		jQuery('#header').addClass('testMode');
         	}
         },
         

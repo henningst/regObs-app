@@ -8,6 +8,7 @@
 .testMode
 {
 	background-color: red;
+	background-image: none !important;
 }
 
 .pp_popup
