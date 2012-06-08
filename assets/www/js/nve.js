@@ -405,21 +405,29 @@ var main = (function()
         
         showDialogWithMessage: function(message) 
         {
-        	main.startDialog();
-        	main.waitingDialog.popup({
-		        content: "<div class='waitingDialog'>" +
-		        	message +
-		        	"<button type='button' style='width: auto; display: inline' " +
+        	
+        	jQuery("#popup_content").html("<p>" + message + "</p><button type='button' style='width: auto; display: inline' " +
     				"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +OK + 
-    			"</button>" +
-		        "</div>",
-		        layerCallback: { context: main, method: 'nothing' },
-		    });
+    			"</button>");
+        	jQuery("#popup").css("top", (wink.ux.window.height * .4) + "px");
+        	jQuery("#dialog").click(function(event){
+        		main.shadowSwallowEvents(event);
+        	});
+        	jQuery("#footer").hide();
+        	jQuery("#dialog").show();
+        	
+        },
+        
+        shadowSwallowEvents: function(e){
+        	console.log(e);
+        	event.preventDefault();
+        	return false;
         },
         
         showWaitingDialogWithMessage: function(message) 
         {
         	main.startDialog();
+        	
         	main.waitingDialog.popup({
 		        content: "<div class='waitingDialog'>" +
 		        	message + "<img src='img/ajax-loader.gif' />" +
@@ -468,8 +476,8 @@ var main = (function()
         },
         
         hideDialog: function() {
-        	main.waitingDialog.hide();
-        	jQuery('.pp_popup').css('z-index', -99);
+        	jQuery('#dialog').hide();
+        	jQuery("#footer").show();
         },
         
         fillRegistrationKD: function(data)

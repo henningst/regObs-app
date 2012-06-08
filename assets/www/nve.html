@@ -109,6 +109,14 @@
 </head>	
 	
 <body id="mainBody">
+  <div id="dialog" >
+    <div id="shading"></div>
+    <div id="popup">
+      <div id="popup_content">
+      </div>
+    </div>
+  </div>
+
 	<div id="header" class="w_header_custom c_color_gradient">
     	<div id="back" class="w_button_custom w_back w_left">
 	        <input type="button" value="" class="c_color_gradient" onclick="main.panels.slideBack();" />
@@ -557,6 +565,8 @@
       <div class="shortcut camera" onclick="main.slideToFavoritePicture()"></div>
       <div class="shortcut setting last" onclick="main.panels.slideTo('settings')"></div>
   </div>
+  
+  
   
 </body>
 </html>
