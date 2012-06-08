@@ -83,8 +83,8 @@ input.large
 
 .c_image
 {
-	width: 70%;
-	height: 40%;
+	width: 80%;
+	max-height: 50%;
 	margin: 10px;
 }
 
@@ -391,4 +391,12 @@ ul.actions li{
 #learning_content h3, #learning_content h1,#learning_content h2{
   text-align: center;
   
+}
+
+.learning_icon img{
+  vertical-align: bottom;	
+}
+
+.content_page{
+  padding-top:10px;	
 }
