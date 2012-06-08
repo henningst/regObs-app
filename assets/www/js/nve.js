@@ -1,7 +1,6 @@
 var geo = {
-	last_callback : null,
+	last_page_location : null,
 	requestPosition: function(callback){
-		geo.last_callback = callback;
 		console.log("henter geo position");
 		
 		if(device.platform == "Android")
@@ -18,21 +17,26 @@ var geo = {
 	},
 	
 	resume : function(){
-		geo.requestPosition(geo.last_callback);
+		if(main.initialised && geo.last_page_location != null)
+			geo.requestPosition(geo.last_page_location);
 	},
 	
 	pause: function(){
 		console.log("pauseing the phone");
 	},
 	
-	convertToPosition: function(lat, long, acc){
-		return {
-			coords: {
-				latitude: lat,
-				longitude: long,
-				accuracy: acc
-			}
-		};
+	convertToPosition: function(lat, long, acc, time){
+		var date = new Date(time);
+		var position = {
+				coords: {
+					latitude: lat,
+					longitude: long,
+					accuracy: acc,
+					taken : date
+				}
+			};
+		
+		return position; 
 	},
 
 	noGoodAccuracyFound: function() { }

@@ -108,7 +108,7 @@ public class RegObsGeoLocationPlugin extends Plugin {
     if(accuracy > location.getAccuracy())
         accuracy = location.getAccuracy();
     
-    String javascript = action + "(geo.convertToPosition(" +location.getLatitude()  +","+  location.getLongitude() +","+ location.getAccuracy() +"))";
+    String javascript = action + "(geo.convertToPosition(" +location.getLatitude()  +","+  location.getLongitude() +","+ location.getAccuracy() +","+ location.getTime()+ "))";
     Log.d("GeoPlugin", "calling: " + javascript);
     sendJavascript(javascript);
   }

@@ -207,7 +207,7 @@ AbstractStore = (function() {
     source = 0;
     pos = page.pos_obj;
     if (pos) {
-      elapsedInMinutes = ((new Date()).getTime() - pos.taken.getTime()) / 1000 / 60;
+      elapsedInMinutes = ((new Date()).getTime() - pos.coords.taken.getTime()) / 1000 / 60;
       if (elapsedInMinutes < GPS_TIMEOUT_IN_MINUTES) {
         source = GPS_POSITION;
       } else {

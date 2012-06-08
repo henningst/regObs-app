@@ -17,8 +17,6 @@ var snow_page = {
 	//   the current GPS coordinates       
 	//
 	onSuccess: function(position) {
-		position.taken = new Date();
-		
 		snow_page.updatePagePosition(position);
 
 		jQuery('.position_header_position').html("UTM33 ( &plusmn;" + position.coords.accuracy +"m )" + new Date().getTime());
@@ -83,7 +81,9 @@ var snow_page = {
 		}
 	},
 	
+	
 	doMeasurement: function() {
+		geo.last_page_location = 'snow_page.onSuccess';
 		geo.requestPosition('snow_page.onSuccess');
 	},
 	
