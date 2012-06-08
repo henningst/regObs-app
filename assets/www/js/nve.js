@@ -380,7 +380,7 @@ var main = (function()
         
         showFinishedUploadMessage: function()
         {
-        	jQuery('.waitingDialog').html( "" +
+        	jQuery('#dialog_content').html( "" +
         			"<div> " +
 	        			"<p> Takk for observasjon </p>" +
 	        			"<button type='button' style='width: auto; display: inline' " +
@@ -394,46 +394,32 @@ var main = (function()
         
         errorDialog: function() 
         {
-        	jQuery('.waitingDialog').html( "" +
-        			"<div> " +
-	        			"<p> " +AN_ERROR_OCCURED  +"</p>" +
-	        			"<button type='button' style='width: auto; display: inline' " +
-	        				"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +OK + 
-	        			"</button>" +
-        			"</div>");
+        	main.showDialogWithMessage(AN_ERROR_OCCURED);
         },
         
-        showDialogWithMessage: function(message) 
-        {
-        	
-        	jQuery("#popup_content").html("<p>" + message + "</p><button type='button' style='width: auto; display: inline' " +
+        showDialogWithMessage: function(message){
+        	main.showDialog("<p>" + message + "</p><button type='button' style='width: auto; display: inline' " +
     				"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +OK + 
-    			"</button>");
+        			"</button>");
+        },
+        
+        showDialog: function(content)
+        {
+        	jQuery("body").scrollTop(0);
+        	jQuery("#popup_content").html(content);
         	jQuery("#popup").css("top", (wink.ux.window.height * .4) + "px");
-        	jQuery("#dialog").click(function(event){
-        		main.shadowSwallowEvents(event);
-        	});
         	jQuery("#footer").hide();
         	jQuery("#dialog").show();
-        	
-        },
-        
-        shadowSwallowEvents: function(e){
-        	console.log(e);
-        	event.preventDefault();
-        	return false;
+        	jQuery("#dialog").bind("touchmove", function(event){
+        	     event.preventDefault();
+        	});
         },
         
         showWaitingDialogWithMessage: function(message) 
         {
-        	main.startDialog();
-        	
-        	main.waitingDialog.popup({
-		        content: "<div class='waitingDialog'>" +
+        	main.showDialog("<div class='waitingDialog'>" +
 		        	message + "<img src='img/ajax-loader.gif' />" +
-		        "</div>",
-		        layerCallback: { context: main, method: 'nothing' } ,
-		    });
+		        "</div>");
         },
         
         createCarousel: function(id, items)
@@ -470,12 +456,8 @@ var main = (function()
         	GetObjectFromServer(new SendEmail(main.lastRegID));
         },
         
-        startDialog: function()
-        {
-        	jQuery('.pp_popup').css('z-index', 999);
-        },
-        
         hideDialog: function() {
+        	jQuery("body").css("overflow", "inherit");
         	jQuery('#dialog').hide();
         	jQuery("#footer").show();
         },
