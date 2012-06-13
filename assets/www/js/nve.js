@@ -33,7 +33,8 @@ var geo = {
 					longitude: long,
 					accuracy: acc,
 					taken : date
-				}
+				},
+				timestamp: time
 			};
 		
 		return position; 
