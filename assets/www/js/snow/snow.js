@@ -1,4 +1,3 @@
-
 var snow_page = {
 	danger_store : function(){ return main.store.getSnow(); },
 		
@@ -7,14 +6,11 @@ var snow_page = {
 	//   the current GPS coordinates       
 	//
 	onSuccess: function(position) {
-		snow_page.updatePagePosition(position);
-
-		jQuery('.position_header_position').html("UTM33 ( &plusmn;" + position.coords.accuracy +"m )" + new Date().getTime());
-		jQuery('.position_header_town').html("N: " +snow_page.latitute +" &Oslash;: " +snow_page.longitude);
+		this.updatePagePosition(position);
+		this.displayPosition(position);
 
 		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(snow_page.latitute, snow_page.longitude), snow_page.onAreaInformationResult);
-		
 	},
 	
 	updateLocation : function() 

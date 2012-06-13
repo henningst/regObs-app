@@ -37,6 +37,11 @@ var super_page = {
 			this.danger_store().setLatLong(this.latitute, this.longitude);
 		},
 		
+		displayPosition: function(position){
+			jQuery('.position_header_position').html("UTM33 ( &plusmn;" + position.coords.accuracy +"m )" + new Date().getTime());
+			jQuery('.position_header_town').html("N: "+ this.latitute +" &Oslash;: " + this.longitude);
+		},
+		
 		onAreaInformationResult: function(data) {
 			var res = JSON.parse(data);
 
