@@ -437,8 +437,19 @@ ul.actions li{
 	
 	border-radius: 5px;
 	padding: 2%;
+	
+	text-align:center;
 }
 
 #popup_content{
   margin: 3%;	
+}
+
+.popupbutton-single{
+  width: 80%;	
+}
+
+.popupbutton-dual{
+  width: 40%;
+  margin-left: 20px; 
 }

@@ -380,14 +380,16 @@ var main = (function()
         
         showFinishedUploadMessage: function()
         {
-        	jQuery('#dialog_content').html( "" +
-        			"<div> " +
+        	main.hideDialog();
+        	
+        	main.showDialog( "" +
+        			"<div> <h3>Registrering fullført</h3>" +
 	        			"<p> Takk for observasjon </p>" +
-	        			"<button type='button' style='width: auto; display: inline' " +
-	        				"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +OK + 
+	        			"<button type='button' " +
+	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.hideDialog();'>" +OK + 
 	        			"</button>" +
-	        			"<button type='button' style='width: auto; display: inline' " +
-	        				"class='w_bg_light c_button w_button w_radius' onclick='main.sendEmail();'>" +SEND_EMAIL + 
+	        			"<button type='button' " +
+	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.sendEmail();'>" +SEND_EMAIL + 
 	        			"</button>" +
         			"</div>");
         },
@@ -397,22 +399,13 @@ var main = (function()
         	main.showDialogWithMessage(AN_ERROR_OCCURED);
         },
         
-        showDialogWithMessage: function(message){
-        	main.showDialog("<p>" + message + "</p><button type='button' style='width: auto; display: inline' " +
-    				"class='w_bg_light c_button w_button w_radius' onclick='main.hideDialog();'>" +OK + 
+        showDialogWithMessage: function(message, header){
+        	if(header == undefined)
+        		header = "Melding"
+        			
+        	main.showDialog("<h3>"+ header +"</h3><p>" + message + "</p><button type='button' " +
+    				"class='w_bg_light c_button w_button w_radius popupbutton-single' onclick='main.hideDialog();'>" +OK + 
         			"</button>");
-        },
-        
-        showDialog: function(content)
-        {
-        	jQuery("body").scrollTop(0);
-        	jQuery("#popup_content").html(content);
-        	jQuery("#popup").css("top", (wink.ux.window.height * .4) + "px");
-        	jQuery("#footer").hide();
-        	jQuery("#dialog").show();
-        	jQuery("#dialog").bind("touchmove", function(event){
-        	     event.preventDefault();
-        	});
         },
         
         showWaitingDialogWithMessage: function(message) 
@@ -456,9 +449,25 @@ var main = (function()
         	GetObjectFromServer(new SendEmail(main.lastRegID));
         },
         
+        showDialog: function(content)
+        {
+        	jQuery("body").scrollTop(0);
+        	jQuery("#popup_content").html(content);
+        	jQuery("#popup").css("top", (wink.ux.window.height * .4) + "px");
+        	jQuery("#footer").hide();
+        	jQuery("#dialog").show();
+        	
+        	var dialog =  jQuery("#dialog");
+        	if(dialog !=null){
+        		dialog.bind("touchmove", function(event){
+        	     event.preventDefault();
+        	});
+        	}
+        },
+        
         hideDialog: function() {
         	jQuery("body").css("overflow", "inherit");
-        	jQuery('#dialog').hide();
+        	jQuery('#dialog').hide().unbind("touchmove");
         	jQuery("#footer").show();
         },
         

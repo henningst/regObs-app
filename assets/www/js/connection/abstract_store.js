@@ -115,6 +115,7 @@ AbstractStore = (function() {
     var bilde, i, n, obs, picture, _fn, _fn2, _i, _j, _len, _len2, _ref;
     i = 0;
     n = this.name;
+    console.log("test");
     _ref = this.m_dangerObs;
     _fn = function(obs) {
       obs.RegID = data.RegID;

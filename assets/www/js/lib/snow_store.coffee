@@ -10,3 +10,4 @@ class SnowStore extends AbstractStore
 		@hendelsePage = snow_hendelse	
 		
 		@superInit()
+		

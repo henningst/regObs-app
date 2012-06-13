@@ -61,6 +61,7 @@ class AbstractStore
 	completeAreaRegistration: (data, force) ->
 		i = 0
 		n = @name
+		console.log("test");
 		for obs in @m_dangerObs 
 			do(obs) ->
 				obs.RegID = data.RegID
