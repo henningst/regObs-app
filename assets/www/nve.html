@@ -131,7 +131,7 @@
 	        </a>
 	    </div>
 	    
-	    <div id="login" class="c_right_header_button w_right header-button" onclick="main.panels.slideTo('settings');">
+	    <div id="login" class="c_right_header_button w_right header-button" onclick="main.panels.slideTo('login_page');">
 	    </div>
 	</div>
 	<div id="wrapper">
@@ -165,16 +165,20 @@
 		
 		<div id="settings">
 			<div class="standartTextSize c_align_central">
-	            <label for="login_username">Brukernavn</label>
-	            <input type="text" id="login_username" class="large settingsInput" value="" />
-	            <label for="login_possword">Passord</label>
-	            <input type="password" id="login_password" class="large settingsInput" value="" />
-	            <input id="loginLogoutButton" type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logg inn' onclick="main.clickLogin();" />
-<!-- 	            <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logg ut' onclick="main.clickLogOut();" /> -->
 	            <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Bruk testmode' onclick="main.gotoTest();" />
 	            <br>
 		    </div>
 		</div> 
+		
+		<div id="login_page">
+	    <div class="standartTextSize c_align_central">
+	      <label for="login_username">Brukernavn</label>
+	      <input type="text" id="login_username" class="large settingsInput" value="" />
+	      <label for="login_possword">Passord</label>
+	      <input type="password" id="login_password" class="large settingsInput" value="" />
+	      <input id="loginLogoutButton" type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logg inn' onclick="main.clickLogin();" />
+	    </div>
+		</div>
 		
 		<div id="information">
 		 <div class="standartTextSize c_align_central">

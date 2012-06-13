@@ -177,7 +177,8 @@ var main = (function()
 	      	        		'dirt_faresign',
 	      	        		'dirt_picture',
 	      	        		'learning_page',
-	      	        		'information'
+	      	        		'information',
+	      	        		'login_page'
         	    		 ]
     	        }
     	    );
