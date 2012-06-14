@@ -181,3 +181,6 @@ ABOUT_REGOBS =
 	+ "<div>Lykke til!</div>";
 
 
+
+HENDELSE = "Ulykke / Hendelse";
+
