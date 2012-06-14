@@ -854,6 +854,15 @@ var main = (function()
             
     document.addEventListener("resume", geo.resume, false);
     document.addEventListener("pause", geo.pause, false);
+    
+    jQuery("button.doubleTapPrevention").on("click", function(){
+    	jQuery(this).attr("disable", "disable");
+    	var button = jQuery(this);
+    	setTimeout(function(){
+    		button.removeAttr("disable");
+    	}, 500);
+    });
+    
     return main;
 }());
 

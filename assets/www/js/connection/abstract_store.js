@@ -122,17 +122,17 @@ AbstractStore = (function() {
   };
 
   AbstractStore.prototype.completeAreaRegistration = function(data, force) {
-    var bilde, i, n, obs, picture, _fn, _fn2, _i, _j, _len, _len2, _ref;
-    i = 0;
+    var bilde, i, n, obs, picture, x, _fn, _fn2, _i, _j, _len, _len2, _ref;
+    x = 0;
     n = this.name;
     console.log("test");
     _ref = this.m_dangerObs;
     _fn = function(obs) {
       obs.RegID = data.RegID;
       if (n === 'SnowStore') {
-        obs.AvalancheDangerObsID = i++;
+        obs.AvalancheDangerObsID = x++;
       } else {
-        obs.DangerObsID = i++;
+        obs.DangerObsID = x++;
       }
       return SendObjectToServer(obs);
     };
@@ -152,7 +152,7 @@ AbstractStore = (function() {
       picture = bilde[_j];
       _fn2(picture);
     }
-    if (this.m_incident && (i !== 0 || force)) {
+    if (this.m_incident && (i !== 0 || x !== 0 || force)) {
       this.m_incident.RegID = data.RegID;
       SendObjectToServer(this.m_incident);
       this.m_incident = null;

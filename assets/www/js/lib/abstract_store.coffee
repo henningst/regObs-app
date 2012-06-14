@@ -67,7 +67,7 @@ class AbstractStore
 			@completePointRegistration(data)
 		
 	completeAreaRegistration: (data, force) ->
-		i = 0
+		x = 0
 		n = @name
 		console.log("test");
 		for obs in @m_dangerObs 
@@ -75,9 +75,9 @@ class AbstractStore
 				obs.RegID = data.RegID
 				
 				if n is 'SnowStore'
-					obs.AvalancheDangerObsID = i++
+					obs.AvalancheDangerObsID = x++
 				else
-					obs.DangerObsID = i++
+					obs.DangerObsID = x++
 				
 				SendObjectToServer(obs)
 				
@@ -91,7 +91,7 @@ class AbstractStore
 				picture.PictureID = i++
 				SendObjectToServer(picture)
 
-		if @m_incident and (i isnt 0 or force)
+		if @m_incident and (i isnt 0 or x isnt 0 or force)
 			@m_incident.RegID = data.RegID
 			SendObjectToServer(@m_incident)
 			@m_incident = null

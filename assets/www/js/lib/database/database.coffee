@@ -8,6 +8,7 @@ DataAccess = {
 	storage : window.localStorage
 
 	save: (key, value) ->
+		console.log("saving: " + JSON.stringify(value));
 		result = DataAccess.storage.setItem(key, JSON.stringify(value))
 
 	get: (key, generic) ->

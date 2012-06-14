@@ -68,6 +68,7 @@ GetObjectFromServer = (call, callback, onError) ->
 	result
 
 SendObjectToServer = (obj, callback, onError) ->
+	console.log("sending " + obj.url);
 	result = new Result
 	OData.request({
 	requestUri: obj.url,
