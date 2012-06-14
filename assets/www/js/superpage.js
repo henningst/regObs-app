@@ -42,7 +42,13 @@ var super_page = {
 		{
 			main.showWaitingDialogWithMessage("Venter p&aring; posisjon");
 			this.updateLocCallback = callback;
-			geo.requestPosition(name + ".savePostition", true);
+			geo.requestPosition(this.name + ".savePosition", true);
+		},
+		
+		performSavePosition : function(position){
+			this.setStoredLocation(position);
+			main.hideDialog();
+			this.updateLocCallback();
 		},
 		
 		displayPosition: function(position){

@@ -15,9 +15,7 @@ var snow_page = {
 	},
 	
 	savePosition: function(position){
-		snow_page.setStoredLocation(position);
-		main.hideDialog();
-		snow_page.updateLocCallback();
+		snow_page.performSavePosition(position);
 	},
 	
 	doMeasurement: function() {
