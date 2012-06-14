@@ -28,17 +28,21 @@ var snow_faresign = {
 			comment += " " +SNOW_TEXT[snow_faresign.carouselId];
 			
 			var obs = new AvalancheDangerObs(snow_faresign.i++, null, list[list.selectedIndex].value, 0, comment);
-			main.store.getSnow().addObs(obs);
-			snow_page.add('snow_faresign_count');
-			main.panels.slideBack();
+			
+			
 			
 			$("snow_danger_sign_list").selectedIndex = 0;
 			$("snow_danger_sign_comment").value = "";
-			snow_page.updateLocation();
+
+			snow_page.updateLocation(function(){
+				main.store.getSnow().addObs(obs);
+				snow_page.add('snow_faresign_count');
+				main.panels.slideBack();
+			}, true);
 		},
 		
 		init: function() {
-			$('header_middle_text').innerHTML = "Faresign";
+			$('header_middle_text').innerHTML = "Faretegn";
 			
 		}
 }

@@ -1,5 +1,5 @@
 var snow_page = {
-	
+	name : "snow_page",
 		
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
@@ -14,15 +14,9 @@ var snow_page = {
 		GetObjectFromServer(new AreaInformation(snow_page.latitute, snow_page.longitude), snow_page.onAreaInformationResult);
 	},
 	
-	updateLocation : function(callback) 
-	{
-		snow_page.updateLocCallback = callback;
-		geo.requestPosition('snow_page.savePosition', true);
-	},
-	
 	savePosition: function(position){
-		console.log("poition saved " + position)
 		snow_page.setStoredLocation(position);
+		main.hideDialog();
 		snow_page.updateLocCallback();
 	},
 	

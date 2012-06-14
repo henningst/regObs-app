@@ -7,15 +7,18 @@ var snow_picture  = {
 			var list = $('snow_picture_spec_list');
 			
 			var picture = new Picture(null, null, snow_picture.pictureData, null, null, null, SNOW_GEO_HAZARD, $("snow_picture_comment").value, parseInt(list[list.selectedIndex].value));
-			main.store.getSnow().addPicture(picture);
 			
-			snow_picture.pictureData = null;
-			$("snow_picture_img").src =""; 
-			$('snow_picture_spec_list').selectedIndex = 0;
 			
-			snow_page.updateLocation();
-			snow_page.add('snow_picture_count');
-			main.panels.slideBack();
+			snow_page.updateLocation(function(){
+				main.store.getSnow().addPicture(picture);
+				
+				snow_picture.pictureData = null;
+				$("snow_picture_img").src =""; 
+				$('snow_picture_spec_list').selectedIndex = 0;
+				
+				snow_page.add('snow_picture_count');
+				main.panels.slideBack();
+			}, true);
 		}
 	},
 

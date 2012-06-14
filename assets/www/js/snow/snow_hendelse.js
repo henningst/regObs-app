@@ -66,10 +66,9 @@ var snow_hendelse = {
 					null,
 					"");
 			
-			main.showWaitingDialogWithMessage("Venter p&aring; posisjon");
+			
 			snow_page.updateLocation(function (){
 				main.store.getSnow().setIncident(incident);
-				main.hideDialog();
 				main.panels.slideBack();
 			});
 			

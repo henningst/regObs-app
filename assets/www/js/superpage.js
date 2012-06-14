@@ -35,8 +35,14 @@ var super_page = {
 		setStoredLocation : function(position){
 			console.log("setting lat long " + this);
 			this.updatePagePosition(position);
-			console.log(this.danger_store());
 			this.danger_store().setLatLong(this.latitute, this.longitude);
+		},
+		
+		updateLocation : function(callback) 
+		{
+			main.showWaitingDialogWithMessage("Venter p&aring; posisjon");
+			this.updateLocCallback = callback;
+			geo.requestPosition(name + ".savePostition", true);
 		},
 		
 		displayPosition: function(position){
