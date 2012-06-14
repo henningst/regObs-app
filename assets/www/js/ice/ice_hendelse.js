@@ -1,5 +1,4 @@
 var ice_hendelse = {
-		
 		fill_activity_influenced: function(data) {
 			if(data == null)
 				return;
@@ -67,9 +66,10 @@ var ice_hendelse = {
 					null,
 					"");
 			
-			ice_page.updateLocation();
-			main.store.getIce().setIncident(incident);
-			main.panels.slideBack();			
+			ice_page.updateLocation(function(){
+				main.store.getIce().setIncident(incident);
+				main.panels.slideBack();			
+			}, true);
 		},
 		
 		init: function() {

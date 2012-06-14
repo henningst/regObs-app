@@ -1,5 +1,6 @@
 var ice_page = {
-	danger_store : function() { return main.store.getIce(); },
+	name: "ice_page",
+	
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
 	//   the current GPS coordinates
@@ -12,9 +13,8 @@ var ice_page = {
 		GetObjectFromServer(new AreaInformation(ice_page.latitute, ice_page.longitude), ice_page.onAreaInformationResult);
 	},
 	
-	updateLocation : function() 
-	{
-		geo.requestPosition('ice_page.setStoredLocation');
+	savePosition: function(position){
+		ice_page.performSavePosition(position);
 	},
 
 	doMeasurement: function() {
@@ -27,6 +27,7 @@ var ice_page = {
 	},
 	
 	init: function() {
+		this.danger_store = function() { return main.store.getIce(); };
 		$('header_middle_text').innerHTML = "Is";
 		
 		ice_page.doMeasurement();

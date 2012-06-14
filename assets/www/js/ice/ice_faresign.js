@@ -27,19 +27,21 @@ var ice_faresign = {
 			comment += " " +ICE_TEXT[ice_faresign.carouselId];
 			
 			var obs = new DangerObs(ice_faresign.i++, null, ICE_GEO_HAZARD, list[list.selectedIndex].value, 0, comment);
-			main.store.getIce().addObs(obs);
 			
-			ice_page.add('ice_faresign_count');
-			main.panels.slideBack();
 			
-			$("ice_danger_sign_list").selectedIndex = 0;
-			$("ice_danger_sign_comment").value = "";
+			ice_page.updateLocation(function(){
+				main.store.getIce().addObs(obs);
+				
+				ice_page.add('ice_faresign_count');
+				$("ice_danger_sign_list").selectedIndex = 0;
+				$("ice_danger_sign_comment").value = "";
+				main.panels.slideBack();
+			}, true);
 			
-			ice_page.updateLocation();
 		},
 		
 		init: function() {
-			$('header_middle_text').innerHTML = "Faresign";
+			$('header_middle_text').innerHTML = "Faretegn";
 			
 		}
 }
