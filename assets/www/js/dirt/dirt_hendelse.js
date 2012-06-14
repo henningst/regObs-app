@@ -68,9 +68,10 @@ var dirt_hendelse = {
 					null,
 					"");
 			
-			dirt_page.updateLocation();
-			main.store.getDirt().setIncident(incident);
-			main.panels.slideBack();			
+			dirt_page.updateLocation(function(){
+				main.store.getDirt().setIncident(incident);
+				main.panels.slideBack();			
+			},true);
 		},
 		
 		init: function() {

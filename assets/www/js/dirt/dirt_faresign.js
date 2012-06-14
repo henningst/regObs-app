@@ -30,16 +30,17 @@ var dirt_faresign = {
 			
 			var obs = new DangerObs(dirt_faresign.i++, null, DIRT_GEO_HAZARD, list[list.selectedIndex].value, 0, comment);
 			
-			main.store.getDirt().addObs(obs);
-			dirt_page.add('dirt_faresign_count');
-			main.panels.slideBack();
-			
-			$("dirt_danger_sign_list").selectedIndex = 0;
-			$("dirt_danger_sign_comment").value = "";
-			dirt_page.updateLocation();
+			dirt_page.updateLocation(function(){
+				main.store.getDirt().addObs(obs);
+				dirt_page.add('dirt_faresign_count');
+				main.panels.slideBack();
+				
+				$("dirt_danger_sign_list").selectedIndex = 0;
+				$("dirt_danger_sign_comment").value = "";
+			},true);
 		},
 		
 		init: function() {
-			$('header_middle_text').innerHTML = "Faresign";
+			$('header_middle_text').innerHTML = "Faretegn";
 		}
 }

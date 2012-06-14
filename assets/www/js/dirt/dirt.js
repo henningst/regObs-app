@@ -1,5 +1,6 @@
 var dirt_page = {
-	danger_store: function(){return main.store.getDirt(); },
+	name: "dirt_page",
+	
 		
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
@@ -13,9 +14,8 @@ var dirt_page = {
 		GetObjectFromServer(new AreaInformation(dirt_page.latitute, dirt_page.longitude), dirt_page.onAreaInformationResult);
 	},
 	
-	updateLocation : function() 
-	{
-		geo.requestPosition('dirt_page.setStoredLocation');
+	savePosition: function(position){
+		dirt_page.performSavePosition(position);
 	},
 
 	doMeasurement: function() {
@@ -29,6 +29,7 @@ var dirt_page = {
 	},
 	
 	init: function() {
+		this.danger_store = function(){return main.store.getDirt(); };
 		$('header_middle_text').innerHTML = "L&oslash;smasse";
 		
 		dirt_page.doMeasurement();
