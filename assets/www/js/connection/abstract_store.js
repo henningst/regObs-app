@@ -77,6 +77,16 @@ AbstractStore = (function() {
     return DataAccess.save(this.name, this);
   };
 
+  AbstractStore.prototype.setKommunenr = function(nr) {
+    this.komm_nr = nr;
+    return console.log("set kommune nr");
+  };
+
+  AbstractStore.prototype.setArea = function(nr) {
+    this.omrade_id = nr;
+    return console.log("set area id");
+  };
+
   AbstractStore.prototype.addObs = function(obs) {
     this.m_dangerObs.push(obs);
     return DataAccess.save(this.name, this);
@@ -217,7 +227,7 @@ AbstractStore = (function() {
     }
     if (area) {
       if (this.filterPicture(true).length !== 0 || this.m_dangerObs.length !== 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, page.omrade_id, null, null, true, null, null, null, null, null, page.komm_nr.toString());
+        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, true, null, null, null, null, null, this.komm_nr.toString());
         return SendObjectToServer(location, (function(data) {
           return _this.afterLocation(data, true, false);
         }), function(error) {
@@ -227,7 +237,7 @@ AbstractStore = (function() {
         if (this.filterPicture(false).length !== 0) {
           return this.onSend(page, false);
         } else {
-          location = new ObsLocation("", 33, this.long, this.lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
+          location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, 250, 250, true, null, null, null, null, null, this.komm_nr.toString());
           return SendObjectToServer(location, (function(data) {
             return _this.afterLocation(data, true, true);
           }), function(error) {
@@ -237,7 +247,7 @@ AbstractStore = (function() {
       }
     } else {
       if (this.filterPicture(false).length !== 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
+        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, 250, 250, false, null, null, null, null, null, this.komm_nr.toString());
         return SendObjectToServer(location, (function(data) {
           return _this.afterLocation(data, false);
         }), function(error) {

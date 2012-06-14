@@ -32,6 +32,14 @@ class AbstractStore
 		@long = long
 		DataAccess.save(@name, this)
 		
+	setKommunenr: (nr) ->
+		@komm_nr = nr
+		console.log("set kommune nr");
+		
+	setArea: (nr) ->
+		@omrade_id = nr
+		console.log("set area id");
+		
 	addObs: (obs) ->
 		@m_dangerObs.push(obs)
 		DataAccess.save(@name, this)
@@ -151,18 +159,18 @@ class AbstractStore
 				
 		if area
 			if @filterPicture(true).length isnt 0 || @m_dangerObs.length isnt 0
-				location = new ObsLocation("", 33, @long, @lat, source, 0, page.omrade_id, null, null, true, null, null, null, null, null, page.komm_nr.toString());
+				location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, null, null, null, null, @komm_nr.toString());
 				SendObjectToServer(location, ((data) => @afterLocation(data, true, false)) , (error) => @onError(error))
 			else 
 				if @filterPicture(false).length isnt 0
 					@onSend(page, false)
 				else
-					location = new ObsLocation("", 33, @long, @lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
+					location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, 250, 250, true, null, null, null, null, null, @komm_nr.toString());
 					SendObjectToServer(location, ((data) => @afterLocation(data, true, true)) , (error) => @onError(error))
 
 		else
 			if @filterPicture(false).length isnt 0
-				location = new ObsLocation("", 33, @long, @lat, source, 0, page.omrade_id, 250, 250, false, null, null, null, null, null, page.komm_nr.toString());
+				location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, 250, 250, false, null, null, null, null, null, @komm_nr.toString());
 				SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
 			else
 				@page.afterSendRegistration()

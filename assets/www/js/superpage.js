@@ -36,6 +36,27 @@ var super_page = {
 			console.log("setting lat long " + this);
 			this.updatePagePosition(position);
 			this.danger_store().setLatLong(this.latitute, this.longitude);
+			
+			var page = this;
+			var store = this.danger_store();
+			GetObjectFromServer(new AreaInformation(this.latitute, this.longitude), function(response) { page.onSaveAreaInfo(response, store);});
+			GetObjectFromServer(new PositionDetails(this.latitute, this.longitude), function(response) { page.onSaveKommuneInfo(response, store);});
+		},
+		
+		onSaveKommuneInfo: function(result, store){
+			if(store == undefined) store = this.danger_store();
+			
+			console.log("test " + result + " " + store);
+			var kommune = omerade.parseKommune(result);
+			store.setKommunenr(kommune.kommunenummer);
+		},
+		
+		onSaveAreaInfo : function(result, store){
+			if(store == undefined) store = this.danger_store();
+			
+			console.log("test " + result + " " + store);
+			var area = omerade.parseArea(result);
+			store.setArea(area.omeradeid);
 		},
 		
 		updateLocation : function(callback) 
@@ -57,12 +78,19 @@ var super_page = {
 		},
 		
 		onAreaInformationResult: function(data) {
-			var res = JSON.parse(data);
-
-			if(res != null && res.features != undefined) {
-				this.omrade_id = res.features[0].attributes.OMRAADEID +OMRAADE_ID_OFFSET;
-				jQuery('.county_b').html(res.features[0].attributes.OMRAADENAVN);
-			}		
+			var area = omerade.parseArea(data);
+			if(area.oppdatert){
+				this.omrade_id = area.omeradeid;
+				jQuery('.county_b').html(area.omeradenavn);
+			}
+		},
+		
+		onKommuneResult : function(data) {
+			var kommune = omerade.parseKommune(data);
+			if(kommune.oppdatert) {
+				jQuery(".county_a").html(kommune.kommunenavn);
+				this.komm_nr = kommune.kommunenummer;
+			}
 		},
 		
 		// onError Callback receives a PositionError object
@@ -76,15 +104,7 @@ var super_page = {
 			this.omrade_id = 0;
 		},
 		
-		onKommuneResult : function(data) {
-			var res = JSON.parse(data);
-
-			
-			if(res != null && res.features != undefined) {
-				jQuery(".county_a").html(res.features[0].attributes.KOMMNAVN);
-				this.komm_nr = res.features[0].attributes.KOMM_NR;
-			}
-		},
+		
 		
 		
 		showStar : function(){

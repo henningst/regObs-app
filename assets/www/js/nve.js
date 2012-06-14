@@ -51,6 +51,44 @@ var geo = {
 	}
 };
 
+var omerade = {
+		parseArea : function(data){
+			var res = JSON.parse(data);
+
+			if(res != null && res.features != undefined) {
+				return {
+					omeradeid: res.features[0].attributes.OMRAADEID +OMRAADE_ID_OFFSET,
+					omeradenavn: res.features[0].attributes.OMRAADENAVN,
+					oppdatert: true
+				};
+			}	
+			
+			return {
+				omeradeid : null,
+				omeradenavn : null,
+				oppdater: false
+			};
+		},
+		
+		parseKommune : function(data){
+			var res = JSON.parse(data);
+
+			if(res != null && res.features != undefined) {
+				return {
+					kommunenavn: res.features[0].attributes.KOMMNAVN,
+					kommunenummer: res.features[0].attributes.KOMM_NR,
+					oppdatert: true
+				};
+			}
+			
+			return {
+				kommunenavn: null,
+				kommunenummer: null,
+				oppdatert: false
+			};
+		}
+}
+
 var main = (function()
 {
     var main =
