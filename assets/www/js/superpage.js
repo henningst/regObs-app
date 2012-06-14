@@ -117,3 +117,42 @@ var super_page = {
 			}
 		}
 };
+
+
+var super_picture = {
+		make: function()
+		{
+			main.showWaitingDialogWithMessage(PROCESS_PICTURE);	
+			
+			if(device.platform != 'Android') {
+				navigator.camera.getPicture(
+					this.onSuccess, 
+					this.onFail, 
+					{ 
+						quality : 50, 
+						destinationType : Camera.DestinationType.DATA_URL, 
+						sourceType : Camera.PictureSourceType.CAMERA, 
+						encodingType: Camera.EncodingType.JPEG,
+		                correctOrientation: true
+		            }
+				);
+			} 
+			else
+			{			
+				navigator.camera.getPicture(
+					this.onSuccess,
+					this.onFail,
+					{
+						quality : 50,
+						destinationType : Camera.DestinationType.DATA_URL,
+						sourceType : Camera.PictureSourceType.CAMERA,
+						allowEdit : true,
+						encodingType: Camera.EncodingType.JPEG,
+						targetWidth: 1024,
+						targetHeight: 1024,
+		                correctOrientation: true
+		            }
+				); 
+			}	
+		}
+}

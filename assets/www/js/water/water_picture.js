@@ -49,44 +49,11 @@ var water_picture  = {
 		$("water_picture_comment").value = "";
 	},
 	
-	make: function()
-	{
-		main.showWaitingDialogWithMessage(PROCESS_PICTURE);
-		
-		if(device.platform == 'iphone') {
-			navigator.camera.getPicture(
-				water_picture.onSuccess, 
-				water_picture.onFail, 
-				{ 
-					quality : 50, 
-					destinationType : Camera.DestinationType.DATA_URL, 
-					sourceType : Camera.PictureSourceType.CAMERA, 
-					allowEdit : true,
-					encodingType: Camera.EncodingType.JPEG,
-	                correctOrientation: true
-	            }
-			);
-		} 
-		else
-		{			
-			navigator.camera.getPicture(
-				water_picture.onSuccess,
-				water_picture.onFail,
-				{
-					quality : 50,
-					destinationType : Camera.DestinationType.DATA_URL,
-					sourceType : Camera.PictureSourceType.CAMERA,
-					allowEdit : true,
-					encodingType: Camera.EncodingType.JPEG,
-					targetWidth: 1024,
-					targetHeight: 1024,
-	                correctOrientation: true
-	            }
-			); 
-		}
-	},
+	
 	
 	init : function () {
 		$('header_middle_text').innerHTML = "Bilde"; 		
 	}
-}
+};
+
+jQuery.extend(water_picture, super_picture);
