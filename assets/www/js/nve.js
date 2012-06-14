@@ -427,7 +427,14 @@ var main = (function()
         
         slideToFavoritePicture: function(){
         	var page = main.favoritePage();
-        	main.panels.slideTo(page + "_picture");
+        	main.showDialog("<h3>Laster</h3><p>Går til favoritbildet</p>");
+        	main.panels.slideTo(page + "_obs");
+        	setTimeout(function(){
+        		main.panels.slideTo(page + "_picture");
+        		main.hideDialog();
+        	}, 1000);
+        	
+        	
         },
         
         showFinishedUploadMessage: function()
