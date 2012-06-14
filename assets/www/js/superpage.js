@@ -104,11 +104,8 @@ var super_page = {
 			this.omrade_id = 0;
 		},
 		
-		
-		
-		
 		showStar : function(){
-			if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == SNOW) {
+			if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == this.favorit_enum) {
 	
 				jQuery("#star").attr('src', 'img/stared.png');
 			} else {

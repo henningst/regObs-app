@@ -39,6 +39,7 @@
 		B5F0D5A11525D3DC001774E4 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F0D5A01525D3DC001774E4 /* MainViewController.xib */; };
 		B5F0D5A51525D3DC001774E4 /* verify.sh in Resources */ = {isa = PBXBuildFile; fileRef = B5F0D5A41525D3DC001774E4 /* verify.sh */; };
 		B5F0D5B11525D4B7001774E4 /* Cordova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5B01525D4B7001774E4 /* Cordova.framework */; };
+		CE067F3F158A251300E461C1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CE067F3E158A251300E461C1 /* Default.png */; };
 		CE8C9BD9156D2F2900D940C3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8C9BD8156D2F2900D940C3 /* Default@2x.png */; };
 		CE8C9BDB156D2F5500D940C3 /* regobs-114.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8C9BDA156D2F5500D940C3 /* regobs-114.png */; };
 		CE8C9BDD156D2F6E00D940C3 /* regobs-57.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8C9BDC156D2F6E00D940C3 /* regobs-57.png */; };
@@ -85,6 +86,7 @@
 		B5F0D5A31525D3DC001774E4 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
 		B5F0D5A41525D3DC001774E4 /* verify.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = verify.sh; sourceTree = "<group>"; };
 		B5F0D5B01525D4B7001774E4 /* Cordova.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cordova.framework; sourceTree = "<group>"; };
+		CE067F3E158A251300E461C1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		CE8C9BD8156D2F2900D940C3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		CE8C9BDA156D2F5500D940C3 /* regobs-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "regobs-114.png"; sourceTree = "<group>"; };
 		CE8C9BDC156D2F6E00D940C3 /* regobs-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "regobs-57.png"; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		B5F0D5411525D3DB001774E4 = {
 			isa = PBXGroup;
 			children = (
+				CE067F3E158A251300E461C1 /* Default.png */,
 				17A12459157E1F4D008D76E8 /* libsqlite3.0.dylib */,
 				17A12457157E1F07008D76E8 /* CFNetwork.framework */,
 				CE8C9BDC156D2F6E00D940C3 /* regobs-57.png */,
@@ -364,6 +367,7 @@
 				CE8C9BDB156D2F5500D940C3 /* regobs-114.png in Resources */,
 				CE8C9BDD156D2F6E00D940C3 /* regobs-57.png in Resources */,
 				1784EC22157E345F00287D8E /* README.md in Resources */,
+				CE067F3F158A251300E461C1 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

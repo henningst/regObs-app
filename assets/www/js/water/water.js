@@ -1,5 +1,6 @@
 var water_page = {
 	name:"water_page",
+	favorit_enum: WATER,
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
 	//   the current GPS coordinates

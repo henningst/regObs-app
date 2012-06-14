@@ -1,5 +1,6 @@
 var snow_page = {
 	name : "snow_page",
+	favorit_enum: SNOW,
 		
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
