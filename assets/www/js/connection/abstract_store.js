@@ -217,7 +217,7 @@ AbstractStore = (function() {
     }
     if (area) {
       if (this.filterPicture(true).length !== 0 || this.m_dangerObs.length !== 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
+        location = new ObsLocation("", 33, this.long, this.lat, source, 0, page.omrade_id, null, null, true, null, null, null, null, null, page.komm_nr.toString());
         return SendObjectToServer(location, (function(data) {
           return _this.afterLocation(data, true, false);
         }), function(error) {

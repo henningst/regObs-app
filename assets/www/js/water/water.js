@@ -5,8 +5,8 @@ var water_page = {
 	//   the current GPS coordinates
 	//
 	onSuccess: function(position) {
-		this.updatePagePosition(position);
-		this.displayPosition(position);
+		water_page.updatePagePosition(position);
+		water_page.displayPosition(position);
 				
 		GetObjectFromServer(new PositionDetails(water_page.latitute, water_page.longitude), water_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(water_page.latitute, water_page.longitude), water_page.onAreaInformationResult);
@@ -14,7 +14,7 @@ var water_page = {
 	
 	updateLocation : function() 
 	{
-		geo.reqestPosition('water_page.setStoredLocation');
+		geo.requestPosition('water_page.setStoredLocation');
 	},
 
 	doMeasurement: function() {

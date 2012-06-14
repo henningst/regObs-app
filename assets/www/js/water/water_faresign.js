@@ -31,7 +31,7 @@ var water_faresign = {
 			var obs = new DangerObs(water_faresign.i++, null, WATER_GEO_HAZARD, list[list.selectedIndex].value, 0, comment);
 			
 			main.store.getWater().addObs(obs);
-			snow_page.add('water_faresign_count');
+			water_page.add('water_faresign_count');
 			main.panels.slideBack();
 			
 			water_page.updateLocation();
@@ -41,6 +41,5 @@ var water_faresign = {
 		
 		init: function() {
 			$('header_middle_text').innerHTML = "Faresign";
-			
 		}
 }

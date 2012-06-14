@@ -27,10 +27,15 @@ public class RegObsGeoLocationPlugin extends Plugin {
   private float accuracy = Float.MAX_VALUE;
   private MyLocationListener locationListener;
   private LocationManager manager;
+  private boolean shouldHandleError;
   @Override
   public PluginResult execute(String action, JSONArray data, String callbackId) {
     Log.d("GeoPlugin", "I Plugin");
     this.action = action;
+    
+    try {
+      this.shouldHandleError = data.getBoolean(0);
+    } catch (JSONException e1) {}
     
     manager = (LocationManager) ctx.getSystemService(Context.LOCATION_SERVICE);
     locationListener = new MyLocationListener(this);
@@ -38,7 +43,8 @@ public class RegObsGeoLocationPlugin extends Plugin {
       Thread runner = new Thread(){
         public void run(){
           Looper.prepare();
-          manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 2, locationListener);
+          manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 2, locationListener);
+          manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 2, locationListener);
           Log.d("GeoPlugin", "Registered");
         }
       };
@@ -46,21 +52,32 @@ public class RegObsGeoLocationPlugin extends Plugin {
       runner.start();
       
       Location location = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+      Log.d("GeoPlugin", "1. try");
       if(locationGoodEnough(location))
         return new PluginResult(Status.OK);
+      else{
+        Location wifilocation = manager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        newLocationReceived(wifilocation);
+      }
       Thread.sleep(10000);
       
+      Log.d("GeoPlugin", "2. try");
       location = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
       if(locationGoodEnough(location))
         return new PluginResult(Status.OK);
       Thread.sleep(10000);
       
+      Log.d("GeoPlugin", "3. try");
       location = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
       if(locationGoodEnough(location))
         return new PluginResult(Status.OK);
-      
       
       if(didNotReceiveGodAccuracy()){
+        Location wifilocation = manager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        newLocationReceived(wifilocation);
+      }
+     
+      if(didNotReceiveGodAccuracy()){  
         noGoodAccuracyIsFound();
       }
       
@@ -78,17 +95,13 @@ public class RegObsGeoLocationPlugin extends Plugin {
   
   private boolean locationGoodEnough(Location location) {
     newLocationReceived(location);
-    if(goodEnoughPosition()){
-      if(locationListener != null)
-        manager.removeUpdates(locationListener);
-      
-      return true;
-    }else
-      return false;
+    
+    return false;
   }
 
   private void noGoodAccuracyIsFound() {
-    sendJavascript("geo.noGoodAccuracyFound()");
+    if(shouldHandleError)
+      sendJavascript("geo.noGoodAccuracyFound()");
   }
   
   private boolean goodEnoughPosition(){
@@ -96,12 +109,11 @@ public class RegObsGeoLocationPlugin extends Plugin {
   }
 
   public boolean didNotReceiveGodAccuracy(){
-    return accuracy > 30;
+    return accuracy > 80;
   }
   
-  
-  
   public void newLocationReceived(Location location){
+    Log.d("GeoPlugin", "got location: " + location);
     if(location == null)
       return;
     
@@ -124,7 +136,7 @@ public class RegObsGeoLocationPlugin extends Plugin {
     }
 
     public void onLocationChanged(Location location) {
-      Log.d("GeoPlugin", "new location");
+      Log.d("GeoPlugin", "new location -------------");
       callback.newLocationReceived(location);
     }
 

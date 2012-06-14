@@ -1,22 +1,29 @@
 var snow_page = {
-	danger_store : function(){ return main.store.getSnow(); },
+	
 		
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
 	//   the current GPS coordinates       
 	//
 	onSuccess: function(position) {
-		this.updatePagePosition(position);
-		this.displayPosition(position);
+		console.log("in success");
+		snow_page.updatePagePosition(position);
+		snow_page.displayPosition(position);
 
 		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(snow_page.latitute, snow_page.longitude), snow_page.onAreaInformationResult);
 	},
 	
-	updateLocation : function() 
+	updateLocation : function(callback) 
 	{
-		console.log("updateing position");
-		geo.requestPosition('snow_page.setStoredLocation');
+		snow_page.updateLocCallback = callback;
+		geo.requestPosition('snow_page.savePosition', true);
+	},
+	
+	savePosition: function(position){
+		console.log("poition saved " + position)
+		snow_page.setStoredLocation(position);
+		snow_page.updateLocCallback();
 	},
 	
 	doMeasurement: function() {
@@ -30,6 +37,7 @@ var snow_page = {
 	},
 	
 	init: function() {
+		this.danger_store = function(){ return main.store.getSnow(); };
 		$('header_middle_text').innerHTML = "Sn&oslash;";
 		
 		snow_page.doMeasurement();

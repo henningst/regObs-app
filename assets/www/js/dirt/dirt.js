@@ -6,8 +6,8 @@ var dirt_page = {
 	//   the current GPS coordinates
 	//
 	onSuccess: function(position) {
-		this.updatePagePosition(position);
-		this.displayPosition(position);
+		dirt_page.updatePagePosition(position);
+		dirt_page.displayPosition(position);
 		
 		GetObjectFromServer(new PositionDetails(dirt_page.latitute, dirt_page.longitude), dirt_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(dirt_page.latitute, dirt_page.longitude), dirt_page.onAreaInformationResult);

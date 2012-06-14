@@ -151,7 +151,7 @@ class AbstractStore
 				
 		if area
 			if @filterPicture(true).length isnt 0 || @m_dangerObs.length isnt 0
-				location = new ObsLocation("", 33, @long, @lat, source, 0, page.omrade_id, 250, 250, true, null, null, null, null, null, page.komm_nr.toString());
+				location = new ObsLocation("", 33, @long, @lat, source, 0, page.omrade_id, null, null, true, null, null, null, null, null, page.komm_nr.toString());
 				SendObjectToServer(location, ((data) => @afterLocation(data, true, false)) , (error) => @onError(error))
 			else 
 				if @filterPicture(false).length isnt 0

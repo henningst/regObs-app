@@ -1,13 +1,18 @@
 var geo = {
 	last_page_location : null,
-	requestPosition: function(callback){
+	requestPosition: function(callback, shouldHandlePosition){
 		console.log("henter geo position");
+		
+		if(shouldHandlePosition == undefined)
+			shouldHandlePosition = false;
 		
 		if(device.platform == "Android")
 		{
 			PhoneGap.exec(function(){console.log("geo plugin ok");}, function(){console.log("geo plugin fail");}, 
-				'NativeLocation', callback, []);
+				'NativeLocation', callback, [shouldHandlePosition]);
 		}else{
+			console.log("call back to " + callback);
+			
 			navigator.geolocation.getCurrentPosition(
 					eval(callback), 
                     function(e){ console.log("error," + e); }, 
@@ -40,7 +45,10 @@ var geo = {
 		return position; 
 	},
 
-	noGoodAccuracyFound: function() { }
+	noGoodAccuracyFound: function() { 
+		main.hideDialog();
+		main.showDialogWithMessage("Det er ikke mulig &aring; finne en posisjon. Sjekk instillinger, forbedre GPS motakk og pr&oslash;v igjen", "Posisjon utilgjennelig");
+	}
 };
 
 var main = (function()

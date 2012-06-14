@@ -5,8 +5,8 @@ var ice_page = {
 	//   the current GPS coordinates
 	//
 	onSuccess: function(position) {
-		this.updatePagePosition(position);
-		this.displayPosition(position);
+		ice_page.updatePagePosition(position);
+		ice_page.displayPosition(position);
 				
 		GetObjectFromServer(new PositionDetails(ice_page.latitute, ice_page.longitude), ice_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(ice_page.latitute, ice_page.longitude), ice_page.onAreaInformationResult);
