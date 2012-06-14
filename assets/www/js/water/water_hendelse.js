@@ -68,9 +68,10 @@ var water_hendelse = {
 					null,
 					"");
 			
-			water_page.updateLocation();
-			main.store.getWater().setIncident(incident);
-			main.panels.slideBack();			
+			water_page.updateLocation(function(){
+				main.store.getWater().setIncident(incident);
+				main.panels.slideBack();			
+			},true);
 		},
 		
 		init: function() {

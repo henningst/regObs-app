@@ -30,16 +30,17 @@ var water_faresign = {
 			
 			var obs = new DangerObs(water_faresign.i++, null, WATER_GEO_HAZARD, list[list.selectedIndex].value, 0, comment);
 			
-			main.store.getWater().addObs(obs);
-			water_page.add('water_faresign_count');
-			main.panels.slideBack();
-			
-			water_page.updateLocation();
-			$("water_danger_sign_list").selectedIndex = 0;
-			$("water_danger_sign_comment").value = "";
+			water_page.updateLocation(function(){
+				main.store.getWater().addObs(obs);
+				water_page.add('water_faresign_count');
+				main.panels.slideBack();
+				
+				$("water_danger_sign_list").selectedIndex = 0;
+				$("water_danger_sign_comment").value = "";
+			},true);
 		},
 		
 		init: function() {
-			$('header_middle_text').innerHTML = "Faresign";
+			$('header_middle_text').innerHTML = "Faretegn";
 		}
 }

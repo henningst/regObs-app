@@ -7,15 +7,16 @@ var water_picture  = {
 			var list = $('water_picture_spec_list');
 			
 			var picture = new Picture(null, null, water_picture.pictureData, null, null, null, WATER_GEO_HAZARD, $("water_picture_comment").value, parseInt(list[list.selectedIndex].value));
-			main.store.getWater().addPicture(picture);
-			
-			water_picture.pictureData = null;
-			$("water_picture_img").src ="";
-			$('water_picture_spec_list').selectedIndex = 0;
-
-			water_page.updateLocation();
-			water_page.add('water_picture_count');
-			main.panels.slideBack();
+			water_page.updateLocation(function(){
+				main.store.getWater().addPicture(picture);
+				
+				water_picture.pictureData = null;
+				$("water_picture_img").src ="";
+				$('water_picture_spec_list').selectedIndex = 0;
+	
+				water_page.add('water_picture_count');
+				main.panels.slideBack();
+			},true);
 		}
 	},
 	

@@ -1,5 +1,5 @@
 var water_page = {
-	danger_store : function() { return main.store.getWater(); },
+	name:"water_page",
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
 	//   the current GPS coordinates
@@ -12,9 +12,8 @@ var water_page = {
 		GetObjectFromServer(new AreaInformation(water_page.latitute, water_page.longitude), water_page.onAreaInformationResult);
 	},
 	
-	updateLocation : function() 
-	{
-		geo.requestPosition('water_page.setStoredLocation');
+	savePosition: function(position){
+		water_page.performSavePosition(position);
 	},
 
 	doMeasurement: function() {
@@ -27,6 +26,7 @@ var water_page = {
 	},
 	
 	init: function() {
+		this.danger_store = function() { return main.store.getWater(); };
 		$('header_middle_text').innerHTML = "Vann";
 		
 		water_page.doMeasurement();
