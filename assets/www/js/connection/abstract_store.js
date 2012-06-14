@@ -237,7 +237,7 @@ AbstractStore = (function() {
         if (this.filterPicture(false).length !== 0) {
           return this.onSend(page, false);
         } else {
-          location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, 250, 250, true, null, null, null, null, null, this.komm_nr.toString());
+          location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, true, null, null, null, null, null, this.komm_nr.toString());
           return SendObjectToServer(location, (function(data) {
             return _this.afterLocation(data, true, true);
           }), function(error) {
@@ -247,7 +247,7 @@ AbstractStore = (function() {
       }
     } else {
       if (this.filterPicture(false).length !== 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, 250, 250, false, null, null, null, null, null, this.komm_nr.toString());
+        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, false, null, null, null, null, null, this.komm_nr.toString());
         return SendObjectToServer(location, (function(data) {
           return _this.afterLocation(data, false);
         }), function(error) {

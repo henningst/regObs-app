@@ -165,12 +165,12 @@ class AbstractStore
 				if @filterPicture(false).length isnt 0
 					@onSend(page, false)
 				else
-					location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, 250, 250, true, null, null, null, null, null, @komm_nr.toString());
+					location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, null, null, null, null, @komm_nr.toString());
 					SendObjectToServer(location, ((data) => @afterLocation(data, true, true)) , (error) => @onError(error))
 
 		else
 			if @filterPicture(false).length isnt 0
-				location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, 250, 250, false, null, null, null, null, null, @komm_nr.toString());
+				location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, false, null, null, null, null, null, @komm_nr.toString());
 				SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
 			else
 				@page.afterSendRegistration()

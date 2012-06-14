@@ -14,8 +14,12 @@ var geo = {
 			console.log("call back to " + callback);
 			
 			navigator.geolocation.getCurrentPosition(
-					eval(callback), 
-                    function(e){ console.log("error," + e); }, 
+					eval(callback),
+                    function(e){
+						console.log(e.message);
+						if(shouldHandlePosition)
+							geo.noGoodAccuracyFound();
+					}, 
                     { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }
                   );
 		}
