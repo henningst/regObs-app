@@ -268,9 +268,11 @@
 		</div>
 		
 		<div id="snow_picture" class="c_center_page">
-			<a onClick="snow_picture.make();">
-				<img id="snow_picture_img" alt="Trykk her for å ta bilde" class="c_image" src=""/>
+			<a onClick="snow_picture.make();" class="hidden button-image">
+				<img id="snow_picture_img" alt="Trykk her for å ta bilde" class="c_image container-image" src=""/>
 			</a>
+			<div class="no-image" onClick="snow_picture.make();">Trykk her for å ta bilde</div>
+			
 	 		
 	 		<select id="snow_picture_spec_list" class="bigWidth w_select c_selectBox">
 	        </select>

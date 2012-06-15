@@ -453,3 +453,15 @@ ul.actions li{
   width: 40%;
   margin-left: 20px; 
 }
+
+.no-image{
+	height: 66px;
+	width: 100%;
+	background: url(../img/kamera.png) no-repeat center top;
+	padding-top: 50px;
+}
+
+.hidden{
+	display:none;
+}
+

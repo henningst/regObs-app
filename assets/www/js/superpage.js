@@ -154,5 +154,26 @@ var super_picture = {
 		            }
 				); 
 			}	
+			
+			this.updatePictureButtons(this.picturePage);
+		},
+		
+		updatePictureButtons : function(domId){
+			var image = jQuery(domId).find(".container-image");
+			var noImage = jQuery(domId).find(".no-image");
+			
+			console.log("--------- picture");
+			console.log(jQuery(image).attr("src"));
+			var src = jQuery(image).attr("src");
+			if(src && src.length > 0){
+				noImage.hide();
+				jQuery(".button-image").show();
+			}else
+			{
+				noImage.show();
+				jQuery(".button-image").hide();
+			}
+			
+			
 		}
 }
