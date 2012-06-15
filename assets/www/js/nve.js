@@ -376,7 +376,7 @@ var main = (function()
         initPhonegap: function()
         {
         	document.addEventListener("backbutton", main.backKeyDown, true);
-			window.plugins.googleAnalyticsPlugin.start("UA-32403556-1");
+			window.plugins.googleAnalyticsPlugin.start("UA-32394009-1");
 
             main.populateBoxes(true);
             
