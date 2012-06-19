@@ -465,7 +465,4 @@ ul.actions li{
 	display:none;
 }
 
-button[disabled]{
-	background: red !important;
-}
  

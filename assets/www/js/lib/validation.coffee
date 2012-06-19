@@ -2,6 +2,7 @@
 
 class Validation
 	registerValidation: (@button, @rules) ->
+		
 		allElements = @_fieldElements()
 		jQuery.each( allElements, (i, e) =>
 			jQuery(e).change( =>
@@ -9,9 +10,16 @@ class Validation
 			)
 		)
 		
+		@validate()
+		
 	validate : ->
 		status = @_validateAllRules()
 		jQuery(@button).attr('disabled', !status)
+		if(!status)
+			jQuery(@button).fadeTo(0, .5)
+		else
+			jQuery(@button).fadeTo(0, 1)
+		
 		console.log("disable button: " + !status)
 		
   

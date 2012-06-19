@@ -10,17 +10,23 @@ Validation = (function() {
     this.button = button;
     this.rules = rules;
     allElements = this._fieldElements();
-    return jQuery.each(allElements, function(i, e) {
+    jQuery.each(allElements, function(i, e) {
       return jQuery(e).change(function() {
         return _this.validate();
       });
     });
+    return this.validate();
   };
 
   Validation.prototype.validate = function() {
     var status;
     status = this._validateAllRules();
     jQuery(this.button).attr('disabled', !status);
+    if (!status) {
+      jQuery(this.button).fadeTo(0, .5);
+    } else {
+      jQuery(this.button).fadeTo(0, 1);
+    }
     return console.log("disable button: " + !status);
   };
 

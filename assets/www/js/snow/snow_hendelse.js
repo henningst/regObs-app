@@ -93,7 +93,7 @@ var snow_hendelse = {
 					 	new NonEmpty(jQuery("#snow_hendelse_comment")),
 					]);
 			
-			this.validate();
+			
 		}
 };
 
