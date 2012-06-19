@@ -85,5 +85,15 @@ var snow_hendelse = {
 				$("snow_hendelse_radius_list").value = incident.DamageExtentTID;
 				$("snow_hendelse_comment").value = incident.IncidentHeader +"." +incident.IncidentIngress;
 			}
+			
+			this.registerValidation(
+					jQuery("#snow_hendelse textarea"), 
+					jQuery("#snow_hendelse button"), 
+					[new NonEmpty(jQuery("#snow_hendelse_comment"))]);
+			
+			
+			this.validate();
 		}
 }
+
+jQuery.extend(snow_hendelse, super_validation);
