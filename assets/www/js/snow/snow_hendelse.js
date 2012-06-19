@@ -86,14 +86,15 @@ var snow_hendelse = {
 				$("snow_hendelse_comment").value = incident.IncidentHeader +"." +incident.IncidentIngress;
 			}
 			
+			var leggTilButton = jQuery("#snow_hendelse button");
 			this.registerValidation(
-					jQuery("#snow_hendelse textarea"), 
-					jQuery("#snow_hendelse button"), 
-					[new NonEmpty(jQuery("#snow_hendelse_comment"))]);
-			
+					leggTilButton, 
+					[
+					 	new NonEmpty(jQuery("#snow_hendelse_comment")),
+					]);
 			
 			this.validate();
 		}
-}
+};
 
 jQuery.extend(snow_hendelse, super_validation);

@@ -1,36 +1,58 @@
 
 
 class Validation
-	registerValidation: (@fields, @button, @rules) ->
-		jQuery(@fields).change( =>
-			@validate()
+	registerValidation: (@button, @rules) ->
+		allElements = @_fieldElements()
+		jQuery.each( allElements, (i, e) =>
+			jQuery(e).change( =>
+				@validate()
+			)
 		)
 		
 	validate : ->
 		status = @_validateAllRules()
 		jQuery(@button).attr('disabled', !status)
-		console.log("validation status " + !status)
+		console.log("disable button: " + !status)
 		
+  
+  
+	_fieldElements : ->
+  	elements = []
+  	for rule in @rules
+  			elements.push(rule.element)
+  	
+  	elements
+
 	_validateAllRules : ->
-		allIsTrue = true
+		allRulesValidated = true
 		for rule in @rules
-			allIsTrue = allIsTrue && rule.isValidated()
+			allRulesValidated = allRulesValidated && rule.isValidated()
 			
-		console.log("all rules are "+ allIsTrue)
-		allIsTrue
+		return allRulesValidated
 		
 class NonEmpty
 	constructor : (@element) ->
 	
 	isValidated : ->
-		allIsTrue = true
+		allElementsValidated = true
 		jQuery.each(@element, (index, e) ->
-			thisElement = jQuery(e).val().length > 0
-			console.log("this element " + thisElement);
-			allIsTrue = allIsTrue && thisElement
+			thisElement = jQuery(e).val() && jQuery(e).val().length > 0 
+			allElementsValidated = allElementsValidated && thisElement
 		)
 		
-		allIsTrue
+		allElementsValidated
+		
+class Selected
+	constructor : (@element) ->
+	
+	isValidated : ->
+		allElementsValidated = true
+		jQuery.each(@element, (index, e) ->
+			thisElement =jQuery(e).val() && jQuery(e).val() > 0
+			allElementsValidated = allElementsValidated && thisElement
+		)
+
+		allElementsValidated
 	
 	
 super_validation = new Validation()

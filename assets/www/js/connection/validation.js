@@ -1,16 +1,19 @@
-var NonEmpty, Validation, super_validation;
+var NonEmpty, Selected, Validation, super_validation;
 
 Validation = (function() {
 
   function Validation() {}
 
-  Validation.prototype.registerValidation = function(fields, button, rules) {
-    var _this = this;
-    this.fields = fields;
+  Validation.prototype.registerValidation = function(button, rules) {
+    var allElements,
+      _this = this;
     this.button = button;
     this.rules = rules;
-    return jQuery(this.fields).change(function() {
-      return _this.validate();
+    allElements = this._fieldElements();
+    return jQuery.each(allElements, function(i, e) {
+      return jQuery(e).change(function() {
+        return _this.validate();
+      });
     });
   };
 
@@ -18,19 +21,29 @@ Validation = (function() {
     var status;
     status = this._validateAllRules();
     jQuery(this.button).attr('disabled', !status);
-    return console.log("validation status " + !status);
+    return console.log("disable button: " + !status);
   };
 
-  Validation.prototype._validateAllRules = function() {
-    var allIsTrue, rule, _i, _len, _ref;
-    allIsTrue = true;
+  Validation.prototype._fieldElements = function() {
+    var elements, rule, _i, _len, _ref;
+    elements = [];
     _ref = this.rules;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       rule = _ref[_i];
-      allIsTrue = allIsTrue && rule.isValidated();
+      elements.push(rule.element);
     }
-    console.log("all rules are " + allIsTrue);
-    return allIsTrue;
+    return elements;
+  };
+
+  Validation.prototype._validateAllRules = function() {
+    var allRulesValidated, rule, _i, _len, _ref;
+    allRulesValidated = true;
+    _ref = this.rules;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      rule = _ref[_i];
+      allRulesValidated = allRulesValidated && rule.isValidated();
+    }
+    return allRulesValidated;
   };
 
   return Validation;
@@ -44,18 +57,38 @@ NonEmpty = (function() {
   }
 
   NonEmpty.prototype.isValidated = function() {
-    var allIsTrue;
-    allIsTrue = true;
+    var allElementsValidated;
+    allElementsValidated = true;
     jQuery.each(this.element, function(index, e) {
       var thisElement;
-      thisElement = jQuery(e).val().length > 0;
-      console.log("this element " + thisElement);
-      return allIsTrue = allIsTrue && thisElement;
+      thisElement = jQuery(e).val() && jQuery(e).val().length > 0;
+      return allElementsValidated = allElementsValidated && thisElement;
     });
-    return allIsTrue;
+    return allElementsValidated;
   };
 
   return NonEmpty;
+
+})();
+
+Selected = (function() {
+
+  function Selected(element) {
+    this.element = element;
+  }
+
+  Selected.prototype.isValidated = function() {
+    var allElementsValidated;
+    allElementsValidated = true;
+    jQuery.each(this.element, function(index, e) {
+      var thisElement;
+      thisElement = jQuery(e).val() && jQuery(e).val() > 0;
+      return allElementsValidated = allElementsValidated && thisElement;
+    });
+    return allElementsValidated;
+  };
+
+  return Selected;
 
 })();
 
