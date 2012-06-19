@@ -1,7 +1,7 @@
 
 
 class Validation
-	registerValidation: (@button, @rules) ->
+	register: (@button, @rules) ->
 		
 		allElements = @_fieldElements()
 		jQuery.each( allElements, (i, e) =>
@@ -63,4 +63,4 @@ class Selected
 		allElementsValidated
 	
 	
-super_validation = new Validation()
+validation = new Validation()

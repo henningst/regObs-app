@@ -77,6 +77,7 @@ var snow_hendelse = {
 		init: function() {
 			$('header_middle_text').innerHTML = "Hendelse";
 			
+			
 			//restore old incident if available
 			var incident = main.store.getSnow().getIncident();
 			
@@ -87,7 +88,7 @@ var snow_hendelse = {
 			}
 			
 			var leggTilButton = jQuery("#snow_hendelse button");
-			this.registerValidation(
+			validation.register(
 					leggTilButton, 
 					[
 					 	new NonEmpty(jQuery("#snow_hendelse_comment")),
@@ -97,4 +98,3 @@ var snow_hendelse = {
 		}
 };
 
-jQuery.extend(snow_hendelse, super_validation);

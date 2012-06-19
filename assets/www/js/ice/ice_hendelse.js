@@ -85,7 +85,7 @@ var ice_hendelse = {
 			}
 			
 			var leggTilButton = jQuery("#ice_hendelse button");
-			this.registerValidation(
+			validation.register(
 					leggTilButton, 
 					[
 					 	new NonEmpty(jQuery("#ice_hendelse_comment")),
@@ -93,5 +93,3 @@ var ice_hendelse = {
 			
 		}
 }
-
-jQuery.extend(ice_hendelse, super_validation);

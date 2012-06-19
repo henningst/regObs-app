@@ -87,7 +87,7 @@ var dirt_hendelse = {
 			}
 			
 			var leggTilButton = jQuery("#dirt_hendelse button");
-			this.registerValidation(
+			validation.register(
 					leggTilButton, 
 					[
 					 	new NonEmpty(jQuery("#dirt_hendelse_comment")),
@@ -96,4 +96,3 @@ var dirt_hendelse = {
 		}
 }
 
-jQuery.extend(dirt_hendelse, super_validation);

@@ -87,7 +87,7 @@ var water_hendelse = {
 			}
 			
 			var leggTilButton = jQuery("#water_hendelse button");
-			this.registerValidation(
+			validation.register(
 					leggTilButton, 
 					[
 					 	new NonEmpty(jQuery("#water_hendelse_comment")),
@@ -95,5 +95,3 @@ var water_hendelse = {
 			
 		}
 }
-
-jQuery.extend(water_hendelse, super_validation)

@@ -1,10 +1,10 @@
-var NonEmpty, Selected, Validation, super_validation;
+var NonEmpty, Selected, Validation, validation;
 
 Validation = (function() {
 
   function Validation() {}
 
-  Validation.prototype.registerValidation = function(button, rules) {
+  Validation.prototype.register = function(button, rules) {
     var allElements,
       _this = this;
     this.button = button;
@@ -98,4 +98,4 @@ Selected = (function() {
 
 })();
 
-super_validation = new Validation();
+validation = new Validation();
