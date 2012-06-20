@@ -11,7 +11,7 @@ Validation = (function() {
     this.rules = rules;
     allElements = this._fieldElements();
     jQuery.each(allElements, function(i, e) {
-      return jQuery(e).change(function() {
+      return jQuery(e).keypress(function() {
         return _this.validate();
       });
     });

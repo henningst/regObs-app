@@ -8,7 +8,7 @@ var geo = {
 		
 		if(device.platform == "Android")
 		{
-			PhoneGap.exec(function(){console.log("geo plugin ok");}, function(){console.log("geo plugin fail");}, 
+			PhoneGap.exec(function(){console.log("geo plugin ok");}, function(){ geo.noGoodAccuracyFound(); }, 
 				'NativeLocation', callback, [shouldHandlePosition]);
 		}else{
 			console.log("call back to " + callback);

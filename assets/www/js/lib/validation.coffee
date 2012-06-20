@@ -5,7 +5,7 @@ class Validation
 		
 		allElements = @_fieldElements()
 		jQuery.each( allElements, (i, e) =>
-			jQuery(e).change( =>
+			jQuery(e).keypress( =>
 				@validate()
 			)
 		)
