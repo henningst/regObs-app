@@ -99,6 +99,7 @@ class AbstractStore
 		@picturePage.afterSendRegistration()
 		@hendelsePage.afterSendRegistration()
 		
+		main.addLastRegID(data.RegID)
 		DataAccess.save(@name, this)
 		
 		if not force
@@ -128,7 +129,7 @@ class AbstractStore
 		@hendelsePage.afterSendRegistration()
 		@page.afterSendRegistration()
 		
-		main.lastRegID = data.RegID
+		main.addLastRegID(data.RegID)
 		DataAccess.save(@name, this)
 		main.showFinishedUploadMessage()	
 	

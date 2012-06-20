@@ -111,7 +111,21 @@ var main = (function()
     	
     	panels: null,
     	
-    	lastRegID: -1,
+    	lastRegID: [],
+    	
+    	addLastRegID: function(regId){
+    		console.log("adding regid " + regId)
+    		if(main.lastRegID.length == 0)
+    			main.lastRegID = [regId];
+    		else
+    			main.lastRegID.push(regId);
+    		
+    		console.log("size of regid array " + main.lastRegID.length)
+    	},
+    	
+    	clearRegID: function(){
+    		main.lastRegID = [];
+    	},
     	
     	scroller : null,
     	
@@ -438,7 +452,7 @@ var main = (function()
         			"<div> <h3>Registrering fullført</h3>" +
 	        			"<p> Takk for observasjon </p>" +
 	        			"<button type='button' " +
-	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.hideDialog();'>" +OK + 
+	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.clearRegID();main.hideDialog();'>" +OK + 
 	        			"</button>" +
 	        			"<button type='button' " +
 	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.sendEmail();'>" +SEND_EMAIL + 
@@ -498,7 +512,10 @@ var main = (function()
         sendEmail: function()
         {
         	main.hideDialog();
-        	GetObjectFromServer(new SendEmail(main.lastRegID));
+        	jQuery.each(main.lastRegID, function(i, regid){
+        		GetObjectFromServer(new SendEmail(regid));
+        	});
+        	main.clearRegID();
         },
         
         showDialog: function(content)

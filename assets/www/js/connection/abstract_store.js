@@ -159,6 +159,7 @@ AbstractStore = (function() {
     }
     this.picturePage.afterSendRegistration();
     this.hendelsePage.afterSendRegistration();
+    main.addLastRegID(data.RegID);
     DataAccess.save(this.name, this);
     if (!force) {
       return this.onSend(this.page, false);
@@ -190,7 +191,7 @@ AbstractStore = (function() {
     this.picturePage.afterSendRegistration();
     this.hendelsePage.afterSendRegistration();
     this.page.afterSendRegistration();
-    main.lastRegID = data.RegID;
+    main.addLastRegID(data.RegID);
     DataAccess.save(this.name, this);
     return main.showFinishedUploadMessage();
   };
