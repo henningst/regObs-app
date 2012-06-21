@@ -4,6 +4,7 @@ var information_page = {
 		{
 			$('header_middle_text').innerHTML = "regObs";
 			
+			jQuery("#information p").html(ABOUT_REGOBS);
 		}
 		
 }

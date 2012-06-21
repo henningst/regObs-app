@@ -383,12 +383,23 @@ ul.actions li{
 	padding-bottom: 60px;
 }
 
-#learning_content{
+#information{
+	margin: 2%;	
+	width: inherit;
+	
+}
+
+#information_content{
+	padding-bottom: 60px;
+}
+
+#learning_content, #information{
   text-align: left;
   padding: 2%;
 }
 
-#learning_content h3, #learning_content h1,#learning_content h2{
+#learning_content h3, #learning_content h1,#learning_content h2,
+#information h3, #information h1,#information h2{
   text-align: center;
   
 }
