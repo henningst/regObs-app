@@ -13,15 +13,21 @@ var geo = {
 		}else{
 			console.log("call back to " + callback);
 			
-			navigator.geolocation.getCurrentPosition(
-					eval(callback),
-                    function(e){
-						console.log(e.message);
-						if(shouldHandlePosition)
-							geo.noGoodAccuracyFound();
-					}, 
-                    { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }
-                  );
+			if(main.initialised == true){
+				navigator.geolocation.getCurrentPosition(
+						eval(callback),
+	                    function(e){
+							console.log(e.message);
+							if(shouldHandlePosition)
+								geo.noGoodAccuracyFound();
+						}, 
+	                    { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }
+	                  );
+			}else{
+				setTimeout(function(){
+					geo.requestPosition(callback, shouldHandlePosition);
+				}, 500);
+			}
 		}
 	},
 	
@@ -262,7 +268,6 @@ var main = (function()
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
 
-			
 			main.slideToFavorite();
 			main.toogleFavorite();
 			main.gotoTest();
@@ -404,6 +409,7 @@ var main = (function()
 			}
 			
 			main.initialised = true;
+			geo.requestPosition(main.nothing, false);
         },
         
         backKeyDown: function() 
