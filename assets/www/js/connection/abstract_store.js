@@ -90,6 +90,7 @@ AbstractStore = (function() {
   };
 
   AbstractStore.prototype.addObs = function(obs) {
+    this.regDate = new Date(new Date().getTime() + 1000 * 60 * 120);
     this.m_dangerObs.push(obs);
     return DataAccess.save(this.name, this);
   };
@@ -264,10 +265,9 @@ AbstractStore = (function() {
   };
 
   AbstractStore.prototype.onAfterLocation = function(data, area, force) {
-    var date, registration,
+    var registration,
       _this = this;
-    date = new Date(new Date().getTime() + 1000 * 60 * 120);
-    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, date, 0);
+    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, this.regDate, 0);
     return SendObjectToServer(registration, (function(data) {
       return _this.afterRegistration(data, area, force);
     }), function(error) {

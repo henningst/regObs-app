@@ -43,6 +43,7 @@ class AbstractStore
 		console.log("set area id");
 		
 	addObs: (obs) ->
+		@regDate = new Date(new Date().getTime() + 1000 * 60 * 120)
 		@m_dangerObs.push(obs)
 		DataAccess.save(@name, this)
 		
@@ -181,8 +182,7 @@ class AbstractStore
 		
 		
 	onAfterLocation: (data, area, force) ->
-		date = new Date(new Date().getTime() + 1000 * 60 * 120);
-		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, date, 0)
+		registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, @regDate, 0)
 		SendObjectToServer(registration, ((data) => @afterRegistration(data, area, force)) , (error) => @onError(error))
 		
 	cutOutPictures: (area) ->
