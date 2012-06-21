@@ -13,7 +13,7 @@ LOGOUT_BUTTON = "Logg ut";
 ERROR_LOGIN =  "No internet ?!";
 
 //General error message
-AN_ERROR_OCCURED = "En feil oppstod, do you have internet ?";
+AN_ERROR_OCCURED = "En feil oppstod. Kontroller at du er koblet til internett og forsøk igjen.";
 
 LOGGING_IN = "Logger inn... ";
 

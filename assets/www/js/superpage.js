@@ -108,7 +108,7 @@ var super_page = {
 		
 		
 		showStar : function(){
-			if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == SNOW) {
+			if(DataAccess.get(STARTUP_PAGE) != undefined && parseInt(DataAccess.get(STARTUP_PAGE)) == this.favorite_name) {
 	
 				jQuery("#star").attr('src', 'img/stared.png');
 			} else {

@@ -99,6 +99,7 @@ public class RegObsGeoLocationPlugin extends Plugin {
   }
 
   private void noGoodAccuracyIsFound() {
+    Log.d("GeoPlugin", "fant ingen god posisjon " + shouldHandleError );
     if(shouldHandleError)
       sendJavascript("geo.noGoodAccuracyFound()");
   }
@@ -125,7 +126,7 @@ public class RegObsGeoLocationPlugin extends Plugin {
       Log.d("GeoPlugin", "calling: " + javascript);
       sendt = true;
       sendJavascript(javascript);
-      }
+    }
     
     return goodEnoughPosition();
   }
