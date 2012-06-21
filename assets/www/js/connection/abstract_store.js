@@ -15,7 +15,9 @@ AbstractStore = (function() {
     this.m_incident = null;
     this.m_pictures = [];
     this.lat = 0;
-    return this.long = 0;
+    this.long = 0;
+    this.komnr = 0;
+    return this.omrade_id = 0;
   };
 
   AbstractStore.prototype.onError = function(data) {
@@ -78,8 +80,8 @@ AbstractStore = (function() {
   };
 
   AbstractStore.prototype.setKommunenr = function(nr) {
-    this.komm_nr = nr;
-    return console.log("set kommune nr");
+    if (nr) this.komm_nr = nr;
+    return console.log("set kommune nr" + nr);
   };
 
   AbstractStore.prototype.setArea = function(nr) {

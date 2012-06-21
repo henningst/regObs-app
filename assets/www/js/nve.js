@@ -476,9 +476,20 @@ var main = (function()
         
         showWaitingDialogWithMessage: function(message) 
         {
+        	main.dialogShowing = true;
+        	main.dialogStarted = new Date().toString();
         	main.showDialog("<div class='waitingDialog'>" +
 		        	message + "<img src='img/ajax-loader.gif' />" +
 		        "</div>");
+        	
+        	var dateStarted = main.dialogStarted;
+        	setTimeout(function(){
+        		if(main.dialogShowing && dateStarted === main.dialogStarted)
+    			{
+        			main.hideDialog();
+        			main.showDialogWithMessage("Vi kunne dessverre ikke avslutte oprasjonen i tide. Prøv igjen.", "Tidsavbrudd");
+    			}
+        	}, 15000);
         },
         
         createCarousel: function(id, items)
@@ -532,9 +543,14 @@ var main = (function()
         	     event.preventDefault();
         	});
         	}
+        	
+        	
         },
         
         hideDialog: function() {
+        	main.dialogShowing = false;
+        	main.dialogStarted = null;
+        	
         	jQuery("body").css("overflow", "inherit");
         	jQuery('#dialog').hide().unbind("touchmove");
         	jQuery("#footer").show();

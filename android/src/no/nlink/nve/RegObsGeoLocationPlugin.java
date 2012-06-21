@@ -28,6 +28,7 @@ public class RegObsGeoLocationPlugin extends Plugin {
   private MyLocationListener locationListener;
   private LocationManager manager;
   private boolean shouldHandleError;
+  private boolean sendt = false;
   @Override
   public PluginResult execute(String action, JSONArray data, String callbackId) {
     Log.d("GeoPlugin", "I Plugin");
@@ -74,10 +75,10 @@ public class RegObsGeoLocationPlugin extends Plugin {
       
       if(didNotReceiveGodAccuracy()){
         Location wifilocation = manager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-        newLocationReceived(wifilocation);
+        newLocationReceived(wifilocation, true);
       }
      
-      if(didNotReceiveGodAccuracy()){  
+      if(!sendt){  
         noGoodAccuracyIsFound();
       }
       
@@ -94,7 +95,7 @@ public class RegObsGeoLocationPlugin extends Plugin {
   
   
   private boolean locationGoodEnough(Location location) {
-    return newLocationReceived(location);
+    return newLocationReceived(location, false);
   }
 
   private void noGoodAccuracyIsFound() {
@@ -110,7 +111,7 @@ public class RegObsGeoLocationPlugin extends Plugin {
     return accuracy > 80;
   }
   
-  public boolean newLocationReceived(Location location){
+  public boolean newLocationReceived(Location location, boolean force){
     Log.d("GeoPlugin", "got location: " + location);
     if(location == null)
       return false;
@@ -119,16 +120,19 @@ public class RegObsGeoLocationPlugin extends Plugin {
         accuracy = location.getAccuracy();
     
     String javascript = action + "(geo.convertToPosition(" +location.getLatitude()  +","+  location.getLongitude() +","+ location.getAccuracy() +","+ location.getTime()+ "))";
-    Log.d("GeoPlugin", "calling: " + javascript);
-    if(goodEnoughPosition())
+    
+    if(goodEnoughPosition() || force){
+      Log.d("GeoPlugin", "calling: " + javascript);
+      sendt = true;
       sendJavascript(javascript);
+      }
     
     return goodEnoughPosition();
   }
   
   public boolean goodEnougWifiLocation(){
     Location wifilocation = manager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-    return newLocationReceived(wifilocation);
+    return newLocationReceived(wifilocation, false);
   }
 
   
@@ -143,7 +147,7 @@ public class RegObsGeoLocationPlugin extends Plugin {
 
     public void onLocationChanged(Location location) {
       Log.d("GeoPlugin", "new location -------------");
-      callback.newLocationReceived(location);
+      callback.newLocationReceived(location, false);
     }
 
     public void onProviderDisabled(String provider) {
