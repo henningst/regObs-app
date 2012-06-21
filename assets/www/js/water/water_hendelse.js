@@ -85,5 +85,13 @@ var water_hendelse = {
 				$("water_hendelse_radius_list").value = incident.DamageExtentTID;
 				$("water_hendelse_comment").value = incident.IncidentHeader +"." +incident.IncidentIngress;
 			}
+			
+			var leggTilButton = jQuery("#water_hendelse button");
+			validation.register(
+					leggTilButton, 
+					[
+					 	new NonEmpty(jQuery("#water_hendelse_comment")),
+					]);
+			
 		}
 }

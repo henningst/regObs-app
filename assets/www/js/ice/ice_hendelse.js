@@ -83,5 +83,13 @@ var ice_hendelse = {
 				$("ice_hendelse_radius_list").value = incident.DamageExtentTID;
 				$("ice_hendelse_comment").value = incident.IncidentHeader +"." +incident.IncidentIngress;
 			}
+			
+			var leggTilButton = jQuery("#ice_hendelse button");
+			validation.register(
+					leggTilButton, 
+					[
+					 	new NonEmpty(jQuery("#ice_hendelse_comment")),
+					]);
+			
 		}
 }

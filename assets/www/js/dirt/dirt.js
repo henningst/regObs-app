@@ -1,6 +1,7 @@
 var dirt_page = {
 	name: "dirt_page",
-	favorit_enum: DIRT,
+
+	favorite_name: DIRT,
 		
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains

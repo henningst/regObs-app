@@ -8,7 +8,7 @@ var geo = {
 		
 		if(device.platform == "Android")
 		{
-			PhoneGap.exec(function(){console.log("geo plugin ok");}, function(){console.log("geo plugin fail");}, 
+			PhoneGap.exec(function(){console.log("geo plugin ok");}, function(){ geo.noGoodAccuracyFound(); }, 
 				'NativeLocation', callback, [shouldHandlePosition]);
 		}else{
 			console.log("call back to " + callback);
@@ -111,7 +111,21 @@ var main = (function()
     	
     	panels: null,
     	
-    	lastRegID: -1,
+    	lastRegID: [],
+    	
+    	addLastRegID: function(regId){
+    		console.log("adding regid " + regId)
+    		if(main.lastRegID.length == 0)
+    			main.lastRegID = [regId];
+    		else
+    			main.lastRegID.push(regId);
+    		
+    		console.log("size of regid array " + main.lastRegID.length)
+    	},
+    	
+    	clearRegID: function(){
+    		main.lastRegID = [];
+    	},
     	
     	scroller : null,
     	
@@ -376,7 +390,7 @@ var main = (function()
         initPhonegap: function()
         {
         	document.addEventListener("backbutton", main.backKeyDown, true);
-			window.plugins.googleAnalyticsPlugin.start("UA-32403556-1");
+			window.plugins.googleAnalyticsPlugin.start("UA-32394009-1");
 
             main.populateBoxes(true);
             
@@ -445,7 +459,7 @@ var main = (function()
         			"<div> <h3>Registrering fullført</h3>" +
 	        			"<p> Takk for observasjon </p>" +
 	        			"<button type='button' " +
-	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.hideDialog();'>" +OK + 
+	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.clearRegID();main.hideDialog();'>" +OK + 
 	        			"</button>" +
 	        			"<button type='button' " +
 	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.sendEmail();'>" +SEND_EMAIL + 
@@ -469,9 +483,20 @@ var main = (function()
         
         showWaitingDialogWithMessage: function(message) 
         {
+        	main.dialogShowing = true;
+        	main.dialogStarted = new Date().toString();
         	main.showDialog("<div class='waitingDialog'>" +
 		        	message + "<img src='img/ajax-loader.gif' />" +
 		        "</div>");
+        	
+        	var dateStarted = main.dialogStarted;
+        	setTimeout(function(){
+        		if(main.dialogShowing && dateStarted === main.dialogStarted)
+    			{
+        			main.hideDialog();
+        			main.showDialogWithMessage("Vi kunne dessverre ikke avslutte oprasjonen i tide. Prøv igjen.", "Tidsavbrudd");
+    			}
+        	}, 15000);
         },
         
         createCarousel: function(id, items)
@@ -505,7 +530,10 @@ var main = (function()
         sendEmail: function()
         {
         	main.hideDialog();
-        	GetObjectFromServer(new SendEmail(main.lastRegID));
+        	jQuery.each(main.lastRegID, function(i, regid){
+        		GetObjectFromServer(new SendEmail(regid));
+        	});
+        	main.clearRegID();
         },
         
         showDialog: function(content)
@@ -522,9 +550,14 @@ var main = (function()
         	     event.preventDefault();
         	});
         	}
+        	
+        	
         },
         
         hideDialog: function() {
+        	main.dialogShowing = false;
+        	main.dialogStarted = null;
+        	
         	jQuery("body").css("overflow", "inherit");
         	jQuery('#dialog').hide().unbind("touchmove");
         	jQuery("#footer").show();

@@ -15,6 +15,7 @@ var snow_picture  = {
 				snow_picture.pictureData = null;
 				$("snow_picture_img").src =""; 
 				$('snow_picture_spec_list').selectedIndex = 0;
+				snow_picture.updatePictureButtons("#snow_picture");
 				
 				snow_page.add('snow_picture_count');
 				main.panels.slideBack();
@@ -26,7 +27,7 @@ var snow_picture  = {
 
 		var options = jQuery("#snow_picture_spec_list");
 		//remove if previously inserted
-		jQuery.each(options, function() {jQuery(this).find('option').remove()});
+		jQuery.each(options, function() {jQuery(this).find('option').remove();});
 		
 		jQuery.each(data.results, function() {
 			if((this.RegistrationTID >= 20 && this.RegistrationTID < 30 ) || this.RegistrationTID == 11 || this.RegistrationTID == 13 || this.RegistrationTID == 99 || this.RegistrationTID == 0)
@@ -39,6 +40,7 @@ var snow_picture  = {
 
 		var smallImage = document.getElementById('snow_picture_img');
 		smallImage.src = "data:image/jpeg;base64," +imageData;
+		snow_picture.updatePictureButtons("#snow_picture");
 		main.hideDialog();
 	},
 
@@ -55,6 +57,8 @@ var snow_picture  = {
 	
 	init : function () {
 		$('header_middle_text').innerHTML = "Bilde";	
+		this.picturePage = "#snow_picture";
+		this.updatePictureButtons("#snow_picture");
 	}
 };
 

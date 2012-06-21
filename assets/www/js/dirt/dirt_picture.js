@@ -13,6 +13,7 @@ var dirt_picture  = {
 				dirt_picture.pictureData = null;
 				$("dirt_picture_img").src ="";
 				$('dirt_picture_spec_list').selectedIndex = 0;
+				dirt_picture.updatePictureButtons("#dirt_picture");
 	
 				dirt_page.add('dirt_picture_count');
 				main.panels.slideBack();
@@ -36,6 +37,7 @@ var dirt_picture  = {
 
 		var smallImage = document.getElementById('dirt_picture_img');
 		smallImage.src = "data:image/jpeg;base64," +imageData;
+		dirt_picture.updatePictureButtons("#dirt_picture");
 		main.hideDialog();
 	},
 
@@ -53,6 +55,7 @@ var dirt_picture  = {
 	
 	init : function () {
 		$('header_middle_text').innerHTML = "Bilde";
+		dirt_picture.updatePictureButtons("#dirt_picture");
 	}
 };
 

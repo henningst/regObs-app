@@ -85,5 +85,14 @@ var dirt_hendelse = {
 				$("dirt_hendelse_radius_list").value = incident.DamageExtentTID;
 				$("dirt_hendelse_comment").value = incident.IncidentHeader +"." +incident.IncidentIngress;
 			}
+			
+			var leggTilButton = jQuery("#dirt_hendelse button");
+			validation.register(
+					leggTilButton, 
+					[
+					 	new NonEmpty(jQuery("#dirt_hendelse_comment")),
+					]);
+			
 		}
 }
+

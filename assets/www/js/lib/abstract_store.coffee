@@ -6,6 +6,8 @@ class AbstractStore
 		@m_pictures = []
 		@lat = 0
 		@long = 0
+		@komnr = 0
+		@omrade_id = 0
 
 	onError: (data) ->
 		main.errorDialog()
@@ -33,8 +35,8 @@ class AbstractStore
 		DataAccess.save(@name, this)
 		
 	setKommunenr: (nr) ->
-		@komm_nr = nr
-		console.log("set kommune nr");
+		@komm_nr = nr if nr
+		console.log("set kommune nr" + nr);
 		
 	setArea: (nr) ->
 		@omrade_id = nr
@@ -99,6 +101,7 @@ class AbstractStore
 		@picturePage.afterSendRegistration()
 		@hendelsePage.afterSendRegistration()
 		
+		main.addLastRegID(data.RegID)
 		DataAccess.save(@name, this)
 		
 		if not force
@@ -128,7 +131,7 @@ class AbstractStore
 		@hendelsePage.afterSendRegistration()
 		@page.afterSendRegistration()
 		
-		main.lastRegID = data.RegID
+		main.addLastRegID(data.RegID)
 		DataAccess.save(@name, this)
 		main.showFinishedUploadMessage()	
 	

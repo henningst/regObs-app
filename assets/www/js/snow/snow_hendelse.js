@@ -77,6 +77,7 @@ var snow_hendelse = {
 		init: function() {
 			$('header_middle_text').innerHTML = "Hendelse";
 			
+			
 			//restore old incident if available
 			var incident = main.store.getSnow().getIncident();
 			
@@ -85,5 +86,15 @@ var snow_hendelse = {
 				$("snow_hendelse_radius_list").value = incident.DamageExtentTID;
 				$("snow_hendelse_comment").value = incident.IncidentHeader +"." +incident.IncidentIngress;
 			}
+			
+			var leggTilButton = jQuery("#snow_hendelse button");
+			validation.register(
+					leggTilButton, 
+					[
+					 	new NonEmpty(jQuery("#snow_hendelse_comment")),
+					]);
+			
+			
 		}
-}
+};
+

@@ -13,6 +13,7 @@ var water_picture  = {
 				water_picture.pictureData = null;
 				$("water_picture_img").src ="";
 				$('water_picture_spec_list').selectedIndex = 0;
+				water_picture.updatePictureButtons("#water_picture");
 	
 				water_page.add('water_picture_count');
 				main.panels.slideBack();
@@ -36,6 +37,7 @@ var water_picture  = {
 
 		var smallImage = document.getElementById('water_picture_img');
 		smallImage.src = "data:image/jpeg;base64," +imageData;
+		water_picture.updatePictureButtons("#water_picture");
 
 		main.hideDialog();
 	},
@@ -52,7 +54,8 @@ var water_picture  = {
 	
 	
 	init : function () {
-		$('header_middle_text').innerHTML = "Bilde"; 		
+		$('header_middle_text').innerHTML = "Bilde";
+		water_picture.updatePictureButtons("#water_picture");
 	}
 };
 

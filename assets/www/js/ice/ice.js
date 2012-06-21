@@ -1,7 +1,7 @@
 var ice_page = {
 	name: "ice_page",
-	favorit_enum: ICE,
-	
+
+	favorite_name: ICE,
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
 	//   the current GPS coordinates

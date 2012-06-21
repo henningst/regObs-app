@@ -383,12 +383,26 @@ ul.actions li{
 	padding-bottom: 60px;
 }
 
-#learning_content, #information-content{
+
+#learning_content,
+#information{
+	margin: 2%;	
+	width: inherit;
+	
+}
+
+#information_content{
+	padding-bottom: 60px;
+}
+
+#learning_content, #information{
   text-align: left;
   padding: 2%;
 }
 
-#learning_content h3, #learning_content h1,#learning_content h2, #information-content h3, #information-content h2, #information-content h1{
+
+#learning_content h3, #learning_content h1,#learning_content h2,
+#information h3, #information h1,#information h2{
   text-align: center;
   
 }
@@ -453,3 +467,16 @@ ul.actions li{
   width: 40%;
   margin-left: 20px; 
 }
+
+.no-image{
+	height: 80px;
+	width: 100%;
+	background: url(../img/kamera.png) no-repeat center top;
+	padding-top: 50px;
+}
+
+.hidden{
+	display:none;
+}
+
+ 
