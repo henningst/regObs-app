@@ -17,7 +17,8 @@ AbstractStore = (function() {
     this.lat = 0;
     this.long = 0;
     this.komnr = 0;
-    return this.omrade_id = 0;
+    this.omrade_id = 0;
+    return this.regDate = null;
   };
 
   AbstractStore.prototype.onError = function(data) {
@@ -65,8 +66,13 @@ AbstractStore = (function() {
   };
 
   AbstractStore.prototype.setIncident = function(incident) {
+    this.setRegDate();
     this.m_incident = incident;
     return DataAccess.save(this.name, this);
+  };
+
+  AbstractStore.prototype.setRegDate = function() {
+    return this.regDate = new Date(new Date().getTime() + 1000 * 60 * 120);
   };
 
   AbstractStore.prototype.getIncident = function() {
@@ -90,7 +96,7 @@ AbstractStore = (function() {
   };
 
   AbstractStore.prototype.addObs = function(obs) {
-    this.regDate = new Date(new Date().getTime() + 1000 * 60 * 120);
+    this.setRegDate();
     this.m_dangerObs.push(obs);
     return DataAccess.save(this.name, this);
   };
@@ -100,6 +106,7 @@ AbstractStore = (function() {
   };
 
   AbstractStore.prototype.addPicture = function(picture) {
+    this.setRegDate();
     this.m_pictures.push(picture);
     return DataAccess.save(this.name, this);
   };
@@ -147,9 +154,11 @@ AbstractStore = (function() {
     i = 0;
     bilde = this.cutOutPictures(true);
     _fn2 = function(picture) {
+      var sendPicture;
       picture.RegID = data.RegID;
       picture.PictureID = i++;
-      return SendObjectToServer(picture);
+      sendPicture = new SendInPictureCommand(picture);
+      return sendPicture.send();
     };
     for (_j = 0, _len2 = bilde.length; _j < _len2; _j++) {
       picture = bilde[_j];
@@ -182,9 +191,11 @@ AbstractStore = (function() {
     i = 0;
     bilde = this.cutOutPictures(false);
     _fn = function(picture) {
+      var sendPicture;
       picture.RegID = data.RegID;
       picture.PictureID = i++;
-      return SendObjectToServer(picture);
+      sendPicture = new SendInPictureCommand(picture);
+      return sendPicture.send();
     };
     for (_i = 0, _len = bilde.length; _i < _len; _i++) {
       picture = bilde[_i];
@@ -216,7 +227,7 @@ AbstractStore = (function() {
   };
 
   AbstractStore.prototype.onSend = function(page, area) {
-    var elapsedInMinutes, location, pos, source,
+    var elapsedInMinutes, komm_string, location, pos, source,
       _this = this;
     if (area) main.showWaitingDialogWithMessage(UPLOADING);
     source = 0;
@@ -229,9 +240,11 @@ AbstractStore = (function() {
         source = OLD_GPS_POSITION;
       }
     }
+    komm_string = "0";
+    if (this.komm_nr) komm_string = this.komm_nr.toString();
     if (area) {
       if (this.filterPicture(true).length !== 0 || this.m_dangerObs.length !== 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, true, null, null, null, null, null, this.komm_nr.toString());
+        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, true, null, this.regDate, null, null, null, komm_string);
         return SendObjectToServer(location, (function(data) {
           return _this.afterLocation(data, true, false);
         }), function(error) {
@@ -241,7 +254,7 @@ AbstractStore = (function() {
         if (this.filterPicture(false).length !== 0) {
           return this.onSend(page, false);
         } else {
-          location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, true, null, null, null, null, null, this.komm_nr.toString());
+          location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, true, null, this.regDate, null, null, null, komm_string);
           return SendObjectToServer(location, (function(data) {
             return _this.afterLocation(data, true, true);
           }), function(error) {
@@ -251,7 +264,7 @@ AbstractStore = (function() {
       }
     } else {
       if (this.filterPicture(false).length !== 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, false, null, null, null, null, null, this.komm_nr.toString());
+        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, false, null, this.regDate, null, null, null, komm_string);
         return SendObjectToServer(location, (function(data) {
           return _this.afterLocation(data, false);
         }), function(error) {

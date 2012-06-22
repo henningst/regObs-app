@@ -8,6 +8,7 @@ class AbstractStore
 		@long = 0
 		@komnr = 0
 		@omrade_id = 0
+		@regDate = null
 
 	onError: (data) ->
 		main.errorDialog()
@@ -23,8 +24,12 @@ class AbstractStore
 		@m_incident = @fillIncident @m_incident if @m_incident
 	
 	setIncident: (incident) ->
+		@setRegDate()
 		@m_incident = incident
 		DataAccess.save(@name, this)
+	
+	setRegDate : ()->
+		@regDate = new Date(new Date().getTime() + 1000 * 60 * 120)
 		
 	getIncident: () ->
 		@m_incident
@@ -43,7 +48,7 @@ class AbstractStore
 		console.log("set area id");
 		
 	addObs: (obs) ->
-		@regDate = new Date(new Date().getTime() + 1000 * 60 * 120)
+		@setRegDate()
 		@m_dangerObs.push(obs)
 		DataAccess.save(@name, this)
 		
@@ -51,6 +56,7 @@ class AbstractStore
 		@m_dangerObs
 		
 	addPicture: (picture) ->
+		@setRegDate()
 		@m_pictures.push(picture)
 		DataAccess.save(@name, this)
 		
@@ -77,6 +83,7 @@ class AbstractStore
 			do(obs) ->
 				obs.RegID = data.RegID
 				
+				
 				if n is 'SnowStore'
 					obs.AvalancheDangerObsID = x++
 				else
@@ -92,7 +99,8 @@ class AbstractStore
 			do(picture) ->
 				picture.RegID = data.RegID
 				picture.PictureID = i++
-				SendObjectToServer(picture)
+				sendPicture = new SendInPictureCommand(picture)
+				sendPicture.send()	
 
 		if @m_incident and (i isnt 0 or x isnt 0 or force)
 			@m_incident.RegID = data.RegID
@@ -101,6 +109,7 @@ class AbstractStore
 
 		@picturePage.afterSendRegistration()
 		@hendelsePage.afterSendRegistration()
+		
 		
 		main.addLastRegID(data.RegID)
 		DataAccess.save(@name, this)
@@ -124,7 +133,9 @@ class AbstractStore
 			do(picture) ->
 				picture.RegID = data.RegID
 				picture.PictureID = i++
-				SendObjectToServer(picture)
+				sendPicture = new SendInPictureCommand(picture)
+				sendPicture.send()				
+				
 
 		@m_pictures.length = 0
 		
@@ -148,6 +159,7 @@ class AbstractStore
 	fillAvalancheDangerObs: (obs) =>
 		new AvalancheDangerObs(obs.AvalancheDangerObsID, obs.RegID, obs.DangerSignTID, obs.UsageFlagTID, obs.Comment)
 	
+	
 	onSend: (page, area) ->
 		if area
 			main.showWaitingDialogWithMessage(UPLOADING);
@@ -160,21 +172,27 @@ class AbstractStore
 				source = GPS_POSITION
 			else
 				source = OLD_GPS_POSITION
-				
+			
+		
+		komm_string = "0"
+		if @komm_nr
+			komm_string = @komm_nr.toString()
+			 
+		
 		if area
 			if @filterPicture(true).length isnt 0 || @m_dangerObs.length isnt 0
-				location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, null, null, null, null, @komm_nr.toString());
+				location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, @regDate, null, null, null, komm_string);
 				SendObjectToServer(location, ((data) => @afterLocation(data, true, false)) , (error) => @onError(error))
 			else 
 				if @filterPicture(false).length isnt 0
 					@onSend(page, false)
 				else
-					location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, null, null, null, null, @komm_nr.toString());
+					location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, @regDate, null, null, null, komm_string);
 					SendObjectToServer(location, ((data) => @afterLocation(data, true, true)) , (error) => @onError(error))
 
 		else
 			if @filterPicture(false).length isnt 0
-				location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, false, null, null, null, null, null, @komm_nr.toString());
+				location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, false, null, @regDate, null, null, null, komm_string);
 				SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
 			else
 				@page.afterSendRegistration()

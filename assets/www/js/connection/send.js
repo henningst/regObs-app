@@ -85,18 +85,39 @@ GetObjectFromServer = function(call, callback, onError) {
 
 SendObjectToServer = function(obj, callback, onError) {
   var result;
-  console.log("sending " + obj.url);
+  console.log("sending --- " + obj.url);
   result = new Result;
+  console.log("about to send");
   OData.request({
     requestUri: obj.url,
     method: "POST",
     data: obj
   }, function(data) {
+    console.log("got data back");
     result.ok = true;
     result.data = data;
     if (callback) return callback(data);
   }, function(err) {
+    var k, v, _ref, _ref2;
+    console.log("error " + err.message);
+    for (k in err) {
+      v = err[k];
+      console.log(k + " -> " + v);
+    }
+    console.log("response " + err.response);
+    _ref = err.response;
+    for (k in _ref) {
+      v = _ref[k];
+      console.log(k + " -> " + v);
+    }
+    console.log("request " + err.request);
+    _ref2 = err.request;
+    for (k in _ref2) {
+      v = _ref2[k];
+      console.log(k + " -> " + v);
+    }
     if (onError) return onError(err);
   });
+  console.log("fired");
   return result;
 };

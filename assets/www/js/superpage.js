@@ -130,7 +130,7 @@ var super_picture = {
 					this.onFail, 
 					{ 
 						quality : 50, 
-						destinationType : Camera.DestinationType.DATA_URL, 
+						 destinationType: Camera.DestinationType.FILE_URI, 
 						sourceType : Camera.PictureSourceType.CAMERA, 
 						encodingType: Camera.EncodingType.JPEG,
 		                correctOrientation: true
@@ -144,7 +144,7 @@ var super_picture = {
 					this.onFail,
 					{
 						quality : 50,
-						destinationType : Camera.DestinationType.DATA_URL,
+						destinationType : Camera.DestinationType.FILE_URI,
 						sourceType : Camera.PictureSourceType.CAMERA,
 						allowEdit : true,
 						encodingType: Camera.EncodingType.JPEG,
@@ -176,4 +176,4 @@ var super_picture = {
 			
 			
 		}
-}
+};
