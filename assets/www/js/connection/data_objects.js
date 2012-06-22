@@ -21,7 +21,9 @@ SendEmail = (function() {
 
   function SendEmail(RegID) {
     this.RegID = RegID;
-    this.url = "" + SERVER_URL + "RegistrationNotification?RegID=" + RegID;
+    this.url = function() {
+      return "" + SERVER_URL + "RegistrationNotification?RegID=" + RegID;
+    };
   }
 
   return SendEmail;
@@ -30,7 +32,9 @@ SendEmail = (function() {
 
 Registration = (function() {
 
-  Registration.prototype.url = "" + SERVER_URL + "Registration";
+  Registration.prototype.url = function() {
+    return "" + SERVER_URL + "Registration";
+  };
 
   function Registration(ObserverID, ObsLocationID, DtRegTime, DtObsTime, CompetenceLevelTID, ObserverGroupID, Comment) {
     this.ObserverID = ObserverID;
@@ -50,7 +54,9 @@ ActivityInfluencedKD = (function() {
 
   function ActivityInfluencedKD() {}
 
-  ActivityInfluencedKD.prototype.url = "" + SERVER_URL + "Language(" + LANGUAGE + ")/ActivityInfluencedKD";
+  ActivityInfluencedKD.prototype.url = function() {
+    return "" + SERVER_URL + "Language(" + LANGUAGE + ")/ActivityInfluencedKD";
+  };
 
   return ActivityInfluencedKD;
 
@@ -58,7 +64,9 @@ ActivityInfluencedKD = (function() {
 
 AreaUsageKD = (function() {
 
-  AreaUsageKD.prototype.url = "" + SERVER_URL + "AreaUsageKD";
+  AreaUsageKD.prototype.url = function() {
+    return "" + SERVER_URL + "AreaUsageKD";
+  };
 
   function AreaUsageKD(LangKey, AreaUsageName, AreaUsageDescr, Language) {
     this.LangKey = LangKey;
@@ -110,7 +118,9 @@ PositionDetails = (function() {
 
 AvalancheActivityObs = (function() {
 
-  AvalancheActivityObs.prototype.url = "" + SERVER_URL + "AvalancheActivityObs";
+  AvalancheActivityObs.prototype.url = function() {
+    return "" + SERVER_URL + "AvalancheActivityObs";
+  };
 
   function AvalancheActivityObs(RegID, Aspect, HeigthStartZone, DestructiveSizeTID, EstimatedNumTID, AvalancheTID, AvalancheTriggerTID, TerrainStartZoneTID, DtAvalancheTime, SnowLine, UsageFlagTID, Comment) {
     this.RegID = RegID;
@@ -133,7 +143,9 @@ AvalancheActivityObs = (function() {
 
 AvalancheDangerKD = (function() {
 
-  AvalancheDangerKD.prototype.url = "" + SERVER_URL + "AvalancheDangerKD";
+  AvalancheDangerKD.prototype.url = function() {
+    return "" + SERVER_URL + "AvalancheDangerKD";
+  };
 
   function AvalancheDangerKD(LangKey, AvalancheDangerName, AvalancheDangerDescr, Language) {
     this.LangKey = LangKey;
@@ -148,7 +160,9 @@ AvalancheDangerKD = (function() {
 
 AvalancheDangerObs = (function() {
 
-  AvalancheDangerObs.prototype.url = "" + SERVER_URL + "AvalancheDangerObs";
+  AvalancheDangerObs.prototype.url = function() {
+    return "" + SERVER_URL + "AvalancheDangerObs";
+  };
 
   function AvalancheDangerObs(AvalancheDangerObsID, RegID, DangerSignTID, UsageFlagTID, Comment) {
     this.AvalancheDangerObsID = AvalancheDangerObsID;
@@ -183,7 +197,9 @@ class AvalancheEvaluation
 
 AvalancheEvaluation = (function() {
 
-  AvalancheEvaluation.prototype.url = "" + SERVER_URL + "AvalancheEvaluation";
+  AvalancheEvaluation.prototype.url = function() {
+    return "" + SERVER_URL + "AvalancheEvaluation";
+  };
 
   function AvalancheEvaluation(RegID, CanPublish, AvalancheDangerTID, ValidExposition, ValidHeightRelative, ValidHeightFrom, ValidHeigtTo, AvalancheProblemTID1, AvalancheProblemTID2, AvalancheProblemTID3, UsageFlagTID, AvalancheEvaluation1, InternalComment, Comment) {
     this.RegID = RegID;
@@ -298,7 +314,9 @@ DamageExtentKD = (function() {
 
   function DamageExtentKD() {}
 
-  DamageExtentKD.prototype.url = "" + SERVER_URL + "Language(" + LANGUAGE + ")/DamageExtentKD";
+  DamageExtentKD.prototype.url = function() {
+    return "" + SERVER_URL + "Language(" + LANGUAGE + ")/DamageExtentKD";
+  };
 
   return DamageExtentKD;
 
@@ -308,7 +326,9 @@ DangerSignKD = (function() {
 
   function DangerSignKD() {}
 
-  DangerSignKD.prototype.url = "" + SERVER_URL + "Language(" + LANGUAGE + ")/DangerSignKD";
+  DangerSignKD.prototype.url = function() {
+    return "" + SERVER_URL + "Language(" + LANGUAGE + ")/DangerSignKD";
+  };
 
   return DangerSignKD;
 
@@ -316,7 +336,9 @@ DangerSignKD = (function() {
 
 DangerObs = (function() {
 
-  DangerObs.prototype.url = "" + SERVER_URL + "DangerObs";
+  DangerObs.prototype.url = function() {
+    return "" + SERVER_URL + "DangerObs";
+  };
 
   function DangerObs(DangerObsID, RegID, GeoHazardTID, DangerSignTID, UsageFlagTID, Comment) {
     this.DangerObsID = DangerObsID;
@@ -414,7 +436,9 @@ class Incident
 
 Incident = (function() {
 
-  Incident.prototype.url = "" + SERVER_URL + "Incident";
+  Incident.prototype.url = function() {
+    return "" + SERVER_URL + "Incident";
+  };
 
   function Incident(RegID, GeoHazardTID, ActivityInfluencedTID, DamageExtentTID, ForecastAccurateTID, DtEndTime, IncidentHeader, IncidentIngress, IncidentText, SensitiveText, UsageFlagTID, Comment) {
     this.RegID = RegID;
@@ -508,7 +532,9 @@ class ObsLocation
 
 ObsLocation = (function() {
 
-  ObsLocation.prototype.url = "" + SERVER_URL + "ObsLocation";
+  ObsLocation.prototype.url = function() {
+    return "" + SERVER_URL + "ObsLocation";
+  };
 
   function ObsLocation(LocationName, UTMZone, UTMEast, UTMNorth, UTMSourceTID, AreaUsageTID, ForecastRegionTID, HeigthMax, HeigthMin, Area, HeigthTreeLine, DtRegTime, AreaSize, SlopeAngel, SlopeDirection, MunicipalNo, Comment) {
     this.LocationName = LocationName;
@@ -536,7 +562,9 @@ ObsLocation = (function() {
 
 Picture = (function() {
 
-  Picture.prototype.url = "" + SERVER_URL + "Picture";
+  Picture.prototype.url = function() {
+    return "" + SERVER_URL + "Picture";
+  };
 
   function Picture(PictureID, RegID, PictureImage, Photographer, Copyright, Aspect, GeoHazardTID, Comment, RegistrationTID) {
     this.PictureID = PictureID;
@@ -572,7 +600,9 @@ PropagationKD = (function() {
 
 RegistrationKD = (function() {
 
-  RegistrationKD.prototype.url = "" + SERVER_URL + "Language(" + LANGUAGE + ")/RegistrationKD";
+  RegistrationKD.prototype.url = function() {
+    return "" + SERVER_URL + "Language(" + LANGUAGE + ")/RegistrationKD";
+  };
 
   function RegistrationKD() {}
 

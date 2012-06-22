@@ -159,6 +159,10 @@ var main = (function()
 			}
 		},
 		
+		currentUrl: function(){
+			return SERVER_URL;
+		},
+		
 		loginCallback: function(data) {
 			main.login = LoggedInAs(main.loggedInAsCallback);
 		},
@@ -373,18 +377,25 @@ var main = (function()
         {
         	if(main.inTestMode)
         	{
-        		SERVER_URL = TEST;
+
+        		SERVER_URL = STAGE;
+        		SERVER_LOGIN_URL = STAGE_LOGIN;
         		main.inTestMode = false;
         		$('test_button').value = USE_TESTMODE_BUTTON;
         		jQuery('#header').removeClass('testMode');
+        		
         	}
         	else 
         	{
         		SERVER_URL = TEST;
+        		SERVER_LOGIN_URL = TEST_LOGIN;
         		main.inTestMode = true;
         		$('test_button').value = USE_PROD_BUTTON;
         		jQuery('#header').addClass('testMode');
         	}
+        	
+        	console.log("server url = "+ SERVER_URL);
+    		console.log("server login url = "+ SERVER_LOGIN_URL);
         },
         
         logData: function (data)

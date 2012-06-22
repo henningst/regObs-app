@@ -17,7 +17,7 @@ Login = function(name, pass, callback, onError) {
   };
   return jQuery.ajax({
     type: 'POST',
-    url: "http://h-web01.nve.no/stage_RegObsServices/Authentication_JSON_AppService.axd/Login",
+    url: "" + SERVER_LOGIN_URL + "Login",
     data: JSON.stringify(this.cridentials),
     dataType: 'json',
     headers: {
@@ -25,9 +25,16 @@ Login = function(name, pass, callback, onError) {
       "Content-Type": "application/json; charset=utf-8"
     },
     success: function(data) {
+      console.log("logged in " + data);
       if (callback) return callback(data);
     },
     error: function(data) {
+      var k, v;
+      console.log("login failed");
+      for (k in data) {
+        v = data[k];
+        console.log(k + " -> " + v);
+      }
       if (onError) return onError(data);
     }
   });
@@ -36,7 +43,7 @@ Login = function(name, pass, callback, onError) {
 Logout = function(callback, onError) {
   return jQuery.ajax({
     type: 'POST',
-    url: "http://h-web01.nve.no/stage_RegObsServices/Authentication_JSON_AppService.axd/Logout",
+    url: "" + SERVER_LOGIN_URL + "Logout",
     data: "",
     dataType: 'json',
     headers: {
@@ -56,12 +63,17 @@ LoggedInAs = function(callback) {
   var result;
   result = new Result;
   OData.request({
-    requestUri: "http://h-web01.nve.no/stage_regobsservices/Odata.svc/Observer",
+    requestUri: "" + SERVER_URL + "Observer",
     method: "GET"
   }, function(data) {
     result.ok = true;
     result.data = data.results[0];
-    if (callback) return callback(data.results[0]);
+    if (callback) callback(data.results[0]);
+    return {
+      error: function(data) {
+        return console.log("how am i failed" + data);
+      }
+    };
   });
   return result;
 };
@@ -85,11 +97,11 @@ GetObjectFromServer = function(call, callback, onError) {
 
 SendObjectToServer = function(obj, callback, onError) {
   var result;
-  console.log("sending --- " + obj.url);
+  console.log("sending - " + obj.url());
   result = new Result;
   console.log("about to send");
   OData.request({
-    requestUri: obj.url,
+    requestUri: obj.url(),
     method: "POST",
     data: obj
   }, function(data) {
