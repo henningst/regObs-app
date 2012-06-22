@@ -377,13 +377,11 @@ var main = (function()
         {
         	if(main.inTestMode)
         	{
-
         		SERVER_URL = STAGE;
         		SERVER_LOGIN_URL = STAGE_LOGIN;
         		main.inTestMode = false;
         		$('test_button').value = USE_TESTMODE_BUTTON;
         		jQuery('#header').removeClass('testMode');
-        		
         	}
         	else 
         	{

@@ -80,6 +80,7 @@ LoggedInAs = function(callback) {
 
 GetObjectFromServer = function(call, callback, onError) {
   var result;
+  console.log("getting " + call.url);
   result = new Result;
   OData.request({
     requestUri: call.url,

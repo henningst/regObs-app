@@ -8,9 +8,9 @@ class Result
 		@ok
 		
 class SendEmail
-	url : ""
+	url : "" 
 	constructor: (@RegID ) ->
-		@url = ()  -> "#{SERVER_URL}RegistrationNotification?RegID=#{RegID}"
+		@url = "#{SERVER_URL}RegistrationNotification?RegID=#{@RegID}"
 
 class Registration
 	url : ()  -> "#{SERVER_URL}Registration" 

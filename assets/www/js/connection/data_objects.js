@@ -21,9 +21,7 @@ SendEmail = (function() {
 
   function SendEmail(RegID) {
     this.RegID = RegID;
-    this.url = function() {
-      return "" + SERVER_URL + "RegistrationNotification?RegID=" + RegID;
-    };
+    this.url = "" + SERVER_URL + "RegistrationNotification?RegID=" + this.RegID;
   }
 
   return SendEmail;
