@@ -36,7 +36,7 @@ var water_picture  = {
 		water_picture.pictureData = imageData;
 
 		var smallImage = document.getElementById('water_picture_img');
-		smallImage.src = "data:image/jpeg;base64," +imageData;
+		smallImage.src = imageData;
 		water_picture.updatePictureButtons("#water_picture");
 
 		main.hideDialog();
