@@ -17,11 +17,14 @@ class Registration
 	constructor: (@ObserverID, @ObsLocationID, @DtRegTime, @DtObsTime, @CompetenceLevelTID, @ObserverGroupID, @Comment) -> 
 
 class ActivityInfluencedKD
-	url : ()  -> "#{SERVER_URL}Language(#{LANGUAGE})/ActivityInfluencedKD"
+	url : null
+	constructor: () ->
+		@url = "#{SERVER_URL}Language(#{LANGUAGE})/ActivityInfluencedKD"
 	
 class AreaUsageKD
-	url : ()  -> "#{SERVER_URL}AreaUsageKD"
+	url : null
 	constructor: (@LangKey, @AreaUsageName, @AreaUsageDescr, @Language ) ->
+		@url = "#{SERVER_URL}AreaUsageKD"
 
 ###
 ?text=&geometry=75793,6814257&geometryType=esriGeometryPoint&
@@ -55,8 +58,9 @@ class AvalancheActivityObs
 	constructor: (@RegID, @Aspect, @HeigthStartZone, @DestructiveSizeTID, @EstimatedNumTID, @AvalancheTID, @AvalancheTriggerTID, @TerrainStartZoneTID, @DtAvalancheTime, @SnowLine, @UsageFlagTID, @Comment) ->
 	
 class AvalancheDangerKD
-	url : ()  -> "#{SERVER_URL}AvalancheDangerKD"
+	url : null
 	constructor: (@LangKey, @AvalancheDangerName, @AvalancheDangerDescr, @Language ) ->
+		@url = "#{SERVER_URL}AvalancheDangerKD"
 	
 class AvalancheDangerObs
 	url : ()  -> "#{SERVER_URL}AvalancheDangerObs"
@@ -118,10 +122,14 @@ class CriticalLayerKD
 	constructor: ( ) ->
 
 class DamageExtentKD
-	url : ()  -> "#{SERVER_URL}Language(#{LANGUAGE})/DamageExtentKD"
+	url : null
+	constructor : () ->
+		@url = "#{SERVER_URL}Language(#{LANGUAGE})/DamageExtentKD"
 
 class DangerSignKD
-	url : ()  -> "#{SERVER_URL}Language(#{LANGUAGE})/DangerSignKD"
+	url : null
+	constructor: ()->
+		@url = "#{SERVER_URL}Language(#{LANGUAGE})/DangerSignKD"
 
 class DangerObs
 	url : ()  -> "#{SERVER_URL}DangerObs"
@@ -227,8 +235,9 @@ class PropagationKD
 	constructor: ( ) ->
 
 class RegistrationKD
-	url: ()  -> "#{SERVER_URL}Language(#{LANGUAGE})/RegistrationKD"
+	url: null
 	constructor: ( ) ->
+		 @url = "#{SERVER_URL}Language(#{LANGUAGE})/RegistrationKD"
 
 class SnowCoverObs
 	constructor: ( ) ->

@@ -63,8 +63,10 @@ var geo = {
 
 var omerade = {
 		parseArea : function(data){
+			console.log("omerade");
+			console.log(data);
 			var res = JSON.parse(data);
-
+			
 			if(res != null && res.features != undefined) {
 				return {
 					omeradeid: res.features[0].attributes.OMRAADEID +OMRAADE_ID_OFFSET,
@@ -293,7 +295,7 @@ var main = (function()
             
             if(registrationKD == null) 
         	{
-            	GetObjectFromServer(new RegistrationKD(), main.fillRegistrationKD, function(error) { main.fillRegistrationKD(DataAccess.get(RegistrationKD.name)); });
+            	GetObjectFromServer(new RegistrationKD(), main.fillRegistrationKD, function(error) {  main.fillRegistrationKD(DataAccess.get(RegistrationKD.name)); });
         	}
             else 
             {

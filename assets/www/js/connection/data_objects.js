@@ -50,11 +50,11 @@ Registration = (function() {
 
 ActivityInfluencedKD = (function() {
 
-  function ActivityInfluencedKD() {}
+  ActivityInfluencedKD.prototype.url = null;
 
-  ActivityInfluencedKD.prototype.url = function() {
-    return "" + SERVER_URL + "Language(" + LANGUAGE + ")/ActivityInfluencedKD";
-  };
+  function ActivityInfluencedKD() {
+    this.url = "" + SERVER_URL + "Language(" + LANGUAGE + ")/ActivityInfluencedKD";
+  }
 
   return ActivityInfluencedKD;
 
@@ -62,15 +62,14 @@ ActivityInfluencedKD = (function() {
 
 AreaUsageKD = (function() {
 
-  AreaUsageKD.prototype.url = function() {
-    return "" + SERVER_URL + "AreaUsageKD";
-  };
+  AreaUsageKD.prototype.url = null;
 
   function AreaUsageKD(LangKey, AreaUsageName, AreaUsageDescr, Language) {
     this.LangKey = LangKey;
     this.AreaUsageName = AreaUsageName;
     this.AreaUsageDescr = AreaUsageDescr;
     this.Language = Language;
+    this.url = "" + SERVER_URL + "AreaUsageKD";
   }
 
   return AreaUsageKD;
@@ -141,15 +140,14 @@ AvalancheActivityObs = (function() {
 
 AvalancheDangerKD = (function() {
 
-  AvalancheDangerKD.prototype.url = function() {
-    return "" + SERVER_URL + "AvalancheDangerKD";
-  };
+  AvalancheDangerKD.prototype.url = null;
 
   function AvalancheDangerKD(LangKey, AvalancheDangerName, AvalancheDangerDescr, Language) {
     this.LangKey = LangKey;
     this.AvalancheDangerName = AvalancheDangerName;
     this.AvalancheDangerDescr = AvalancheDangerDescr;
     this.Language = Language;
+    this.url = "" + SERVER_URL + "AvalancheDangerKD";
   }
 
   return AvalancheDangerKD;
@@ -310,11 +308,11 @@ CriticalLayerKD = (function() {
 
 DamageExtentKD = (function() {
 
-  function DamageExtentKD() {}
+  DamageExtentKD.prototype.url = null;
 
-  DamageExtentKD.prototype.url = function() {
-    return "" + SERVER_URL + "Language(" + LANGUAGE + ")/DamageExtentKD";
-  };
+  function DamageExtentKD() {
+    this.url = "" + SERVER_URL + "Language(" + LANGUAGE + ")/DamageExtentKD";
+  }
 
   return DamageExtentKD;
 
@@ -322,11 +320,11 @@ DamageExtentKD = (function() {
 
 DangerSignKD = (function() {
 
-  function DangerSignKD() {}
+  DangerSignKD.prototype.url = null;
 
-  DangerSignKD.prototype.url = function() {
-    return "" + SERVER_URL + "Language(" + LANGUAGE + ")/DangerSignKD";
-  };
+  function DangerSignKD() {
+    this.url = "" + SERVER_URL + "Language(" + LANGUAGE + ")/DangerSignKD";
+  }
 
   return DangerSignKD;
 
@@ -598,11 +596,11 @@ PropagationKD = (function() {
 
 RegistrationKD = (function() {
 
-  RegistrationKD.prototype.url = function() {
-    return "" + SERVER_URL + "Language(" + LANGUAGE + ")/RegistrationKD";
-  };
+  RegistrationKD.prototype.url = null;
 
-  function RegistrationKD() {}
+  function RegistrationKD() {
+    this.url = "" + SERVER_URL + "Language(" + LANGUAGE + ")/RegistrationKD";
+  }
 
   return RegistrationKD;
 
