@@ -10,10 +10,14 @@ var GPS_TIMEOUT_IN_MINUTES = 20;
  * 
  */
 TEST = "http://h-web01.nve.no/test_regobsservices/Odata.svc/";
-STAGE = "http://h-web01.nve.no/stage_regobsservices/Odata.svc/";
-
-SERVER_URL = TEST;
+STAGE = "http://api.nve.no/hydrology/regobs/v0.8.1/Odata.svc/";
 //SERVER_URL = 
+SERVER_URL = TEST;
+
+TEST_LOGIN = "http://h-web01.nve.no/stage_RegObsServices/Authentication_JSON_AppService.axd/";
+STAGE_LOGIN = "http://api.nve.no/hydrology/regobs/v0.8.1/Authentication_JSON_AppService.axd/";
+SERVER_LOGIN_URL = TEST_LOGIN;
+
 
 /*
  * Platform

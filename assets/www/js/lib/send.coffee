@@ -9,7 +9,7 @@ Login = (name, pass, callback, onError) ->
 	}
 	jQuery.ajax({
 		type: 'POST',
-		url: "http://h-web01.nve.no/stage_RegObsServices/Authentication_JSON_AppService.axd/Login",
+		url: "#{SERVER_LOGIN_URL}Login",
 		data: JSON.stringify(@cridentials),
 		dataType: 'json',
 		headers: {
@@ -17,8 +17,13 @@ Login = (name, pass, callback, onError) ->
 			"Content-Type": "application/json; charset=utf-8"
 		}
 		success: (data) ->
+			console.log("logged in " + data)
 			callback(data) if callback
 		error: (data) ->
+			console.log("login failed")
+			for k,v of data
+				console.log(k + " -> " + v)
+				
 			onError(data) if onError
 		}
 	)
@@ -26,7 +31,7 @@ Login = (name, pass, callback, onError) ->
 Logout = (callback, onError) ->
 	jQuery.ajax({
 		type: 'POST',
-		url: "http://h-web01.nve.no/stage_RegObsServices/Authentication_JSON_AppService.axd/Logout",
+		url: "#{SERVER_LOGIN_URL}Logout",
 		data: "",
 		dataType: 'json',
 		headers: { 
@@ -43,16 +48,19 @@ Logout = (callback, onError) ->
 LoggedInAs = (callback) ->
 	result = new Result
 	OData.request({
-	requestUri: "http://h-web01.nve.no/stage_regobsservices/Odata.svc/Observer",
+	requestUri: "#{SERVER_URL}Observer",
 	method: "GET",
 	}, (data) ->
 		result.ok = true
 		result.data = data.results[0]
 		callback(data.results[0]) if callback
+		error: (data) ->	
+			console.log("how am i failed" + data)
 	)
 	result
 	
 GetObjectFromServer = (call, callback, onError) ->
+	console.log("getting " + call.url)
 	result = new Result
 	OData.request({
 	requestUri: call.url,
@@ -67,19 +75,36 @@ GetObjectFromServer = (call, callback, onError) ->
 	)
 	result
 
+
 SendObjectToServer = (obj, callback, onError) ->
-	console.log("sending " + obj.url);
+	console.log("sending - " + obj.url()  );
 	result = new Result
+	console.log("about to send")
 	OData.request({
-	requestUri: obj.url,
+	requestUri: obj.url() ,
 	method: "POST",
 	data: obj
 	}, (data) ->
+		console.log("got data back")
 		result.ok = true
 		result.data = data
 		callback(data) if callback
 	, (err) ->
+		console.log("error " + err.message)
+		for k,v of err
+			console.log(k + " -> " + v)
+
+		console.log("response " + err.response);
+		for k,v of err.response
+			console.log(k + " -> " + v)
+			
+		console.log("request " + err.request);
+		for k,v of err.request
+			console.log(k + " -> " + v)
+			
+			
 		onError(err) if onError 
 	)
+	console.log("fired")
 	result
 	

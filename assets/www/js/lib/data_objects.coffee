@@ -8,20 +8,23 @@ class Result
 		@ok
 		
 class SendEmail
-	url : ""
+	url : "" 
 	constructor: (@RegID ) ->
-		@url = "#{SERVER_URL}RegistrationNotification?RegID=#{RegID}"
+		@url = "#{SERVER_URL}RegistrationNotification?RegID=#{@RegID}"
 
 class Registration
-	url : "#{SERVER_URL}Registration"
+	url : ()  -> "#{SERVER_URL}Registration" 
 	constructor: (@ObserverID, @ObsLocationID, @DtRegTime, @DtObsTime, @CompetenceLevelTID, @ObserverGroupID, @Comment) -> 
 
 class ActivityInfluencedKD
-	url : "#{SERVER_URL}Language(#{LANGUAGE})/ActivityInfluencedKD"
+	url : null
+	constructor: () ->
+		@url = "#{SERVER_URL}Language(#{LANGUAGE})/ActivityInfluencedKD"
 	
 class AreaUsageKD
-	url : "#{SERVER_URL}AreaUsageKD"
+	url : null
 	constructor: (@LangKey, @AreaUsageName, @AreaUsageDescr, @Language ) ->
+		@url = "#{SERVER_URL}AreaUsageKD"
 
 ###
 ?text=&geometry=75793,6814257&geometryType=esriGeometryPoint&
@@ -51,15 +54,16 @@ returnGeometry=false&maxAllowableOffset=&
 outSR=&outFields=*&f=pjson"
 
 class AvalancheActivityObs
-	url : "#{SERVER_URL}AvalancheActivityObs"
+	url : ()  -> "#{SERVER_URL}AvalancheActivityObs"
 	constructor: (@RegID, @Aspect, @HeigthStartZone, @DestructiveSizeTID, @EstimatedNumTID, @AvalancheTID, @AvalancheTriggerTID, @TerrainStartZoneTID, @DtAvalancheTime, @SnowLine, @UsageFlagTID, @Comment) ->
 	
 class AvalancheDangerKD
-	url : "#{SERVER_URL}AvalancheDangerKD"
+	url : null
 	constructor: (@LangKey, @AvalancheDangerName, @AvalancheDangerDescr, @Language ) ->
+		@url = "#{SERVER_URL}AvalancheDangerKD"
 	
 class AvalancheDangerObs
-	url : "#{SERVER_URL}AvalancheDangerObs"
+	url : ()  -> "#{SERVER_URL}AvalancheDangerObs"
 	constructor: (@AvalancheDangerObsID, @RegID, @DangerSignTID, @UsageFlagTID, @Comment) ->
 
 ###
@@ -76,12 +80,12 @@ class AvalancheEvaluation
 "AvalancheProblemTID2": 3,
 "AvalancheProblemTID3": 4,
 "UsageFlagTID": 0,
-"AvalancheEvaluation1": "Partnerforum:Invitasjon til spesialseminar om beredskap ut fra et forskningsperspektiv \r\n\r\nNVE har en viktig beredskapsfunksjon i samfunnet. Gjennom dette seminaret ¿nsker vi Œ gi ÓpŒfyllÓ og stimulere til videreutvikling av vŒrt beredskapsarbeid.",
+"AvalancheEvaluation1": "Partnerforum:Invitasjon til spesialseminar om beredskap ut fra et forskningsperspektiv \r\n\r\nNVE har en viktig beredskapsfunksjon i samfunnet. Gjennom dette seminaret ï¿½nsker vi ï¿½ gi ï¿½pï¿½fyllï¿½ og stimulere til videreutvikling av vï¿½rt beredskapsarbeid.",
 "InternalComment": "Dette er hemmelig.",
 "Comment"
 ###	
 class AvalancheEvaluation
-	url : "#{SERVER_URL}AvalancheEvaluation"
+	url : ()  -> "#{SERVER_URL}AvalancheEvaluation"
 	constructor: (@RegID, @CanPublish, @AvalancheDangerTID, @ValidExposition, @ValidHeightRelative, @ValidHeightFrom, @ValidHeigtTo, @AvalancheProblemTID1, @AvalancheProblemTID2, @AvalancheProblemTID3, @UsageFlagTID, @AvalancheEvaluation1, @InternalComment, @Comment) ->
 
 class AvalancheKD
@@ -118,13 +122,17 @@ class CriticalLayerKD
 	constructor: ( ) ->
 
 class DamageExtentKD
-	url : "#{SERVER_URL}Language(#{LANGUAGE})/DamageExtentKD"
+	url : null
+	constructor : () ->
+		@url = "#{SERVER_URL}Language(#{LANGUAGE})/DamageExtentKD"
 
 class DangerSignKD
-	url : "#{SERVER_URL}Language(#{LANGUAGE})/DangerSignKD"
+	url : null
+	constructor: ()->
+		@url = "#{SERVER_URL}Language(#{LANGUAGE})/DangerSignKD"
 
 class DangerObs
-	url : "#{SERVER_URL}DangerObs"
+	url : ()  -> "#{SERVER_URL}DangerObs"
 	constructor: (@DangerObsID, @RegID, @GeoHazardTID, @DangerSignTID, @UsageFlagTID, @Comment) ->
 	
 
@@ -169,7 +177,7 @@ class Incident
 "Comment": "Bekk",
 ###
 class Incident
-	url : "#{SERVER_URL}Incident"
+	url : ()  -> "#{SERVER_URL}Incident"
 	constructor: (@RegID, @GeoHazardTID, @ActivityInfluencedTID, @DamageExtentTID, @ForecastAccurateTID, @DtEndTime, @IncidentHeader, @IncidentIngress, @IncidentText, @SensitiveText, @UsageFlagTID, @Comment ) ->
 
 class IncidentURLs
@@ -213,11 +221,11 @@ class ObsLocation
 "Comment": null,
 ###
 class ObsLocation
-	url : "#{SERVER_URL}ObsLocation"
+	url : ()  -> "#{SERVER_URL}ObsLocation"
 	constructor: (@LocationName, @UTMZone, @UTMEast, @UTMNorth, @UTMSourceTID, @AreaUsageTID, @ForecastRegionTID, @HeigthMax, @HeigthMin, @Area, @HeigthTreeLine, @DtRegTime, @AreaSize, @SlopeAngel, @SlopeDirection, @MunicipalNo, @Comment) ->
 
 class Picture
-	url: "#{SERVER_URL}Picture"
+	url: ()  -> "#{SERVER_URL}Picture"
 	constructor: (@PictureID, @RegID, @PictureImage, @Photographer, @Copyright, @Aspect, @GeoHazardTID, @Comment, @RegistrationTID) ->
 
 class PrecipitationKD
@@ -227,8 +235,9 @@ class PropagationKD
 	constructor: ( ) ->
 
 class RegistrationKD
-	url: "#{SERVER_URL}Language(#{LANGUAGE})/RegistrationKD"
+	url: null
 	constructor: ( ) ->
+		 @url = "#{SERVER_URL}Language(#{LANGUAGE})/RegistrationKD"
 
 class SnowCoverObs
 	constructor: ( ) ->

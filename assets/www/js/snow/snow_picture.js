@@ -39,7 +39,7 @@ var snow_picture  = {
 		snow_picture.pictureData = imageData;
 
 		var smallImage = document.getElementById('snow_picture_img');
-		smallImage.src = "data:image/jpeg;base64," +imageData;
+		smallImage.src = imageData;
 		snow_picture.updatePictureButtons("#snow_picture");
 		main.hideDialog();
 	},

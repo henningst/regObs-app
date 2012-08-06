@@ -36,7 +36,7 @@ var ice_picture  = {
 		ice_picture.pictureData = imageData;
 
 		var smallImage = document.getElementById('ice_picture_img');
-		smallImage.src = "data:image/jpeg;base64," +imageData;
+		smallImage.src = imageData;
 		ice_picture.updatePictureButtons("#ice_picture");
 		main.hideDialog();
 	},

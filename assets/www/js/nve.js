@@ -13,15 +13,21 @@ var geo = {
 		}else{
 			console.log("call back to " + callback);
 			
-			navigator.geolocation.getCurrentPosition(
-					eval(callback),
-                    function(e){
-						console.log(e.message);
-						if(shouldHandlePosition)
-							geo.noGoodAccuracyFound();
-					}, 
-                    { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }
-                  );
+			if(main.initialised == true){
+				navigator.geolocation.getCurrentPosition(
+						eval(callback),
+	                    function(e){
+							console.log(e.message);
+							if(shouldHandlePosition)
+								geo.noGoodAccuracyFound();
+						}, 
+	                    { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }
+	                  );
+			}else{
+				setTimeout(function(){
+					geo.requestPosition(callback, shouldHandlePosition);
+				}, 500);
+			}
 		}
 	},
 	
@@ -57,8 +63,10 @@ var geo = {
 
 var omerade = {
 		parseArea : function(data){
+			console.log("omerade");
+			console.log(data);
 			var res = JSON.parse(data);
-
+			
 			if(res != null && res.features != undefined) {
 				return {
 					omeradeid: res.features[0].attributes.OMRAADEID +OMRAADE_ID_OFFSET,
@@ -151,6 +159,10 @@ var main = (function()
 				//logout
 				main.clickLogOut();
 			}
+		},
+		
+		currentUrl: function(){
+			return SERVER_URL;
 		},
 		
 		loginCallback: function(data) {
@@ -262,7 +274,6 @@ var main = (function()
             wink.subscribe('/slidingpanels/events/slidestart', {context: this, method: 'toggleBackButtonDisplay', arguments: 'start'});
             wink.subscribe('/slidingpanels/events/slideend', {context: this, method: 'toggleBackButtonDisplay', arguments: 'end'});
 
-			
 			main.slideToFavorite();
 			main.toogleFavorite();
 			main.gotoTest();
@@ -284,7 +295,7 @@ var main = (function()
             
             if(registrationKD == null) 
         	{
-            	GetObjectFromServer(new RegistrationKD(), main.fillRegistrationKD, function(error) { main.fillRegistrationKD(DataAccess.get(RegistrationKD.name)); });
+            	GetObjectFromServer(new RegistrationKD(), main.fillRegistrationKD, function(error) {  main.fillRegistrationKD(DataAccess.get(RegistrationKD.name)); });
         	}
             else 
             {
@@ -368,7 +379,8 @@ var main = (function()
         {
         	if(main.inTestMode)
         	{
-        		SERVER_URL = TEST;
+        		SERVER_URL = STAGE;
+        		SERVER_LOGIN_URL = STAGE_LOGIN;
         		main.inTestMode = false;
         		$('test_button').value = USE_TESTMODE_BUTTON;
         		jQuery('#header').removeClass('testMode');
@@ -376,10 +388,14 @@ var main = (function()
         	else 
         	{
         		SERVER_URL = TEST;
+        		SERVER_LOGIN_URL = TEST_LOGIN;
         		main.inTestMode = true;
         		$('test_button').value = USE_PROD_BUTTON;
         		jQuery('#header').addClass('testMode');
         	}
+        	
+        	console.log("server url = "+ SERVER_URL);
+    		console.log("server login url = "+ SERVER_LOGIN_URL);
         },
         
         logData: function (data)
@@ -404,6 +420,7 @@ var main = (function()
 			}
 			
 			main.initialised = true;
+			geo.requestPosition(main.nothing, false);
         },
         
         backKeyDown: function() 

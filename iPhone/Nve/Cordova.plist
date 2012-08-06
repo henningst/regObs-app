@@ -26,6 +26,7 @@
 		<string>regobs.varsom.no*</string>
 		<string>h-web01.nve.no*</string>
 		<string>gis.nve.no</string>
+		<string>api.nve.no*</string>
 		<string>localhost</string>
 	</array>
 	<key>Plugins</key>

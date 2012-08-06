@@ -36,7 +36,7 @@ var dirt_picture  = {
 		dirt_picture.pictureData = imageData;
 
 		var smallImage = document.getElementById('dirt_picture_img');
-		smallImage.src = "data:image/jpeg;base64," +imageData;
+		smallImage.src = imageData;
 		dirt_picture.updatePictureButtons("#dirt_picture");
 		main.hideDialog();
 	},
