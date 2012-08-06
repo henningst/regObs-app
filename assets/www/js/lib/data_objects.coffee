@@ -12,8 +12,13 @@ class User
 	constructor: (@username, @password)->
 	
 	isDefined: ->
-		@username != null and @password != null
-	
+		if (@username != null and @password != null)  
+			if(@username.length != 0 or @password.length != 0)
+				true
+			else
+				false
+		else
+			false
 
 		
 class SendEmail

@@ -40,10 +40,17 @@ describe("UserStore", function(){
 		expect(user.isDefined()).toBe(false);
 	});
 	
+	it("should mark a cleared user/pass as undefined", function(){
+		UserStore.clear(NORMAL);	
+		var user = UserStore.get(NORMAL);
+		
+		expect(user.isDefined()).toBe(false);
+	});
+	
 	it("should mark a defined user as defined", function(){
 		UserStore.save(NORMAL, new User("b", "p"));
 		var user = UserStore.get(NORMAL);
 		
 		expect(user.isDefined()).toBe(true)
-	})
+	});
 });

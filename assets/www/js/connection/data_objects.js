@@ -23,7 +23,15 @@ User = (function() {
   }
 
   User.prototype.isDefined = function() {
-    return this.username !== null && this.password !== null;
+    if (this.username !== null && this.password !== null) {
+      if (this.username.length !== 0 || this.password.length !== 0) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
   };
 
   return User;

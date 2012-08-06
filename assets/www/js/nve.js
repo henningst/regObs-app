@@ -119,6 +119,8 @@ var main = (function()
     	
     	panels: null,
     	
+    	currentlyLoggedIn : false,
+    	
     	lastRegID: [],
     	
     	addLastRegID: function(regId){
@@ -142,7 +144,7 @@ var main = (function()
     	initialised: false,
     	
 		clickLogin: function() {
-			if(main.login.data.EMail == 'anonym@nve.no')
+			if(main.currentlyLoggedIn == false)
 			{
 				//login
 				var username = document.getElementById('login_username').value;
@@ -190,9 +192,9 @@ var main = (function()
 		},
 		
 		logoutCallback: function() {
+			console.log("logged out...");
 			main.login = {data: {"EMail" : "anonym@nve.no", "FirstName" : "Anonym", "ObserverID" : 105}};
         	main.showLoginStatus(false);
-        	main.login = LoggedInAs(main.loggedInAsCallback);
 		},
 		
 		starred: function() {
@@ -622,23 +624,25 @@ var main = (function()
         },
         
         loggedInAsCallback: function (data) {
-        	if(data.EMail != 'anonym@nve.no') {
-        		main.showLoginStatus(true);
-        	} else {
+        	if(data.EMail == 'anonym@nve.no') {
         		main.showLoginStatus(false);
+        		main.showDialogWithMessage("Innlogging feilet, sjekk bruker navn og passord", "Login");
+        	} else {
+        		main.showLoginStatus(true);
+        		main.hideDialog();
         	}
         },
         
         showLoginStatus: function(loggedIn){
-
+        	main.currentlyLoggedIn = loggedIn;
         	if(loggedIn == true) {
         		jQuery('#login').attr("style", 'background-image: url(img/loggedin.png)');
         		$('loginLogoutButton').value = LOGOUT_BUTTON;
         	} else {
+        		jQuery('#login').css("background-image", "url(img/loggedout.png)");
         		jQuery('#login').attr("style", 'background-image: url(img/loggedout.png)');
         		$('loginLogoutButton').value = LOGIN_BUTTON;
         	}
-        	main.hideDialog();
         },
         
         hideNve: function(){
