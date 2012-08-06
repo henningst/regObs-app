@@ -3,6 +3,7 @@ STARTUP_PAGE = "regobs_startup_page"
 USERNAME = "regobs_username"
 
 PASSWORD = "regobs_password"
+NORMAL = "normal"
 
 DataAccess = {
 	storage : window.localStorage
@@ -23,4 +24,29 @@ DataAccess = {
 				ret
 		else
 			null
+}
+
+
+UserStore = {
+	save: (mode, user) ->
+		DataAccess.save(@usernameKey(mode), user.username)
+		DataAccess.save(@passwordKey(mode), user.password)
+		""
+		
+	clear: (mode)->
+		DataAccess.save(@usernameKey(mode), "")
+		DataAccess.save(@passwordKey(mode), "")
+		""
+	
+	get: (mode) ->
+		username = DataAccess.get(@usernameKey(mode))
+		password = DataAccess.get(@passwordKey(mode))
+		new User(username, password)
+	
+	usernameKey : (mode) ->
+		mode + "_" + USERNAME
+		
+	passwordKey: (mode) ->
+		mode + "_" + PASSWORD
+		
 }

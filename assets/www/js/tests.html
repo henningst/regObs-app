@@ -4,10 +4,6 @@
 <head>
   <title>Jasmine Spec Runner</title>
 
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<script type="text/javascript" charset="utf-8" src="android-cordova-1.5.0.js"></script>
-
   <link rel="shortcut icon" type="image/png" href="tests/lib/jasmine-1.2.0.rc2/jasmine_favicon.png">
   <link rel="stylesheet" type="text/css" href="tests/lib/jasmine-1.2.0.rc2/jasmine.css">
   <script type="text/javascript" src="tests/lib/jasmine-1.2.0.rc2/jasmine.js"></script>
@@ -17,12 +13,21 @@
   <script type="text/javascript" src="dependencies/datajs-1.0.2.js"></script>
   <script type="text/javascript" src="dependencies/json2.js"></script>
   <script type="text/javascript" src="dependencies/jquery.min.js"></script>
-  <script type="text/javascript" src="lib/nve-send.js"></script>
-  <script type="text/javascript" src="lib/nve-store.js"></script>
+  
+  <script type="text/javascript" src="database/database.js"></script>
+	
+	<script type="text/javascript" src="connection/data_objects.js"></script>
+	<script type="text/javascript" src="connection/abstract_store.js"></script>
+	
+	<script type="text/javascript" src="connection/send.js"></script>
+	
+	<script type="text/javascript" src="connection/store.js"></script>
+	
 
   <!-- include spec files here... -->
   <script type="text/javascript" src="tests/spec/SpecHelper.js"></script>
   <script type="text/javascript" src="tests/spec/Nve.spec.js"></script>
+  <script type="text/javascript" src="tests/spec/UserStore.spec.js"></script>
 
   
  

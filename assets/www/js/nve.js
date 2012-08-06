@@ -150,8 +150,8 @@ var main = (function()
 				
 				main.showWaitingDialogWithMessage(LOGGING_IN);
 				
-				DataAccess.save(USERNAME, username);
-				DataAccess.save(PASSWORD, password);
+				var user = new User(username, password);
+				UserStore.save(NORMAL, user);
 				Login(username, password, main.loginCallback, main.loginErrorCallback);
 			}
 			else 
@@ -180,8 +180,7 @@ var main = (function()
 			document.getElementById('login_username').value = "";
 			document.getElementById('login_password').value = "";
 			
-			DataAccess.save(USERNAME, "");
-			DataAccess.save(PASSWORD, "");
+			UserStore.clear(NORMAL);
 			Logout(main.logoutCallback, main.ert);
 		},
 		
@@ -410,11 +409,11 @@ var main = (function()
 
             main.populateBoxes(true);
             
-			var username = DataAccess.get(USERNAME);
-			var password = DataAccess.get(PASSWORD);
+            
+            var user = UserStore.get(NORMAL);
 			
-			if(username != undefined && password != undefined) {
-				Login(username, password, main.loginCallback);
+			if(user.isDefined()) {
+				Login(user.username, user.password, main.loginCallback);
         	} else {
         		main.showLoginStatus(false);	
 			}
@@ -690,7 +689,13 @@ var main = (function()
     				$('star').style.display = 'none';
         			
         			break;
+        		
+        		case 'login_page':
+        			login_page.init();
+        			$("star").style.display= 'none';
         			
+    				break;
+        		
         		case 'snow':
     				snow_page.init();
     				

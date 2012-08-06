@@ -23,7 +23,7 @@ SERVER_LOGIN_URL = TEST_LOGIN;
  * Platform
  */
 var device = {
-	platform: 'iphone'
+	platform: 'android'
 };
 
 /*

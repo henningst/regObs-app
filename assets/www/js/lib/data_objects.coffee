@@ -7,6 +7,15 @@ class Result
 	isOk: () ->
 		@ok
 		
+		
+class User
+	constructor: (@username, @password)->
+	
+	isDefined: ->
+		@username != null and @password != null
+	
+
+		
 class SendEmail
 	url : "" 
 	constructor: (@RegID ) ->
