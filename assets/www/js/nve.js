@@ -154,12 +154,12 @@ var main = (function()
 				
 				var user = new User(username, password);
 				UserStore.save(NORMAL, user);
-				Login(username, password, main.loginCallback, main.loginErrorCallback);
+				Login(username, password, login_page.loginCallback, login_page.loginErrorCallback);
 			}
 			else 
 			{
 				//logout
-				main.clickLogOut();
+				login_page.clickLogOut();
 			}
 		},
 		
@@ -167,35 +167,7 @@ var main = (function()
 			return SERVER_URL;
 		},
 		
-		loginCallback: function(data) {
-			main.login = LoggedInAs(main.loggedInAsCallback);
-		},
 		
-		loginErrorCallback: function(data) {
-//			alert("errir");
-//    		main.showLoginStatus(false);
-//    		setTimeout(main.errorDialog, 5000);
-			main.errorDialog();
-		},
-		
-		clickLogOut: function() {
-			document.getElementById('login_username').value = "";
-			document.getElementById('login_password').value = "";
-			
-			UserStore.clear(NORMAL);
-			Logout(main.logoutCallback, main.ert);
-		},
-		
-		ert: function(data) 
-		{
-			alert("error");
-		},
-		
-		logoutCallback: function() {
-			console.log("logged out...");
-			main.login = {data: {"EMail" : "anonym@nve.no", "FirstName" : "Anonym", "ObserverID" : 105}};
-        	main.showLoginStatus(false);
-		},
 		
 		starred: function() {
 			if(DataAccess.get(STARTUP_PAGE) == main.actualPage) {
@@ -415,9 +387,9 @@ var main = (function()
             var user = UserStore.get(NORMAL);
 			
 			if(user.isDefined()) {
-				Login(user.username, user.password, main.loginCallback);
+				Login(user.username, user.password, login_page.loginCallback);
         	} else {
-        		main.showLoginStatus(false);	
+        		login_page.showLoginStatus(false);	
 			}
 			
 			main.initialised = true;
@@ -623,27 +595,9 @@ var main = (function()
 			ice_hendelse.fill_radius(data);
         },
         
-        loggedInAsCallback: function (data) {
-        	if(data.EMail == 'anonym@nve.no') {
-        		main.showLoginStatus(false);
-        		main.showDialogWithMessage("Innlogging feilet, sjekk bruker navn og passord", "Login");
-        	} else {
-        		main.showLoginStatus(true);
-        		main.hideDialog();
-        	}
-        },
         
-        showLoginStatus: function(loggedIn){
-        	main.currentlyLoggedIn = loggedIn;
-        	if(loggedIn == true) {
-        		jQuery('#login').attr("style", 'background-image: url(img/loggedin.png)');
-        		$('loginLogoutButton').value = LOGOUT_BUTTON;
-        	} else {
-        		jQuery('#login').css("background-image", "url(img/loggedout.png)");
-        		jQuery('#login').attr("style", 'background-image: url(img/loggedout.png)');
-        		$('loginLogoutButton').value = LOGIN_BUTTON;
-        	}
-        },
+        
+        
         
         hideNve: function(){
         	jQuery("#regobs-info").hide();

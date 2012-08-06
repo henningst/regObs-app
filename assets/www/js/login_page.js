@@ -10,5 +10,55 @@ var login_page = {
 			$('login_username').value = user.username;
 			$('login_password').value = user.password;
 		}
-	}	
+	},
+	loggedInAsCallback: function (data) {
+    	if(data.EMail == 'anonym@nve.no') {
+    		login_page.showLoginStatus(false);
+    		main.showDialogWithMessage("Innlogging feilet, sjekk bruker navn og passord", "Login");
+    	} else {
+    		login_page.showLoginStatus(true);
+    		main.hideDialog();
+    	}
+    },
+    loginCallback: function(data) {
+		main.login = LoggedInAs(login_page.loggedInAsCallback);
+	},
+	
+	loginErrorCallback: function(data) {
+//		alert("errir");
+//		login_page.showLoginStatus(false);
+//		setTimeout(main.errorDialog, 5000);
+		main.errorDialog();
+	},
+	
+	clickLogOut: function() {
+		document.getElementById('login_username').value = "";
+		document.getElementById('login_password').value = "";
+		
+		UserStore.clear(NORMAL);
+		Logout(login_page.logoutCallback, login_page.ert);
+	},
+	
+	ert: function(data) 
+	{
+		alert("error");
+	},
+	
+	logoutCallback: function() {
+		console.log("logged out...");
+		main.login = {data: {"EMail" : "anonym@nve.no", "FirstName" : "Anonym", "ObserverID" : 105}};
+    	login_page.showLoginStatus(false);
+	},
+	
+	showLoginStatus: function(loggedIn){
+    	main.currentlyLoggedIn = loggedIn;
+    	if(loggedIn == true) {
+    		jQuery('#login').attr("style", 'background-image: url(img/loggedin.png)');
+    		$('loginLogoutButton').value = LOGOUT_BUTTON;
+    	} else {
+    		jQuery('#login').css("background-image", "url(img/loggedout.png)");
+    		jQuery('#login').attr("style", 'background-image: url(img/loggedout.png)');
+    		$('loginLogoutButton').value = LOGIN_BUTTON;
+    	}
+    },
 };
