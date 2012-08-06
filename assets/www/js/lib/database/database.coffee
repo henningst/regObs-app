@@ -3,13 +3,13 @@ STARTUP_PAGE = "regobs_startup_page"
 USERNAME = "regobs_username"
 
 PASSWORD = "regobs_password"
-NORMAL = "normal"
+
 
 DataAccess = {
 	storage : window.localStorage
 
 	save: (key, value) ->
-		console.log("saving: " + JSON.stringify(value));
+		console.log("saving: (" + key + ", " + JSON.stringify(value) + ")");
 		result = DataAccess.storage.setItem(key, JSON.stringify(value))
 
 	get: (key, generic) ->

@@ -1,3 +1,6 @@
+TEST_MODE = "test_mode"
+STAGE_MODE = "stage_mode"
+
 var geo = {
 	last_page_location : null,
 	requestPosition: function(callback, shouldHandlePosition){
@@ -153,7 +156,7 @@ var main = (function()
 				main.showWaitingDialogWithMessage(LOGGING_IN);
 				
 				var user = new User(username, password);
-				UserStore.save(NORMAL, user);
+				UserStore.save(main.currentMode(), user);
 				Login(username, password, login_page.loginCallback, login_page.loginErrorCallback);
 			}
 			else 
@@ -357,6 +360,7 @@ var main = (function()
         		main.inTestMode = false;
         		$('test_button').value = USE_TESTMODE_BUTTON;
         		jQuery('#header').removeClass('testMode');
+        		
         	}
         	else 
         	{
@@ -367,8 +371,14 @@ var main = (function()
         		jQuery('#header').addClass('testMode');
         	}
         	
-        	console.log("server url = "+ SERVER_URL);
-    		console.log("server login url = "+ SERVER_LOGIN_URL);
+        	login_page.relogin();
+        },
+        
+        currentMode : function(){
+        	if(main.inTestMode)
+        		return TEST_MODE;
+    		else
+    			return STAGE_MODE;
         },
         
         logData: function (data)
@@ -383,14 +393,8 @@ var main = (function()
 
             main.populateBoxes(true);
             
-            
-            var user = UserStore.get(NORMAL);
-			
-			if(user.isDefined()) {
-				Login(user.username, user.password, login_page.loginCallback);
-        	} else {
-        		login_page.showLoginStatus(false);	
-			}
+            login_page.showLoginStatus(false);
+            login_page.relogin();
 			
 			main.initialised = true;
 			geo.requestPosition(main.nothing, false);

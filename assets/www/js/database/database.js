@@ -1,4 +1,4 @@
-var DataAccess, NORMAL, PASSWORD, STARTUP_PAGE, USERNAME, UserStore;
+var DataAccess, PASSWORD, STARTUP_PAGE, USERNAME, UserStore;
 
 STARTUP_PAGE = "regobs_startup_page";
 
@@ -6,13 +6,11 @@ USERNAME = "regobs_username";
 
 PASSWORD = "regobs_password";
 
-NORMAL = "normal";
-
 DataAccess = {
   storage: window.localStorage,
   save: function(key, value) {
     var result;
-    console.log("saving: " + JSON.stringify(value));
+    console.log("saving: (" + key + ", " + JSON.stringify(value) + ")");
     return result = DataAccess.storage.setItem(key, JSON.stringify(value));
   },
   get: function(key, generic) {

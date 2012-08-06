@@ -1,21 +1,21 @@
-
+var NORMAL_MODE_MODE = "NORMAL_MODE"
 describe("UserStore", function(){
 	it("should save a user", function(){
 			var user = new User("bruker", "pass");
-			UserStore.save(NORMAL, user);
+			UserStore.save(NORMAL_MODE, user);
 			
-			var savedUser = UserStore.get(NORMAL);
+			var savedUser = UserStore.get(NORMAL_MODE);
 			
 			expect(savedUser.username).toEqual("bruker");
 			expect(savedUser.password).toEqual("pass");
 	});
 	
 	it("should clear a users login", function(){
-		UserStore.save(NORMAL, new User("en", "to"));
+		UserStore.save(NORMAL_MODE, new User("en", "to"));
 		
-		UserStore.clear(NORMAL);
+		UserStore.clear(NORMAL_MODE);
 		
-		var user = UserStore.get(NORMAL);
+		var user = UserStore.get(NORMAL_MODE);
 		
 		expect(user.username).toEqual("");
 	});
@@ -41,15 +41,15 @@ describe("UserStore", function(){
 	});
 	
 	it("should mark a cleared user/pass as undefined", function(){
-		UserStore.clear(NORMAL);	
-		var user = UserStore.get(NORMAL);
+		UserStore.clear(NORMAL_MODE);	
+		var user = UserStore.get(NORMAL_MODE);
 		
 		expect(user.isDefined()).toBe(false);
 	});
 	
 	it("should mark a defined user as defined", function(){
-		UserStore.save(NORMAL, new User("b", "p"));
-		var user = UserStore.get(NORMAL);
+		UserStore.save(NORMAL_MODE, new User("b", "p"));
+		var user = UserStore.get(NORMAL_MODE);
 		
 		expect(user.isDefined()).toBe(true)
 	});

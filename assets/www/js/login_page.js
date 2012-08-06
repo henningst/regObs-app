@@ -4,11 +4,14 @@ var login_page = {
 
 		$('header_middle_text').innerHTML = "Login";
 		
-		var user = UserStore.get(NORMAL);
+		var user = UserStore.get(main.currentMode());
 		console.log(user.username);
 		if(user.isDefined()){
 			$('login_username').value = user.username;
 			$('login_password').value = user.password;
+		}else{
+			$('login_username').value = "";
+			$('login_password').value = "";
 		}
 	},
 	loggedInAsCallback: function (data) {
@@ -35,7 +38,7 @@ var login_page = {
 		document.getElementById('login_username').value = "";
 		document.getElementById('login_password').value = "";
 		
-		UserStore.clear(NORMAL);
+		UserStore.clear(main.currentMode());
 		Logout(login_page.logoutCallback, login_page.ert);
 	},
 	
@@ -61,4 +64,14 @@ var login_page = {
     		$('loginLogoutButton').value = LOGIN_BUTTON;
     	}
     },
+    
+    relogin: function(){
+    	var user = UserStore.get(main.currentMode());
+    	
+		if(user.isDefined()) {
+			Login(user.username, user.password, login_page.loginCallback);
+    	} else {
+    		login_page.showLoginStatus(false);	
+		}
+    }
 };
