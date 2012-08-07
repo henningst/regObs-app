@@ -252,7 +252,7 @@ var main = (function()
 
 			main.slideToFavorite();
 			main.toogleFavorite();
-			main.gotoTest();
+			main.toogleTestMode();
 			
 			var wrapperHeight = wink.ux.window.height - 2* 45;
 			$('wrapper').style.height = wrapperHeight + "px";
@@ -353,6 +353,16 @@ var main = (function()
         
         gotoTest: function ()
         {
+        	main.toogleTestMode();
+        	
+        	var user = UserStore.get(main.currentMode());
+        	if(!user.isDefined()){
+        		main.showDialogWithMessage(ERROR_NO_LOGIN_CURRENT_MODE, "Login");
+        	}
+        	
+        },
+        
+        toogleTestMode: function(){
         	if(main.inTestMode)
         	{
         		SERVER_URL = STAGE;
@@ -372,12 +382,6 @@ var main = (function()
         	}
         	
         	login_page.relogin();
-        	
-        	var user = UserStore.get(main.currentMode());
-        	if(!user.isDefined()){
-        		main.showDialogWithMessage(ERROR_NO_LOGIN_CURRENT_MODE, "Login");
-        	}
-        	
         },
         
         currentMode : function(){
