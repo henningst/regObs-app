@@ -372,6 +372,12 @@ var main = (function()
         	}
         	
         	login_page.relogin();
+        	
+        	var user = UserStore.get(main.currentMode());
+        	if(!user.isDefined()){
+        		main.showDialogWithMessage("Du er ikke logget inn i dette modus", "Login");
+        	}
+        	
         },
         
         currentMode : function(){
