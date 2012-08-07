@@ -17,7 +17,7 @@ var login_page = {
 	loggedInAsCallback: function (data) {
     	if(data.EMail == 'anonym@nve.no') {
     		login_page.showLoginStatus(false);
-    		main.showDialogWithMessage("Innlogging feilet, sjekk bruker navn og passord", "Login");
+    		main.showDialogWithMessage(ERROR_WRONG_LOGIN, "Login");
     	} else {
     		login_page.showLoginStatus(true);
     		main.hideDialog();

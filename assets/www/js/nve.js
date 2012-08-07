@@ -60,7 +60,7 @@ var geo = {
 
 	noGoodAccuracyFound: function() { 
 		main.hideDialog();
-		main.showDialogWithMessage("Det er ikke mulig &aring; finne en posisjon. Sjekk instillinger, forbedre GPS motakk og pr&oslash;v igjen", "Posisjon utilgjennelig");
+		main.showDialogWithMessage(ERROR_NO_POSITION, "Posisjon utilgjennelig");
 	}
 };
 
@@ -375,7 +375,7 @@ var main = (function()
         	
         	var user = UserStore.get(main.currentMode());
         	if(!user.isDefined()){
-        		main.showDialogWithMessage("Du er ikke logget inn i dette modus", "Login");
+        		main.showDialogWithMessage(ERROR_NO_LOGIN_CURRENT_MODE, "Login");
         	}
         	
         },
@@ -395,7 +395,7 @@ var main = (function()
         initPhonegap: function()
         {
         	document.addEventListener("backbutton", main.backKeyDown, true);
-			window.plugins.googleAnalyticsPlugin.start("UA-32394009-1");
+			window.plugins.googleAnalyticsPlugin.start(GA_TRACKER_CODE);
 
             main.populateBoxes(true);
             
@@ -449,10 +449,9 @@ var main = (function()
         	main.hideDialog();
         	
         	main.showDialog( "" +
-        			"<div> <h3>Registrering fullført</h3>" +
-	        			"<p> Takk for observasjon </p>" +
+        			"<div>"  + OBSERVATION_REGISTERED + 
 	        			"<button type='button' " +
-	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.clearRegID();main.hideDialog();'>" +OK + 
+	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.clearRegID();main.hideDialog();'>" + OK + 
 	        			"</button>" +
 	        			"<button type='button' " +
 	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.sendEmail();'>" +SEND_EMAIL + 
@@ -487,7 +486,7 @@ var main = (function()
         		if(main.dialogShowing && dateStarted === main.dialogStarted)
     			{
         			main.hideDialog();
-        			main.showDialogWithMessage("Vi kunne dessverre ikke avslutte oprasjonen i tide. Prøv igjen.", "Tidsavbrudd");
+        			main.showDialogWithMessage(ERROR_TIMEOUT, "Tidsavbrudd");
     			}
         	}, 15000);
         },

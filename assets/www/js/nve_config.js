@@ -18,6 +18,7 @@ TEST_LOGIN = "http://h-web01.nve.no/stage_RegObsServices/Authentication_JSON_App
 STAGE_LOGIN = "http://api.nve.no/hydrology/regobs/v0.8.1/Authentication_JSON_AppService.axd/";
 SERVER_LOGIN_URL = TEST_LOGIN;
 
+GA_TRACKER_CODE = "UA-32394009-1";
 
 /*
  * Platform
