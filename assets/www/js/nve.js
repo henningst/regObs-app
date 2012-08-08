@@ -676,7 +676,7 @@ var main = (function()
         		case 'snow_see_obs':
         			if(status == 'start') {
         				if( $('snow_see_obs').innerHTML == "")
-        					$('snow_see_obs').innerHTML = '<iframe class="scaled-frame" src="http://regobs.varsom.no/Avalanche"></iframe>';
+        					$('snow_see_obs').innerHTML = '<iframe  src="http://regobs.varsom.no/Avalanche"></iframe></div>';
 //        				snow_see_obs.init();
         			}
         			break;
@@ -685,7 +685,7 @@ var main = (function()
         			if(status == 'start') 
     				{
         				if ( $('snow_see_varsel').innerHTML == "" )
-        					$('snow_see_varsel').innerHTML = '<iframe class="scaled-frame" src="http://regobs.varsom.no/AvalancheWarning/Published"></iframe>';
+        					$('snow_see_varsel').innerHTML = '<iframe src="http://regobs.varsom.no/AvalancheWarning/Published"></iframe>';
     				}
         			break;
         			
