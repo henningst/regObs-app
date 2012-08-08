@@ -32,6 +32,8 @@
 	</array>
 	<key>Plugins</key>
 	<dict>
+		<key>Device</key>
+		<string>CDVDevice</string>
 		<key>Compass</key>
 		<string>CDVLocation</string>
 		<key>Accelerometer</key>

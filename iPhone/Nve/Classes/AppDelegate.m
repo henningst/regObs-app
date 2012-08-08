@@ -32,8 +32,8 @@
     #import <Cordova/CDVPlugin.h>
     #import <Cordova/CDVURLProtocol.h>
 #else
-    #import "CDVPlugin.h"
-    #import "CDVURLProtocol.h"
+    #import <Cordova/CDVPlugin.h>
+    #import <Cordova/CDVURLProtocol.h>
 #endif
 
 

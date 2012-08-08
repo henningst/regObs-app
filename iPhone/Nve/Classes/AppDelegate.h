@@ -30,7 +30,7 @@
 #ifdef CORDOVA_FRAMEWORK
     #import <Cordova/CDVViewController.h>
 #else
-    #import "CDVViewController.h"
+    #import <Cordova/CDVViewController.h>
 #endif
 
 
