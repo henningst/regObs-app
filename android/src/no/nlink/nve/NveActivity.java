@@ -1,7 +1,6 @@
 package no.nlink.nve;
 
 import org.apache.cordova.DroidGap;
-
 import android.os.Bundle;
 
 public class NveActivity extends DroidGap {

@@ -399,7 +399,7 @@ var main = (function()
         initPhonegap: function()
         {
         	document.addEventListener("backbutton", main.backKeyDown, true);
-			window.plugins.googleAnalyticsPlugin.start(GA_TRACKER_CODE);
+			window.analytics.start(GA_TRACKER_CODE);
 
             main.populateBoxes(true);
             
@@ -632,11 +632,12 @@ var main = (function()
     			}
         	}
         	
+        	
         	main.toogleFavorite();
         	
         	if(status == 'start' && main.initialised) {
         		//google analytics
-    			window.plugins.googleAnalyticsPlugin.trackPageView(params.id);
+    			window.analytics.trackPageView(params.id);
         	}
         	
         	switch(params.id) {
