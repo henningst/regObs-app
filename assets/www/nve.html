@@ -31,8 +31,8 @@
 		}
 	</script>
 	<script type="text/javascript"> 
-		IncludeJavaScript("js/" +device.platform +"-cordova-1.7.0.js");
-		IncludeJavaScript("js/" +device.platform +"-GoogleAnalyticsPlugin.js");
+		IncludeJavaScript("js/" +device.platform +"-cordova-2.0.0.js");
+		IncludeJavaScript("js/" +device.platform +"-analytics.js");
         //IncludeJavaScript("libs/" +device.platform +"-LocalNotification.js");
 	</script>
 	<script type="text/javascript" src="js/connection/validation.js"></script>
@@ -49,6 +49,7 @@
 	<script type="text/javascript" src="js/connection/store.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript" src="js/settings_page.js"></script>
+	<script type="text/javascript" src="js/login_page.js"></script>
 	
 	<script type="text/javascript" src="js/snow/snow.js"></script>
 	<script type="text/javascript" src="js/snow/snow_picture.js"></script>
@@ -168,7 +169,7 @@
 		
 		<div id="settings">
 			<div class="standartTextSize c_align_central">
-	            <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Bruk testmode' onclick="main.clickLogOut();main.gotoTest();" />
+	            <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Bruk testmode' onclick="main.gotoTest();" />
 	            <br>
 		    </div>
 		</div> 
@@ -185,7 +186,7 @@
 		
 		<div id="information">
 		 <div>
-		 	 <div>Versjon: 0.10.4</div>
+		 	 <div>Versjon: 0.11.1</div>
 		 	 <div id="information_content">
 			   <p>
 			     Her kommer det tekst om regobs og appen.
@@ -273,10 +274,11 @@
 		</div>
 		
 		<div id="snow_picture" class="c_center_page">
+			<a class="learning_icon right"  onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
 			<a onClick="snow_picture.make();" class="hidden button-image">
 				<img id="snow_picture_img" alt="Trykk her for å ta bilde" class="c_image container-image" src=""/>
 			</a>
-			<div class="no-image" onClick="snow_picture.make();">Trykk her for å ta bilde</div>
+			<div class="no-image" onClick="snow_picture.make();">Trykk her for å ta bilde </div>
 			
 	 		
 	 		<select id="snow_picture_spec_list" class="bigWidth w_select c_selectBox">
@@ -366,7 +368,7 @@
 		</div>
 		
 		<div id="ice_picture" class="c_center_page">
-		
+		  <a class="learning_icon right"  onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
 			<a onClick="ice_picture.make();" class="hidden button-image">
 				<img id="ice_picture_img" alt="trykk her for å ta bilde" class="c_image container-image" src=""/>
 			</a>
@@ -461,7 +463,7 @@
 		</div>
 		
 		<div id="water_picture" class="c_center_page">
-		
+			<a class="learning_icon right"  onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
 			<a onClick="water_picture.make();" class="hidden button-image">
 				<img id="water_picture_img" alt="trykk her for å ta bilde" class="c_image container-image" src=""/>
 			</a>
@@ -557,7 +559,7 @@
 		</div>
 		
 		<div id="dirt_picture" class="c_center_page">
-		
+			<a class="learning_icon right"  onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
 			<a onClick="dirt_picture.make();" class="hidden button-image">
 				<img id="dirt_picture_img" alt="trykk her for å ta bilde" class="c_image container-image" src=""/>
 			</a>

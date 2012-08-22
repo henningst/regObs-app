@@ -1,3 +1,6 @@
+TEST_MODE = "test_mode"
+STAGE_MODE = "stage_mode"
+
 var geo = {
 	last_page_location : null,
 	requestPosition: function(callback, shouldHandlePosition){
@@ -5,8 +8,8 @@ var geo = {
 		
 		if(shouldHandlePosition == undefined)
 			shouldHandlePosition = false;
-		
-		if(device.platform == "Android")
+		console.log("requestiong position for " + device.platform)
+		if(device.platform == "android")
 		{
 			PhoneGap.exec(function(){console.log("geo plugin ok");}, function(){ geo.noGoodAccuracyFound(); }, 
 				'NativeLocation', callback, [shouldHandlePosition]);
@@ -57,7 +60,7 @@ var geo = {
 
 	noGoodAccuracyFound: function() { 
 		main.hideDialog();
-		main.showDialogWithMessage("Det er ikke mulig &aring; finne en posisjon. Sjekk instillinger, forbedre GPS motakk og pr&oslash;v igjen", "Posisjon utilgjennelig");
+		main.showDialogWithMessage(ERROR_NO_POSITION, "Posisjon utilgjennelig");
 	}
 };
 
@@ -119,6 +122,8 @@ var main = (function()
     	
     	panels: null,
     	
+    	currentlyLoggedIn : false,
+    	
     	lastRegID: [],
     	
     	addLastRegID: function(regId){
@@ -142,7 +147,7 @@ var main = (function()
     	initialised: false,
     	
 		clickLogin: function() {
-			if(main.login.data.EMail == 'anonym@nve.no')
+			if(main.currentlyLoggedIn == false)
 			{
 				//login
 				var username = document.getElementById('login_username').value;
@@ -150,14 +155,14 @@ var main = (function()
 				
 				main.showWaitingDialogWithMessage(LOGGING_IN);
 				
-				DataAccess.save(USERNAME, username);
-				DataAccess.save(PASSWORD, password);
-				Login(username, password, main.loginCallback, main.loginErrorCallback);
+				var user = new User(username, password);
+				UserStore.save(main.currentMode(), user);
+				Login(username, password, login_page.loginCallback, login_page.loginErrorCallback);
 			}
 			else 
 			{
 				//logout
-				main.clickLogOut();
+				login_page.clickLogOut();
 			}
 		},
 		
@@ -165,36 +170,7 @@ var main = (function()
 			return SERVER_URL;
 		},
 		
-		loginCallback: function(data) {
-			main.login = LoggedInAs(main.loggedInAsCallback);
-		},
 		
-		loginErrorCallback: function(data) {
-//			alert("errir");
-//    		main.showLoginStatus(false);
-//    		setTimeout(main.errorDialog, 5000);
-			main.errorDialog();
-		},
-		
-		clickLogOut: function() {
-			document.getElementById('login_username').value = "";
-			document.getElementById('login_password').value = "";
-			
-			DataAccess.save(USERNAME, "");
-			DataAccess.save(PASSWORD, "");
-			Logout(main.logoutCallback, main.ert);
-		},
-		
-		ert: function(data) 
-		{
-			alert("error");
-		},
-		
-		logoutCallback: function() {
-			main.login = {data: {"EMail" : "anonym@nve.no", "FirstName" : "Anonym", "ObserverID" : 105}};
-        	main.showLoginStatus(false);
-        	main.login = LoggedInAs(main.loggedInAsCallback);
-		},
 		
 		starred: function() {
 			if(DataAccess.get(STARTUP_PAGE) == main.actualPage) {
@@ -276,7 +252,7 @@ var main = (function()
 
 			main.slideToFavorite();
 			main.toogleFavorite();
-			main.gotoTest();
+			main.toogleTestMode();
 			
 			var wrapperHeight = wink.ux.window.height - 2* 45;
 			$('wrapper').style.height = wrapperHeight + "px";
@@ -377,6 +353,16 @@ var main = (function()
         
         gotoTest: function ()
         {
+        	main.toogleTestMode();
+        	
+        	var user = UserStore.get(main.currentMode());
+        	if(!user.isDefined()){
+        		main.showDialogWithMessage(ERROR_NO_LOGIN_CURRENT_MODE, "Login");
+        	}
+        	
+        },
+        
+        toogleTestMode: function(){
         	if(main.inTestMode)
         	{
         		SERVER_URL = STAGE;
@@ -384,6 +370,7 @@ var main = (function()
         		main.inTestMode = false;
         		$('test_button').value = USE_TESTMODE_BUTTON;
         		jQuery('#header').removeClass('testMode');
+        		
         	}
         	else 
         	{
@@ -394,8 +381,14 @@ var main = (function()
         		jQuery('#header').addClass('testMode');
         	}
         	
-        	console.log("server url = "+ SERVER_URL);
-    		console.log("server login url = "+ SERVER_LOGIN_URL);
+        	login_page.relogin();
+        },
+        
+        currentMode : function(){
+        	if(main.inTestMode)
+        		return TEST_MODE;
+    		else
+    			return STAGE_MODE;
         },
         
         logData: function (data)
@@ -406,18 +399,12 @@ var main = (function()
         initPhonegap: function()
         {
         	document.addEventListener("backbutton", main.backKeyDown, true);
-			window.plugins.googleAnalyticsPlugin.start("UA-32394009-1");
+			window.analytics.start(GA_TRACKER_CODE);
 
             main.populateBoxes(true);
             
-			var username = DataAccess.get(USERNAME);
-			var password = DataAccess.get(PASSWORD);
-			
-			if(username != undefined && password != undefined) {
-				Login(username, password, main.loginCallback);
-        	} else {
-        		main.showLoginStatus(false);	
-			}
+            login_page.showLoginStatus(false);
+            login_page.relogin();
 			
 			main.initialised = true;
 			geo.requestPosition(main.nothing, false);
@@ -473,10 +460,9 @@ var main = (function()
         	main.hideDialog();
         	
         	main.showDialog( "" +
-        			"<div> <h3>Registrering fullført</h3>" +
-	        			"<p> Takk for observasjon </p>" +
+        			"<div>"  + OBSERVATION_REGISTERED + 
 	        			"<button type='button' " +
-	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.clearRegID();main.hideDialog();'>" +OK + 
+	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.clearRegID();main.hideDialog();'>" + OK + 
 	        			"</button>" +
 	        			"<button type='button' " +
 	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.sendEmail();'>" +SEND_EMAIL + 
@@ -511,7 +497,7 @@ var main = (function()
         		if(main.dialogShowing && dateStarted === main.dialogStarted)
     			{
         			main.hideDialog();
-        			main.showDialogWithMessage("Vi kunne dessverre ikke avslutte oprasjonen i tide. Prøv igjen.", "Tidsavbrudd");
+        			main.showDialogWithMessage(ERROR_TIMEOUT, "Tidsavbrudd");
     			}
         	}, 15000);
         },
@@ -629,25 +615,9 @@ var main = (function()
 			ice_hendelse.fill_radius(data);
         },
         
-        loggedInAsCallback: function (data) {
-        	if(data.EMail != 'anonym@nve.no') {
-        		main.showLoginStatus(true);
-        	} else {
-        		main.showLoginStatus(false);
-        	}
-        },
         
-        showLoginStatus: function(loggedIn){
-
-        	if(loggedIn == true) {
-        		jQuery('#login').attr("style", 'background-image: url(img/loggedin.png)');
-        		$('loginLogoutButton').value = LOGOUT_BUTTON;
-        	} else {
-        		jQuery('#login').attr("style", 'background-image: url(img/loggedout.png)');
-        		$('loginLogoutButton').value = LOGIN_BUTTON;
-        	}
-        	main.hideDialog();
-        },
+        
+        
         
         hideNve: function(){
         	jQuery("#regobs-info").hide();
@@ -669,11 +639,12 @@ var main = (function()
     			}
         	}
         	
+        	
         	main.toogleFavorite();
         	
         	if(status == 'start' && main.initialised) {
         		//google analytics
-    			window.plugins.googleAnalyticsPlugin.trackPageView(params.id);
+    			window.analytics.trackPageView(params.id);
         	}
         	
         	switch(params.id) {
@@ -697,7 +668,13 @@ var main = (function()
     				$('star').style.display = 'none';
         			
         			break;
+        		
+        		case 'login_page':
+        			login_page.init();
+        			$("star").style.display= 'none';
         			
+    				break;
+        		
         		case 'snow':
     				snow_page.init();
     				
@@ -707,7 +684,7 @@ var main = (function()
         		case 'snow_see_obs':
         			if(status == 'start') {
         				if( $('snow_see_obs').innerHTML == "")
-        					$('snow_see_obs').innerHTML = '<iframe src="http://regobs.varsom.no/Avalanche"></iframe>';
+        					$('snow_see_obs').innerHTML = '<iframe  src="http://regobs.varsom.no/Avalanche"></iframe></div>';
 //        				snow_see_obs.init();
         			}
         			break;

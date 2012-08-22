@@ -1,16 +1,77 @@
-var settings_page = {
+var login_page = {
 		
 	init: function() {
 
 		$('header_middle_text').innerHTML = "Login";
 		
-		var username = DataAccess.get(USERNAME);
-		var password = DataAccess.get(PASSWORD);
+		var user = UserStore.get(main.currentMode());
+		console.log(user.username);
+		if(user.isDefined()){
+			$('login_username').value = user.username;
+			$('login_password').value = user.password;
+		}else{
+			$('login_username').value = "";
+			$('login_password').value = "";
+		}
+	},
+	loggedInAsCallback: function (data) {
+    	if(data.EMail == 'anonym@nve.no') {
+    		login_page.showLoginStatus(false);
+    		main.showDialogWithMessage(ERROR_WRONG_LOGIN, "Login");
+    	} else {
+    		login_page.showLoginStatus(true);
+    		main.hideDialog();
+    	}
+    },
+    loginCallback: function(data) {
+		main.login = LoggedInAs(login_page.loggedInAsCallback);
+	},
+	
+	loginErrorCallback: function(data) {
+//		alert("errir");
+//		login_page.showLoginStatus(false);
+//		setTimeout(main.errorDialog, 5000);
+		main.errorDialog();
+	},
+	
+	clickLogOut: function() {
+		document.getElementById('login_username').value = "";
+		document.getElementById('login_password').value = "";
 		
-		if(username != undefined)
-			$('login_username').value = username;
-		
-		if(password != undefined)
-			$('login_password').value = password;
-	}	
-}
+		UserStore.clear(main.currentMode());
+		Logout(login_page.logoutCallback, login_page.ert);
+	},
+	
+	ert: function(data) 
+	{
+		alert("error");
+	},
+	
+	logoutCallback: function() {
+		console.log("logged out...");
+		main.login = {data: {"EMail" : "anonym@nve.no", "FirstName" : "Anonym", "ObserverID" : 105}};
+    	login_page.showLoginStatus(false);
+	},
+	
+	showLoginStatus: function(loggedIn){
+    	main.currentlyLoggedIn = loggedIn;
+    	if(loggedIn == true) {
+    		jQuery('#login').attr("style", 'background-image: url(img/loggedin.png)');
+    		$('loginLogoutButton').value = LOGOUT_BUTTON;
+    	} else {
+    		jQuery('#login').css("background-image", "url(img/loggedout.png)");
+    		jQuery('#login').attr("style", 'background-image: url(img/loggedout.png)');
+    		$('loginLogoutButton').value = LOGIN_BUTTON;
+    	}
+    },
+    
+    relogin: function(){
+    	var user = UserStore.get(main.currentMode());
+    	
+		if(user.isDefined()) {
+			Login(user.username, user.password, login_page.loginCallback);
+    	} else {
+    		login_page.showLoginStatus(false);	
+		}
+    }
+};

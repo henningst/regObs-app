@@ -1,4 +1,4 @@
-var ActivityInfluencedKD, ActivityInfluencedW, AllRegistrationsV, AreaInformation, AreaUsageKD, AvalancheActivityObs, AvalancheActivityObsV, AvalancheDangerKD, AvalancheDangerObs, AvalancheDangerObsV, AvalancheEvaluation, AvalancheEvaluationV, AvalancheKD, AvalancheObs, AvalancheProblemKD, AvalanchePublisherKD, AvalancheTriggerKD, AvalancheWarning, AvalancheWarningInternalCommentsV, AvalancheWarningNoV, AvalancheWarningObsLocation, AvalancheWarningPublishedSummaryV, AvalancheWarningSummaryV, AvalancheWarningV, CompetenceLevelKD, CompetenceLevelW, ComprTestFractureKD, CompressionTest, CompressionTestKD, County, CriticalLayerKD, DamageExtentKD, DangerObs, DangerSignKD, DestructiveSizeKD, EstimatedNumKD, ForecastAccurateKD, ForecastRegionKD, ForecastRegionW, GeoHazardKD, IceLayerKD, IceThickness, IceThicknessLayer, Incident, IncidentNoV, IncidentURLs, IncidentV, Language, ObsLocation, ObsLocationV, Observer, ObserverGroup, ObserverGroupMember, ObserverGroupMemberV, ObserverGroupObsLocationV, ObserverHazardsComp, ObserverHazardsCompW, ObserverLocationV, Picture, PictureV, PositionDetails, PrecipitationKD, PropagationKD, Registration, RegistrationKD, Result, SendEmail, SnowCoverObs, SnowCoverObsNoV, SnowCoverObsV, SnowDriftKD, SnowSurfaceKD, SnowSurfaceObservation, SnowSurfaceObservationV, StabilityEvalKD, SurfaceRoughnessKD, SurfaceWaterContentKD, TerrainStartZoneKD, UTMSourceKD, UsageFlagKD, WeatherObservation, WeatherObservationV;
+var ActivityInfluencedKD, ActivityInfluencedW, AllRegistrationsV, AreaInformation, AreaUsageKD, AvalancheActivityObs, AvalancheActivityObsV, AvalancheDangerKD, AvalancheDangerObs, AvalancheDangerObsV, AvalancheEvaluation, AvalancheEvaluationV, AvalancheKD, AvalancheObs, AvalancheProblemKD, AvalanchePublisherKD, AvalancheTriggerKD, AvalancheWarning, AvalancheWarningInternalCommentsV, AvalancheWarningNoV, AvalancheWarningObsLocation, AvalancheWarningPublishedSummaryV, AvalancheWarningSummaryV, AvalancheWarningV, CompetenceLevelKD, CompetenceLevelW, ComprTestFractureKD, CompressionTest, CompressionTestKD, County, CriticalLayerKD, DamageExtentKD, DangerObs, DangerSignKD, DestructiveSizeKD, EstimatedNumKD, ForecastAccurateKD, ForecastRegionKD, ForecastRegionW, GeoHazardKD, IceLayerKD, IceThickness, IceThicknessLayer, Incident, IncidentNoV, IncidentURLs, IncidentV, Language, ObsLocation, ObsLocationV, Observer, ObserverGroup, ObserverGroupMember, ObserverGroupMemberV, ObserverGroupObsLocationV, ObserverHazardsComp, ObserverHazardsCompW, ObserverLocationV, Picture, PictureV, PositionDetails, PrecipitationKD, PropagationKD, Registration, RegistrationKD, Result, SendEmail, SnowCoverObs, SnowCoverObsNoV, SnowCoverObsV, SnowDriftKD, SnowSurfaceKD, SnowSurfaceObservation, SnowSurfaceObservationV, StabilityEvalKD, SurfaceRoughnessKD, SurfaceWaterContentKD, TerrainStartZoneKD, UTMSourceKD, UsageFlagKD, User, WeatherObservation, WeatherObservationV;
 
 Result = (function() {
 
@@ -12,6 +12,29 @@ Result = (function() {
   };
 
   return Result;
+
+})();
+
+User = (function() {
+
+  function User(username, password) {
+    this.username = username;
+    this.password = password;
+  }
+
+  User.prototype.isDefined = function() {
+    if (this.username !== null && this.password !== null) {
+      if (this.username.length !== 0 || this.password.length !== 0) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  };
+
+  return User;
 
 })();
 

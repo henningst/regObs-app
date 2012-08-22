@@ -35,6 +35,6 @@
     <plugin name="Capture" value="org.apache.cordova.Capture"/>
     <plugin name="Battery" value="org.apache.cordova.BatteryListener"/>
     <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
-    <plugin name="GoogleAnalyticsTracker" value="com.phonegap.plugins.analytics.GoogleAnalyticsTracker"/>
+    <plugin name="Analytics" value="com.phonegap.plugins.analytics.GoogleAnalyticsTracker"/>
     <plugin name="NativeLocation" value="no.nlink.nve.RegObsGeoLocationPlugin"/>
 </plugins>

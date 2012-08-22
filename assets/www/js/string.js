@@ -34,6 +34,10 @@ OK = "Ok";
 
 SEND_EMAIL = "Send epost";
 
+OBSERVATION_REGISTERED = "<h3>Registrering fullført</h3><p> Takk for observasjon </p>";
+
+
+
 /*
  * 
  */
@@ -183,4 +187,23 @@ ABOUT_REGOBS =
 
 
 HENDELSE = "Ulykke / Hendelse";
+	+ "<div>regObs er en del av verktøyene NVE har laget gjennom arbeidet knyttet til varsling og beredskap. regObs er en del av Varsom familien og varsom.no.</div>"
+	+ "<div>I regObs legger vi opp til at du kan dele informasjon med oss slik at våre produkter til samfunnet blir bedre. Vi har også lagt opp til at du skal kunne dele med dine egne venner, kollegaer, gjester, kunder... og at det er et verktøy som kan brukes av flere, for egne formål.</div>"
+	+ "<div>Vi hører gjerne om dine bruker opplevelser på godt og vondt og har <a href=\"https://docs.google.com/spreadsheet/embeddedform?formkey=dE5HSDcxMjV4bVAyLTVPdGN2ZEViSEE6MQ\" target='_blank'>et skjema</a> for nettopp det.</div>"
+	+ "<div>Lykke til!</div>";
+
+
+/*
+ * Popup på innloggings siden ved feil brukernavn eller passord.
+ */
+ERROR_WRONG_LOGIN = "Innlogging feilet, sjekk bruker navn og passord";
+
+/*
+ * Popup hvis vi ikke finner god nok posisjon. 
+ */
+ERROR_NO_POSITION = "Det er ikke mulig &aring; finne en posisjon. Sjekk instillinger, forbedre GPS motakk og pr&oslash;v igjen";
+
+ERROR_NO_LOGIN_CURRENT_MODE = "Du er ikke logget inn i dette modus";
+
+ERROR_TIMEOUT = "Vi kunne dessverre ikke avslutte oprasjonen i tide. Prøv igjen.";
 

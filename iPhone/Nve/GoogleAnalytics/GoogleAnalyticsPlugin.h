@@ -12,7 +12,7 @@
 #ifdef CORDOVA_FRAMEWORK
 #import <Cordova/CDVPlugin.h>
 #else
-#import "CDVPlugin.h"
+#import <Cordova/CDVPlugin.h>
 #endif
 #import "GANTracker.h"
 

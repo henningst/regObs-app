@@ -7,6 +7,20 @@ class Result
 	isOk: () ->
 		@ok
 		
+		
+class User
+	constructor: (@username, @password)->
+	
+	isDefined: ->
+		if (@username != null and @password != null)  
+			if(@username.length != 0 or @password.length != 0)
+				true
+			else
+				false
+		else
+			false
+
+		
 class SendEmail
 	url : "" 
 	constructor: (@RegID ) ->

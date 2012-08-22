@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>UIWebViewBounce</key>
-	<true/>
+	<false/>
 	<key>TopActivityIndicator</key>
 	<string>gray</string>
 	<key>EnableLocation</key>
-	<false/>
+	<true/>
 	<key>EnableViewportScale</key>
 	<false/>
 	<key>AutoHideSplashScreen</key>
@@ -28,9 +28,12 @@
 		<string>gis.nve.no</string>
 		<string>api.nve.no*</string>
 		<string>localhost</string>
+		<string>docs.google.com*</string>
 	</array>
 	<key>Plugins</key>
 	<dict>
+		<key>Device</key>
+		<string>CDVDevice</string>
 		<key>Compass</key>
 		<string>CDVLocation</string>
 		<key>Accelerometer</key>
