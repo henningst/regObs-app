@@ -8,8 +8,8 @@ var geo = {
 		
 		if(shouldHandlePosition == undefined)
 			shouldHandlePosition = false;
-		
-		if(device.platform == "Android")
+		console.log("requestiong position for " + device.platform)
+		if(device.platform == "android")
 		{
 			PhoneGap.exec(function(){console.log("geo plugin ok");}, function(){ geo.noGoodAccuracyFound(); }, 
 				'NativeLocation', callback, [shouldHandlePosition]);

@@ -44,13 +44,17 @@ public class RegObsGeoLocationPlugin extends Plugin {
       Thread runner = new Thread(){
         public void run(){
           Looper.prepare();
+          Log.d("GeoPlugin", "Register ....");
           manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 2, locationListener);
           manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 2, locationListener);
           Log.d("GeoPlugin", "Registered");
         }
       };
-      
       runner.start();
+      }catch(Exception e){
+        Log.e("GeoPlugin","Register location listeneres", e);
+      }
+    try{
       
       Location location = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
       Log.d("GeoPlugin", "1. try");
@@ -81,6 +85,7 @@ public class RegObsGeoLocationPlugin extends Plugin {
       if(!sendt){  
         noGoodAccuracyIsFound();
       }
+      
       
       if(locationListener != null)
         manager.removeUpdates(locationListener);
