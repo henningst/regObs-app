@@ -1,4 +1,4 @@
-class StoreWithDangerObs extends AbstractStore
+class PackageWithDangerObs extends AbstractPackage
 
 	superConstructor: () ->
 		@absConstructor()

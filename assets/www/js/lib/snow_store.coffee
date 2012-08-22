@@ -1,4 +1,4 @@
-class SnowStore extends AbstractStore
+class SnowStore extends AbstractPackage
 	
 	constructor: () ->
 		@absConstructor()

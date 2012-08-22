@@ -1,4 +1,4 @@
-class AbstractStore
+class AbstractPackage
 	
 	absConstructor: () ->
 		@m_dangerObs = []

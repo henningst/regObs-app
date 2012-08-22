@@ -1,4 +1,4 @@
-class IceStore extends StoreWithDangerObs
+class IceStore extends PackageWithDangerObs
 
 	constructor: () ->
 		@superConstructor()

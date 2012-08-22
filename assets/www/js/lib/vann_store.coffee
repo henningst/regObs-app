@@ -1,4 +1,4 @@
-class WaterStore extends StoreWithDangerObs
+class WaterStore extends PackageWithDangerObs
 
 	constructor: () ->
 		@superConstructor()

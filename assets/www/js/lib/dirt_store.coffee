@@ -1,4 +1,4 @@
-class DirtStore extends StoreWithDangerObs
+class DirtStore extends PackageWithDangerObs
 
 	constructor: () ->
 		@superConstructor()
