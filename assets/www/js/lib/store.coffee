@@ -25,10 +25,18 @@ class NveStore
 		if @m_snowPackage and not IsEmpty(@m_snowPackage)
 		  @m_snowPackage.freezed = true
 		  @packageCollection.add(@m_snowPackage);
+		  
+    console.log("antall pakker: " + @packageCollection.size())
 			
-		@packageCollection.forall (package) -> package.send()
-		
-		
+		@packageCollection.forall (package) -> 
+		  package.send()
+		    
+      package.picturePage.afterSendRegistration()
+      package.hendelsePage.afterSendRegistration()
+      package.page.afterSendRegistration()
+      
+      @packageCollection.remove(package)
+      
 		callback() if callback
 
 	getDirt: () ->

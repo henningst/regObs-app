@@ -30,6 +30,7 @@ NveStore = (function() {
     if (this.m_snowPackage && !IsEmpty(this.m_snowPackage)) {
       this.m_snowPackage.freezed = true;
       this.packageCollection.add(this.m_snowPackage);
+      console.log("antall pakker: " + this.packageCollection.size());
     }
     this.packageCollection.forall(function(package) {
       return package.send();

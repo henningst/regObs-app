@@ -107,10 +107,7 @@ class AbstractPackage
 			@m_incident.RegID = data.RegID
 			SendObjectToServer(@m_incident)
 			@m_incident = null
-	    
-		@picturePage.afterSendRegistration()
-		@hendelsePage.afterSendRegistration()
-		
+	  
 		
 		main.addLastRegID(data.RegID)
 		DataAccess.save(@name, this)
@@ -118,7 +115,6 @@ class AbstractPackage
 		if not force
 			@onSend(@page, false)
 		else
-			@page.afterSendRegistration()
 			main.showFinishedUploadMessage()	
 			
 	
@@ -139,10 +135,6 @@ class AbstractPackage
 				
 
 		@m_pictures.length = 0
-		
-		@picturePage.afterSendRegistration()
-		@hendelsePage.afterSendRegistration()
-		@page.afterSendRegistration()
 		
 		main.addLastRegID(data.RegID)
 		DataAccess.save(@name, this)
@@ -229,3 +221,5 @@ class AbstractPackage
 			(picture for picture in @m_pictures when picture.RegistrationTID not in [21, 22, 23, 25, 26, 50, 51, 61, 71])
 		else
 			(picture for picture in @m_pictures when picture.RegistrationTID in [21, 22, 23, 25, 26, 50, 51, 61, 71])
+			
+
