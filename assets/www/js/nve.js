@@ -108,6 +108,7 @@ var omerade = {
 
 var main = (function()
 {
+	
     var main =
     {	
     	actualPage: 0,

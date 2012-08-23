@@ -9,6 +9,7 @@ class AbstractPackage
 		@komnr = 0
 		@omrade_id = 0
 		@regDate = null
+		@freezed = false
 
 	onError: (data) ->
 		main.errorDialog()
@@ -63,7 +64,7 @@ class AbstractPackage
 	getPictures: () ->
 		@m_pictures
 		
-	send: () ->
+	send: () =>
 		@onSend(@page, true)
 		
 	afterLocation: (data, area, force) ->
@@ -84,7 +85,7 @@ class AbstractPackage
 				obs.RegID = data.RegID
 				
 				
-				if n is 'SnowStore'
+				if n is 'SnowPackage'
 					obs.AvalancheDangerObsID = x++
 				else
 					obs.DangerObsID = x++
@@ -106,7 +107,7 @@ class AbstractPackage
 			@m_incident.RegID = data.RegID
 			SendObjectToServer(@m_incident)
 			@m_incident = null
-
+	    
 		@picturePage.afterSendRegistration()
 		@hendelsePage.afterSendRegistration()
 		

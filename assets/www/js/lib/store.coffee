@@ -5,6 +5,8 @@ class NveStore
 		@m_snowPackage = null
 		@m_dirtPackage = null
 		@m_icePackage = null
+		
+		@packageCollection = new PackageCollection()
 
 	getSnow: () ->
 		if @m_snowPackage
@@ -21,7 +23,11 @@ class NveStore
 			
 	sendSnow: (callback) ->
 		if @m_snowPackage and not IsEmpty(@m_snowPackage)
-			@m_snowPackage.send()
+		  @m_snowPackage.freezed = true
+		  @packageCollection.add(@m_snowPackage);
+			
+		@packageCollection.forall (package) -> package.send()
+		
 		
 		callback() if callback
 

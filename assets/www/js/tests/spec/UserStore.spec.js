@@ -1,4 +1,4 @@
-var NORMAL_MODE_MODE = "NORMAL_MODE"
+var NORMAL_MODE = "NORMAL_MODE"
 describe("UserStore", function(){
 	it("should save a user", function(){
 			var user = new User("bruker", "pass");

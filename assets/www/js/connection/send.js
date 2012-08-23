@@ -1,12 +1,4 @@
-var GetObjectFromServer, LoggedInAs, Login, Logout, NveSend, SendObjectToServer;
-
-NveSend = (function() {
-
-  function NveSend() {}
-
-  return NveSend;
-
-})();
+var GetObjectFromServer, LoggedInAs, Login, Logout, SendObjectToServer;
 
 Login = function(name, pass, callback, onError) {
   this.cridentials = {
@@ -97,10 +89,14 @@ GetObjectFromServer = function(call, callback, onError) {
 };
 
 SendObjectToServer = function(obj, callback, onError) {
-  var result;
+  var k, result, v;
   console.log("sending - " + obj.url());
   result = new Result;
-  console.log("about to send");
+  console.log("about to send : " + obj);
+  for (k in obj) {
+    v = obj[k];
+    console.log(k + " -> " + v);
+  }
   OData.request({
     requestUri: obj.url(),
     method: "POST",

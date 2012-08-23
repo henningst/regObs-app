@@ -1,4 +1,4 @@
-class NveSend
+
 
 Login = (name, pass, callback, onError) ->
 	@cridentials = {
@@ -79,7 +79,10 @@ GetObjectFromServer = (call, callback, onError) ->
 SendObjectToServer = (obj, callback, onError) ->
 	console.log("sending - " + obj.url()  );
 	result = new Result
-	console.log("about to send")
+	console.log("about to send : " + obj)
+	for k,v of obj
+      console.log(k + " -> " + v)
+      
 	OData.request({
 	requestUri: obj.url() ,
 	method: "POST",

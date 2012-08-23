@@ -7,6 +7,7 @@ NveStore = (function() {
     this.m_snowPackage = null;
     this.m_dirtPackage = null;
     this.m_icePackage = null;
+    this.packageCollection = new PackageCollection();
   }
 
   NveStore.prototype.getSnow = function() {
@@ -27,8 +28,12 @@ NveStore = (function() {
 
   NveStore.prototype.sendSnow = function(callback) {
     if (this.m_snowPackage && !IsEmpty(this.m_snowPackage)) {
-      this.m_snowPackage.send();
+      this.m_snowPackage.freezed = true;
+      this.packageCollection.add(this.m_snowPackage);
     }
+    this.packageCollection.forall(function(package) {
+      return package.send();
+    });
     if (callback) return callback();
   };
 
