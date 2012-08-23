@@ -1,95 +1,95 @@
 class NveStore
 	
 	constructor: () ->
-		@m_waterStore = null
-		@m_snowStore = null
-		@m_dirtStore = null
-		@m_iceStore = null
+		@m_waterPackage = null
+		@m_snowPackage = null
+		@m_dirtPackage = null
+		@m_icePackage = null
 
 	getSnow: () ->
-		if @m_snowStore
-			@m_snowStore
+		if @m_snowPackage
+			@m_snowPackage
 		else
-			@m_snowStore = DataAccess.get(SnowPackage.name, new SnowPackage())
-			if @m_snowStore
-				@m_snowStore.init()
-				@m_snowStore
+			@m_snowPackage = DataAccess.get(SnowPackage.name, new SnowPackage())
+			if @m_snowPackage
+				@m_snowPackage.init()
+				@m_snowPackage
 			else
-				@m_snowStore = new SnowPackage()
-				@m_snowStore.init()
-				@m_snowStore
+				@m_snowPackage = new SnowPackage()
+				@m_snowPackage.init()
+				@m_snowPackage
 			
 	sendSnow: (callback) ->
-		if @m_snowStore and not IsEmpty(@m_snowStore)
-			@m_snowStore.send()
+		if @m_snowPackage and not IsEmpty(@m_snowPackage)
+			@m_snowPackage.send()
 		
 		callback() if callback
 
 	getDirt: () ->
-		if @m_dirtStore
-			@m_dirtStore
+		if @m_dirtPackage
+			@m_dirtPackage
 		else
-			@m_dirtStore = DataAccess.get(DirtPackage.name, new DirtPackage())
-			if @m_dirtStore
-				@m_dirtStore.init()
-				@m_dirtStore
+			@m_dirtPackage = DataAccess.get(DirtPackage.name, new DirtPackage())
+			if @m_dirtPackage
+				@m_dirtPackage.init()
+				@m_dirtPackage
 			else
-				@m_dirtStore = new DirtPackage()
-				@m_dirtStore.init()
-				@m_dirtStore
+				@m_dirtPackage = new DirtPackage()
+				@m_dirtPackage.init()
+				@m_dirtPackage
 			
 	sendDirt: (callback) ->
-		if @m_dirtStore and not IsEmpty(@m_dirtStore)
-			@m_dirtStore.send()
+		if @m_dirtPackage and not IsEmpty(@m_dirtPackage)
+			@m_dirtPackage.send()
 		
 		callback() if callback
 		
 	getIce: () ->
-		if @m_iceStore
-			@m_iceStore
+		if @m_icePackage
+			@m_icePackage
 		else
-			@m_iceStore = DataAccess.get(IcePackage.name, new IcePackage())
-			if @m_iceStore
-				@m_iceStore.init()
-				@m_iceStore
+			@m_icePackage = DataAccess.get(IcePackage.name, new IcePackage())
+			if @m_icePackage
+				@m_icePackage.init()
+				@m_icePackage
 			else
-				@m_iceStore = new IcePackage()
-				@m_iceStore.init()
-				@m_iceStore
+				@m_icePackage = new IcePackage()
+				@m_icePackage.init()
+				@m_icePackage
 			
 	sendIce: (callback) ->
-		if @m_iceStore and not IsEmpty(@m_iceStore)
-			@m_iceStore.send()
+		if @m_icePackage and not IsEmpty(@m_icePackage)
+			@m_icePackage.send()
 		
 		callback() if callback
 
 	getWater: () ->
-		if @m_waterStore
-			@m_waterStore
+		if @m_waterPackage
+			@m_waterPackage
 		else
-			@m_waterStore = DataAccess.get(WaterPackage.name, new WaterPackage())
-			if @m_waterStore
-				@m_waterStore.init()
-				@m_waterStore
+			@m_waterPackage = DataAccess.get(WaterPackage.name, new WaterPackage())
+			if @m_waterPackage
+				@m_waterPackage.init()
+				@m_waterPackage
 			else
-				@m_waterStore = new WaterPackage()
-				@m_waterStore.init()
-				@m_waterStore
+				@m_waterPackage = new WaterPackage()
+				@m_waterPackage.init()
+				@m_waterPackage
 			
 	sendWater: (callback) ->
-		if @m_waterStore and not IsEmpty(@m_waterStore)
-			@m_waterStore.send()
+		if @m_waterPackage and not IsEmpty(@m_waterPackage)
+			@m_waterPackage.send()
 		
 		callback() if callback
 		
-IsEmpty = (store) ->
-	if store.getObs().length isnt 0
+IsEmpty = (package) ->
+	if package.getObs().length isnt 0
 		return false 
 	
-	if store.getIncident() isnt null
+	if package.getIncident() isnt null
 		return false
 		
-	if store.getPictures().length isnt 0
+	if package.getPictures().length isnt 0
 		return false
 		
 	true

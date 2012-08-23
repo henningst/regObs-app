@@ -3,93 +3,99 @@ var IsEmpty, NveStore;
 NveStore = (function() {
 
   function NveStore() {
-    this.m_waterStore = null;
-    this.m_snowStore = null;
-    this.m_dirtStore = null;
-    this.m_iceStore = null;
+    this.m_waterPackage = null;
+    this.m_snowPackage = null;
+    this.m_dirtPackage = null;
+    this.m_icePackage = null;
   }
 
   NveStore.prototype.getSnow = function() {
-    if (this.m_snowStore) {
-      return this.m_snowStore;
+    if (this.m_snowPackage) {
+      return this.m_snowPackage;
     } else {
-      this.m_snowStore = DataAccess.get(SnowStore.name, new SnowStore());
-      if (this.m_snowStore) {
-        this.m_snowStore.init();
-        return this.m_snowStore;
+      this.m_snowPackage = DataAccess.get(SnowPackage.name, new SnowPackage());
+      if (this.m_snowPackage) {
+        this.m_snowPackage.init();
+        return this.m_snowPackage;
       } else {
-        this.m_snowStore = new SnowStore();
-        this.m_snowStore.init();
-        return this.m_snowStore;
+        this.m_snowPackage = new SnowPackage();
+        this.m_snowPackage.init();
+        return this.m_snowPackage;
       }
     }
   };
 
   NveStore.prototype.sendSnow = function(callback) {
-    if (this.m_snowStore && !IsEmpty(this.m_snowStore)) this.m_snowStore.send();
+    if (this.m_snowPackage && !IsEmpty(this.m_snowPackage)) {
+      this.m_snowPackage.send();
+    }
     if (callback) return callback();
   };
 
   NveStore.prototype.getDirt = function() {
-    if (this.m_dirtStore) {
-      return this.m_dirtStore;
+    if (this.m_dirtPackage) {
+      return this.m_dirtPackage;
     } else {
-      this.m_dirtStore = DataAccess.get(DirtStore.name, new DirtStore());
-      if (this.m_dirtStore) {
-        this.m_dirtStore.init();
-        return this.m_dirtStore;
+      this.m_dirtPackage = DataAccess.get(DirtPackage.name, new DirtPackage());
+      if (this.m_dirtPackage) {
+        this.m_dirtPackage.init();
+        return this.m_dirtPackage;
       } else {
-        this.m_dirtStore = new DirtStore();
-        this.m_dirtStore.init();
-        return this.m_dirtStore;
+        this.m_dirtPackage = new DirtPackage();
+        this.m_dirtPackage.init();
+        return this.m_dirtPackage;
       }
     }
   };
 
   NveStore.prototype.sendDirt = function(callback) {
-    if (this.m_dirtStore && !IsEmpty(this.m_dirtStore)) this.m_dirtStore.send();
+    if (this.m_dirtPackage && !IsEmpty(this.m_dirtPackage)) {
+      this.m_dirtPackage.send();
+    }
     if (callback) return callback();
   };
 
   NveStore.prototype.getIce = function() {
-    if (this.m_iceStore) {
-      return this.m_iceStore;
+    if (this.m_icePackage) {
+      return this.m_icePackage;
     } else {
-      this.m_iceStore = DataAccess.get(IceStore.name, new IceStore());
-      if (this.m_iceStore) {
-        this.m_iceStore.init();
-        return this.m_iceStore;
+      this.m_icePackage = DataAccess.get(IcePackage.name, new IcePackage());
+      if (this.m_icePackage) {
+        this.m_icePackage.init();
+        return this.m_icePackage;
       } else {
-        this.m_iceStore = new IceStore();
-        this.m_iceStore.init();
-        return this.m_iceStore;
+        this.m_icePackage = new IcePackage();
+        this.m_icePackage.init();
+        return this.m_icePackage;
       }
     }
   };
 
   NveStore.prototype.sendIce = function(callback) {
-    if (this.m_iceStore && !IsEmpty(this.m_iceStore)) this.m_iceStore.send();
+    if (this.m_icePackage && !IsEmpty(this.m_icePackage)) this.m_icePackage.send();
     if (callback) return callback();
   };
 
   NveStore.prototype.getWater = function() {
-    if (this.m_waterStore) {
-      return this.m_waterStore;
+    if (this.m_waterPackage) {
+      return this.m_waterPackage;
     } else {
-      this.m_waterStore = DataAccess.get(WaterStore.name, new WaterStore());
-      if (this.m_waterStore) {
-        this.m_waterStore.init();
-        return this.m_waterStore;
+      this.m_waterPackage = DataAccess.get(WaterPackage.name, new WaterPackage());
+      if (this.m_waterPackage) {
+        this.m_waterPackage.init();
+        return this.m_waterPackage;
       } else {
-        this.m_waterStore = new WaterStore();
-        this.m_waterStore.init();
-        return this.m_waterStore;
+        this.m_waterPackage = new WaterPackage();
+        this.m_waterPackage.init();
+        return this.m_waterPackage;
       }
     }
   };
 
   NveStore.prototype.sendWater = function(callback) {
-    if (this.m_waterStore && !IsEmpty(this.m_waterStore)) this.m_waterStore.send();
+    if (this.m_waterPackage && !IsEmpty(this.m_waterPackage)) {
+      this.m_waterPackage.send();
+    }
     if (callback) return callback();
   };
 
@@ -97,9 +103,9 @@ NveStore = (function() {
 
 })();
 
-IsEmpty = function(store) {
-  if (store.getObs().length !== 0) return false;
-  if (store.getIncident() !== null) return false;
-  if (store.getPictures().length !== 0) return false;
+IsEmpty = function(package) {
+  if (package.getObs().length !== 0) return false;
+  if (package.getIncident() !== null) return false;
+  if (package.getPictures().length !== 0) return false;
   return true;
 };
