@@ -1,5 +1,5 @@
-TEST_MODE = "test_mode"
-STAGE_MODE = "stage_mode"
+TEST_MODE = "test_mode";
+STAGE_MODE = "stage_mode";
 
 var geo = {
 	last_page_location : null,
@@ -8,7 +8,7 @@ var geo = {
 		
 		if(shouldHandlePosition == undefined)
 			shouldHandlePosition = false;
-		console.log("requestiong position for " + device.platform)
+		console.log("requestiong position for " + device.platform);
 		if(device.platform == "android")
 		{
 			PhoneGap.exec(function(){console.log("geo plugin ok");}, function(){ geo.noGoodAccuracyFound(); }, 
@@ -16,15 +16,17 @@ var geo = {
 		}else{
 			console.log("call back to " + callback);
 			
+			
 			if(main.initialised == true){
 				navigator.geolocation.getCurrentPosition(
 						eval(callback),
 	                    function(e){
+							console.log("error;");
 							console.log(e.message);
 							if(shouldHandlePosition)
 								geo.noGoodAccuracyFound();
 						}, 
-	                    { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }
+	                    { maximumAge: 500, timeout: 3000, enableHighAccuracy: true }
 	                  );
 			}else{
 				setTimeout(function(){
@@ -102,7 +104,7 @@ var omerade = {
 				oppdatert: false
 			};
 		}
-}
+};
 
 var main = (function()
 {
@@ -127,13 +129,13 @@ var main = (function()
     	lastRegID: [],
     	
     	addLastRegID: function(regId){
-    		console.log("adding regid " + regId)
+    		console.log("adding regid " + regId);
     		if(main.lastRegID.length == 0)
     			main.lastRegID = [regId];
     		else
     			main.lastRegID.push(regId);
     		
-    		console.log("size of regid array " + main.lastRegID.length)
+    		console.log("size of regid array " + main.lastRegID.length);
     	},
     	
     	clearRegID: function(){
@@ -399,7 +401,15 @@ var main = (function()
         initPhonegap: function()
         {
         	document.addEventListener("backbutton", main.backKeyDown, true);
-			window.analytics.start(GA_TRACKER_CODE);
+        	if(window.analytics)
+			{
+        		window.analytics.start(GA_TRACKER_CODE);
+			}else
+			{
+				window.analytics = {
+						trackPageView  : function(){}
+				}
+			}
 
             main.populateBoxes(true);
             

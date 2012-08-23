@@ -27,7 +27,7 @@ AbstractStore = (function() {
 
   AbstractStore.prototype.superInit = function() {
     var obs, picture;
-    if (this.name === 'SnowStore') {
+    if (this.name === 'SnowPackage') {
       this.m_dangerObs = (function() {
         var _i, _len, _ref, _results;
         _ref = this.m_dangerObs;

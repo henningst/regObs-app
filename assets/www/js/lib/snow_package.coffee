@@ -1,10 +1,10 @@
-class SnowStore extends AbstractPackage
+class SnowPackage extends AbstractPackage
 	
 	constructor: () ->
 		@absConstructor()
 		
 	init: () ->
-		@name = 'SnowStore'
+		@name = 'SnowPackage'
 		@page = snow_page
 		@picturePage = snow_picture
 		@hendelsePage = snow_hendelse	

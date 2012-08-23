@@ -10,12 +10,12 @@ class NveStore
 		if @m_snowStore
 			@m_snowStore
 		else
-			@m_snowStore = DataAccess.get(SnowStore.name, new SnowStore())
+			@m_snowStore = DataAccess.get(SnowPackage.name, new SnowPackage())
 			if @m_snowStore
 				@m_snowStore.init()
 				@m_snowStore
 			else
-				@m_snowStore = new SnowStore()
+				@m_snowStore = new SnowPackage()
 				@m_snowStore.init()
 				@m_snowStore
 			
@@ -29,12 +29,12 @@ class NveStore
 		if @m_dirtStore
 			@m_dirtStore
 		else
-			@m_dirtStore = DataAccess.get(DirtStore.name, new DirtStore())
+			@m_dirtStore = DataAccess.get(DirtPackage.name, new DirtPackage())
 			if @m_dirtStore
 				@m_dirtStore.init()
 				@m_dirtStore
 			else
-				@m_dirtStore = new DirtStore()
+				@m_dirtStore = new DirtPackage()
 				@m_dirtStore.init()
 				@m_dirtStore
 			
@@ -48,12 +48,12 @@ class NveStore
 		if @m_iceStore
 			@m_iceStore
 		else
-			@m_iceStore = DataAccess.get(IceStore.name, new IceStore())
+			@m_iceStore = DataAccess.get(IcePackage.name, new IcePackage())
 			if @m_iceStore
 				@m_iceStore.init()
 				@m_iceStore
 			else
-				@m_iceStore = new IceStore()
+				@m_iceStore = new IcePackage()
 				@m_iceStore.init()
 				@m_iceStore
 			
@@ -67,12 +67,12 @@ class NveStore
 		if @m_waterStore
 			@m_waterStore
 		else
-			@m_waterStore = DataAccess.get(WaterStore.name, new WaterStore())
+			@m_waterStore = DataAccess.get(WaterPackage.name, new WaterPackage())
 			if @m_waterStore
 				@m_waterStore.init()
 				@m_waterStore
 			else
-				@m_waterStore = new WaterStore()
+				@m_waterStore = new WaterPackage()
 				@m_waterStore.init()
 				@m_waterStore
 			

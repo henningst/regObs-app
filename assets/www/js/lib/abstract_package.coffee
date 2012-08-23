@@ -15,7 +15,7 @@ class AbstractPackage
 	
 	superInit: () ->
 	
-		if @name is 'SnowStore'
+		if @name is 'SnowPackage'
 			@m_dangerObs = (@fillAvalancheDangerObs obs for obs in @m_dangerObs)
 		else
 			@m_dangerObs = (@fillDangerObs obs for obs in @m_dangerObs)
