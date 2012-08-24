@@ -499,6 +499,9 @@ ul.actions li{
 	position:absolute;
 	top: 5px;
 	right: 10px;
+	font-size: 14px;
+	font-weight: bold;
+	text-indent: 9px;
 }
 
 .takeAllWidth{
