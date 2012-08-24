@@ -23,19 +23,28 @@ class NveStore
 			
 	sendSnow: (callback) ->
 		if @m_snowPackage and not IsEmpty(@m_snowPackage)
-		  @m_snowPackage.freezed = true
-		  @packageCollection.add(@m_snowPackage);
+      @m_snowPackage.freezed = true
+      @packageCollection.add(@m_snowPackage)
+		  
+      @m_snowPackage.picturePage.afterSendRegistration()
+      @m_snowPackage.hendelsePage.afterSendRegistration()
+      @m_snowPackage.page.afterSendRegistration()
+      
+		  @m_snowPackage =  null
+		  DataAccess.save(SnowPackage.name, null)
 		  
     console.log("antall pakker: " + @packageCollection.size())
 			
-		@packageCollection.forall (package) -> 
-		  package.send()
-		    
-      package.picturePage.afterSendRegistration()
-      package.hendelsePage.afterSendRegistration()
-      package.page.afterSendRegistration()
-      
-      @packageCollection.remove(package)
+			
+		collection = @packageCollection
+		@packageCollection.forall (p) ->
+		  p.callback = (pkg) -> 
+		    console.log("done. ...." )
+		    console.log("pkg : " + JSON.stringify(pkg))
+		    console.log("package : " + JSON.stringify(p))
+		    collection.remove(p)
+		    console.log("left in collection " + collection.size())
+		  p.send()
       
 		callback() if callback
 

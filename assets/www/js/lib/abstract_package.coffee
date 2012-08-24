@@ -10,6 +10,7 @@ class AbstractPackage
 		@omrade_id = 0
 		@regDate = null
 		@freezed = false
+		@callback = () -> return
 
 	onError: (data) ->
 		main.errorDialog()
@@ -115,7 +116,10 @@ class AbstractPackage
 		if not force
 			@onSend(@page, false)
 		else
+      console.log("------ sending to callback " + @callback)
+      @callback(this) if @callback
 			main.showFinishedUploadMessage()	
+			
 			
 	
 	completePointRegistration: (data) ->
@@ -138,6 +142,8 @@ class AbstractPackage
 		
 		main.addLastRegID(data.RegID)
 		DataAccess.save(@name, this)
+		console.log("------ sending to callback " + @callback)
+		@callback(this) if @callback
 		main.showFinishedUploadMessage()	
 	
 	fillIncident: (incident) =>	
