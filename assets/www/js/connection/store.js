@@ -7,7 +7,13 @@ NveStore = (function() {
     this.m_snowPackage = null;
     this.m_dirtPackage = null;
     this.m_icePackage = null;
-    this.packageCollection = new PackageCollection();
+    this.packageCollection = new PackageCollection(function(collection) {
+      if (collection.size() > 0) {
+        return jQuery(".numPackages").hide().text(collection.size()).show();
+      } else {
+        return jQuery(".numPackages").hide();
+      }
+    });
   }
 
   NveStore.prototype.getSnow = function() {
@@ -41,11 +47,7 @@ NveStore = (function() {
     collection = this.packageCollection;
     this.packageCollection.forall(function(p) {
       p.callback = function(pkg) {
-        console.log("done. ....");
-        console.log("pkg : " + JSON.stringify(pkg));
-        console.log("package : " + JSON.stringify(p));
-        collection.remove(p);
-        return console.log("left in collection " + collection.size());
+        return collection.remove(p);
       };
       return p.send();
     });

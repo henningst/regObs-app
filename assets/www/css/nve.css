@@ -157,6 +157,10 @@ input.large
 	margin-top: 5%;
 }
 
+.margin_central{
+	margin: 0 auto;	
+}
+
 .c_big_button
 {
 	height: 133px;
@@ -491,4 +495,16 @@ ul.actions li{
     -webkit-transform-origin: 0 0;
 }
  
- 
+.onTopOfButton{
+	position:absolute;
+	top: 5px;
+	right: 10px;
+}
+
+.takeAllWidth{
+	width:100%;
+}
+
+.composedButtonContainer{
+	position:relative;
+}

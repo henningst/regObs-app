@@ -6,7 +6,12 @@ class NveStore
 		@m_dirtPackage = null
 		@m_icePackage = null
 		
-		@packageCollection = new PackageCollection()
+		@packageCollection = new PackageCollection((collection)->
+		  if(collection.size() > 0)
+		    jQuery(".numPackages").hide().text(collection.size()).show()
+		  else
+		    jQuery(".numPackages").hide()
+		)
 
 	getSnow: () ->
 		if @m_snowPackage
@@ -38,12 +43,7 @@ class NveStore
 			
 		collection = @packageCollection
 		@packageCollection.forall (p) ->
-		  p.callback = (pkg) -> 
-		    console.log("done. ...." )
-		    console.log("pkg : " + JSON.stringify(pkg))
-		    console.log("package : " + JSON.stringify(p))
-		    collection.remove(p)
-		    console.log("left in collection " + collection.size())
+		  p.callback = (pkg) -> collection.remove(p)
 		  p.send()
       
 		callback() if callback

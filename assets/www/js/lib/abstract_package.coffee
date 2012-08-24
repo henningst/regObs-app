@@ -85,7 +85,6 @@ class AbstractPackage
 			do(obs) ->
 				obs.RegID = data.RegID
 				
-				
 				if n is 'SnowPackage'
 					obs.AvalancheDangerObsID = x++
 				else
@@ -116,7 +115,6 @@ class AbstractPackage
 		if not force
 			@onSend(@page, false)
 		else
-      console.log("------ sending to callback " + @callback)
       @callback(this) if @callback
 			main.showFinishedUploadMessage()	
 			
@@ -142,7 +140,6 @@ class AbstractPackage
 		
 		main.addLastRegID(data.RegID)
 		DataAccess.save(@name, this)
-		console.log("------ sending to callback " + @callback)
 		@callback(this) if @callback
 		main.showFinishedUploadMessage()	
 	
@@ -195,6 +192,7 @@ class AbstractPackage
 				SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
 			else
 				@page.afterSendRegistration()
+				@callback(this) if @callback
 				main.showFinishedUploadMessage()
 		
 		
