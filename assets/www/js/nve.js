@@ -16,7 +16,6 @@ var geo = {
 		}else{
 			console.log("call back to " + callback);
 			
-			
 			if(main.initialised == true){
 				navigator.geolocation.getCurrentPosition(
 						eval(callback),
