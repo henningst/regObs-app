@@ -6,12 +6,26 @@ class NveStore
 		@m_dirtPackage = null
 		@m_icePackage = null
 		
-		@packageCollection = new PackageCollection((collection)->
-		  if(collection.size() > 0)
-		    jQuery(".numPackages").hide().text(collection.size()).show()
-		  else
-		    jQuery(".numPackages").hide()
-		)
+		
+		@packageCollection =  DataAccess.get("PackageCollection", new PackageCollection())
+		if not @packageCollection
+		  @packageCollection = new PackageCollection()
+  		DataAccess.save("PackageCollection", @packageCollection)
+		   
+		
+		
+		@packageCollection.callback = (collection)->
+      if(collection.size() > 0)
+        jQuery(".numPackages").hide().text(collection.size()).show()
+      else
+        jQuery(".numPackages").hide()
+      
+      DataAccess.save("PackageCollection", collection)
+    
+    @packageCollection.callback(@packageCollection)
+    
+    console.log("packagecollection antall packages at start:" + @packageCollection.size())
+		
 
 	getSnow: () ->
 		if @m_snowPackage
@@ -35,16 +49,16 @@ class NveStore
       @m_snowPackage.hendelsePage.afterSendRegistration()
       @m_snowPackage.page.afterSendRegistration()
       
-		  @m_snowPackage =  null
-		  DataAccess.save(SnowPackage.name, null)
+		  @m_snowPackage =  null 
+      DataAccess.save(SnowPackage.name, null)
 		  
     console.log("antall pakker: " + @packageCollection.size())
 			
 			
 		collection = @packageCollection
 		@packageCollection.forall (p) ->
-		  p.callback = (pkg) -> collection.remove(p)
-		  p.send()
+      p.callback = (pkg) -> collection.remove(p)
+      p.send()
       
 		callback() if callback
 

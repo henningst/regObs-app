@@ -2,8 +2,9 @@
 
 class PackageCollection
   
-  constructor: (@callback) ->
+  constructor: (callback) ->
     console.log("constrct")
+    @callback = callback
     @packages = []
     
   
@@ -22,7 +23,7 @@ class PackageCollection
   
   forall : (work) ->
     for pkg in @packages
-      work(pkg)   
+      work(Cast.package(pkg))   
       
   size: ->
     @packages.length
@@ -30,3 +31,10 @@ class PackageCollection
 
   callCallback : () ->
     @callback(this) if @callback
+    
+
+Cast ={
+  package: (obj)->
+    jQuery.extend(obj, new SnowPackage());
+  
+}

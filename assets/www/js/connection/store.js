@@ -7,13 +7,21 @@ NveStore = (function() {
     this.m_snowPackage = null;
     this.m_dirtPackage = null;
     this.m_icePackage = null;
-    this.packageCollection = new PackageCollection(function(collection) {
+    this.packageCollection = DataAccess.get("PackageCollection", new PackageCollection());
+    if (!this.packageCollection) {
+      this.packageCollection = new PackageCollection();
+      DataAccess.save("PackageCollection", this.packageCollection);
+    }
+    this.packageCollection.callback = function(collection) {
       if (collection.size() > 0) {
-        return jQuery(".numPackages").hide().text(collection.size()).show();
+        jQuery(".numPackages").hide().text(collection.size()).show();
       } else {
-        return jQuery(".numPackages").hide();
+        jQuery(".numPackages").hide();
       }
-    });
+      return DataAccess.save("PackageCollection", collection);
+    };
+    this.packageCollection.callback(this.packageCollection);
+    console.log("packagecollection antall packages at start:" + this.packageCollection.size());
   }
 
   NveStore.prototype.getSnow = function() {
