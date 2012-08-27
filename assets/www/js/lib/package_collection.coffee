@@ -29,12 +29,12 @@ class PackageCollection
     @packages.length
 
 
-  callCallback : () ->
+  callCallback : () =>
     @callback(this) if @callback
     
 
 Cast ={
   package: (obj)->
-    jQuery.extend(obj, new SnowPackage());
+    jQuery.extend(new SnowPackage(), obj);
   
 }

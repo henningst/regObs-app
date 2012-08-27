@@ -4,11 +4,28 @@ var AbstractPackage,
 AbstractPackage = (function() {
 
   function AbstractPackage() {
+    this.onSend = __bind(this.onSend, this);
     this.fillAvalancheDangerObs = __bind(this.fillAvalancheDangerObs, this);
     this.fillDangerObs = __bind(this.fillDangerObs, this);
     this.fillPicture = __bind(this.fillPicture, this);
     this.fillIncident = __bind(this.fillIncident, this);
+    this.completePointRegistration = __bind(this.completePointRegistration, this);
+    this.completeAreaRegistration = __bind(this.completeAreaRegistration, this);
+    this.afterRegistration = __bind(this.afterRegistration, this);
+    this.afterLocation = __bind(this.afterLocation, this);
     this.send = __bind(this.send, this);
+    this.getPictures = __bind(this.getPictures, this);
+    this.addPicture = __bind(this.addPicture, this);
+    this.getObs = __bind(this.getObs, this);
+    this.addObs = __bind(this.addObs, this);
+    this.setArea = __bind(this.setArea, this);
+    this.setKommunenr = __bind(this.setKommunenr, this);
+    this.setLatLong = __bind(this.setLatLong, this);
+    this.getIncident = __bind(this.getIncident, this);
+    this.setRegDate = __bind(this.setRegDate, this);
+    this.setIncident = __bind(this.setIncident, this);
+    this.superInit = __bind(this.superInit, this);
+    this.absConstructor = __bind(this.absConstructor, this);
   }
 
   AbstractPackage.prototype.absConstructor = function() {
@@ -20,8 +37,7 @@ AbstractPackage = (function() {
     this.komnr = 0;
     this.omrade_id = 0;
     this.regDate = null;
-    this.freezed = false;
-    return this.callback = function() {};
+    return this.freezed = false;
   };
 
   AbstractPackage.prototype.onError = function(data) {
@@ -75,7 +91,8 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.setRegDate = function() {
-    return this.regDate = new Date(new Date().getTime() + 1000 * 60 * 120);
+    this.regDate = new Date(new Date().getTime() + 1000 * 60 * 120);
+    return console.log("pp: sett regdate " + this.regDate);
   };
 
   AbstractPackage.prototype.getIncident = function() {
@@ -100,6 +117,7 @@ AbstractPackage = (function() {
 
   AbstractPackage.prototype.addObs = function(obs) {
     this.setRegDate();
+    console.log("pp: should have set regdate " + this.regDate);
     this.m_dangerObs.push(obs);
     return DataAccess.save(this.name, this);
   };
@@ -119,6 +137,7 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.send = function() {
+    console.log("pp: send " + this.regDate);
     return this.onSend(this.page, true);
   };
 
@@ -175,11 +194,10 @@ AbstractPackage = (function() {
     main.addLastRegID(data.RegID);
     DataAccess.save(this.name, this);
     if (!force) {
-      this.onSend(this.page, false);
+      return this.onSend(this.page, false);
     } else {
-      if (this.callback) this.callback(this);
+      return main.showFinishedUploadMessage();
     }
-    return main.showFinishedUploadMessage();
   };
 
   AbstractPackage.prototype.completePointRegistration = function(data) {
@@ -205,7 +223,6 @@ AbstractPackage = (function() {
     this.m_pictures.length = 0;
     main.addLastRegID(data.RegID);
     DataAccess.save(this.name, this);
-    if (this.callback) this.callback(this);
     return main.showFinishedUploadMessage();
   };
 
@@ -241,6 +258,7 @@ AbstractPackage = (function() {
     }
     komm_string = "0";
     if (this.komm_nr) komm_string = this.komm_nr.toString();
+    console.log("pp: onSend " + this.regDate);
     if (area) {
       if (this.filterPicture(true).length !== 0 || this.m_dangerObs.length !== 0) {
         location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, true, null, this.regDate, null, null, null, komm_string);
@@ -271,7 +289,6 @@ AbstractPackage = (function() {
         });
       } else {
         this.page.afterSendRegistration();
-        if (this.callback) this.callback(this);
         return main.showFinishedUploadMessage();
       }
     }
@@ -280,6 +297,7 @@ AbstractPackage = (function() {
   AbstractPackage.prototype.onAfterLocation = function(data, area, force) {
     var registration,
       _this = this;
+    console.log("pp: regdate" + this.regDate);
     registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, this.regDate, 0);
     return SendObjectToServer(registration, (function(data) {
       return _this.afterRegistration(data, area, force);

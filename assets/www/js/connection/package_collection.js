@@ -1,9 +1,10 @@
-var Cast, PackageCollection;
+var Cast, PackageCollection,
+  __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 PackageCollection = (function() {
 
   function PackageCollection(callback) {
-    console.log("constrct");
+    this.callCallback = __bind(this.callCallback, this);    console.log("constrct");
     this.callback = callback;
     this.packages = [];
   }
@@ -55,6 +56,6 @@ PackageCollection = (function() {
 
 Cast = {
   package: function(obj) {
-    return jQuery.extend(obj, new SnowPackage());
+    return jQuery.extend(new SnowPackage(), obj);
   }
 };

@@ -48,12 +48,13 @@ NveStore = (function() {
       this.m_snowPackage.picturePage.afterSendRegistration();
       this.m_snowPackage.hendelsePage.afterSendRegistration();
       this.m_snowPackage.page.afterSendRegistration();
+      this.m_snowPackage = null;
+      DataAccess.save(SnowPackage.name, null);
     }
-    this.m_snowPackage = null;
-    DataAccess.save(SnowPackage.name, null);
     console.log("antall pakker: " + this.packageCollection.size());
     collection = this.packageCollection;
     this.packageCollection.forall(function(p) {
+      console.log("pp: regdate i forall " + p.regDate);
       p.callback = function(pkg) {
         return collection.remove(p);
       };
