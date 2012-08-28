@@ -74,6 +74,7 @@ AbstractPackage = (function() {
 
   AbstractPackage.prototype.superInit = function() {
     var obs, picture;
+    this.pages = [this.page, this.picturePage, this.hendelsePage];
     if (this.name === 'SnowPackage') {
       this.m_dangerObs = (function() {
         var _i, _len, _ref, _results;

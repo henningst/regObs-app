@@ -68,6 +68,10 @@ Cast = {
         return jQuery.extend(new SnowPackage(), obj);
       case "DirtPackage":
         return jQuery.extend(new DirtPackage(), obj);
+      case "IcePackage":
+        return jQuery.extend(new IcePackage(), obj);
+      case "WaterPackage":
+        return jQuery.extend(new WaterPackage(), obj);
       default:
         throw "No Casting mechanism for " + obj.name;
     }

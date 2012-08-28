@@ -16,6 +16,8 @@ class AbstractPackage
     main.errorDialog()
   
   superInit: () =>
+    @pages = [@page, @picturePage, @hendelsePage]
+    
     if @name is 'SnowPackage'
       @m_dangerObs = (@fillAvalancheDangerObs obs for obs in @m_dangerObs)
     else
@@ -36,7 +38,6 @@ class AbstractPackage
   afterSendRegistration: ()=>
     for page in @pages
       page.afterSendRegistration() if page and page.afterSendRegistration
-    
     
   getIncident: () =>
     @m_incident

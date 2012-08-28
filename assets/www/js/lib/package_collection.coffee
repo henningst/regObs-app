@@ -43,6 +43,8 @@ Cast ={
     switch obj.name
       when "SnowPackage" then jQuery.extend(new SnowPackage(), obj)
       when "DirtPackage" then jQuery.extend(new DirtPackage(), obj)
+      when "IcePackage" then jQuery.extend(new IcePackage(), obj)
+      when "WaterPackage" then jQuery.extend(new WaterPackage(), obj)
       else throw "No Casting mechanism for #{ obj.name }"
       
   

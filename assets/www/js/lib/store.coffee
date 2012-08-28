@@ -45,7 +45,6 @@ class NveStore
       DataAccess.save(SnowPackage.name, null)
     
     @packageCollection.forall (p) => @sendAndHandlePackage(p)
-      
     callback() if callback
     
     
@@ -78,7 +77,6 @@ class NveStore
       @m_dirtPackage = null
       DataAccess.save(DirtPackage.name, null)
       
-      
     @packageCollection.forall (p) => @sendAndHandlePackage(p)
     callback() if callback
     
@@ -97,7 +95,13 @@ class NveStore
       
   sendIce: (callback) ->
     if @m_icePackage and not IsEmpty(@m_icePackage)
-      @m_icePackage.send()
+      @packageCollection.add(@m_icePackage)
+      @m_icePackage.afterSendRegistration()
+      
+      @m_icePackage = null
+      DataAccess.save(IcePackage.name, null)
+      
+    @packageCollection.forall (p) => @sendAndHandlePackage(p)
     
     callback() if callback
 
@@ -116,7 +120,13 @@ class NveStore
       
   sendWater: (callback) ->
     if @m_waterPackage and not IsEmpty(@m_waterPackage)
-      @m_waterPackage.send()
+      @packageCollection.add(@m_waterPackage)
+      @m_waterPackage.afterSendRegistration()
+      
+      @m_waterPackage = null
+      DataAccess.save(WaterPackage.name, null)
+      
+    @packageCollection.forall (p) => @sendAndHandlePackage(p)
     
     callback() if callback
     

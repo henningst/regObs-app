@@ -115,9 +115,16 @@ NveStore = (function() {
   };
 
   NveStore.prototype.sendIce = function(callback) {
+    var _this = this;
     if (this.m_icePackage && !IsEmpty(this.m_icePackage)) {
-      this.m_icePackage.send();
+      this.packageCollection.add(this.m_icePackage);
+      this.m_icePackage.afterSendRegistration();
+      this.m_icePackage = null;
+      DataAccess.save(IcePackage.name, null);
     }
+    this.packageCollection.forall(function(p) {
+      return _this.sendAndHandlePackage(p);
+    });
     if (callback) {
       return callback();
     }
@@ -140,9 +147,16 @@ NveStore = (function() {
   };
 
   NveStore.prototype.sendWater = function(callback) {
+    var _this = this;
     if (this.m_waterPackage && !IsEmpty(this.m_waterPackage)) {
-      this.m_waterPackage.send();
+      this.packageCollection.add(this.m_waterPackage);
+      this.m_waterPackage.afterSendRegistration();
+      this.m_waterPackage = null;
+      DataAccess.save(WaterPackage.name, null);
     }
+    this.packageCollection.forall(function(p) {
+      return _this.sendAndHandlePackage(p);
+    });
     if (callback) {
       return callback();
     }
