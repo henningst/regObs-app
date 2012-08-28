@@ -180,6 +180,7 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.send = function() {
+    console.log("pp: sending :" + JSON.stringify(this));
     return this.onSend(this.page, true);
   };
 
@@ -210,12 +211,14 @@ AbstractPackage = (function() {
     _fn = function(obs) {
       obs.RegID = data.RegID;
       if (n === 'SnowPackage') {
+        obs = jQuery.extend(obs, new AvalancheDangerObs());
         obs.AvalancheDangerObsID = x++;
       } else {
+        obs = jQuery.extend(obs, new DangerObs());
         obs.DangerObsID = x++;
       }
       console.log("pp: obs:" + JSON.stringify(obs));
-      return SendObjectToServer(jQuery.extend(obs, new AvalancheDangerObs));
+      return SendObjectToServer(obs);
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       obs = _ref[_i];
@@ -226,6 +229,7 @@ AbstractPackage = (function() {
     bilde = this.cutOutPictures(true);
     _fn1 = function(picture) {
       var sendPicture;
+      picture = jQuery.extend(picture, new Picture());
       picture.RegID = data.RegID;
       picture.PictureID = i++;
       sendPicture = new SendInPictureCommand(picture);
@@ -236,6 +240,7 @@ AbstractPackage = (function() {
       _fn1(picture);
     }
     if (this.m_incident && (i !== 0 || x !== 0 || force)) {
+      this.m_incident = jQuery.extend(this.m_incident, new Incident());
       this.m_incident.RegID = data.RegID;
       SendObjectToServer(this.m_incident);
       this.m_incident = null;
@@ -253,6 +258,7 @@ AbstractPackage = (function() {
   AbstractPackage.prototype.completePointRegistration = function(data) {
     var bilde, i, picture, _fn, _i, _len;
     if (this.m_incident) {
+      this.m_incident = jQuery.extend(this.m_incident, new Incident());
       this.m_incident.RegID = data.RegID;
       SendObjectToServer(this.m_incident);
       this.m_incident = null;
@@ -261,6 +267,7 @@ AbstractPackage = (function() {
     bilde = this.cutOutPictures(false);
     _fn = function(picture) {
       var sendPicture;
+      picture = jQuery.extend(picture, new Picture());
       picture.RegID = data.RegID;
       picture.PictureID = i++;
       sendPicture = new SendInPictureCommand(picture);
@@ -343,7 +350,6 @@ AbstractPackage = (function() {
           return _this.onError(error);
         });
       } else {
-        this.page.afterSendRegistration();
         this.callCallback();
         return main.showFinishedUploadMessage();
       }

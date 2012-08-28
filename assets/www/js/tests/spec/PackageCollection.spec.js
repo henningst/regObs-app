@@ -15,6 +15,7 @@ describe("Package collection", function(){
 		var otherPack = {freezed : false, name: "other"};
 
 		collection.add(pack);
+		collection.add(otherPack);
 		
 		var retreived = collection.get(pack.name);
 		expect(retreived).toEqual(pack);

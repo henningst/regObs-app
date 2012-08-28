@@ -16,7 +16,6 @@ class AbstractPackage
     main.errorDialog()
   
   superInit: () =>
-  
     if @name is 'SnowPackage'
       @m_dangerObs = (@fillAvalancheDangerObs obs for obs in @m_dangerObs)
     else
@@ -72,6 +71,7 @@ class AbstractPackage
     @m_pictures
     
   send: () =>
+    console.log("pp: sending :" + JSON.stringify(this))
     @onSend(@page, true)
     
   callCallback: ()=>
@@ -97,12 +97,14 @@ class AbstractPackage
         
         
         if n is 'SnowPackage'
+          obs = jQuery.extend(obs, new AvalancheDangerObs())
           obs.AvalancheDangerObsID = x++
         else
+          obs = jQuery.extend(obs, new DangerObs())
           obs.DangerObsID = x++
         
         console.log("pp: obs:" + JSON.stringify(obs))
-        SendObjectToServer(jQuery.extend(obs, new AvalancheDangerObs))
+        SendObjectToServer(obs)
         
     @m_dangerObs.length = 0
 
@@ -110,13 +112,16 @@ class AbstractPackage
     bilde = @cutOutPictures(true)
     for picture in bilde
       do(picture) ->
+        picture = jQuery.extend(picture, new Picture())
         picture.RegID = data.RegID
         picture.PictureID = i++
         sendPicture = new SendInPictureCommand(picture)
         sendPicture.send()  
 
     if @m_incident and (i isnt 0 or x isnt 0 or force)
+      @m_incident = jQuery.extend(@m_incident, new Incident())
       @m_incident.RegID = data.RegID
+      
       SendObjectToServer(@m_incident)
       @m_incident = null
     
@@ -133,6 +138,7 @@ class AbstractPackage
   
   completePointRegistration: (data) =>
     if @m_incident
+      @m_incident = jQuery.extend(@m_incident, new Incident())
       @m_incident.RegID = data.RegID
       SendObjectToServer(@m_incident)
       @m_incident = null
@@ -141,6 +147,7 @@ class AbstractPackage
     bilde = @cutOutPictures(false)
     for picture in bilde
       do(picture) ->
+        picture = jQuery.extend(picture, new Picture())
         picture.RegID = data.RegID
         picture.PictureID = i++
         sendPicture = new SendInPictureCommand(picture)
@@ -202,7 +209,6 @@ class AbstractPackage
         location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, false, null, @regDate, null, null, null, komm_string);
         SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
       else
-        @page.afterSendRegistration()
         @callCallback()
         main.showFinishedUploadMessage()
     

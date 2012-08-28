@@ -77,12 +77,10 @@ GetObjectFromServer = (call, callback, onError) ->
 
 
 SendObjectToServer = (obj, callback, onError) ->
+	console.log("about to send : " + JSON.stringify(obj))
 	console.log("sending - " + obj.url()  );
 	result = new Result
-	console.log("about to send : " + obj)
-	for k,v of obj
-      console.log(k + " -> " + v)
-      
+	
 	OData.request({
 	requestUri: obj.url() ,
 	method: "POST",

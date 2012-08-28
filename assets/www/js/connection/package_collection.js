@@ -12,7 +12,6 @@ PackageCollection = (function() {
 
   PackageCollection.prototype.add = function(pkg) {
     var retur;
-    pkg.freezed = true;
     retur = this.packages.push(pkg);
     this.callCallback();
     return retur;
@@ -21,17 +20,16 @@ PackageCollection = (function() {
   PackageCollection.prototype.get = function(name) {
     var found;
     found = this.packages.filter(function(pkg) {
-      return pkg.name === name && pkg.freezed === false;
+      return pkg.name === name;
     });
     return found[0];
   };
 
   PackageCollection.prototype.remove = function(obj) {
-    var prevSize;
+    var prevSize, removeIndex;
     prevSize = this.size();
-    this.packages = this.packages.filter(function(pkg) {
-      return JSON.stringify(pkg) !== JSON.stringify(obj);
-    });
+    removeIndex = this.packages.indexOf(obj);
+    this.packages.splice(removeIndex, 1);
     if (prevSize === this.size()) {
       throw "No matching object found in collection";
     }

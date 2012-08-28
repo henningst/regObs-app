@@ -8,18 +8,20 @@ class PackageCollection
     
   
   add : (pkg) ->
-    pkg.freezed = true
     retur = @packages.push(pkg)
     @callCallback()
     retur
     
   get : (name) ->
-    found = @packages.filter (pkg) -> pkg.name == name and pkg.freezed == false
+    found = @packages.filter (pkg) -> pkg.name == name 
     found[0]
   
   remove : (obj) ->
     prevSize = @size()
-    @packages = @packages.filter (pkg) -> JSON.stringify(pkg) != JSON.stringify(obj)
+    removeIndex = @packages.indexOf(obj)
+    @packages.splice(removeIndex, 1)
+    
+    
     if(prevSize == @size())
       throw "No matching object found in collection";
     @callCallback()
