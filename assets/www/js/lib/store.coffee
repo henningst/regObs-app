@@ -48,6 +48,7 @@ class NveStore
       
     callback() if callback
     
+    
   sendAndHandlePackage: (p)->
     p.callback = (pkg) ->
       collection = main.store.packageCollection 
@@ -71,8 +72,14 @@ class NveStore
       
   sendDirt: (callback) ->
     if @m_dirtPackage and not IsEmpty(@m_dirtPackage)
-      @m_dirtPackage.send()
-    
+      @packageCollection.add(@m_dirtPackage)
+      @m_dirtPackage.afterSendRegistration()
+      
+      @m_dirtPackage = null
+      DataAccess.save(DirtPackage.name, null)
+      
+      
+    @packageCollection.forall (p) => @sendAndHandlePackage(p)
     callback() if callback
     
   getIce: () ->

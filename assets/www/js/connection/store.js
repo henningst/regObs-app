@@ -83,9 +83,16 @@ NveStore = (function() {
   };
 
   NveStore.prototype.sendDirt = function(callback) {
+    var _this = this;
     if (this.m_dirtPackage && !IsEmpty(this.m_dirtPackage)) {
-      this.m_dirtPackage.send();
+      this.packageCollection.add(this.m_dirtPackage);
+      this.m_dirtPackage.afterSendRegistration();
+      this.m_dirtPackage = null;
+      DataAccess.save(DirtPackage.name, null);
     }
+    this.packageCollection.forall(function(p) {
+      return _this.sendAndHandlePackage(p);
+    });
     if (callback) {
       return callback();
     }

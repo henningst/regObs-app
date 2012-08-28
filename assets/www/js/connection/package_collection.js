@@ -63,6 +63,13 @@ PackageCollection = (function() {
 
 Cast = {
   "package": function(obj) {
-    return jQuery.extend(new SnowPackage(), obj);
+    switch (obj.name) {
+      case "SnowPackage":
+        return jQuery.extend(new SnowPackage(), obj);
+      case "DirtPackage":
+        return jQuery.extend(new DirtPackage(), obj);
+      default:
+        throw "No Casting mechanism for " + obj.name;
+    }
   }
 };

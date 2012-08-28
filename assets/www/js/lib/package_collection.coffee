@@ -40,6 +40,10 @@ class PackageCollection
 
 Cast ={
   package: (obj)->
-    jQuery.extend(new SnowPackage(), obj);
+    switch obj.name
+      when "SnowPackage" then jQuery.extend(new SnowPackage(), obj)
+      when "DirtPackage" then jQuery.extend(new DirtPackage(), obj)
+      else throw "No Casting mechanism for #{ obj.name }"
+      
   
 }
