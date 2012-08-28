@@ -21,6 +21,7 @@ class NveStore
         jQuery(".numPackages").hide()
       
       DataAccess.save("PackageCollection", collection)
+      console.log("pp: pakker igjen " + collection.size())
     
     @packageCollection.callback(@packageCollection)
     
@@ -40,6 +41,8 @@ class NveStore
         @m_snowPackage.init()
         @m_snowPackage
       
+      
+      
   sendSnow: (callback) ->
     if @m_snowPackage and not IsEmpty(@m_snowPackage)
       @m_snowPackage.freezed = true
@@ -53,12 +56,16 @@ class NveStore
       DataAccess.save(SnowPackage.name, null)
       
     console.log("antall pakker: " + @packageCollection.size())
-      
-      
-    collection = @packageCollection
+    console.log("pp pakker: " + JSON.stringify(@packageCollection))  
+    
     @packageCollection.forall (p) ->
-      console.log("pp: regdate i forall " + p.regDate)
-      p.callback = (pkg) -> collection.remove(p)
+      p.callback = (pkg) ->
+        collection = main.store.packageCollection 
+        pkg.freezed = true
+        console.log("pp: removing package " + collection.size())
+        collection.remove(pkg)
+        console.log("pp: package removed " + collection.size())
+        
       p.send()
       
     callback() if callback
@@ -120,14 +127,14 @@ class NveStore
     
     callback() if callback
     
-IsEmpty = (package) ->
-  if package.getObs().length isnt 0
+IsEmpty = (pkg) ->
+  if pkg.getObs().length isnt 0
     return false 
   
-  if package.getIncident() isnt null
+  if pkg.getIncident() isnt null
     return false
     
-  if package.getPictures().length isnt 0
+  if pkg.getPictures().length isnt 0
     return false
     
   true

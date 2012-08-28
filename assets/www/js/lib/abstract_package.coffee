@@ -31,7 +31,6 @@ class AbstractPackage
   
   setRegDate : ()=>
     @regDate = new Date(new Date().getTime() + 1000 * 60 * 120)
-    console.log("pp: sett regdate " + @regDate)
     
     
   getIncident: () =>
@@ -52,7 +51,6 @@ class AbstractPackage
     
   addObs: (obs) =>
     @setRegDate()
-    console.log("pp: should have set regdate " + @regDate)
     @m_dangerObs.push(obs)
     DataAccess.save(@name, this)
     
@@ -68,24 +66,31 @@ class AbstractPackage
     @m_pictures
     
   send: () =>
-    console.log("pp: send " + @regDate)
+    console.log("pp: send")
     @onSend(@page, true)
     
+  callCallback: ()=>
+    console.log("pp: calling callback")
+    @callback(this) if @callback 
+   
   afterLocation: (data, area, force) =>
     @onAfterLocation(data, area, force)
   
   afterRegistration: (data, area, force) =>
+    console.log("pp: after reg")
     if area
       @completeAreaRegistration(data, force)
     else 
       @completePointRegistration(data)
     
   completeAreaRegistration: (data, force) =>
+    console.log("pp: start complete area")
     x = 0
     n = @name
     console.log("test");
     for obs in @m_dangerObs 
       do(obs) ->
+        
         obs.RegID = data.RegID
         
         
@@ -94,7 +99,8 @@ class AbstractPackage
         else
           obs.DangerObsID = x++
         
-        SendObjectToServer(obs)
+        console.log("pp: obs:" + JSON.stringify(obs))
+        SendObjectToServer(jQuery.extend(obs, new AvalancheDangerObs))
         
     @m_dangerObs.length = 0
 
@@ -116,13 +122,16 @@ class AbstractPackage
     main.addLastRegID(data.RegID)
     DataAccess.save(@name, this)
     
+    console.log("pp: complete area")
     if not force
       @onSend(@page, false)
     else
+      @callCallback()
       main.showFinishedUploadMessage()  
       
   
   completePointRegistration: (data) =>
+    console.log("pp: start complete point")
     if @m_incident
       @m_incident.RegID = data.RegID
       SendObjectToServer(@m_incident)
@@ -142,6 +151,8 @@ class AbstractPackage
     
     main.addLastRegID(data.RegID)
     DataAccess.save(@name, this)
+    console.log("pp: complete point")
+    @callCallback()
     main.showFinishedUploadMessage()  
   
   fillIncident: (incident) =>  
@@ -158,6 +169,7 @@ class AbstractPackage
   
   
   onSend: (page, area) =>
+    console.log("pp: onsend")
     if area
       main.showWaitingDialogWithMessage(UPLOADING);
   
@@ -175,7 +187,6 @@ class AbstractPackage
     if @komm_nr
       komm_string = @komm_nr.toString()
        
-    console.log("pp: onSend " + @regDate)
     if area
       if @filterPicture(true).length isnt 0 || @m_dangerObs.length isnt 0
         location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, @regDate, null, null, null, komm_string);
@@ -193,11 +204,12 @@ class AbstractPackage
         SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
       else
         @page.afterSendRegistration()
+        @callCallback()
         main.showFinishedUploadMessage()
     
     
   onAfterLocation: (data, area, force) ->
-    console.log("pp: regdate" + @regDate)
+    console.log("pp: afterlocation")
     registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, @regDate, 0)
     SendObjectToServer(registration, ((data) => @afterRegistration(data, area, force)) , (error) => @onError(error))
     

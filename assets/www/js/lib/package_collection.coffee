@@ -18,8 +18,14 @@ class PackageCollection
     found[0]
   
   remove : (obj) ->
-    @packages = @packages.filter (pkg) -> pkg isnt obj
+    console.log("pp: --removeing package " + JSON.stringify(obj))
+    prevSize = @size()
+    @packages = @packages.filter (pkg) -> JSON.stringify(pkg) != JSON.stringify(obj)
+    if(prevSize == @size())
+      throw "No matching object found in collection";
+    console.log("pp: --package removed")
     @callCallback()
+    console.log("pp: --callback done")
   
   forall : (work) ->
     for pkg in @packages
