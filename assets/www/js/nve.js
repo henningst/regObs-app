@@ -172,7 +172,12 @@ var main = (function()
 			return SERVER_URL;
 		},
 		
-		
+		updateCollection: function(collection){
+		  if(collection.size() > 0)
+	        jQuery(".numPackages").hide().text(collection.size()).show();
+	      else
+	        jQuery(".numPackages").hide();
+		},
 		
 		starred: function() {
 			if(DataAccess.get(STARTUP_PAGE) == main.actualPage) {
@@ -642,8 +647,8 @@ var main = (function()
     			}
         	}
         	
-        	
         	main.toogleFavorite();
+        	main.updateCollection(main.store.packageCollection);
         	
         	if(status == 'start' && main.initialised) {
         		//google analytics

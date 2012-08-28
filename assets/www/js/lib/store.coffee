@@ -15,16 +15,11 @@ class NveStore
     
     
     @packageCollection.callback = (collection)->
-      if(collection.size() > 0)
-        jQuery(".numPackages").hide().text(collection.size()).show()
-      else
-        jQuery(".numPackages").hide()
+      main.updateCollection(collection) if main
       
       DataAccess.save("PackageCollection", collection)
     
     @packageCollection.callback(@packageCollection)
-    
-    
 
   getSnow: () ->
     if @m_snowPackage
@@ -41,7 +36,7 @@ class NveStore
       
       
       
-  sendSnow: (callback) ->
+  sendSnow: (callback) =>
     if @m_snowPackage and not IsEmpty(@m_snowPackage)
       @packageCollection.add(@m_snowPackage)
       @m_snowPackage.afterSendRegistration()
@@ -49,11 +44,11 @@ class NveStore
       @m_snowPackage =  null 
       DataAccess.save(SnowPackage.name, null)
     
-    @packageCollection.forall (p) -> @sendAndHandlePackage(pkg)
+    @packageCollection.forall (p) => @sendAndHandlePackage(p)
       
     callback() if callback
     
-  sendAndHandlePalckage: (pkg)->
+  sendAndHandlePackage: (p)->
     p.callback = (pkg) ->
       collection = main.store.packageCollection 
       pkg.freezed = true
