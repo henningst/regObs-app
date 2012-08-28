@@ -6,7 +6,6 @@ PackageCollection = (function() {
 
   function PackageCollection(callback) {
     this.callCallback = __bind(this.callCallback, this);
-    console.log("constrct");
     this.callback = callback;
     this.packages = [];
   }
@@ -28,7 +27,6 @@ PackageCollection = (function() {
 
   PackageCollection.prototype.remove = function(obj) {
     var prevSize;
-    console.log("pp: --removeing package " + JSON.stringify(obj));
     prevSize = this.size();
     this.packages = this.packages.filter(function(pkg) {
       return JSON.stringify(pkg) !== JSON.stringify(obj);
@@ -36,9 +34,7 @@ PackageCollection = (function() {
     if (prevSize === this.size()) {
       throw "No matching object found in collection";
     }
-    console.log("pp: --package removed");
-    this.callCallback();
-    return console.log("pp: --callback done");
+    return this.callCallback();
   };
 
   PackageCollection.prototype.forall = function(work) {

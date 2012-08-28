@@ -21,11 +21,9 @@ class NveStore
         jQuery(".numPackages").hide()
       
       DataAccess.save("PackageCollection", collection)
-      console.log("pp: pakker igjen " + collection.size())
     
     @packageCollection.callback(@packageCollection)
     
-    console.log("packagecollection antall packages at start:" + @packageCollection.size())
     
 
   getSnow: () ->
@@ -54,17 +52,12 @@ class NveStore
       
       @m_snowPackage =  null 
       DataAccess.save(SnowPackage.name, null)
-      
-    console.log("antall pakker: " + @packageCollection.size())
-    console.log("pp pakker: " + JSON.stringify(@packageCollection))  
     
     @packageCollection.forall (p) ->
       p.callback = (pkg) ->
         collection = main.store.packageCollection 
         pkg.freezed = true
-        console.log("pp: removing package " + collection.size())
         collection.remove(pkg)
-        console.log("pp: package removed " + collection.size())
         
       p.send()
       

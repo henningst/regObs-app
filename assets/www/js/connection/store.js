@@ -19,11 +19,9 @@ NveStore = (function() {
       } else {
         jQuery(".numPackages").hide();
       }
-      DataAccess.save("PackageCollection", collection);
-      return console.log("pp: pakker igjen " + collection.size());
+      return DataAccess.save("PackageCollection", collection);
     };
     this.packageCollection.callback(this.packageCollection);
-    console.log("packagecollection antall packages at start:" + this.packageCollection.size());
   }
 
   NveStore.prototype.getSnow = function() {
@@ -52,16 +50,12 @@ NveStore = (function() {
       this.m_snowPackage = null;
       DataAccess.save(SnowPackage.name, null);
     }
-    console.log("antall pakker: " + this.packageCollection.size());
-    console.log("pp pakker: " + JSON.stringify(this.packageCollection));
     this.packageCollection.forall(function(p) {
       p.callback = function(pkg) {
         var collection;
         collection = main.store.packageCollection;
         pkg.freezed = true;
-        console.log("pp: removing package " + collection.size());
-        collection.remove(pkg);
-        return console.log("pp: package removed " + collection.size());
+        return collection.remove(pkg);
       };
       return p.send();
     });

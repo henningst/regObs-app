@@ -3,7 +3,6 @@
 class PackageCollection
   
   constructor: (callback) ->
-    console.log("constrct")
     @callback = callback
     @packages = []
     
@@ -18,14 +17,11 @@ class PackageCollection
     found[0]
   
   remove : (obj) ->
-    console.log("pp: --removeing package " + JSON.stringify(obj))
     prevSize = @size()
     @packages = @packages.filter (pkg) -> JSON.stringify(pkg) != JSON.stringify(obj)
     if(prevSize == @size())
       throw "No matching object found in collection";
-    console.log("pp: --package removed")
     @callCallback()
-    console.log("pp: --callback done")
   
   forall : (work) ->
     for pkg in @packages
