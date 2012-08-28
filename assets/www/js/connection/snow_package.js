@@ -16,6 +16,7 @@ SnowPackage = (function(_super) {
     this.page = snow_page;
     this.picturePage = snow_picture;
     this.hendelsePage = snow_hendelse;
+    this.pages = [this.page, this.picturePage, this.hendelsePage];
     return this.superInit();
   };
 

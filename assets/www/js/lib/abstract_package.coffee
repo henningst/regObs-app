@@ -10,6 +10,7 @@ class AbstractPackage
     @omrade_id = 0
     @regDate = null
     @freezed = false
+    @pages = []
 
   onError: (data) ->
     main.errorDialog()
@@ -31,6 +32,11 @@ class AbstractPackage
   
   setRegDate : ()=>
     @regDate = new Date(new Date().getTime() + 1000 * 60 * 120)
+    
+    
+  afterSendRegistration: ()=>
+    for page in @pages
+      page.afterSendRegistration() if page and page.afterSendRegistration
     
     
   getIncident: () =>
@@ -66,25 +72,21 @@ class AbstractPackage
     @m_pictures
     
   send: () =>
-    console.log("pp: send")
     @onSend(@page, true)
     
   callCallback: ()=>
-    console.log("pp: calling callback")
     @callback(this) if @callback 
    
   afterLocation: (data, area, force) =>
     @onAfterLocation(data, area, force)
   
   afterRegistration: (data, area, force) =>
-    console.log("pp: after reg")
     if area
       @completeAreaRegistration(data, force)
     else 
       @completePointRegistration(data)
     
   completeAreaRegistration: (data, force) =>
-    console.log("pp: start complete area")
     x = 0
     n = @name
     console.log("test");
@@ -122,7 +124,6 @@ class AbstractPackage
     main.addLastRegID(data.RegID)
     DataAccess.save(@name, this)
     
-    console.log("pp: complete area")
     if not force
       @onSend(@page, false)
     else
@@ -131,7 +132,6 @@ class AbstractPackage
       
   
   completePointRegistration: (data) =>
-    console.log("pp: start complete point")
     if @m_incident
       @m_incident.RegID = data.RegID
       SendObjectToServer(@m_incident)
@@ -151,7 +151,6 @@ class AbstractPackage
     
     main.addLastRegID(data.RegID)
     DataAccess.save(@name, this)
-    console.log("pp: complete point")
     @callCallback()
     main.showFinishedUploadMessage()  
   
@@ -209,7 +208,6 @@ class AbstractPackage
     
     
   onAfterLocation: (data, area, force) ->
-    console.log("pp: afterlocation")
     registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, @regDate, 0)
     SendObjectToServer(registration, ((data) => @afterRegistration(data, area, force)) , (error) => @onError(error))
     

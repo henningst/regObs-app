@@ -43,25 +43,23 @@ class NveStore
       
   sendSnow: (callback) ->
     if @m_snowPackage and not IsEmpty(@m_snowPackage)
-      @m_snowPackage.freezed = true
       @packageCollection.add(@m_snowPackage)
-      
-      @m_snowPackage.picturePage.afterSendRegistration()
-      @m_snowPackage.hendelsePage.afterSendRegistration()
-      @m_snowPackage.page.afterSendRegistration()
+      @m_snowPackage.afterSendRegistration()
       
       @m_snowPackage =  null 
       DataAccess.save(SnowPackage.name, null)
     
-    @packageCollection.forall (p) ->
-      p.callback = (pkg) ->
-        collection = main.store.packageCollection 
-        pkg.freezed = true
-        collection.remove(pkg)
-        
-      p.send()
+    @packageCollection.forall (p) -> @sendAndHandlePackage(pkg)
       
     callback() if callback
+    
+  sendAndHandlePalckage: (pkg)->
+    p.callback = (pkg) ->
+      collection = main.store.packageCollection 
+      pkg.freezed = true
+      collection.remove(pkg)
+    
+    p.send()
 
   getDirt: () ->
     if @m_dirtPackage

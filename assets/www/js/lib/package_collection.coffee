@@ -8,6 +8,7 @@ class PackageCollection
     
   
   add : (pkg) ->
+    pkg.freezed = true
     retur = @packages.push(pkg)
     @callCallback()
     retur

@@ -43,6 +43,8 @@ AbstractPackage = (function() {
 
     this.getIncident = __bind(this.getIncident, this);
 
+    this.afterSendRegistration = __bind(this.afterSendRegistration, this);
+
     this.setRegDate = __bind(this.setRegDate, this);
 
     this.setIncident = __bind(this.setIncident, this);
@@ -62,7 +64,8 @@ AbstractPackage = (function() {
     this.komnr = 0;
     this.omrade_id = 0;
     this.regDate = null;
-    return this.freezed = false;
+    this.freezed = false;
+    return this.pages = [];
   };
 
   AbstractPackage.prototype.onError = function(data) {
@@ -119,6 +122,21 @@ AbstractPackage = (function() {
     return this.regDate = new Date(new Date().getTime() + 1000 * 60 * 120);
   };
 
+  AbstractPackage.prototype.afterSendRegistration = function() {
+    var page, _i, _len, _ref, _results;
+    _ref = this.pages;
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      page = _ref[_i];
+      if (page && page.afterSendRegistration) {
+        _results.push(page.afterSendRegistration());
+      } else {
+        _results.push(void 0);
+      }
+    }
+    return _results;
+  };
+
   AbstractPackage.prototype.getIncident = function() {
     return this.m_incident;
   };
@@ -162,12 +180,10 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.send = function() {
-    console.log("pp: send");
     return this.onSend(this.page, true);
   };
 
   AbstractPackage.prototype.callCallback = function() {
-    console.log("pp: calling callback");
     if (this.callback) {
       return this.callback(this);
     }
@@ -178,7 +194,6 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.afterRegistration = function(data, area, force) {
-    console.log("pp: after reg");
     if (area) {
       return this.completeAreaRegistration(data, force);
     } else {
@@ -188,7 +203,6 @@ AbstractPackage = (function() {
 
   AbstractPackage.prototype.completeAreaRegistration = function(data, force) {
     var bilde, i, n, obs, picture, x, _fn, _fn1, _i, _j, _len, _len1, _ref;
-    console.log("pp: start complete area");
     x = 0;
     n = this.name;
     console.log("test");
@@ -228,7 +242,6 @@ AbstractPackage = (function() {
     }
     main.addLastRegID(data.RegID);
     DataAccess.save(this.name, this);
-    console.log("pp: complete area");
     if (!force) {
       return this.onSend(this.page, false);
     } else {
@@ -239,7 +252,6 @@ AbstractPackage = (function() {
 
   AbstractPackage.prototype.completePointRegistration = function(data) {
     var bilde, i, picture, _fn, _i, _len;
-    console.log("pp: start complete point");
     if (this.m_incident) {
       this.m_incident.RegID = data.RegID;
       SendObjectToServer(this.m_incident);
@@ -261,7 +273,6 @@ AbstractPackage = (function() {
     this.m_pictures.length = 0;
     main.addLastRegID(data.RegID);
     DataAccess.save(this.name, this);
-    console.log("pp: complete point");
     this.callCallback();
     return main.showFinishedUploadMessage();
   };
@@ -342,7 +353,6 @@ AbstractPackage = (function() {
   AbstractPackage.prototype.onAfterLocation = function(data, area, force) {
     var registration,
       _this = this;
-    console.log("pp: afterlocation");
     registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, this.regDate, 0);
     return SendObjectToServer(registration, (function(data) {
       return _this.afterRegistration(data, area, force);

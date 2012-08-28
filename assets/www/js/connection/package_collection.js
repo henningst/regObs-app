@@ -12,6 +12,7 @@ PackageCollection = (function() {
 
   PackageCollection.prototype.add = function(pkg) {
     var retur;
+    pkg.freezed = true;
     retur = this.packages.push(pkg);
     this.callCallback();
     return retur;

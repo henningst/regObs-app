@@ -42,26 +42,27 @@ NveStore = (function() {
 
   NveStore.prototype.sendSnow = function(callback) {
     if (this.m_snowPackage && !IsEmpty(this.m_snowPackage)) {
-      this.m_snowPackage.freezed = true;
       this.packageCollection.add(this.m_snowPackage);
-      this.m_snowPackage.picturePage.afterSendRegistration();
-      this.m_snowPackage.hendelsePage.afterSendRegistration();
-      this.m_snowPackage.page.afterSendRegistration();
+      this.m_snowPackage.afterSendRegistration();
       this.m_snowPackage = null;
       DataAccess.save(SnowPackage.name, null);
     }
     this.packageCollection.forall(function(p) {
-      p.callback = function(pkg) {
-        var collection;
-        collection = main.store.packageCollection;
-        pkg.freezed = true;
-        return collection.remove(pkg);
-      };
-      return p.send();
+      return this.sendAndHandlePackage(pkg);
     });
     if (callback) {
       return callback();
     }
+  };
+
+  NveStore.prototype.sendAndHandlePalckage = function(pkg) {
+    p.callback = function(pkg) {
+      var collection;
+      collection = main.store.packageCollection;
+      pkg.freezed = true;
+      return collection.remove(pkg);
+    };
+    return p.send();
   };
 
   NveStore.prototype.getDirt = function() {

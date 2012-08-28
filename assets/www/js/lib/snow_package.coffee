@@ -9,5 +9,7 @@ class SnowPackage extends AbstractPackage
 		@picturePage = snow_picture
 		@hendelsePage = snow_hendelse	
 		
+		@pages = [@page, @picturePage, @hendelsePage]
+		
 		@superInit()
 		
