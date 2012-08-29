@@ -6,6 +6,10 @@ NveStore = (function() {
 
   function NveStore() {
     this.sendSnow = __bind(this.sendSnow, this);
+
+    this.setNotificationId = __bind(this.setNotificationId, this);
+
+    this.getNotificationId = __bind(this.getNotificationId, this);
     this.m_waterPackage = null;
     this.m_snowPackage = null;
     this.m_dirtPackage = null;
@@ -23,6 +27,20 @@ NveStore = (function() {
     };
     this.packageCollection.callback(this.packageCollection);
   }
+
+  NveStore.prototype.getNotificationId = function() {
+    if (this.notificationId && this.notificationId.id) {
+      return this.notificationId.id;
+    } else {
+      return null;
+    }
+  };
+
+  NveStore.prototype.setNotificationId = function(id) {
+    return this.notificationId = {
+      "id": id
+    };
+  };
 
   NveStore.prototype.getSnow = function() {
     if (this.m_snowPackage) {

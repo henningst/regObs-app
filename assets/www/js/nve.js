@@ -173,10 +173,31 @@ var main = (function()
 		},
 		
 		updateCollection: function(collection){
-		  if(collection.size() > 0)
-	        jQuery(".numPackages").hide().text(collection.size()).show();
-	      else
+		  if(collection.size() > 0){
+			  jQuery(".numPackages").hide().text(collection.size()).show();
+			  
+			  if(main.store.getNotificationId() == null)
+			  {
+				  new LocalNotification().add({
+	                  date : new Date(),
+	                  message : "Du har usendte observasjoner i regObs\n Gå inn i appen å trykk \"Send inn\" for å sende disse",
+	                  ticker : "regObs har usendte observasjoner",
+	                  repeatDaily : false,
+	                  id : 4
+				  });
+				  main.store.setNotificationId(4);
+			  }
+			  
+			  
+		  }else{
 	        jQuery(".numPackages").hide();
+	        if(main.store.getNotificationId() !== null){
+	        	new LocalNotification().cancel(main.store.getNotificationId());
+	        	main.store.setNotificationId(null);
+        	}
+		  }
+		  
+		  
 		},
 		
 		starred: function() {

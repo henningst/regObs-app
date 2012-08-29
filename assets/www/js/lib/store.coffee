@@ -21,6 +21,16 @@ class NveStore
     
     @packageCollection.callback(@packageCollection)
 
+
+  getNotificationId: () =>
+    if @notificationId and @notificationId.id 
+      @notificationId.id
+    else
+      null 
+
+  setNotificationId : (id)=>
+    @notificationId = {"id": id}
+
   getSnow: () ->
     if @m_snowPackage
       @m_snowPackage
