@@ -511,3 +511,8 @@ ul.actions li{
 .composedButtonContainer{
 	position:relative;
 }
+
+.checked{
+	background-color: green;
+	
+}

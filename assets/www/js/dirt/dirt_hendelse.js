@@ -72,6 +72,8 @@ var dirt_hendelse = {
 				main.store.getDirt().setIncident(incident);
 				main.panels.slideBack();			
 			},true);
+			
+			dirt_page.check("dirt_hendelse_count");
 		},
 		
 		init: function() {

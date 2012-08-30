@@ -72,6 +72,8 @@ var water_hendelse = {
 				main.store.getWater().setIncident(incident);
 				main.panels.slideBack();			
 			},true);
+			
+			water_page.check("water_hendelse_count");
 		},
 		
 		init: function() {

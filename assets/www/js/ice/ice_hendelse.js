@@ -70,6 +70,8 @@ var ice_hendelse = {
 				main.store.getIce().setIncident(incident);
 				main.panels.slideBack();			
 			}, true);
+			
+			ice_page.check("ice_hendelse_count");
 		},
 		
 		init: function() {

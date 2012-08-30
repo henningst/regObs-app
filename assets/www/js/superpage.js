@@ -32,6 +32,10 @@ var super_page = {
 			$(id).innerHTML = i;
 		},
 		
+		check: function(id){
+			jQuery("#" + id).addClass("checked").text("");
+		},
+		
 		setStoredLocation : function(position){
 			console.log("setting lat long " + this);
 			this.updatePagePosition(position);

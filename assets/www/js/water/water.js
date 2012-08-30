@@ -24,6 +24,7 @@ var water_page = {
 	afterSendRegistration: function() {
 		$('water_faresign_count').innerHTML = 0;
 		$('water_picture_count').innerHTML = 0;
+		jQuery('#water_hendelse_count').removeClass("checked").text("0");
 	},
 	
 	init: function() {

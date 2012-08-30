@@ -72,6 +72,8 @@ var snow_hendelse = {
 				main.panels.slideBack();
 			});
 			
+			snow_page.check("snow_hendelse_count");
+			
 		},
 		
 		init: function() {

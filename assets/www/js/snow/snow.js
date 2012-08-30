@@ -27,6 +27,7 @@ var snow_page = {
 	afterSendRegistration: function() {
 		$('snow_faresign_count').innerHTML = 0;
 		$('snow_picture_count').innerHTML = 0;
+		jQuery('#snow_hendelse_count').removeClass("checked").text("0");
 	},
 	
 	init: function() {
