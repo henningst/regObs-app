@@ -22,6 +22,7 @@ describe("Package collection", function(){
 	});
 	
 	it("should do work for all the packages", function(){
+		Cast["package"] = function(test) { return test; }
 		var collection = new PackageCollection();
 		var pack1 = {freezed : true, name: "one"};
 		var pack2 = {freezed : true, name: "two"};

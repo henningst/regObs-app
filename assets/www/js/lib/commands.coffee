@@ -38,3 +38,24 @@ class SendInPictureCommand
 			console.log(k + " -> " + v)
 			
 		console.log("value of secur err " + FileError.SECURITY_ERR  + " not found err " + FileError.NOT_FOUND_ERR)
+		
+
+class ObserversGroupsCommand
+  constructor: (@user) ->
+    @groups = []
+    @url = SERVER_URL+"/ObserverGroupMember?$filter=ObserverID eq 188&$expand=ObserverGroup"
+    
+  fetch: (@callback) =>
+    GetObjectFromServer(this, @gotData, @fail)
+    
+  gotData:(data)=>
+    console.log(data)
+    jQuery.each(data.results, (i, result)=>
+      @groups.push({id: result.ObserverGroup.ObserverGroupID, name: result.ObserverGroup.ObserverGroupName})  
+    )
+    
+    @callback(@groups)
+    
+  fail: (err, data)->
+    console.log(err)
+    console.log(JSON.stringify(data))

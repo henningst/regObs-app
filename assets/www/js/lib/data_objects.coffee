@@ -9,7 +9,8 @@ class Result
 		
 		
 class User
-	constructor: (@username, @password)->
+	constructor: (@id, @username, @password)->
+    @groups = []
 	
 	isDefined: ->
 		if (@username != null and @password != null)  
@@ -20,6 +21,8 @@ class User
 		else
 			false
 
+class Group
+  constructor: (@id, @name)->
 		
 class SendEmail
 	url : "" 

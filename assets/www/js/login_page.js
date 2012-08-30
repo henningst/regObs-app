@@ -25,6 +25,19 @@ var login_page = {
     },
     loginCallback: function(data) {
 		main.login = LoggedInAs(login_page.loggedInAsCallback);
+		login_page.updateGroups();
+	},
+	
+	updateGroups: function(callback){
+		var user = UserStore.get(main.currentMode());
+		var groupsCommand = new ObserversGroupsCommand(user);
+		groupsCommand.fetch(function(groups){
+			user.groups = groups;
+			UserStore.save(main.currentMode(), user);
+			
+			if(callback)
+				callback(user);
+		});
 	},
 	
 	loginErrorCallback: function(data) {
