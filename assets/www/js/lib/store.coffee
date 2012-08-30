@@ -15,7 +15,9 @@ class NveStore
     
     
     @packageCollection.callback = (collection)->
-      main.updateCollection(collection) if main
+      setTimeout(()-> 
+        main.updateCollection(collection) 
+      ,1000) if main
       
       DataAccess.save("PackageCollection", collection)
     

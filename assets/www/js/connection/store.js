@@ -21,7 +21,9 @@ NveStore = (function() {
     }
     this.packageCollection.callback = function(collection) {
       if (main) {
-        main.updateCollection(collection);
+        setTimeout(function() {
+          return main.updateCollection(collection);
+        }, 1000);
       }
       return DataAccess.save("PackageCollection", collection);
     };

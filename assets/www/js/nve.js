@@ -173,46 +173,31 @@ var main = (function()
 		},
 		
 		updateCollection: function(collection){
-			try{
 		  if(collection.size() > 0){
 			  jQuery(".numPackages").hide().text(collection.size()).show();
 			  
-			  if(main.store.getNotificationId() == null)
-				  main.store.setNotificationId(1);
-			  else{
-				  main.store.setNotificationId(main.store.getNotificationId() +1);
-			  }
-			  
-			  
-			  console.log("setting platform for: " +device.platform)
+			  console.log("setting platform for: " +device.platform + " - " + main.store.getNotificationId())
 			  if(device.platform === "iphone" || main.store.getNotificationId() == null )
 			  {
 				  console.log("------------ adding a notification " + collection.size() +  " ------------- ")
-				  try{
+				  main.store.setNotificationId(4);
 				  var notification =  new LocalNotification();
-				  notification.cancelAll();
 				  notification.add({
-	                  date : false,
+	                  date : new Date(),
 	                  message : "Du har usendte observasjoner i regObs\n Gå inn i appen å trykk \"Send inn\" for å sende disse",
 	                  ticker : "regObs har usendte observasjoner",
 	                  repeatDaily : false,
-	                  id : main.store.getNotificationId(),
+	                  id : 4,
 	                  badge: "" + collection.size(),
 				  });
-				  }catch(e){console.log("ERROR: " + JSON.stringify(e))}
 			  }
-			  
-			  
 		  }else{
 	        jQuery(".numPackages").hide();
         	console.log("------------ removeing ------------- ")
         	new LocalNotification().cancelAll();
+        	new LocalNotification().cancel(4);
         	main.store.setNotificationId(null);
 		  }
-		  
-			}catch(e){
-				console.log("ERROR: " + JSON.stringify(e));
-			}
 		},
 		
 		starred: function() {
