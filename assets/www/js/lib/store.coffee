@@ -47,15 +47,22 @@ class NveStore
       
       
   sendSnow: (callback) =>
-    if @m_snowPackage and not IsEmpty(@m_snowPackage)
-      @packageCollection.add(@m_snowPackage)
-      @m_snowPackage.afterSendRegistration()
+    try
+      console.log("sending snow")
+      if @m_snowPackage and not IsEmpty(@m_snowPackage)
+        console.log("pp: adding to que")
+        @packageCollection.add(@m_snowPackage)
+        @m_snowPackage.afterSendRegistration()
+        
+        @m_snowPackage =  null 
+        DataAccess.save(SnowPackage.name, null)
+        console.log("pp: cleared the registration")
       
-      @m_snowPackage =  null 
-      DataAccess.save(SnowPackage.name, null)
-    
-    @packageCollection.forall (p) => @sendAndHandlePackage(p)
-    callback() if callback
+      @packageCollection.forall (p) => @sendAndHandlePackage(p)
+      callback() if callback
+      
+    catch error
+      console.log(JSON.stringify(error))
     
     
   sendAndHandlePackage: (p)->
@@ -64,6 +71,7 @@ class NveStore
       pkg.freezed = true
       collection.remove(pkg)
     
+    console.log("pp: sending package")
     p.send()
 
   getDirt: () ->

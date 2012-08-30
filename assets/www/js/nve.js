@@ -173,31 +173,46 @@ var main = (function()
 		},
 		
 		updateCollection: function(collection){
+			try{
 		  if(collection.size() > 0){
 			  jQuery(".numPackages").hide().text(collection.size()).show();
 			  
 			  if(main.store.getNotificationId() == null)
+				  main.store.setNotificationId(1);
+			  else{
+				  main.store.setNotificationId(main.store.getNotificationId() +1);
+			  }
+			  
+			  
+			  console.log("setting platform for: " +device.platform)
+			  if(device.platform === "iphone" || main.store.getNotificationId() == null )
 			  {
-				  new LocalNotification().add({
-	                  date : new Date(),
+				  console.log("------------ adding a notification " + collection.size() +  " ------------- ")
+				  try{
+				  var notification =  new LocalNotification();
+				  notification.cancelAll();
+				  notification.add({
+	                  date : false,
 	                  message : "Du har usendte observasjoner i regObs\n Gå inn i appen å trykk \"Send inn\" for å sende disse",
 	                  ticker : "regObs har usendte observasjoner",
 	                  repeatDaily : false,
-	                  id : 4
+	                  id : main.store.getNotificationId(),
+	                  badge: "" + collection.size(),
 				  });
-				  main.store.setNotificationId(4);
+				  }catch(e){console.log("ERROR: " + JSON.stringify(e))}
 			  }
 			  
 			  
 		  }else{
 	        jQuery(".numPackages").hide();
-	        if(main.store.getNotificationId() !== null){
-	        	new LocalNotification().cancel(main.store.getNotificationId());
-	        	main.store.setNotificationId(null);
-        	}
+        	console.log("------------ removeing ------------- ")
+        	new LocalNotification().cancelAll();
+        	main.store.setNotificationId(null);
 		  }
 		  
-		  
+			}catch(e){
+				console.log("ERROR: " + JSON.stringify(e));
+			}
 		},
 		
 		starred: function() {
@@ -673,7 +688,7 @@ var main = (function()
         	
         	if(status == 'start' && main.initialised) {
         		//google analytics
-    			window.analytics.trackPageView(params.id);
+    			//window.analytics.trackPageView(params.id);
         	}
         	
         	switch(params.id) {

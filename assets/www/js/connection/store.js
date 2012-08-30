@@ -60,17 +60,24 @@ NveStore = (function() {
 
   NveStore.prototype.sendSnow = function(callback) {
     var _this = this;
-    if (this.m_snowPackage && !IsEmpty(this.m_snowPackage)) {
-      this.packageCollection.add(this.m_snowPackage);
-      this.m_snowPackage.afterSendRegistration();
-      this.m_snowPackage = null;
-      DataAccess.save(SnowPackage.name, null);
-    }
-    this.packageCollection.forall(function(p) {
-      return _this.sendAndHandlePackage(p);
-    });
-    if (callback) {
-      return callback();
+    try {
+      console.log("sending snow");
+      if (this.m_snowPackage && !IsEmpty(this.m_snowPackage)) {
+        console.log("pp: adding to que");
+        this.packageCollection.add(this.m_snowPackage);
+        this.m_snowPackage.afterSendRegistration();
+        this.m_snowPackage = null;
+        DataAccess.save(SnowPackage.name, null);
+        console.log("pp: cleared the registration");
+      }
+      this.packageCollection.forall(function(p) {
+        return _this.sendAndHandlePackage(p);
+      });
+      if (callback) {
+        return callback();
+      }
+    } catch (error) {
+      return console.log(JSON.stringify(error));
     }
   };
 
@@ -81,6 +88,7 @@ NveStore = (function() {
       pkg.freezed = true;
       return collection.remove(pkg);
     };
+    console.log("pp: sending package");
     return p.send();
   };
 
