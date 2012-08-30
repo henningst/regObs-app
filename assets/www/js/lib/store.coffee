@@ -49,10 +49,9 @@ class NveStore
       
       
   sendSnow: (callback) =>
-    try
       console.log("sending snow")
       if @m_snowPackage and not IsEmpty(@m_snowPackage)
-        console.log("pp: adding to que")
+        @m_snowPackage.setGroup(jQuery("#snow_group").val());
         @packageCollection.add(@m_snowPackage)
         @m_snowPackage.afterSendRegistration()
         
@@ -62,10 +61,6 @@ class NveStore
       
       @packageCollection.forall (p) => @sendAndHandlePackage(p)
       callback() if callback
-      
-    catch error
-      console.log(JSON.stringify(error))
-    
     
   sendAndHandlePackage: (p)->
     p.callback = (pkg) ->

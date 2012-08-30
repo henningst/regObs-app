@@ -515,3 +515,16 @@ ul.actions li{
 .checked{
 	background: url("../img/check.png") no-repeat center;
 }
+
+.numPackages{
+	margin-right: 50px;
+}
+
+.group-list-button{
+	height: 50%;
+	width: 30px;
+	background: url("../img/chooise.png") no-repeat right;
+	background-size: contain;
+	
+	border-left: 1px solid #ccc;
+}

@@ -62,24 +62,20 @@ NveStore = (function() {
 
   NveStore.prototype.sendSnow = function(callback) {
     var _this = this;
-    try {
-      console.log("sending snow");
-      if (this.m_snowPackage && !IsEmpty(this.m_snowPackage)) {
-        console.log("pp: adding to que");
-        this.packageCollection.add(this.m_snowPackage);
-        this.m_snowPackage.afterSendRegistration();
-        this.m_snowPackage = null;
-        DataAccess.save(SnowPackage.name, null);
-        console.log("pp: cleared the registration");
-      }
-      this.packageCollection.forall(function(p) {
-        return _this.sendAndHandlePackage(p);
-      });
-      if (callback) {
-        return callback();
-      }
-    } catch (error) {
-      return console.log(JSON.stringify(error));
+    console.log("sending snow");
+    if (this.m_snowPackage && !IsEmpty(this.m_snowPackage)) {
+      this.m_snowPackage.setGroup(jQuery("#snow_group").val());
+      this.packageCollection.add(this.m_snowPackage);
+      this.m_snowPackage.afterSendRegistration();
+      this.m_snowPackage = null;
+      DataAccess.save(SnowPackage.name, null);
+      console.log("pp: cleared the registration");
+    }
+    this.packageCollection.forall(function(p) {
+      return _this.sendAndHandlePackage(p);
+    });
+    if (callback) {
+      return callback();
     }
   };
 

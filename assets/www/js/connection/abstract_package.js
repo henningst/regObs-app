@@ -45,6 +45,8 @@ AbstractPackage = (function() {
 
     this.afterSendRegistration = __bind(this.afterSendRegistration, this);
 
+    this.setGroup = __bind(this.setGroup, this);
+
     this.setRegDate = __bind(this.setRegDate, this);
 
     this.setIncident = __bind(this.setIncident, this);
@@ -121,6 +123,10 @@ AbstractPackage = (function() {
 
   AbstractPackage.prototype.setRegDate = function() {
     return this.regDate = new Date(new Date().getTime() + 1000 * 60 * 120);
+  };
+
+  AbstractPackage.prototype.setGroup = function(groupId) {
+    return this.groupId = groupId;
   };
 
   AbstractPackage.prototype.afterSendRegistration = function() {
@@ -360,7 +366,7 @@ AbstractPackage = (function() {
   AbstractPackage.prototype.onAfterLocation = function(data, area, force) {
     var registration,
       _this = this;
-    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, this.regDate, 0);
+    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, this.regDate, 0, this.groupId);
     return SendObjectToServer(registration, (function(data) {
       return _this.afterRegistration(data, area, force);
     }), function(error) {
