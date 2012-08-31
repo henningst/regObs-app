@@ -49,7 +49,6 @@ class NveStore
       
       
   sendSnow: (callback) =>
-      console.log("sending snow")
       if @m_snowPackage and not IsEmpty(@m_snowPackage)
         @m_snowPackage.setGroup(jQuery("#snow_group").val());
         @packageCollection.add(@m_snowPackage)
@@ -57,7 +56,6 @@ class NveStore
         
         @m_snowPackage =  null 
         DataAccess.save(SnowPackage.name, null)
-        console.log("pp: cleared the registration")
       
       @packageCollection.forall (p) => @sendAndHandlePackage(p)
       callback() if callback
@@ -86,6 +84,7 @@ class NveStore
       
   sendDirt: (callback) ->
     if @m_dirtPackage and not IsEmpty(@m_dirtPackage)
+      @m_dirtPackage.setGroup(jQuery("#dirt_group").val());
       @packageCollection.add(@m_dirtPackage)
       @m_dirtPackage.afterSendRegistration()
       
@@ -110,6 +109,7 @@ class NveStore
       
   sendIce: (callback) ->
     if @m_icePackage and not IsEmpty(@m_icePackage)
+      @m_icePackage.setGroup(jQuery("#ice_group").val());
       @packageCollection.add(@m_icePackage)
       @m_icePackage.afterSendRegistration()
       
@@ -135,6 +135,7 @@ class NveStore
       
   sendWater: (callback) ->
     if @m_waterPackage and not IsEmpty(@m_waterPackage)
+      @m_waterPackage.setGroup(jQuery("#water_group").val());
       @packageCollection.add(@m_waterPackage)
       @m_waterPackage.afterSendRegistration()
       

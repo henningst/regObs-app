@@ -62,14 +62,12 @@ NveStore = (function() {
 
   NveStore.prototype.sendSnow = function(callback) {
     var _this = this;
-    console.log("sending snow");
     if (this.m_snowPackage && !IsEmpty(this.m_snowPackage)) {
       this.m_snowPackage.setGroup(jQuery("#snow_group").val());
       this.packageCollection.add(this.m_snowPackage);
       this.m_snowPackage.afterSendRegistration();
       this.m_snowPackage = null;
       DataAccess.save(SnowPackage.name, null);
-      console.log("pp: cleared the registration");
     }
     this.packageCollection.forall(function(p) {
       return _this.sendAndHandlePackage(p);
@@ -109,6 +107,7 @@ NveStore = (function() {
   NveStore.prototype.sendDirt = function(callback) {
     var _this = this;
     if (this.m_dirtPackage && !IsEmpty(this.m_dirtPackage)) {
+      this.m_dirtPackage.setGroup(jQuery("#dirt_group").val());
       this.packageCollection.add(this.m_dirtPackage);
       this.m_dirtPackage.afterSendRegistration();
       this.m_dirtPackage = null;
@@ -141,6 +140,7 @@ NveStore = (function() {
   NveStore.prototype.sendIce = function(callback) {
     var _this = this;
     if (this.m_icePackage && !IsEmpty(this.m_icePackage)) {
+      this.m_icePackage.setGroup(jQuery("#ice_group").val());
       this.packageCollection.add(this.m_icePackage);
       this.m_icePackage.afterSendRegistration();
       this.m_icePackage = null;
@@ -173,6 +173,7 @@ NveStore = (function() {
   NveStore.prototype.sendWater = function(callback) {
     var _this = this;
     if (this.m_waterPackage && !IsEmpty(this.m_waterPackage)) {
+      this.m_waterPackage.setGroup(jQuery("#water_group").val());
       this.packageCollection.add(this.m_waterPackage);
       this.m_waterPackage.afterSendRegistration();
       this.m_waterPackage = null;

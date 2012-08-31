@@ -25,6 +25,7 @@ var water_page = {
 		$('water_faresign_count').innerHTML = 0;
 		$('water_picture_count').innerHTML = 0;
 		jQuery('#water_hendelse_count').removeClass("checked").text("0");
+		jQuery('#water_group').val(0);
 	},
 	
 	init: function() {

@@ -27,6 +27,7 @@ var dirt_page = {
 		$('dirt_faresign_count').innerHTML = 0;
 		$('dirt_picture_count').innerHTML = 0;
 		jQuery('#dirt_hendelse_count').removeClass("checked").text("0");
+		jQuery('#dirt_group').val(0);
 	},
 	
 	init: function() {
