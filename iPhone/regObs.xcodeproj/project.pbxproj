@@ -557,8 +557,7 @@
 				INFOPLIST_FILE = "Nve/regObs-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Nve/GoogleAnalytics/GoogSDK\"",
-					"\"$(SRCROOT)/../../../../../Downloads/phonegap-phonegap-plugins-5f49cb0/iPhone/GoogleAnalytics/GoogSDK\"",
+					"\"$(SRCROOT)/Nve/GoogleAnalytics/GoogSDK/\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -603,8 +602,7 @@
 				INFOPLIST_FILE = "Nve/regObs-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Nve/GoogleAnalytics/GoogSDK\"",
-					"\"$(SRCROOT)/../../../../../Downloads/phonegap-phonegap-plugins-5f49cb0/iPhone/GoogleAnalytics/GoogSDK\"",
+					"\"$(SRCROOT)/Nve/GoogleAnalytics/GoogSDK/\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",

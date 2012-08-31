@@ -656,6 +656,10 @@ var main = (function()
         	jQuery("#regobs-info").show();
         },
         
+        updateLoginStatusAndBehaviour: function(){
+        	
+        },
+        
         toggleBackButtonDisplay: function(params, status) {
         	console.log("-------backbutton display");
         	console.log(params.id);
@@ -670,6 +674,7 @@ var main = (function()
         	
         	main.toogleFavorite();
         	main.updateCollection(main.store.packageCollection);
+        	main.updateLoginStatusAndBehaviour();
         	
         	if(status == 'start' && main.initialised) {
         		//google analytics
