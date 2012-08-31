@@ -364,9 +364,13 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.onAfterLocation = function(data, area, force) {
-    var registration,
+    var groupId, registration,
       _this = this;
-    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, this.regDate, 0, this.groupId);
+    groupId = parseInt(this.groupId);
+    if (groupId === 0) {
+      groupId = void 0;
+    }
+    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, this.regDate, 0, groupId);
     return SendObjectToServer(registration, (function(data) {
       return _this.afterRegistration(data, area, force);
     }), function(error) {

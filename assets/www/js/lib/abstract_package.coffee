@@ -217,7 +217,9 @@ class AbstractPackage
     
     
   onAfterLocation: (data, area, force) ->
-    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, @regDate, 0, @groupId)
+    groupId = parseInt(@groupId)
+    groupId = undefined if groupId == 0
+    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, @regDate, 0, groupId)
     SendObjectToServer(registration, ((data) => @afterRegistration(data, area, force)) , (error) => @onError(error))
     
   cutOutPictures: (area) ->
