@@ -25,6 +25,8 @@ var ice_page = {
 	afterSendRegistration: function() {
 		$('ice_picture_count').innerHTML = 0;
 		$('ice_faresign_count').innerHTML = 0;
+		jQuery('#ice_hendelse_count').removeClass("checked").text("0");
+		jQuery('#ice_group').val(0);
 	},
 	
 	init: function() {

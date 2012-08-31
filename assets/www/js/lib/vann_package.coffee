@@ -1,10 +1,10 @@
-class WaterStore extends StoreWithDangerObs
+class WaterPackage extends PackageWithDangerObs
 
 	constructor: () ->
 		@superConstructor()
 		
 	init: () ->
-		@name = 'WaterStore'
+		@name = 'WaterPackage'
 		@page = water_page
 		@picturePage = water_picture
 		@hendelsePage = water_hendelse

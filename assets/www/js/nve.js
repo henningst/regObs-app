@@ -1,5 +1,5 @@
-TEST_MODE = "test_mode"
-STAGE_MODE = "stage_mode"
+TEST_MODE = "test_mode";
+STAGE_MODE = "stage_mode";
 
 var geo = {
 	last_page_location : null,
@@ -8,7 +8,7 @@ var geo = {
 		
 		if(shouldHandlePosition == undefined)
 			shouldHandlePosition = false;
-		console.log("requestiong position for " + device.platform)
+		console.log("requestiong position for " + device.platform);
 		if(device.platform == "android")
 		{
 			PhoneGap.exec(function(){console.log("geo plugin ok");}, function(){ geo.noGoodAccuracyFound(); }, 
@@ -20,11 +20,12 @@ var geo = {
 				navigator.geolocation.getCurrentPosition(
 						eval(callback),
 	                    function(e){
+							console.log("error;");
 							console.log(e.message);
 							if(shouldHandlePosition)
 								geo.noGoodAccuracyFound();
 						}, 
-	                    { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true }
+	                    { maximumAge: 500, timeout: 3000, enableHighAccuracy: true }
 	                  );
 			}else{
 				setTimeout(function(){
@@ -102,10 +103,11 @@ var omerade = {
 				oppdatert: false
 			};
 		}
-}
+};
 
 var main = (function()
 {
+	
     var main =
     {	
     	actualPage: 0,
@@ -127,13 +129,13 @@ var main = (function()
     	lastRegID: [],
     	
     	addLastRegID: function(regId){
-    		console.log("adding regid " + regId)
+    		console.log("adding regid " + regId);
     		if(main.lastRegID.length == 0)
     			main.lastRegID = [regId];
     		else
     			main.lastRegID.push(regId);
     		
-    		console.log("size of regid array " + main.lastRegID.length)
+    		console.log("size of regid array " + main.lastRegID.length);
     	},
     	
     	clearRegID: function(){
@@ -170,7 +172,33 @@ var main = (function()
 			return SERVER_URL;
 		},
 		
-		
+		updateCollection: function(collection){
+		  if(collection.size() > 0){
+			  jQuery(".numPackages").hide().text(collection.size()).show();
+			  
+			  console.log("setting platform for: " +device.platform + " - " + main.store.getNotificationId())
+			  if(device.platform === "iphone" || main.store.getNotificationId() == null )
+			  {
+				  console.log("------------ adding a notification " + collection.size() +  " ------------- ")
+				  main.store.setNotificationId(4);
+				  var notification =  new LocalNotification();
+				  notification.add({
+	                  date : new Date(),
+	                  message : "Du har usendte observasjoner i regObs\n Gå inn i appen å trykk \"Send inn\" for å sende disse",
+	                  ticker : "regObs har usendte observasjoner",
+	                  repeatDaily : false,
+	                  id : 4,
+	                  badge: "" + collection.size(),
+				  });
+			  }
+		  }else{
+	        jQuery(".numPackages").hide();
+        	console.log("------------ removeing ------------- ")
+        	new LocalNotification().cancelAll();
+        	new LocalNotification().cancel(4);
+        	main.store.setNotificationId(null);
+		  }
+		},
 		
 		starred: function() {
 			if(DataAccess.get(STARTUP_PAGE) == main.actualPage) {
@@ -399,7 +427,15 @@ var main = (function()
         initPhonegap: function()
         {
         	document.addEventListener("backbutton", main.backKeyDown, true);
-			window.analytics.start(GA_TRACKER_CODE);
+        	if(window.analytics)
+			{
+        		window.analytics.start(GA_TRACKER_CODE);
+			}else
+			{
+				window.analytics = {
+						trackPageView  : function(){}
+				}
+			}
 
             main.populateBoxes(true);
             
@@ -639,12 +675,12 @@ var main = (function()
     			}
         	}
         	
-        	
         	main.toogleFavorite();
+        	main.updateCollection(main.store.packageCollection);
         	
         	if(status == 'start' && main.initialised) {
         		//google analytics
-    			window.analytics.trackPageView(params.id);
+    			//window.analytics.trackPageView(params.id);
         	}
         	
         	switch(params.id) {

@@ -22,9 +22,23 @@ var login_page = {
     		login_page.showLoginStatus(true);
     		main.hideDialog();
     	}
+    	
+    	login_page.updateGroups(login_page.showGroupStatus());
     },
     loginCallback: function(data) {
 		main.login = LoggedInAs(login_page.loggedInAsCallback);
+	},
+	
+	updateGroups: function(callback){
+		var user = UserStore.get(main.currentMode());
+		var groupsCommand = new ObserversGroupsCommand(user);
+		groupsCommand.fetch(function(groups){
+			user.groups = groups;
+			UserStore.save(main.currentMode(), user);
+			
+			if(callback)
+				callback(user);
+		});
 	},
 	
 	loginErrorCallback: function(data) {
@@ -63,6 +77,18 @@ var login_page = {
     		jQuery('#login').attr("style", 'background-image: url(img/loggedout.png)');
     		$('loginLogoutButton').value = LOGIN_BUTTON;
     	}
+    	login_page.showGroupStatus();
+	},
+	
+    showGroupStatus: function(){
+    	var user = UserStore.get(main.currentMode());
+    	var dropdown = jQuery(".groups-list select");
+    	dropdown.html("");
+    	
+    	dropdown.append("<option value='0'>Ingen gruppe</option>");
+    	jQuery.each(user.groups, function(i, group){
+    		dropdown.append("<option value='"+ group.id +"'>" + group.name + "</option>")
+    	});
     },
     
     relogin: function(){

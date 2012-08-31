@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1784EC20157E345F00287D8E /* GoogleAnalyticsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1784EC1A157E345F00287D8E /* GoogleAnalyticsPlugin.m */; };
-		1784EC21157E345F00287D8E /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1784EC1D157E345F00287D8E /* libGoogleAnalytics.a */; };
+		1784EC21157E345F00287D8E /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1784EC1D157E345F00287D8E /* libGoogleAnalytics.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		1784EC22157E345F00287D8E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1784EC1E157E345F00287D8E /* README.md */; };
 		17A12458157E1F07008D76E8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A12457157E1F07008D76E8 /* CFNetwork.framework */; };
 		17A1245A157E1F4D008D76E8 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A12459157E1F4D008D76E8 /* libsqlite3.0.dylib */; };
@@ -37,9 +37,9 @@
 		B5F0D59C1525D3DC001774E4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F0D59B1525D3DC001774E4 /* AppDelegate.m */; };
 		B5F0D59F1525D3DC001774E4 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F0D59E1525D3DC001774E4 /* MainViewController.m */; };
 		B5F0D5A11525D3DC001774E4 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F0D5A01525D3DC001774E4 /* MainViewController.xib */; };
+		CE14702715EE4209000C8612 /* LocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = CE14702515EE1748000C8612 /* LocalNotification.m */; };
 		CE7016E515D26CFB00B12296 /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE7016DE15D26C3700B12296 /* libCordova.a */; };
 		CE7016E715D26D6000B12296 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = CE7016E615D26D6000B12296 /* VERSION */; };
-		CE8C9BD9156D2F2900D940C3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8C9BD8156D2F2900D940C3 /* Default@2x.png */; };
 		CE8C9BDB156D2F5500D940C3 /* regobs-114.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8C9BDA156D2F5500D940C3 /* regobs-114.png */; };
 		CE8C9BDD156D2F6E00D940C3 /* regobs-57.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8C9BDC156D2F6E00D940C3 /* regobs-57.png */; };
 /* End PBXBuildFile section */
@@ -114,9 +114,10 @@
 		B5F0D59E1525D3DC001774E4 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/MainViewController.m; sourceTree = "<group>"; };
 		B5F0D5A01525D3DC001774E4 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainViewController.xib; path = Classes/MainViewController.xib; sourceTree = "<group>"; };
 		B5F0D5A31525D3DC001774E4 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
+		CE14702415EE1748000C8612 /* LocalNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalNotification.h; sourceTree = "<group>"; };
+		CE14702515EE1748000C8612 /* LocalNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalNotification.m; sourceTree = "<group>"; };
 		CE7016D315D26C3700B12296 /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = ../../../Documents/CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
 		CE7016E615D26D6000B12296 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = CORDOVALIB; };
-		CE8C9BD8156D2F2900D940C3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		CE8C9BDA156D2F5500D940C3 /* regobs-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "regobs-114.png"; sourceTree = "<group>"; };
 		CE8C9BDC156D2F6E00D940C3 /* regobs-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "regobs-57.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,7 +186,6 @@
 				17A12457157E1F07008D76E8 /* CFNetwork.framework */,
 				CE8C9BDC156D2F6E00D940C3 /* regobs-57.png */,
 				CE8C9BDA156D2F5500D940C3 /* regobs-114.png */,
-				CE8C9BD8156D2F2900D940C3 /* Default@2x.png */,
 				B5107F8E152DA39D00BA56F8 /* www */,
 				B5F0D56D1525D3DB001774E4 /* Nve */,
 				B5F0D5521525D3DB001774E4 /* Frameworks */,
@@ -319,10 +319,20 @@
 		B5F0D5A21525D3DC001774E4 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				CE14702615EE41C6000C8612 /* LocalNotification */,
 				1784EC17157E345F00287D8E /* GoogleAnalytics */,
 				B5F0D5A31525D3DC001774E4 /* README */,
 			);
 			name = Plugins;
+			sourceTree = "<group>";
+		};
+		CE14702615EE41C6000C8612 /* LocalNotification */ = {
+			isa = PBXGroup;
+			children = (
+				CE14702415EE1748000C8612 /* LocalNotification.h */,
+				CE14702515EE1748000C8612 /* LocalNotification.m */,
+			);
+			name = LocalNotification;
 			sourceTree = "<group>";
 		};
 		CE7016D415D26C3700B12296 /* Products */ = {
@@ -430,7 +440,6 @@
 				B5F0D5981525D3DC001774E4 /* Cordova.plist in Resources */,
 				B5F0D5A11525D3DC001774E4 /* MainViewController.xib in Resources */,
 				B5107F8F152DA39D00BA56F8 /* www in Resources */,
-				CE8C9BD9156D2F2900D940C3 /* Default@2x.png in Resources */,
 				CE8C9BDB156D2F5500D940C3 /* regobs-114.png in Resources */,
 				CE8C9BDD156D2F6E00D940C3 /* regobs-57.png in Resources */,
 				1784EC22157E345F00287D8E /* README.md in Resources */,
@@ -449,6 +458,7 @@
 				B5F0D59C1525D3DC001774E4 /* AppDelegate.m in Sources */,
 				B5F0D59F1525D3DC001774E4 /* MainViewController.m in Sources */,
 				1784EC20157E345F00287D8E /* GoogleAnalyticsPlugin.m in Sources */,
+				CE14702715EE4209000C8612 /* LocalNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,7 +542,7 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Distribution: nLink AS";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nLink AS";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -563,6 +573,7 @@
 					"-Obj-C",
 				);
 				PRODUCT_NAME = regObs;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/usr/local/lib/include\" \"$(OBJROOT)/UninstalledProducts/include\" \"$(BUILT_PRODUCTS_DIR)\"";
 				WRAPPER_EXTENSION = app;
@@ -577,7 +588,7 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Distribution: nLink AS";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nLink AS";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -608,6 +619,7 @@
 					"-Obj-C",
 				);
 				PRODUCT_NAME = regObs;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/usr/local/lib/include\" \"$(OBJROOT)/UninstalledProducts/include\" \"$(BUILT_PRODUCTS_DIR)\"";
 				VALIDATE_PRODUCT = YES;

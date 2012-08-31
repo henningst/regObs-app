@@ -157,6 +157,10 @@ input.large
 	margin-top: 5%;
 }
 
+.margin_central{
+	margin: 0 auto;	
+}
+
 .c_big_button
 {
 	height: 133px;
@@ -494,4 +498,42 @@ ul.actions li{
     -webkit-transform-origin: 0 0;
 }
  
- 
+.onTopOfButton{
+	position:absolute;
+	top: 5px;
+	right: 10px;
+	font-size: 14px;
+	font-weight: bold;
+	text-indent: 9px;
+}
+
+.takeAllWidth{
+	width:100%;
+}
+
+.composedButtonContainer{
+	position:relative;
+}
+
+.checked{
+	background: url("../img/check.png") no-repeat center;
+}
+
+.numPackages{
+	margin-right: 50px;
+}
+
+.group-list-button{
+	height: 50%;
+	width: 30px;
+	background: url("../img/chooise.png") no-repeat right;
+	background-size: contain;
+	
+	border-left: 1px solid #ccc;
+}
+
+.extendedButton{
+	background: #BBB;
+	border: 1px solid #999;
+	border-radius: 5px;
+}

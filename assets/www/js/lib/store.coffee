@@ -1,95 +1,159 @@
 class NveStore
-	
-	constructor: () ->
-		@m_waterStore = null
-		@m_snowStore = null
-		@m_dirtStore = null
-		@m_iceStore = null
+  
+  constructor: () ->
+    @m_waterPackage = null
+    @m_snowPackage = null
+    @m_dirtPackage = null
+    @m_icePackage = null
+    
+    
+    @packageCollection =  DataAccess.get("PackageCollection", new PackageCollection())
+    if not @packageCollection
+      @packageCollection = new PackageCollection()
+      DataAccess.save("PackageCollection", @packageCollection)
+       
+    
+    
+    @packageCollection.callback = (collection)->
+      setTimeout(()-> 
+        main.updateCollection(collection) 
+      ,1000) if main
+      
+      DataAccess.save("PackageCollection", collection)
+    
+    @packageCollection.callback(@packageCollection)
 
-	getSnow: () ->
-		if @m_snowStore
-			@m_snowStore
-		else
-			@m_snowStore = DataAccess.get(SnowStore.name, new SnowStore())
-			if @m_snowStore
-				@m_snowStore.init()
-				@m_snowStore
-			else
-				@m_snowStore = new SnowStore()
-				@m_snowStore.init()
-				@m_snowStore
-			
-	sendSnow: (callback) ->
-		if @m_snowStore and not IsEmpty(@m_snowStore)
-			@m_snowStore.send()
-		
-		callback() if callback
 
-	getDirt: () ->
-		if @m_dirtStore
-			@m_dirtStore
-		else
-			@m_dirtStore = DataAccess.get(DirtStore.name, new DirtStore())
-			if @m_dirtStore
-				@m_dirtStore.init()
-				@m_dirtStore
-			else
-				@m_dirtStore = new DirtStore()
-				@m_dirtStore.init()
-				@m_dirtStore
-			
-	sendDirt: (callback) ->
-		if @m_dirtStore and not IsEmpty(@m_dirtStore)
-			@m_dirtStore.send()
-		
-		callback() if callback
-		
-	getIce: () ->
-		if @m_iceStore
-			@m_iceStore
-		else
-			@m_iceStore = DataAccess.get(IceStore.name, new IceStore())
-			if @m_iceStore
-				@m_iceStore.init()
-				@m_iceStore
-			else
-				@m_iceStore = new IceStore()
-				@m_iceStore.init()
-				@m_iceStore
-			
-	sendIce: (callback) ->
-		if @m_iceStore and not IsEmpty(@m_iceStore)
-			@m_iceStore.send()
-		
-		callback() if callback
+  getNotificationId: () =>
+    if @notificationId and @notificationId.id 
+      @notificationId.id
+    else
+      null 
 
-	getWater: () ->
-		if @m_waterStore
-			@m_waterStore
-		else
-			@m_waterStore = DataAccess.get(WaterStore.name, new WaterStore())
-			if @m_waterStore
-				@m_waterStore.init()
-				@m_waterStore
-			else
-				@m_waterStore = new WaterStore()
-				@m_waterStore.init()
-				@m_waterStore
-			
-	sendWater: (callback) ->
-		if @m_waterStore and not IsEmpty(@m_waterStore)
-			@m_waterStore.send()
-		
-		callback() if callback
-		
-IsEmpty = (store) ->
-	if store.getObs().length isnt 0
-		return false 
-	
-	if store.getIncident() isnt null
-		return false
-		
-	if store.getPictures().length isnt 0
-		return false
-		
-	true
+  setNotificationId : (id)=>
+    @notificationId = {"id": id}
+
+  getSnow: () ->
+    if @m_snowPackage
+      @m_snowPackage
+    else
+      @m_snowPackage = DataAccess.get(SnowPackage.name, new SnowPackage())
+      if @m_snowPackage
+        @m_snowPackage.init()
+        @m_snowPackage
+      else
+        @m_snowPackage = new SnowPackage()
+        @m_snowPackage.init()
+        @m_snowPackage
+      
+      
+      
+  sendSnow: (callback) =>
+      if @m_snowPackage and not IsEmpty(@m_snowPackage)
+        @m_snowPackage.setGroup(jQuery("#snow_group").val());
+        @packageCollection.add(@m_snowPackage)
+        @m_snowPackage.afterSendRegistration()
+        
+        @m_snowPackage =  null 
+        DataAccess.save(SnowPackage.name, null)
+      
+      @packageCollection.forall (p) => @sendAndHandlePackage(p)
+      callback() if callback
+    
+  sendAndHandlePackage: (p)->
+    p.callback = (pkg) ->
+      collection = main.store.packageCollection 
+      pkg.freezed = true
+      collection.remove(pkg)
+    
+    console.log("pp: sending package")
+    p.send()
+
+  getDirt: () ->
+    if @m_dirtPackage
+      @m_dirtPackage
+    else
+      @m_dirtPackage = DataAccess.get(DirtPackage.name, new DirtPackage())
+      if @m_dirtPackage
+        @m_dirtPackage.init()
+        @m_dirtPackage
+      else
+        @m_dirtPackage = new DirtPackage()
+        @m_dirtPackage.init()
+        @m_dirtPackage
+      
+  sendDirt: (callback) ->
+    if @m_dirtPackage and not IsEmpty(@m_dirtPackage)
+      @m_dirtPackage.setGroup(jQuery("#dirt_group").val());
+      @packageCollection.add(@m_dirtPackage)
+      @m_dirtPackage.afterSendRegistration()
+      
+      @m_dirtPackage = null
+      DataAccess.save(DirtPackage.name, null)
+      
+    @packageCollection.forall (p) => @sendAndHandlePackage(p)
+    callback() if callback
+    
+  getIce: () ->
+    if @m_icePackage
+      @m_icePackage
+    else
+      @m_icePackage = DataAccess.get(IcePackage.name, new IcePackage())
+      if @m_icePackage
+        @m_icePackage.init()
+        @m_icePackage
+      else
+        @m_icePackage = new IcePackage()
+        @m_icePackage.init()
+        @m_icePackage
+      
+  sendIce: (callback) ->
+    if @m_icePackage and not IsEmpty(@m_icePackage)
+      @m_icePackage.setGroup(jQuery("#ice_group").val());
+      @packageCollection.add(@m_icePackage)
+      @m_icePackage.afterSendRegistration()
+      
+      @m_icePackage = null
+      DataAccess.save(IcePackage.name, null)
+      
+    @packageCollection.forall (p) => @sendAndHandlePackage(p)
+    
+    callback() if callback
+
+  getWater: () ->
+    if @m_waterPackage
+      @m_waterPackage
+    else
+      @m_waterPackage = DataAccess.get(WaterPackage.name, new WaterPackage())
+      if @m_waterPackage
+        @m_waterPackage.init()
+        @m_waterPackage
+      else
+        @m_waterPackage = new WaterPackage()
+        @m_waterPackage.init()
+        @m_waterPackage
+      
+  sendWater: (callback) ->
+    if @m_waterPackage and not IsEmpty(@m_waterPackage)
+      @m_waterPackage.setGroup(jQuery("#water_group").val());
+      @packageCollection.add(@m_waterPackage)
+      @m_waterPackage.afterSendRegistration()
+      
+      @m_waterPackage = null
+      DataAccess.save(WaterPackage.name, null)
+      
+    @packageCollection.forall (p) => @sendAndHandlePackage(p)
+    
+    callback() if callback
+    
+IsEmpty = (pkg) ->
+  if pkg.getObs().length isnt 0
+    return false 
+  
+  if pkg.getIncident() isnt null
+    return false
+    
+  if pkg.getPictures().length isnt 0
+    return false
+    
+  true

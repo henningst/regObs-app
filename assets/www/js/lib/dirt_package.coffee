@@ -1,10 +1,10 @@
-class DirtStore extends StoreWithDangerObs
+class DirtPackage extends PackageWithDangerObs
 
 	constructor: () ->
 		@superConstructor()
 		
 	init: () ->
-		@name = 'DirtStore'
+		@name = 'DirtPackage'
 		@page = dirt_page
 		@picturePage = dirt_picture
 		@hendelsePage = dirt_hendelse

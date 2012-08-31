@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="no.nlink.nve"
     android:versionCode="1"
-    android:versionName="0.11.1" >
+    android:versionName="0.12.0" >
 
     <uses-sdk android:minSdkVersion="7" />
     
@@ -50,7 +50,15 @@
             android:configChanges="orientation|keyboardHidden"> 
             <intent-filter>
             </intent-filter> 
-		</activity>
+				</activity>
+				<receiver android:name="com.phonegap.plugin.localnotification.AlarmReceiver" >
+				</receiver>
+				
+				<receiver android:name="com.phonegap.plugin.localnotification.AlarmRestoreOnBoot" >
+				    <intent-filter>
+				        <action android:name="android.intent.action.BOOT_COMPLETED" />
+				    </intent-filter>
+				</receiver>
     </application>
 
 </manifest>
