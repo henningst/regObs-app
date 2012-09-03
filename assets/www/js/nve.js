@@ -168,9 +168,12 @@ var main = (function()
 			}
 		},
 		
+		
 		currentUrl: function(){
 			return SERVER_URL;
 		},
+		
+		
 		
 		updateCollection: function(collection){
 		  if(collection.size() > 0){
@@ -673,6 +676,8 @@ var main = (function()
         
         showNve: function(){
         	jQuery("#regobs-info").show();
+        	jQuery("#regobs-name").show();
+        	jQuery("#header_middle_text").text("");
         },
         
         updateLoginStatusAndBehaviour: function(){
@@ -697,7 +702,7 @@ var main = (function()
         	
         	if(status == 'start' && main.initialised) {
         		//google analytics
-    			//window.analytics.trackPageView(params.id);
+    			window.analytics.trackPageView(params.id);
         	}
         	
         	switch(params.id) {

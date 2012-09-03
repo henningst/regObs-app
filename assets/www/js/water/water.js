@@ -31,6 +31,7 @@ var water_page = {
 	init: function() {
 		this.danger_store = function() { return main.store.getWater(); };
 		$('header_middle_text').innerHTML = "Vann";
+		jQuery("#regobs-name").hide();
 		
 		water_page.doMeasurement();
 		

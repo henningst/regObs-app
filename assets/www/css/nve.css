@@ -193,6 +193,11 @@ input.large
 	margin-bottom: 10px;	
 }
 
+#regobs-name{
+	text-align: left;
+	padding-left: 45px;
+}
+
 .c_popup_button
 {
 	width: auto;
@@ -200,8 +205,8 @@ input.large
 }
 
 .c_position_header {
-	height: 100px;
-	background-color: #484848;
+	height: 100px;   
+	background-color: #222222;
 	text-align: center;
 }
 

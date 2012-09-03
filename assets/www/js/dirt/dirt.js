@@ -33,6 +33,7 @@ var dirt_page = {
 	init: function() {
 		this.danger_store = function(){return main.store.getDirt(); };
 		$('header_middle_text').innerHTML = "L&oslash;smasse";
+		jQuery("#regobs-name").hide();
 		
 		dirt_page.doMeasurement();
 
