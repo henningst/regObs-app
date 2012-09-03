@@ -72,10 +72,12 @@ var login_page = {
     	if(loggedIn == true) {
     		jQuery('#login').attr("style", 'background-image: url(img/loggedin.png)');
     		$('loginLogoutButton').value = LOGOUT_BUTTON;
+    		jQuery("body").removeClass("notLoggedIn");
     	} else {
     		jQuery('#login').css("background-image", "url(img/loggedout.png)");
     		jQuery('#login').attr("style", 'background-image: url(img/loggedout.png)');
     		$('loginLogoutButton').value = LOGIN_BUTTON;
+    		jQuery("body").addClass("notLoggedIn");
     	}
     	login_page.showGroupStatus();
 	},

@@ -494,7 +494,7 @@ var main = (function()
 	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.clearRegID();main.hideDialog();'>" + OK + 
 	        			"</button>" +
 	        			"<button type='button' " +
-	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.sendEmail();'>" +SEND_EMAIL + 
+	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual emailButton' onclick='main.sendEmail();'>" +SEND_EMAIL + 
 	        			"</button>" +
         			"</div>");
         },

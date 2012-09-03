@@ -534,3 +534,13 @@ ul.actions li{
 	border: 1px solid #999;
 	border-radius: 5px;
 }
+
+.notLoggedIn .extendedButton{
+	background: none;
+	border: 0px;
+}
+
+
+.notLoggedIn .groups-list, .notLoggedIn .emailButton {
+	 display:none;
+}
