@@ -531,6 +531,25 @@ var main = (function()
         	}, 15000);
         },
         
+        warnLoginBefore: function(after){
+        	if(!main.currentlyLoggedIn)
+        	{
+        		main.showDialog( "<h3>Ikke innlogget</h3>" +
+                    "<div><p>"  + NOT_LOGGED_IN_WARNING + "</p>"+
+                      "<button type='button' " +
+                        "class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='"+ after +"()'>" + OK + 
+                      "</button>" +
+                      "<button type='button' " +
+                        "class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.hideDialog()'>" + ABORT + 
+                      "</button>" +
+                    "</div>");
+        	}else
+    		{
+        		eval(after + "()");
+    		}
+          
+        },
+        
         createCarousel: function(id, items)
         {
         	var properties = 
