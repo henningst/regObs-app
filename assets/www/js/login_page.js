@@ -3,6 +3,7 @@ var login_page = {
 	init: function() {
 
 		$('header_middle_text').innerHTML = "Login";
+		jQuery("#regobs-name").hide();
 		
 		var user = UserStore.get(main.currentMode());
 		console.log(user.username);
@@ -15,10 +16,15 @@ var login_page = {
 		}
 	},
 	loggedInAsCallback: function (data) {
+		console.log(JSON.stringify(data));
     	if(data.EMail == 'anonym@nve.no') {
     		login_page.showLoginStatus(false);
     		main.showDialogWithMessage(ERROR_WRONG_LOGIN, "Login");
     	} else {
+    		var user = UserStore.get(main.currentMode());
+    		user.id = data.ObserverID;
+    		UserStore.save(main.currentMode(), user);
+
     		login_page.showLoginStatus(true);
     		main.hideDialog();
     	}
@@ -35,6 +41,7 @@ var login_page = {
 		groupsCommand.fetch(function(groups){
 			user.groups = groups;
 			UserStore.save(main.currentMode(), user);
+			login_page.showGroupStatus();
 			
 			if(callback)
 				callback(user);
@@ -87,8 +94,11 @@ var login_page = {
     	var dropdown = jQuery(".groups-list select");
     	dropdown.html("");
     	
+    	
+    	console.log("showing group: " + JSON.stringify(user.groups));
     	dropdown.append("<option value='0'>Ingen gruppe</option>");
     	jQuery.each(user.groups, function(i, group){
+    		
     		dropdown.append("<option value='"+ group.id +"'>" + group.name + "</option>")
     	});
     },
@@ -98,6 +108,7 @@ var login_page = {
     	
 		if(user.isDefined()) {
 			Login(user.username, user.password, login_page.loginCallback);
+			login_page.updateGroups(login_page.showGroupStatus());
     	} else {
     		login_page.showLoginStatus(false);	
 		}

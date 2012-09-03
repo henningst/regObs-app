@@ -70,7 +70,7 @@ ObserversGroupsCommand = (function() {
     this.fetch = __bind(this.fetch, this);
 
     this.groups = [];
-    this.url = SERVER_URL + "/ObserverGroupMember?$filter=ObserverID eq 188&$expand=ObserverGroup";
+    this.url = SERVER_URL + ("/ObserverGroupMember?$filter=ObserverID eq " + this.user.id + "&$expand=ObserverGroup");
   }
 
   ObserversGroupsCommand.prototype.fetch = function(callback) {
@@ -80,7 +80,7 @@ ObserversGroupsCommand = (function() {
 
   ObserversGroupsCommand.prototype.gotData = function(data) {
     var _this = this;
-    console.log(data);
+    console.log(JSON.stringify(data));
     jQuery.each(data.results, function(i, result) {
       return _this.groups.push({
         id: result.ObserverGroup.ObserverGroupID,

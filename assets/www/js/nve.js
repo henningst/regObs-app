@@ -157,7 +157,7 @@ var main = (function()
 				
 				main.showWaitingDialogWithMessage(LOGGING_IN);
 				
-				var user = new User(username, password);
+				var user = new User(0, username, password);
 				UserStore.save(main.currentMode(), user);
 				Login(username, password, login_page.loginCallback, login_page.loginErrorCallback);
 			}

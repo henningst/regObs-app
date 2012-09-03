@@ -3,6 +3,7 @@ var learning_page = {
 		init: function(lastPage) 
 		{
 			$('header_middle_text').innerHTML = "Beskrivelse";
+			jQuery("#regobs-name").hide();
 			
 			switch(lastPage) 
 			{

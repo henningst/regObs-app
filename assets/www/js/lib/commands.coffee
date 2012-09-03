@@ -43,17 +43,16 @@ class SendInPictureCommand
 class ObserversGroupsCommand
   constructor: (@user) ->
     @groups = []
-    @url = SERVER_URL+"/ObserverGroupMember?$filter=ObserverID eq 188&$expand=ObserverGroup"
+    @url = SERVER_URL+"/ObserverGroupMember?$filter=ObserverID eq #{ @user.id }&$expand=ObserverGroup"
     
   fetch: (@callback) =>
     GetObjectFromServer(this, @gotData, @fail)
     
   gotData:(data)=>
-    console.log(data)
+    console.log(JSON.stringify(data))
     jQuery.each(data.results, (i, result)=>
       @groups.push({id: result.ObserverGroup.ObserverGroupID, name: result.ObserverGroup.ObserverGroupName})  
     )
-    
     @callback(@groups)
     
   fail: (err, data)->
