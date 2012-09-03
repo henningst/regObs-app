@@ -65,7 +65,10 @@ UserStore = {
       jQuery.extend(obj, new Group())
     ) if groups
     
-    user.competancy = comp
+    if(comp)
+      user.competancy = comp
+    else
+      user.competancy = new ObserverCompetancy([])
     user
   
   useridKey : (mode) ->

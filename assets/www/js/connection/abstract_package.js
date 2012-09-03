@@ -25,6 +25,8 @@ AbstractPackage = (function() {
 
     this.callCallback = __bind(this.callCallback, this);
 
+    this.currentHazard = __bind(this.currentHazard, this);
+
     this.send = __bind(this.send, this);
 
     this.getPictures = __bind(this.getPictures, this);
@@ -44,6 +46,8 @@ AbstractPackage = (function() {
     this.getIncident = __bind(this.getIncident, this);
 
     this.afterSendRegistration = __bind(this.afterSendRegistration, this);
+
+    this.setCompetancy = __bind(this.setCompetancy, this);
 
     this.setGroup = __bind(this.setGroup, this);
 
@@ -129,6 +133,11 @@ AbstractPackage = (function() {
     return this.groupId = groupId;
   };
 
+  AbstractPackage.prototype.setCompetancy = function(competancy) {
+    console.log("setting competancy" + competancy);
+    return this.competancy = competancy;
+  };
+
   AbstractPackage.prototype.afterSendRegistration = function() {
     var page, _i, _len, _ref, _results;
     _ref = this.pages;
@@ -187,8 +196,31 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.send = function() {
+    var competancy, user;
     console.log("pp: sending :" + JSON.stringify(this));
+    user = UserStore.get(main.currentMode());
+    competancy = user.competancy;
+    this.setCompetancy(competancy.getLevel(this.currentHazard()));
     return this.onSend(this.page, true);
+  };
+
+  AbstractPackage.prototype.currentHazard = function() {
+    var currentHazard, page;
+    page = this.page.name;
+    currentHazard = (function() {
+      switch (page) {
+        case "snow_page":
+          return SNOW_GEO_HAZARD;
+        case "dirt_page":
+          return DIRT_GEO_HAZARD;
+        case "ice_page":
+          return ICE_GEO_HAZARD;
+        case "water_page":
+          return WATER_GEO_HAZARD;
+      }
+    })();
+    console.log("current hazard is " + page + "=" + currentHazard);
+    return currentHazard;
   };
 
   AbstractPackage.prototype.callCallback = function() {
@@ -370,7 +402,7 @@ AbstractPackage = (function() {
     if (groupId === 0) {
       groupId = void 0;
     }
-    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, this.regDate, 0, groupId);
+    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, this.regDate, this.competancy, groupId);
     return SendObjectToServer(registration, (function(data) {
       return _this.afterRegistration(data, area, force);
     }), function(error) {

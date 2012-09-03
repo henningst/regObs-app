@@ -73,7 +73,11 @@ ObserverCompetancy = (function() {
       return comp.geoHazard === geoHazard;
     });
     console.log(res);
-    return res[0].level;
+    if (res[0]) {
+      return res[0].level;
+    } else {
+      return 0;
+    }
   };
 
   ObserverCompetancy.prototype.push = function(comp) {

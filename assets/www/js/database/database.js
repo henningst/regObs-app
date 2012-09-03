@@ -70,7 +70,11 @@ UserStore = {
         return jQuery.extend(obj, new Group());
       });
     }
-    user.competancy = comp;
+    if (comp) {
+      user.competancy = comp;
+    } else {
+      user.competancy = new ObserverCompetancy([]);
+    }
     return user;
   },
   useridKey: function(mode) {

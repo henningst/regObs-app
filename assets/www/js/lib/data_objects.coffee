@@ -34,7 +34,10 @@ class ObserverCompetancy
       comp.geoHazard == geoHazard
     )
     console.log(res)
-    res[0].level
+    if(res[0])
+      res[0].level
+    else
+      0 
     
   push: (comp)=>
     @competancy.push(comp)
