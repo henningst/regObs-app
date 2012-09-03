@@ -30,7 +30,18 @@ var login_page = {
     	}
     	
     	login_page.updateGroups(login_page.showGroupStatus());
+    	login_page.updateComp();
     },
+    
+    updateComp : function(){
+    	var user = UserStore.get(main.currentMode());
+    	var command = new ObserversCompCommand(user);
+    	command.fetch(function (comp) {
+    	  user.competancy = new ObserverCompetancy(comp);
+    	  UserStore.save(main.currentMode(), user);
+    	});
+    },
+    
     loginCallback: function(data) {
 		main.login = LoggedInAs(login_page.loggedInAsCallback);
 	},

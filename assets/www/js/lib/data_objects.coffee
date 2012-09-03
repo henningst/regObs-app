@@ -11,6 +11,8 @@ class Result
 class User
 	constructor: (@id, @username, @password)->
     @groups = []
+    @competancy = new ObserverCompetancy([])
+    
 	
 	isDefined: ->
 		if (@username != null and @password != null)  
@@ -23,6 +25,27 @@ class User
 
 class Group
   constructor: (@id, @name)->
+
+class ObserverCompetancy
+  constructor: (@competancy)->
+    
+  getLevel: (geoHazard) =>
+    res = @competancy.filter((comp) =>
+      comp.geoHazard == geoHazard
+    )
+    console.log(res)
+    res[0].level
+    
+  push: (comp)=>
+    @competancy.push(comp)
+  
+  length: ()=>
+    @competancy.length
+    
+
+ 
+class Competancy
+  constructor: (@geoHazard, @level)->
 		
 class SendEmail
 	url : "" 

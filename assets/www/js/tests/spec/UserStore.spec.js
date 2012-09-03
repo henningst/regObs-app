@@ -32,8 +32,8 @@ describe("UserStore", function(){
 		var one_user = UserStore.get("One");
 		var other_user = UserStore.get("Other");
 		
-		expect(one_user).toEqual(one);
-		expect(other_user).toEqual(other);		
+		expect(JSON.stringify(one_user)).toEqual(JSON.stringify(one));
+		expect(JSON.stringify(other_user)).toEqual(JSON.stringify(other));		
 		
 	});
 	
@@ -69,4 +69,15 @@ describe("UserStore", function(){
 		expect(fetched_user.groups[0].name).toEqual("a")
 		expect(fetched_user.groups[1].name).toEqual("b")
 	});
+	
+	it("should save comp", function(){
+	    var user = new User(1, "a", "p");
+	    user.competancy = new ObserverCompetancy([new Competancy(10, 149)]);
+	    UserStore.save(NORMAL_MODE, (user));
+	    
+	    var fetched_user = UserStore.get(NORMAL_MODE, user);
+	    
+	    expect(fetched_user.competancy.getLevel(10)).toEqual(149);
+	    
+	})
 });
