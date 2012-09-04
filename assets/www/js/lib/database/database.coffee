@@ -8,6 +8,8 @@ ID="regobs_id"
 
 GROUP = "regobs_group"
 
+COMP = "regobs_comp"
+
 
 DataAccess = {
   storage : window.localStorage
@@ -40,6 +42,7 @@ UserStore = {
     DataAccess.save(@usernameKey(mode), user.username)
     DataAccess.save(@passwordKey(mode), user.password)
     DataAccess.save(@groupKey(mode), user.groups)
+    DataAccess.save(@compKey(mode), user.competancy)
     ""
     
   clear: (mode)->
@@ -47,6 +50,7 @@ UserStore = {
     DataAccess.save(@usernameKey(mode), "")
     DataAccess.save(@passwordKey(mode), "")
     DataAccess.save(@groupKey(mode), "")
+    DataAccess.save(@compKey(mode), "")
     ""
   
   get: (mode) ->
@@ -54,11 +58,17 @@ UserStore = {
     username = DataAccess.get(@usernameKey(mode))
     password = DataAccess.get(@passwordKey(mode))
     groups = DataAccess.get(@groupKey(mode))
+    comp = DataAccess.get(@compKey(mode), new ObserverCompetancy([]))
     user = new User(id, username, password)
     
     user.groups = jQuery.map(groups, (obj)-> 
       jQuery.extend(obj, new Group())
     ) if groups
+    
+    if(comp)
+      user.competancy = comp
+    else
+      user.competancy = new ObserverCompetancy([])
     user
   
   useridKey : (mode) ->
@@ -73,4 +83,6 @@ UserStore = {
   groupKey : (mode) ->
     mode + "_" + GROUP
     
+  compKey : (mode) ->
+    mode + "_" + COMP
 }

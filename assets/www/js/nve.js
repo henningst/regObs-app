@@ -157,7 +157,7 @@ var main = (function()
 				
 				main.showWaitingDialogWithMessage(LOGGING_IN);
 				
-				var user = new User(username, password);
+				var user = new User(0, username, password);
 				UserStore.save(main.currentMode(), user);
 				Login(username, password, login_page.loginCallback, login_page.loginErrorCallback);
 			}
@@ -168,9 +168,12 @@ var main = (function()
 			}
 		},
 		
+		
 		currentUrl: function(){
 			return SERVER_URL;
 		},
+		
+		
 		
 		updateCollection: function(collection){
 		  if(collection.size() > 0){
@@ -501,7 +504,7 @@ var main = (function()
 	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.clearRegID();main.hideDialog();'>" + OK + 
 	        			"</button>" +
 	        			"<button type='button' " +
-	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.sendEmail();'>" +SEND_EMAIL + 
+	        				"class='w_bg_light c_button w_button w_radius popupbutton-dual emailButton' onclick='main.sendEmail();'>" +SEND_EMAIL + 
 	        			"</button>" +
         			"</div>");
         },
@@ -536,6 +539,25 @@ var main = (function()
         			main.showDialogWithMessage(ERROR_TIMEOUT, "Tidsavbrudd");
     			}
         	}, 15000);
+        },
+        
+        warnLoginBefore: function(after){
+        	if(!main.currentlyLoggedIn)
+        	{
+        		main.showDialog( "<h3>Ikke innlogget</h3>" +
+                    "<div><p>"  + NOT_LOGGED_IN_WARNING + "</p>"+
+                      "<button type='button' " +
+                        "class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='"+ after +"()'>" + OK + 
+                      "</button>" +
+                      "<button type='button' " +
+                        "class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.hideDialog()'>" + ABORT + 
+                      "</button>" +
+                    "</div>");
+        	}else
+    		{
+        		eval(after + "()");
+    		}
+          
         },
         
         createCarousel: function(id, items)
@@ -661,6 +683,12 @@ var main = (function()
         
         showNve: function(){
         	jQuery("#regobs-info").show();
+        	jQuery("#regobs-name").show();
+        	jQuery("#header_middle_text").text("");
+        },
+        
+        updateLoginStatusAndBehaviour: function(){
+        	
         },
         
         toggleBackButtonDisplay: function(params, status) {
@@ -677,10 +705,11 @@ var main = (function()
         	
         	main.toogleFavorite();
         	main.updateCollection(main.store.packageCollection);
+        	main.updateLoginStatusAndBehaviour();
         	
         	if(status == 'start' && main.initialised) {
         		//google analytics
-    			//window.analytics.trackPageView(params.id);
+    			window.analytics.trackPageView(params.id);
         	}
         	
         	switch(params.id) {

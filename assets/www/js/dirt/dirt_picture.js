@@ -16,7 +16,7 @@ var dirt_picture  = {
 				dirt_picture.updatePictureButtons("#dirt_picture");
 	
 				dirt_page.add('dirt_picture_count');
-				main.panels.slideBack();
+				main.panels.slideTo("dirt_obs");
 			},true);
 		}
 	},

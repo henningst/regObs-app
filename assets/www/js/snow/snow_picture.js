@@ -18,7 +18,7 @@ var snow_picture  = {
 				snow_picture.updatePictureButtons("#snow_picture");
 				
 				snow_page.add('snow_picture_count');
-				main.panels.slideBack();
+				main.panels.slideTo("snow_obs");
 			}, true);
 		}
 	},

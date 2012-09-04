@@ -115,7 +115,7 @@
 	</style>
 </head>	
 	
-<body id="mainBody">
+<body id="mainBody" class="notLoggedIn">
   <div id="dialog" >
     <div id="shading"></div>
     <div id="popup">
@@ -128,11 +128,15 @@
     	<div id="back" class="w_button_custom w_back w_left">
 	        <input type="button" value="" class="c_color_gradient" onclick="main.panels.slideBack();" />
 	    </div>
-	    <div id="regobs-info" class="w_left header-button" onclick="main.panels.slideTo('information')">
+	    <div class="w_left">
+		    <div id="regobs-info" class="header-button" onclick="main.panels.slideTo('information')">
+		    </div>
+		    <div id="regobs-name" class="w_left" >
+		    regObs
+		    </div>
 	    </div>
-	    
-	    <div id="over_header">
-	    	<span id="header_middle_text">regObs</span>
+	    <div id="over_header" >
+	    	<span id="header_middle_text"></span>
 	    	<a type="button" onclick="main.starred();" >
             	<img id="star" alt="" src="img/stared.png" style="display: none; position: absolute; top: 5px; margin-left: 5px; height: 32px; width: 32px;">
 	        </a>
@@ -189,7 +193,7 @@
 		
 		<div id="information">
 		 <div>
-		 	 <div>Versjon: 0.12.0</div>
+		 	 <div>Versjon: 0.12.3</div>
 		 	 <div id="information_content">
 			   <p>
 			     Her kommer det tekst om regobs og appen.
@@ -245,7 +249,7 @@
 			  <div class="c_align_central ">
 			  	<div class="extendedButton smallWidth margin_central">
 				  	<div class="takeAllWidth composedButtonContainer ">
-				      <input type="button" value="Send inn" class="confirmButton c_button  w_button w_radius w_bg_light takeAllWidth" onclick="main.store.sendSnow();"> 
+				      <input type="button" value="Send inn" class="confirmButton c_button  w_button w_radius w_bg_light takeAllWidth" onclick="main.warnLoginBefore('main.store.sendSnow')"> 
 					  	<span class="numPackages notification_buble onTopOfButton hidden">0</span>
 			      </div>
 			      
@@ -352,7 +356,7 @@
 			<div class="c_align_central ">
 			  	<div class="extendedButton smallWidth margin_central">
 				  	<div class="takeAllWidth composedButtonContainer ">
-				      <input type="button" value="Send inn" class="confirmButton c_button  w_button w_radius w_bg_light takeAllWidth" onclick="main.store.sendIce();"> 
+				      <input type="button" value="Send inn" class="confirmButton c_button  w_button w_radius w_bg_light takeAllWidth" onclick="main.warnLoginBefore('main.store.sendIce');"> 
 					  	<span class="numPackages notification_buble onTopOfButton hidden">0</span>
 			      </div>
 			      
@@ -458,7 +462,7 @@
 				<div class="c_align_central ">
 			  	<div class="extendedButton smallWidth margin_central">
 				  	<div class="takeAllWidth composedButtonContainer ">
-				      <input type="button" value="Send inn" class="confirmButton c_button  w_button w_radius w_bg_light takeAllWidth" onclick="main.store.sendWater();"> 
+				      <input type="button" value="Send inn" class="confirmButton c_button  w_button w_radius w_bg_light takeAllWidth" onclick="main.warnLoginBefore('main.store.sendWater');"> 
 					  	<span class="numPackages notification_buble onTopOfButton hidden">0</span>
 			      </div>
 			      
@@ -567,7 +571,7 @@
 				<div class="c_align_central ">
 			  	<div class="extendedButton smallWidth margin_central">
 				  	<div class="takeAllWidth composedButtonContainer ">
-				      <input type="button" value="Send inn" class="confirmButton c_button  w_button w_radius w_bg_light takeAllWidth" onclick="main.store.sendDirt();"> 
+				      <input type="button" value="Send inn" class="confirmButton c_button  w_button w_radius w_bg_light takeAllWidth" onclick="main.warnLoginBefore('main.store.sendDirt');"> 
 					  	<span class="numPackages notification_buble onTopOfButton hidden">0</span>
 			      </div>
 			      

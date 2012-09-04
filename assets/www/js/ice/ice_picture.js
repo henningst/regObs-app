@@ -16,7 +16,7 @@ var ice_picture  = {
 				ice_picture.updatePictureButtons("#ice_picture");
 				
 				ice_page.add('ice_picture_count');
-				main.panels.slideBack();
+				main.panels.slideTo("ice_obs");
 			},true);
 		}
 	},

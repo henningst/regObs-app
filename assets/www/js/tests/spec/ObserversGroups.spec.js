@@ -10,7 +10,7 @@ describe("Observer groups", function(){
 	
 		Login("aslakjo@gmail.com" , " aslak ", function(){
 	
-			var user = {userId: 188};
+			var user = {id: 188};
 			var command = new ObserversGroupsCommand(user);
 			
 			command.fetch(function(groups){

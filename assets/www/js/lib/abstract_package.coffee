@@ -37,6 +37,10 @@ class AbstractPackage
   setGroup: (groupId)=>
     @groupId = groupId
     
+  setCompetancy: (competancy) =>
+    console.log("setting competancy"  + competancy)
+    @competancy = competancy 
+   
   afterSendRegistration: ()=>
     for page in @pages
       page.afterSendRegistration() if page and page.afterSendRegistration
@@ -75,7 +79,24 @@ class AbstractPackage
     
   send: () =>
     console.log("pp: sending :" + JSON.stringify(this))
+    user = UserStore.get(main.currentMode())
+    competancy = user.competancy
+    
+    @setCompetancy(competancy.getLevel(@currentHazard()))
+    
     @onSend(@page, true)
+    
+  currentHazard : ()=>
+    page = @page.name
+    
+    currentHazard = switch page
+      when "snow_page" then SNOW_GEO_HAZARD
+      when "dirt_page" then DIRT_GEO_HAZARD
+      when "ice_page" then ICE_GEO_HAZARD
+      when "water_page" then WATER_GEO_HAZARD
+      
+    console.log("current hazard is " + page + "=" + currentHazard)
+    currentHazard
     
   callCallback: ()=>
     @callback(this) if @callback 
@@ -219,7 +240,8 @@ class AbstractPackage
   onAfterLocation: (data, area, force) ->
     groupId = parseInt(@groupId)
     groupId = undefined if groupId == 0
-    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, @regDate, 0, groupId)
+    
+    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, @regDate, @competancy, groupId)
     SendObjectToServer(registration, ((data) => @afterRegistration(data, area, force)) , (error) => @onError(error))
     
   cutOutPictures: (area) ->

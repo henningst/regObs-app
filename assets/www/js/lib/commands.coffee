@@ -1,5 +1,8 @@
 
-
+class ErrorHandlingCommand
+  fail: (err, data)->
+    console.log(err)
+    console.log(JSON.stringify(data))
 
 class SendInPictureCommand
 	constructor: (@picture) ->
@@ -28,10 +31,7 @@ class SendInPictureCommand
     	SendObjectToServer(@picture)
 		
 		reader.readAsDataURL(file);
-		
-		
-		
-		
+
 	fail: (e) ->
 		console.log("sending in picture failed:")
 		for k,v of e
@@ -40,22 +40,41 @@ class SendInPictureCommand
 		console.log("value of secur err " + FileError.SECURITY_ERR  + " not found err " + FileError.NOT_FOUND_ERR)
 		
 
-class ObserversGroupsCommand
+class ObserversGroupsCommand extends ErrorHandlingCommand
   constructor: (@user) ->
     @groups = []
-    @url = SERVER_URL+"/ObserverGroupMember?$filter=ObserverID eq 188&$expand=ObserverGroup"
+    @url = SERVER_URL+"/ObserverGroupMember?$filter=ObserverID eq #{ @user.id }&$expand=ObserverGroup"
     
   fetch: (@callback) =>
     GetObjectFromServer(this, @gotData, @fail)
     
   gotData:(data)=>
-    console.log(data)
+    console.log(JSON.stringify(data))
     jQuery.each(data.results, (i, result)=>
       @groups.push({id: result.ObserverGroup.ObserverGroupID, name: result.ObserverGroup.ObserverGroupName})  
     )
-    
     @callback(@groups)
     
-  fail: (err, data)->
-    console.log(err)
-    console.log(JSON.stringify(data))
+    
+class ObserversCompCommand extends ErrorHandlingCommand
+  constructor: (@user) ->
+    @comps = []
+    @url = SERVER_URL+"/ObserverHazardsComp?$filter=ObserverID eq #{ @user.id }"
+    @callback = ()->
+    
+  fetch: (@callback) =>
+    GetObjectFromServer(this, @gotData, @fail)
+    
+  gotData: (data) =>
+    jQuery.each(data.results, (i, result) =>
+      comp = new Competancy(result.GeoHazardTID, result.CompetenceLevelTID)
+      @comps.push(comp)  
+    )
+    @callback(@comps)
+    
+   
+    
+    
+
+
+    

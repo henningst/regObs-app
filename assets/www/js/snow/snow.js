@@ -35,6 +35,7 @@ var snow_page = {
 	init: function() {
 		this.danger_store = function(){ return main.store.getSnow(); };
 		$('header_middle_text').innerHTML = "Sn&oslash;";
+		jQuery("#regobs-name").hide();
 		
 		snow_page.doMeasurement();
 

@@ -146,6 +146,7 @@ class NveStore
     
     callback() if callback
     
+  
 IsEmpty = (pkg) ->
   if pkg.getObs().length isnt 0
     return false 

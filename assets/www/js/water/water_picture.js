@@ -16,7 +16,7 @@ var water_picture  = {
 				water_picture.updatePictureButtons("#water_picture");
 	
 				water_page.add('water_picture_count');
-				main.panels.slideBack();
+				main.panels.slideTo("water_obs");
 			},true);
 		}
 	},

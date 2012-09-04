@@ -7,6 +7,8 @@ LOGIN_BUTTON = "Logg inn";
 
 LOGOUT_BUTTON = "Logg ut";
 
+NOT_LOGGED_IN_WARNING = "Du er i ferd med å send inn observasjoner som anonym bruker.";
+
 /*
  * Error messages
  */
@@ -31,6 +33,8 @@ UPLOADING = "Laster opp... ";
  * Buttons for after registration is uploaded
  */
 OK = "Ok";
+
+ABORT= "Avbryt"
 
 SEND_EMAIL = "Send epost";
 

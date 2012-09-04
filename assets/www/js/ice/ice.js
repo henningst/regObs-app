@@ -32,6 +32,7 @@ var ice_page = {
 	init: function() {
 		this.danger_store = function() { return main.store.getIce(); };
 		$('header_middle_text').innerHTML = "Is";
+		jQuery("#regobs-name").hide();
 		
 		ice_page.doMeasurement();
 		
