@@ -63,6 +63,7 @@
 	<script type="text/javascript" src="js/dirt/dirt_picture.js"></script>
 	<script type="text/javascript" src="js/dirt/dirt_hendelse.js"></script>
 	<script type="text/javascript" src="js/dirt/dirt_faresign.js"></script>
+	<script type="text/javascript" src="js/dirt/dirt_avalange.js"></script>
 	
 	<script type="text/javascript" src="js/ice/ice.js"></script>
 	<script type="text/javascript" src="js/ice/ice_picture.js"></script>
@@ -167,7 +168,7 @@
 					</a>
 					
 					<a onclick="main.panels.slideTo('dirt')">
-						<span >L&oslash;smasse</span>
+						<span >Jord</span>
 						<img alt="" src="img/dirt_button.png">
 					</a>
 				</div>
@@ -556,11 +557,17 @@
 	          <span id="dirt_hendelse_count" class="notification_buble">0</span>
 	          <span class="w_icon arrow"></span>
 	        </li>
-		    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('dirt_faresign');">
-		      Faretegn
-		      <span id="dirt_faresign_count" class="notification_buble">0</span>
-		      <span class="w_icon arrow"></span>
-		   	</li>
+			    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('dirt_faresign');">
+			      Faretegn
+			      <span id="dirt_faresign_count" class="notification_buble">0</span>
+			      <span class="w_icon arrow"></span>
+			   	</li>
+			   	<li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('dirt_avalange');">
+			      Jordskred/flomskred
+			      <span id="dirt_avalange_count" class="notification_buble">0</span>
+			      <span class="w_icon arrow"></span>
+			   	</li>
+			   	
 	        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('dirt_picture');">
 	            Bilde 
 		        <span id="dirt_picture_count" class="notification_buble">0</span>
@@ -599,19 +606,40 @@
 			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="dirt_hendelse.addHendelse();">Legg til</button>
 		</div>
 		
+		
+		
 		<div id="dirt_faresign" class="c_center_page standartTextSize">
 		
 		
-	        <label for="dirt_danger_sign_list" style="margin: 15px; display: inline">Faresign:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
-	        <select id="dirt_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-	        </select>
+      <label for="dirt_danger_sign_list" style="margin: 15px; display: inline">Faresign:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+      <select id="dirt_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+      </select>
 			
 			<div id="dirt_carusel" ></div>
 			
-	        <label for="dirt_danger_sign_comment">Beskrivelse:</label>
-			<textarea id="dirt_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="dirt_faresign.addFaresign();">Legg til</button>
+       	<label for="dirt_danger_sign_comment">Beskrivelse:</label>
+				<textarea id="dirt_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
+				<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="dirt_faresign.addFaresign();">Legg til</button>
 		</div>
+		
+		<div id="dirt_avalange" class="c_center_page standartTextSize">
+		
+		
+      <label for="dirt_avalange_type_list" style="margin: 15px; display: inline">Type:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+      <select id="dirt_avalange_type_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+      </select>
+      
+      <label for="dirt_avalange_size_list" style="margin: 15px; display: inline">Størrelse:</label>
+      <select id="dirt_avalange_size_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+      </select>
+      
+      <label for="dirt_avalange_trigger_list" style="margin: 15px; display: inline">Trigger(Utl&oslash;ser):</label>
+      <select id="dirt_avalange_trigger_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+      </select>
+			
+			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="dirt_avalange.addAvalange();">Legg til</button>
+		</div>
+		
 		
 		<div id="dirt_picture" class="c_center_page">
 			<a class="learning_icon right"  onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>

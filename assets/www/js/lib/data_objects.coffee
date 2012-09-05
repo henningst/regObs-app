@@ -175,8 +175,13 @@ class DangerSignKD
 		@url = "#{SERVER_URL}Language(#{LANGUAGE})/DangerSignKD"
 
 class DangerObs
+  
 	url : ()  -> "#{SERVER_URL}DangerObs"
 	constructor: (@DangerObsID, @RegID, @GeoHazardTID, @DangerSignTID, @UsageFlagTID, @Comment) ->
+	  @model = "DangerObs"
+	  
+	beforeSend: (x) =>
+	  @DangerObsID = x
 	
 
 class DestructiveSizeKD
@@ -392,3 +397,28 @@ class AvalancheWarningPublishedSummaryV
 
 class ObsLocationV
 	constructor: ( ) ->
+	  
+class LandSlideSizeKD
+  url: null
+  constructor: (@LandSlideSizeTID, @LangKey, @LandSlideSizeName, @LandSlideSizeDescr) ->
+    @url = "#{SERVER_URL}/LandSlideSizeKD?$filter=LangKey eq #{ LANGUAGE }"
+    
+  
+class LandSlideTriggerKD
+  url: null
+  constructor: () ->
+    @url = "#{SERVER_URL}/LandSlideTriggerKD?$filter=LangKey eq #{ LANGUAGE }"
+	  
+class LandSlideKD
+  url: null
+  constructor: (@LandSlideTID, @LangKey, @LandSlideName, @LandSlideDescr) ->
+     @url = "#{SERVER_URL}/LandSlideKD?$filter=LangKey eq #{ LANGUAGE }"
+     
+     
+class LandSlideObs
+  url : ()  -> "#{SERVER_URL}LandSlideObs"
+  constructor: (@RegID, @DtLandSlideTime, @UTMNorthStop, @UTMEastStop, @UTMZoneStop, @LandSlideTID, @LandSlideTriggerTID, @LandSlideSizeTID, @UsageFlagTID, @Comment)->
+    @model = "LandSlideObs"
+    
+  setRegDate : (date)=>
+    @DtLandSlideTime = date

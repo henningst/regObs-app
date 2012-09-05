@@ -18,10 +18,11 @@ class AbstractPackage
   superInit: () =>
     @pages = [@page, @picturePage, @hendelsePage]
     
+    
     if @name is 'SnowPackage'
       @m_dangerObs = (@fillAvalancheDangerObs obs for obs in @m_dangerObs)
     else
-      @m_dangerObs = (@fillDangerObs obs for obs in @m_dangerObs)
+      @m_dangerObs = @fillDangerObs obs for obs in @m_dangerObs
       
     @m_pictures = (@fillPicture picture for picture in @m_pictures)
     @m_incident = @fillIncident @m_incident if @m_incident
@@ -63,6 +64,8 @@ class AbstractPackage
     
   addObs: (obs) =>
     @setRegDate()
+    obs.setRegDate(@regDate) if obs.setRegDate
+    console.log("adding obs: " + JSON.stringify(obs))
     @m_dangerObs.push(obs)
     DataAccess.save(@name, this)
     
@@ -119,13 +122,13 @@ class AbstractPackage
         
         obs.RegID = data.RegID
         
-        
         if n is 'SnowPackage'
           obs = jQuery.extend(obs, new AvalancheDangerObs())
           obs.AvalancheDangerObsID = x++
         else
-          obs = jQuery.extend(obs, new DangerObs())
-          obs.DangerObsID = x++
+          obs = jQuery.extend(obs, eval("new #{obs.model}()"))
+          obs.beforeSend(x++) if obs.beforeSend
+          delete obs.model if obs.model            
         
         console.log("pp: obs:" + JSON.stringify(obs))
         SendObjectToServer(obs)

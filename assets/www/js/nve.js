@@ -260,6 +260,7 @@ var main = (function()
 	      	        		'dirt_hendelse',
 	      	        		'dirt_faresign',
 	      	        		'dirt_picture',
+	      	        		'dirt_avalange',
 	      	        		'learning_page',
 	      	        		'information',
 	      	        		'login_page'
@@ -293,12 +294,40 @@ var main = (function()
         
         populateBoxes: function(force)
         {
-        	//init danger signs
-            //TODO what if we want to update the mobile clients?
             var registrationKD = (force ? null : DataAccess.get(RegistrationKD.name)) ;
             var dangerSign = (force ? null : DataAccess.get(DangerSignKD.name));
             var activityInfluenced = (force ? null : DataAccess.get(ActivityInfluencedKD.name));
             var damageExtent = (force ? null : DataAccess.get(DamageExtentKD.name));
+            var dirtAvalangeType = (force ? null : DataAccess.get(LandSlideKD.name));
+            var dirtAvalangeSize = (force ? null : DataAccess.get(LandSlideSizeKD.name));
+            var dirtAvalangeTrigger = (force ? null : DataAccess.get(LandSlideTriggerKD.name));
+            
+            if(dirtAvalangeTrigger == null) 
+        	{
+            	GetObjectFromServer(new LandSlideTriggerKD(), main.fillLandSlideTriggerKD, function(error) {  main.fillLandSlideTriggerKD(DataAccess.get(LandSlideTriggerKD.name)); });
+        	}
+            else 
+            {
+            	main.fillLandSlideTriggerKD(dirtAvalangeTrigger);
+            }
+            
+            if(dirtAvalangeSize == null) 
+        	{
+            	GetObjectFromServer(new LandSlideSizeKD(), main.fillLandSlideSizeKD, function(error) {  main.fillLandSlideSizeKD(DataAccess.get(LandSlideSizeKD.name)); });
+        	}
+            else 
+            {
+            	main.fillLandSlideSizeKD(dirtAvalangeSize);
+            }
+            
+            if(dirtAvalangeType == null) 
+        	{
+            	GetObjectFromServer(new LandSlideKD(), main.fillLandSlideKD, function(error) {  main.fillLandSlideKD(DataAccess.get(LandSlideKD.name)); });
+        	}
+            else 
+            {
+            	main.fillLandSlideKD(dirtAvalangeType);
+            }
             
             if(registrationKD == null) 
         	{
@@ -617,6 +646,30 @@ var main = (function()
         	jQuery("#footer").show();
         },
         
+        fillLandSlideSizeKD: function(data){
+        	if(data == null)
+				return;
+			
+        	DataAccess.save(LandSlideSizeKD.name, data);
+        	dirt_avalange.fillLandSlideSizeKD(data);
+        },
+        
+        fillLandSlideTriggerKD: function(data){
+        	if(data == null)
+				return;
+			
+        	DataAccess.save(LandSlideTriggerKD.name, data);
+        	dirt_avalange.fillLandSlideTriggerKD(data);
+        },
+        
+        fillLandSlideKD: function(data){
+        	if(data == null)
+				return;
+			
+        	DataAccess.save(LandSlideKD.name, data);
+        	dirt_avalange.fillLandSlideKD(data);
+        },
+        
         fillRegistrationKD: function(data)
         {
 			if(data == null)
@@ -917,6 +970,12 @@ var main = (function()
         		case 'dirt_faresign':
         			if(status == 'start') {
         				dirt_faresign.init();
+        			}
+        			break;
+        			
+        		case 'dirt_avalange':
+        			if(status == 'start') {
+        				dirt_avalange.init();
         			}
         			break;
         			

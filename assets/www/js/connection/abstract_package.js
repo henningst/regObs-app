@@ -79,7 +79,7 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.superInit = function() {
-    var obs, picture;
+    var obs, picture, _i, _len, _ref;
     this.pages = [this.page, this.picturePage, this.hendelsePage];
     if (this.name === 'SnowPackage') {
       this.m_dangerObs = (function() {
@@ -93,23 +93,18 @@ AbstractPackage = (function() {
         return _results;
       }).call(this);
     } else {
-      this.m_dangerObs = (function() {
-        var _i, _len, _ref, _results;
-        _ref = this.m_dangerObs;
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          obs = _ref[_i];
-          _results.push(this.fillDangerObs(obs));
-        }
-        return _results;
-      }).call(this);
+      _ref = this.m_dangerObs;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        obs = _ref[_i];
+        this.m_dangerObs = this.fillDangerObs(obs);
+      }
     }
     this.m_pictures = (function() {
-      var _i, _len, _ref, _results;
-      _ref = this.m_pictures;
+      var _j, _len1, _ref1, _results;
+      _ref1 = this.m_pictures;
       _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        picture = _ref[_i];
+      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+        picture = _ref1[_j];
         _results.push(this.fillPicture(picture));
       }
       return _results;
@@ -177,6 +172,10 @@ AbstractPackage = (function() {
 
   AbstractPackage.prototype.addObs = function(obs) {
     this.setRegDate();
+    if (obs.setRegDate) {
+      obs.setRegDate(this.regDate);
+    }
+    console.log("adding obs: " + JSON.stringify(obs));
     this.m_dangerObs.push(obs);
     return DataAccess.save(this.name, this);
   };
@@ -253,8 +252,13 @@ AbstractPackage = (function() {
         obs = jQuery.extend(obs, new AvalancheDangerObs());
         obs.AvalancheDangerObsID = x++;
       } else {
-        obs = jQuery.extend(obs, new DangerObs());
-        obs.DangerObsID = x++;
+        obs = jQuery.extend(obs, eval("new " + obs.model + "()"));
+        if (obs.beforeSend) {
+          obs.beforeSend(x++);
+        }
+        if (obs.model) {
+          delete obs.model;
+        }
       }
       console.log("pp: obs:" + JSON.stringify(obs));
       return SendObjectToServer(obs);
