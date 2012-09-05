@@ -38,7 +38,6 @@ class AbstractPackage
     @groupId = groupId
     
   setCompetancy: (competancy) =>
-    console.log("setting competancy"  + competancy)
     @competancy = competancy 
    
   afterSendRegistration: ()=>

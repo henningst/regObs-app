@@ -134,7 +134,6 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.setCompetancy = function(competancy) {
-    console.log("setting competancy" + competancy);
     return this.competancy = competancy;
   };
 
