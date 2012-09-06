@@ -1,4 +1,15 @@
 
+class EventedModel
+  setRegDate: (date)->
+  beforeSend: (index)->
+    
+class AutoCastable extends EventedModel
+  model : undefined
+  
+class Observation extends AutoCastable
+
+
+
 class Result
 	constructor: () ->
 		@ok = false
@@ -105,7 +116,7 @@ class AvalancheDangerKD
 	constructor: (@LangKey, @AvalancheDangerName, @AvalancheDangerDescr, @Language ) ->
 		@url = "#{SERVER_URL}AvalancheDangerKD"
 	
-class AvalancheDangerObs
+class AvalancheDangerObs extends Observation
 	url : ()  -> "#{SERVER_URL}AvalancheDangerObs"
 	constructor: (@AvalancheDangerObsID, @RegID, @DangerSignTID, @UsageFlagTID, @Comment) ->
 		@model = "AvalancheDangerObs"
@@ -178,14 +189,14 @@ class DangerSignKD
 	constructor: ()->
 		@url = "#{SERVER_URL}Language(#{LANGUAGE})/DangerSignKD"
 
-class DangerObs
+class DangerObs extends Observation
   
 	url : ()  -> "#{SERVER_URL}DangerObs"
 	constructor: (@DangerObsID, @RegID, @GeoHazardTID, @DangerSignTID, @UsageFlagTID, @Comment) ->
 	  @model = "DangerObs"
 	  
-	beforeSend: (x) =>
-	  @DangerObsID = x
+	beforeSend: (index) =>
+	  @DangerObsID = index
 	
 
 class DestructiveSizeKD
@@ -419,10 +430,11 @@ class LandSlideKD
      @url = "#{SERVER_URL}/LandSlideKD?$filter=LangKey eq #{ LANGUAGE }"
      
      
-class LandSlideObs
+class LandSlideObs extends Observation
   url : ()  -> "#{SERVER_URL}LandSlideObs"
   constructor: (@RegID, @DtLandSlideTime, @UTMNorthStop, @UTMEastStop, @UTMZoneStop, @LandSlideTID, @LandSlideTriggerTID, @LandSlideSizeTID, @UsageFlagTID, @Comment)->
     @model = "LandSlideObs"
     
   setRegDate : (date)=>
     @DtLandSlideTime = date
+        
