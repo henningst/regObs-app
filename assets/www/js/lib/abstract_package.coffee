@@ -22,7 +22,7 @@ class AbstractPackage
     if @name is 'SnowPackage'
       @m_dangerObs = (@fillAvalancheDangerObs obs for obs in @m_dangerObs)
     else
-      @m_dangerObs = @fillDangerObs obs for obs in @m_dangerObs
+      @m_dangerObs = (@fillDangerObs obs for obs in @m_dangerObs)
       
     @m_pictures = (@fillPicture picture for picture in @m_pictures)
     @m_incident = @fillIncident @m_incident if @m_incident
@@ -56,21 +56,21 @@ class AbstractPackage
     
   setKommunenr: (nr) =>
     @komm_nr = nr if nr
-    console.log("set kommune nr" + nr);
     
   setArea: (nr) =>
     @omrade_id = nr
-    console.log("set area id");
     
   addObs: (obs) =>
     @setRegDate()
     obs.setRegDate(@regDate) if obs.setRegDate
-    console.log("adding obs: " + JSON.stringify(obs))
     @m_dangerObs.push(obs)
     DataAccess.save(@name, this)
     
-  getObs: () =>
-    @m_dangerObs
+  getObs: (type) =>
+    if(type == undefined)
+      @m_dangerObs
+    else
+      @m_dangerObs.filter (obj) -> obj.model == type
     
   addPicture: (picture) =>
     @setRegDate()
@@ -81,7 +81,6 @@ class AbstractPackage
     @m_pictures
     
   send: () =>
-    console.log("pp: sending :" + JSON.stringify(this))
     user = UserStore.get(main.currentMode())
     competancy = user.competancy
     
@@ -116,21 +115,14 @@ class AbstractPackage
   completeAreaRegistration: (data, force) =>
     x = 0
     n = @name
-    console.log("test");
     for obs in @m_dangerObs 
-      do(obs) ->
+      do(obs) =>
         
         obs.RegID = data.RegID
-        
-        if n is 'SnowPackage'
-          obs = jQuery.extend(obs, new AvalancheDangerObs())
-          obs.AvalancheDangerObsID = x++
-        else
-          obs = jQuery.extend(obs, eval("new #{obs.model}()"))
-          obs.beforeSend(x++) if obs.beforeSend
-          delete obs.model if obs.model            
-        
-        console.log("pp: obs:" + JSON.stringify(obs))
+        obs = @castedModel(obs)
+        obs.beforeSend(x++) if obs.beforeSend
+        delete obs.model if obs.model          
+      
         SendObjectToServer(obs)
         
     @m_dangerObs.length = 0
@@ -272,4 +264,7 @@ class AbstractPackage
     else
       (picture for picture in @m_pictures when picture.RegistrationTID in [21, 22, 23, 25, 26, 50, 51, 61, 71])
       
+  castedModel: (obs, x) =>
+    obs = jQuery.extend(obs, eval("new #{obs.model}()"))
+    obs
 

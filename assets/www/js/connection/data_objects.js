@@ -250,11 +250,18 @@ AvalancheDangerObs = (function() {
   };
 
   function AvalancheDangerObs(AvalancheDangerObsID, RegID, DangerSignTID, UsageFlagTID, Comment) {
+    var _this = this;
     this.AvalancheDangerObsID = AvalancheDangerObsID;
     this.RegID = RegID;
     this.DangerSignTID = DangerSignTID;
     this.UsageFlagTID = UsageFlagTID;
     this.Comment = Comment;
+    this.model = "AvalancheDangerObs";
+    ({
+      beforeSend: function(x) {
+        return _this.AvalancheDangerObsID = x;
+      }
+    });
   }
 
   return AvalancheDangerObs;

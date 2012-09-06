@@ -25,6 +25,7 @@ var dirt_page = {
 	
 	afterSendRegistration: function() {
 		$('dirt_faresign_count').innerHTML = 0;
+		$('dirt_avalange_count').innerHTML = 0;
 		$('dirt_picture_count').innerHTML = 0;
 		jQuery('#dirt_hendelse_count').removeClass("checked").text("0");
 		jQuery('#dirt_group').val(0);
@@ -39,7 +40,8 @@ var dirt_page = {
 
 		var dirtStore = main.store.getDirt();
 
-		$('dirt_faresign_count').innerHTML = dirtStore.getObs().length;
+		$('dirt_avalange_count').innerHTML = dirtStore.getObs('LandSlideObs').length;
+		$('dirt_faresign_count').innerHTML = dirtStore.getObs('DangerObs').length;
 		$('dirt_picture_count').innerHTML = dirtStore.getPictures().length;
 		
 		this.showStar();

@@ -108,7 +108,11 @@ class AvalancheDangerKD
 class AvalancheDangerObs
 	url : ()  -> "#{SERVER_URL}AvalancheDangerObs"
 	constructor: (@AvalancheDangerObsID, @RegID, @DangerSignTID, @UsageFlagTID, @Comment) ->
+		@model = "AvalancheDangerObs"
 
+  beforeSend: (x)=>
+    @AvalancheDangerObsID = x
+    
 ###
 class AvalancheEvaluation
 

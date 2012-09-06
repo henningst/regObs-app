@@ -66,7 +66,6 @@ class NveStore
       pkg.freezed = true
       collection.remove(pkg)
     
-    console.log("pp: sending package")
     p.send()
 
   getDirt: () ->
