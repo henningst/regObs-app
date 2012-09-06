@@ -54,11 +54,13 @@ var snow_picture  = {
 		$("snow_picture_comment").value = "";
 	},
 	
-	
 	init : function () {
 		$('header_middle_text').innerHTML = "Bilde";	
 		this.picturePage = "#snow_picture";
 		this.updatePictureButtons("#snow_picture");
+		var make = this.make;
+		var page = this;
+		this.setMakePictureHandlers(function(pictureSource){ make.call(page, pictureSource);});
 	}
 };
 

@@ -572,7 +572,7 @@ var main = (function()
         showDialog: function(content)
         {
         	jQuery("body").scrollTop(0);
-        	jQuery("#popup_content").html(content);
+        	jQuery("#popup_content").html("").append(content);
         	jQuery("#popup").css("top", (wink.ux.window.height * .4) + "px");
         	jQuery("#footer").hide();
         	jQuery("#dialog").show();

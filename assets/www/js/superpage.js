@@ -132,7 +132,7 @@ var super_page = {
 
 
 var super_picture = {
-		make: function()
+		make: function(pictureSource)
 		{
 			main.showWaitingDialogWithMessage(PROCESS_PICTURE);	
 			
@@ -143,7 +143,7 @@ var super_picture = {
 					{ 
 						quality : 50, 
 						 destinationType: Camera.DestinationType.FILE_URI, 
-						sourceType : Camera.PictureSourceType.CAMERA, 
+						sourceType : pictureSource, 
 						encodingType: Camera.EncodingType.JPEG,
 		                correctOrientation: true
 		            }
@@ -157,7 +157,7 @@ var super_picture = {
 					{
 						quality : 50,
 						destinationType : Camera.DestinationType.FILE_URI,
-						sourceType : Camera.PictureSourceType.CAMERA,
+						sourceType : pictureSource,
 						allowEdit : true,
 						encodingType: Camera.EncodingType.JPEG,
 						targetWidth: 1024,
@@ -188,6 +188,24 @@ var super_picture = {
 			
 			
 		},
+		
+		setMakePictureHandlers: function(callback){
+			jQuery(this.picturePage + " .make").click(function(){
+				var div = jQuery("<h3>Hvor skal bildet hentes fra?</h3>" +
+	            "<div>"+
+	            "<button type='button' " +
+	              "class='w_bg_light c_button w_button w_radius popupbutton-dual camera' >Kamera" +  
+	            "</button>" +
+	            "<button type='button' " +
+	              "class='w_bg_light c_button w_button w_radius popupbutton-dual gallery' >Galleri" + 
+	            "</button>" +
+	          "</div>");
+				
+				div.find(".camera").click(function(){callback(Camera.PictureSourceType.CAMERA)})
+				div.find(".gallery").click(function(){callback(Camera.PictureSourceType.PHOTOLIBRARY);})
+				main.showDialog(div);
+			});
+		}
 		
 		
 };
