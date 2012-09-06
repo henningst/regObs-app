@@ -25,8 +25,8 @@ var snow_page = {
 	},
    
 	afterSendRegistration: function() {
-		$('snow_faresign_count').innerHTML = 0;
-		$('snow_picture_count').innerHTML = 0;
+		snow_page.resetCounter('snow_faresign_count');
+		snow_page.resetCounter('snow_picture_count');
 		jQuery('#snow_hendelse_count').removeClass("checked").text("0");
 		jQuery('#snow_group').val(0);
 		
@@ -41,8 +41,8 @@ var snow_page = {
 
 		var snowStore = main.store.getSnow();
 
-		$('snow_faresign_count').innerHTML = snowStore.getObs().length;
-		$('snow_picture_count').innerHTML = snowStore.getPictures().length;
+		snow_page.setCounter('snow_faresign_count', snowStore.getObs().length);
+		snow_page.setCounter('snow_picture_count', snowStore.getPictures().length);
 		
 		this.showStar();
 	}
