@@ -84,7 +84,6 @@ NveStore = (function() {
       pkg.freezed = true;
       return collection.remove(pkg);
     };
-    console.log("pp: sending package");
     return p.send();
   };
 

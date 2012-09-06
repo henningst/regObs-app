@@ -5,6 +5,8 @@ var AbstractPackage,
 AbstractPackage = (function() {
 
   function AbstractPackage() {
+    this.castedModel = __bind(this.castedModel, this);
+
     this.onSend = __bind(this.onSend, this);
 
     this.fillAvalancheDangerObs = __bind(this.fillAvalancheDangerObs, this);
@@ -164,24 +166,31 @@ AbstractPackage = (function() {
 
   AbstractPackage.prototype.setKommunenr = function(nr) {
     if (nr) {
-      this.komm_nr = nr;
+      return this.komm_nr = nr;
     }
-    return console.log("set kommune nr" + nr);
   };
 
   AbstractPackage.prototype.setArea = function(nr) {
-    this.omrade_id = nr;
-    return console.log("set area id");
+    return this.omrade_id = nr;
   };
 
   AbstractPackage.prototype.addObs = function(obs) {
     this.setRegDate();
+    if (obs.setRegDate) {
+      obs.setRegDate(this.regDate);
+    }
     this.m_dangerObs.push(obs);
     return DataAccess.save(this.name, this);
   };
 
-  AbstractPackage.prototype.getObs = function() {
-    return this.m_dangerObs;
+  AbstractPackage.prototype.getObs = function(type) {
+    if (type === void 0) {
+      return this.m_dangerObs;
+    } else {
+      return this.m_dangerObs.filter(function(obj) {
+        return obj.model === type;
+      });
+    }
   };
 
   AbstractPackage.prototype.addPicture = function(picture) {
@@ -196,7 +205,6 @@ AbstractPackage = (function() {
 
   AbstractPackage.prototype.send = function() {
     var competancy, user;
-    console.log("pp: sending :" + JSON.stringify(this));
     user = UserStore.get(main.currentMode());
     competancy = user.competancy;
     this.setCompetancy(competancy.getLevel(this.currentHazard()));
@@ -241,21 +249,20 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.completeAreaRegistration = function(data, force) {
-    var bilde, i, n, obs, picture, x, _fn, _fn1, _i, _j, _len, _len1, _ref;
+    var bilde, i, n, obs, picture, x, _fn, _fn1, _i, _j, _len, _len1, _ref,
+      _this = this;
     x = 0;
     n = this.name;
-    console.log("test");
     _ref = this.m_dangerObs;
     _fn = function(obs) {
       obs.RegID = data.RegID;
-      if (n === 'SnowPackage') {
-        obs = jQuery.extend(obs, new AvalancheDangerObs());
-        obs.AvalancheDangerObsID = x++;
-      } else {
-        obs = jQuery.extend(obs, new DangerObs());
-        obs.DangerObsID = x++;
+      obs = _this.castedModel(obs);
+      if (obs.beforeSend) {
+        obs.beforeSend(x++);
       }
-      console.log("pp: obs:" + JSON.stringify(obs));
+      if (obs.model) {
+        delete obs.model;
+      }
       return SendObjectToServer(obs);
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -457,6 +464,11 @@ AbstractPackage = (function() {
       }
       return _results1;
     }
+  };
+
+  AbstractPackage.prototype.castedModel = function(obs, x) {
+    obs = jQuery.extend(obs, eval("new " + obs.model + "()"));
+    return obs;
   };
 
   return AbstractPackage;
