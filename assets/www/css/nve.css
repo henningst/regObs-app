@@ -188,11 +188,8 @@ input.large
             color-stop(0.74, rgb(237,237,237))
     );
 	
-	
-	
-	
 	border-color: #2F2F2F;
-	color: #ffffff;
+	color: #333;
 }
 
 .c_darker_gradient{
