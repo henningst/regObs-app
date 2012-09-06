@@ -300,75 +300,20 @@ var main = (function()
         	}
             else 
             {
-            	main.fillLandSlideTriggerKD(cached);
+            	fillFunction(cached);
             }
             
         },
         
         populateBoxes: function(force)
         {
-            var registrationKD = (force ? null : DataAccess.get(RegistrationKD.name)) ;
-            var dangerSign = (force ? null : DataAccess.get(DangerSignKD.name));
-            var activityInfluenced = (force ? null : DataAccess.get(ActivityInfluencedKD.name));
-            var damageExtent = (force ? null : DataAccess.get(DamageExtentKD.name));
-            var dirtAvalangeType = (force ? null : DataAccess.get(LandSlideKD.name));
-            var dirtAvalangeSize = (force ? null : DataAccess.get(LandSlideSizeKD.name));
-            
             main.fillDropdown(LandSlideTriggerKD, main.fillLandSlideTriggerKD, force);
-            
-            if(dirtAvalangeSize == null) 
-        	{
-            	GetObjectFromServer(new LandSlideSizeKD(), main.fillLandSlideSizeKD, function(error) {  main.fillLandSlideSizeKD(DataAccess.get(LandSlideSizeKD.name)); });
-        	}
-            else 
-            {
-            	main.fillLandSlideSizeKD(dirtAvalangeSize);
-            }
-            
-            if(dirtAvalangeType == null) 
-        	{
-            	GetObjectFromServer(new LandSlideKD(), main.fillLandSlideKD, function(error) {  main.fillLandSlideKD(DataAccess.get(LandSlideKD.name)); });
-        	}
-            else 
-            {
-            	main.fillLandSlideKD(dirtAvalangeType);
-            }
-            
-            if(registrationKD == null) 
-        	{
-            	GetObjectFromServer(new RegistrationKD(), main.fillRegistrationKD, function(error) {  main.fillRegistrationKD(DataAccess.get(RegistrationKD.name)); });
-        	}
-            else 
-            {
-            	main.fillRegistrationKD(registrationKD);
-            }
-            
-            if(dangerSign == null) 
-            {
-            	GetObjectFromServer(new DangerSignKD(), main.fillDangerSign, function(error) { main.fillDangerSign(DataAccess.get(DangerSignKD.name)); });
-            } 
-            else 
-            {
-            	main.fillDangerSign(dangerSign);
-            }
-            
-            if(activityInfluenced == null) 
-            {
-            	GetObjectFromServer(new ActivityInfluencedKD(), main.fillActivityInfluenced, function(error) { main.fillActivityInfluenced(DataAccess.get(ActivityInfluencedKD.name)); });
-            } 
-            else 
-            {
-            	main.fillActivityInfluenced(activityInfluenced);
-            }
-            
-            if(damageExtent == null) 
-            {
-            	GetObjectFromServer(new DamageExtentKD(), main.fillDamageExtent, function(error) { main.fillDamageExtent(DataAccess.get(DamageExtentKD.name)); });
-            } 
-            else 
-            {
-            	main.fillDamageExtent(damageExtent);
-            }
+            main.fillDropdown(LandSlideSizeKD, main.fillLandSlideSizeKD, force);
+            main.fillDropdown(LandSlideKD, main.fillLandSlideKD, force);
+            main.fillDropdown(RegistrationKD, main.fillRegistrationKD, force);
+            main.fillDropdown(DangerSignKD, main.fillDangerSign, force);
+            main.fillDropdown(ActivityInfluencedKD, main.fillActivityInfluenced, force);
+            main.fillDropdown(DamageExtentKD, main.fillDamageExtent, force);
         },
         
         carouselMoved: function(data)
@@ -651,83 +596,61 @@ var main = (function()
         	jQuery("#footer").show();
         },
         
-        fillLandSlideSizeKD: function(data){
+        saveAndCall: function(kdObject, data, callingFunctions){
         	if(data == null)
 				return;
 			
-        	DataAccess.save(LandSlideSizeKD.name, data);
-        	dirt_avalange.fillLandSlideSizeKD(data);
+        	DataAccess.save(kdObject.name, data);
+        	jQuery.each(callingFunctions, function(i, f){
+        		f(data);
+        	});
+        },
+        
+        fillLandSlideSizeKD: function(data){
+        	main.saveAndCall(LandSlideSizeKD, data, [dirt_avalange.fillLandSlideSizeKD]);
         },
         
         fillLandSlideTriggerKD: function(data){
-        	if(data == null)
-				return;
-			
-        	DataAccess.save(LandSlideTriggerKD.name, data);
-        	dirt_avalange.fillLandSlideTriggerKD(data);
+        	main.saveAndCall(LandSlideTriggerKD, data, [dirt_avalange.fillLandSlideTriggerKD]);
         },
         
         fillLandSlideKD: function(data){
-        	if(data == null)
-				return;
-			
-        	DataAccess.save(LandSlideKD.name, data);
-        	dirt_avalange.fillLandSlideKD(data);
+        	main.saveAndCall(LandSlideKD, data, [dirt_avalange.fillLandSlideKD])
         },
         
         fillRegistrationKD: function(data)
         {
-			if(data == null)
-				return;
-			
-        	DataAccess.save(RegistrationKD.name, data);
-
-        	snow_picture.fillRegistrationKD(data);
-        	water_picture.fillRegistrationKD(data);
-        	ice_picture.fillRegistrationKD(data);
-        	dirt_picture.fillRegistrationKD(data);
+        	main.saveAndCall(RegistrationKD, data, 
+        			[snow_picture.fillRegistrationKD, 
+        			 water_picture.fillRegistrationKD,
+        			 ice_picture.fillRegistrationKD,
+        			 dirt_picture.fillRegistrationKD]);
         },
         
         fillDangerSign: function(data) {
-			if(data == null)
-				return;
-			
-        	DataAccess.save(DangerSignKD.name, data);
-        	
-        	snow_faresign.fillDangerSign(data);
-        	water_faresign.fillDangerSign(data);
-        	ice_faresign.fillDangerSign(data);
-        	dirt_faresign.fillDangerSign(data);
+        	main.saveAndCall(DangerSignKD, data, 
+        			[snow_faresign.fillDangerSign,
+        			 water_faresign.fillDangerSign,
+        			 ice_faresign.fillDangerSign,
+        			 dirt_faresign.fillDangerSign]);
         },
         
         fillActivityInfluenced: function(data) {
-			if(data == null)
-				return;
-			
-        	DataAccess.save(ActivityInfluencedKD.name, data);
-        	
-			snow_hendelse.fill_activity_influenced(data);
-        	water_hendelse.fill_activity_influenced(data);
-        	dirt_hendelse.fill_activity_influenced(data);
-        	ice_hendelse.fill_activity_influenced(data);
+        	main.saveAndCall(ActivityInfluencedKD, data, 
+        			[snow_hendelse.fill_activity_influenced,
+                	water_hendelse.fill_activity_influenced,
+                	dirt_hendelse.fill_activity_influenced,
+                	ice_hendelse.fill_activity_influenced]);
         },
         
         fillDamageExtent: function(data) {
-			if(data == null)
-				return;
-			
-        	DataAccess.save(DamageExtentKD.name, data);
-        	
-			snow_hendelse.fill_radius(data);
-			water_hendelse.fill_radius(data);
-			dirt_hendelse.fill_radius(data);
-			ice_hendelse.fill_radius(data);
+        	main.saveAndCall(DamageExtentKD, data, 
+        			[snow_hendelse.fill_radius,
+        			water_hendelse.fill_radius,
+        			dirt_hendelse.fill_radius,
+        			ice_hendelse.fill_radius]);
         },
-        
-        
-        
-        
-        
+
         hideNve: function(){
         	jQuery("#regobs-info").hide();
         },
