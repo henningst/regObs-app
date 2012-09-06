@@ -292,6 +292,19 @@ var main = (function()
 			
         },
         
+        fillDropdown: function(kdObject, fillFunction, force){
+            var cached = (force ? null : DataAccess.get(kdObject.name));
+            if(cached == null) 
+        	{
+            	GetObjectFromServer(new kdObject, fillFunction, function(error) {  fillFunction(DataAccess.get(kdObject.name)); });
+        	}
+            else 
+            {
+            	main.fillLandSlideTriggerKD(cached);
+            }
+            
+        },
+        
         populateBoxes: function(force)
         {
             var registrationKD = (force ? null : DataAccess.get(RegistrationKD.name)) ;
@@ -300,16 +313,8 @@ var main = (function()
             var damageExtent = (force ? null : DataAccess.get(DamageExtentKD.name));
             var dirtAvalangeType = (force ? null : DataAccess.get(LandSlideKD.name));
             var dirtAvalangeSize = (force ? null : DataAccess.get(LandSlideSizeKD.name));
-            var dirtAvalangeTrigger = (force ? null : DataAccess.get(LandSlideTriggerKD.name));
             
-            if(dirtAvalangeTrigger == null) 
-        	{
-            	GetObjectFromServer(new LandSlideTriggerKD(), main.fillLandSlideTriggerKD, function(error) {  main.fillLandSlideTriggerKD(DataAccess.get(LandSlideTriggerKD.name)); });
-        	}
-            else 
-            {
-            	main.fillLandSlideTriggerKD(dirtAvalangeTrigger);
-            }
+            main.fillDropdown(LandSlideTriggerKD, main.fillLandSlideTriggerKD, force);
             
             if(dirtAvalangeSize == null) 
         	{
