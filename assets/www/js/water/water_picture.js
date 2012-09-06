@@ -56,6 +56,10 @@ var water_picture  = {
 	init : function () {
 		$('header_middle_text').innerHTML = "Bilde";
 		water_picture.updatePictureButtons("#water_picture");
+		this.picturePage = "#water_picture";
+		var make = this.make;
+		var page = this;
+		this.setMakePictureHandlers(function(pictureSource){ make.call(page, pictureSource);});
 	}
 };
 
