@@ -26,7 +26,7 @@ var dirt_page = {
 	afterSendRegistration: function() {
 		dirt_page.resetCounter('dirt_faresign_count');
 		dirt_page.resetCounter('dirt_avalange_count');
-		dirt_page.resetcounter('dirt_picture_count');
+		dirt_page.resetCounter('dirt_picture_count');
 		jQuery('#dirt_hendelse_count').removeClass("checked").text("0");
 		jQuery('#dirt_group').val(0);
 	},
@@ -45,14 +45,6 @@ var dirt_page = {
 		dirt_page.setCounter('dirt_picture_count', dirtStore.getPictures().length);
 		
 		this.showStar();
-	},
-	
-	resetCounter: function(id){
-		this.setCounter(id, "0");
-	},
-	
-	setCounter: function(id, number){
-		$(id).innerHTML = number;
 	}
 };
 

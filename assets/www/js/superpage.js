@@ -119,6 +119,14 @@ var super_page = {
 	
 				jQuery("#star").attr('src', 'img/notstared.png');
 			}
+		},
+		
+		resetCounter: function(id){
+			this.setCounter(id, "0");
+		},
+		
+		setCounter: function(id, number){
+			$(id).innerHTML = number;
 		}
 };
 
@@ -179,5 +187,7 @@ var super_picture = {
 			}
 			
 			
-		}
+		},
+		
+		
 };
