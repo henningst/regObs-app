@@ -22,8 +22,8 @@ var water_page = {
 	},
 	
 	afterSendRegistration: function() {
-		$('water_faresign_count').innerHTML = 0;
-		$('water_picture_count').innerHTML = 0;
+		water_page.resetCounter('water_faresign_count');
+		water_page.resetCounter('water_picture_count');
 		jQuery('#water_hendelse_count').removeClass("checked").text("0");
 		jQuery('#water_group').val(0);
 	},
@@ -37,8 +37,8 @@ var water_page = {
 		
 		var waterStore = main.store.getWater();
 
-		$('water_faresign_count').innerHTML = waterStore.getObs().length
-		$('water_picture_count').innerHTML = waterStore.getPictures().length
+		water_page.setCounter('water_faresign_count', waterStore.getObs().length);
+		water_page.setCounter('water_picture_count', waterStore.getPictures().length);
 		
 		this.showStar();
 	},

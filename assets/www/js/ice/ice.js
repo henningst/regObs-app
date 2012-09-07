@@ -23,8 +23,8 @@ var ice_page = {
 	},
 	
 	afterSendRegistration: function() {
-		$('ice_picture_count').innerHTML = 0;
-		$('ice_faresign_count').innerHTML = 0;
+		ice_page.resetCounter('ice_picture_count');
+		ice_page.resetCounter('ice_faresign_count');
 		jQuery('#ice_hendelse_count').removeClass("checked").text("0");
 		jQuery('#ice_group').val(0);
 	},
@@ -38,8 +38,8 @@ var ice_page = {
 		
 		var iceStore = main.store.getIce();
 
-		$('ice_faresign_count').innerHTML = iceStore.getObs().length;
-		$('ice_picture_count').innerHTML = iceStore.getPictures().length;
+		ice_page.setCounter('ice_faresign_count', iceStore.getObs().length);
+		ice_page.setCounter('ice_picture_count', iceStore.getPictures().length);
 		
 		this.showStar();
 	}

@@ -1,4 +1,15 @@
 
+class EventedModel
+  setRegDate: (date)->
+  beforeSend: (index)->
+    
+class AutoCastable extends EventedModel
+  model : undefined
+  
+class Observation extends AutoCastable
+
+
+
 class Result
 	constructor: () ->
 		@ok = false
@@ -105,10 +116,14 @@ class AvalancheDangerKD
 	constructor: (@LangKey, @AvalancheDangerName, @AvalancheDangerDescr, @Language ) ->
 		@url = "#{SERVER_URL}AvalancheDangerKD"
 	
-class AvalancheDangerObs
+class AvalancheDangerObs extends Observation
 	url : ()  -> "#{SERVER_URL}AvalancheDangerObs"
 	constructor: (@AvalancheDangerObsID, @RegID, @DangerSignTID, @UsageFlagTID, @Comment) ->
+		@model = "AvalancheDangerObs"
 
+  beforeSend: (x)=>
+    @AvalancheDangerObsID = x
+    
 ###
 class AvalancheEvaluation
 
@@ -174,9 +189,14 @@ class DangerSignKD
 	constructor: ()->
 		@url = "#{SERVER_URL}Language(#{LANGUAGE})/DangerSignKD"
 
-class DangerObs
+class DangerObs extends Observation
+  
 	url : ()  -> "#{SERVER_URL}DangerObs"
 	constructor: (@DangerObsID, @RegID, @GeoHazardTID, @DangerSignTID, @UsageFlagTID, @Comment) ->
+	  @model = "DangerObs"
+	  
+	beforeSend: (index) =>
+	  @DangerObsID = index
 	
 
 class DestructiveSizeKD
@@ -392,3 +412,29 @@ class AvalancheWarningPublishedSummaryV
 
 class ObsLocationV
 	constructor: ( ) ->
+	  
+class LandSlideSizeKD
+  url: null
+  constructor: (@LandSlideSizeTID, @LangKey, @LandSlideSizeName, @LandSlideSizeDescr) ->
+    @url = "#{SERVER_URL}/LandSlideSizeKD?$filter=LangKey eq #{ LANGUAGE }"
+    
+  
+class LandSlideTriggerKD
+  url: null
+  constructor: () ->
+    @url = "#{SERVER_URL}/LandSlideTriggerKD?$filter=LangKey eq #{ LANGUAGE }"
+	  
+class LandSlideKD
+  url: null
+  constructor: (@LandSlideTID, @LangKey, @LandSlideName, @LandSlideDescr) ->
+     @url = "#{SERVER_URL}/LandSlideKD?$filter=LangKey eq #{ LANGUAGE }"
+     
+     
+class LandSlideObs extends Observation
+  url : ()  -> "#{SERVER_URL}LandSlideObs"
+  constructor: (@RegID, @DtLandSlideTime, @UTMNorthStop, @UTMEastStop, @UTMZoneStop, @LandSlideTID, @LandSlideTriggerTID, @LandSlideSizeTID, @UsageFlagTID, @Comment)->
+    @model = "LandSlideObs"
+    
+  setRegDate : (date)=>
+    @DtLandSlideTime = date
+        

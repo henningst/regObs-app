@@ -56,6 +56,10 @@ var dirt_picture  = {
 	init : function () {
 		$('header_middle_text').innerHTML = "Bilde";
 		dirt_picture.updatePictureButtons("#dirt_picture");
+		this.picturePage = "#dirt_picture";
+		var make = this.make;
+		var page = this;
+		this.setMakePictureHandlers(function(pictureSource){ make.call(page, pictureSource);});
 	}
 };
 

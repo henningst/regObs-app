@@ -25,26 +25,28 @@ var dirt_page = {
 	},
 	
 	afterSendRegistration: function() {
-		$('dirt_faresign_count').innerHTML = 0;
-		$('dirt_picture_count').innerHTML = 0;
+		dirt_page.resetCounter('dirt_faresign_count');
+		dirt_page.resetCounter('dirt_avalange_count');
+		dirt_page.resetCounter('dirt_picture_count');
 		jQuery('#dirt_hendelse_count').removeClass("checked").text("0");
 		jQuery('#dirt_group').val(0);
 	},
 	
 	init: function() {
 		this.danger_store = function(){return main.store.getDirt(); };
-		$('header_middle_text').innerHTML = "L&oslash;smasse";
+		$('header_middle_text').innerHTML = "Jord";
 		jQuery("#regobs-name").hide();
 		
 		dirt_page.doMeasurement();
 
 		var dirtStore = main.store.getDirt();
 
-		$('dirt_faresign_count').innerHTML = dirtStore.getObs().length;
-		$('dirt_picture_count').innerHTML = dirtStore.getPictures().length;
+		dirt_page.setCounter('dirt_avalange_count', dirtStore.getObs('LandSlideObs').length);
+		dirt_page.setCounter('dirt_faresign_count', dirtStore.getObs('DangerObs').length);
+		dirt_page.setCounter('dirt_picture_count', dirtStore.getPictures().length);
 		
 		this.showStar();
-	},
+	}
 };
 
 jQuery.extend(dirt_page, super_page);

@@ -54,6 +54,10 @@ var ice_picture  = {
 	init : function () {
 		$('header_middle_text').innerHTML = "Bilde";
 		ice_picture.updatePictureButtons("#ice_picture");
+		this.picturePage = "#ice_picture";
+		var make = this.make;
+		var page = this;
+		this.setMakePictureHandlers(function(pictureSource){ make.call(page, pictureSource);});
 	}
 }
 
