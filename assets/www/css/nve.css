@@ -582,3 +582,20 @@ ul.actions li{
 .notLoggedIn .groups-list, .notLoggedIn .emailButton {
 	 display:none;
 }
+
+
+.attachToBottom{
+	position: fixed;
+	bottom: 49px;
+	width: 100%;	
+}
+
+.border-less{
+	border: none;	
+	background: none;
+}
+
+.as-text{
+	text-align: right;
+	width: 30%;
+}

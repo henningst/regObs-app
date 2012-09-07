@@ -203,6 +203,7 @@ var main = (function()
 		  }
 		},
 		
+		
 		starred: function() {
 			if(DataAccess.get(STARTUP_PAGE) == main.actualPage) {
 				DataAccess.save(STARTUP_PAGE, 0);
