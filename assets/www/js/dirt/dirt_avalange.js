@@ -22,7 +22,7 @@ var dirt_avalange = {
 		},
 		
 		init: function() {
-			$('header_middle_text').innerHTML = "Jordskred/Flomskred";
+			$('header_middle_text').innerHTML = "Jordsprang/Flomskred";
 		},
 		
 		fillLandSlideKD : function(data){
