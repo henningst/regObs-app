@@ -422,6 +422,8 @@ ul.actions li{
 	padding-bottom: 60px;
 }
 
+
+#learning_content,
 #information{
 	margin: 2%;	
 	width: inherit;
@@ -436,6 +438,7 @@ ul.actions li{
   text-align: left;
   padding: 2%;
 }
+
 
 #learning_content h3, #learning_content h1,#learning_content h2,
 #information h3, #information h1,#information h2{
@@ -568,6 +571,8 @@ ul.actions li{
 	background: #BBB;
 	border: 1px solid #999;
 	border-radius: 5px;
+	
+	margin-bottom: 80px;
 }
 
 .notLoggedIn .extendedButton{
@@ -605,4 +610,20 @@ ul.actions li{
 .spanPadding{	
 	margin-left: 1%;
 	margin-right: 1%;
+}
+
+.attachToBottom{
+	position: fixed;
+	bottom: 49px;
+	width: 100%;	
+}
+
+.border-less{
+	border: none;	
+	background: none;
+}
+
+.as-text{
+	text-align: right;
+	width: 30%;
 }

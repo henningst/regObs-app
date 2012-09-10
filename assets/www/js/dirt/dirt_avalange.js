@@ -5,9 +5,11 @@ var dirt_avalange = {
 			var type = jQuery("#dirt_avalange_type_list");
 			var size = jQuery("#dirt_avalange_size_list");
 			var trigger = jQuery("#dirt_avalange_trigger_list");
+			var hours = jQuery("#dirt_avalange_time");
+			var date = new Date();
+			date.setHours(date.getHours() - parseInt(hours.val()));
 			
-			
-			var obs = new LandSlideObs(0, null,null,null,null, type.val(), size.val(), trigger.val());
+			var obs = new LandSlideObs(0, date, null,null,null, type.val(), size.val(), trigger.val());
 			
 			dirt_page.updateLocation(function(){
 				main.store.getDirt().addObs(obs);
@@ -23,6 +25,17 @@ var dirt_avalange = {
 		
 		init: function() {
 			$('header_middle_text').innerHTML = "Jordsprang/Flomskred";
+			
+			jQuery( "#dirt_avalange_slider" ).slider({
+				value:0,
+				min: 0,
+				max: 6,
+				step: 1,
+				slide: function( event, ui ) {
+					jQuery( "#dirt_avalange_time" ).val( ui.value * ui.value) ;
+				}
+			});
+			jQuery( "#dirt_avalange_time" ).val(0);
 		},
 		
 		fillLandSlideKD : function(data){

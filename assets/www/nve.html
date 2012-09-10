@@ -8,6 +8,7 @@
 	
 	<link rel="stylesheet" href="js/wink-1.4.1-nve-default.min.css" type="text/css">
 	<script type="text/javascript" src="js/wink-1.4.1-nve-default.min.js"></script>
+	<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.23.custom.css" type="text/css">
 	
 	<link rel="stylesheet" href="css/btn.css" type="text/css">
 	<link rel="stylesheet" href="css/nve.css" type="text/css">
@@ -18,6 +19,8 @@
 	<script type="text/javascript" src="js/dependencies/json2.js"> </script>
 	<script type="text/javascript" src="js/dependencies/jquery.min.js"> </script>
 	<script type="text/javascript" src="js/dependencies/iscroll.js"> </script>
+	<script type="text/javascript" src="js/dependencies/jquery-ui-1.8.23.custom.min.js"> </script>
+	<script type="text/javascript" src="js/dependencies/jquery.ui.touch-punch.min.js"></script>
 		
 	<script type="text/javascript">
 		jQuery.noConflict();
@@ -306,7 +309,7 @@
 			
 	 		
 	 		<select id="snow_picture_spec_list" class="bigWidth w_select c_selectBox">
-	        </select>
+      </select>
 			
 			<label for="snow_picture_comment">Beskrivelse:</label>
 			<textarea id="snow_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
@@ -667,8 +670,15 @@
 		
 		<div id="dirt_avalange" class="c_center_page standartTextSize">
 		
+      <div class="bigWidth" style="margin:auto; padding-bottom: 20px;">
+				<label for="dirt_avalange_time" style="margin: 15px; display: inline">Timer siden:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+	      <div style="padding-right: 20%;">
+	      	<input type="text" id="dirt_avalange_time" disabled="disabled" class="border-less as-text" />t
+	      </div>
+	      <div id="dirt_avalange_slider"></div>
+      </div>
 		
-      <label for="dirt_avalange_type_list" style="margin: 15px; display: inline">Type:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+      <label for="dirt_avalange_type_list" style="margin: 15px; display: inline">Type:</label>
       <select id="dirt_avalange_type_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
       </select>
       

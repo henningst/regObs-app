@@ -434,7 +434,5 @@ class LandSlideObs extends Observation
   url : ()  -> "#{SERVER_URL}LandSlideObs"
   constructor: (@RegID, @DtLandSlideTime, @UTMNorthStop, @UTMEastStop, @UTMZoneStop, @LandSlideTID, @LandSlideTriggerTID, @LandSlideSizeTID, @UsageFlagTID, @Comment)->
     @model = "LandSlideObs"
-    
-  setRegDate : (date)=>
-    @DtLandSlideTime = date
+  
         

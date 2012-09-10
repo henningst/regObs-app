@@ -1115,14 +1115,8 @@ LandSlideObs = (function(_super) {
     this.LandSlideSizeTID = LandSlideSizeTID;
     this.UsageFlagTID = UsageFlagTID;
     this.Comment = Comment;
-    this.setRegDate = __bind(this.setRegDate, this);
-
     this.model = "LandSlideObs";
   }
-
-  LandSlideObs.prototype.setRegDate = function(date) {
-    return this.DtLandSlideTime = date;
-  };
 
   return LandSlideObs;
 

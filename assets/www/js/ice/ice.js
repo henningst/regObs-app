@@ -1,5 +1,6 @@
 var ice_page = {
 	name: "ice_page",
+
 	favorite_name: ICE,
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains

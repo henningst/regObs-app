@@ -9,7 +9,7 @@ var GPS_TIMEOUT_IN_MINUTES = 20;
 /*
  * 
  */
-TEST = "http://h-web01.nve.no/test_regobsservices/Odata.svc/";
+TEST = "http://h-web01.nve.no/stage_regobsservices/Odata.svc/";
 STAGE = "http://api.nve.no/hydrology/regobs/v0.8.1/Odata.svc/";
 //SERVER_URL = 
 SERVER_URL = TEST;
@@ -25,6 +25,7 @@ GA_TRACKER_CODE = "UA-32394009-1";
  */
 var device = {
 	platform: 'android'
+//	platform: 'iphone'
 };
 
 /*
