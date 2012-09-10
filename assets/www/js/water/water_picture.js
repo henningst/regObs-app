@@ -1,5 +1,5 @@
 var water_picture  = {
-	
+	shouldShowFooter : false,
 	pictureData: null,
 		
 	addPicture: function() {
@@ -63,4 +63,4 @@ var water_picture  = {
 	}
 };
 
-jQuery.extend(water_picture, super_picture);
+jQuery.extend(water_picture, super_picture, super_obs);

@@ -510,7 +510,11 @@
 			<select id="water_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
 			</select>
 			
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="water_hendelse.addHendelse();">Legg til</button>
+			
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="water_hendelse.addHendelse();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="water_hendelse.abort();	">Avbryt</button>
+			</div>
 		</div>
 		
 		<div id="water_faresign" class="c_center_page standartTextSize">
@@ -520,11 +524,16 @@
 	        <select id="water_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
 	        </select>
 			
-			<div id="water_carusel" ></div>
+				<div id="water_carusel" ></div>
 			
-	        <label for="water_danger_sign_comment">Beskrivelse:</label>
-			<textarea id="water_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="water_faresign.addFaresign();">Legg til</button>
+        <label for="water_danger_sign_comment">Beskrivelse:</label>
+				<textarea id="water_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
+				
+				
+				<div class="addAbort c_color_gradient">
+					<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="water_faresign.addFaresign();">Legg til</button>
+					<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="water_faresign.abort();	">Avbryt</button>
+				</div>
 		</div>
 		
 		<div id="water_picture" class="c_center_page">
@@ -539,7 +548,11 @@
 	        
 			<label for="water_picture_comment">Beskrivelse:</label>
 			<textarea id="water_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="water_picture.addPicture();">Legg til</button>
+			
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="water_picture.addPicture();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="water_picture.abort();	">Avbryt</button>
+			</div>
 		</div>
 		
 	<!-- 	DIRT PAGES -->

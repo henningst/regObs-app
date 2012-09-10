@@ -89,7 +89,7 @@ var snow_hendelse = {
 				$("snow_hendelse_comment").value = incident.IncidentHeader +"." +incident.IncidentIngress;
 			}
 			
-			var leggTilButton = jQuery("#snow_hendelse button");
+			var leggTilButton = jQuery("#snow_hendelse button add");
 			validation.register(
 					leggTilButton, 
 					[

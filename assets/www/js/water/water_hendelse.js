@@ -1,5 +1,5 @@
 var water_hendelse = {
-		
+		shouldShowFooter : false,
 		fill_activity_influenced: function(data) {
 			if(data == null)
 				return;
@@ -88,7 +88,7 @@ var water_hendelse = {
 				$("water_hendelse_comment").value = incident.IncidentHeader +"." +incident.IncidentIngress;
 			}
 			
-			var leggTilButton = jQuery("#water_hendelse button");
+			var leggTilButton = jQuery("#water_hendelse button.add");
 			validation.register(
 					leggTilButton, 
 					[
@@ -96,4 +96,5 @@ var water_hendelse = {
 					]);
 			
 		}
-}
+};
+jQuery.extend(water_hendelse, super_obs);

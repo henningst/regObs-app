@@ -95,5 +95,5 @@ var ice_hendelse = {
 					]);
 			
 		}
-}
+};
 jQuery.extend(ice_hendelse, super_obs);
