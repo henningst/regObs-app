@@ -391,7 +391,12 @@
 			<select id="ice_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
 			</select>
 			
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="ice_hendelse.addHendelse();">Legg til</button>
+			
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="ice_hendelse.addHendelse();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="ice_hendelse.abort();	">Avbryt</button>
+			</div>
+
 		</div>
 		
 		<div id="ice_faresign" class="c_center_page standartTextSize">
@@ -405,7 +410,11 @@
 			
 	        <label for="ice_danger_sign_comment">Beskrivelse:</label>
 			<textarea id="ice_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="ice_faresign.addFaresign();">Legg til</button>
+
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="ice_faresign.addFaresign();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="ice_faresign.abort();	">Avbryt</button>
+			</div>
 		</div>
 		
 		<div id="ice_picture" class="c_center_page">
@@ -421,8 +430,12 @@
 	        </select>
 	        
 			<label for="ice_picture_comment">Beskrivelse:</label>
-			<textarea id="ice_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="ice_picture.addPicture();">Legg til</button>
+			<textarea id="ice_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea>
+
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="ice_picture.addPicture();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="ice_picture.abort();	">Avbryt</button>
+			</div>
 		</div>
 		
 	<!-- 	WATER - PAGES -->

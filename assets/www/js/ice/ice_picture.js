@@ -1,5 +1,5 @@
 var ice_picture  = {
-	
+	shouldShowFooter : false,	
 	pictureData: null,
 		
 	addPicture: function() {
@@ -61,4 +61,4 @@ var ice_picture  = {
 	}
 }
 
-jQuery.extend(ice_picture, super_picture);
+jQuery.extend(ice_picture, super_picture, super_obs);
