@@ -29,7 +29,7 @@ var dirt_avalange = {
 			jQuery( "#dirt_avalange_slider" ).slider({
 				value:0,
 				min: 0,
-				max: 8,
+				max: 6,
 				step: 1,
 				slide: function( event, ui ) {
 					jQuery( "#dirt_avalange_time" ).val( ui.value * ui.value) ;
