@@ -1,5 +1,5 @@
 var dirt_hendelse = {
-		
+		shouldShowFooter : false,
 		fill_activity_influenced: function(data) {
 			if(data == null)
 				return;
@@ -88,7 +88,7 @@ var dirt_hendelse = {
 				$("dirt_hendelse_comment").value = incident.IncidentHeader +"." +incident.IncidentIngress;
 			}
 			
-			var leggTilButton = jQuery("#dirt_hendelse button");
+			var leggTilButton = jQuery("#dirt_hendelse button.add");
 			validation.register(
 					leggTilButton, 
 					[
@@ -96,5 +96,7 @@ var dirt_hendelse = {
 					]);
 			
 		}
-}
+};
+
+jQuery.extend(dirt_hendelse, super_obs);
 

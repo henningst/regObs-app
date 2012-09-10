@@ -638,7 +638,10 @@
 			<select id="dirt_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
 			</select>
 			
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="dirt_hendelse.addHendelse();">Legg til</button>
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_hendelse.addHendelse();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_hendelse.abort();	">Avbryt</button>
+			</div>
 		</div>
 		
 		
@@ -654,7 +657,12 @@
 			
        	<label for="dirt_danger_sign_comment">Beskrivelse:</label>
 				<textarea id="dirt_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
-				<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="dirt_faresign.addFaresign();">Legg til</button>
+				
+				<div class="addAbort c_color_gradient">
+					<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_faresign.addFaresign();">Legg til</button>
+					<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_faresign.abort();	">Avbryt</button>
+				</div>
+				
 		</div>
 		
 		<div id="dirt_avalange" class="c_center_page standartTextSize">
@@ -672,7 +680,10 @@
       <select id="dirt_avalange_trigger_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
       </select>
 			
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="dirt_avalange.addAvalange();">Legg til</button>
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_avalange.addAvalange();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_avalange.abort();	">Avbryt</button>
+			</div>
 		</div>
 		
 		
@@ -688,7 +699,12 @@
 	        
 			<label for="dirt_picture_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
 			<textarea id="dirt_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="dirt_picture.addPicture();">Legg til</button>
+			
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_picture.addPicture();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_picture.abort();	">Avbryt</button>
+			</div>
+			
 		</div>
 		
 		<div id="learning_page" class="c_center_page">

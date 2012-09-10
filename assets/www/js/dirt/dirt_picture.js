@@ -1,5 +1,5 @@
 var dirt_picture  = {
-	
+	shouldShowFooter : false,
 	pictureData: null,
 		
 	addPicture: function() {
@@ -63,4 +63,4 @@ var dirt_picture  = {
 	}
 };
 
-jQuery.extend(dirt_picture, super_picture);
+jQuery.extend(dirt_picture, super_picture, super_obs);

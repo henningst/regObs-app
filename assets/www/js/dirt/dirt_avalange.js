@@ -1,5 +1,5 @@
 var dirt_avalange = {
-		
+		shouldShowFooter : false,
 
 		addAvalange: function() {
 			var type = jQuery("#dirt_avalange_type_list");
@@ -51,4 +51,5 @@ var dirt_avalange = {
 				options.append(jQuery("<option />").val(this.LandSlideTriggerTID).text(this.LandSlideTriggerName));
 			});
 		}
-}
+};
+jQuery.extend(dirt_avalange, super_obs);
