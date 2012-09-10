@@ -273,7 +273,10 @@
 				<select id="snow_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
 				</select>
 				
-				<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_hendelse.addHendelse();">Legg til</button>
+				<div class="addAbort c_color_gradient">
+					<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_hendelse.addHendelse();">Legg til</button>
+					<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_hendelse.abort();	">Avbryt</button>
+				</div>
 		</div>
 		
 		<div id="snow_faresign" class="c_center_page standartTextSize content_page">
@@ -288,7 +291,10 @@
       <label for="snow_danger_sign_comment">Beskrivelse:</label>
 			<textarea id="snow_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
 			
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_faresign.addFaresign();">Legg til</button>
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_faresign.addFaresign();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_faresign.abort();	">Avbryt</button>
+			</div>
 		</div>
 		
 		<div id="snow_picture" class="c_center_page">
@@ -304,7 +310,12 @@
 			
 			<label for="snow_picture_comment">Beskrivelse:</label>
 			<textarea id="snow_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_picture.addPicture();">Legg til</button>
+			
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_picture.addPicture();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_picture.abort();	">Avbryt</button>
+			</div>
+			
 		</div>
 		
 	<!-- 	ICE - PAGES -->

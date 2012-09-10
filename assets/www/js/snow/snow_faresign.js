@@ -1,5 +1,5 @@
 var snow_faresign = {
-
+		shouldShowFooter : false,
 		i: 0,
 		
 		carouselId: CAROUSEL_STANDART,
@@ -42,4 +42,5 @@ var snow_faresign = {
 			$('header_middle_text').innerHTML = "Faretegn";
 			
 		}
-}
+};
+jQuery.extend(snow_faresign, super_obs);

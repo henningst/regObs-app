@@ -1,5 +1,5 @@
 var snow_picture  = {
-	
+	shouldShowFooter : false,
 	pictureData: null,
 		
 	addPicture: function() {
@@ -64,4 +64,4 @@ var snow_picture  = {
 	}
 };
 
-jQuery.extend(snow_picture, super_picture);
+jQuery.extend(snow_picture, super_picture, super_obs);

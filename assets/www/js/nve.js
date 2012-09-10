@@ -686,6 +686,12 @@ var main = (function()
     			window.analytics.trackPageView(params.id);
         	}
         	
+        	if(eval(params.id).shouldShowFooter == false){
+        		jQuery(".footer").hide();
+        	}else{
+        		jQuery(".footer").show();
+    		}
+        	
         	switch(params.id) {
         		case 'home':
         			if(status == 'end') {

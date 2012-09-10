@@ -209,3 +209,13 @@ var super_picture = {
 		
 		
 };
+
+var super_obs = {
+		abort: function(){
+			if(this.afterSendRegistration){
+				this.afterSendRegistration();
+			}
+			
+			main.panels.slideBack();
+		}
+};
