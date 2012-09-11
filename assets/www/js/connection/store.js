@@ -5,6 +5,8 @@ var IsEmpty, NveStore,
 NveStore = (function() {
 
   function NveStore() {
+    this.resetGroups = __bind(this.resetGroups, this);
+
     this.sendSnow = __bind(this.sendSnow, this);
 
     this.setNotificationId = __bind(this.setNotificationId, this);
@@ -66,6 +68,7 @@ NveStore = (function() {
       this.m_snowPackage.setGroup(jQuery("#snow_obs .selectedGroup").val());
       this.packageCollection.add(this.m_snowPackage);
       this.m_snowPackage.afterSendRegistration();
+      this.resetGroups();
       this.m_snowPackage = null;
       DataAccess.save(SnowPackage.name, null);
     }
@@ -75,6 +78,11 @@ NveStore = (function() {
     if (callback) {
       return callback();
     }
+  };
+
+  NveStore.prototype.resetGroups = function() {
+    jQuery(".selectedGroup").val(0);
+    return jQuery(".groupButton").attr("value", "Gruppe").removeClass("pressed");
   };
 
   NveStore.prototype.sendAndHandlePackage = function(p) {
