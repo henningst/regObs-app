@@ -197,8 +197,8 @@ var main = (function()
 		  }else{
 	        jQuery(".numPackages").hide();
         	console.log("------------ removeing ------------- ")
-        	new LocalNotification().cancelAll();
-        	new LocalNotification().cancel(4);
+//        	new LocalNotification().cancelAll();
+//        	new LocalNotification().cancel(4);
         	main.store.setNotificationId(null);
 		  }
 		},
@@ -496,11 +496,13 @@ var main = (function()
         
         showDialogWithMessage: function(message, header){
         	if(header == undefined)
-        		header = "Melding"
+        		header = "Melding";
         			
-        	main.showDialog("<h3>"+ header +"</h3><p>" + message + "</p><button type='button' " +
-    				"class='w_bg_light c_button w_button w_radius popupbutton-single' onclick='main.hideDialog();'>" +OK + 
-        			"</button>");
+            var content = jQuery("<div><h3>"+ header +"</h3><p></p><button type='button' " +
+			"class='w_bg_light c_button w_button w_radius popupbutton-single' onclick='main.hideDialog();'>" +OK + 
+			"</button></div>");
+        	content.find("p").wrap(message.html());
+        	main.showDialog(content);
         },
         
         showWaitingDialogWithMessage: function(message) 
@@ -566,6 +568,11 @@ var main = (function()
         nothing: function()
         {
         	
+        },
+        
+        attachToGroup: function(id){
+        	var dialog = jQuery("#" + id + "_obs .groups")[0]
+        	main.showDialogWithMessage(jQuery(dialog), "Velg gruppe");
         },
         
         sendEmail: function()

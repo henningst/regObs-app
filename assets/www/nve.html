@@ -248,20 +248,19 @@
 			    </li>
 			  </ul>
 				
-			  <div class="c_align_central ">
-			  	<div class="extendedButton smallWidth margin_central">
-				  	<div class="takeAllWidth composedButtonContainer ">
-				      <input type="button" value="Send inn" class="confirmButton c_button  w_button w_radius w_bg_light takeAllWidth" onclick="main.warnLoginBefore('main.store.sendSnow')"> 
-					  	<span class="numPackages notification_buble onTopOfButton hidden">0</span>
-			      </div>
-			      
-			      <div class="groups-list margin_central takeAllWidth">
-			      	<select name="group" id="snow_group" class="takeAllWidth">
-			      		<option value="0">Ingen grupper</option>
-			      	</select>
-			      </div>
+		  	<div class="sendGroup c_color_gradient">
+			  	<div class="span2 spanPadding">
+			      <input type="button" value="Send inn" class="confirmButton w_button w_radius w_bg_light takeAllWidth" onclick="main.warnLoginBefore('main.store.sendSnow')"> 
+				  	<span class="numPackages notification_buble onTopOfButton hidden">0</span>
 		      </div>
-		    </div>
+		      
+		      <div class="groups-list span1">
+		      	<input type="button" value="Gruppe" class="groupButton confirmButton w_button w_radius w_bg_light takeAllWidth" onclick="main.attachToGroup('snow')">
+		      	<input type="hidden" class="selectedGroup"/>
+		      </div>
+	      </div>
+	      
+	      <div class="groups hidden"> </div>
 		</div>
 		
 		<div id="snow_hendelse" class="c_center_page standartTextSize content_page">

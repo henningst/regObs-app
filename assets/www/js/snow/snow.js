@@ -1,4 +1,4 @@
-var snow_page = {
+var snow_page = {	
 	name : "snow_page",
 	favorite_name : SNOW,
 		

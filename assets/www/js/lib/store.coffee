@@ -50,7 +50,7 @@ class NveStore
       
   sendSnow: (callback) =>
       if @m_snowPackage and not IsEmpty(@m_snowPackage)
-        @m_snowPackage.setGroup(jQuery("#snow_group").val());
+        @m_snowPackage.setGroup(jQuery("#snow_obs .selectedGroup").val());
         @packageCollection.add(@m_snowPackage)
         @m_snowPackage.afterSendRegistration()
         

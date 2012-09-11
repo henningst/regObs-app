@@ -585,7 +585,9 @@ ul.actions li{
 	 display:none;
 }
 
-.addAbort{
+
+
+.addAbort, .sendGroup{
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -594,17 +596,28 @@ ul.actions li{
 	border: 1px solid black;
 }
 
-.addAbort button{
+.sendGroup{
+	bottom: 50px;
+}
+
+.sendGroup input[type=button], .sendGroup select, .addAbort button{
 	-webkit-box-shadow:  0px 1px 3px 1px rgba(10, 10, 10, 0.5);
 	box-shadow:  0px 1px 3px 1px rgba(10, 10, 10, 0.5);
 }
 
 .span2{
-	width:65%; 
+	width:60%; 
+	display: inline-block;
 }
 
 .span1{
-	widht: 30%;
+	width: 30%;
+	display: inline-block;
+}
+
+.span15{ 
+	width: 45%;
+	display: inline-block;
 }
 
 .spanPadding{	
@@ -627,3 +640,29 @@ ul.actions li{
 	text-align: right;
 	width: 30%;
 }
+
+.inline{
+	display:inline;
+}
+
+.list{
+	text-align: left;
+	margin-left: 20px;	
+}
+
+.pressed{
+	background-image: linear-gradient(top, rgb(223,223,223) 47%, rgb(237,237,237) 74%);
+   background-image: -o-linear-gradient(top, rgb(223,223,223) 47%, rgb(237,237,237) 74%);
+   background-image: -moz-linear-gradient(top, rgb(223,223,223) 47%, rgb(237,237,237) 74%);
+   background-image: -webkit-linear-gradient(top, rgb(223,223,223) 47%, rgb(237,237,237) 74%);
+   background-image: -ms-linear-gradient(top, rgb(223,223,223) 47%, rgb(237,237,237) 74%);
+
+   background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0.47, rgb(223,223,223)),
+            color-stop(0.74, rgb(237,237,237))
+    );	
+}
+	

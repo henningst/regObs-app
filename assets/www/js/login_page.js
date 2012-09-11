@@ -102,16 +102,30 @@ var login_page = {
 	
     showGroupStatus: function(){
     	var user = UserStore.get(main.currentMode());
-    	var dropdown = jQuery(".groups-list select");
-    	dropdown.html("");
     	
-    	
-    	console.log("showing group: " + JSON.stringify(user.groups));
-    	dropdown.append("<option value='0'>Ingen gruppe</option>");
+    	var list = "";
     	jQuery.each(user.groups, function(i, group){
-    		
-    		dropdown.append("<option value='"+ group.id +"'>" + group.name + "</option>")
+    		list = list + "<div><input type='radio' name='group' value='"+ group.id +"' title='"+ group.name +"'/>"+ group.name +"</div>";
     	});
+		var dialog = "<div class='list'><div><input type='radio' name='group' value='0' checked='checked' title='Gruppe'>Ingen gruppe</div>"+ list +"</div>";
+		jQuery(".groups").html(dialog);
+		jQuery("input[name=group]").live('click', function(){
+			login_page.groupChangedTo(this);
+		});
+		
+    },
+    
+    groupChangedTo: function(newValue){
+    	var newGroup = jQuery(newValue).val();
+    	var name = jQuery(newValue).attr("title");
+    	
+    	jQuery(".groupButton").attr("value", name);
+    	jQuery(".selectedGroup").val(newGroup);
+    	
+    	if(newGroup > 0)
+    		jQuery(".groupButton").addClass("pressed");
+    	else
+    		jQuery(".groupButton").removeClass("pressed");
     },
     
     relogin: function(){
