@@ -316,6 +316,7 @@ var main = (function()
             main.fillDropdown(DangerSignKD, main.fillDangerSign, force);
             main.fillDropdown(ActivityInfluencedKD, main.fillActivityInfluenced, force);
             main.fillDropdown(DamageExtentKD, main.fillDamageExtent, force);
+            main.fillDropdown(WaterLevelRefKD, main.fillWaterLevelKD, force);
         },
         
         carouselMoved: function(data)
@@ -616,8 +617,8 @@ var main = (function()
         },
         
         fillLandSlideSizeKD: function(data){
-        	main.saveAndCall(LandSlideSizeKD, data, [dirt_avalange.fillLandSlideSizeKD]);
-        },
+        	main.saveAndCall(LandSlideSizeKD, data, [dirt_avalange.fillLandSlideSizeKD])
+        },       
         
         fillLandSlideTriggerKD: function(data){
         	main.saveAndCall(LandSlideTriggerKD, data, [dirt_avalange.fillLandSlideTriggerKD]);
@@ -660,6 +661,10 @@ var main = (function()
         			ice_hendelse.fill_radius]);
         },
 
+        fillWaterLevelKD: function(data){
+        	main.saveAndCall(WaterLevelRefKD, data, [water_level.fillWaterLevelKD])
+        },
+        
         hideNve: function(){
         	jQuery("#regobs-info").hide();
         },

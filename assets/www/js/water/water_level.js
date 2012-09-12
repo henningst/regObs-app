@@ -1,6 +1,6 @@
 var water_level = {
 		
-		fill_waterlevel_reference: function(data) {
+		fillWaterLevelKD: function(data) {
 			if(data == null)
 				return;
 			

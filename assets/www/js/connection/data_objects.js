@@ -1068,6 +1068,7 @@ LandSlideSizeKD = (function() {
 
 })();
 
+
 LandSlideTriggerKD = (function() {
 
   LandSlideTriggerKD.prototype.url = null;
@@ -1121,3 +1122,19 @@ LandSlideObs = (function(_super) {
   return LandSlideObs;
 
 })(Observation);
+
+WaterLevelRefKD = (function(){
+	
+	WaterLevelRefKD.prototype.url = null;
+	
+	function WaterLevelRefKD(WaterLevelRefTID, LangKey, WaterLevelRefName, WaterLevelRefDescr){
+	    this.WaterLevelRefTID = WaterLevelRefTID;
+	    this.LangKey = LangKey;
+	    this.WaterLevelRefName = WaterLevelRefName;
+	    this.WaterLevelRefDescr = WaterLevelRefDescr;
+	    this.url = "" + SERVER_URL + "/WaterLevelRefKD?$filter=LangKey eq " + LANGUAGE;
+	  }
+
+	return WaterLevelRefKD;
+	
+})();
