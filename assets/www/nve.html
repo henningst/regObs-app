@@ -77,6 +77,7 @@
 	<script type="text/javascript" src="js/water/water_picture.js"></script>
 	<script type="text/javascript" src="js/water/water_hendelse.js"></script>
 	<script type="text/javascript" src="js/water/water_faresign.js"></script>
+	<script type="text/javascript" src="js/water/water_level.js"></script>
 	
 	<script type="text/javascript" src="js/connection/PackageWithDangerObs.js"></script>
 	<script type="text/javascript" src="js/connection/vann_package.js"></script>
@@ -460,6 +461,11 @@
 		        <span id="water_picture_count" class="notification_buble">0</span>
 		        <span class="w_icon arrow"></span>
 			    </li>
+			<li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_level');">
+	          Vannstand
+		        <span id="water_level_count" class="notification_buble">0</span>
+		        <span class="w_icon arrow"></span>
+			    </li>
 		    </ul>
 				<div class="c_align_central ">
 			  	<div class="extendedButton smallWidth margin_central">
@@ -519,6 +525,20 @@
 			<label for="water_picture_comment">Beskrivelse:</label>
 			<textarea id="water_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
 			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="water_picture.addPicture();">Legg til</button>
+		
+		</div>
+		<div id="water_level" class="c_center_page standartTextSize">	
+			<label for="water_leve_description" style="display:inline">Vannstand</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+			<textarea id="water_level_description" class="c_textarea bigWidth" rows="1"></textarea>
+			
+			<label for="water_level_reference_list">Referansenivå</label>
+			<select id="water_level_reference_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+			</select>
+			
+			<input id="water_level_isriver" style="padding-bottom: 20px; margin-bottom: 20px;" type="radio" value="true">Elv		
+			<input id="water_level_isriver" style="padding-bottom: 20px; margin-bottom: 20px;" type="radio" value="false">Innsjø/magasin
+			
+			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="water_hendelse.addWaterLevel();">Legg til</button>
 		</div>
 		
 	<!-- 	DIRT PAGES -->

@@ -255,6 +255,7 @@ var main = (function()
 	      	        		'water_hendelse',
 	      	        		'water_faresign',
 	      	        		'water_picture',
+	      	        		'water_level',
 	      	        		'dirt',
 	      	        		'dirt_see_obs',
 	      	        		'dirt_obs',
