@@ -570,6 +570,14 @@ var main = (function()
         	
         },
         
+        setSecoundFooter: function(){
+        	var height = jQuery(".sl_container").height();
+        	var top = height - 57;
+        	
+        	jQuery(".addAbort").css("top", (top + 50) + "px");
+        	jQuery(".sendGroup").css("top", (top) + "px");
+        },
+        
         attachToGroup: function(id){
         	var dialog = jQuery("#" + id + "_obs .groups")[0]
         	main.showDialogWithMessage(jQuery(dialog), "Velg gruppe");
@@ -589,7 +597,7 @@ var main = (function()
         	jQuery("body").scrollTop(0);
         	jQuery("#popup_content").html("").append(content);
         	jQuery("#popup").css("top", (wink.ux.window.height * .4) + "px");
-        	jQuery("#footer").hide();
+        	jQuery("#footer, .sendGroup").hide();
         	jQuery("#dialog").show();
         	
         	var dialog =  jQuery("#dialog");
@@ -608,7 +616,7 @@ var main = (function()
         	
         	jQuery("body").css("overflow", "inherit");
         	jQuery('#dialog').hide().unbind("touchmove");
-        	jQuery("#footer").show();
+        	jQuery("#footer, .sendGroup").show();
         },
         
         saveAndCall: function(kdObject, data, callingFunctions){
@@ -706,6 +714,8 @@ var main = (function()
         	}else{
         		jQuery(".footer").show();
     		}
+        	
+        	main.setSecoundFooter();
         	
         	switch(params.id) {
         		case 'home':

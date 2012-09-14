@@ -97,6 +97,8 @@ var snow_hendelse = {
 					]);
 			
 			
+			
+			
 		}
 };
 

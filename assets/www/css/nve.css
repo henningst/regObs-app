@@ -588,16 +588,11 @@ ul.actions li{
 
 
 .addAbort, .sendGroup{
-	position: fixed;
-	bottom: 0;
+	position: absolute;
 	left: 0;
 	padding: 5px;
 	width: 100%;
 	border: 1px solid black;
-}
-
-.sendGroup{
-	bottom: 50px;
 }
 
 .sendGroup input[type=button], .sendGroup select, .addAbort button{
@@ -665,4 +660,15 @@ ul.actions li{
             color-stop(0.74, rgb(237,237,237))
     );	
 }
+.ellipsisText{
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    text-overflow: ellipsis;
+}
+
+.ellipsis:after{
+  content:'...';
+}
+
 	
