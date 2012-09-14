@@ -1144,15 +1144,14 @@ WaterLevel = (function() {
 
 WaterLevelRefKD = (function() {
 
-  WaterLevelRefKD.prototype.url = function() {
-    return "" + SERVER_URL + "/WaterLevelRefKD?$filter=LangKey eq " + LANGUAGE;
-  };
+  WaterLevelRefKD.prototype.url = null;
 
   function WaterLevelRefKD(WaterLevelRefKD, LangKey, WaterLevelRefName, WaterLevelRefDescr) {
     this.WaterLevelRefKD = WaterLevelRefKD;
     this.LangKey = LangKey;
     this.WaterLevelRefName = WaterLevelRefName;
     this.WaterLevelRefDescr = WaterLevelRefDescr;
+    this.url = "" + SERVER_URL + "/WaterLevelRefKD?$filter=LangKey eq " + LANGUAGE;
   }
 
   return WaterLevelRefKD;

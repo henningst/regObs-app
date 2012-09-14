@@ -405,7 +405,7 @@ class AvalancheWarningObsLocation
 	constructor: ( ) ->
 
 class County
-	constructor: ( ) ->
+	constructor: ( ) -> 
 
 class AvalancheWarningPublishedSummaryV
 	constructor: ( ) ->
@@ -442,7 +442,8 @@ class WaterLevel
 	    
     
 class WaterLevelRefKD
-  url: () -> "#{SERVER_URL}/WaterLevelRefKD?$filter=LangKey eq #{ LANGUAGE }"
+  url: null
   constructor: (@WaterLevelRefKD, @LangKey, @WaterLevelRefName, @WaterLevelRefDescr) ->
+    @url= "#{ SERVER_URL }/WaterLevelRefKD?$filter=LangKey eq #{ LANGUAGE }"
   
         

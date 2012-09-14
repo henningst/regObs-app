@@ -67,7 +67,6 @@ AbstractPackage = (function() {
     this.m_dangerObs = [];
     this.m_incident = null;
     this.m_pictures = [];
-    this.m_waterLevel = [];
     this.lat = 0;
     this.long = 0;
     this.komnr = 0;
@@ -128,12 +127,6 @@ AbstractPackage = (function() {
     return DataAccess.save(this.name, this);
   };
 
-  AbstractPackage.prototype.setWaterLelvel = function(waterLevel){
-	    this.setRegDate();
-	    this.m_waterLevel = waterLevel;
-	    return DataAccess.save(this.name, this);
-	  };
-  
   AbstractPackage.prototype.setRegDate = function() {
     return this.regDate = new Date(new Date().getTime() + 1000 * 60 * 120);
   };

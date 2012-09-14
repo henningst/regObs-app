@@ -26,8 +26,6 @@ var water_level = {
 				waterLevelType = "Innsj¿/magasin";
 			}
 			
-			alert(waterLevelType);
-			
 			var waterLevel = new WaterLevel(null, waterLevelType, waterLevelValue, list[list.selectedIndex].value, null, "");					
 			
 			water_page.updateLocation(function(){
