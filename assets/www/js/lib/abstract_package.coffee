@@ -4,6 +4,7 @@ class AbstractPackage
     @m_dangerObs = []
     @m_incident = null
     @m_pictures = []
+    @m_waterLevel = []
     @lat = 0
     @long = 0
     @komnr = 0
@@ -31,6 +32,11 @@ class AbstractPackage
     @setRegDate()
     @m_incident = incident
     DataAccess.save(@name, this)
+    
+  setWaterLevel:(waterLevel) =>
+  	@setRegDate()
+  	@m_waterLevel: waterLevel
+  	DataAccess.save(@name, this)
   
   setRegDate : ()=>
     @regDate = new Date(new Date().getTime() + 1000 * 60 * 120)

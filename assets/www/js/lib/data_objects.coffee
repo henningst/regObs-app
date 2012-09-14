@@ -435,9 +435,14 @@ class LandSlideObs extends Observation
   constructor: (@RegID, @DtLandSlideTime, @UTMNorthStop, @UTMEastStop, @UTMZoneStop, @LandSlideTID, @LandSlideTriggerTID, @LandSlideSizeTID, @UsageFlagTID, @Comment)->
     @model = "LandSlideObs"
     
+class WaterLevel
+	url : ()  -> "#{SERVER_URL}WaterLevel"
+	constructor: (@RegID, @WaterLevelDescribed, @WaterLevelValue, @WaterLevelRefTID, @UsageFlagTID, @Comment) ->
+		@model = "WaterLevel"
+	    
+    
 class WaterLevelRefKD
-	url: null
- 	constructor(@WaterLevelRefKD, @LangKey, @WaterLevelRefName, @WaterLevelRefDescr) ->
- 		@url = "#{SERVER_URL}/WaterLevelRefKD?$filter=LangKey eq #{ LANGUAGE }" 
+  url: () -> "#{SERVER_URL}/WaterLevelRefKD?$filter=LangKey eq #{ LANGUAGE }"
+  constructor: (@WaterLevelRefKD, @LangKey, @WaterLevelRefName, @WaterLevelRefDescr) ->
   
         
