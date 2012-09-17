@@ -38,7 +38,7 @@ var login_page = {
     	var command = new ObserversCompCommand(user);
     	command.fetch(function (comp) {
     	  user.competancy = new ObserverCompetancy(comp);
-    	  UserStore.save(main.currentMode(), user);
+    	  UserStore.saveComp(main.currentMode(), user);
     	});
     },
     
@@ -51,7 +51,7 @@ var login_page = {
 		var groupsCommand = new ObserversGroupsCommand(user);
 		groupsCommand.fetch(function(groups){
 			user.groups = groups;
-			UserStore.save(main.currentMode(), user);
+			UserStore.saveGroups(main.currentMode(), user);
 			login_page.showGroupStatus();
 			
 			if(callback)

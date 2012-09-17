@@ -41,8 +41,14 @@ UserStore = {
     DataAccess.save(@useridKey(mode), user.id)
     DataAccess.save(@usernameKey(mode), user.username)
     DataAccess.save(@passwordKey(mode), user.password)
-    DataAccess.save(@groupKey(mode), user.groups)
+    ""
+    
+  saveComp :(mode, user) ->
     DataAccess.save(@compKey(mode), user.competancy)
+    ""
+    
+  saveGroups: (mode, user) ->
+    DataAccess.save(@groupKey(mode), user.groups)
     ""
     
   clear: (mode)->

@@ -45,8 +45,14 @@ UserStore = {
     DataAccess.save(this.useridKey(mode), user.id);
     DataAccess.save(this.usernameKey(mode), user.username);
     DataAccess.save(this.passwordKey(mode), user.password);
-    DataAccess.save(this.groupKey(mode), user.groups);
+    return "";
+  },
+  saveComp: function(mode, user) {
     DataAccess.save(this.compKey(mode), user.competancy);
+    return "";
+  },
+  saveGroups: function(mode, user) {
+    DataAccess.save(this.groupKey(mode), user.groups);
     return "";
   },
   clear: function(mode) {
