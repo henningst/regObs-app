@@ -541,7 +541,7 @@ var main = (function()
                         "class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='"+ after +"()'>" + OK + 
                       "</button>" +
                       "<button type='button' " +
-                        "class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.hideDialog()'>" + ABORT + 
+                        "class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.goToAndHide(\"login_page\");'>" + LOGIN_BUTTON + 
                       "</button>" +
                     "</div>");
         	}else
@@ -607,6 +607,11 @@ var main = (function()
         attachToGroup: function(id){
         	var dialog = jQuery("#" + id + "_obs .groups")[0]
         	main.showDialogWithMessage(jQuery(dialog), "Velg gruppe");
+        },
+        
+        goToAndHide : function(page){
+        	main.panels.slideTo(page);
+        	main.hideDialog();
         },
         
         sendEmail: function()
