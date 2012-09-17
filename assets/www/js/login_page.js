@@ -1,7 +1,6 @@
 var login_page = {
 		
 	init: function() {
-
 		$('header_middle_text').innerHTML = "Login";
 		jQuery("#regobs-name").hide();
 		
