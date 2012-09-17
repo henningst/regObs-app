@@ -535,8 +535,8 @@ ul.actions li{
  
 .onTopOfButton{
 	position:absolute;
-	top: 5px;
-	right: 10px;
+	top: 9px;
+	right: 33%;
 	font-size: 14px;
 	font-weight: bold;
 	text-indent: 9px;

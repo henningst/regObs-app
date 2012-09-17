@@ -503,7 +503,14 @@ var main = (function()
             var content = jQuery("<div><h3>"+ header +"</h3><p></p><button type='button' " +
 			"class='w_bg_light c_button w_button w_radius popupbutton-single' onclick='main.hideDialog();'>" +OK + 
 			"</button></div>");
-        	content.find("p").wrap(message.html());
+            
+            var messageText = message;
+            if(message.html)
+            	messageText = message.html();
+            else
+            	messageText = "<span>" + message + "</span>";
+            
+        	content.find("p").wrap(messageText);
         	main.showDialog(content);
         },
         
