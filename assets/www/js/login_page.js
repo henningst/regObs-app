@@ -119,8 +119,11 @@ var login_page = {
     	var newGroup = jQuery(newValue).val();
     	var name = jQuery(newValue).attr("title");
     	
+    	console.log("newValue", name, jQuery(".groupButton span"));
+    	
+    	
     	jQuery(".groupButton span").text(name);
-    	jQuery(".groupButton").dotdotdot();
+    	
     	jQuery(".selectedGroup").val(newGroup);
     	
     	if(newGroup > 0)
