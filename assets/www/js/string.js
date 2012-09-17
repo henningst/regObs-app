@@ -59,6 +59,7 @@ HENDELSE_ERROR = "Du må skrive en kommentar!";
  */
 SNOW_TEXT = 
 	[
+	 	"", //ikkeangit
 		"Gjelder på dette stedet.",
 		"Gjelder i denne fjellsiden.",
 		"Gjelder generelt på fjellet.",
@@ -69,6 +70,7 @@ SNOW_TEXT =
 
 ICE_TEXT = 
 	[
+	 	"", //ikkeangit
 		"Gjelder på dette stedet.",
 		"Gjelder på denne siden av vannet.",
 		"Gjelder på hele vannet.",
@@ -77,6 +79,7 @@ ICE_TEXT =
 
 WATER_TEXT = 
 	[
+	 	"", //ikkeangit
 		"Gjelder på dette stedet.",
 		"Gjelder på dette elvestrekket.",
 		"Gjelder i vassdraget.",
@@ -84,6 +87,7 @@ WATER_TEXT =
 
 DIRT_TEXT = 
 	[
+	 	"", //ikkeangit
 		"Gjelder på dette stedet.",
 		"Gjelder i denne fjellsiden.",
 		"Gjelder generelt på fjellet.",

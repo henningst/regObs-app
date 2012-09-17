@@ -197,8 +197,8 @@ var main = (function()
 		  }else{
 	        jQuery(".numPackages").hide();
         	console.log("------------ removeing ------------- ")
-        	new LocalNotification().cancelAll();
-        	new LocalNotification().cancel(4);
+//        	new LocalNotification().cancelAll();
+//        	new LocalNotification().cancel(4);
         	main.store.setNotificationId(null);
 		  }
 		},
@@ -556,10 +556,11 @@ var main = (function()
 				'uId': id,
 				'items':
         		[
+        		 {'type': 'string', 'content': "<div style='font-size: 0.8em'>Ikke angit</div>"}
             	]
         	};
         	
-        	for(var i = 0; i < items.length; ++i)
+        	for(var i = 1; i < items.length; ++i)
         	{
         		properties.items.push({'type': 'string', 'content': "<div style='font-size: 0.8em'>" +items[i] +"</div>"});
         	}

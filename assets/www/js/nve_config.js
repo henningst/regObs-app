@@ -49,7 +49,7 @@ WATER_GEO_HAZARD = 60;
 /*
  * 
  */
-CAROUSEL_STANDART = 2;
+CAROUSEL_STANDART = 0;
 
 /*
  * Omraade id 
