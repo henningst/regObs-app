@@ -587,6 +587,13 @@ var main = (function()
 	                direction: "y"
 	        	});	
         	});
+        	
+        	jQuery(".scrollable:visible").each(function(){
+	    		scroller = new wink.ui.layout.Scroller({
+	                target: jQuery(this).attr("id"),
+	                direction: "y"
+	        	});	
+        	});
         },
         
         attachToGroup: function(id){

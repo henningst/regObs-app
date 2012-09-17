@@ -469,26 +469,6 @@
 				        <span id="water_level_count" class="notification_buble">0</span>
 				        <span class="w_icon arrow"></span>
 					    </li>
-					    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_level');">
-	              Vannstand 2
-	              <span id="water_level_count" class="notification_buble">0</span>
-	              <span class="w_icon arrow"></span>
-	            </li>
-	            <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_level');">
-	              Vannstand 3
-	              <span id="water_level_count" class="notification_buble">0</span>
-	              <span class="w_icon arrow"></span>
-	            </li>
-	            <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_level');">
-                Vannstand 2
-                <span id="water_level_count" class="notification_buble">0</span>
-                <span class="w_icon arrow"></span>
-              </li>
-              <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_level');">
-                Vannstand 3
-                <span id="water_level_count" class="notification_buble">0</span>
-                <span class="w_icon arrow"></span>
-              </li>
 			    </ul>
 		    </div>
 				<div class="sendAndGroup"></div>
@@ -667,29 +647,33 @@
 		
 		<div id="dirt_avalange" class="c_center_page standartTextSize">
 		
-      <div class="bigWidth" style="margin:auto; padding-bottom: 20px;">
-				<label for="dirt_avalange_time" style="margin: 15px; display: inline">Timer siden:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
-	      <div style="padding-right: 20%;">
-	      	<input type="text" id="dirt_avalange_time" disabled="disabled" class="border-less as-text" />t
-	      </div>
-	      <div id="dirt_avalange_slider"></div>
-      </div>
-		
-      <label for="dirt_avalange_type_list" style="margin: 15px; display: inline">Type:</label>
-      <select id="dirt_avalange_type_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-      </select>
-      
-      <label for="dirt_avalange_size_list" style="margin: 15px; display: inline">Størrelse:</label>
-      <select id="dirt_avalange_size_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-      </select>
-      
-      <label for="dirt_avalange_trigger_list" style="margin: 15px; display: inline">Trigger(Utl&oslash;ser):</label>
-      <select id="dirt_avalange_trigger_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-      </select>
-			
-			<div class="addAbort c_color_gradient">
-				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_avalange.addAvalange();">Legg til</button>
-				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_avalange.abort();	">Avbryt</button>
+		  <div class="scrollList">
+		    <div id="dirt_avalange_scroller" class="scrollable">
+		      <div class="bigWidth" style="margin:auto; padding-bottom: 20px;">
+						<label for="dirt_avalange_time" style="margin: 15px; display: inline">Timer siden:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+			      <div style="padding-right: 20%;">
+			      	<input type="text" id="dirt_avalange_time" disabled="disabled" class="border-less as-text" />t
+			      </div>
+			      <div id="dirt_avalange_slider"></div>
+		      </div>
+				
+		      <label for="dirt_avalange_type_list" style="margin: 15px; display: inline">Type:</label>
+		      <select id="dirt_avalange_type_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+		      </select>
+		      
+		      <label for="dirt_avalange_size_list" style="margin: 15px; display: inline">Størrelse:</label>
+		      <select id="dirt_avalange_size_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+		      </select>
+		      
+		      <label for="dirt_avalange_trigger_list" style="margin: 15px; display: inline">Trigger(Utl&oslash;ser):</label>
+		      <select id="dirt_avalange_trigger_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+		      </select>
+					
+					<div class="addAbort c_color_gradient">
+						<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_avalange.addAvalange();">Legg til</button>
+						<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_avalange.abort();	">Avbryt</button>
+					</div>
+				</div>
 			</div>
 		</div>
 		

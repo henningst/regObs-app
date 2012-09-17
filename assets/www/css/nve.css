@@ -673,6 +673,7 @@ ul.actions li{
 
 .listScroller{
 	overflow: hidden;
+	padding-bottom: 30px;
 }
 
 .listScroller ul{
