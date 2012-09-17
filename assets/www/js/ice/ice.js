@@ -41,6 +41,9 @@ var ice_page = {
 		ice_page.setCounter('ice_faresign_count', iceStore.getObs().length);
 		ice_page.setCounter('ice_picture_count', iceStore.getPictures().length);
 		
+		jQuery("#ice_obs .sendAndGroup").html(Handlebars.templates.sendGroup({sendFunction: "main.store.sendIce", hazard:"ice"}));
+		login_page.showGroupStatus();
+		
 		this.showStar();
 	}
 };
