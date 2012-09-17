@@ -71,7 +71,7 @@ var omerade = {
 			console.log(data);
 			var res = JSON.parse(data);
 			
-			if(res != null && res.features != undefined) {
+			if(res != null && res.features != undefined && res.features.length > 0) {
 				return {
 					omeradeid: res.features[0].attributes.OMRAADEID +OMRAADE_ID_OFFSET,
 					omeradenavn: res.features[0].attributes.OMRAADENAVN,
@@ -89,7 +89,7 @@ var omerade = {
 		parseKommune : function(data){
 			var res = JSON.parse(data);
 
-			if(res != null && res.features != undefined) {
+			if(res != null && res.features != undefined && res.features.length > 0) {
 				return {
 					kommunenavn: res.features[0].attributes.KOMMNAVN,
 					kommunenummer: res.features[0].attributes.KOMM_NR,

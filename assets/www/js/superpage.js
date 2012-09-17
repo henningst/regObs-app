@@ -86,6 +86,9 @@ var super_page = {
 			if(area.oppdatert){
 				this.omrade_id = area.omeradeid;
 				jQuery('.county_b').html(area.omeradenavn);
+			}else{
+				this.omrade_id = null;
+				jQuery('.county_b').html("");
 			}
 		},
 		
@@ -94,6 +97,9 @@ var super_page = {
 			if(kommune.oppdatert) {
 				jQuery(".county_a").html(kommune.kommunenavn);
 				this.komm_nr = kommune.kommunenummer;
+			}else{
+				jQuery(".county_a").html("");
+				this.komm_nr = null;
 			}
 		},
 		
