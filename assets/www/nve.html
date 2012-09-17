@@ -21,7 +21,8 @@
 	<script type="text/javascript" src="js/dependencies/iscroll.js"> </script>
 	<script type="text/javascript" src="js/dependencies/jquery-ui-1.8.23.custom.min.js"> </script>
 	<script type="text/javascript" src="js/dependencies/jquery.ui.touch-punch.min.js"></script>
-	<script type="text/javascript" src="js/dependencies/jquery.dotdotdot-1.5.1.js"></script>
+	<script type="text/javascript" src="js/dependencies/handlebars.runtime-1.0.0.beta.6.js"></script>
+	<script type="text/javascript" src="js/templates.js"></script>
 	
 		
 	<script type="text/javascript">
@@ -230,7 +231,7 @@
 			  <div class="c_position_header">
 		      <span class="position_header_position">UTM33</span> 
 		      <span class="position_header_town"></span>
-			  <div class="position_header_county"> <p style="display: inline; color: white;" class="county_a"></p><p style="display: inline; color: white;" > / </p><p style="display: inline; color: white;" class="county_b"></p> </div>
+			    <div class="position_header_county"> <p style="display: inline; color: white;" class="county_a"></p><p style="display: inline; color: white;" > / </p><p style="display: inline; color: white;" class="county_b"></p> </div>
 		    </div>
 		    <ul class="w_list w_border actions" >
 			    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_hendelse');">
@@ -249,24 +250,9 @@
 			      <span class="w_icon arrow"></span>
 			    </li>
 			  </ul>
+			  
+			  <div class="sendAndGroup"></div>
 				
-		  	<div class="sendGroup c_color_gradient">
-			  	<div class="span2 spanPadding">
-			      <button class="confirmButton w_button w_radius w_bg_light takeAllWidth" onclick="main.warnLoginBefore('main.store.sendSnow')">
-			       Send inn
-		        </button> 
-				  	<span class="numPackages notification_buble onTopOfButton hidden">0</span>
-		      </div>
-		      
-		      <div class="groups-list span1" onclick="main.attachToGroup('snow');">
-		      	<button class="groupButton confirmButton w_button w_radius w_bg_light takeAllWidth" >
-		      		<span class="ellipsisText">Gruppe</span>
-		      	</button>
-		      	<input type="hidden" class="selectedGroup"/>
-		      </div>
-	      </div>
-	      
-	      <div class="groups hidden"> </div>
 		</div>
 		
 		<div id="snow_hendelse" class="c_center_page standartTextSize content_page">
