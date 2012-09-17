@@ -55,6 +55,8 @@ AbstractPackage = (function() {
 
     this.setRegDate = __bind(this.setRegDate, this);
 
+    this.setWaterLevel = __bind(this.setWaterLevel, this);
+
     this.setIncident = __bind(this.setIncident, this);
 
     this.superInit = __bind(this.superInit, this);
@@ -128,12 +130,12 @@ AbstractPackage = (function() {
     return DataAccess.save(this.name, this);
   };
 
-  AbstractPackage.prototype.setWaterLelvel = function(waterLevel){
-	    this.setRegDate();
-	    this.m_waterLevel = waterLevel;
-	    return DataAccess.save(this.name, this);
-	  };
-  
+  AbstractPackage.prototype.setWaterLevel = function(waterLevel) {
+    this.setRegDate();
+    this.m_waterLevel = waterLevel;
+    return DataAccess.save(this.name, this);
+  };
+
   AbstractPackage.prototype.setRegDate = function() {
     return this.regDate = new Date(new Date().getTime() + 1000 * 60 * 120);
   };

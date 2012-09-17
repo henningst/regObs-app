@@ -34,9 +34,9 @@ class AbstractPackage
     DataAccess.save(@name, this)
     
   setWaterLevel:(waterLevel) =>
-  	@setRegDate()
-  	@m_waterLevel: waterLevel
-  	DataAccess.save(@name, this)
+    @setRegDate()
+    @m_waterLevel = waterLevel
+    DataAccess.save(@name, this)
   
   setRegDate : ()=>
     @regDate = new Date(new Date().getTime() + 1000 * 60 * 120)
@@ -272,4 +272,5 @@ class AbstractPackage
   castedModel: (obs, x) =>
     obs = jQuery.extend(obs, eval("new #{obs.model}()"))
     obs
+
 
