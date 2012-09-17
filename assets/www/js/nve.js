@@ -718,6 +718,14 @@ var main = (function()
         	
         },
         
+        showHideFooter: function(id){
+        	if(eval(id).shouldShowFooter == false){
+        		jQuery(".footer").hide();
+        	}else{
+        		jQuery(".footer").show();
+    		}
+        },
+        
         toggleBackButtonDisplay: function(params, status) {
         	console.log("-------backbutton display");
         	console.log(params.id);
@@ -739,11 +747,8 @@ var main = (function()
     			window.analytics.trackPageView(params.id);
         	}
         	
-        	if(eval(params.id).shouldShowFooter == false){
-        		jQuery(".footer").hide();
-        	}else{
-        		jQuery(".footer").show();
-    		}
+        	main.showHideFooter(params.id);
+        	
         	
         	main.setHeights();
         	

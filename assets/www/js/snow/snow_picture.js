@@ -42,6 +42,8 @@ var snow_picture  = {
 		smallImage.src = imageData;
 		snow_picture.updatePictureButtons("#snow_picture");
 		main.hideDialog();
+		
+		main.showHideFooter("snow_picture");
 	},
 
 	onFail: function(message) {

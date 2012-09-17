@@ -40,6 +40,7 @@ var water_picture  = {
 		water_picture.updatePictureButtons("#water_picture");
 
 		main.hideDialog();
+		main.showHideFooter("water_picture");
 	},
 
 	onFail: function(message) {

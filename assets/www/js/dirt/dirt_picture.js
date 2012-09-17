@@ -39,6 +39,7 @@ var dirt_picture  = {
 		smallImage.src = imageData;
 		dirt_picture.updatePictureButtons("#dirt_picture");
 		main.hideDialog();
+		main.showHideFooter("dirt_picture");
 	},
 
 	onFail: function(message) {
