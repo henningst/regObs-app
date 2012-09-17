@@ -7,7 +7,7 @@
 	<meta name="format-detection" content="telephone=no">
 	
 	<link rel="stylesheet" href="js/wink-1.4.1-nve-default.min.css" type="text/css">
-	<script type="text/javascript" src="js/wink-1.4.1-nve-default.min.js"></script>
+	<script type="text/javascript" src="js/wink-1.4.1-nve-default.js"></script>
 	<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.23.custom.css" type="text/css">
 	
 	<link rel="stylesheet" href="css/btn.css" type="text/css">
@@ -447,28 +447,50 @@
 		      <div class="position_header_county"> <p style="display: inline; color: white;" class="county_a"></p><p style="display: inline; color: white;" > / </p><p style="display: inline; color: white;" class="county_b"></p> </div>
 	      </div>
 	    
-			  <ul class="w_list w_border actions">
-			    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_hendelse');">
-	  		    Ulykke / Hendelse
-	  		    <span id="water_hendelse_count" class="notification_buble">0</span>
-	  		    <span class="w_icon arrow"></span>
-		      </li>
-		    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_faresign');">
-		      Faretegn
-		      <span id="water_faresign_count" class="notification_buble">0</span>
-		      <span class="w_icon arrow"></span>
-		   	</li>  
-	        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_picture');">
-	          Bilde
-		        <span id="water_picture_count" class="notification_buble">0</span>
-		        <span class="w_icon arrow"></span>
-			    </li>
-			<li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_level');">
-	          Vannstand
-		        <span id="water_level_count" class="notification_buble">0</span>
-		        <span class="w_icon arrow"></span>
-			    </li>
-		    </ul>
+	     <div  class="listScroller">
+				  <ul id="water_scroller" class="w_list w_border actions">
+				    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_hendelse');">
+		  		    Ulykke / Hendelse
+		  		    <span id="water_hendelse_count" class="notification_buble">0</span>
+		  		    <span class="w_icon arrow"></span>
+			      </li>
+			    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_faresign');">
+			      Faretegn
+			      <span id="water_faresign_count" class="notification_buble">0</span>
+			      <span class="w_icon arrow"></span>
+			   	</li>  
+		        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_picture');">
+		          Bilde
+			        <span id="water_picture_count" class="notification_buble">0</span>
+			        <span class="w_icon arrow"></span>
+				     </li>
+				     <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_level');">
+			          Vannstand
+				        <span id="water_level_count" class="notification_buble">0</span>
+				        <span class="w_icon arrow"></span>
+					    </li>
+					    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_level');">
+	              Vannstand 2
+	              <span id="water_level_count" class="notification_buble">0</span>
+	              <span class="w_icon arrow"></span>
+	            </li>
+	            <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_level');">
+	              Vannstand 3
+	              <span id="water_level_count" class="notification_buble">0</span>
+	              <span class="w_icon arrow"></span>
+	            </li>
+	            <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_level');">
+                Vannstand 2
+                <span id="water_level_count" class="notification_buble">0</span>
+                <span class="w_icon arrow"></span>
+              </li>
+              <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_level');">
+                Vannstand 3
+                <span id="water_level_count" class="notification_buble">0</span>
+                <span class="w_icon arrow"></span>
+              </li>
+			    </ul>
+		    </div>
 				<div class="sendAndGroup"></div>
 		</div>
 		

@@ -572,12 +572,21 @@ var main = (function()
         	
         },
         
-        setSecoundFooter: function(){
+        setHeights: function(){
         	var height = jQuery(".sl_container").height();
         	var top = height - 57;
         	
         	jQuery(".addAbort").css("top", (top + 50) + "px");
         	jQuery(".sendGroup").css("top", (top) + "px");
+        	jQuery(".listScroller").css("height", (top- 100) + "px");
+            
+        	
+        	jQuery("#water_scroller:visible").each(function(){
+	    		scroller = new wink.ui.layout.Scroller({
+	                target: 'water_scroller',
+	                direction: "y"
+	        	});	
+        	});
         },
         
         attachToGroup: function(id){
@@ -721,7 +730,7 @@ var main = (function()
         		jQuery(".footer").show();
     		}
         	
-        	main.setSecoundFooter();
+        	main.setHeights();
         	
         	switch(params.id) {
         		case 'home':

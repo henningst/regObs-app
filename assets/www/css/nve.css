@@ -671,4 +671,12 @@ ul.actions li{
   content:'...';
 }
 
+.listScroller{
+	overflow: hidden;
+}
+
+.listScroller ul{
+  position: relative;	
+}
+
 	
