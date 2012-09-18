@@ -559,10 +559,9 @@
 	    
 		
 			<div class="c_align_central">
-		        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('dirt_obs');"/>
-		      	<input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('dirt_see_obs')"/>
-			  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
-				
+        <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('dirt_obs');"/>
+      	<input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('dirt_see_obs')"/>
+		  	<input type="button" class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick=""/>
 			</div>
 		</div>
 		
@@ -580,7 +579,9 @@
 	      <div class="position_header_county"> <p style="display: inline; color: white;" class="county_a"></p><p style="display: inline; color: white;" > / </p><p style="display: inline; color: white;" class="county_b"></p> </div>
 	    </div>
 			
-			  <ul class="w_list w_border actions">
+			
+      <div class="listScroller">
+			  <ul class="w_list w_border actions scrollable" id="dirt_scroller">
 	        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('dirt_hendelse');">
 	          Ulykke / Hendelse
 	          <span id="dirt_hendelse_count" class="notification_buble">0</span>
@@ -602,22 +603,27 @@
 		        <span id="dirt_picture_count" class="notification_buble">0</span>
 		        <span class="w_icon arrow"></span>
 	        </li>
+	        
 	      </ul>			
-				
-				<div class="sendAndGroup"></div>
+			</div>
+			<div class="sendAndGroup"></div>
 		</div>
 		
 		<div id="dirt_hendelse" class="c_center_page standartTextSize">
-	        <label for="dirt_hendelse_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
-			<textarea id="dirt_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
-			
-			<label for="dirt_hendelse_activity_list">Aktivitet:</label>
-	        <select id="dirt_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
-	        </select>
-	        
-	        <label for="dirt_hendelse_radius_list">Omfang:</label>		
-			<select id="dirt_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
-			</select>
+		  <div class="pageScroller">
+		    <div class="scrollable" id="dirt_hendelse_scroller">
+		      <label for="dirt_hendelse_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+					<textarea id="dirt_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
+					
+					<label for="dirt_hendelse_activity_list">Aktivitet:</label>
+			        <select id="dirt_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+			        </select>
+			        
+			        <label for="dirt_hendelse_radius_list">Omfang:</label>		
+					<select id="dirt_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+				 </select>
+				</div>
+			</div>
 			
 			<div class="addAbort c_color_gradient">
 				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_hendelse.addHendelse();">Legg til</button>
@@ -628,21 +634,22 @@
 		
 		
 		<div id="dirt_faresign" class="c_center_page standartTextSize">
-		
-		
-      <label for="dirt_danger_sign_list" style="margin: 15px; display: inline">Faresign:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
-      <select id="dirt_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-      </select>
-			
-			<div id="dirt_carusel" ></div>
-			
-       	<label for="dirt_danger_sign_comment">Beskrivelse:</label>
-				<textarea id="dirt_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
-				
-				<div class="addAbort c_color_gradient">
-					<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_faresign.addFaresign();">Legg til</button>
-					<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_faresign.abort();	">Avbryt</button>
+		  <div class="pageScroller">
+		    <div class="scrollable" id="dirt_faresign_scroller">
+		      <label for="dirt_danger_sign_list" style="margin: 15px; display: inline">Faresign:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+		      <select id="dirt_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+		      </select>
+					
+					<div id="dirt_carusel" ></div>
+					
+	       	<label for="dirt_danger_sign_comment">Beskrivelse:</label>
+					<textarea id="dirt_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
 				</div>
+			</div>
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_faresign.addFaresign();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_faresign.abort();	">Avbryt</button>
+			</div>
 				
 		</div>
 		
@@ -678,18 +685,21 @@
 		
 		
 		<div id="dirt_picture" class="c_center_page">
-			<a class="learning_icon right"  onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
-			<a class="hidden button-image make">
-				<img id="dirt_picture_img" alt="trykk her for å ta bilde" class="c_image container-image" src=""/>
-			</a>
-			<div class="no-image make">Trykk her for å ta bilde</div>
-	
-	 		<select id="dirt_picture_spec_list" class="bigWidth w_select c_selectBox">
-	        </select>
-	        
-			<label for="dirt_picture_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
-			<textarea id="dirt_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
+		  <div class="pageScroller">
+		    <div class="scrollable" id="dirt_picture_scroller">
+					<a class="learning_icon right"  onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+					<a class="hidden button-image make">
+						<img id="dirt_picture_img" alt="trykk her for å ta bilde" class="c_image container-image" src=""/>
+					</a>
+					<div class="no-image make">Trykk her for å ta bilde</div>
 			
+			 		<select id="dirt_picture_spec_list" class="bigWidth w_select c_selectBox">
+			        </select>
+			        
+					<label for="dirt_picture_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+					<textarea id="dirt_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
+				</div>
+			</div>
 			<div class="addAbort c_color_gradient">
 				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_picture.addPicture();">Legg til</button>
 				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_picture.abort();	">Avbryt</button>
