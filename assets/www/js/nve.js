@@ -200,8 +200,8 @@ var main = (function()
 		  }else{
 	        jQuery(".numPackages").hide();
         	console.log("------------ removeing ------------- ")
-//        	new LocalNotification().cancelAll();
-//        	new LocalNotification().cancel(4);
+        	new LocalNotification().cancelAll();
+        	new LocalNotification().cancel(4);
         	main.store.setNotificationId(null);
 		  }
 		},
@@ -602,7 +602,6 @@ var main = (function()
     	        				var target = arg.uxEvent.target;
     	        		         
     	        		        if (target instanceof HTMLSelectElement || target instanceof HTMLAnchorElement) {
-    	        		        	console.log("pp: disabling scroller")
     	        		            scroller.disable();
     	        		            this._disable = true;
     	        		        } else if (this._disable) {
@@ -615,7 +614,6 @@ var main = (function()
             			}
             	
             	};
-        		console.log("pp: enabling scrolling for " + jQuery(this).attr("id"))
 	    		scroller = new wink.ui.layout.Scroller({
 	                target: jQuery(this).attr("id"),
 	                direction: "y",
