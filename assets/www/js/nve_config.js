@@ -1,3 +1,4 @@
+
 /*
  * A GPS_POSITION is marked as an OLD_GPS_POSITION if the last time this GPS position was updated excedes the GPS_TIMEOUT_IN_MINUTES value 
  */
@@ -24,8 +25,8 @@ GA_TRACKER_CODE = "UA-32394009-1";
  * Platform
  */
 var device = {
-	platform: 'android'
-//	platform: 'iphone'
+//	platform: 'android'
+	platform: 'iphone'
 };
 
 /*
