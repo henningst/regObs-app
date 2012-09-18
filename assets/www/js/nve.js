@@ -200,8 +200,8 @@ var main = (function()
 		  }else{
 	        jQuery(".numPackages").hide();
         	console.log("------------ removeing ------------- ")
-        	new LocalNotification().cancelAll();
-        	new LocalNotification().cancel(4);
+//        	new LocalNotification().cancelAll();
+//        	new LocalNotification().cancel(4);
         	main.store.setNotificationId(null);
 		  }
 		},
@@ -607,12 +607,15 @@ var main = (function()
     	        		            scroller.disable();
     	        		            this._disable = true;
     	        		            jQuery("body").css("overflow", "inherit");
-    	        		        } else if (this._disable) {
-    	        		        	jQuery("body").css("overflow", "none");
-    	        		            scroller.enable();
-    	        		            window.scrollTo(0, 0);
-    	        		            this._selectNode = null;
-    	        		            this._disable = false;
+    	        		            document.addEventListener("hidekeyboard", function(){
+        	        		        	window.scrollTo(0, 0);
+        	        		        	jQuery("body").css("overflow", "none");
+        	        		            scroller.enable();
+        	        		            this._selectNode = null;
+        	        		            this._disable = false;
+        	        		            document.removeEventListener("hidekeyboard", this);
+    	        		            }, false);
+    	        		            
     	        		        }
             				}
             			}
