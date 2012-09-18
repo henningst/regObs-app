@@ -1,5 +1,5 @@
 var dirt_picture  = {
-	
+	shouldShowFooter : false,
 	pictureData: null,
 		
 	addPicture: function() {
@@ -39,6 +39,7 @@ var dirt_picture  = {
 		smallImage.src = imageData;
 		dirt_picture.updatePictureButtons("#dirt_picture");
 		main.hideDialog();
+		main.showHideFooter("dirt_picture");
 	},
 
 	onFail: function(message) {
@@ -63,4 +64,4 @@ var dirt_picture  = {
 	}
 };
 
-jQuery.extend(dirt_picture, super_picture);
+jQuery.extend(dirt_picture, super_picture, super_obs);

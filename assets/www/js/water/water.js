@@ -42,6 +42,9 @@ var water_page = {
 		water_page.setCounter('water_picture_count', waterStore.getPictures().length);
 		water_page.setCounter('water_level_count', waterStore.getObs('WaterLevel').length);
 		
+		jQuery("#water_obs .sendAndGroup").html(Handlebars.templates.sendGroup({sendFunction: "main.store.sendWater", hazard:"water"}));
+		login_page.showGroupStatus();
+		
 		this.showStar();
 	},
 };

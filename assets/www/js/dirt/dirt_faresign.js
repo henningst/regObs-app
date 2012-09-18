@@ -1,5 +1,5 @@
 var dirt_faresign = {
-
+		shouldShowFooter : false,
 		i: 0,
 		
 		carouselId: CAROUSEL_STANDART,
@@ -44,4 +44,6 @@ var dirt_faresign = {
 		init: function() {
 			$('header_middle_text').innerHTML = "Faretegn";
 		}
-}
+};
+
+jQuery.extend(dirt_faresign, super_obs);

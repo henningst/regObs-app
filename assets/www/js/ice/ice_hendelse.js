@@ -1,4 +1,5 @@
 var ice_hendelse = {
+		shouldShowFooter : false,
 		fill_activity_influenced: function(data) {
 			if(data == null)
 				return;
@@ -86,7 +87,7 @@ var ice_hendelse = {
 				$("ice_hendelse_comment").value = incident.IncidentHeader +"." +incident.IncidentIngress;
 			}
 			
-			var leggTilButton = jQuery("#ice_hendelse button");
+			var leggTilButton = jQuery("#ice_hendelse button.add");
 			validation.register(
 					leggTilButton, 
 					[
@@ -94,4 +95,5 @@ var ice_hendelse = {
 					]);
 			
 		}
-}
+};
+jQuery.extend(ice_hendelse, super_obs);

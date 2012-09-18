@@ -1,4 +1,4 @@
-var snow_page = {
+var snow_page = {	
 	name : "snow_page",
 	favorite_name : SNOW,
 		
@@ -43,6 +43,9 @@ var snow_page = {
 
 		snow_page.setCounter('snow_faresign_count', snowStore.getObs().length);
 		snow_page.setCounter('snow_picture_count', snowStore.getPictures().length);
+		
+		jQuery("#snow_obs .sendAndGroup").html(Handlebars.templates.sendGroup({sendFunction: "main.store.sendSnow", hazard:"snow"}));
+		login_page.showGroupStatus();
 		
 		this.showStar();
 	}

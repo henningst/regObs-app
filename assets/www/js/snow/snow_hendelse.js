@@ -1,4 +1,5 @@
 var snow_hendelse = {
+		shouldShowFooter: false, 
 		
 		fill_activity_influenced: function(data) {
 			if(data == null)
@@ -79,7 +80,6 @@ var snow_hendelse = {
 		init: function() {
 			$('header_middle_text').innerHTML = "Hendelse";
 			
-			
 			//restore old incident if available
 			var incident = main.store.getSnow().getIncident();
 			
@@ -89,7 +89,7 @@ var snow_hendelse = {
 				$("snow_hendelse_comment").value = incident.IncidentHeader +"." +incident.IncidentIngress;
 			}
 			
-			var leggTilButton = jQuery("#snow_hendelse button");
+			var leggTilButton = jQuery("#snow_hendelse button add");
 			validation.register(
 					leggTilButton, 
 					[
@@ -97,6 +97,9 @@ var snow_hendelse = {
 					]);
 			
 			
+			
+			
 		}
 };
 
+jQuery.extend(snow_hendelse, super_obs);

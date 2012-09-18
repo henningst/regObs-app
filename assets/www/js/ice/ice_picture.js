@@ -1,5 +1,5 @@
 var ice_picture  = {
-	
+	shouldShowFooter : false,	
 	pictureData: null,
 		
 	addPicture: function() {
@@ -39,6 +39,7 @@ var ice_picture  = {
 		smallImage.src = imageData;
 		ice_picture.updatePictureButtons("#ice_picture");
 		main.hideDialog();
+		main.showHideFooter("ice_picture");
 	},
 
 	onFail: function(message) {
@@ -61,4 +62,4 @@ var ice_picture  = {
 	}
 }
 
-jQuery.extend(ice_picture, super_picture);
+jQuery.extend(ice_picture, super_picture, super_obs);

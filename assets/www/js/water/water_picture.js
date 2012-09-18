@@ -1,5 +1,5 @@
 var water_picture  = {
-	
+	shouldShowFooter : false,
 	pictureData: null,
 		
 	addPicture: function() {
@@ -40,6 +40,7 @@ var water_picture  = {
 		water_picture.updatePictureButtons("#water_picture");
 
 		main.hideDialog();
+		main.showHideFooter("water_picture");
 	},
 
 	onFail: function(message) {
@@ -63,4 +64,4 @@ var water_picture  = {
 	}
 };
 
-jQuery.extend(water_picture, super_picture);
+jQuery.extend(water_picture, super_picture, super_obs);

@@ -7,7 +7,7 @@
 	<meta name="format-detection" content="telephone=no">
 	
 	<link rel="stylesheet" href="js/wink-1.4.1-nve-default.min.css" type="text/css">
-	<script type="text/javascript" src="js/wink-1.4.1-nve-default.min.js"></script>
+	<script type="text/javascript" src="js/wink-1.4.1-nve-default.js"></script>
 	<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.23.custom.css" type="text/css">
 	
 	<link rel="stylesheet" href="css/btn.css" type="text/css">
@@ -21,6 +21,9 @@
 	<script type="text/javascript" src="js/dependencies/iscroll.js"> </script>
 	<script type="text/javascript" src="js/dependencies/jquery-ui-1.8.23.custom.min.js"> </script>
 	<script type="text/javascript" src="js/dependencies/jquery.ui.touch-punch.min.js"></script>
+	<script type="text/javascript" src="js/dependencies/handlebars.runtime-1.0.0.beta.6.js"></script>
+	<script type="text/javascript" src="js/templates.js"></script>
+	
 		
 	<script type="text/javascript">
 		jQuery.noConflict();
@@ -187,7 +190,7 @@
 		<div id="login_page">
 	    <div class="standartTextSize c_align_central">
 	      <label for="login_username">Brukernavn</label>
-	      <input type="text" id="login_username" class="large settingsInput" value="" />
+	      <input type="email" id="login_username" class="large settingsInput" value="" />
 	      <label for="login_possword">Passord</label>
 	      <input type="password" id="login_password" class="large settingsInput" value="" />
 	      <input id="loginLogoutButton" type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logg inn' onclick="main.clickLogin();" />
@@ -196,7 +199,7 @@
 		
 		<div id="information">
 		 <div>
-		 	 <div>Versjon: 0.12.5</div>
+		 	 <div>Versjon: 0.12.8</div>
 		 	 <div id="information_content">
 			   <p>
 			     Her kommer det tekst om regobs og appen.
@@ -229,7 +232,7 @@
 			  <div class="c_position_header">
 		      <span class="position_header_position">UTM33</span> 
 		      <span class="position_header_town"></span>
-			  <div class="position_header_county"> <p style="display: inline; color: white;" class="county_a"></p><p style="display: inline; color: white;" > / </p><p style="display: inline; color: white;" class="county_b"></p> </div>
+			    <div class="position_header_county"> <p style="display: inline; color: white;" class="county_a"></p><p style="display: inline; color: white;" > / </p><p style="display: inline; color: white;" class="county_b"></p> </div>
 		    </div>
 		    <ul class="w_list w_border actions" >
 			    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_hendelse');">
@@ -248,21 +251,9 @@
 			      <span class="w_icon arrow"></span>
 			    </li>
 			  </ul>
+			  
+			  <div class="sendAndGroup"></div>
 				
-			  <div class="c_align_central ">
-			  	<div class="extendedButton smallWidth margin_central">
-				  	<div class="takeAllWidth composedButtonContainer ">
-				      <input type="button" value="Send inn" class="confirmButton c_button  w_button w_radius w_bg_light takeAllWidth" onclick="main.warnLoginBefore('main.store.sendSnow')"> 
-					  	<span class="numPackages notification_buble onTopOfButton hidden">0</span>
-			      </div>
-			      
-			      <div class="groups-list margin_central takeAllWidth">
-			      	<select name="group" id="snow_group" class="takeAllWidth">
-			      		<option value="0">Ingen grupper</option>
-			      	</select>
-			      </div>
-		      </div>
-		    </div>
 		</div>
 		
 		<div id="snow_hendelse" class="c_center_page standartTextSize content_page">
@@ -277,7 +268,10 @@
 				<select id="snow_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
 				</select>
 				
-				<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_hendelse.addHendelse();">Legg til</button>
+				<div class="addAbort c_color_gradient">
+					<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_hendelse.addHendelse();">Legg til</button>
+					<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_hendelse.abort();	">Avbryt</button>
+				</div>
 		</div>
 		
 		<div id="snow_faresign" class="c_center_page standartTextSize content_page">
@@ -292,7 +286,10 @@
       <label for="snow_danger_sign_comment">Beskrivelse:</label>
 			<textarea id="snow_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
 			
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_faresign.addFaresign();">Legg til</button>
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_faresign.addFaresign();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_faresign.abort();	">Avbryt</button>
+			</div>
 		</div>
 		
 		<div id="snow_picture" class="c_center_page">
@@ -308,7 +305,12 @@
 			
 			<label for="snow_picture_comment">Beskrivelse:</label>
 			<textarea id="snow_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_picture.addPicture();">Legg til</button>
+			
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_picture.addPicture();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_picture.abort();	">Avbryt</button>
+			</div>
+			
 		</div>
 		
 	<!-- 	ICE - PAGES -->
@@ -356,20 +358,7 @@
 		    </li>
 		    
 			</ul>
-			<div class="c_align_central ">
-			  	<div class="extendedButton smallWidth margin_central">
-				  	<div class="takeAllWidth composedButtonContainer ">
-				      <input type="button" value="Send inn" class="confirmButton c_button  w_button w_radius w_bg_light takeAllWidth" onclick="main.warnLoginBefore('main.store.sendIce');"> 
-					  	<span class="numPackages notification_buble onTopOfButton hidden">0</span>
-			      </div>
-			      
-			      <div class="groups-list margin_central takeAllWidth">
-			      	<select name="group" id="ice_group" class="takeAllWidth">
-			      		<option value="0">Ingen grupper</option>
-			      	</select>
-			      </div>
-		      </div>
-		    </div>
+			<div class="sendAndGroup"></div>
 		</div>
 		
 		<div id="ice_hendelse" class="c_center_page standartTextSize">
@@ -384,7 +373,12 @@
 			<select id="ice_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
 			</select>
 			
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="ice_hendelse.addHendelse();">Legg til</button>
+			
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="ice_hendelse.addHendelse();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="ice_hendelse.abort();	">Avbryt</button>
+			</div>
+
 		</div>
 		
 		<div id="ice_faresign" class="c_center_page standartTextSize">
@@ -398,7 +392,11 @@
 			
 	        <label for="ice_danger_sign_comment">Beskrivelse:</label>
 			<textarea id="ice_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="ice_faresign.addFaresign();">Legg til</button>
+
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="ice_faresign.addFaresign();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="ice_faresign.abort();	">Avbryt</button>
+			</div>
 		</div>
 		
 		<div id="ice_picture" class="c_center_page">
@@ -414,8 +412,12 @@
 	        </select>
 	        
 			<label for="ice_picture_comment">Beskrivelse:</label>
-			<textarea id="ice_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="ice_picture.addPicture();">Legg til</button>
+			<textarea id="ice_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea>
+
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="ice_picture.addPicture();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="ice_picture.abort();	">Avbryt</button>
+			</div>
 		</div>
 		
 	<!-- 	WATER - PAGES -->
@@ -445,42 +447,31 @@
 		      <div class="position_header_county"> <p style="display: inline; color: white;" class="county_a"></p><p style="display: inline; color: white;" > / </p><p style="display: inline; color: white;" class="county_b"></p> </div>
 	      </div>
 	    
-			  <ul class="w_list w_border actions">
-			    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_hendelse');">
-	  		    Ulykke / Hendelse
-	  		    <span id="water_hendelse_count" class="notification_buble">0</span>
-	  		    <span class="w_icon arrow"></span>
-		      </li>
-		    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_faresign');">
-		      Faretegn
-		      <span id="water_faresign_count" class="notification_buble">0</span>
-		      <span class="w_icon arrow"></span>
-		   	</li>  
-	        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_picture');">
-	          Bilde
-		        <span id="water_picture_count" class="notification_buble">0</span>
-		        <span class="w_icon arrow"></span>
-			    </li>
-			<li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_level');">
-	          Vannstand
-		        <span id="water_level_count" class="notification_buble">0</span>
-		        <span class="w_icon arrow"></span>
-			    </li>
-		    </ul>
-				<div class="c_align_central ">
-			  	<div class="extendedButton smallWidth margin_central">
-				  	<div class="takeAllWidth composedButtonContainer ">
-				      <input type="button" value="Send inn" class="confirmButton c_button  w_button w_radius w_bg_light takeAllWidth" onclick="main.warnLoginBefore('main.store.sendWater');"> 
-					  	<span class="numPackages notification_buble onTopOfButton hidden">0</span>
-			      </div>
-			      
-			      <div class="groups-list margin_central takeAllWidth">
-			      	<select name="group" id="water_group" class="takeAllWidth">
-			      		<option value="0">Ingen grupper</option>
-			      	</select>
-			      </div>
-		      </div>
+	     <div  class="listScroller">
+				  <ul id="water_scroller" class="w_list w_border actions">
+				    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_hendelse');">
+		  		    Ulykke / Hendelse
+		  		    <span id="water_hendelse_count" class="notification_buble">0</span>
+		  		    <span class="w_icon arrow"></span>
+			      </li>
+			    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_faresign');">
+			      Faretegn
+			      <span id="water_faresign_count" class="notification_buble">0</span>
+			      <span class="w_icon arrow"></span>
+			   	</li>  
+		        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_picture');">
+		          Bilde
+			        <span id="water_picture_count" class="notification_buble">0</span>
+			        <span class="w_icon arrow"></span>
+				     </li>
+				     <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_level');">
+			          Vannstand
+				        <span id="water_level_count" class="notification_buble">0</span>
+				        <span class="w_icon arrow"></span>
+					    </li>
+			    </ul>
 		    </div>
+				<div class="sendAndGroup"></div>
 		</div>
 		
 		<div id="water_hendelse" class="c_center_page standartTextSize">
@@ -495,7 +486,11 @@
 			<select id="water_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
 			</select>
 			
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="water_hendelse.addHendelse();">Legg til</button>
+			
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="water_hendelse.addHendelse();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="water_hendelse.abort();	">Avbryt</button>
+			</div>
 		</div>
 		
 		<div id="water_faresign" class="c_center_page standartTextSize">
@@ -505,11 +500,16 @@
 	        <select id="water_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
 	        </select>
 			
-			<div id="water_carusel" ></div>
+				<div id="water_carusel" ></div>
 			
-	        <label for="water_danger_sign_comment">Beskrivelse:</label>
-			<textarea id="water_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="water_faresign.addFaresign();">Legg til</button>
+        <label for="water_danger_sign_comment">Beskrivelse:</label>
+				<textarea id="water_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
+				
+				
+				<div class="addAbort c_color_gradient">
+					<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="water_faresign.addFaresign();">Legg til</button>
+					<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="water_faresign.abort();	">Avbryt</button>
+				</div>
 		</div>
 		
 		<div id="water_picture" class="c_center_page">
@@ -524,7 +524,11 @@
 	        
 			<label for="water_picture_comment">Beskrivelse:</label>
 			<textarea id="water_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="water_picture.addPicture();">Legg til</button>
+			
+      <div class="addAbort c_color_gradient">
+        <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="water_picture.addPicture();">Legg til</button>
+        <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="water_picture.abort();  ">Avbryt</button>
+      </div>
 		
 		</div>
 		<div id="water_level" class="c_center_page standartTextSize">	
@@ -537,8 +541,13 @@
 			<div>
 			<input name="water_level_isriver" style="padding-bottom: 20px; margin-bottom: 20px;" type="radio" value="true" checked="checked">Elv		
 			<input name="water_level_isriver" style="padding-bottom: 20px; margin-bottom: 20px;" type="radio" value="false">Innsjø/magasin
-			</div>
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="water_level.addWaterLevelObs();">Legg til</button>
+
+			
+      <div class="addAbort c_color_gradient">
+        <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="water_picture.addWaterLevelObs();">Legg til</button>
+        <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="water_picture.abort();  ">Avbryt</button>
+      </div>
+
 		</div>
 		
 	<!-- 	DIRT PAGES -->
@@ -596,20 +605,7 @@
 	        </li>
 	      </ul>			
 				
-				<div class="c_align_central ">
-			  	<div class="extendedButton smallWidth margin_central">
-				  	<div class="takeAllWidth composedButtonContainer ">
-				      <input type="button" value="Send inn" class="confirmButton c_button  w_button w_radius w_bg_light takeAllWidth" onclick="main.warnLoginBefore('main.store.sendDirt');"> 
-					  	<span class="numPackages notification_buble onTopOfButton hidden">0</span>
-			      </div>
-			      
-			      <div class="groups-list margin_central takeAllWidth">
-			      	<select name="group" id="dirt_group" class="takeAllWidth">
-			      		<option value="0">Ingen grupper</option>
-			      	</select>
-			      </div>
-		      </div>
-		    </div>
+				<div class="sendAndGroup"></div>
 		</div>
 		
 		<div id="dirt_hendelse" class="c_center_page standartTextSize">
@@ -624,7 +620,10 @@
 			<select id="dirt_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
 			</select>
 			
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="dirt_hendelse.addHendelse();">Legg til</button>
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_hendelse.addHendelse();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_hendelse.abort();	">Avbryt</button>
+			</div>
 		</div>
 		
 		
@@ -640,32 +639,44 @@
 			
        	<label for="dirt_danger_sign_comment">Beskrivelse:</label>
 				<textarea id="dirt_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
-				<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="dirt_faresign.addFaresign();">Legg til</button>
+				
+				<div class="addAbort c_color_gradient">
+					<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_faresign.addFaresign();">Legg til</button>
+					<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_faresign.abort();	">Avbryt</button>
+				</div>
+				
 		</div>
 		
 		<div id="dirt_avalange" class="c_center_page standartTextSize">
 		
-      <div class="bigWidth" style="margin:auto; padding-bottom: 20px;">
-				<label for="dirt_avalange_time" style="margin: 15px; display: inline">Timer siden:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
-	      <div style="padding-right: 20%;">
-	      	<input type="text" id="dirt_avalange_time" disabled="disabled" class="border-less as-text" />t
-	      </div>
-	      <div id="dirt_avalange_slider"></div>
-      </div>
-		
-      <label for="dirt_avalange_type_list" style="margin: 15px; display: inline">Type:</label>
-      <select id="dirt_avalange_type_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-      </select>
-      
-      <label for="dirt_avalange_size_list" style="margin: 15px; display: inline">Størrelse:</label>
-      <select id="dirt_avalange_size_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-      </select>
-      
-      <label for="dirt_avalange_trigger_list" style="margin: 15px; display: inline">Trigger(Utl&oslash;ser):</label>
-      <select id="dirt_avalange_trigger_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-      </select>
-			
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="dirt_avalange.addAvalange();">Legg til</button>
+		  <div class="scrollList">
+		    <div id="dirt_avalange_scroller" class="scrollable">
+		      <div class="bigWidth" style="margin:auto; padding-bottom: 20px;">
+						<label for="dirt_avalange_time" style="margin: 15px; display: inline">Timer siden:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+			      <div style="padding-right: 20%;">
+			      	<input type="text" id="dirt_avalange_time" disabled="disabled" class="border-less as-text" />t
+			      </div>
+			      <div id="dirt_avalange_slider"></div>
+		      </div>
+				
+		      <label for="dirt_avalange_type_list" style="margin: 15px; display: inline">Type:</label>
+		      <select id="dirt_avalange_type_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+		      </select>
+		      
+		      <label for="dirt_avalange_size_list" style="margin: 15px; display: inline">Størrelse:</label>
+		      <select id="dirt_avalange_size_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+		      </select>
+		      
+		      <label for="dirt_avalange_trigger_list" style="margin: 15px; display: inline">Trigger(Utl&oslash;ser):</label>
+		      <select id="dirt_avalange_trigger_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+		      </select>
+					
+					<div class="addAbort c_color_gradient">
+						<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_avalange.addAvalange();">Legg til</button>
+						<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_avalange.abort();	">Avbryt</button>
+					</div>
+				</div>
+			</div>
 		</div>
 		
 		
@@ -681,7 +692,12 @@
 	        
 			<label for="dirt_picture_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
 			<textarea id="dirt_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
-			<button class="smallWidth w_button w_radius c_color_gradient doubleTapPrevention" onclick="dirt_picture.addPicture();">Legg til</button>
+			
+			<div class="addAbort c_color_gradient">
+				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_picture.addPicture();">Legg til</button>
+				<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_picture.abort();	">Avbryt</button>
+			</div>
+			
 		</div>
 		
 		<div id="learning_page" class="c_center_page">

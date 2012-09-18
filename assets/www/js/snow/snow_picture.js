@@ -1,5 +1,5 @@
 var snow_picture  = {
-	
+	shouldShowFooter : false,
 	pictureData: null,
 		
 	addPicture: function() {
@@ -42,6 +42,8 @@ var snow_picture  = {
 		smallImage.src = imageData;
 		snow_picture.updatePictureButtons("#snow_picture");
 		main.hideDialog();
+		
+		main.showHideFooter("snow_picture");
 	},
 
 	onFail: function(message) {
@@ -64,4 +66,4 @@ var snow_picture  = {
 	}
 };
 
-jQuery.extend(snow_picture, super_picture);
+jQuery.extend(snow_picture, super_picture, super_obs);

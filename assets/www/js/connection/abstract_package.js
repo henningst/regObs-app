@@ -55,6 +55,8 @@ AbstractPackage = (function() {
 
     this.setRegDate = __bind(this.setRegDate, this);
 
+    this.setWaterLevel = __bind(this.setWaterLevel, this);
+
     this.setIncident = __bind(this.setIncident, this);
 
     this.superInit = __bind(this.superInit, this);
@@ -124,6 +126,12 @@ AbstractPackage = (function() {
   AbstractPackage.prototype.setIncident = function(incident) {
     this.setRegDate();
     this.m_incident = incident;
+    return DataAccess.save(this.name, this);
+  };
+
+  AbstractPackage.prototype.setWaterLevel = function(waterLevel) {
+    this.setRegDate();
+    this.m_waterLevel = waterLevel;
     return DataAccess.save(this.name, this);
   };
 

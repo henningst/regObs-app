@@ -1,5 +1,5 @@
 var water_faresign = {
-
+		shouldShowFooter : false,
 		i: 0,
 		
 		carouselId : CAROUSEL_STANDART,
@@ -43,4 +43,5 @@ var water_faresign = {
 		init: function() {
 			$('header_middle_text').innerHTML = "Faretegn";
 		}
-}
+};
+jQuery.extend(water_faresign, super_obs);

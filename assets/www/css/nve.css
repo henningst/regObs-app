@@ -535,8 +535,8 @@ ul.actions li{
  
 .onTopOfButton{
 	position:absolute;
-	top: 5px;
-	right: 10px;
+	top: 9px;
+	right: 33%;
 	font-size: 14px;
 	font-weight: bold;
 	text-indent: 9px;
@@ -586,6 +586,40 @@ ul.actions li{
 }
 
 
+
+.addAbort, .sendGroup{
+	position: absolute;
+	left: 0;
+	padding: 5px;
+	width: 100%;
+	border: 1px solid black;
+}
+
+.sendGroup input[type=button], .sendGroup button, .sendGroup select, .addAbort button{
+	-webkit-box-shadow:  0px 1px 3px 1px rgba(10, 10, 10, 0.5);
+	box-shadow:  0px 1px 3px 1px rgba(10, 10, 10, 0.5);
+}
+
+.span2{
+	width:60%; 
+	display: inline-block;
+}
+
+.span1{
+	width: 30%;
+	display: inline-block;
+}
+
+.span15{ 
+	width: 45%;
+	display: inline-block;
+}
+
+.spanPadding{	
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
 .attachToBottom{
 	position: fixed;
 	bottom: 49px;
@@ -601,3 +635,49 @@ ul.actions li{
 	text-align: right;
 	width: 30%;
 }
+
+.inline{
+	display:inline;
+}
+
+.list{
+	text-align: left;
+	margin-left: 20px;	
+}
+
+.pressed{
+	background-image: linear-gradient(top, rgb(223,223,223) 47%, rgb(237,237,237) 74%);
+   background-image: -o-linear-gradient(top, rgb(223,223,223) 47%, rgb(237,237,237) 74%);
+   background-image: -moz-linear-gradient(top, rgb(223,223,223) 47%, rgb(237,237,237) 74%);
+   background-image: -webkit-linear-gradient(top, rgb(223,223,223) 47%, rgb(237,237,237) 74%);
+   background-image: -ms-linear-gradient(top, rgb(223,223,223) 47%, rgb(237,237,237) 74%);
+
+   background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0.47, rgb(223,223,223)),
+            color-stop(0.74, rgb(237,237,237))
+    );	
+}
+.ellipsisText{
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    text-overflow: ellipsis;
+}
+
+.ellipsis:after{
+  content:'...';
+}
+
+.listScroller{
+	overflow: hidden;
+	padding-bottom: 30px;
+}
+
+.listScroller ul{
+  position: relative;	
+}
+
+	

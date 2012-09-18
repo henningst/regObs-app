@@ -71,7 +71,7 @@ var omerade = {
 			console.log(data);
 			var res = JSON.parse(data);
 			
-			if(res != null && res.features != undefined) {
+			if(res != null && res.features != undefined && res.features.length > 0) {
 				return {
 					omeradeid: res.features[0].attributes.OMRAADEID +OMRAADE_ID_OFFSET,
 					omeradenavn: res.features[0].attributes.OMRAADENAVN,
@@ -89,7 +89,7 @@ var omerade = {
 		parseKommune : function(data){
 			var res = JSON.parse(data);
 
-			if(res != null && res.features != undefined) {
+			if(res != null && res.features != undefined && res.features.length > 0) {
 				return {
 					kommunenavn: res.features[0].attributes.KOMMNAVN,
 					kommunenummer: res.features[0].attributes.KOMM_NR,
@@ -197,8 +197,8 @@ var main = (function()
 		  }else{
 	        jQuery(".numPackages").hide();
         	console.log("------------ removeing ------------- ")
-        	new LocalNotification().cancelAll();
-        	new LocalNotification().cancel(4);
+//        	new LocalNotification().cancelAll();
+//        	new LocalNotification().cancel(4);
         	main.store.setNotificationId(null);
 		  }
 		},
@@ -498,11 +498,20 @@ var main = (function()
         
         showDialogWithMessage: function(message, header){
         	if(header == undefined)
-        		header = "Melding"
+        		header = "Melding";
         			
-        	main.showDialog("<h3>"+ header +"</h3><p>" + message + "</p><button type='button' " +
-    				"class='w_bg_light c_button w_button w_radius popupbutton-single' onclick='main.hideDialog();'>" +OK + 
-        			"</button>");
+            var content = jQuery("<div><h3>"+ header +"</h3><p></p><button type='button' " +
+			"class='w_bg_light c_button w_button w_radius popupbutton-single' onclick='main.hideDialog();'>" +OK + 
+			"</button></div>");
+            
+            var messageText = message;
+            if(message.html)
+            	messageText = message.html();
+            else
+            	messageText = "<span>" + message + "</span>";
+            
+        	content.find("p").wrap(messageText);
+        	main.showDialog(content);
         },
         
         showWaitingDialogWithMessage: function(message) 
@@ -532,7 +541,7 @@ var main = (function()
                         "class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='"+ after +"()'>" + OK + 
                       "</button>" +
                       "<button type='button' " +
-                        "class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.hideDialog()'>" + ABORT + 
+                        "class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.goToAndHide(\"login_page\");'>" + LOGIN_BUTTON + 
                       "</button>" +
                     "</div>");
         	}else
@@ -554,10 +563,11 @@ var main = (function()
 				'uId': id,
 				'items':
         		[
+        		 {'type': 'string', 'content': "<div style='font-size: 0.8em'>Ikke angit</div>"}
             	]
         	};
         	
-        	for(var i = 0; i < items.length; ++i)
+        	for(var i = 1; i < items.length; ++i)
         	{
         		properties.items.push({'type': 'string', 'content': "<div style='font-size: 0.8em'>" +items[i] +"</div>"});
         	}
@@ -568,6 +578,40 @@ var main = (function()
         nothing: function()
         {
         	
+        },
+        
+        setHeights: function(){
+        	var height = jQuery(".sl_container").height();
+        	var top = height - 57;
+        	
+        	jQuery(".addAbort").css("top", (top + 50) + "px");
+        	jQuery(".sendGroup").css("top", (top) + "px");
+        	jQuery(".listScroller").css("height", (top- 100) + "px");
+            
+        	
+        	jQuery("#water_scroller:visible").each(function(){
+	    		scroller = new wink.ui.layout.Scroller({
+	                target: 'water_scroller',
+	                direction: "y"
+	        	});	
+        	});
+        	
+        	jQuery(".scrollable:visible").each(function(){
+	    		scroller = new wink.ui.layout.Scroller({
+	                target: jQuery(this).attr("id"),
+	                direction: "y"
+	        	});	
+        	});
+        },
+        
+        attachToGroup: function(id){
+        	var dialog = jQuery("#" + id + "_obs .groups")[0]
+        	main.showDialogWithMessage(jQuery(dialog), "Velg gruppe");
+        },
+        
+        goToAndHide : function(page){
+        	main.panels.slideTo(page);
+        	main.hideDialog();
         },
         
         sendEmail: function()
@@ -584,7 +628,7 @@ var main = (function()
         	jQuery("body").scrollTop(0);
         	jQuery("#popup_content").html("").append(content);
         	jQuery("#popup").css("top", (wink.ux.window.height * .4) + "px");
-        	jQuery("#footer").hide();
+        	jQuery("#footer, .sendGroup").hide();
         	jQuery("#dialog").show();
         	
         	var dialog =  jQuery("#dialog");
@@ -603,7 +647,7 @@ var main = (function()
         	
         	jQuery("body").css("overflow", "inherit");
         	jQuery('#dialog').hide().unbind("touchmove");
-        	jQuery("#footer").show();
+        	jQuery("#footer, .sendGroup").show();
         },
         
         saveAndCall: function(kdObject, data, callingFunctions){
@@ -679,6 +723,14 @@ var main = (function()
         	
         },
         
+        showHideFooter: function(id){
+        	if(eval(id).shouldShowFooter == false){
+        		jQuery(".footer").hide();
+        	}else{
+        		jQuery(".footer").show();
+    		}
+        },
+        
         toggleBackButtonDisplay: function(params, status) {
         	console.log("-------backbutton display");
         	console.log(params.id);
@@ -699,6 +751,11 @@ var main = (function()
         		//google analytics
     			window.analytics.trackPageView(params.id);
         	}
+        	
+        	main.showHideFooter(params.id);
+        	
+        	
+        	main.setHeights();
         	
         	switch(params.id) {
         		case 'home':

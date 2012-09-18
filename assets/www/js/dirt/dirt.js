@@ -45,6 +45,9 @@ var dirt_page = {
 		dirt_page.setCounter('dirt_faresign_count', dirtStore.getObs('DangerObs').length);
 		dirt_page.setCounter('dirt_picture_count', dirtStore.getPictures().length);
 		
+		jQuery("#dirt_obs .sendAndGroup").html(Handlebars.templates.sendGroup({sendFunction: "main.store.sendDirt", hazard:"dirt"}));
+		login_page.showGroupStatus();
+		
 		this.showStar();
 	}
 };

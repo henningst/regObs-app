@@ -1,7 +1,6 @@
 var login_page = {
 		
 	init: function() {
-
 		$('header_middle_text').innerHTML = "Login";
 		jQuery("#regobs-name").hide();
 		
@@ -38,7 +37,7 @@ var login_page = {
     	var command = new ObserversCompCommand(user);
     	command.fetch(function (comp) {
     	  user.competancy = new ObserverCompetancy(comp);
-    	  UserStore.save(main.currentMode(), user);
+    	  UserStore.saveComp(main.currentMode(), user);
     	});
     },
     
@@ -51,7 +50,7 @@ var login_page = {
 		var groupsCommand = new ObserversGroupsCommand(user);
 		groupsCommand.fetch(function(groups){
 			user.groups = groups;
-			UserStore.save(main.currentMode(), user);
+			UserStore.saveGroups(main.currentMode(), user);
 			login_page.showGroupStatus();
 			
 			if(callback)
@@ -102,16 +101,34 @@ var login_page = {
 	
     showGroupStatus: function(){
     	var user = UserStore.get(main.currentMode());
-    	var dropdown = jQuery(".groups-list select");
-    	dropdown.html("");
     	
-    	
-    	console.log("showing group: " + JSON.stringify(user.groups));
-    	dropdown.append("<option value='0'>Ingen gruppe</option>");
+    	var list = "";
     	jQuery.each(user.groups, function(i, group){
-    		
-    		dropdown.append("<option value='"+ group.id +"'>" + group.name + "</option>")
+    		list = list + "<div><input type='radio' name='group' value='"+ group.id +"' title='"+ group.name +"'/>"+ group.name +"</div>";
     	});
+		var dialog = "<div class='list'><div><input type='radio' name='group' value='0' checked='checked' title='Gruppe'>Ingen gruppe</div>"+ list +"</div>";
+		jQuery(".groups").html(dialog);
+		jQuery("input[name=group]").live('click', function(){
+			login_page.groupChangedTo(this);
+		});
+		
+    },
+    
+    groupChangedTo: function(newValue){
+    	var newGroup = jQuery(newValue).val();
+    	var name = jQuery(newValue).attr("title");
+    	
+    	console.log("newValue", name, jQuery(".groupButton span"));
+    	
+    	
+    	jQuery(".groupButton span").text(name);
+    	
+    	jQuery(".selectedGroup").val(newGroup);
+    	
+    	if(newGroup > 0)
+    		jQuery(".groupButton").addClass("pressed");
+    	else
+    		jQuery(".groupButton").removeClass("pressed");
     },
     
     relogin: function(){
