@@ -448,17 +448,17 @@
 	      </div>
 	    
 	     <div  class="listScroller">
-				  <ul id="water_scroller" class="w_list w_border actions">
+				  <ul id="water_scroller" class="scrollable w_list w_border actions">
 				    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_hendelse');">
 		  		    Ulykke / Hendelse
 		  		    <span id="water_hendelse_count" class="notification_buble">0</span>
 		  		    <span class="w_icon arrow"></span>
 			      </li>
-			    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_faresign');">
-			      Faretegn
-			      <span id="water_faresign_count" class="notification_buble">0</span>
-			      <span class="w_icon arrow"></span>
-			   	</li>  
+				    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_faresign');">
+				      Faretegn
+				      <span id="water_faresign_count" class="notification_buble">0</span>
+				      <span class="w_icon arrow"></span>
+				   	</li>  
 		        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_picture');">
 		          Bilde
 			        <span id="water_picture_count" class="notification_buble">0</span>
@@ -468,7 +468,8 @@
 			          Vannstand
 				        <span id="water_level_count" class="notification_buble">0</span>
 				        <span class="w_icon arrow"></span>
-					    </li>
+				     </li>
+				     
 			    </ul>
 		    </div>
 				<div class="sendAndGroup"></div>
@@ -646,8 +647,7 @@
 		</div>
 		
 		<div id="dirt_avalange" class="c_center_page standartTextSize">
-		
-		  <div class="scrollList">
+		  <div class="pageScroller">
 		    <div id="dirt_avalange_scroller" class="scrollable">
 		      <div class="bigWidth" style="margin:auto; padding-bottom: 20px;">
 						<label for="dirt_avalange_time" style="margin: 15px; display: inline">Timer siden:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
@@ -668,13 +668,12 @@
 		      <label for="dirt_avalange_trigger_list" style="margin: 15px; display: inline">Trigger(Utl&oslash;ser):</label>
 		      <select id="dirt_avalange_trigger_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
 		      </select>
-					
-					<div class="addAbort c_color_gradient">
-						<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_avalange.addAvalange();">Legg til</button>
-						<button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_avalange.abort();	">Avbryt</button>
-					</div>
 				</div>
 			</div>
+			<div class="addAbort c_color_gradient">
+        <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_avalange.addAvalange();">Legg til</button>
+        <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_avalange.abort();  ">Avbryt</button>
+      </div>
 		</div>
 		
 		

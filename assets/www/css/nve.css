@@ -5,6 +5,10 @@
 5D3974
 */
 
+body{
+	overflow: none !important;
+}
+
 .testMode
 {
 	background: #f85032; /* Old browsers */
@@ -671,13 +675,14 @@ ul.actions li{
   content:'...';
 }
 
-.listScroller{
+.listScroller, .pageScroller{
 	overflow: hidden;
 	padding-bottom: 30px;
 }
 
-.listScroller ul{
+.listScroller ul, .listScroller .scrollable, .pageScroller .scrollable{
   position: relative;	
+  padding-bottom: 45px;
 }
 
 	
