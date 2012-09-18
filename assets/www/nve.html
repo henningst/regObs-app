@@ -234,39 +234,45 @@
 		      <span class="position_header_town"></span>
 			    <div class="position_header_county"> <p style="display: inline; color: white;" class="county_a"></p><p style="display: inline; color: white;" > / </p><p style="display: inline; color: white;" class="county_b"></p> </div>
 		    </div>
-		    <ul class="w_list w_border actions" >
-			    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_hendelse');">
-			        Ulykke / Hendelse
-			        <span id="snow_hendelse_count" class="notification_buble">0</span>
-			        <span class="w_icon arrow"></span>
-				</li>
-			    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_faresign');">
-			      Faretegn
-			      <span id="snow_faresign_count" class="notification_buble">0</span>
-			      <span class="w_icon arrow"></span>
-			   	</li>
-			   	<li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_picture');">
-			      Bilde
-			      <span id="snow_picture_count" class="notification_buble">0</span>
-			      <span class="w_icon arrow"></span>
-			    </li>
-			  </ul>
+		    <div class="listScroller">
+			    <ul class="w_list w_border actions scrollable" id="snow_scroller">
+				    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_hendelse');">
+				        Ulykke / Hendelse
+				        <span id="snow_hendelse_count" class="notification_buble">0</span>
+				        <span class="w_icon arrow"></span>
+					</li>
+				    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_faresign');">
+				      Faretegn
+				      <span id="snow_faresign_count" class="notification_buble">0</span>
+				      <span class="w_icon arrow"></span>
+				   	</li>
+				   	<li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_picture');">
+				      Bilde
+				      <span id="snow_picture_count" class="notification_buble">0</span>
+				      <span class="w_icon arrow"></span>
+				    </li>
+				  </ul>
+			  </div>
 			  
 			  <div class="sendAndGroup"></div>
 				
 		</div>
 		
 		<div id="snow_hendelse" class="c_center_page standartTextSize content_page">
-	      <label for="snow_hendelse_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
-				<textarea id="snow_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
-				
-				<label for="snow_hendelse_activity_list">Aktivitet:</label>
+			<div class="pageScroller">
+	        <div class="scrollable" id="snow_hendelse_scroller">
+			      <label for="snow_hendelse_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+						<textarea id="snow_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>		
+						
+						<label for="snow_hendelse_activity_list">Aktivitet:</label>
 		        <select id="snow_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
 		        </select>
 		        
 		        <label for="snow_hendelse_radius_list">Omfang:</label>		
-				<select id="snow_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
-				</select>
+						<select id="snow_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+						</select>
+					</div>
+				</div>
 				
 				<div class="addAbort c_color_gradient">
 					<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_hendelse.addHendelse();">Legg til</button>
@@ -275,16 +281,18 @@
 		</div>
 		
 		<div id="snow_faresign" class="c_center_page standartTextSize content_page">
-		
-		
-      <label for="snow_danger_sign_list" style="margin: 15px; display: inline">Faretegn:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
-      <select id="snow_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-      </select>
-      
-		  <div id="snow_carusel" ></div>
-			
-      <label for="snow_danger_sign_comment">Beskrivelse:</label>
-			<textarea id="snow_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
+		  <div class="pageScroller">
+        <div class="scrollable" id="snow_faresign_scroller">
+		      <label for="snow_danger_sign_list" style="margin: 15px; display: inline">Faretegn:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+		      <select id="snow_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+		      </select>
+		      
+				  <div id="snow_carusel" ></div>
+					
+		      <label for="snow_danger_sign_comment">Beskrivelse:</label>
+					<textarea id="snow_danger_sign_comment" class="c_textarea bigWidth" rows="5" ></textarea>
+				</div>
+			</div>
 			
 			<div class="addAbort c_color_gradient">
 				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_faresign.addFaresign();">Legg til</button>
@@ -293,18 +301,22 @@
 		</div>
 		
 		<div id="snow_picture" class="c_center_page">
-			<a class="learning_icon right"  onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
-			<a class="make hidden button-image">
-				<img id="snow_picture_img" alt="Trykk her for å ta bilde" class="c_image container-image" src=""/>
-			</a>
-			<div class="no-image make" >Trykk her for å ta bilde </div>
-			
-	 		
-	 		<select id="snow_picture_spec_list" class="bigWidth w_select c_selectBox">
-      </select>
-			
-			<label for="snow_picture_comment">Beskrivelse:</label>
-			<textarea id="snow_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea> 
+		  <div class="pageScroller">
+		    <div class="scrollable" id="snow_picture_scroller">
+					<a class="learning_icon right"  onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+					<a class="make hidden button-image">
+						<img id="snow_picture_img" alt="Trykk her for å ta bilde" class="c_image container-image" src=""/>
+					</a>
+					<div class="no-image make" >Trykk her for å ta bilde </div>
+					
+			 		
+			 		<select id="snow_picture_spec_list" class="bigWidth w_select c_selectBox">
+		      </select>
+					
+					<label for="snow_picture_comment">Beskrivelse:</label>
+					<textarea id="snow_picture_comment" class="c_textarea bigWidth" rows="5" ></textarea>
+				</div>
+			</div> 
 			
 			<div class="addAbort c_color_gradient">
 				<button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_picture.addPicture();">Legg til</button>
