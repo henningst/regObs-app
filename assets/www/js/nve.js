@@ -602,7 +602,7 @@ var main = (function()
     	        				var e = arg.uxEvent;
     	        				var target = arg.uxEvent.target;
     	        		         
-    	        		        if (target instanceof HTMLSelectElement || target instanceof HTMLAnchorElement) {
+    	        		        if (target instanceof HTMLSelectElement || target instanceof HTMLAnchorElement || target instanceof HTMLInputElement) {
     	        		        	console.log("pp: disabling scroller")
     	        		            scroller.disable();
     	        		            this._disable = true;
