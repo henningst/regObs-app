@@ -4,6 +4,9 @@ STAGE_MODE = "stage_mode";
 var geo = {
 	last_page_location : null,
 	requestPosition: function(callback, shouldHandlePosition){
+		if(window.PhoneGap === undefined)
+			return;
+		
 		console.log("henter geo position");
 		
 		if(shouldHandlePosition == undefined)
@@ -582,26 +585,46 @@ var main = (function()
         
         setHeights: function(){
         	var height = jQuery(".sl_container").height();
+        	var bodyHeight = jQuery("body").height();
         	var top = height - 57;
         	
         	jQuery(".addAbort").css("top", (top + 50) + "px");
         	jQuery(".sendGroup").css("top", (top) + "px");
+        	
         	jQuery(".listScroller").css("height", (top- 100) + "px");
+        	jQuery(".pageScroller").css("height", (bodyHeight - 45 -52)+"px")
             
-        	
-        	jQuery("#water_scroller:visible").each(function(){
-	    		scroller = new wink.ui.layout.Scroller({
-	                target: 'water_scroller',
-	                direction: "y"
-	        	});	
-        	});
-        	
         	jQuery(".scrollable:visible").each(function(){
+        		var functions = {
+            			enableContainingElements: function(arg){
+            				if(arg.uxEvent){
+    	        				var e = arg.uxEvent;
+    	        				var target = arg.uxEvent.target;
+    	        		         
+    	        		        if (target instanceof HTMLSelectElement || target instanceof HTMLAnchorElement) {
+    	        		        	console.log("pp: disabling scroller")
+    	        		            scroller.disable();
+    	        		            this._disable = true;
+    	        		        } else if (this._disable) {
+    	        		            scroller.enable();
+    	        		            window.scrollTo(0, 0);
+    	        		            this._selectNode = null;
+    	        		            this._disable = false;
+    	        		        }
+            				}
+            			}
+            	
+            	};
+        		console.log("pp: enabling scrolling for " + jQuery(this).attr("id"))
 	    		scroller = new wink.ui.layout.Scroller({
 	                target: jQuery(this).attr("id"),
-	                direction: "y"
+	                direction: "y",
+	                callbacks: {
+	                	scrollerTouched: { context: functions, method: 'enableContainingElements'}
+	                }
 	        	});	
         	});
+        	
         },
         
         attachToGroup: function(id){
@@ -645,7 +668,7 @@ var main = (function()
         	main.dialogShowing = false;
         	main.dialogStarted = null;
         	
-        	jQuery("body").css("overflow", "inherit");
+        	jQuery("body").css("overflow", "hidden");
         	jQuery('#dialog').hide().unbind("touchmove");
         	jQuery("#footer, .sendGroup").show();
         },
