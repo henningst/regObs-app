@@ -497,6 +497,34 @@ DangerObs = (function(_super) {
 
 })(Observation);
 
+SnowSurfaceObservation = (function(_super) {
+
+  __extends(SnowSurfaceObservation, _super);
+
+  SnowSurfaceObservation.prototype.url = function() {
+    return "" + SERVER_URL + "SnowSurfaceObservation";
+  };
+
+  function SnowSurfaceObservation(RegID, SnowDepth, NewSnowDepth24, NewSnowLine, SnowWindDepth24, SurfaceWaterContentTID, SnowDriftTID, SnowSurfaceTID, SurfaceRougnessTID, FootPenetration, UsageFlagTID, Comment) {
+    this.RegID = RegID;
+    this.SnowDepth = SnowDepth;
+    this.NewSnowDepth24 = NewSnowDepth24;
+    this.NewSnowLine = NewSnowLine;
+    this.SnowWindDepth24 = SnowWindDepth24;
+    this.SurfaceWaterContentTID = SurfaceWaterContentTID;
+    this.SnowDriftTID = SnowDriftTID;
+    this.SnowSurfaceTID = SnowSurfaceTID;
+    this.SurfaceRougnessTID = SurfaceRougnessTID;
+    this.FootPenetration = FootPenetration;
+    this.UsageFlagTID = UsageFlagTID;
+    this.Comment = Comment;
+    this.model = "SnowSurfaceObservation";
+  }
+
+  return SnowSurfaceObservation;
+
+})(Observation);
+
 DestructiveSizeKD = (function() {
 
   function DestructiveSizeKD() {}
@@ -777,14 +805,6 @@ SnowSurfaceKD = (function() {
   function SnowSurfaceKD() {}
 
   return SnowSurfaceKD;
-
-})();
-
-SnowSurfaceObservation = (function() {
-
-  function SnowSurfaceObservation() {}
-
-  return SnowSurfaceObservation;
 
 })();
 
@@ -1155,5 +1175,19 @@ WaterLevelRefKD = (function() {
   }
 
   return WaterLevelRefKD;
+
+})();
+
+SnowDriftKD = (function() {
+
+  function SnowDriftKD(SnowDriftTID, LangKey, SnowDriftName, SnowDriftDescr) {
+    this.SnowDriftTID = SnowDriftTID;
+    this.LangKey = LangKey;
+    this.SnowDriftName = SnowDriftName;
+    this.SnowDriftDescr = SnowDriftDescr;
+    this.url = "" + SERVER_URL + "/SnowDriftKD?$filter=LangKey eq " + LANGUAGE;
+  }
+
+  return SnowDriftKD;
 
 })();

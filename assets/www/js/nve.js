@@ -244,6 +244,7 @@ var main = (function()
 	      	        		'snow_hendelse',
 	      	        		'snow_faresign',
 	      	        		'snow_picture',
+	      	        		'snow_surface',
 	      	        		'ice',
 	      	        		'ice_see_obs',
 	      	        		'ice_see_varsel',
@@ -320,6 +321,7 @@ var main = (function()
             main.fillDropdown(ActivityInfluencedKD, main.fillActivityInfluenced, force);
             main.fillDropdown(DamageExtentKD, main.fillDamageExtent, force);
             main.fillDropdown(WaterLevelRefKD, main.fillWaterLevelKD, force);
+            main.fillDropdown(SnowDriftKD, main.fillSnowDriftKD, force);
         },
         
         carouselMoved: function(data)
@@ -601,10 +603,12 @@ var main = (function()
     	        				var e = arg.uxEvent;
     	        				var target = arg.uxEvent.target;
     	        		         
-    	        		        if (target instanceof HTMLSelectElement || target instanceof HTMLAnchorElement) {
+    	        		        if (target instanceof HTMLSelectElement || target instanceof HTMLAnchorElement || target instanceof HTMLInputElement) {
     	        		            scroller.disable();
     	        		            this._disable = true;
+    	        		            jQuery("body").css("overflow", "inherit");
     	        		        } else if (this._disable) {
+    	        		        	jQuery("body").css("overflow", "none");
     	        		            scroller.enable();
     	        		            window.scrollTo(0, 0);
     	        		            this._selectNode = null;
@@ -681,8 +685,11 @@ var main = (function()
         	});
         },
         
+        fillSnowDriftKD : function(data){
+        	main.saveAndCall(SnowDriftKD, data, [snow_surface.fillSnowDriftKD]);
+        },       
         fillLandSlideSizeKD: function(data){
-        	main.saveAndCall(LandSlideSizeKD, data, [dirt_avalange.fillLandSlideSizeKD])
+        	main.saveAndCall(LandSlideSizeKD, data, [dirt_avalange.fillLandSlideSizeKD]);
         },       
         
         fillLandSlideTriggerKD: function(data){
@@ -849,6 +856,12 @@ var main = (function()
         		case 'snow_faresign':
         			if(status == 'start') {
         				snow_faresign.init();
+        			}
+        			break;
+        			
+        		case 'snow_surface':
+        			if(status == 'start') {
+        				snow_surface.init();
         			}
         			break;
         			

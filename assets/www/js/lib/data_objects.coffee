@@ -190,13 +190,18 @@ class DangerSignKD
 		@url = "#{SERVER_URL}Language(#{LANGUAGE})/DangerSignKD"
 
 class DangerObs extends Observation
-  
 	url : ()  -> "#{SERVER_URL}DangerObs"
 	constructor: (@DangerObsID, @RegID, @GeoHazardTID, @DangerSignTID, @UsageFlagTID, @Comment) ->
 	  @model = "DangerObs"
 	  
 	beforeSend: (index) =>
 	  @DangerObsID = index
+	  
+
+class SnowSurfaceObservation extends Observation
+  url : () -> "#{SERVER_URL}SnowSurfaceObservation"
+  constructor: (@RegID, @SnowDepth, @NewSnowDepth24, @NewSnowLine, @SnowWindDepth24, @SurfaceWaterContentTID, @SnowDriftTID, @SnowSurfaceTID, @SurfaceRougnessTID, @FootPenetration, @UsageFlagTID, @Comment) ->
+    @model = "SnowSurfaceObservation"
 	
 
 class DestructiveSizeKD
@@ -311,8 +316,6 @@ class SnowDriftKD
 class SnowSurfaceKD
 	constructor: ( ) ->
 
-class SnowSurfaceObservation
-	constructor: ( ) ->
 
 class StabilityEvalKD
 	constructor: ( ) ->
@@ -446,4 +449,8 @@ class WaterLevelRefKD
   constructor: (@WaterLevelRefKD, @LangKey, @WaterLevelRefName, @WaterLevelRefDescr) ->
     @url= "#{ SERVER_URL }/WaterLevelRefKD?$filter=LangKey eq #{ LANGUAGE }"
   
+class SnowDriftKD
+  constructor: (@SnowDriftTID, @LangKey, @SnowDriftName, @SnowDriftDescr) ->
+    @url = "#{ SERVER_URL }/SnowDriftKD?$filter=LangKey eq #{ LANGUAGE }"
+    
         

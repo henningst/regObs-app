@@ -33,7 +33,6 @@ var snow_faresign = {
 				$("snow_danger_sign_list").selectedIndex = 0;
 				$("snow_danger_sign_comment").value = "";
 				main.store.getSnow().addObs(obs);
-				snow_page.add('snow_faresign_count');
 				main.panels.slideBack();
 			}, true);
 		},
