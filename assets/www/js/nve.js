@@ -321,6 +321,7 @@ var main = (function()
             main.fillDropdown(ActivityInfluencedKD, main.fillActivityInfluenced, force);
             main.fillDropdown(DamageExtentKD, main.fillDamageExtent, force);
             main.fillDropdown(WaterLevelRefKD, main.fillWaterLevelKD, force);
+            main.fillDropdown(SnowDriftKD, main.fillSnowDriftKD, force);
         },
         
         carouselMoved: function(data)
@@ -606,7 +607,9 @@ var main = (function()
     	        		        	console.log("pp: disabling scroller")
     	        		            scroller.disable();
     	        		            this._disable = true;
+    	        		            jQuery("body").css("overflow", "inherit");
     	        		        } else if (this._disable) {
+    	        		        	jQuery("body").css("overflow", "none");
     	        		            scroller.enable();
     	        		            window.scrollTo(0, 0);
     	        		            this._selectNode = null;
@@ -684,8 +687,11 @@ var main = (function()
         	});
         },
         
+        fillSnowDriftKD : function(data){
+        	main.saveAndCall(SnowDriftKD, data, [snow_surface.fillSnowDriftKD]);
+        },       
         fillLandSlideSizeKD: function(data){
-        	main.saveAndCall(LandSlideSizeKD, data, [dirt_avalange.fillLandSlideSizeKD])
+        	main.saveAndCall(LandSlideSizeKD, data, [dirt_avalange.fillLandSlideSizeKD]);
         },       
         
         fillLandSlideTriggerKD: function(data){
