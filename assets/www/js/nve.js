@@ -604,7 +604,8 @@ var main = (function()
     	        				var e = arg.uxEvent;
     	        				var target = arg.uxEvent.target;
     	        		         
-    	        		        if (target instanceof HTMLSelectElement || target instanceof HTMLAnchorElement || target instanceof HTMLInputElement) {
+    	        		        if (target instanceof HTMLSelectElement || target instanceof HTMLAnchorElement || 
+    	        		        	target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement) {
     	        		            scroller.disable();
     	        		            this._disable = true;
     	        		            jQuery("body").css("overflow", "inherit");
@@ -618,8 +619,6 @@ var main = (function()
     	        		            this._selectNode = null;
     	        		            this._disable = false;
     	        		        }
-    	        		        
-    	        		        
             				}
             			}
             	
@@ -641,6 +640,13 @@ var main = (function()
 		        	this._selectNode = null;
 		        	this._disable = false;
 		        }, false);
+	    		
+	    		document.addEventListener("showkeyboard", function(){
+		    		scroller.disable();
+		            this._disable = true;
+		            jQuery("body").css("overflow", "inherit");
+		            console.log("pp: off");
+	    		}, false);
         	});
         	
         },
