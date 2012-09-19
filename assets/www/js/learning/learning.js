@@ -43,6 +43,10 @@ var learning_page = {
     			$('learning_content').innerHTML = WATER_DANGERSIGN;
     			break;
     			
+    		case 'water_level': 
+    			$('learning_content').innerHTML = WATER_LEVEL;
+    			break;
+    			
     		case 'ice': 
     			break;
     			

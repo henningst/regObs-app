@@ -26,7 +26,7 @@ GA_TRACKER_CODE = "UA-32394009-1";
  */
 var device = {
 	platform: 'android'
-//	platform: 'iphone'
+	//platform: 'iphone'
 };
 
 /*
