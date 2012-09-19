@@ -22,7 +22,7 @@ var snow_surface = {
 		},
 		
 		init: function() {
-			$('header_middle_text').innerHTML = "Sn&oslash;surface";
+			$('header_middle_text').innerHTML = "Sn&oslash;overflate";
 			
 		},
 		

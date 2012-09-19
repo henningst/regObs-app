@@ -18,11 +18,7 @@ class AbstractPackage
   superInit: () =>
     @pages = [@page, @picturePage, @hendelsePage]
     
-    
-    if @name is 'SnowPackage'
-      @m_dangerObs = (@fillAvalancheDangerObs obs for obs in @m_dangerObs)
-    else
-      @m_dangerObs = (@fillDangerObs obs for obs in @m_dangerObs)
+    @m_dangerObs = (@fillObs obs for obs in @m_dangerObs)
       
     @m_pictures = (@fillPicture picture for picture in @m_pictures)
     @m_incident = @fillIncident @m_incident if @m_incident
@@ -190,11 +186,8 @@ class AbstractPackage
   fillPicture: (picture) =>
     new Picture(picture.PictureID, picture.RegID, picture.PictureImage, picture.Photographer, picture.Copyright, picture.Aspect, picture.GeoHazardTID, picture.Comment, picture.RegistrationTID)
     
-  fillDangerObs: (obs) =>
-    new DangerObs(obs.DangerObsID, obs.RegID, obs.GeoHazardTID, obs.DangerSignTID, obs.UsageFlagTID, obs.Comment)
-    
-  fillAvalancheDangerObs: (obs) =>
-    new AvalancheDangerObs(obs.AvalancheDangerObsID, obs.RegID, obs.DangerSignTID, obs.UsageFlagTID, obs.Comment)
+  fillObs: (obs) =>
+    @castedModel(obs)
   
   
   onSend: (page, area) =>

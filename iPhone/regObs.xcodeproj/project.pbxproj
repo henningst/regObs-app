@@ -552,8 +552,8 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					/Users/Shared/Cordova/Frameworks,
@@ -582,8 +582,8 @@
 					"-Obj-C",
 				);
 				PRODUCT_NAME = regObs;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "5EC6FC0C-F44F-4925-A304-D3807964227F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5EC6FC0C-F44F-4925-A304-D3807964227F";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/usr/local/lib/include\" \"$(OBJROOT)/UninstalledProducts/include\" \"$(BUILT_PRODUCTS_DIR)\"";
 				WRAPPER_EXTENSION = app;
@@ -598,8 +598,8 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -628,8 +628,8 @@
 					"-Obj-C",
 				);
 				PRODUCT_NAME = regObs;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "5EC6FC0C-F44F-4925-A304-D3807964227F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5EC6FC0C-F44F-4925-A304-D3807964227F";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/usr/local/lib/include\" \"$(OBJROOT)/UninstalledProducts/include\" \"$(BUILT_PRODUCTS_DIR)\"";
 				VALIDATE_PRODUCT = YES;
