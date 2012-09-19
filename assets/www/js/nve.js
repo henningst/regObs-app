@@ -596,7 +596,8 @@ var main = (function()
         	jQuery(".listScroller").css("height", (top- 100) + "px");
         	jQuery(".pageScroller").css("height", (bodyHeight - 45 -52)+"px")
             
-        	jQuery(".scrollable:visible").each(function(){
+        	jQuery(".scrollable:visible:not(.scrolling)").each(function(){
+        		console.log("pp: adding scroller");
         		var functions = {
             			enableContainingElements: function(arg){
             				if(arg.uxEvent){
@@ -630,6 +631,8 @@ var main = (function()
 	                	scrollerTouched: { context: functions, method: 'enableContainingElements'}
 	                }
 	        	});
+
+	    		jQuery(this).addClass("scrolling");
 	    		
 	    		document.addEventListener("hidekeyboard", function(){
 		        	window.scrollTo(0, 0);
