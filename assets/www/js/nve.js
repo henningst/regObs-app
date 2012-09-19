@@ -237,6 +237,7 @@ var main = (function()
         	    		[
 	      	        		'home',
 	      	        		'settings',
+	      	        		'register',
 	      	        		'snow',
 	      	        		'snow_see_obs',
 	      	        		'snow_see_varsel',
@@ -825,6 +826,12 @@ var main = (function()
         			
         		case 'settings':
         			settings_page.init();
+    				$('star').style.display = 'none';
+        			
+        			break;
+        			
+        		case 'register':
+        			register.init();
     				$('star').style.display = 'none';
         			
         			break;
