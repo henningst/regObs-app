@@ -607,16 +607,18 @@ var main = (function()
     	        		            scroller.disable();
     	        		            this._disable = true;
     	        		            jQuery("body").css("overflow", "inherit");
-    	        		            document.addEventListener("hidekeyboard", function(){
-        	        		        	window.scrollTo(0, 0);
-        	        		        	jQuery("body").css("overflow", "none");
-        	        		            scroller.enable();
-        	        		            this._selectNode = null;
-        	        		            this._disable = false;
-        	        		            document.removeEventListener("hidekeyboard", this);
-    	        		            }, false);
+    	        		            console.log("pp: off");
     	        		            
+    	        		        }else if (this._disable) {
+    	        		        	console.log("pp: on");
+    	        		        	window.scrollTo(0, 0);
+    	        		        	jQuery("body").css("overflow", "none");
+    	        		            scroller.enable();
+    	        		            this._selectNode = null;
+    	        		            this._disable = false;
     	        		        }
+    	        		        
+    	        		        
             				}
             			}
             	
@@ -627,7 +629,15 @@ var main = (function()
 	                callbacks: {
 	                	scrollerTouched: { context: functions, method: 'enableContainingElements'}
 	                }
-	        	});	
+	        	});
+	    		
+	    		document.addEventListener("hidekeyboard", function(){
+		        	window.scrollTo(0, 0);
+		        	jQuery("body").css("overflow", "none");
+		        	scroller.enable();
+		        	this._selectNode = null;
+		        	this._disable = false;
+		        }, false);
         	});
         	
         },
