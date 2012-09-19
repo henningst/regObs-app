@@ -24,6 +24,9 @@ var learning_page = {
     		case 'snow_faresign': 
     			$('learning_content').innerHTML = SNOW_DANGERSIGN;
     			break;
+    		case 'snow_surface':
+    			$('learning_content').innerHTML = SNOW_SURFACE;
+    			break;
     			
     		case 'water': 
     			break;
@@ -77,6 +80,10 @@ var learning_page = {
     			
     		case 'dirt_faresign': 
     			$('learning_content').innerHTML = DIRT_DANGERSIGN;
+    			break;
+    			
+    		case 'dirt_avalange': 
+    			$('learning_content').innerHTML = DIRT_AVALANGE;
     			break; 
     			
     		default:
