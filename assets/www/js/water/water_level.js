@@ -1,5 +1,5 @@
 var water_level = {
-		
+		shouldShowFooter : false,
 		fillWaterLevelKD: function(data) {
 			
 			if(data == null)
