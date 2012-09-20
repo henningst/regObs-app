@@ -250,22 +250,12 @@ input.large
 .w_header_custom
 {
 	position: relative;
-
 	height: 45px;
 	line-height: 45px;
-
 	padding: 0 10px;
-
 	font-size: 24px;
-
 	text-align: center;
 
-/* 	text-shadow: #000 0px -1px 0px; */
-
-	-webkit-box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.7);
-	-moz-box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.7);
-    
-/*     margin-bottom: 10px; */
 }
 .w_button_custom input
 {
