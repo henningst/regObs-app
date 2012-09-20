@@ -237,6 +237,7 @@ var main = (function()
         	    		[
 	      	        		'home',
 	      	        		'settings',
+	      	        		'register',
 	      	        		'snow',
 	      	        		'snow_see_obs',
 	      	        		'snow_see_varsel',
@@ -385,6 +386,7 @@ var main = (function()
         	{
         		SERVER_URL = STAGE;
         		SERVER_LOGIN_URL = STAGE_LOGIN;
+        		REGISTER_URL = PROD_REGISTER_URL;
         		main.inTestMode = false;
         		$('test_button').value = USE_TESTMODE_BUTTON;
         		jQuery('#header').removeClass('testMode');
@@ -394,6 +396,7 @@ var main = (function()
         	{
         		SERVER_URL = TEST;
         		SERVER_LOGIN_URL = TEST_LOGIN;
+        		REGISTER_URL = STAGE_REGISTER_URL;
         		main.inTestMode = true;
         		$('test_button').value = USE_PROD_BUTTON;
         		jQuery('#header').addClass('testMode');
@@ -825,6 +828,12 @@ var main = (function()
         			
         		case 'settings':
         			settings_page.init();
+    				$('star').style.display = 'none';
+        			
+        			break;
+        			
+        		case 'register':
+        			register.init();
     				$('star').style.display = 'none';
         			
         			break;

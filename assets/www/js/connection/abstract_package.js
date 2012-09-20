@@ -9,9 +9,7 @@ AbstractPackage = (function() {
 
     this.onSend = __bind(this.onSend, this);
 
-    this.fillAvalancheDangerObs = __bind(this.fillAvalancheDangerObs, this);
-
-    this.fillDangerObs = __bind(this.fillDangerObs, this);
+    this.fillObs = __bind(this.fillObs, this);
 
     this.fillPicture = __bind(this.fillPicture, this);
 
@@ -85,29 +83,16 @@ AbstractPackage = (function() {
   AbstractPackage.prototype.superInit = function() {
     var obs, picture;
     this.pages = [this.page, this.picturePage, this.hendelsePage];
-    if (this.name === 'SnowPackage') {
-      this.m_dangerObs = (function() {
-        var _i, _len, _ref, _results;
-        _ref = this.m_dangerObs;
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          obs = _ref[_i];
-          _results.push(this.fillAvalancheDangerObs(obs));
-        }
-        return _results;
-      }).call(this);
-    } else {
-      this.m_dangerObs = (function() {
-        var _i, _len, _ref, _results;
-        _ref = this.m_dangerObs;
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          obs = _ref[_i];
-          _results.push(this.fillDangerObs(obs));
-        }
-        return _results;
-      }).call(this);
-    }
+    this.m_dangerObs = (function() {
+      var _i, _len, _ref, _results;
+      _ref = this.m_dangerObs;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        obs = _ref[_i];
+        _results.push(this.fillObs(obs));
+      }
+      return _results;
+    }).call(this);
     this.m_pictures = (function() {
       var _i, _len, _ref, _results;
       _ref = this.m_pictures;
@@ -345,12 +330,8 @@ AbstractPackage = (function() {
     return new Picture(picture.PictureID, picture.RegID, picture.PictureImage, picture.Photographer, picture.Copyright, picture.Aspect, picture.GeoHazardTID, picture.Comment, picture.RegistrationTID);
   };
 
-  AbstractPackage.prototype.fillDangerObs = function(obs) {
-    return new DangerObs(obs.DangerObsID, obs.RegID, obs.GeoHazardTID, obs.DangerSignTID, obs.UsageFlagTID, obs.Comment);
-  };
-
-  AbstractPackage.prototype.fillAvalancheDangerObs = function(obs) {
-    return new AvalancheDangerObs(obs.AvalancheDangerObsID, obs.RegID, obs.DangerSignTID, obs.UsageFlagTID, obs.Comment);
+  AbstractPackage.prototype.fillObs = function(obs) {
+    return this.castedModel(obs);
   };
 
   AbstractPackage.prototype.onSend = function(page, area) {

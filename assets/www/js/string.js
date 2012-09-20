@@ -134,6 +134,8 @@ SNOW_INCIDENT =
 	+ "<li>Hvis det registreres mange nestenulykker hvor ABS sekker har vært involvert, kan man få gode tall på virkningen.</li>"
 	+ "</ul>";
 
+SNOW_SURFACE = "Snøoverflate";
+
 ICE_PICTURE =  
 	  "<H3>Hvordan ta et godt bilde</H3>"
 	+ "<ul>" 
@@ -183,6 +185,8 @@ DIRT_PICTURE =  "DIRT_PICTURE";
 DIRT_DANGERSIGN = "DIRT_DANGERSIGN";
 
 DIRT_INCIDENT = "DIRT_INCIDENT";
+
+DIRT_AVALANGE ="Jordskred/steinsprang";
 
 /*
  * Text om appen og regObs. Vises på førstesiden bak regObssymbolet
