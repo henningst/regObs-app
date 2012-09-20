@@ -688,4 +688,8 @@ ul.actions li{
 .selfScroll{
 	overflow: scroll;
 }
+
+.observation label{
+  margin-top: 10px;	
+}
 	
