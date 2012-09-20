@@ -262,13 +262,13 @@ input.large
 	display: block;
 	position: relative;
 	
-	background: url(../img/back.png);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 75%;
-	border: 0;
-	width: 30px;
+	border: 1px solid #ccc;
+	border-left: none;
 	height: 30px;
+	
+	font-weight: bold;
+	
+	z-index :1;
 }
 
 
@@ -278,6 +278,31 @@ input.large
 	position: absolute;
 	top: 6px;
 	left: 15px;
+}
+
+
+.w_button_custom.w_back::after
+{
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: none;
+  border-top: none;
+  
+  background-color: #ccc;
+  background-image: -webkit-gradient(linear, left top, right bottom, from(rgb(237,237,237)), to(rgb(223,223,223))  );
+  background-image: -moz-linear-gradient(left top, rgb(237,237,237), rgb(223,223,223));
+  position: absolute;
+  
+  content: "";
+  
+  width: 18px;
+    height: 17px;
+    
+  top: 6px;
+    left: -7px;
+    
+    -webkit-transform: rotate(52deg) skew(15deg);;
+    -moz-transform: rotate(52deg) skew(15deg);;
 }
 
 .w_button_custom.w_right
