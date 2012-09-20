@@ -6,10 +6,11 @@ var dirt_avalange = {
 			var size = jQuery("#dirt_avalange_size_list");
 			var trigger = jQuery("#dirt_avalange_trigger_list");
 			var hours = jQuery("#dirt_avalange_time");
+			var comment = jQuery("#dirt_avalange_comment")
 			var date = new Date();
 			date.setHours(date.getHours() - parseInt(hours.val()));
 			
-			var obs = new LandSlideObs(0, date, null,null,null, type.val(), size.val(), trigger.val());
+			var obs = new LandSlideObs(0, date, null,null,null, type.val(), size.val(), trigger.val(), null, comment.val());
 			
 			dirt_page.updateLocation(function(){
 				main.store.getDirt().addObs(obs);
@@ -36,6 +37,15 @@ var dirt_avalange = {
 				}
 			});
 			jQuery( "#dirt_avalange_time" ).val(0);
+		},
+		
+		afterSendRegistration: function() {
+			$("dirt_avalange_type_list").selectedIndex = 0;
+			$("dirt_avalange_size_list").selectedIndex = 0;
+			$("dirt_avalange_trigger_list").selectedIndex = 0;
+			$("dirt_avalange_time").value = 0;
+			jQuery("#dirt_avalange_slider").slider("value", 0);
+			jQuery("#dirt_avalange_comment").val("");
 		},
 		
 		fillLandSlideKD : function(data){
