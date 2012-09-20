@@ -39,6 +39,15 @@ var dirt_avalange = {
 			jQuery( "#dirt_avalange_time" ).val(0);
 		},
 		
+		afterSendRegistration: function() {
+			$("dirt_avalange_type_list").selectedIndex = 0;
+			$("dirt_avalange_size_list").selectedIndex = 0;
+			$("dirt_avalange_trigger_list").selectedIndex = 0;
+			$("dirt_avalange_time").value = 0;
+			jQuery("#dirt_avalange_slider").slider("value", 0);
+			jQuery("#dirt_avalange_comment").val("");
+		},
+		
 		fillLandSlideKD : function(data){
 			var options = jQuery("#dirt_avalange_type_list");
 			//remove if previously inserted
