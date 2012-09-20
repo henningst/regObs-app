@@ -591,9 +591,9 @@ var main = (function()
         setHeights: function(){
         	var height = jQuery(".sl_container").height();
         	var bodyHeight = jQuery("body").height();
-        	var top = height - 57;
+        	var top = height - 52;
         	
-        	jQuery(".addAbort").css("top", (top + 50) + "px");
+        	jQuery(".addAbort").css("top", (top + 45) + "px");
         	jQuery(".sendGroup").css("top", (top) + "px");
         	
         	jQuery(".listScroller").css("height", (top- 100) + "px");
