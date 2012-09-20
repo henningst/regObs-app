@@ -38,4 +38,5 @@ var water_level = {
 		
 		}
 		
-}
+};
+jQuery.extend(water_level, super_obs);

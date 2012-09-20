@@ -278,7 +278,8 @@ body {
             <div class="pageScroller">
                 <div class="scrollable" id="snow_surface_scroller">
                     <p>
-                        <label for="snow_surface_snow_height" style="margin: 15px; display: inline">Sn&oslash;h&oslash;yde:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <input type="number" step="any" placeholder="meter" name="snow_surface_snow_height" id="snow_surface_snow_height" class="large" />
+                        <label for="snow_surface_snow_height" style="margin: 15px; display: inline">Sn&oslash;h&oslash;yde:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> 
+                        <input type="number" step="any" placeholder="cm" name="snow_surface_snow_height" id="snow_surface_snow_height" class="large" />
                     </p>
                     <p>
                         <label for="snow_surface_fresh_snow_amount">Nysn&oslash;mengde:</label> <input type="number" placeholder="meter" name="snow_surface_fresh_snow_amount" id="snow_surface_fresh_snow_amount" class="large" />
@@ -528,17 +529,16 @@ body {
             <div class="pageScroller">
                 <div class="scrollable" id="water_level_scroller">
                     <label for="water_leve_description" style="display: inline">Vannstand</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
-                    <textarea id="water_level_description" class="c_textarea bigWidth" rows="1"></textarea>
+                    <input type="number" placeholder="meter" name="water_level_description" id="water_level_description" class="large" />
 
                     <label for="water_level_reference_list">Referansenivå</label> <select id="water_level_reference_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
                     </select> <input name="water_level_isriver" style="padding-bottom: 20px; margin-bottom: 20px;" type="radio" value="true" checked="checked">Elv <input name="water_level_isriver" style="padding-bottom: 20px; margin-bottom: 20px;" type="radio" value="false">Innsjø/magasin
                 </div>
             </div>
             <div class="addAbort c_color_gradient">
-                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="water_picture.addWaterLevelObs();">Legg til</button>
-                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="water_picture.abort();  ">Avbryt</button>
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="water_level.addWaterLevelObs();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="water_level.abort();">Avbryt</button>
             </div>
-
         </div>
 
         <!-- 	DIRT PAGES -->
@@ -632,21 +632,30 @@ body {
 
         </div>
 
-        <div id="dirt_avalange" class="c_center_page standartTextSize">
+        <div id="dirt_avalange" class="c_center_page standartTextSize observation">
             <div class="pageScroller">
                 <div id="dirt_avalange_scroller" class="scrollable">
                     <div class="bigWidth" style="margin: auto; padding-bottom: 20px;">
-                        <label for="dirt_avalange_time" style="margin: 15px; display: inline">Timer siden:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
+                        <label for="dirt_avalange_time" >Timer siden:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
                         <div style="padding-right: 20%;">
                             <input type="text" id="dirt_avalange_time" disabled="disabled" class="border-less as-text" />t
                         </div>
                         <div id="dirt_avalange_slider"></div>
                     </div>
 
-                    <label for="dirt_avalange_type_list" style="margin: 15px; display: inline">Type:</label> <select id="dirt_avalange_type_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-                    </select> <label for="dirt_avalange_size_list" style="margin: 15px; display: inline">Størrelse:</label> <select id="dirt_avalange_size_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-                    </select> <label for="dirt_avalange_trigger_list" style="margin: 15px; display: inline">Trigger(Utl&oslash;ser):</label> <select id="dirt_avalange_trigger_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+                    <label for="dirt_avalange_type_list" >Type:</label> 
+                    <select id="dirt_avalange_type_list" class="bigWidth w_select c_selectBox">
+                    </select> 
+                    <label for="dirt_avalange_size_list" >Størrelse:</label> 
+                    <select id="dirt_avalange_size_list" class="bigWidth w_select c_selectBox" >
+                    </select> 
+                    <label for="dirt_avalange_trigger_list" >Trigger(Utl&oslash;ser):</label> 
+                    <select id="dirt_avalange_trigger_list" class="bigWidth w_select c_selectBox" >
+                    
                     </select>
+                    <p>
+                      <textarea id="dirt_avalange_comment" name="dirt_avalange_comment" placeholder="Kommentar" rows="4" class="bigWidth"></textarea>
+                    </p>
                 </div>
             </div>
             <div class="addAbort c_color_gradient">
