@@ -685,4 +685,7 @@ ul.actions li{
   padding-bottom: 45px;
 }
 
+.selfScroll{
+	overflow: scroll;
+}
 	
