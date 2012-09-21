@@ -262,7 +262,7 @@ input.large
 	display: block;
 	position: relative;
 	
-	border: 1px solid #ccc;
+	border: 1px solid #333;
 	border-left: none;
 	height: 30px;
 	
@@ -283,8 +283,8 @@ input.large
 
 .w_button_custom.w_back::after
 {
-  border-bottom: 1px solid #ccc;
-  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #333;
+  border-left: 1px solid #333 ;
   border-right: none;
   border-top: none;
   
@@ -296,10 +296,9 @@ input.large
   content: "";
   
   width: 18px;
-    height: 17px;
-    
-  top: 6px;
-    left: -7px;
+  height: 19px;
+  top: 5px;
+  left: -7px;
     
     -webkit-transform: rotate(52deg) skew(15deg);;
     -moz-transform: rotate(52deg) skew(15deg);;
