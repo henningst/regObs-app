@@ -246,6 +246,7 @@ var main = (function()
 	      	        		'snow_faresign',
 	      	        		'snow_picture',
 	      	        		'snow_surface',
+	      	        		'snow_activity',
 	      	        		'ice',
 	      	        		'ice_see_obs',
 	      	        		'ice_see_varsel',
@@ -893,6 +894,12 @@ var main = (function()
         		case 'snow_surface':
         			if(status == 'start') {
         				snow_surface.init();
+        			}
+        			break;
+        			
+        		case 'snow_activity':
+        			if(status == 'start') {
+        				snow_activity.init();
         			}
         			break;
         			
