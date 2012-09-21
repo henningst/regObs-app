@@ -30,10 +30,10 @@ var dirt_avalange = {
 			jQuery( "#dirt_avalange_slider" ).slider({
 				value:0,
 				min: 0,
-				max: 6,
+				max: 14,
 				step: 1,
 				slide: function( event, ui ) {
-					jQuery( "#dirt_avalange_time" ).val( ui.value * ui.value) ;
+					jQuery( "#dirt_avalange_time" ).val( Math.round(Math.exp(ui.value/3))) ;
 				}
 			});
 			jQuery( "#dirt_avalange_time" ).val(0);
