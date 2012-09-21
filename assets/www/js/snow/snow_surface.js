@@ -4,12 +4,14 @@ var snow_surface = {
 		
 		addSnowSurface: function() {
 			var list = jQuery("#snow_surface_drift");
-			var snow_height = jQuery("#snow_surface_snow_height")
+			var snow_height = jQuery("#snow_surface_snow_height");
+			var snow_height_meter = snow_height.val();
+			var snow_height_cm = snow_height_meter / 100;
 			var fresh_snow_amount = jQuery("#snow_surface_fresh_snow_amount")
 			var fresh_snow_limit = jQuery("#snow_surface_fresh_snow_limit")
 		
 			
-			var obs = new SnowSurfaceObservation(0, snow_height.val(), fresh_snow_amount.val(), fresh_snow_limit.val(), null, 0, list.val(), 0, 0, null, 0, null); 
+			var obs = new SnowSurfaceObservation(0, snow_height_cm.toString(), fresh_snow_amount.val(), fresh_snow_limit.val(), null, 0, list.val(), 0, 0, null, 0, null); 
 			
 			snow_page.updateLocation(function(){
 				list.val(0);

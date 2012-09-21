@@ -3,46 +3,25 @@
 <head>
 <title>PhoneGap</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta name="viewport"
-	content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta name="format-detection" content="telephone=no">
 
-<link rel="stylesheet" href="js/wink-1.4.1-nve-default.min.css"
-	type="text/css">
+<link rel="stylesheet" href="js/wink-1.4.1-nve-default.min.css" type="text/css">
 <script type="text/javascript" src="js/wink-1.4.1-nve-default.js"></script>
-<link rel="stylesheet"
-	href="css/ui-lightness/jquery-ui-1.8.23.custom.css" type="text/css">
+<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.23.custom.css" type="text/css">
 
 <link rel="stylesheet" href="css/btn.css" type="text/css">
 <link rel="stylesheet" href="css/nve.css" type="text/css">
 
-<script type="text/javascript" src="js/nve_config.js">
-	
-</script>
-<script type="text/javascript"
-	src="js/dependencies/proj4js-compressed.js">
-	
-</script>
-<script type="text/javascript" src="js/dependencies/datajs-1.0.2.js">
-	
-</script>
-<script type="text/javascript" src="js/dependencies/json2.js">
-	
-</script>
-<script type="text/javascript" src="js/dependencies/jquery.min.js">
-	
-</script>
-<script type="text/javascript" src="js/dependencies/iscroll.js">
-	
-</script>
-<script type="text/javascript"
-	src="js/dependencies/jquery-ui-1.8.23.custom.min.js">
-	
-</script>
-<script type="text/javascript"
-	src="js/dependencies/jquery.ui.touch-punch.min.js"></script>
-<script type="text/javascript"
-	src="js/dependencies/handlebars.runtime-1.0.0.beta.6.js"></script>
+<script type="text/javascript" src="js/nve_config.js"></script>
+<script type="text/javascript" src="js/dependencies/proj4js-compressed.js"></script>
+<script type="text/javascript" src="js/dependencies/datajs-1.0.2.js"></script>
+<script type="text/javascript" src="js/dependencies/json2.js"></script>
+<script type="text/javascript" src="js/dependencies/jquery.min.js"></script>
+<script type="text/javascript" src="js/dependencies/iscroll.js"></script>
+<script type="text/javascript" src="js/dependencies/jquery-ui-1.8.23.custom.min.js"></script>
+<script type="text/javascript" src="js/dependencies/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="js/dependencies/handlebars.runtime-1.0.0.beta.6.js"></script>
 <script type="text/javascript" src="js/templates.js"></script>
 
 
@@ -79,6 +58,7 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/settings_page.js"></script>
 <script type="text/javascript" src="js/login_page.js"></script>
+<script type="text/javascript" src="js/register.js"></script>
 
 
 <script type="text/javascript" src="js/snow/snow.js"></script>
@@ -104,8 +84,7 @@
 <script type="text/javascript" src="js/water/water_faresign.js"></script>
 <script type="text/javascript" src="js/water/water_level.js"></script>
 
-<script type="text/javascript"
-	src="js/connection/PackageWithDangerObs.js"></script>
+<script type="text/javascript" src="js/connection/PackageWithDangerObs.js"></script>
 <script type="text/javascript" src="js/connection/vann_package.js"></script>
 <script type="text/javascript" src="js/connection/snow_package.js"></script>
 <script type="text/javascript" src="js/connection/dirt_package.js"></script>
@@ -143,873 +122,581 @@ body {
 </head>
 
 <body id="mainBody" class="notLoggedIn">
-	<div id="dialog">
-		<div id="shading"></div>
-		<div id="popup">
-			<div id="popup_content"></div>
-		</div>
-	</div>
-
-	<div id="header" class="w_header_custom c_darker_gradient">
-		<div id="back" class="w_button_custom w_back w_left">
-			<input type="button" value="" class="c_color_gradient"
-				onclick="main.panels.slideBack();" />
-		</div>
-		<div class="w_left">
-			<div id="regobs-info" class="header-button"
-				onclick="main.panels.slideTo('information')"></div>
-			<div id="regobs-name" class="w_left">regObs</div>
-		</div>
-		<div id="over_header">
-			<span id="header_middle_text"></span> <a type="button"
-				onclick="main.starred();"> <img id="star" alt=""
-				src="img/stared.png"
-				style="display: none; position: absolute; top: 5px; margin-left: 5px; height: 32px; width: 32px;">
-			</a>
-		</div>
-
-		<div id="login" class="c_right_header_button w_right header-button"
-			onclick="main.panels.slideTo('login_page');"></div>
-	</div>
-	<div id="wrapper">
-		<div id="home">
-			<div class="c_align_central"
-				style="display: table; width: 100%; margin-top: 10%">
-
-				<div class="table_row">
-					<a onclick="main.panels.slideTo('snow')"> <span>Sn&oslash;</span>
-						<img alt="" src="img/snow_button.png"> </a> <a
-						onclick="main.panels.slideTo('ice')"> <span>Is</span> <img
-						alt="" src="img/ice_button.png"> </a>
-				</div>
-
-				<div class="table_row">
-					<a onclick="main.panels.slideTo('water')"> <span>Vann</span> <img
-						alt="" src="img/water_button.png"> </a> <a
-						onclick="main.panels.slideTo('dirt')"> <span>Jord</span> <img
-						alt="" src="img/dirt_button.png"> </a>
-				</div>
-			</div>
-		</div>
-
-		<div id="settings">
-			<div class="standartTextSize c_align_central">
-				<input type='button'
-					class="c_button smallWidth confirmButton w_button w_radius c_color_gradient"
-					id="test_button" value='Bruk testmode' onclick="main.gotoTest();" />
-				<br>
-			</div>
-		</div>
-
-		<div id="login_page">
-			<div class="standartTextSize c_align_central">
-				<label for="login_username">Brukernavn</label> <input type="email"
-					id="login_username" class="large settingsInput" value="" /> <label
-					for="login_possword">Passord</label> <input type="password"
-					id="login_password" class="large settingsInput" value="" /> <input
-					id="loginLogoutButton" type='button'
-					class="c_button smallWidth confirmButton w_button w_radius c_color_gradient"
-					value='Logg inn' onclick="main.clickLogin();" />
-			</div>
-		</div>
-
-		<div id="information">
-			<div>
-				<div>Versjon: 0.12.10</div>
-				<div id="information_content">
-					<p>Her kommer det tekst om regobs og appen.</p>
-				</div>
-
-			</div>
-		</div>
-
-		<!-- 	SNOW - PAGES -->
-		<div id="snow">
-			<div class="c_position_header">
-				<span class="position_header_position">UTM33</span> <span
-					class="position_header_town"></span>
-				<div class="position_header_county">
-					<p style="display: inline; color: white;" class="county_a"></p>
-					<p style="display: inline; color: white;">/</p>
-					<p style="display: inline; color: white;" class="county_b"></p>
-				</div>
-			</div>
-
-			<div class="c_align_central">
-				<input type="button"
-					class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius"
-					value="Nye observasjoner +"
-					onclick="main.panels.slideTo('snow_obs');" /> <input type="button"
-					class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius"
-					value="Se observasjoner"
-					onclick="main.panels.slideTo('snow_see_obs')" /> <input
-					type="button"
-					class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius"
-					value="Se varsel" onclick="main.panels.slideTo('snow_see_varsel')" />
-			</div>
-		</div>
-
-		<div id="snow_see_obs"></div>
-
-		<div id="snow_see_varsel"></div>
-
-		<div id="snow_obs">
-			<div class="c_position_header">
-				<span class="position_header_position">UTM33</span> <span
-					class="position_header_town"></span>
-				<div class="position_header_county">
-					<p style="display: inline; color: white;" class="county_a"></p>
-					<p style="display: inline; color: white;">/</p>
-					<p style="display: inline; color: white;" class="county_b"></p>
-				</div>
-			</div>
-			<div class="listScroller">
-				<ul class="w_list actions scrollable" id="snow_scroller">
-					<li class="w_list_item w_border_bottom"
-						onclick="main.panels.slideTo('snow_hendelse');">Ulykke /
-						Hendelse <span id="snow_hendelse_count" class="notification_buble">0</span>
-						<span class="w_icon arrow"></span></li>
-					<li class="w_list_item w_border_bottom"
-						onclick="main.panels.slideTo('snow_faresign');">Faretegn <span
-						id="snow_faresign_count" class="notification_buble">0</span> <span
-						class="w_icon arrow"></span></li>
-					<li class="w_list_item w_border_bottom"
-						onclick="main.panels.slideTo('snow_surface');">
-						Sn&oslash;overflate <span id="snow_surface_count"
-						class="notification_buble">0</span> <span class="w_icon arrow"></span>
-					</li>
-					<li class="w_list_item w_border_bottom"
-						onclick="main.panels.slideTo('snow_picture');">Bilde <span
-						id="snow_picture_count" class="notification_buble">0</span> <span
-						class="w_icon arrow"></span></li>
-				</ul>
-			</div>
-
-			<div class="sendAndGroup"></div>
-
-		</div>
-
-		<div id="snow_hendelse"
-			class="c_center_page standartTextSize content_page">
-			<div class="pageScroller">
-				<div class="scrollable" id="snow_hendelse_scroller">
-					<label for="snow_hendelse_comment" style="display: inline">Beskrivelse:</label><a
-						class="learning_icon"
-						onclick="main.panels.slideTo('learning_page')"><img
-						src="img/get_info.png" height="25px" width="25px" />
-					</a>
-					<textarea id="snow_hendelse_comment" class="c_textarea bigWidth"
-						rows="5"></textarea>
-
-					<label for="snow_hendelse_activity_list">Aktivitet:</label> <select
-						id="snow_hendelse_activity_list"
-						class="bigWidth w_select c_selectBox"
-						style="padding-bottom: 20px; margin-bottom: 20px;">
-					</select> <label for="snow_hendelse_radius_list">Omfang:</label> <select
-						id="snow_hendelse_radius_list"
-						class="bigWidth w_select c_selectBox"
-						style="padding-bottom: 20px; margin-bottom: 20px;">
-					</select>
-				</div>
-			</div>
-
-			<div class="addAbort c_color_gradient">
-				<button
-					class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention"
-					onclick="snow_hendelse.addHendelse();">Legg til</button>
-				<button
-					class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention"
-					onclick="snow_hendelse.abort();	">Avbryt</button>
-			</div>
-		</div>
-
-		<div id="snow_faresign"
-			class="c_center_page standartTextSize content_page">
-			<div class="pageScroller">
-				<div class="scrollable" id="snow_faresign_scroller">
-					<label for="snow_danger_sign_list"
-						style="margin: 15px; display: inline">Faretegn:</label><a
-						class="learning_icon"
-						onclick="main.panels.slideTo('learning_page')"><img
-						src="img/get_info.png" height="25px" width="25px" />
-					</a> <select id="snow_danger_sign_list"
-						class="bigWidth w_select c_selectBox"
-						style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-					</select>
-
-					<div id="snow_carusel"></div>
-
-					<label for="snow_danger_sign_comment">Beskrivelse:</label>
-					<textarea id="snow_danger_sign_comment" class="c_textarea bigWidth"
-						rows="5"></textarea>
-				</div>
-			</div>
-
-			<div class="addAbort c_color_gradient">
-				<button
-					class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention"
-					onclick="snow_faresign.addFaresign();">Legg til</button>
-				<button
-					class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention"
-					onclick="snow_faresign.abort();	">Avbryt</button>
-			</div>
-		</div>
-
-		<div id="snow_surface"
-			class="c_center_page standartTextSize content_page">
-			<div class="pageScroller">
-				<div class="scrollable" id="snow_surface_scroller">
-					<p>
-						<label for="snow_surface_snow_height"
-							style="margin: 15px; display: inline">Sn&oslash;dybde:</label><a
-							class="learning_icon"
-							onclick="main.panels.slideTo('learning_page')"><img
-							src="img/get_info.png" height="25px" width="25px" />
-						</a> <input type="number" step="any" placeholder="meter"
-							name="snow_surface_snow_height" id="snow_surface_snow_height"
-							class="large" />
-					</p>
-					<p>
-						<label for="snow_surface_fresh_snow_amount">Nysn&oslash;mengde:</label>
-						<input type="number" placeholder="meter"
-							name="snow_surface_fresh_snow_amount"
-							id="snow_surface_fresh_snow_amount" class="large" />
-					</p>
-					<p>
-						<label for="snow_surface_fresh_snow_limit">Nysn&oslash;grense:</label>
-						<input type="number" placeholder="moh"
-							name="snow_surface_fresh_snow_limit"
-							id="snow_surface_fresh_snow_limit" class="large" />
-					</p>
-					<p>
-						<label for="snow_surface_drift">Sn&oslash;fokk:</label> <select
-							name="snow_surface_drift" id="snow_surface_drift"
-							class="bigWidth w_select c_selectBox">
-						</select>
-					</p>
-
-				</div>
-			</div>
-
-			<div class="addAbort c_color_gradient">
-				<button
-					class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention"
-					onclick="snow_surface.addSnowSurface();">Legg til</button>
-				<button
-					class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention"
-					onclick="snow_surface.abort();  ">Avbryt</button>
-			</div>
-		</div>
-
-		<div id="snow_picture" class="c_center_page">
-			<div class="pageScroller">
-				<div class="scrollable" id="snow_picture_scroller">
-					<a class="learning_icon right"
-						onclick="main.panels.slideTo('learning_page')"><img
-						src="img/get_info.png" height="25px" width="25px" />
-					</a> <a class="make hidden button-image"> <img
-						id="snow_picture_img" alt="Trykk her for å ta bilde"
-						class="c_image container-image" src="" /> </a>
-					<div class="no-image make">Trykk her for å ta bilde</div>
-
-
-					<select id="snow_picture_spec_list"
-						class="bigWidth w_select c_selectBox">
-					</select> <label for="snow_picture_comment">Beskrivelse:</label>
-					<textarea id="snow_picture_comment" class="c_textarea bigWidth"
-						rows="5"></textarea>
-				</div>
-			</div>
-
-			<div class="addAbort c_color_gradient">
-				<button
-					class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention"
-					onclick="snow_picture.addPicture();">Legg til</button>
-				<button
-					class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention"
-					onclick="snow_picture.abort();	">Avbryt</button>
-			</div>
-
-		</div>
-
-		<!-- 	ICE - PAGES -->
-		<div id="ice">
-			<div class="c_position_header">
-				<span class="position_header_position">UTM33</span> <span
-					class="position_header_town"></span>
-				<div class="position_header_county">
-					<p style="display: inline; color: white;" class="county_a"></p>
-					<p style="display: inline; color: white;">/</p>
-					<p style="display: inline; color: white;" class="county_b"></p>
-				</div>
-			</div>
-			<div class="c_align_central">
-
-				<input type="button"
-					class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius"
-					value="Nye observasjoner +"
-					onclick="main.panels.slideTo('ice_obs');" /> <input type="button"
-					class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius"
-					value="Se observasjoner"
-					onclick="main.panels.slideTo('ice_see_obs')" /> <input
-					type="button"
-					class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius"
-					value="Se varsel" onclick="main.panels.slideTo('ice_see_varsel')" />
-
-			</div>
-		</div>
-
-		<div id="ice_see_obs"></div>
-
-		<div id="ice_see_varsel"></div>
-
-		<div id="ice_obs">
-			<div class="c_position_header">
-				<span class="position_header_position">UTM33</span> <span
-					class="position_header_town"></span>
-				<div class="position_header_county">
-					<p style="display: inline; color: white;" class="county_a"></p>
-					<p style="display: inline; color: white;">/</p>
-					<p style="display: inline; color: white;" class="county_b"></p>
-				</div>
-			</div>
-
-			<div class="listScroller">
-				<ul class="w_list actions scrollable" id="ice_scroller">
-					<li class="w_list_item w_border_bottom"
-						onclick="main.panels.slideTo('ice_hendelse');">Ulykke /
-						Hendelse <span id="ice_hendelse_count" class="notification_buble">0</span>
-						<span class="w_icon arrow"></span></li>
-					<li class="w_list_item w_border_bottom"
-						onclick="main.panels.slideTo('ice_faresign');">Faretegn <span
-						id="ice_faresign_count" class="notification_buble">0</span> <span
-						class="w_icon arrow"></span></li>
-					<li class="w_list_item w_border_bottom"
-						onclick="main.panels.slideTo('ice_picture');">Bilde <span
-						id="ice_picture_count" class="notification_buble">0</span> <span
-						class="w_icon arrow"></span></li>
-				</ul>
-			</div>
-			<div class="sendAndGroup"></div>
-		</div>
-
-		<div id="ice_hendelse" class="c_center_page standartTextSize">
-			<div class="pageScroller">
-				<div class="scrollable" id="ice_hendelse_scroller">
-					<label for="ice_hendelse_comment" style="display: inline">Beskrivelse:</label><a
-						class="learning_icon"
-						onclick="main.panels.slideTo('learning_page')"><img
-						src="img/get_info.png" height="25px" width="25px" />
-					</a>
-					<textarea id="ice_hendelse_comment" class="c_textarea bigWidth"
-						rows="5"></textarea>
-
-					<label for="ice_hendelse_activity_list">Aktivitet:</label> <select
-						id="ice_hendelse_activity_list"
-						class="bigWidth w_select c_selectBox"
-						style="padding-bottom: 20px; margin-bottom: 20px;">
-					</select> <label for="ice_hendelse_radius_list">Omfang:</label> <select
-						id="ice_hendelse_radius_list"
-						class="bigWidth w_select c_selectBox"
-						style="padding-bottom: 20px; margin-bottom: 20px;">
-					</select>
-				</div>
-			</div>
-
-			<div class="addAbort c_color_gradient">
-				<button
-					class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add"
-					onclick="ice_hendelse.addHendelse();">Legg til</button>
-				<button
-					class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort"
-					onclick="ice_hendelse.abort();	">Avbryt</button>
-			</div>
-
-		</div>
-
-		<div id="ice_faresign" class="c_center_page standartTextSize">
-			<div class="pageScroller">
-				<div class="scrollable" id="ice_faresign_scroller">
-					<label for="ice_danger_sign_list"
-						style="margin: 15px; display: inline">Faresign:</label><a
-						class="learning_icon"
-						onclick="main.panels.slideTo('learning_page')"><img
-						src="img/get_info.png" height="25px" width="25px" />
-					</a> <select id="ice_danger_sign_list"
-						class="bigWidth w_select c_selectBox"
-						style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-					</select>
-
-					<div id="ice_carusel"></div>
-
-					<label for="ice_danger_sign_comment">Beskrivelse:</label>
-					<textarea id="ice_danger_sign_comment" class="c_textarea bigWidth"
-						rows="5"></textarea>
-				</div>
-			</div>
-
-			<div class="addAbort c_color_gradient">
-				<button
-					class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add"
-					onclick="ice_faresign.addFaresign();">Legg til</button>
-				<button
-					class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort"
-					onclick="ice_faresign.abort();	">Avbryt</button>
-			</div>
-		</div>
-
-		<div id="ice_picture" class="c_center_page">
-			<div class="pageScroller">
-				<div class="scrollable" id="ice_picture_scroller">
-					<a class="learning_icon right"
-						onclick="main.panels.slideTo('learning_page')"><img
-						src="img/get_info.png" height="25px" width="25px" />
-					</a> <a class="hidden button-image make"> <img id="ice_picture_img"
-						alt="trykk her for å ta bilde" class="c_image container-image"
-						src="" /> </a>
-					<div class="no-image make">Trykk her for å ta bilde</div>
-
-					<select id="ice_picture_spec_list"
-						class="bigWidth w_select c_selectBox">
-					</select> <label for="ice_picture_comment">Beskrivelse:</label>
-					<textarea id="ice_picture_comment" class="c_textarea bigWidth"
-						rows="5"></textarea>
-				</div>
-			</div>
-
-			<div class="addAbort c_color_gradient">
-				<button
-					class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention"
-					onclick="ice_picture.addPicture();">Legg til</button>
-				<button
-					class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention"
-					onclick="ice_picture.abort();	">Avbryt</button>
-			</div>
-		</div>
-
-		<!-- 	WATER - PAGES -->
-		<div id="water">
-			<div class="c_position_header">
-				<span class="position_header_position">UTM33</span> <span
-					class="position_header_town"></span>
-				<div class="position_header_county">
-					<p style="display: inline; color: white;" class="county_a"></p>
-					<p style="display: inline; color: white;">/</p>
-					<p style="display: inline; color: white;" class="county_b"></p>
-				</div>
-			</div>
-
-			<div class="c_align_central">
-				<input type="button"
-					class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius"
-					value="Nye observasjoner +"
-					onclick="main.panels.slideTo('water_obs');" /> <input type="button"
-					class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius"
-					value="Se observasjoner"
-					onclick="main.panels.slideTo('water_see_obs')" /> <input
-					type="button"
-					class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius"
-					value="Se varsel" onclick="main.panels.slideTo('water_see_varsel')" />
-
-			</div>
-		</div>
-
-		<div id="water_see_obs"></div>
-
-		<div id="water_see_varsel"></div>
-
-		<div id="water_obs">
-			<div class="c_position_header">
-				<span class="position_header_position">UTM33</span> <span
-					class="position_header_town"></span>
-				<div class="position_header_county">
-					<p style="display: inline; color: white;" class="county_a"></p>
-					<p style="display: inline; color: white;">/</p>
-					<p style="display: inline; color: white;" class="county_b"></p>
-				</div>
-			</div>
-
-			<div class="listScroller">
-				<ul id="water_scroller" class="scrollable w_list actions">
-					<li class="w_list_item w_border_bottom"
-						onclick="main.panels.slideTo('water_hendelse');">Ulykke /
-						Hendelse <span id="water_hendelse_count"
-						class="notification_buble">0</span> <span class="w_icon arrow"></span>
-					</li>
-					<li class="w_list_item w_border_bottom"
-						onclick="main.panels.slideTo('water_faresign');">Faretegn <span
-						id="water_faresign_count" class="notification_buble">0</span> <span
-						class="w_icon arrow"></span></li>
-					<li class="w_list_item w_border_bottom"
-						onclick="main.panels.slideTo('water_picture');">Bilde <span
-						id="water_picture_count" class="notification_buble">0</span> <span
-						class="w_icon arrow"></span></li>
-					<li class="w_list_item w_border_bottom"
-						onclick="main.panels.slideTo('water_level');">Vannstand <span
-						id="water_level_count" class="notification_buble">0</span> <span
-						class="w_icon arrow"></span></li>
-
-				</ul>
-			</div>
-			<div class="sendAndGroup"></div>
-		</div>
-
-		<div id="water_hendelse" class="c_center_page standartTextSize">
-			<div class="pageScroller">
-				<div class="scrollable" id="water_hendelse_scroller">
-					<label for="water_hendelse_comment" style="display: inline">Beskrivelse:</label><a
-						class="learning_icon"
-						onclick="main.panels.slideTo('learning_page')"><img
-						src="img/get_info.png" height="25px" width="25px" />
-					</a>
-					<textarea id="water_hendelse_comment" class="c_textarea bigWidth"
-						rows="5"></textarea>
-
-					<label for="water_hendelse_activity_list">Aktivitet:</label> <select
-						id="water_hendelse_activity_list"
-						class="bigWidth w_select c_selectBox"
-						style="padding-bottom: 20px; margin-bottom: 20px;">
-					</select> <label for="water_hendelse_radius_list">Omfang:</label> <select
-						id="water_hendelse_radius_list"
-						class="bigWidth w_select c_selectBox"
-						style="padding-bottom: 20px; margin-bottom: 20px;">
-					</select>
-				</div>
-			</div>
-
-
-			<div class="addAbort c_color_gradient">
-				<button
-					class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add"
-					onclick="water_hendelse.addHendelse();">Legg til</button>
-				<button
-					class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort"
-					onclick="water_hendelse.abort();	">Avbryt</button>
-			</div>
-		</div>
-
-		<div id="water_faresign" class="c_center_page standartTextSize">
-			<div class="pageScroller">
-				<div class="scrollable" id="water_faresign_scroller">
-					<label for="water_danger_sign_list"
-						style="margin: 15px; display: inline">Faresign:</label><a
-						class="learning_icon"
-						onclick="main.panels.slideTo('learning_page')"><img
-						src="img/get_info.png" height="25px" width="25px" />
-					</a> <select id="water_danger_sign_list"
-						class="bigWidth w_select c_selectBox"
-						style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-					</select>
-
-					<div id="water_carusel"></div>
-
-					<label for="water_danger_sign_comment">Beskrivelse:</label>
-					<textarea id="water_danger_sign_comment"
-						class="c_textarea bigWidth" rows="5"></textarea>
-				</div>
-			</div>
-
-			<div class="addAbort c_color_gradient">
-				<button
-					class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add"
-					onclick="water_faresign.addFaresign();">Legg til</button>
-				<button
-					class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort"
-					onclick="water_faresign.abort();	">Avbryt</button>
-			</div>
-		</div>
-
-		<div id="water_picture" class="c_center_page">
-			<div class="pageScroller">
-				<div class="scrollable" id="water_picture_scroller">
-					<a class="learning_icon right"
-						onclick="main.panels.slideTo('learning_page')"><img
-						src="img/get_info.png" height="25px" width="25px" />
-					</a> <a class="hidden button-image make"> <img
-						id="water_picture_img" alt="trykk her for å ta bilde"
-						class="c_image container-image" src="" /> </a>
-					<div class="no-image make">Trykk her for å ta bilde</div>
-
-					<select id="water_picture_spec_list"
-						class="bigWidth w_select c_selectBox">
-					</select> <label for="water_picture_comment">Beskrivelse:</label>
-					<textarea id="water_picture_comment" class="c_textarea bigWidth"
-						rows="5"></textarea>
-				</div>
-			</div>
-			<div class="addAbort c_color_gradient">
-				<button
-					class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add"
-					onclick="water_picture.addPicture();">Legg til</button>
-				<button
-					class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort"
-					onclick="water_picture.abort();  ">Avbryt</button>
-			</div>
-
-		</div>
-		<div id="water_level" class="c_center_page standartTextSize">
-
-			<div class="pageScroller">
-				<div class="scrollable" id="water_level_scroller">
-					<label for="water_leve_description" style="display: inline">Vannstand</label><a
-						class="learning_icon"
-						onclick="main.panels.slideTo('learning_page')"><img
-						src="img/get_info.png" height="25px" width="25px" />
-					</a>
-					<textarea id="water_level_description" class="c_textarea bigWidth"
-						rows="1"></textarea>
-
-					<label for="water_level_reference_list">Referansenivå</label> <select
-						id="water_level_reference_list"
-						class="bigWidth w_select c_selectBox"
-						style="padding-bottom: 20px; margin-bottom: 20px;">
-					</select> <input name="water_level_isriver"
-						style="padding-bottom: 20px; margin-bottom: 20px;" type="radio"
-						value="true" checked="checked">Elv <input
-						name="water_level_isriver"
-						style="padding-bottom: 20px; margin-bottom: 20px;" type="radio"
-						value="false">Innsjø/magasin
-				</div>
-			</div>
-			<div class="addAbort c_color_gradient">
-				<button
-					class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add"
-					onclick="water_picture.addWaterLevelObs();">Legg til</button>
-				<button
-					class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort"
-					onclick="water_picture.abort();  ">Avbryt</button>
-			</div>
-
-		</div>
-
-		<!-- 	DIRT PAGES -->
-		<div id="dirt">
-			<div class="c_position_header">
-				<span class="position_header_position">UTM33</span> <span
-					class="position_header_town"></span>
-				<div class="position_header_county">
-					<p style="display: inline; color: white;" class="county_a"></p>
-					<p style="display: inline; color: white;">/</p>
-					<p style="display: inline; color: white;" class="county_b"></p>
-				</div>
-			</div>
-
-
-			<div class="c_align_central">
-				<input type="button"
-					class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius"
-					value="Nye obs +" onclick="main.panels.slideTo('dirt_obs');" /> <input
-					type="button"
-					class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius"
-					value="Se observasjoner"
-					onclick="main.panels.slideTo('dirt_see_obs')" /> <input
-					type="button"
-					class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius"
-					value="Se varsel" onclick="" />
-			</div>
-		</div>
-
-		<div id="dirt_see_obs"></div>
-
-
-		<!-- 	<div id="dirt_see_varsel"> -->
-		<!-- 		<iframe src="http://regobs.varsom.no/LandSlide"></iframe>  -->
-		<!-- 	</div> -->
-
-		<div id="dirt_obs">
-			<div class="c_position_header">
-				<span class="position_header_position">UTM33</span> <span
-					class="position_header_town"></span>
-				<div class="position_header_county">
-					<p style="display: inline; color: white;" class="county_a"></p>
-					<p style="display: inline; color: white;">/</p>
-					<p style="display: inline; color: white;" class="county_b"></p>
-				</div>
-			</div>
-
-
-			<div class="listScroller">
-				<ul class="w_list actions scrollable" id="dirt_scroller">
-					<li class="w_list_item w_border_bottom"
-						onclick="main.panels.slideTo('dirt_hendelse');">Ulykke /
-						Hendelse <span id="dirt_hendelse_count" class="notification_buble">0</span>
-						<span class="w_icon arrow"></span></li>
-					<li class="w_list_item w_border_bottom"
-						onclick="main.panels.slideTo('dirt_faresign');">Faretegn <span
-						id="dirt_faresign_count" class="notification_buble">0</span> <span
-						class="w_icon arrow"></span></li>
-					<li class="w_list_item w_border_bottom"
-						onclick="main.panels.slideTo('dirt_avalange');">
-						Jordskred/flomskred <span id="dirt_avalange_count"
-						class="notification_buble">0</span> <span class="w_icon arrow"></span>
-					</li>
-
-					<li class="w_list_item w_border_bottom"
-						onclick="main.panels.slideTo('dirt_picture');">Bilde <span
-						id="dirt_picture_count" class="notification_buble">0</span> <span
-						class="w_icon arrow"></span></li>
-
-				</ul>
-			</div>
-			<div class="sendAndGroup"></div>
-		</div>
-
-		<div id="dirt_hendelse" class="c_center_page standartTextSize">
-			<div class="pageScroller">
-				<div class="scrollable" id="dirt_hendelse_scroller">
-					<label for="dirt_hendelse_comment" style="display: inline">Beskrivelse:</label><a
-						class="learning_icon"
-						onclick="main.panels.slideTo('learning_page')"><img
-						src="img/get_info.png" height="25px" width="25px" />
-					</a>
-					<textarea id="dirt_hendelse_comment" class="c_textarea bigWidth"
-						rows="5"></textarea>
-
-					<label for="dirt_hendelse_activity_list">Aktivitet:</label> <select
-						id="dirt_hendelse_activity_list"
-						class="bigWidth w_select c_selectBox"
-						style="padding-bottom: 20px; margin-bottom: 20px;">
-					</select> <label for="dirt_hendelse_radius_list">Omfang:</label> <select
-						id="dirt_hendelse_radius_list"
-						class="bigWidth w_select c_selectBox"
-						style="padding-bottom: 20px; margin-bottom: 20px;">
-					</select>
-				</div>
-			</div>
-
-			<div class="addAbort c_color_gradient">
-				<button
-					class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add"
-					onclick="dirt_hendelse.addHendelse();">Legg til</button>
-				<button
-					class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort"
-					onclick="dirt_hendelse.abort();	">Avbryt</button>
-			</div>
-		</div>
-
-
-
-		<div id="dirt_faresign" class="c_center_page standartTextSize">
-			<div class="pageScroller">
-				<div class="scrollable" id="dirt_faresign_scroller">
-					<label for="dirt_danger_sign_list"
-						style="margin: 15px; display: inline">Faresign:</label><a
-						class="learning_icon"
-						onclick="main.panels.slideTo('learning_page')"><img
-						src="img/get_info.png" height="25px" width="25px" />
-					</a> <select id="dirt_danger_sign_list"
-						class="bigWidth w_select c_selectBox"
-						style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-					</select>
-
-					<div id="dirt_carusel"></div>
-
-					<label for="dirt_danger_sign_comment">Beskrivelse:</label>
-					<textarea id="dirt_danger_sign_comment" class="c_textarea bigWidth"
-						rows="5"></textarea>
-				</div>
-			</div>
-			<div class="addAbort c_color_gradient">
-				<button
-					class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add"
-					onclick="dirt_faresign.addFaresign();">Legg til</button>
-				<button
-					class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort"
-					onclick="dirt_faresign.abort();	">Avbryt</button>
-			</div>
-
-		</div>
-
-		<div id="dirt_avalange" class="c_center_page standartTextSize">
-			<div class="pageScroller">
-				<div id="dirt_avalange_scroller" class="scrollable">
-					<div class="bigWidth" style="margin: auto; padding-bottom: 20px;">
-						<label for="dirt_avalange_time"
-							style="margin: 15px; display: inline">Timer siden:</label><a
-							class="learning_icon"
-							onclick="main.panels.slideTo('learning_page')"><img
-							src="img/get_info.png" height="25px" width="25px" />
-						</a>
-						<div style="padding-right: 20%;">
-							<input type="text" id="dirt_avalange_time" disabled="disabled"
-								class="border-less as-text" />t
-						</div>
-						<div id="dirt_avalange_slider"></div>
-					</div>
-
-					<label for="dirt_avalange_type_list"
-						style="margin: 15px; display: inline">Type:</label> <select
-						id="dirt_avalange_type_list" class="bigWidth w_select c_selectBox"
-						style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-					</select> <label for="dirt_avalange_size_list"
-						style="margin: 15px; display: inline">Størrelse:</label> <select
-						id="dirt_avalange_size_list" class="bigWidth w_select c_selectBox"
-						style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-					</select> <label for="dirt_avalange_trigger_list"
-						style="margin: 15px; display: inline">Trigger(Utl&oslash;ser):</label>
-					<select id="dirt_avalange_trigger_list"
-						class="bigWidth w_select c_selectBox"
-						style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
-					</select>
-				</div>
-			</div>
-			<div class="addAbort c_color_gradient">
-				<button
-					class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add"
-					onclick="dirt_avalange.addAvalange();">Legg til</button>
-				<button
-					class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort"
-					onclick="dirt_avalange.abort();  ">Avbryt</button>
-			</div>
-		</div>
-
-
-		<div id="dirt_picture" class="c_center_page">
-			<div class="pageScroller">
-				<div class="scrollable" id="dirt_picture_scroller">
-					<a class="learning_icon right"
-						onclick="main.panels.slideTo('learning_page')"><img
-						src="img/get_info.png" height="25px" width="25px" />
-					</a> <a class="hidden button-image make"> <img
-						id="dirt_picture_img" alt="trykk her for å ta bilde"
-						class="c_image container-image" src="" /> </a>
-					<div class="no-image make">Trykk her for å ta bilde</div>
-
-					<select id="dirt_picture_spec_list"
-						class="bigWidth w_select c_selectBox">
-					</select> <label for="dirt_picture_comment" style="display: inline">Beskrivelse:</label><a
-						class="learning_icon"
-						onclick="main.panels.slideTo('learning_page')"><img
-						src="img/get_info.png" height="25px" width="25px" />
-					</a>
-					<textarea id="dirt_picture_comment" class="c_textarea bigWidth"
-						rows="5"></textarea>
-				</div>
-			</div>
-			<div class="addAbort c_color_gradient">
-				<button
-					class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add"
-					onclick="dirt_picture.addPicture();">Legg til</button>
-				<button
-					class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort"
-					onclick="dirt_picture.abort();	">Avbryt</button>
-			</div>
-
-		</div>
-
-		<div id="learning_page" class="c_center_page">
-			<div id="learning_content"></div>
-		</div>
-	</div>
-
-	<div id="footer" class="footer">
-		<div class="shortcut home" onclick="main.panels.slideTo('home')"></div>
-		<div class="shortcut fav" onclick="main.slideToFavorite()"></div>
-		<div class="shortcut camera" onclick="main.slideToFavoritePicture()"></div>
-		<div class="shortcut setting last"
-			onclick="main.panels.slideTo('settings')"></div>
-	</div>
-
+    <div id="dialog">
+        <div id="shading"></div>
+        <div id="popup">
+            <div id="popup_content"></div>
+        </div>
+    </div>
+
+    <div id="header" class="w_header_custom c_darker_gradient">
+        <div id="back" class="w_button_custom w_back w_left">
+            <div class="pointer"></div>
+            <input type="button" value="Tilbake" class="c_color_gradient" onclick="main.panels.slideBack();" />
+        </div>
+        <div class="w_left">
+            <div id="regobs-info" class="header-button" onclick="main.panels.slideTo('information')"></div>
+            <div id="regobs-name" class="w_left">regObs</div>
+        </div>
+        <div id="over_header">
+            <span id="header_middle_text"></span> <a type="button" onclick="main.starred();"> <img id="star" alt="" src="img/stared.png" style="display: none; position: absolute; top: 5px; margin-left: 5px; height: 32px; width: 32px;"> </a>
+        </div>
+        <p>
+          <div id="login" class="c_right_header_button w_right header-button" onclick="main.panels.slideTo('login_page');"></div>
+        </p>
+    </div>
+    <div id="wrapper">
+        <div id="home">
+            <div class="c_align_central" style="display: table; width: 100%; margin-top: 10%">
+
+                <div class="table_row">
+                    <a onclick="main.panels.slideTo('snow')">  <img alt="" src="img/snow_button.png"> <span>Sn&oslash;</span> </a> 
+                    <a onclick="main.panels.slideTo('ice')"> <img alt="" src="img/ice_button.png"> <span>Is</span> </a>
+                </div>
+
+                <div class="table_row">
+                    <a onclick="main.panels.slideTo('water')"> <img alt="" src="img/water_button.png"> <span>Vann</span> </a> 
+                    <a onclick="main.panels.slideTo('dirt')"> <img alt="" src="img/dirt_button.png"> <span>Jord</span> </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="settings">
+            <div class="standartTextSize c_align_central">
+                <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Bruk testmode' onclick="main.gotoTest();" /> <br>
+            </div>
+        </div>
+
+        <div id="login_page">
+            <div class="standartTextSize c_align_central">
+                <label for="login_username">Brukernavn</label> 
+                <input type="email" id="login_username" class="large settingsInput" value="" /> 
+                
+                <label for="login_possword">Passord</label> <input type="password" id="login_password" class="large settingsInput" value="" /> 
+                <input id="loginLogoutButton" type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" value='Logg inn' onclick="main.clickLogin();" />
+                <p>
+                  <a href="#" id="loginRegister" onclick="main.panels.slideTo('register')">Opprett konto</a>
+                </p>
+            </div>
+        </div>
+        
+        <div id="register" class="selfScroll">
+          
+        </div>
+
+        <div id="information">
+            <div>
+                <div>Versjon: 0.12.11</div>
+                <div id="information_content">
+                    <p>Her kommer det tekst om regobs og appen.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 	SNOW - PAGES -->
+        <div id="snow">
+            <div class="c_position_header">
+                <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
+                <div class="position_header_county">
+                    <p style="display: inline; color: white;" class="county_a"></p>
+                    <p style="display: inline; color: white;">/</p>
+                    <p style="display: inline; color: white;" class="county_b"></p>
+                </div>
+            </div>
+
+            <div class="c_align_central">
+                <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('snow_obs');" /> <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('snow_see_obs')" /> <input type="button"
+                    class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick="main.panels.slideTo('snow_see_varsel')" />
+            </div>
+        </div>
+
+        <div id="snow_see_obs"></div>
+
+        <div id="snow_see_varsel"></div>
+
+        <div id="snow_obs">
+            <div class="c_position_header">
+                <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
+                <div class="position_header_county">
+                    <p style="display: inline; color: white;" class="county_a"></p>
+                    <p style="display: inline; color: white;">/</p>
+                    <p style="display: inline; color: white;" class="county_b"></p>
+                </div>
+            </div>
+            <div class="listScroller">
+                <ul class="w_list actions scrollable w_radius w_border bigWidth center" id="snow_scroller">
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_hendelse');">Ulykke / Hendelse <span id="snow_hendelse_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                    </li>
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_faresign');">Faretegn <span id="snow_faresign_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                    </li>
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_surface');">Sn&oslash;overflate <span id="snow_surface_count" class="notification_buble">0</span> <span class="w_icon arrow"></span></li>
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_picture');">Bilde <span id="snow_picture_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sendAndGroup"></div>
+
+        </div>
+
+        <div id="snow_hendelse" class="c_center_page standartTextSize content_page">
+            <div class="pageScroller">
+                <div class="scrollable" id="snow_hendelse_scroller">
+                    <label for="snow_hendelse_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
+                    <textarea id="snow_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>
+
+                    <label for="snow_hendelse_activity_list">Aktivitet:</label> <select id="snow_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+                    </select> <label for="snow_hendelse_radius_list">Omfang:</label> <select id="snow_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+                    </select>
+                </div>
+            </div>
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_hendelse.addHendelse();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_hendelse.abort();	">Avbryt</button>
+            </div>
+        </div>
+
+        <div id="snow_faresign" class="c_center_page standartTextSize content_page">
+            <div class="pageScroller">
+                <div class="scrollable" id="snow_faresign_scroller">
+                    <label for="snow_danger_sign_list" style="margin: 15px; display: inline">Faretegn:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <select id="snow_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+                    </select>
+
+                    <div id="snow_carusel"></div>
+
+                    <label for="snow_danger_sign_comment">Beskrivelse:</label>
+                    <textarea id="snow_danger_sign_comment" class="c_textarea bigWidth" rows="5"></textarea>
+                </div>
+            </div>
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_faresign.addFaresign();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_faresign.abort();	">Avbryt</button>
+            </div>
+        </div>
+
+        <div id="snow_surface" class="c_center_page standartTextSize content_page">
+            <div class="pageScroller">
+                <div class="scrollable" id="snow_surface_scroller">
+                    <p>
+                        <label for="snow_surface_snow_height" style="margin: 15px; display: inline">Sn&oslash;h&oslash;yde:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> 
+                        <input type="number" step="any" placeholder="cm" name="snow_surface_snow_height" id="snow_surface_snow_height" class="large" />
+                    </p>
+                    <p>
+                        <label for="snow_surface_fresh_snow_amount">Nysn&oslash;mengde:</label> <input type="number" placeholder="meter" name="snow_surface_fresh_snow_amount" id="snow_surface_fresh_snow_amount" class="large" />
+                    </p>
+                    <p>
+                        <label for="snow_surface_fresh_snow_limit">Nysn&oslash;grense:</label> <input type="number" placeholder="moh" name="snow_surface_fresh_snow_limit" id="snow_surface_fresh_snow_limit" class="large" />
+                    </p>
+                    <p>
+                        <label for="snow_surface_drift">Sn&oslash;fokk:</label> <select name="snow_surface_drift" id="snow_surface_drift" class="bigWidth w_select c_selectBox">
+                        </select>
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_surface.addSnowSurface();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_surface.abort();  ">Avbryt</button>
+            </div>
+        </div>
+
+        <div id="snow_picture" class="c_center_page">
+            <div class="pageScroller">
+                <div class="scrollable" id="snow_picture_scroller">
+                    <a class="learning_icon right" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <a class="make hidden button-image"> <img id="snow_picture_img" alt="Trykk her for å ta bilde" class="c_image container-image" src="" /> </a>
+                    <div class="no-image make">Trykk her for å ta bilde</div>
+
+
+                    <select id="snow_picture_spec_list" class="bigWidth w_select c_selectBox">
+                    </select> <label for="snow_picture_comment">Beskrivelse:</label>
+                    <textarea id="snow_picture_comment" class="c_textarea bigWidth" rows="5"></textarea>
+                </div>
+            </div>
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_picture.addPicture();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_picture.abort();	">Avbryt</button>
+            </div>
+
+        </div>
+
+        <!-- 	ICE - PAGES -->
+        <div id="ice">
+            <div class="c_position_header">
+                <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
+                <div class="position_header_county">
+                    <p style="display: inline; color: white;" class="county_a"></p>
+                    <p style="display: inline; color: white;">/</p>
+                    <p style="display: inline; color: white;" class="county_b"></p>
+                </div>
+            </div>
+            <div class="c_align_central">
+
+                <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('ice_obs');" /> <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('ice_see_obs')" /> <input type="button"
+                    class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick="main.panels.slideTo('ice_see_varsel')" />
+
+            </div>
+        </div>
+
+        <div id="ice_see_obs"></div>
+
+        <div id="ice_see_varsel"></div>
+
+        <div id="ice_obs">
+            <div class="c_position_header">
+                <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
+                <div class="position_header_county">
+                    <p style="display: inline; color: white;" class="county_a"></p>
+                    <p style="display: inline; color: white;">/</p>
+                    <p style="display: inline; color: white;" class="county_b"></p>
+                </div>
+            </div>
+
+            <div class="listScroller">
+                <ul class="w_list actions scrollable w_radius w_border bigWidth center" id="ice_scroller">
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('ice_hendelse');">Ulykke / Hendelse <span id="ice_hendelse_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                    </li>
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('ice_faresign');">Faretegn <span id="ice_faresign_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                    </li>
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('ice_picture');">Bilde <span id="ice_picture_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="sendAndGroup"></div>
+        </div>
+
+        <div id="ice_hendelse" class="c_center_page standartTextSize">
+            <div class="pageScroller">
+                <div class="scrollable" id="ice_hendelse_scroller">
+                    <label for="ice_hendelse_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
+                    <textarea id="ice_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>
+
+                    <label for="ice_hendelse_activity_list">Aktivitet:</label> <select id="ice_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+                    </select> <label for="ice_hendelse_radius_list">Omfang:</label> <select id="ice_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+                    </select>
+                </div>
+            </div>
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="ice_hendelse.addHendelse();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="ice_hendelse.abort();	">Avbryt</button>
+            </div>
+
+        </div>
+
+        <div id="ice_faresign" class="c_center_page standartTextSize">
+            <div class="pageScroller">
+                <div class="scrollable" id="ice_faresign_scroller">
+                    <label for="ice_danger_sign_list" style="margin: 15px; display: inline">Faresign:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <select id="ice_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+                    </select>
+
+                    <div id="ice_carusel"></div>
+
+                    <label for="ice_danger_sign_comment">Beskrivelse:</label>
+                    <textarea id="ice_danger_sign_comment" class="c_textarea bigWidth" rows="5"></textarea>
+                </div>
+            </div>
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="ice_faresign.addFaresign();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="ice_faresign.abort();	">Avbryt</button>
+            </div>
+        </div>
+
+        <div id="ice_picture" class="c_center_page">
+            <div class="pageScroller">
+                <div class="scrollable" id="ice_picture_scroller">
+                    <a class="learning_icon right" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <a class="hidden button-image make"> <img id="ice_picture_img" alt="trykk her for å ta bilde" class="c_image container-image" src="" /> </a>
+                    <div class="no-image make">Trykk her for å ta bilde</div>
+
+                    <select id="ice_picture_spec_list" class="bigWidth w_select c_selectBox">
+                    </select> <label for="ice_picture_comment">Beskrivelse:</label>
+                    <textarea id="ice_picture_comment" class="c_textarea bigWidth" rows="5"></textarea>
+                </div>
+            </div>
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="ice_picture.addPicture();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="ice_picture.abort();	">Avbryt</button>
+            </div>
+        </div>
+
+        <!-- 	WATER - PAGES -->
+        <div id="water">
+            <div class="c_position_header">
+                <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
+                <div class="position_header_county">
+                    <p style="display: inline; color: white;" class="county_a"></p>
+                    <p style="display: inline; color: white;">/</p>
+                    <p style="display: inline; color: white;" class="county_b"></p>
+                </div>
+            </div>
+
+            <div class="c_align_central">
+                <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('water_obs');" /> <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('water_see_obs')" /> <input type="button"
+                    class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick="main.panels.slideTo('water_see_varsel')" />
+
+            </div>
+        </div>
+
+        <div id="water_see_obs"></div>
+
+        <div id="water_see_varsel"></div>
+
+        <div id="water_obs">
+            <div class="c_position_header">
+                <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
+                <div class="position_header_county">
+                    <p style="display: inline; color: white;" class="county_a"></p>
+                    <p style="display: inline; color: white;">/</p>
+                    <p style="display: inline; color: white;" class="county_b"></p>
+                </div>
+            </div>
+
+            <div class="listScroller">
+                <ul id="water_scroller" class="w_list actions scrollable w_radius w_border bigWidth center">
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_hendelse');">Ulykke / Hendelse <span id="water_hendelse_count" class="notification_buble">0</span> <span class="w_icon arrow"></span></li>
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_faresign');">Faretegn <span id="water_faresign_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                    </li>
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_picture');">Bilde <span id="water_picture_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                    </li>
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('water_level');">Vannstand <span id="water_level_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="sendAndGroup"></div>
+        </div>
+
+        <div id="water_hendelse" class="c_center_page standartTextSize">
+            <div class="pageScroller">
+                <div class="scrollable" id="water_hendelse_scroller">
+                    <label for="water_hendelse_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
+                    <textarea id="water_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>
+
+                    <label for="water_hendelse_activity_list">Aktivitet:</label> <select id="water_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+                    </select> <label for="water_hendelse_radius_list">Omfang:</label> <select id="water_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="water_hendelse.addHendelse();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="water_hendelse.abort();	">Avbryt</button>
+            </div>
+        </div>
+
+        <div id="water_faresign" class="c_center_page standartTextSize">
+            <div class="pageScroller">
+                <div class="scrollable" id="water_faresign_scroller">
+                    <label for="water_danger_sign_list" style="margin: 15px; display: inline">Faresign:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <select id="water_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+                    </select>
+
+                    <div id="water_carusel"></div>
+
+                    <label for="water_danger_sign_comment">Beskrivelse:</label>
+                    <textarea id="water_danger_sign_comment" class="c_textarea bigWidth" rows="5"></textarea>
+                </div>
+            </div>
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="water_faresign.addFaresign();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="water_faresign.abort();	">Avbryt</button>
+            </div>
+        </div>
+
+        <div id="water_picture" class="c_center_page">
+            <div class="pageScroller">
+                <div class="scrollable" id="water_picture_scroller">
+                    <a class="learning_icon right" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <a class="hidden button-image make"> <img id="water_picture_img" alt="trykk her for å ta bilde" class="c_image container-image" src="" /> </a>
+                    <div class="no-image make">Trykk her for å ta bilde</div>
+
+                    <select id="water_picture_spec_list" class="bigWidth w_select c_selectBox">
+                    </select> <label for="water_picture_comment">Beskrivelse:</label>
+                    <textarea id="water_picture_comment" class="c_textarea bigWidth" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="water_picture.addPicture();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="water_picture.abort();  ">Avbryt</button>
+            </div>
+
+        </div>
+        <div id="water_level" class="c_center_page standartTextSize">
+
+            <div class="pageScroller">
+                <div class="scrollable" id="water_level_scroller">
+                    <label for="water_leve_description" style="display: inline">Vannstand</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
+                    <input type="number" placeholder="meter" name="water_level_description" id="water_level_description" class="large" />
+
+                    <label for="water_level_reference_list">Referansenivå</label> <select id="water_level_reference_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+                    </select> <input name="water_level_isriver" style="padding-bottom: 20px; margin-bottom: 20px;" type="radio" value="true" checked="checked">Elv <input name="water_level_isriver" style="padding-bottom: 20px; margin-bottom: 20px;" type="radio" value="false">Innsjø/magasin
+                </div>
+            </div>
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="water_level.addWaterLevelObs();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="water_level.abort();">Avbryt</button>
+            </div>
+        </div>
+
+        <!-- 	DIRT PAGES -->
+        <div id="dirt">
+            <div class="c_position_header">
+                <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
+                <div class="position_header_county">
+                    <p style="display: inline; color: white;" class="county_a"></p>
+                    <p style="display: inline; color: white;">/</p>
+                    <p style="display: inline; color: white;" class="county_b"></p>
+                </div>
+            </div>
+
+
+            <div class="c_align_central">
+                <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye obs +" onclick="main.panels.slideTo('dirt_obs');" /> <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('dirt_see_obs')" /> <input type="button"
+                    class="disabled c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se varsel" onclick="" />
+            </div>
+        </div>
+
+        <div id="dirt_see_obs"></div>
+
+
+        <!-- 	<div id="dirt_see_varsel"> -->
+        <!-- 		<iframe src="http://regobs.varsom.no/LandSlide"></iframe>  -->
+        <!-- 	</div> -->
+
+        <div id="dirt_obs">
+            <div class="c_position_header">
+                <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
+                <div class="position_header_county">
+                    <p style="display: inline; color: white;" class="county_a"></p>
+                    <p style="display: inline; color: white;">/</p>
+                    <p style="display: inline; color: white;" class="county_b"></p>
+                </div>
+            </div>
+
+
+            <div class="listScroller">
+                <ul class="w_list actions scrollable w_radius w_border bigWidth center" id="dirt_scroller">
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('dirt_hendelse');">Ulykke / Hendelse <span id="dirt_hendelse_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                    </li>
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('dirt_faresign');">Faretegn <span id="dirt_faresign_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                    </li>
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('dirt_avalange');">Jordskred/flomskred <span id="dirt_avalange_count" class="notification_buble">0</span> <span class="w_icon arrow"></span></li>
+
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('dirt_picture');">Bilde <span id="dirt_picture_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="sendAndGroup"></div>
+        </div>
+
+        <div id="dirt_hendelse" class="c_center_page standartTextSize">
+            <div class="pageScroller">
+                <div class="scrollable" id="dirt_hendelse_scroller">
+                    <label for="dirt_hendelse_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
+                    <textarea id="dirt_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>
+
+                    <label for="dirt_hendelse_activity_list">Aktivitet:</label> <select id="dirt_hendelse_activity_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+                    </select> <label for="dirt_hendelse_radius_list">Omfang:</label> <select id="dirt_hendelse_radius_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+                    </select>
+                </div>
+            </div>
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_hendelse.addHendelse();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_hendelse.abort();	">Avbryt</button>
+            </div>
+        </div>
+
+
+
+        <div id="dirt_faresign" class="c_center_page standartTextSize">
+            <div class="pageScroller">
+                <div class="scrollable" id="dirt_faresign_scroller">
+                    <label for="dirt_danger_sign_list" style="margin: 15px; display: inline">Faresign:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <select id="dirt_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
+                    </select>
+
+                    <div id="dirt_carusel"></div>
+
+                    <label for="dirt_danger_sign_comment">Beskrivelse:</label>
+                    <textarea id="dirt_danger_sign_comment" class="c_textarea bigWidth" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_faresign.addFaresign();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_faresign.abort();	">Avbryt</button>
+            </div>
+
+        </div>
+
+        <div id="dirt_avalange" class="c_center_page standartTextSize observation">
+            <div class="pageScroller">
+                <div id="dirt_avalange_scroller" class="scrollable">
+                    <div class="bigWidth" style="margin: auto; padding-bottom: 20px;">
+                        <label for="dirt_avalange_time" >Timer siden:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
+                        <div style="padding-right: 20%;">
+                            <input type="text" id="dirt_avalange_time" disabled="disabled" class="border-less as-text" />t
+                        </div>
+                        <div id="dirt_avalange_slider"></div>
+                    </div>
+
+                    <label for="dirt_avalange_type_list" >Type:</label> 
+                    <select id="dirt_avalange_type_list" class="bigWidth w_select c_selectBox">
+                    </select> 
+                    <label for="dirt_avalange_size_list" >Størrelse:</label> 
+                    <select id="dirt_avalange_size_list" class="bigWidth w_select c_selectBox" >
+                    </select> 
+                    <label for="dirt_avalange_trigger_list" >Trigger(Utl&oslash;ser):</label> 
+                    <select id="dirt_avalange_trigger_list" class="bigWidth w_select c_selectBox" >
+                    
+                    </select>
+                    <p>
+                      <textarea id="dirt_avalange_comment" name="dirt_avalange_comment" placeholder="Kommentar" rows="4" class="bigWidth"></textarea>
+                    </p>
+                </div>
+            </div>
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_avalange.addAvalange();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_avalange.abort();  ">Avbryt</button>
+            </div>
+        </div>
+
+
+        <div id="dirt_picture" class="c_center_page">
+            <div class="pageScroller">
+                <div class="scrollable" id="dirt_picture_scroller">
+                    <a class="learning_icon right" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <a class="hidden button-image make"> <img id="dirt_picture_img" alt="trykk her for å ta bilde" class="c_image container-image" src="" /> </a>
+                    <div class="no-image make">Trykk her for å ta bilde</div>
+
+                    <select id="dirt_picture_spec_list" class="bigWidth w_select c_selectBox">
+                    </select> <label for="dirt_picture_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
+                    <textarea id="dirt_picture_comment" class="c_textarea bigWidth" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="dirt_picture.addPicture();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="dirt_picture.abort();	">Avbryt</button>
+            </div>
+
+        </div>
+
+        <div id="learning_page" class="c_center_page">
+            <div id="learning_content"></div>
+        </div>
+    </div>
+
+    <div id="footer" class="footer">
+        <div class="shortcut home" onclick="main.panels.slideTo('home')"></div>
+        <div class="shortcut fav" onclick="main.slideToFavorite()"></div>
+        <div class="shortcut camera" onclick="main.slideToFavoritePicture()"></div>
+        <div class="shortcut setting last" onclick="main.panels.slideTo('settings')"></div>
+    </div>
 
 
 </body>

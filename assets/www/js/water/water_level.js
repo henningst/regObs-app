@@ -1,5 +1,5 @@
 var water_level = {
-		
+		shouldShowFooter : false,
 		fillWaterLevelKD: function(data) {
 			
 			if(data == null)
@@ -38,4 +38,5 @@ var water_level = {
 		
 		}
 		
-}
+};
+jQuery.extend(water_level, super_obs);
