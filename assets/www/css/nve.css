@@ -336,6 +336,15 @@ input.large
 	width: 60%;
 }
 
+.center{
+  margin:auto;
+}
+
+.actions{
+	margin-top : 10px;
+	margin-bottom: 45px;
+}
+
 .w_icon.arrow{
   background-image: url("../img/arrow.png");
   background-size: 50%;	
@@ -696,7 +705,6 @@ ul.actions li{
 
 .listScroller ul, .listScroller .scrollable, .pageScroller .scrollable{
   position: relative;	
-  padding-bottom: 45px;
 }
 
 .selfScroll{
