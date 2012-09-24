@@ -21,17 +21,43 @@ var snow_activity = {
 			$('header_middle_text').innerHTML = "Skredaktivitet";
 			
 			TemplateWireing.insertSlider("snow_activity_slider_placeholder", "snow_acitivty");
+			
+			$('snow_activity_carusel_count').appendChild(
+				main.createCarousel("snow_activity_carusel_count_carusel", jQuery.map(this.estimatedNumKD, function(elem, i){
+					return elem.EstimatedNumName;
+				})).getDomNode()
+			);
+			
+			$('snow_activity_carusel_size').appendChild(
+				main.createCarousel("snow_activity_carusel_size_carusel", jQuery.map(this.destructiveSizeKD, function(elem, i){
+					return elem.DestructiveSizeName;
+				})).getDomNode()
+			);
+			
+			$('snow_activity_carusel_type').appendChild(
+				main.createCarousel("snow_activity_carusel_type_carusel", jQuery.map(this.avalancheKD, function(elem, i){
+					return elem.AvalancheName;
+				})).getDomNode()
+			);
+				
 		},
 		
-		fillSnowDriftKD : function(data){
-			var options = jQuery("#snow_surface_drift");
-			
-			//remove if previously inserted
-			jQuery.each(options, function() {jQuery(this).find('option').remove();});
-			
-			jQuery.each(data.results, function() {
-				options.append(jQuery("<option />").val(this.SnowDriftTID).text(this.SnowDriftName));
+		fillEstimatedNumKD: function(data){
+			snow_activity.estimatedNumKD = jQuery.map(data.results, function(elem, i){
+				return jQuery.extend(new EstimatedNumKD(), elem);
+			});
+		},
+		fillAvalancheKD: function(data){
+			snow_activity.avalancheKD = jQuery.map(data.results, function(elem, i){
+				return jQuery.extend(new AvalancheKD(), elem);
+			});
+		},
+		fillDestructiveSizeKD: function(data){
+			snow_activity.destructiveSizeKD= jQuery.map(data.results, function(elem, i){
+				return jQuery.extend(new DestructiveSizeKD(), elem);
 			});
 		}
+		
+		
 };
 jQuery.extend(snow_activity, super_obs);

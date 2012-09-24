@@ -200,8 +200,8 @@ var main = (function()
 		  }else{
 	        jQuery(".numPackages").hide();
         	console.log("------------ removeing ------------- ")
-        	new LocalNotification().cancelAll();
-        	new LocalNotification().cancel(4);
+//        	new LocalNotification().cancelAll();
+//        	new LocalNotification().cancel(4);
         	main.store.setNotificationId(null);
 		  }
 		},
@@ -324,6 +324,10 @@ var main = (function()
             main.fillDropdown(DamageExtentKD, main.fillDamageExtent, force);
             main.fillDropdown(WaterLevelRefKD, main.fillWaterLevelKD, force);
             main.fillDropdown(SnowDriftKD, main.fillSnowDriftKD, force);
+            
+            main.fillDropdown(EstimatedNumKD, main.fillEstimatedNumKD, force);
+            main.fillDropdown(DestructiveSizeKD, main.fillDestructiveSizeKD, force);
+            main.fillDropdown(AvalancheKD, main.fillAvalancheKD, force);
         },
         
         carouselMoved: function(data)
@@ -609,7 +613,8 @@ var main = (function()
     	        				var target = arg.uxEvent.target;
     	        		         
     	        		        if (target instanceof HTMLSelectElement || target instanceof HTMLAnchorElement || 
-    	        		        	target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement) {
+    	        		        	target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement ||
+    	        		        	jQuery(target).parents(".carusel").length > 0) {
     	        		            scroller.disable();
     	        		            this._disable = true;
     	        		            jQuery("body").css("overflow", "inherit");
@@ -710,6 +715,19 @@ var main = (function()
         		f(data);
         	});
         },
+        
+
+        fillEstimatedNumKD : function(data){
+        	main.saveAndCall(EstimatedNumKD, data, [snow_activity.fillEstimatedNumKD]);
+        },       
+        
+        fillAvalancheKD : function(data){
+        	main.saveAndCall(AvalancheKD, data, [snow_activity.fillAvalancheKD]);
+        },       
+
+        fillDestructiveSizeKD : function(data){
+        	main.saveAndCall(DestructiveSizeKD , data, [snow_activity.fillDestructiveSizeKD]);
+        },       
         
         fillSnowDriftKD : function(data){
         	main.saveAndCall(SnowDriftKD, data, [snow_surface.fillSnowDriftKD]);
