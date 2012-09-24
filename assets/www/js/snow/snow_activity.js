@@ -20,6 +20,7 @@ var snow_activity = {
 		init: function() {
 			$('header_middle_text').innerHTML = "Skredaktivitet";
 			
+			TemplateWireing.insertSlider("snow_activity_slider_placeholder", "snow_acitivty");
 		},
 		
 		fillSnowDriftKD : function(data){

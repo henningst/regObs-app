@@ -5,13 +5,13 @@ TemplateWireingFunctions = (function() {
 
   function TemplateWireingFunctions() {}
 
-  TemplateWireingFunctions.prototype.insertSlider = function(id, name) {
+  TemplateWireingFunctions.prototype.insertSlider = function(placeholderId, namespace) {
     var placeholder;
-    placeholder = jQuery("#" + id);
+    placeholder = jQuery("#" + placeholderId);
     placeholder.html(Handlebars.templates.slider({
-      name: name
+      name: namespace
     }));
-    jQuery("#" + name + "_slider").slider({
+    jQuery("#" + namespace + "_slider").slider({
       value: 0,
       min: 0,
       max: 14,
@@ -19,19 +19,19 @@ TemplateWireingFunctions = (function() {
       slide: function(event, ui) {
         var display, hours;
         hours = Math.round(Math.exp(ui.value / 3));
-        jQuery("#" + name + "_time_since").val(hours);
+        jQuery("#" + namespace + "_time_since").val(hours);
         display = hours;
-        jQuery("#" + name + "_unit").text("t");
+        jQuery("#" + namespace + "_unit").text("t");
         if (hours > 24) {
           display = Math.round((hours / 24) * 10) / 10;
-          jQuery("#" + name + "_unit").text("d");
+          jQuery("#" + namespace + "_unit").text("d");
         }
-        return jQuery("#" + name + "_time").val(display);
+        return jQuery("#" + namespace + "_time").val(display);
       }
     });
-    jQuery("#" + name + "_unit").text("t");
-    jQuery("#" + name + "_time").val(0);
-    return jQuery("#" + name + "_time_since").val(0);
+    jQuery("#" + namespace + "_unit").text("t");
+    jQuery("#" + namespace + "_time").val(0);
+    return jQuery("#" + namespace + "_time_since").val(0);
   };
 
   return TemplateWireingFunctions;
