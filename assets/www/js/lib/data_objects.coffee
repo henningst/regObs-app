@@ -205,6 +205,10 @@ class SnowSurfaceObservation extends Observation
   constructor: (@RegID, @SnowDepth, @NewSnowDepth24, @NewSnowLine, @SnowWindDepth24, @SurfaceWaterContentTID, @SnowDriftTID, @SnowSurfaceTID, @SurfaceRougnessTID, @FootPenetration, @UsageFlagTID, @Comment) ->
     @model = "SnowSurfaceObservation"
 	
+class AvalancheActivityObs extends Observation
+  url : () -> "#{SERVER_URL}AvalancheActivityObs"
+  constructor: (@RegID, @AvalancheActivityObsID, @Aspect,@HeigthStartZone,@DestructiveSizeTID,@EstimatedNumTID,@AvalancheTID,@AvalancheTriggerTID,@TerrainStartZoneTID,@DtAvalancheTime,@SnowLine,@UsageFlagTID,@Comment)->
+    @model="AvalancheActivityObs"
 
 class DestructiveSizeKD
   url : null
@@ -323,6 +327,8 @@ class SnowDriftKD
 
 class SnowSurfaceKD
 	constructor: ( ) ->
+
+
 
 
 class StabilityEvalKD

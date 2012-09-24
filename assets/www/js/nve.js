@@ -131,6 +131,8 @@ var main = (function()
     	
     	lastRegID: [],
     	
+    	caruselListeners: [],
+    	
     	addLastRegID: function(regId){
     		console.log("adding regid " + regId);
     		if(main.lastRegID.length == 0)
@@ -372,8 +374,19 @@ var main = (function()
         	case DIRT:
         		dirt_faresign.changeCarouselTo(data.currentItemIndex);
         		break;
+        	default:
+        		main.caruselEvent(data);
         	}
         },
+        
+        caruselEvent : function(data){
+        	main.caruselListeners[data.carouselId](data.currentItemIndex);
+        },
+        
+        listenForCaruselEvent: function(id, callback){
+        	main.caruselListeners[id] = callback;
+        },
+        
         
         gotoTest: function ()
         {
