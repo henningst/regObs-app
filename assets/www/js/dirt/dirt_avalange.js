@@ -5,8 +5,8 @@ var dirt_avalange = {
 			var type = jQuery("#dirt_avalange_type_list");
 			var size = jQuery("#dirt_avalange_size_list");
 			var trigger = jQuery("#dirt_avalange_trigger_list");
+			var comment = jQuery("#dirt_avalange_comment");
 			var hours = jQuery("#dirt_avalange_time_since");
-			var comment = jQuery("#dirt_avalange_comment")
 			var date = new Date();
 			date.setHours(date.getHours() - parseInt(hours.val()));
 			
@@ -18,39 +18,13 @@ var dirt_avalange = {
 				
 				main.panels.slideBack();
 				
-				type.val($("#target option:first").val());
-				size.val($("#target option:first").val());
-				trigger.val($("#target option:first").val());
 			},true);
 		},
 		
 		init: function() {
 			$('header_middle_text').innerHTML = "Jordskred/flomskred";
 			
-			jQuery( "#dirt_avalange_slider" ).slider({
-				value:0,
-				min: 0,
-				max: 14,
-				step: 1,
-				slide: function( event, ui ) {
-					var hours = Math.round(Math.exp(ui.value/3));
-					jQuery("#dirt_avalange_time_since").val(hours);
-					
-					var display = hours;
-					jQuery("#dirt_avalange_unit").text("t");
-					if(hours > 24)
-					{
-						display = Math.round((hours / 24) * 10)/10;
-						jQuery("#dirt_avalange_unit").text("d");
-					}
-					
-					
-					jQuery( "#dirt_avalange_time" ).val(display) ;
-				}
-			});
-			jQuery("#dirt_avalange_unit").text("t");
-			jQuery( "#dirt_avalange_time" ).val(0);
-			jQuery( "#dirt_avalange_time_since" ).val(0);
+			TemplateWireing.insertSlider("dirt_avalange_slider_placeholder", "dirt_avalange");
 		},
 		
 		afterSendRegistration: function() {

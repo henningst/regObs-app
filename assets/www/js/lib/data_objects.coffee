@@ -147,7 +147,9 @@ class AvalancheEvaluation
 	constructor: (@RegID, @CanPublish, @AvalancheDangerTID, @ValidExposition, @ValidHeightRelative, @ValidHeightFrom, @ValidHeigtTo, @AvalancheProblemTID1, @AvalancheProblemTID2, @AvalancheProblemTID3, @UsageFlagTID, @AvalancheEvaluation1, @InternalComment, @Comment) ->
 
 class AvalancheKD
-	constructor: ( ) ->
+  url : null
+  constructor: (@AvalancheTID, @LangKey, @AvalancheName, @AvalancheDescr ) ->
+    @url = "#{SERVER_URL}Language(#{LANGUAGE})/AvalancheKD"
 	
 class AvalancheObs
 	constructor: ( ) ->
@@ -203,12 +205,22 @@ class SnowSurfaceObservation extends Observation
   constructor: (@RegID, @SnowDepth, @NewSnowDepth24, @NewSnowLine, @SnowWindDepth24, @SurfaceWaterContentTID, @SnowDriftTID, @SnowSurfaceTID, @SurfaceRougnessTID, @FootPenetration, @UsageFlagTID, @Comment) ->
     @model = "SnowSurfaceObservation"
 	
+class AvalancheActivityObs extends Observation
+  url : () -> "#{SERVER_URL}AvalancheActivityObs"
+  constructor: (@RegID, @AvalancheActivityObsID, @Aspect,@HeigthStartZone,@DestructiveSizeTID,@EstimatedNumTID,@AvalancheTID,@AvalancheTriggerTID,@TerrainStartZoneTID,@DtAvalancheTime,@SnowLine,@UsageFlagTID,@Comment)->
+    @model="AvalancheActivityObs"
 
 class DestructiveSizeKD
-	constructor: ( ) ->
+  url : null
+  constructor: (@DestructiveSizeTID, @LangKey,@DestructiveSizeName, @DestructiveSizeDescr) ->
+    @url = "#{SERVER_URL}Language(#{LANGUAGE})/DestructiveSizeKD"
 
 class EstimatedNumKD
-	constructor: ( ) ->
+  url : null
+  constructor: (@EstimatedNumTID, @LangKey, @EstimatedNumName, @EstimatedNumDescr) ->
+    @url = "#{SERVER_URL}Language(#{LANGUAGE})/EstimatedNumKD"
+    console.log(@url)
+
 
 class ForecastAccurateKD
 	constructor: ( ) ->
@@ -245,8 +257,8 @@ class Incident
 "Comment": "Bekk",
 ###
 class Incident
-	url : ()  -> "#{SERVER_URL}Incident"
-	constructor: (@RegID, @GeoHazardTID, @ActivityInfluencedTID, @DamageExtentTID, @ForecastAccurateTID, @DtEndTime, @IncidentHeader, @IncidentIngress, @IncidentText, @SensitiveText, @UsageFlagTID, @Comment ) ->
+  url : ()  -> "#{SERVER_URL}Incident"
+  constructor: (@RegID, @GeoHazardTID, @ActivityInfluencedTID, @DamageExtentTID, @ForecastAccurateTID, @DtEndTime, @IncidentHeader, @IncidentIngress, @IncidentText, @SensitiveText, @UsageFlagTID, @Comment ) ->
 
 class IncidentURLs
 	constructor: ( ) ->
@@ -315,6 +327,8 @@ class SnowDriftKD
 
 class SnowSurfaceKD
 	constructor: ( ) ->
+
+
 
 
 class StabilityEvalKD

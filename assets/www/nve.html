@@ -23,6 +23,7 @@
 <script type="text/javascript" src="js/dependencies/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="js/dependencies/handlebars.runtime-1.0.0.beta.6.js"></script>
 <script type="text/javascript" src="js/templates.js"></script>
+<script type="text/javascript" src="js/connection/template_wireing.js"></script>
 
 
 <script type="text/javascript">
@@ -66,6 +67,7 @@
 <script type="text/javascript" src="js/snow/snow_hendelse.js"></script>
 <script type="text/javascript" src="js/snow/snow_faresign.js"></script>
 <script type="text/javascript" src="js/snow/snow_surface.js"></script>
+<script type="text/javascript" src="js/snow/snow_activity.js"></script>
 
 <script type="text/javascript" src="js/dirt/dirt.js"></script>
 <script type="text/javascript" src="js/dirt/dirt_picture.js"></script>
@@ -231,6 +233,7 @@ body {
                     <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_faresign');">Faretegn <span id="snow_faresign_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
                     </li>
                     <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_surface');">Sn&oslash;overflate <span id="snow_surface_count" class="notification_buble">0</span> <span class="w_icon arrow"></span></li>
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_activity');">Skredaktivitet <span id="snow_activity_count" class="notification_buble">0</span> <span class="w_icon arrow"></span></li>
                     <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_picture');">Bilde <span id="snow_picture_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
                     </li>
                 </ul>
@@ -264,7 +267,7 @@ body {
                     <label for="snow_danger_sign_list" style="margin: 15px; display: inline">Faretegn:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <select id="snow_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
                     </select>
 
-                    <div id="snow_carusel"></div>
+                    <div id="snow_carusel" class="carusel"></div>
 
                     <label for="snow_danger_sign_comment">Beskrivelse:</label>
                     <textarea id="snow_danger_sign_comment" class="c_textarea bigWidth" rows="5"></textarea>
@@ -301,6 +304,35 @@ body {
             <div class="addAbort c_color_gradient">
                 <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_surface.addSnowSurface();">Legg til</button>
                 <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_surface.abort();  ">Avbryt</button>
+            </div>
+        </div>
+        
+        <div id="snow_activity" class="c_center_page standartTextSize content_page">
+            <div class="pageScroller">
+                <div class="scrollable" id="snow_activity_scroller">
+                    <div id="snow_activity_slider_placeholder" ></div>
+                
+                    <div id="snow_activity_carusel_count" class="carusel"></div>
+                    <input type="hidden" id="snow_activity_carusel_count_field"/>
+                    
+                    <div id="snow_activity_carusel_size" class="carusel"></div>
+                    <input type="hidden" id="snow_activity_carusel_size_field"/>
+                    
+                    <div id="snow_activity_carusel_type" class="carusel"></div>
+                    <input type="hidden" id="snow_activity_carusel_type_field"/>
+                    
+                    <div id="snow_activity_carusel_aspect" class="carusel"></div>
+                    <div id="snow_activity_carusel_height" class="carusel"></div>
+                    
+                    <p>
+                      <textarea id="snow_activity_comment" placeholder="Kommentar" rows="3"></textarea>
+                    </p>
+                </div>
+            </div>
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_activity.addSnowActivity();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_activity.abort();  ">Avbryt</button>
             </div>
         </div>
 
@@ -642,15 +674,9 @@ body {
         <div id="dirt_avalange" class="c_center_page standartTextSize observation">
             <div class="pageScroller">
                 <div id="dirt_avalange_scroller" class="scrollable">
-                    <div class="bigWidth" style="margin: auto; padding-bottom: 20px;">
-                        <label for="dirt_avalange_time" >Timer siden:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
-                        <div style="padding-right: 20%;">
-                            <input type="text" id="dirt_avalange_time" disabled="disabled" class="border-less as-text" /><span id="dirt_avalange_unit">t</span>
-                            <input type="hidden" id="dirt_avalange_time_since" />
-                        </div>
-                        <div id="dirt_avalange_slider"></div>
-                    </div>
-
+                    <a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+                    <div id="dirt_avalange_slider_placeholder"></div>
+                    
                     <label for="dirt_avalange_type_list" >Type:</label> 
                     <select id="dirt_avalange_type_list" class="bigWidth w_select c_selectBox">
                     </select> 

@@ -359,7 +359,15 @@ AvalancheEvaluation = (function() {
 
 AvalancheKD = (function() {
 
-  function AvalancheKD() {}
+  AvalancheKD.prototype.url = null;
+
+  function AvalancheKD(AvalancheTID, LangKey, AvalancheName, AvalancheDescr) {
+    this.AvalancheTID = AvalancheTID;
+    this.LangKey = LangKey;
+    this.AvalancheName = AvalancheName;
+    this.AvalancheDescr = AvalancheDescr;
+    this.url = "" + SERVER_URL + "Language(" + LANGUAGE + ")/AvalancheKD";
+  }
 
   return AvalancheKD;
 
@@ -525,9 +533,46 @@ SnowSurfaceObservation = (function(_super) {
 
 })(Observation);
 
+AvalancheActivityObs = (function(_super) {
+
+  __extends(AvalancheActivityObs, _super);
+
+  AvalancheActivityObs.prototype.url = function() {
+    return "" + SERVER_URL + "AvalancheActivityObs";
+  };
+
+  function AvalancheActivityObs(RegID, AvalancheActivityObsID, Aspect, HeigthStartZone, DestructiveSizeTID, EstimatedNumTID, AvalancheTID, AvalancheTriggerTID, TerrainStartZoneTID, DtAvalancheTime, SnowLine, UsageFlagTID, Comment) {
+    this.RegID = RegID;
+    this.AvalancheActivityObsID = AvalancheActivityObsID;
+    this.Aspect = Aspect;
+    this.HeigthStartZone = HeigthStartZone;
+    this.DestructiveSizeTID = DestructiveSizeTID;
+    this.EstimatedNumTID = EstimatedNumTID;
+    this.AvalancheTID = AvalancheTID;
+    this.AvalancheTriggerTID = AvalancheTriggerTID;
+    this.TerrainStartZoneTID = TerrainStartZoneTID;
+    this.DtAvalancheTime = DtAvalancheTime;
+    this.SnowLine = SnowLine;
+    this.UsageFlagTID = UsageFlagTID;
+    this.Comment = Comment;
+    this.model = "AvalancheActivityObs";
+  }
+
+  return AvalancheActivityObs;
+
+})(Observation);
+
 DestructiveSizeKD = (function() {
 
-  function DestructiveSizeKD() {}
+  DestructiveSizeKD.prototype.url = null;
+
+  function DestructiveSizeKD(DestructiveSizeTID, LangKey, DestructiveSizeName, DestructiveSizeDescr) {
+    this.DestructiveSizeTID = DestructiveSizeTID;
+    this.LangKey = LangKey;
+    this.DestructiveSizeName = DestructiveSizeName;
+    this.DestructiveSizeDescr = DestructiveSizeDescr;
+    this.url = "" + SERVER_URL + "Language(" + LANGUAGE + ")/DestructiveSizeKD";
+  }
 
   return DestructiveSizeKD;
 
@@ -535,7 +580,16 @@ DestructiveSizeKD = (function() {
 
 EstimatedNumKD = (function() {
 
-  function EstimatedNumKD() {}
+  EstimatedNumKD.prototype.url = null;
+
+  function EstimatedNumKD(EstimatedNumTID, LangKey, EstimatedNumName, EstimatedNumDescr) {
+    this.EstimatedNumTID = EstimatedNumTID;
+    this.LangKey = LangKey;
+    this.EstimatedNumName = EstimatedNumName;
+    this.EstimatedNumDescr = EstimatedNumDescr;
+    this.url = "" + SERVER_URL + "Language(" + LANGUAGE + ")/EstimatedNumKD";
+    console.log(this.url);
+  }
 
   return EstimatedNumKD;
 
