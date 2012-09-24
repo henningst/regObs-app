@@ -23,6 +23,7 @@
 <script type="text/javascript" src="js/dependencies/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="js/dependencies/handlebars.runtime-1.0.0.beta.6.js"></script>
 <script type="text/javascript" src="js/templates.js"></script>
+<script type="text/javascript" src="js/connection/template_wireing.js"></script>
 
 
 <script type="text/javascript">
@@ -309,6 +310,8 @@ body {
         <div id="snow_activity" class="c_center_page standartTextSize content_page">
             <div class="pageScroller">
                 <div class="scrollable" id="snow_activity_scroller">
+                    
+                
                     <label>Orientering</label>
                     <input type="number" id="snow_activity_aspect" class="large" placeholder="Grader"/>
                     <label>H&oslash;yde</label>
@@ -671,15 +674,9 @@ body {
         <div id="dirt_avalange" class="c_center_page standartTextSize observation">
             <div class="pageScroller">
                 <div id="dirt_avalange_scroller" class="scrollable">
-                    <div class="bigWidth" style="margin: auto; padding-bottom: 20px;">
-                        <label for="dirt_avalange_time" >Timer siden:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
-                        <div style="padding-right: 20%;">
-                            <input type="text" id="dirt_avalange_time" disabled="disabled" class="border-less as-text" /><span id="dirt_avalange_unit">t</span>
-                            <input type="hidden" id="dirt_avalange_time_since" />
-                        </div>
-                        <div id="dirt_avalange_slider"></div>
-                    </div>
-
+                    <a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
+                    <div id="dirt_avalange_slider_placeholder"></div>
+                    
                     <label for="dirt_avalange_type_list" >Type:</label> 
                     <select id="dirt_avalange_type_list" class="bigWidth w_select c_selectBox">
                     </select> 

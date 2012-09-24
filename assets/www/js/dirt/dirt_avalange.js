@@ -27,30 +27,7 @@ var dirt_avalange = {
 		init: function() {
 			$('header_middle_text').innerHTML = "Jordsprang/Flomskred";
 			
-			jQuery( "#dirt_avalange_slider" ).slider({
-				value:0,
-				min: 0,
-				max: 14,
-				step: 1,
-				slide: function( event, ui ) {
-					var hours = Math.round(Math.exp(ui.value/3));
-					jQuery("#dirt_avalange_time_since").val(hours);
-					
-					var display = hours;
-					jQuery("#dirt_avalange_unit").text("t");
-					if(hours > 24)
-					{
-						display = Math.round((hours / 24) * 10)/10;
-						jQuery("#dirt_avalange_unit").text("d");
-					}
-					
-					
-					jQuery( "#dirt_avalange_time" ).val(display) ;
-				}
-			});
-			jQuery("#dirt_avalange_unit").text("t");
-			jQuery( "#dirt_avalange_time" ).val(0);
-			jQuery( "#dirt_avalange_time_since" ).val(0);
+			TemplateWireing.insertSlider("dirt_avalange_slider_placeholder", "dirt_avalange");
 		},
 		
 		afterSendRegistration: function() {
