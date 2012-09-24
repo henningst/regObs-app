@@ -25,7 +25,7 @@ var dirt_avalange = {
 		},
 		
 		init: function() {
-			$('header_middle_text').innerHTML = "Jordsprang/Flomskred";
+			$('header_middle_text').innerHTML = "Jordskred/flomskred";
 			
 			jQuery( "#dirt_avalange_slider" ).slider({
 				value:0,

@@ -15,7 +15,7 @@ NOT_LOGGED_IN_WARNING = "Du er i ferd med å send inn observasjoner som anonym b
 ERROR_LOGIN =  "No internet ?!";
 
 //General error message
-AN_ERROR_OCCURED = "En feil oppstod. Kontroller at du er koblet til internett og forsøk igjen.";
+AN_ERROR_OCCURED = "Telefonen får ikke kontak med regObs. Registreringen blir tatt vare på til du forsøker igjen senere.";
 
 LOGGING_IN = "Logger inn... ";
 

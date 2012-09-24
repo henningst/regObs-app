@@ -535,7 +535,11 @@ body {
                     <input type="number" placeholder="meter" name="water_level_description" id="water_level_description" class="large" />
 
                     <label for="water_level_reference_list">Referansenivå</label> <select id="water_level_reference_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
-                    </select> <input name="water_level_isriver" style="padding-bottom: 20px; margin-bottom: 20px;" type="radio" value="true" checked="checked">Elv <input name="water_level_isriver" style="padding-bottom: 20px; margin-bottom: 20px;" type="radio" value="false">Innsjø/magasin
+                    </select> 
+                    <div>
+                      <input name="water_level_isriver" style="padding-bottom: 20px; margin-bottom: 20px;" type="radio" value="true" checked="checked">Elv 
+                      <input name="water_level_isriver" style="padding-bottom: 20px; margin-bottom: 20px;" type="radio" value="false">Innsjø/magasin
+                    </div>
                 </div>
             </div>
             <div class="addAbort c_color_gradient">
@@ -698,7 +702,6 @@ body {
         <div class="shortcut camera" onclick="main.slideToFavoritePicture()"></div>
         <div class="shortcut setting last" onclick="main.panels.slideTo('settings')"></div>
     </div>
-
 
 
 </body>
