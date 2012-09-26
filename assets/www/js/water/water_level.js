@@ -19,14 +19,28 @@ var water_level = {
 
 			var list = $('water_level_reference_list');
 			var isRiver = jQuery("input:radio[name=water_level_isriver]:checked");
-			var waterLevelValue = $("water_level_description").value;
+			var waterLevelValueInput = $("water_level_value").value;
+			var waterLevelComment = $("water_level_comment").value;
+						
+			var waterLevelDescribed = "";
+			var waterLevelValue = 0.00;
 			
-			var waterLevelType = "Elv";
-			if(!isRiver){				
-				waterLevelType = "Innsj¿/magasin";
+			var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
+			if(numberRegex.test(waterLevelValueInput)) { //is int
+				waterLevelValue = waterLevelValueInput;
 			}
+			else{
+				waterLevelDescribed = waterLevelValueInput;
+				waterLevelValue = waterLevelValue.toString();
+			}
+
+			/*var waterLevelType = 0;
+			if(!isRiver){				
+				waterLevelType = 1;
+			}*/
 			
-			var waterLevel = new WaterLevel(null, waterLevelType, waterLevelValue, list[list.selectedIndex].value, null, "");					
+			
+			var waterLevel = new WaterLevel("", waterLevelDescribed, waterLevelValue, list[list.selectedIndex].value, 0, waterLevelComment);					
 			
 			water_page.updateLocation(function(){
 				main.store.getWater().addObs(waterLevel);
@@ -34,7 +48,8 @@ var water_level = {
 			},true);
 				
 			$("water_level_reference_list").selectedIndex = 0;
-			$("water_level_description").value = "";
+			$("water_level_value").value = "";
+			$("water_level_comment").value = "";
 		
 		}
 		
