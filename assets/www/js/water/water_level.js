@@ -1,3 +1,5 @@
+var water_level_ref;
+var water_level_isRiver = true;
 var water_level = {
 		shouldShowFooter : false,
 		fillWaterLevelKD: function(data) {
@@ -5,14 +7,43 @@ var water_level = {
 			if(data == null)
 				return;
 			
+			water_level_ref = data;
+
 			var options = jQuery("#water_level_reference_list");
 			
 			//remove if previously inserted
 			jQuery.each(options, function() {jQuery(this).find('option').remove()});
 			
-			jQuery.each(data.results, function() {
-					options.append(jQuery("<option />").val(this.WaterLevelRefTID).text(this.WaterLevelRefName));
-			});
+			
+            if(water_level_isRiver){
+                	jQuery.each(data.results, function() {
+                		if(this.WaterLevelRefTID < 200)
+                		{
+                			options.append(jQuery("<option />").val(this.WaterLevelRefTID).text(this.WaterLevelRefName));
+                		}
+                });
+            }
+            else{
+                	jQuery.each(data.results, function() {
+                		if(this.WaterLevelRefTID >= 200)
+                		{
+                			options.append(jQuery("<option />").val(this.WaterLevelRefTID).text(this.WaterLevelRefName));
+                		}
+                });
+            }
+			
+		},
+		
+		refIsRiver: function(isRiver){
+
+			if(isRiver){
+				water_level_isRiver = true;
+			}
+			else{
+				water_level_isRiver = false;
+			}
+			
+			water_level.fillWaterLevelKD(water_level_ref);
 		},
 		
 		addWaterLevelObs: function() {
@@ -33,13 +64,7 @@ var water_level = {
 				waterLevelDescribed = waterLevelValueInput;
 				waterLevelValue = waterLevelValue.toString();
 			}
-
-			/*var waterLevelType = 0;
-			if(!isRiver){				
-				waterLevelType = 1;
-			}*/
-			
-			
+						
 			var waterLevel = new WaterLevel("", waterLevelDescribed, waterLevelValue, list[list.selectedIndex].value, 0, waterLevelComment);					
 			
 			water_page.updateLocation(function(){
