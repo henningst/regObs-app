@@ -22,7 +22,7 @@ SERVER_LOGIN_URL = TEST_LOGIN;
 
 STAGE_REGISTER_URL = "http://h-web01.nve.no/stage_RegObsServices/Account/Register"
 PROD_REGISTER_URL = "http://api.nve.no/hydrology/regobs/v0.8.1/Account/Register";
-REGISTER_URL = STAGE_REGISTER_URL
+REGISTER_URL = STAGE_REGISTER_URL;
 
 GA_TRACKER_CODE = "UA-32394009-1";
 
@@ -30,8 +30,8 @@ GA_TRACKER_CODE = "UA-32394009-1";
  * Platform
  */
 var device = {
-//	platform: 'android'
-	platform: 'iphone'
+	platform: 'android'
+//	platform: 'iphone'
 };
 
 /*

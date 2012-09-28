@@ -655,19 +655,41 @@ var main = (function()
 
 	    		jQuery(this).addClass("scrolling");
 	    		
-	    		document.addEventListener("hidekeyboard", function(){
-		        	window.scrollTo(0, 0);
-		        	jQuery("body").css("overflow", "none");
-		        	scroller.enable();
-		        	this._selectNode = null;
-		        	this._disable = false;
-		        }, false);
+	    		function hiddenKeyboard(){
+	    			var _this = this;
+	    			setTimeout(function(){
+	    				if(_this._disable == true)
+	    					return;
+	    				
+			        	window.scrollTo(0, 0);
+			        	jQuery("body").css("overflow", "none");
+			        	scroller.enable();
+			        	this._selectNode = null;
+			        	this._disable = false;
+	    			}, 100);
+	    		}
 	    		
-	    		document.addEventListener("showkeyboard", function(){
-		    		scroller.disable();
+	    		function showingKeyboard(){
+	    			scroller.disable();
 		            this._disable = true;
 		            jQuery("body").css("overflow", "inherit");
 		            console.log("pp: off");
+	    		}
+	    		
+	    		jQuery(this).find("input[type=text], textarea, select").
+	    		bind("blur", function(e) {
+	    		 hiddenKeyboard();
+	    		});
+	    		document.addEventListener("hidekeyboard", function(){
+	    			hiddenKeyboard();
+		        }, false);
+	    		
+	    		jQuery(this).find("input[type=text], textarea, select").
+	    		bind("focus", function(e) {
+	    		 hiddenKeyboard();
+	    		});
+	    		document.addEventListener("showkeyboard", function(){
+		    		showingKeyboard();
 	    		}, false);
         	});
         	
