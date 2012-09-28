@@ -565,21 +565,21 @@ body {
                 <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="water_picture.addPicture();">Legg til</button>
                 <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="water_picture.abort();  ">Avbryt</button>
             </div>
-
         </div>
         <div id="water_level" class="c_center_page standartTextSize">
 
             <div class="pageScroller">
                 <div class="scrollable" id="water_level_scroller">
-                    <label for="water_leve_description" style="display: inline">Vannstand</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
-                    <input type="number" placeholder="meter" name="water_level_description" id="water_level_description" class="large" />
-
+                    <label for="water_leve_description" style="display: inline;">Vannstand</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
+                    <textarea id="water_level_value" placeholder="Moh eller fritekst" class="c_textarea bigWidth" rows="1"></textarea>
+                    <div>
+                      <input name="water_level_isriver" type="radio" value="true" onclick="water_level.refIsRiver(true)" checked="checked" style="padding-bottom: 20px; margin-bottom: 20px;">Elv 
+                      <input name="water_level_isriver" type="radio" value="false" onclick="water_level.refIsRiver(false)" style="padding-bottom: 20px; margin-bottom: 20px;">Innsjø/magasin
+                    </div>
                     <label for="water_level_reference_list">Referansenivå</label> <select id="water_level_reference_list" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
                     </select> 
-                    <div>
-                      <input name="water_level_isriver" style="padding-bottom: 20px; margin-bottom: 20px;" type="radio" value="true" checked="checked">Elv 
-                      <input name="water_level_isriver" style="padding-bottom: 20px; margin-bottom: 20px;" type="radio" value="false">Innsjø/magasin
-                    </div>
+
+                    <textarea id="water_level_comment" placeholder="Kommentar" class="c_textarea bigWidth" rows="3"></textarea>
                 </div>
             </div>
             <div class="addAbort c_color_gradient">
