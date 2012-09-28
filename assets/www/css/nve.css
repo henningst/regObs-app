@@ -446,7 +446,7 @@ ul.actions li{
 }
 	
 .c_center_page{
-	padding-bottom: 60px;
+	padding-bottom: 40px;
 }
 
 
@@ -612,13 +612,12 @@ ul.actions li{
 	 display:none;
 }
 
-
-
 .addAbort, .sendGroup{
 	position: absolute;
 	left: 0;
+	right: 0;
 	padding: 5px;
-	width: 100%;
+  
 	border: 1px solid black;
 }
 
