@@ -6,28 +6,36 @@
 <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta name="format-detection" content="telephone=no">
 
-<link rel="stylesheet" href="js/wink-1.4.1-nve-default.min.css" type="text/css">
-<script type="text/javascript" src="js/wink-1.4.1-nve-default.js"></script>
+
+<script type="text/javascript" src="js/dependencies/jquery.min.js"></script>
+<script type="text/javascript" src="js/dependencies/iscroll.js"></script>
+<script type="text/javascript" src="js/dependencies/jquery-ui-1.8.23.custom.min.js"></script>
+<script type="text/javascript" src="js/dependencies/jquery.ui.touch-punch.min.js"></script>
+<script>
+  jQuery.noConflict();
+</script>
+
+<link rel="stylesheet" href="js/wink-1.4.2-all-default.min.css" type="text/css">
+<script type="text/javascript" src="js/wink-1.4.2-all-default.min.js"></script>
+<script type="text/javascript" src="js/backwardcompat-1.4.1.js"></script>
 <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.23.custom.css" type="text/css">
 
 <link rel="stylesheet" href="css/btn.css" type="text/css">
 <link rel="stylesheet" href="css/nve.css" type="text/css">
 
+
+
 <script type="text/javascript" src="js/nve_config.js"></script>
 <script type="text/javascript" src="js/dependencies/proj4js-compressed.js"></script>
 <script type="text/javascript" src="js/dependencies/datajs-1.0.2.js"></script>
 <script type="text/javascript" src="js/dependencies/json2.js"></script>
-<script type="text/javascript" src="js/dependencies/jquery.min.js"></script>
-<script type="text/javascript" src="js/dependencies/iscroll.js"></script>
-<script type="text/javascript" src="js/dependencies/jquery-ui-1.8.23.custom.min.js"></script>
-<script type="text/javascript" src="js/dependencies/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="js/dependencies/handlebars.runtime-1.0.0.beta.6.js"></script>
 <script type="text/javascript" src="js/templates.js"></script>
 <script type="text/javascript" src="js/connection/template_wireing.js"></script>
 
 
 <script type="text/javascript">
-	jQuery.noConflict();
+	
 	Proj4js.defs["EPSG:32633"] = "+title=Zone33NOR +proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs";
 
 	// Function to allow one JavaScript file to be included by another.
