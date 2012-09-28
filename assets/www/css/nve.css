@@ -700,8 +700,9 @@ ul.actions li{
 
 .listScroller, .pageScroller{
 	overflow: hidden;
-	padding-bottom: 30px;
 }
+
+
 
 .listScroller ul, .listScroller .scrollable, .pageScroller .scrollable{
   position: relative;	
