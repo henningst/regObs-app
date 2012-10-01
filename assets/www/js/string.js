@@ -12,7 +12,7 @@ NOT_LOGGED_IN_WARNING = "Du er i ferd med å send inn observasjoner som anonym b
 /*
  * Error messages
  */
-ERROR_LOGIN =  "No internet ?!";
+ERROR_LOGIN =  "Innlogging misslykket. Mangler du nettverk?";
 
 //General error message
 AN_ERROR_OCCURED = "Telefonen får ikke kontak med regObs. Registreringen blir tatt vare på til du forsøker igjen senere.";
@@ -22,7 +22,7 @@ LOGGING_IN = "Logger inn... ";
 /*
  * Message shown while loading the picture from the camera
  */
-PROCESS_PICTURE = "Prosess bilde... ";
+PROCESS_PICTURE = "Laster bilde... ";
 
 /*
  * Uploading progress message
@@ -36,18 +36,18 @@ OK = "Ok";
 
 ABORT= "Avbryt"
 
-SEND_EMAIL = "Send epost";
+SEND_EMAIL = "Kvittering på epost";
 
-OBSERVATION_REGISTERED = "<h3>Registrering fullført</h3><p> Takk for observasjon </p>";
+OBSERVATION_REGISTERED = "<h3>Registrering sent til regObs</h3><p>Takk for bidraget!</p>";
 
 
 
 /*
  * 
  */
-USE_TESTMODE_BUTTON = "Bruk testmode";
+USE_TESTMODE_BUTTON = "Bruk test-regObs";
 
-USE_PROD_BUTTON = "Bruk normal mode";
+USE_PROD_BUTTON = "Bruk normal-regObs";
 
 /*
  * Error message if the user does not enter a comment in the Hendelse comment field
@@ -239,7 +239,7 @@ ERROR_WRONG_LOGIN = "Innlogging feilet, sjekk bruker navn og passord";
  */
 ERROR_NO_POSITION = "Det er ikke mulig &aring; finne en posisjon. Sjekk instillinger, forbedre GPS motakk og pr&oslash;v igjen";
 
-ERROR_NO_LOGIN_CURRENT_MODE = "Du er ikke logget inn i dette modus";
+ERROR_NO_LOGIN_CURRENT_MODE = "Du er ikke logget inn i denne versjonen av regObs.";
 
 ERROR_TIMEOUT = "Vi kunne dessverre ikke avslutte oprasjonen i tide. Prøv igjen.";
 
