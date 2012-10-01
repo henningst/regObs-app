@@ -606,6 +606,7 @@ var main = (function()
         	
         },
         
+        isFocuse: false,
         setHeights: function(){
         	var height = jQuery(".sl_container").height();
         	var bodyHeight = jQuery("body").height();
@@ -658,14 +659,15 @@ var main = (function()
 	    		function hiddenKeyboard(){
 	    			var _this = this;
 	    			setTimeout(function(){
-	    				if(_this._disable == true)
+	    				if(main.isFocuse === true)
 	    					return;
 	    				
 			        	window.scrollTo(0, 0);
 			        	jQuery("body").css("overflow", "none");
 			        	scroller.enable();
-			        	this._selectNode = null;
-			        	this._disable = false;
+			        	_this._selectNode = null;
+			        	_this._disable = false;
+			        	console.log("pp: on");
 	    			}, 100);
 	    		}
 	    		
@@ -675,18 +677,15 @@ var main = (function()
 		            jQuery("body").css("overflow", "inherit");
 		            console.log("pp: off");
 	    		}
-	    		
-	    		jQuery(this).find("input[type=text], textarea, select").
-	    		bind("blur", function(e) {
-	    		 hiddenKeyboard();
-	    		});
 	    		document.addEventListener("hidekeyboard", function(){
+	    			//does not fire on iphone...
 	    			hiddenKeyboard();
 		        }, false);
 	    		
 	    		jQuery(this).find("input[type=text], textarea, select").
 	    		bind("focus", function(e) {
-	    		 hiddenKeyboard();
+	    			main.isFocuse= false;
+	    			showingKeyboard();
 	    		});
 	    		document.addEventListener("showkeyboard", function(){
 		    		showingKeyboard();
