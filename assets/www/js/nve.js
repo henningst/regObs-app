@@ -616,7 +616,7 @@ var main = (function()
         	jQuery(".sendGroup").css("top", (top) + "px");
         	
         	jQuery(".listScroller").css("height", (top- 100) + "px");
-        	jQuery(".pageScroller").css("height", (bodyHeight - 45 -52)+"px")
+        	jQuery(".pageScroller").css("height", (bodyHeight - 55 - 52)+"px")
             
         	jQuery(".scrollable:visible:not(.scrolling)").each(function(){
         		console.log("pp: adding scroller");

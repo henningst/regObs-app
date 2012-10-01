@@ -707,6 +707,10 @@ ul.actions li{
   position: relative;	
 }
 
+.pageScroller .scrollable{
+	height: 110%
+}
+
 .selfScroll{
 	overflow: scroll;
 }

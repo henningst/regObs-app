@@ -12,7 +12,6 @@
 		1784EC22157E345F00287D8E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1784EC1E157E345F00287D8E /* README.md */; };
 		17A12458157E1F07008D76E8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A12457157E1F07008D76E8 /* CFNetwork.framework */; };
 		17A1245A157E1F4D008D76E8 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A12459157E1F4D008D76E8 /* libsqlite3.0.dylib */; };
-		47EE96EB160342E000549279 /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47EE96E41603420000549279 /* libCordova.a */; };
 		B5107F8F152DA39D00BA56F8 /* www in Resources */ = {isa = PBXBuildFile; fileRef = B5107F8E152DA39D00BA56F8 /* www */; };
 		B5F0D5541525D3DB001774E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5531525D3DB001774E4 /* Foundation.framework */; };
 		B5F0D5561525D3DB001774E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F0D5551525D3DB001774E4 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -42,6 +41,7 @@
 		CE55406315F5DCC00061D2D1 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = CE55406215F5DCC00061D2D1 /* VERSION */; };
 		CE8C9BDB156D2F5500D940C3 /* regobs-114.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8C9BDA156D2F5500D940C3 /* regobs-114.png */; };
 		CE8C9BDD156D2F6E00D940C3 /* regobs-57.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8C9BDC156D2F6E00D940C3 /* regobs-57.png */; };
+		CEDF562216199C8700D90D29 /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47EE96E41603420000549279 /* libCordova.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,7 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47EE96EB160342E000549279 /* libCordova.a in Frameworks */,
+				CEDF562216199C8700D90D29 /* libCordova.a in Frameworks */,
 				17A1245A157E1F4D008D76E8 /* libsqlite3.0.dylib in Frameworks */,
 				17A12458157E1F07008D76E8 /* CFNetwork.framework in Frameworks */,
 				B5F0D5541525D3DB001774E4 /* Foundation.framework in Frameworks */,
@@ -548,10 +548,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = armv7;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
 				COPY_PHASE_STRIP = NO;
@@ -568,6 +565,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Nve/GoogleAnalytics/GoogSDK/\"",
+					"\"$(LOCAL_DEVELOPER_DIR)/Xcode/DerivedData/regObs-ailzkepymidcqqcdddcyswxycnvl/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -582,10 +580,11 @@
 					"-Obj-C",
 				);
 				PRODUCT_NAME = regObs;
-				PROVISIONING_PROFILE = "5EC6FC0C-F44F-4925-A304-D3807964227F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5EC6FC0C-F44F-4925-A304-D3807964227F";
+				PROVISIONING_PROFILE = "A5C28913-4D07-41E7-81F7-890A213923F6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A5C28913-4D07-41E7-81F7-890A213923F6";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/usr/local/lib/include\" \"$(OBJROOT)/UninstalledProducts/include\" \"$(BUILT_PRODUCTS_DIR)\"";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -594,10 +593,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = armv7;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
 				COPY_PHASE_STRIP = YES;
@@ -614,6 +610,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Nve/GoogleAnalytics/GoogSDK/\"",
+					"\"$(LOCAL_DEVELOPER_DIR)/Xcode/DerivedData/regObs-ailzkepymidcqqcdddcyswxycnvl/Build/Products/Debug-iphoneos\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -628,11 +625,12 @@
 					"-Obj-C",
 				);
 				PRODUCT_NAME = regObs;
-				PROVISIONING_PROFILE = "5EC6FC0C-F44F-4925-A304-D3807964227F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5EC6FC0C-F44F-4925-A304-D3807964227F";
+				PROVISIONING_PROFILE = "A5C28913-4D07-41E7-81F7-890A213923F6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A5C28913-4D07-41E7-81F7-890A213923F6";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/usr/local/lib/include\" \"$(OBJROOT)/UninstalledProducts/include\" \"$(BUILT_PRODUCTS_DIR)\"";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
