@@ -100,7 +100,7 @@ DIRT_TEXT =
 /*
  * Hjelpetekst til observasjonene
  */
-SNOW_PICTURE =   "<H3>Hvordan ta et godt bilde</H3>"
+SNOW_PICTURE = "<H3>Ta bilde</H3>"
 	+ "<div>Gode bilder er svært nyttig for varslingsgruppa og andre som vil ha et inntrykk av hvordan snøforholdene er.</div>"
 	+ "<ul>"
 	+ "<li>Tenk på at bildet du tar skal brukes av andre som ikke har de informasjonen du har om omgivelsene.</li>"
@@ -109,29 +109,26 @@ SNOW_PICTURE =   "<H3>Hvordan ta et godt bilde</H3>"
 	+ "</ul>"
 	+ "<div>Et tips til å ta bedre bilder av snø kan være å gå inn på regObs og se gjennom bilder andre har tatt. Hvilke bilder mener du gir god informasjon?</div>";
 
-SNOW_DANGERSIGN =
-	  "</h3>Hva er det med disse faretegnene egentlig?</h3>"
-	+ "<p>Faretegn kan man bruke til å vurdere hvor stabil snøen er.</p>"
+SNOW_INCIDENT =  "<h3>Ulykker, nestenulykker og hendelser</h3>"
+	+ "<p>Vi ønsker å samle inn så mye informasjon som mulig om ulykker, nestenulykker og andre hendelser knyttet til snøskred.</p>"
+	+ "<p>Per i dag vet vi for eksempel nesten ingenting om de skredhendelsene som ikke fører til dødsfall. Hvorfor skjedde hendelsen? Hvorfor gikk det bra? Hvordan kunne situasjonen vært unngått?</p>"
+	+ "<p>Mer kunnskap er viktig fordi:</p>"
 	+ "<ul>"
-	+ "<li>Hvis det drønner eller går naturlige skred vet vi at vi trolig er på en faregrad 3-Markert.</li>"
-	+ "<li>Hvis det må en skiløper til for å løse ut skredet og det er lite naturlig utløste skred så er vi kanksje på en 2-Moderat.</li>"
-	+ "<li>Hvis det ikke registreres faretegn, kanskje vi er på 1-Liten.</li>"
+	+ "<li>Mer informasjon om uønskede hendelser gjør det lettere å lære av egne og andres feil. Kunnskap er forebyggende.</li>"
+	+ "<li>Over tid vil et bedre datagrunnlag over hendelser være med som grunnlag for å evaluere for eksempel effekten av ABS-sekken i norske forhold, eller påvirke innholdet i skredkurs fordi vi vil vite mer om årsakene til de vanligste nestenulykkene.</li>"
 	+ "</ul>"
-	+ "<p>Det er noen ”kanksje’er” og ”trolig’er” i teksten over. Faretegn forteller bare en liten del av totalbildet. De er indikatorer.</p>"
-	+ "<p>Derfor er det også viktig at man legger til anslått utstrekning på faretegnet.</p>";
+	+ "<p>NB: Dersom du ønsker å være anonym kan du legge inn informasjonen som anonym bruker (dersom du har en bruker og er pålogget må du logge ut først).</p>";
 
-SNOW_INCIDENT =  
-	  "<h3>Ulykker, nestenulykker og hendelser</h3>"
-	+ "<div>Vi ønkser å lære av deres feil. Vi ønsker at dere skal lære av andres feil.</div>"
+SNOW_DANGERSIGN = "<h3>Faretegn</h3>"
+	+ "<p>Det er svært nyttig for varslingsgruppa å få informasjon om faretegn fordi de gir gode hint om hvor ustabilt snødekket er.</p>"
+	+ "<p>For eksempel:</p>"
 	+ "<ul>"
-	+ "<li>Hvis man legger inn info når det skjer noe kan alle lære av ulykken og den kan ha en forebyggende effekt.</li>"
-	+ "<li>Ut fra en beredskapstankegang er det nyttig å få vite om hendelser for å kunne oppdatere innholdet så det blir mer relevant for det som skjer.</li>"
+	+ "<li>Hvis det rapporteres om drønnelyder i snøen, sprekker og/eller ferskenaturlig utløste skred er det mye som tyder på at faregraden er minst faregrad 3 (betydelig skredfare).</li>"
+	+ "<li>Hvis det rapporteres om rimkrystaller på overflaten vet varslingsgruppa at dette kan skape problemer som et svakt lag senere (hvis det blir begravet).</li>"
+	+ "<li>NB! det er også veldig nyttig å få vite at ingen faretegn er observert! Det tyder på at faregraden er enten 2 (moderat skredfare) eller 1 (liten skredfare).</li>"
 	+ "</ul>"
-	+ "<div>Vi kan også lære av mange hendelser over tid.</div>"
-	+ "<ul>"
-	+ "<li>Hvis det registreres at skred ofte går langt ned mot bebyggelse, kan det danne grunnlag for sikkring.</li>"
-	+ "<li>Hvis det registreres mange nestenulykker hvor ABS sekker har vært involvert, kan man få gode tall på virkningen.</li>"
-	+ "</ul>";
+	+ "<p>Legg også inn informasjon om ca hvilket område observasjonen gjelder for.</p>";
+
 
 SNOW_SURFACE = "Snøoverflate";
 
