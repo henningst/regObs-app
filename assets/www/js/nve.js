@@ -628,7 +628,7 @@ var main = (function()
     	        		         
     	        		        if (target instanceof HTMLSelectElement || target instanceof HTMLAnchorElement || 
     	        		        	target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement ||
-    	        		        	jQuery(target).parents(".carusel").length > 0) {
+    	        		        	jQuery(target).is(".ca_items") || jQuery(target).parents(".ca_items").length > 0 ) {
     	        		            scroller.disable();
     	        		            this._disable = true;
     	        		            jQuery("body").css("overflow", "inherit");

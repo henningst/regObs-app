@@ -655,6 +655,7 @@ ul.actions li{
 .border-less{
 	border: none;	
 	background: none;
+	font-size: 1.4em
 }
 
 .as-text{
@@ -708,7 +709,7 @@ ul.actions li{
 }
 
 .pageScroller .scrollable{
-	height: 110%
+	padding-bottom: 50px;
 }
 
 .selfScroll{

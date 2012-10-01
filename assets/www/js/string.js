@@ -96,6 +96,22 @@ DIRT_TEXT =
 		"Gjelder for fylket/ varslingsregionen.",
 	 ];
 
+SNOW_ACTIVTY_HEIGHT = [
+		{value: 0, name: "0"},
+		{value: 500, name: "500 moh"},
+		{value: 1000, name: "1000 moh"},
+		{value: 1500, name: "1500 moh"},
+		{value: 2000, name: "2000 moh"}
+];
+			
+SNOW_ACTIVITY_ASPECT = [
+		{value: 0, name: "0"},
+		{value: 0, name: "N"},
+		{value: 90, name: "Ø"},
+		{value: 180, name: "S"},
+		{value: 270, name: "V"}
+];
+
 
 /*
  * Hjelpetekst til observasjonene

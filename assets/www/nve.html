@@ -174,6 +174,7 @@ body {
         <div id="settings">
             <div class="standartTextSize c_align_central">
                 <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Bruk testmode' onclick="main.gotoTest();" /> <br>
+                <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Oppdater dropdowns' onclick="main.populateBoxes(true);" /> <br>
             </div>
         </div>
 
@@ -330,10 +331,13 @@ body {
                     <input type="hidden" id="snow_activity_carusel_type_field"/>
                     
                     <div id="snow_activity_carusel_aspect" class="carusel"></div>
+                    <input type="hidden" id="snow_activity_carusel_aspect_field"/>
+                    
                     <div id="snow_activity_carusel_height" class="carusel"></div>
+                    <input type="hidden" id="snow_activity_carusel_height_field"/>
                     
                     <p>
-                      <textarea id="snow_activity_comment" placeholder="Kommentar" rows="3"></textarea>
+                      <textarea id="snow_activity_comment" placeholder="Kommentar" rows="3" class="bigWidth"></textarea>
                     </p>
                 </div>
             </div>
