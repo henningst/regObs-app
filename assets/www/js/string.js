@@ -45,9 +45,9 @@ OBSERVATION_REGISTERED = "<h3>Registrering sent til regObs</h3><p>Takk for bidra
 /*
  * 
  */
-USE_TESTMODE_BUTTON = "Bruk test-regObs";
+USE_TESTMODE_BUTTON = "Bruk testregObs";
 
-USE_PROD_BUTTON = "Bruk normal-regObs";
+USE_PROD_BUTTON = "Bruk normalregObs";
 
 /*
  * Error message if the user does not enter a comment in the Hendelse comment field
