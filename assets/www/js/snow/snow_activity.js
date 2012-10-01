@@ -31,9 +31,9 @@ var snow_activity = {
 			jQuery("#snow_acitivty_comment").val("");
 		},
 		
-		caruselInit: function(id, onSet, values, nameMapper){
+		caruselInit: function(id, onSet, values, nameMapper, widthOfCaruselElement){
 			jQuery('#' + id).html(
-				main.createCarousel(id + "_carusel", jQuery.map(values, nameMapper)).getDomNode()
+				main.createCarousel(id + "_carusel", jQuery.map(values, nameMapper), widthOfCaruselElement).getDomNode()
 			);
 			
 			main.listenForCaruselEvent(id + "_carusel", onSet);
@@ -50,19 +50,19 @@ var snow_activity = {
 			this.caruselInit("snow_activity_carusel_count", snow_activity.setCount, this.estimatedNumKD, function(elem){return elem.EstimatedNumName;});
 			this.caruselInit("snow_activity_carusel_size", snow_activity.setSize, this.destructiveSizeKD, function(elem){return elem.DestructiveSizeName;});
 			this.caruselInit("snow_activity_carusel_type", snow_activity.setType, this.avalancheKD, function(elem){return elem.AvalancheName;});
-			this.caruselInit("snow_activity_carusel_aspect", snow_activity.setAspect, this.aspectKD, function(elem){return elem.name;});
-			this.caruselInit("snow_activity_carusel_height", snow_activity.setHeight, this.heightKD, function(elem){return elem.name;});
+			this.caruselInit("snow_activity_carusel_aspect", snow_activity.setAspect, this.aspectKD, function(elem){return elem.name;}, 100);
+			this.caruselInit("snow_activity_carusel_height", snow_activity.setHeight, this.heightKD, function(elem){return elem.name;}, 100);
 			
 			
 		},
 
 
 		setAspect: function(index){
-			jQuery("#snow_activity_carusel_height_field").val(snow_activity.heightKD[index].value);
+			jQuery("#snow_activity_carusel_aspect_field").val(snow_activity.aspectKD[index].value);
 		},
 
 		setHeight: function(index){
-			jQuery("#snow_activity_carusel_aspect_field").val(snow_activity.aspectKD[index].value);
+			jQuery("#snow_activity_carusel_height_field").val(snow_activity.heightKD[index].value);
 		},
 		
 		setType: function(index){

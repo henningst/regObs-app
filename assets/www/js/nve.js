@@ -577,14 +577,17 @@ var main = (function()
           
         },
         
-        createCarousel: function(id, items)
+        createCarousel: function(id, items, widthOfCaruselElement)
         {
+        	if(widthOfCaruselElement === undefined)
+        		widthOfCaruselElement = 200;
+        	
         	var properties = 
             {
-				'itemsWidth': 200,
+				'itemsWidth': widthOfCaruselElement,
 				'itemsHeight': 35,
 				'autoAdjust': 1,
-				'autoAdjustDuration': 400,
+				'autoAdjustDuration': widthOfCaruselElement * 2,
 				'firstItemIndex': CAROUSEL_STANDART,
 				'uId': id,
 				'items':
