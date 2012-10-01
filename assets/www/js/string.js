@@ -170,21 +170,45 @@ ICE_INCIDENT =
 	+ "</ul>";
 
 
-WATER_PICTURE =  "WATER_PICTURE";
-              
-WATER_DANGERSIGN = "WATER_DANGERSIGN";
+DIRT_AVALANGE = "<h3>Jord- og flomskred</h3>"
+	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
+	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
+	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
 
-WATER_INCIDENT = "WATER_INCIDENT";
+DIRT_PICTURE =  "<h3>Ta bilde</h3>"
+	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
+	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
+	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
 
-WATER_LEVEL = "WATER_LEVEL";
+DIRT_ DANGERSIGN = "<h3>Faretegn</h3>"
+	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
+	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
+	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
 
-DIRT_PICTURE =  "DIRT_PICTURE";
-              
-DIRT_DANGERSIGN = "DIRT_DANGERSIGN";
+DIRT_INCIDENT = "<h3>Ulykker, nestenulykker og hendelser</h3>"
+	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
+	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
+	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>"; 
 
-DIRT_INCIDENT = "DIRT_INCIDENT";
+WATER_LEVEL = "<h3>Vannstand</h3>"
+	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
+	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
+	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
 
-DIRT_AVALANGE ="Jordskred/steinsprang";
+WATER_PICTURE =  "<h3>Ta bilde</h3>"
+	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
+	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
+	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
+
+WATER_ DANGERSIGN = "<h3>Faretegn</h3>"
+	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
+	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
+	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
+
+WATER_INCIDENT = "<h3>Ulykker, nestenulykker og hendelser</h3>"
+	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
+	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
+	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
 
 /*
  * Text om appen og regObs. Vises på førstesiden bak regObssymbolet
