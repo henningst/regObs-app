@@ -45,9 +45,9 @@ OBSERVATION_REGISTERED = "<h3>Registrering sent til regObs</h3><p>Takk for bidra
 /*
  * 
  */
-USE_TESTMODE_BUTTON = "Bruk testregObs";
+USE_TESTMODE_BUTTON = "Bruk test-regObs";
 
-USE_PROD_BUTTON = "Bruk normalregObs";
+USE_PROD_BUTTON = "Bruk normal-regObs";
 
 /*
  * Error message if the user does not enter a comment in the Hendelse comment field
@@ -180,7 +180,7 @@ DIRT_PICTURE =  "<h3>Ta bilde</h3>"
 	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
 	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
 
-DIRT_ DANGERSIGN = "<h3>Faretegn</h3>"
+DIRT_DANGERSIGN = "<h3>Faretegn</h3>"
 	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
 	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
 	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
@@ -200,7 +200,7 @@ WATER_PICTURE =  "<h3>Ta bilde</h3>"
 	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
 	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
 
-WATER_ DANGERSIGN = "<h3>Faretegn</h3>"
+WATER_DANGERSIGN = "<h3>Faretegn</h3>"
 	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
 	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
 	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
