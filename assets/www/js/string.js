@@ -1,23 +1,23 @@
 /*
  * Feedback after user is logged in
  */
-LOGGED_IN  = "Logget inn !";
+LOGGED_IN  = "Du er logget på!";
 
-LOGIN_BUTTON = "Logg inn";
+LOGIN_BUTTON = "Logg på";
 
-LOGOUT_BUTTON = "Logg ut";
+LOGOUT_BUTTON = "Logg av";
 
 NOT_LOGGED_IN_WARNING = "Du er i ferd med å send inn observasjoner som anonym bruker.";
 
 /*
  * Error messages
  */
-ERROR_LOGIN =  "Innlogging misslykket. Mangler du nettverk?";
+ERROR_LOGIN =  "Pålogging misslykket. Mangler du nettverk?";
 
 //General error message
-AN_ERROR_OCCURED = "Telefonen får ikke kontak med regObs. Registreringen blir tatt vare på til du forsøker igjen senere.";
+AN_ERROR_OCCURED = "Telefonen får ikke kontakt med regObs. Registreringen blir tatt vare på til du forsøker igjen senere.";
 
-LOGGING_IN = "Logger inn... ";
+LOGGING_IN = "Logger på... ";
 
 /*
  * Message shown while loading the picture from the camera
@@ -232,14 +232,14 @@ HENDELSE = "Ulykke / Hendelse";
 /*
  * Popup på innloggings siden ved feil brukernavn eller passord.
  */
-ERROR_WRONG_LOGIN = "Innlogging feilet, sjekk bruker navn og passord";
+ERROR_WRONG_LOGIN = "Pålogging feilet, sjekk bruker navn og passord";
 
 /*
  * Popup hvis vi ikke finner god nok posisjon. 
  */
 ERROR_NO_POSITION = "Det er ikke mulig &aring; finne en posisjon. Sjekk instillinger, forbedre GPS motakk og pr&oslash;v igjen";
 
-ERROR_NO_LOGIN_CURRENT_MODE = "Du er ikke logget inn i denne versjonen av regObs.";
+ERROR_NO_LOGIN_CURRENT_MODE = "Du er ikke logget på i denne versjonen av regObs.";
 
 ERROR_TIMEOUT = "Vi kunne dessverre ikke avslutte oprasjonen i tide. Prøv igjen.";
 
