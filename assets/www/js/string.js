@@ -129,8 +129,10 @@ SNOW_DANGERSIGN = "<h3>Faretegn</h3>"
 	+ "</ul>"
 	+ "<p>Legg også inn informasjon om ca hvilket område observasjonen gjelder for.</p>";
 
-
-SNOW_SURFACE = "Snøoverflate";
+SNOW_SURFACE = "<h3>Snøoverflate</h3>"
+	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
+	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
+	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
 
 ICE_PICTURE =  
 	  "<H3>Hvordan ta et godt bilde</H3>"
