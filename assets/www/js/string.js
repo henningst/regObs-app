@@ -96,21 +96,18 @@ DIRT_TEXT =
 		"Gjelder for fylket/ varslingsregionen.",
 	 ];
 
-SNOW_ACTIVTY_HEIGHT = [
-		{value: 0, name: "0"},
-		{value: 500, name: "500 moh"},
-		{value: 1000, name: "1000 moh"},
-		{value: 1500, name: "1500 moh"},
-		{value: 2000, name: "2000 moh"}
-];
+SNOW_ACTIVTY_HEIGHT = [{value: 0, name: "0"}];
+
+for(var i = 0; i < 25 ; i++){
+	var value = i * 100;
+	SNOW_ACTIVTY_HEIGHT.push({value: value, name: value + " moh"})
+};
 			
-SNOW_ACTIVITY_ASPECT = [
-		{value: 0, name: "0"},
-		{value: 0, name: "N"},
-		{value: 90, name: "Ø"},
-		{value: 180, name: "S"},
-		{value: 270, name: "V"}
-];
+SNOW_ACTIVITY_ASPECT = [{value: 0, name: "0"}];
+for(var i = 0; i <= 315/45 ; i++){
+	var value = i * 45;
+	SNOW_ACTIVITY_ASPECT.push({value: value, name: value + "&deg;"})
+};
 
 
 /*
