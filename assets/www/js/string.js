@@ -100,15 +100,14 @@ DIRT_TEXT =
 /*
  * Hjelpetekst til observasjonene
  */
-SNOW_PICTURE =  
-	  "<H3>Hvordan ta et godt bilde</H3>"
-	+ "<ul>" 
-	+ "<li>Tenk på at et bilde skal beskrive noe som kan nyttes av andre når de skal gjøre seg en vurdering av forholdene.</li>"
-	+ "<li>Hvis bildet skal sees i sammenheng med en annen observasjon, velg den i nedtrekksmenyen.</li>"
-	+ "<li>Svært nyttige bilder å få inn er: snøfordelig i området, skred, skavler, snøprofilet ift terrenget rundt, fete skibilder.</li>"
-	+ "<li>Ikke så nyttige bilder å få inn: noen som graver et snøprofil.</li>"
+SNOW_PICTURE =   "<H3>Hvordan ta et godt bilde</H3>"
+	+ "<div>Gode bilder er svært nyttig for varslingsgruppa og andre som vil ha et inntrykk av hvordan snøforholdene er.</div>"
+	+ "<ul>"
+	+ "<li>Tenk på at bildet du tar skal brukes av andre som ikke har de informasjonen du har om omgivelsene.</li>"
+	+ "<li>Eksempel på nyttige bilder: Oversikt som viser snøfordelingen i området, ferske skred, skavler, snøprofil med tydelig svakt lag, sprekker i snøen, snøfokk fra toppene, rimlag…</li>"
+	+ "<li>Husk å velge fra nedtrekksmenyen hva bildet forestiller. Dersom ingen av valgene er dekkende kan du skrive noen få ord i tekstfeltet.</li>"
 	+ "</ul>"
-	+ "<div>Et tips til hvordan ta gode bilder: gå på regObs og se hvilke bilder du syns var bra og kunne tenke deg å se mer av.</div>";
+	+ "<div>Et tips til å ta bedre bilder av snø kan være å gå inn på regObs og se gjennom bilder andre har tatt. Hvilke bilder mener du gir god informasjon?</div>";
 
 SNOW_DANGERSIGN =
 	  "</h3>Hva er det med disse faretegnene egentlig?</h3>"
