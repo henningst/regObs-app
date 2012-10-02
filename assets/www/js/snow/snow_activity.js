@@ -11,7 +11,7 @@ var snow_activity = {
 			var count = jQuery("#snow_activity_carusel_count_field");
 			var height = jQuery("#snow_activity_carusel_height_field");
 			var aspect = jQuery("#snow_activity_carusel_aspect_field");
-			var comment = jQuery("#snow_acitivty_comment");
+			var comment = jQuery("#snow_activity_comment");
 			
 			//(@RegID, @AvalancheActivityObsID, @Aspect,@HeigthStartZone,@DestructiveSizeTID,@EstimatedNumTID,@AvalancheTID,@AvalancheTriggerTID,@TerrainStartZoneTID,@DtAvalancheTime,@SnowLine,@UsageFlagTID,@Comment)->
 			var obs = new AvalancheActivityObs(0,0, aspect.val(), height.val(), size.val(), count.val(), type.val(),0,0,date, null, 0, comment.val());
@@ -28,12 +28,15 @@ var snow_activity = {
 			jQuery('#snow_activity_carusel_type').html("");
 			jQuery("#snow_activity_carusel_height").html("");
 			jQuery("#snow_activity_carusel_aspect").html("");
-			jQuery("#snow_acitivty_comment").val("");
+			jQuery("#snow_activity_comment").val("");
 		},
 		
 		caruselInit: function(id, onSet, values, nameMapper, widthOfCaruselElement){
+			
+			var carusel = this[id] = main.createCarousel(id + "_carusel", jQuery.map(values, nameMapper), widthOfCaruselElement);
+			
 			jQuery('#' + id).html(
-				main.createCarousel(id + "_carusel", jQuery.map(values, nameMapper), widthOfCaruselElement).getDomNode()
+			  carusel.getDomNode()
 			);
 			
 			main.listenForCaruselEvent(id + "_carusel", onSet);
@@ -53,7 +56,42 @@ var snow_activity = {
 			this.caruselInit("snow_activity_carusel_aspect", snow_activity.setAspect, this.aspectKD, function(elem){return elem.name;}, 100);
 			this.caruselInit("snow_activity_carusel_height", snow_activity.setHeight, this.heightKD, function(elem){return elem.name;}, 100);
 			
+			this.listOfCarusels = ['snow_activity_carusel_count', 'snow_activity_carusel_count', 'snow_activity_carusel_size', 'snow_activity_carusel_type', 'snow_activity_carusel_aspect', 'snow_activity_carusel_height'];
 			
+			jQuery("#snow_acitivity_no_observed").click	(function(){
+				var nothingToObserved = jQuery(this).is(":checked");
+				
+				if(nothingToObserved){
+					snow_activity.clearForm();
+					snow_activity.hideObservations();
+				}else{
+					snow_activity.clearForm();
+					snow_activity.showObservations();
+				}
+			});
+			
+		},
+		
+		hideObservations: function(){
+			jQuery.each(this.listOfCarusels, function(index, name){
+				jQuery("#" + name).hide();
+				jQuery("#snow_activity_slider_placeholder").hide();
+			});
+		},
+		showObservations: function(){
+			jQuery.each(this.listOfCarusels, function(index, name){
+				jQuery("#" + name).show();
+				jQuery("#snow_activity_slider_placeholder").show();
+			});
+		},
+		
+		clearForm: function(){
+			jQuery("#snow_acitivty_slider").slider("value", 0);
+			jQuery("#snow_acitivty_time, #snow_acitivty_time_since").val(0);
+			var _this = this;
+			jQuery.each(this.listOfCarusels, function(index, name){
+				_this[name].goToItem(0);
+			});
 		},
 
 

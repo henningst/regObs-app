@@ -719,4 +719,16 @@ ul.actions li{
 .observation label{
   margin-top: 10px;	
 }
-	
+
+.oneline-label {
+	text-align: left;	
+}
+
+.oneline-label input[type=checkbox]{
+	margin: 20px;
+}
+
+.oneline-label label{
+	display: inline-block;
+}
+
