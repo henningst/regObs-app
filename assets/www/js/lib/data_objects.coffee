@@ -209,6 +209,12 @@ class AvalancheActivityObs extends Observation
   url : () -> "#{SERVER_URL}AvalancheActivityObs"
   constructor: (@RegID, @AvalancheActivityObsID, @Aspect,@HeigthStartZone,@DestructiveSizeTID,@EstimatedNumTID,@AvalancheTID,@AvalancheTriggerTID,@TerrainStartZoneTID,@DtAvalancheTime,@SnowLine,@UsageFlagTID,@Comment)->
     @model="AvalancheActivityObs"
+    
+class IceCoverObs extends Observation
+  url : () -> "#{SERVER_URL}IceCoverObs"
+  constructor: (@RegID, @IceCoverBeforeTID, @IceCoverTID, @UsageFlagTID, @Comment) ->
+    @model = "IceCoverObs"
+
 
 class DestructiveSizeKD
   url : null
@@ -225,6 +231,10 @@ class IceCoverBeforeKD
   constructor: (@IceCoverBeforeTID, @LangKey, @IceCoverBeforeName, @IceCoverBeforeDescr) ->
     @url = "#{SERVER_URL}IceCoverBeforeKD?Language eq #{LANGUAGE}"
 
+class IceCoverKD
+  url : null
+  constructor : (@IceCoverTID, @LangKey, @IceCoverName, @IceCoverDescr) ->
+    @url = "#{SERVER_URL}IceCoverKD?Language eq #{LANGUAGE}"
 
 class ForecastAccurateKD
 	constructor: ( ) ->

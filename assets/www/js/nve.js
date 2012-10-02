@@ -332,8 +332,9 @@ var main = (function()
             main.fillDropdown(DestructiveSizeKD, main.fillDestructiveSizeKD, force);
             main.fillDropdown(AvalancheKD, main.fillAvalancheKD, force);
             
-            
             main.fillDropdown(IceCoverBeforeKD, main.fillIceCoverBeforeKD, force);
+            main.fillDropdown(IceCoverKD, main.fillIceCoverKD, force);
+            
         },
         
         carouselMoved: function(data)
@@ -762,6 +763,10 @@ var main = (function()
         	main.saveAndCall(EstimatedNumKD, data, [snow_activity.fillEstimatedNumKD]);
         },  
         
+
+        fillIceCoverKD : function(data){
+        	main.saveAndCall(IceCoverKD, data, [ice_cover.fillIceCoverKD]);
+        },  
 
         fillIceCoverBeforeKD : function(data){
         	main.saveAndCall(IceCoverBeforeKD, data, [ice_cover.fillIceCoverBeforeKD]);
