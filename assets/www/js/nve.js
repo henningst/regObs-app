@@ -331,6 +331,9 @@ var main = (function()
             main.fillDropdown(EstimatedNumKD, main.fillEstimatedNumKD, force);
             main.fillDropdown(DestructiveSizeKD, main.fillDestructiveSizeKD, force);
             main.fillDropdown(AvalancheKD, main.fillAvalancheKD, force);
+            
+            
+            main.fillDropdown(IceCoverBeforeKD, main.fillIceCoverBeforeKD, force);
         },
         
         carouselMoved: function(data)
@@ -757,7 +760,12 @@ var main = (function()
 
         fillEstimatedNumKD : function(data){
         	main.saveAndCall(EstimatedNumKD, data, [snow_activity.fillEstimatedNumKD]);
-        },       
+        },  
+        
+
+        fillIceCoverBeforeKD : function(data){
+        	main.saveAndCall(IceCoverBeforeKD, data, [ice_cover.fillIceCoverBeforeKD]);
+        },  
         
         fillAvalancheKD : function(data){
         	main.saveAndCall(AvalancheKD, data, [snow_activity.fillAvalancheKD]);

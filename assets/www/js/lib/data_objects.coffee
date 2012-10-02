@@ -219,7 +219,11 @@ class EstimatedNumKD
   url : null
   constructor: (@EstimatedNumTID, @LangKey, @EstimatedNumName, @EstimatedNumDescr) ->
     @url = "#{SERVER_URL}Language(#{LANGUAGE})/EstimatedNumKD"
-    console.log(@url)
+    
+class IceCoverBeforeKD
+  url: null
+  constructor: (@IceCoverBeforeTID, @LangKey, @IceCoverBeforeName, @IceCoverBeforeDescr) ->
+    @url = "#{SERVER_URL}IceCoverBeforeKD?Language eq #{LANGUAGE}"
 
 
 class ForecastAccurateKD
