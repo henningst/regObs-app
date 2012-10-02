@@ -292,45 +292,21 @@ AvalancheDangerObs = (function(_super) {
   };
 
   function AvalancheDangerObs(AvalancheDangerObsID, RegID, DangerSignTID, UsageFlagTID, Comment) {
-    var _this = this;
     this.AvalancheDangerObsID = AvalancheDangerObsID;
     this.RegID = RegID;
     this.DangerSignTID = DangerSignTID;
     this.UsageFlagTID = UsageFlagTID;
     this.Comment = Comment;
+    this.beforeSend = __bind(this.beforeSend, this);
+
     this.model = "AvalancheDangerObs";
-    ({
-      beforeSend: function(x) {
-        return _this.AvalancheDangerObsID = x;
-      }
-    });
   }
 
-  return AvalancheDangerObs;
-
-})(Observation);
-
-IceThickness = (function(_super) {
-
-  __extends(IceThickness, _super);
-
-  IceThickness.prototype.url = function() {
-    return "" + SERVER_URL + "IceThickness";
+  AvalancheDangerObs.prototype.beforeSend = function(x) {
+    return this.AvalancheDangerObsID = x;
   };
 
-  function IceThickness(RegID, SnowDepth, SlushSnow, IceThicknessSum, IceHeightBefore, IceHeightAfter, UsageFlagTID, Comment) {
-    this.RegID = RegID;
-    this.SnowDepth = SnowDepth;
-    this.SlushSnow = SlushSnow;
-    this.IceThicknessSum = IceThicknessSum;
-    this.IceHeightBefore = IceHeightBefore;
-    this.IceHeightAfter = IceHeightAfter;
-    this.UsageFlagTID = UsageFlagTID;
-    this.Comment = Comment;
-    this.model = "IceThickness";
-  }
-
-  return IceThickness;
+  return AvalancheDangerObs;
 
 })(Observation);
 
@@ -604,6 +580,30 @@ IceCoverObs = (function(_super) {
   }
 
   return IceCoverObs;
+
+})(Observation);
+
+IceThickness = (function(_super) {
+
+  __extends(IceThickness, _super);
+
+  IceThickness.prototype.url = function() {
+    return "" + SERVER_URL + "IceThickness";
+  };
+
+  function IceThickness(RegID, SnowDepth, SlushSnow, IceThicknessSum, IceHeightBefore, IceHeightAfter, UsageFlagTID, Comment) {
+    this.RegID = RegID;
+    this.SnowDepth = SnowDepth;
+    this.SlushSnow = SlushSnow;
+    this.IceThicknessSum = IceThicknessSum;
+    this.IceHeightBefore = IceHeightBefore;
+    this.IceHeightAfter = IceHeightAfter;
+    this.UsageFlagTID = UsageFlagTID;
+    this.Comment = Comment;
+    this.model = "IceThickness";
+  }
+
+  return IceThickness;
 
 })(Observation);
 

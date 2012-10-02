@@ -13,42 +13,23 @@ var ice_thickness = {
 		init: function() {
 			$('header_middle_text').innerHTML = "Istykkelse";
 			
-			this.slush_depth = jQuery("#ice_thickness_slush_depth");
-			this.snow_depth = jQuery("#ice_thickness_snow_depth");
-			this.sum = jQuery("#ice_thickness_sum");
-			this.comment = jQuery("#ice_thickness_comment");
-			this.fields = [this.slush_depth, this.snow_depth, this.sum, this.comment];
+			ice_thickness.slush_depth = jQuery("#ice_thickness_slush_depth");
+			ice_thickness.snow_depth = jQuery("#ice_thickness_snow_depth");
+			ice_thickness.sum = jQuery("#ice_thickness_sum");
+			ice_thickness.comment = jQuery("#ice_thickness_comment");
+			ice_thickness.fields = [ice_thickness.slush_depth, ice_thickness.snow_depth, ice_thickness.sum, ice_thickness.comment];
 			
-		},
-		
-		fillIceCoverBeforeKD : function(data){
-			var options = jQuery("#ice_cover_list");
-			
-			//remove if previously inserted
-			jQuery.each(options, function() {jQuery(this).find('option').remove();});
-			
-			jQuery.each(data.results, function() {
-				options.append(jQuery("<option />").val(this.IceCoverBeforeTID).text(this.IceCoverBeforeName));
-			});
-		},
-		
-		fillIceCoverKD : function(data){
-			var options = jQuery("#ice_cover_before_list");
-			
-			//remove if previously inserted
-			jQuery.each(options, function() {jQuery(this).find('option').remove();});
-			
-			jQuery.each(data.results, function() {
-				options.append(jQuery("<option />").val(this.IceCoverTID).text(this.IceCoverName));
-			});
 		},
 		
 		addIceThickness : function(){
 			//(@RegID, @SnowDepth, @SlushSnow, @IceThicknessSum, @IceHeightBefore, @IceHeightAfter, @UsageFlagTID, @Comment) ->
-			var obs = new IceThickness(0, this.snow_depth.val(), this.slush_depth.val(), this.sum.val(), null, null, 0, this.comment.val()); 
-			
+			console.log("pp: about to send icethickness");
+			var obs = new IceThickness(0, ice_thickness.snow_depth.val(), ice_thickness.slush_depth.val(), ice_thickness.sum.val(), null, null, 0, ice_thickness.comment.val()); 
+			console.log("pp: addnig obs " + JSON.stringify(obs))
 			ice_page.updateLocation(function(){
+				console.log("pp: got location " + JSON.strinigfy(obs));
 				ice_thickness.clear();
+				console.log("adding " + JSON.stringify(obs));
 				main.store.getIce().addObs(obs);
 				main.panels.slideBack();
 			}, true);
