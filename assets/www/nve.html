@@ -86,6 +86,7 @@
 <script type="text/javascript" src="js/ice/ice.js"></script>
 <script type="text/javascript" src="js/ice/ice_picture.js"></script>
 <script type="text/javascript" src="js/ice/ice_hendelse.js"></script>
+<script type="text/javascript" src="js/ice/ice_cover.js"></script>
 <script type="text/javascript" src="js/ice/ice_faresign.js"></script>
 
 <script type="text/javascript" src="js/water/water.js"></script>
@@ -410,8 +411,11 @@ body {
                     </li>
                     <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('ice_faresign');">Faretegn <span id="ice_faresign_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
                     </li>
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('ice_cover');">Isdekningsgrad <span id="ice_cover_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                    </li>
                     <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('ice_picture');">Bilde <span id="ice_picture_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
                     </li>
+                    
                 </ul>
             </div>
             <div class="sendAndGroup"></div>
@@ -452,6 +456,19 @@ body {
             <div class="addAbort c_color_gradient">
                 <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="ice_faresign.addFaresign();">Legg til</button>
                 <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="ice_faresign.abort();	">Avbryt</button>
+            </div>
+        </div>
+        
+        <div id="ice_cover" class="c_center_page standartTextSize">
+            <div class="pageScroller">
+                <div class="scrollable" id="ice_cover_scroller">
+                    
+                </div>
+            </div>
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="ice_faresign.addFaresign();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="ice_faresign.abort(); ">Avbryt</button>
             </div>
         </div>
 
