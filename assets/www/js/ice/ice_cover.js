@@ -1,10 +1,14 @@
 var ice_cover = {
 		shouldShowFooter : false,
 		
-		afterSendRegistration: function() {
-			
+		clear: function(){
+			jQuery("#ice_cover_list").val(0);
+			jQuery("#ice_cover_before_list").val(0);
+			jQuery("#ice_cover_comment").val("");
 		},
-		
+		afterSendRegistration: function() {
+			ice_cover.clear();
+		},
 		
 		init: function() {
 			$('header_middle_text').innerHTML = "Isdekningsgrad";
@@ -37,11 +41,12 @@ var ice_cover = {
 		addIceCoverObs : function(){
 			var list = jQuery("#ice_cover_list");
 			var before_list = jQuery("#ice_cover_before_list");
-			var comment = jQuery("#ice_cover_commet");
+			var comment = jQuery("#ice_cover_comment");
 
 			var obs = new IceCoverObs(0, list.val(), before_list.val(), 0, comment.val()); 
 			
 			ice_page.updateLocation(function(){
+				ice_cover.clear();
 				main.store.getIce().addObs(obs);
 				main.panels.slideBack();
 			}, true);
