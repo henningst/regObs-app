@@ -310,6 +310,30 @@ AvalancheDangerObs = (function(_super) {
 
 })(Observation);
 
+IceThickness = (function(_super) {
+
+  __extends(IceThickness, _super);
+
+  IceThickness.prototype.url = function() {
+    return "" + SERVER_URL + "IceThickness";
+  };
+
+  function IceThickness(RegID, SnowDepth, SlushSnow, IceThicknessSum, IceHeightBefore, IceHeightAfter, UsageFlagTID, Comment) {
+    this.RegID = RegID;
+    this.SnowDepth = SnowDepth;
+    this.SlushSnow = SlushSnow;
+    this.IceThicknessSum = IceThicknessSum;
+    this.IceHeightBefore = IceHeightBefore;
+    this.IceHeightAfter = IceHeightAfter;
+    this.UsageFlagTID = UsageFlagTID;
+    this.Comment = Comment;
+    this.model = "IceThickness";
+  }
+
+  return IceThickness;
+
+})(Observation);
+
 /*
 class AvalancheEvaluation
 

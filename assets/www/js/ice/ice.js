@@ -25,6 +25,7 @@ var ice_page = {
 	afterSendRegistration: function() {
 		ice_page.resetCounter('ice_picture_count');
 		ice_page.resetCounter('ice_faresign_count');
+		ice_page.resetCounter('ice_thickness_count');
 		ice_page.resetCounter('ice_cover_count');
 		jQuery('#ice_hendelse_count').removeClass("checked").text("0");
 		jQuery('#ice_group').val(0);
@@ -41,6 +42,7 @@ var ice_page = {
 
 		ice_page.setCounter('ice_faresign_count', iceStore.getObs("DangerObs").length);
 		ice_page.setCounter('ice_cover_count', iceStore.getObs("IceCoverObs").length);
+		ice_page.setCounter('ice_thickness_count', iceStore.getObs("IceThikness").length);
 		ice_page.setCounter('ice_picture_count', iceStore.getPictures().length);
 		
 		jQuery("#ice_obs .sendAndGroup").html(Handlebars.templates.sendGroup({sendFunction: "main.store.sendIce", hazard:"ice"}));

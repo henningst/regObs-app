@@ -124,6 +124,12 @@ class AvalancheDangerObs extends Observation
   beforeSend: (x)=>
     @AvalancheDangerObsID = x
     
+class IceThickness extends Observation
+  url : () -> "#{SERVER_URL}IceThickness"
+  constructor: (@RegID, @SnowDepth, @SlushSnow, @IceThicknessSum, @IceHeightBefore, @IceHeightAfter, @UsageFlagTID, @Comment) ->
+    @model = "IceThickness"
+    
+    
 ###
 class AvalancheEvaluation
 

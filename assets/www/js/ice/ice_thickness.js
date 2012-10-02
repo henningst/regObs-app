@@ -2,15 +2,22 @@ var ice_thickness = {
 		shouldShowFooter : false,
 		
 		clear: function(){
-			
+			jQuery.each(this.fields, function(index, name){
+				name.val("");
+			});
 		},
 		afterSendRegistration: function() {
-			
+			this.clear();
 		},
 		
 		init: function() {
 			$('header_middle_text').innerHTML = "Istykkelse";
 			
+			this.slush_depth = jQuery("#ice_thickness_slush_depth");
+			this.snow_depth = jQuery("#ice_thickness_snow_depth");
+			this.sum = jQuery("#ice_thickness_sum");
+			this.comment = jQuery("#ice_thickness_comment");
+			this.fields = [this.slush_depth, this.snow_depth, this.sum, this.comment];
 			
 		},
 		
@@ -36,15 +43,12 @@ var ice_thickness = {
 			});
 		},
 		
-		addIceCoverObs : function(){
-			var list = jQuery("#ice_cover_list");
-			var before_list = jQuery("#ice_cover_before_list");
-			var comment = jQuery("#ice_cover_comment");
-
-			var obs = new IceCoverObs(0, list.val(), before_list.val(), 0, comment.val()); 
+		addIceThickness : function(){
+			//(@RegID, @SnowDepth, @SlushSnow, @IceThicknessSum, @IceHeightBefore, @IceHeightAfter, @UsageFlagTID, @Comment) ->
+			var obs = new IceThickness(0, this.snow_depth.val(), this.slush_depth.val(), this.sum.val(), null, null, 0, this.comment.val()); 
 			
 			ice_page.updateLocation(function(){
-				ice_cover.clear();
+				ice_thickness.clear();
 				main.store.getIce().addObs(obs);
 				main.panels.slideBack();
 			}, true);
