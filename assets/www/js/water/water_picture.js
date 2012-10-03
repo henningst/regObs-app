@@ -40,6 +40,10 @@ var water_picture  = {
 		water_picture.updatePictureButtons("#water_picture");
 
 		main.hideDialog();
+		setTimeout(
+				function(){main.resetHeights(); setTimeout(main.resetHeights, 2000);}, 
+				2000
+			);
 		main.showHideFooter("water_picture");
 	},
 

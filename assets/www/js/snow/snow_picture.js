@@ -42,7 +42,10 @@ var snow_picture  = {
 		smallImage.src = imageData;
 		snow_picture.updatePictureButtons("#snow_picture");
 		main.hideDialog();
-		
+		setTimeout(
+				function(){main.resetHeights(); setTimeout(main.resetHeights, 2000);}, 
+				2000
+			);
 		main.showHideFooter("snow_picture");
 	},
 

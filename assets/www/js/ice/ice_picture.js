@@ -39,6 +39,10 @@ var ice_picture  = {
 		smallImage.src = imageData;
 		ice_picture.updatePictureButtons("#ice_picture");
 		main.hideDialog();
+		setTimeout(
+				function(){main.resetHeights(); setTimeout(main.resetHeights, 2000);}, 
+				2000
+			);
 		main.showHideFooter("ice_picture");
 	},
 
