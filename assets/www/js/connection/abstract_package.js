@@ -121,7 +121,9 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.setRegDate = function() {
-    return this.regDate = new Date(new Date().getTime() + 1000 * 60 * 120);
+    var date;
+    date = new Date();
+    return this.regDate = new Date(date.setHours(date.getHours() + 2));
   };
 
   AbstractPackage.prototype.setGroup = function(groupId) {

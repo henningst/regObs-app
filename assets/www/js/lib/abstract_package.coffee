@@ -34,7 +34,9 @@ class AbstractPackage
     DataAccess.save(@name, this)
   
   setRegDate : ()=>
-    @regDate = new Date(new Date().getTime() + 1000 * 60 * 120)
+    date = new Date()
+    
+    @regDate = new Date(date.setHours(date.getHours() + 2))
    
   setGroup: (groupId)=>
     @groupId = groupId
