@@ -615,6 +615,11 @@ var main = (function()
         },
         
         isFocuse: false,
+        resetHeights:function(){
+        	jQuery("#.scrollable.scrolling:visible").removeClass("scrolling");
+        	main.setHeights();
+        },
+        
         setHeights: function(){
         	var height = jQuery(".sl_container").height();
         	var bodyHeight = jQuery("body").height();
