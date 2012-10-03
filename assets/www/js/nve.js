@@ -255,6 +255,8 @@ var main = (function()
 	      	        		'ice_obs',
 	      	        		'ice_hendelse',
 	      	        		'ice_faresign',
+	      	        		'ice_cover',
+	      	        		'ice_thickness',
 	      	        		'ice_picture',
 	      	        		'water',
 	      	        		'water_see_obs',
@@ -330,6 +332,10 @@ var main = (function()
             main.fillDropdown(EstimatedNumKD, main.fillEstimatedNumKD, force);
             main.fillDropdown(DestructiveSizeKD, main.fillDestructiveSizeKD, force);
             main.fillDropdown(AvalancheKD, main.fillAvalancheKD, force);
+            
+            main.fillDropdown(IceCoverBeforeKD, main.fillIceCoverBeforeKD, force);
+            main.fillDropdown(IceCoverKD, main.fillIceCoverKD, force);
+            
         },
         
         carouselMoved: function(data)
@@ -577,14 +583,17 @@ var main = (function()
           
         },
         
-        createCarousel: function(id, items)
+        createCarousel: function(id, items, widthOfCaruselElement)
         {
+        	if(widthOfCaruselElement === undefined)
+        		widthOfCaruselElement = 200;
+        	
         	var properties = 
             {
-				'itemsWidth': 200,
+				'itemsWidth': widthOfCaruselElement,
 				'itemsHeight': 35,
 				'autoAdjust': 1,
-				'autoAdjustDuration': 400,
+				'autoAdjustDuration': widthOfCaruselElement * 2,
 				'firstItemIndex': CAROUSEL_STANDART,
 				'uId': id,
 				'items':
@@ -607,6 +616,11 @@ var main = (function()
         },
         
         isFocuse: false,
+        resetHeights:function(){
+        	jQuery("#.scrollable.scrolling:visible").removeClass("scrolling");
+        	main.setHeights();
+        },
+        
         setHeights: function(){
         	var height = jQuery(".sl_container").height();
         	var bodyHeight = jQuery("body").height();
@@ -628,7 +642,7 @@ var main = (function()
     	        		         
     	        		        if (target instanceof HTMLSelectElement || target instanceof HTMLAnchorElement || 
     	        		        	target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement ||
-    	        		        	jQuery(target).parents(".carusel").length > 0) {
+    	        		        	jQuery(target).is(".ca_items") || jQuery(target).parents(".ca_items").length > 0 ) {
     	        		            scroller.disable();
     	        		            this._disable = true;
     	        		            jQuery("body").css("overflow", "inherit");
@@ -753,7 +767,16 @@ var main = (function()
 
         fillEstimatedNumKD : function(data){
         	main.saveAndCall(EstimatedNumKD, data, [snow_activity.fillEstimatedNumKD]);
-        },       
+        },  
+        
+
+        fillIceCoverKD : function(data){
+        	main.saveAndCall(IceCoverKD, data, [ice_cover.fillIceCoverKD]);
+        },  
+
+        fillIceCoverBeforeKD : function(data){
+        	main.saveAndCall(IceCoverBeforeKD, data, [ice_cover.fillIceCoverBeforeKD]);
+        },  
         
         fillAvalancheKD : function(data){
         	main.saveAndCall(AvalancheKD, data, [snow_activity.fillAvalancheKD]);
@@ -1040,6 +1063,18 @@ var main = (function()
         		case 'ice_hendelse':
         			if(status == 'start') {
         				ice_hendelse.init();
+        			}
+        			break;
+        			
+        		case 'ice_cover':
+        			if(status == 'start') {
+        				ice_cover.init();
+        			}
+        			break;
+        			
+        		case 'ice_thickness':
+        			if(status == 'start') {
+        				ice_thickness.init();
         			}
         			break;
         			

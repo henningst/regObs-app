@@ -94,7 +94,6 @@ input.large
 .c_image
 {
 	width: 80%;
-	max-height: 50%;
 	margin: 10px;
 }
 
@@ -655,6 +654,7 @@ ul.actions li{
 .border-less{
 	border: none;	
 	background: none;
+	font-size: 1.4em
 }
 
 .as-text{
@@ -708,7 +708,7 @@ ul.actions li{
 }
 
 .pageScroller .scrollable{
-	height: 110%
+	padding-bottom: 50px;
 }
 
 .selfScroll{
@@ -718,4 +718,16 @@ ul.actions li{
 .observation label{
   margin-top: 10px;	
 }
-	
+
+.oneline-label {
+	text-align: left;	
+}
+
+.oneline-label input[type=checkbox]{
+	margin: 20px;
+}
+
+.oneline-label label{
+	display: inline-block;
+}
+

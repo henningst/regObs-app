@@ -9,10 +9,12 @@ var snow_activity = {
 			var type = jQuery("#snow_activity_carusel_type_field");
 			var size = jQuery("#snow_activity_carusel_size_field");
 			var count = jQuery("#snow_activity_carusel_count_field");
-			var comment = jQuery("#snow_acitivty_comment");
+			var height = jQuery("#snow_activity_carusel_height_field");
+			var aspect = jQuery("#snow_activity_carusel_aspect_field");
+			var comment = jQuery("#snow_activity_comment");
 			
 			//(@RegID, @AvalancheActivityObsID, @Aspect,@HeigthStartZone,@DestructiveSizeTID,@EstimatedNumTID,@AvalancheTID,@AvalancheTriggerTID,@TerrainStartZoneTID,@DtAvalancheTime,@SnowLine,@UsageFlagTID,@Comment)->
-			var obs = new AvalancheActivityObs(0,0,null,null, size.val(), count.val(), type.val(),0,0,date, null, 0, comment.val());
+			var obs = new AvalancheActivityObs(0,0, aspect.val(), height.val(), size.val(), count.val(), type.val(),0,0,date, null, 0, comment.val());
 			snow_page.updateLocation(function(){
 				main.store.getSnow().addObs(obs);
 				main.panels.slideBack();
@@ -24,38 +26,83 @@ var snow_activity = {
 			jQuery('#snow_activity_carusel_count').html("");
 			jQuery('#snow_activity_carusel_size').html("");
 			jQuery('#snow_activity_carusel_type').html("");
+			jQuery("#snow_activity_carusel_height").html("");
+			jQuery("#snow_activity_carusel_aspect").html("");
 			jQuery("#snow_activity_comment").val("");
 		},
 		
+		caruselInit: function(id, onSet, values, nameMapper, widthOfCaruselElement){
+			
+			var carusel = this[id] = main.createCarousel(id + "_carusel", jQuery.map(values, nameMapper), widthOfCaruselElement);
+			
+			jQuery('#' + id).html(
+			  carusel.getDomNode()
+			);
+			
+			main.listenForCaruselEvent(id + "_carusel", onSet);
+		},
+		
 		init: function() {
+			this.heightKD = SNOW_ACTIVTY_HEIGHT;
+			this.aspectKD = SNOW_ACTIVITY_ASPECT;
+			
 			$('header_middle_text').innerHTML = "Skredaktivitet";
 			
 			TemplateWireing.insertSlider("snow_activity_slider_placeholder", "snow_acitivty");
 			
+			this.caruselInit("snow_activity_carusel_count", snow_activity.setCount, this.estimatedNumKD, function(elem){return elem.EstimatedNumName;});
+			this.caruselInit("snow_activity_carusel_size", snow_activity.setSize, this.destructiveSizeKD, function(elem){return elem.DestructiveSizeName;});
+			this.caruselInit("snow_activity_carusel_type", snow_activity.setType, this.avalancheKD, function(elem){return elem.AvalancheName;});
+			this.caruselInit("snow_activity_carusel_aspect", snow_activity.setAspect, this.aspectKD, function(elem){return elem.name;}, 100);
+			this.caruselInit("snow_activity_carusel_height", snow_activity.setHeight, this.heightKD, function(elem){return elem.name;}, 100);
 			
-			jQuery('#snow_activity_carusel_count').html(
-				main.createCarousel("snow_activity_carusel_count_carusel", jQuery.map(this.estimatedNumKD, function(elem, i){
-					return elem.EstimatedNumName;
-				})).getDomNode()
-			);
+			this.listOfCarusels = ['snow_activity_carusel_count', 'snow_activity_carusel_count', 'snow_activity_carusel_size', 'snow_activity_carusel_type', 'snow_activity_carusel_aspect', 'snow_activity_carusel_height'];
 			
-			jQuery('#snow_activity_carusel_size').html(
-				main.createCarousel("snow_activity_carusel_size_carusel", jQuery.map(this.destructiveSizeKD, function(elem, i){
-					return elem.DestructiveSizeName;
-				})).getDomNode()
-			);
+			jQuery("#snow_acitivity_no_observed").click	(function(){
+				var nothingToObserved = jQuery(this).is(":checked");
+				
+				if(nothingToObserved){
+					snow_activity.clearForm();
+					snow_activity.hideObservations();
+				}else{
+					snow_activity.clearForm();
+					snow_activity.showObservations();
+				}
+			});
 			
-			jQuery('#snow_activity_carusel_type').html(
-				main.createCarousel("snow_activity_carusel_type_carusel", jQuery.map(this.avalancheKD, function(elem, i){
-					return elem.AvalancheName;
-				})).getDomNode()
-			);
-			
-			main.listenForCaruselEvent("snow_activity_carusel_type_carusel", snow_activity.setType);
-			main.listenForCaruselEvent("snow_activity_carusel_size_carusel", snow_activity.setSize);
-			main.listenForCaruselEvent("snow_activity_carusel_count_carusel", snow_activity.setCount);
+		},
+		
+		hideObservations: function(){
+			jQuery.each(this.listOfCarusels, function(index, name){
+				jQuery("#" + name).hide();
+				jQuery("#snow_activity_slider_placeholder").hide();
+			});
+		},
+		showObservations: function(){
+			jQuery.each(this.listOfCarusels, function(index, name){
+				jQuery("#" + name).show();
+				jQuery("#snow_activity_slider_placeholder").show();
+			});
+		},
+		
+		clearForm: function(){
+			jQuery("#snow_acitivty_slider").slider("value", 0);
+			jQuery("#snow_acitivty_time, #snow_acitivty_time_since").val(0);
+			var _this = this;
+			jQuery.each(this.listOfCarusels, function(index, name){
+				_this[name].goToItem(0);
+			});
 		},
 
+
+		setAspect: function(index){
+			jQuery("#snow_activity_carusel_aspect_field").val(snow_activity.aspectKD[index].value);
+		},
+
+		setHeight: function(index){
+			jQuery("#snow_activity_carusel_height_field").val(snow_activity.heightKD[index].value);
+		},
+		
 		setType: function(index){
 			jQuery("#snow_activity_carusel_type_field").val(snow_activity.avalancheKD[index].AvalancheTID);
 		},

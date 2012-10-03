@@ -13,6 +13,7 @@ var dirt_avalange = {
 			var obs = new LandSlideObs(0, date, null,null,null, type.val(), size.val(), trigger.val(), null, comment.val());
 			
 			dirt_page.updateLocation(function(){
+				dirt_avalange.clear();
 				main.store.getDirt().addObs(obs);
 				dirt_page.add('dirt_avalange_count');
 				
@@ -28,10 +29,14 @@ var dirt_avalange = {
 		},
 		
 		afterSendRegistration: function() {
-			$("dirt_avalange_type_list").selectedIndex = 0;
-			$("dirt_avalange_size_list").selectedIndex = 0;
-			$("dirt_avalange_trigger_list").selectedIndex = 0;
-			$("dirt_avalange_time").value = 0;
+			dirt_avalange.clear();
+		},
+		
+		clear : function(){
+			jQuery("#dirt_avalange_type_list").val(0);
+			jQuery("#dirt_avalange_size_list").val(0);
+			jQuery("#dirt_avalange_trigger_list").val(0);
+			jQuery("#dirt_avalange_time").val(0);
 			jQuery("#dirt_avalange_slider").slider("value", 0);
 			jQuery("#dirt_avalange_comment").val("");
 		},

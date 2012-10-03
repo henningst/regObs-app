@@ -11,28 +11,28 @@ class Observation extends AutoCastable
 
 
 class Result
-	constructor: () ->
-		@ok = false
-		@data = null
+  constructor: () ->
+    @ok = false
+    @data = null
 
-	isOk: () ->
-		@ok
-		
-		
+  isOk: () ->
+    @ok
+    
+    
 class User
-	constructor: (@id, @username, @password)->
+  constructor: (@id, @username, @password)->
     @groups = []
     @competancy = new ObserverCompetancy([])
     
-	
-	isDefined: ->
-		if (@username != null and @password != null)  
-			if(@username.length != 0 or @password.length != 0)
-				true
-			else
-				false
-		else
-			false
+  
+  isDefined: ->
+    if (@username != null and @password != null)  
+      if(@username.length != 0 or @password.length != 0)
+        true
+      else
+        false
+    else
+      false
 
 class Group
   constructor: (@id, @name)->
@@ -60,25 +60,25 @@ class ObserverCompetancy
  
 class Competancy
   constructor: (@geoHazard, @level)->
-		
+    
 class SendEmail
-	url : "" 
-	constructor: (@RegID ) ->
-		@url = "#{SERVER_URL}RegistrationNotification?RegID=#{@RegID}"
+  url : "" 
+  constructor: (@RegID ) ->
+    @url = "#{SERVER_URL}RegistrationNotification?RegID=#{@RegID}"
 
 class Registration
-	url : ()  -> "#{SERVER_URL}Registration" 
-	constructor: (@ObserverID, @ObsLocationID, @DtRegTime, @DtObsTime, @CompetenceLevelTID, @ObserverGroupID, @Comment) -> 
+  url : ()  -> "#{SERVER_URL}Registration" 
+  constructor: (@ObserverID, @ObsLocationID, @DtRegTime, @DtObsTime, @CompetenceLevelTID, @ObserverGroupID, @Comment) -> 
 
 class ActivityInfluencedKD
-	url : null
-	constructor: () ->
-		@url = "#{SERVER_URL}Language(#{LANGUAGE})/ActivityInfluencedKD"
-	
+  url : null
+  constructor: () ->
+    @url = "#{SERVER_URL}Language(#{LANGUAGE})/ActivityInfluencedKD"
+  
 class AreaUsageKD
-	url : null
-	constructor: (@LangKey, @AreaUsageName, @AreaUsageDescr, @Language ) ->
-		@url = "#{SERVER_URL}AreaUsageKD"
+  url : null
+  constructor: (@LangKey, @AreaUsageName, @AreaUsageDescr, @Language ) ->
+    @url = "#{SERVER_URL}AreaUsageKD"
 
 ###
 ?text=&geometry=75793,6814257&geometryType=esriGeometryPoint&
@@ -90,17 +90,17 @@ outSR=&outFields=*&f=pjson
 ###
 
 class AreaInformation
-	url : ""
-	constructor: (@Lat, @Long) ->
-		@url = "http://gis.nve.no/ArcGIS/rest/services/Mapservices/seNorge/MapServer/35/query?text=&geometry=#{Long},#{Lat}
+  url : ""
+  constructor: (@Lat, @Long) ->
+    @url = "http://gis.nve.no/ArcGIS/rest/services/Mapservices/seNorge/MapServer/35/query?text=&geometry=#{Long},#{Lat}
 &geometryType=esriGeometryPoint&inSR=32633&spatialRel=esriSpatialRelIntersects&
 relationParam=&objectIds=&where=&time=&returnCountOnly=false&returnIdsOnly=false&
 returnGeometry=false&maxAllowableOffset=&outSR=&outFields=*&f=pjson"
 
 class PositionDetails
-	url : ""
-	constructor: (@Lat, @Long) ->
-		@url = "http://gis.nve.no/ArcGIS/rest/services/Mapservices/Bakgrunnsdata/MapServer/36/query?text=&geometry=#{Long},#{Lat}&geometryType=esriGeometryPoint&
+  url : ""
+  constructor: (@Lat, @Long) ->
+    @url = "http://gis.nve.no/ArcGIS/rest/services/Mapservices/Bakgrunnsdata/MapServer/36/query?text=&geometry=#{Long},#{Lat}&geometryType=esriGeometryPoint&
 inSR=32633&spatialRel=esriSpatialRelIntersects&
 relationParam=&objectIds=&where=&time=&
 returnCountOnly=false&returnIdsOnly=false&
@@ -108,21 +108,26 @@ returnGeometry=false&maxAllowableOffset=&
 outSR=&outFields=*&f=pjson"
 
 class AvalancheActivityObs
-	url : ()  -> "#{SERVER_URL}AvalancheActivityObs"
-	constructor: (@RegID, @Aspect, @HeigthStartZone, @DestructiveSizeTID, @EstimatedNumTID, @AvalancheTID, @AvalancheTriggerTID, @TerrainStartZoneTID, @DtAvalancheTime, @SnowLine, @UsageFlagTID, @Comment) ->
-	
+  url : ()  -> "#{SERVER_URL}AvalancheActivityObs"
+  constructor: (@RegID, @Aspect, @HeigthStartZone, @DestructiveSizeTID, @EstimatedNumTID, @AvalancheTID, @AvalancheTriggerTID, @TerrainStartZoneTID, @DtAvalancheTime, @SnowLine, @UsageFlagTID, @Comment) ->
+
 class AvalancheDangerKD
-	url : null
-	constructor: (@LangKey, @AvalancheDangerName, @AvalancheDangerDescr, @Language ) ->
-		@url = "#{SERVER_URL}AvalancheDangerKD"
-	
+  url : null
+  constructor: (@LangKey, @AvalancheDangerName, @AvalancheDangerDescr, @Language ) ->
+    @url = "#{SERVER_URL}AvalancheDangerKD"
+  
 class AvalancheDangerObs extends Observation
-	url : ()  -> "#{SERVER_URL}AvalancheDangerObs"
-	constructor: (@AvalancheDangerObsID, @RegID, @DangerSignTID, @UsageFlagTID, @Comment) ->
-		@model = "AvalancheDangerObs"
+  url : ()  -> "#{SERVER_URL}AvalancheDangerObs"
+  constructor: (@AvalancheDangerObsID, @RegID, @DangerSignTID, @UsageFlagTID, @Comment) ->
+    @model = "AvalancheDangerObs"
 
   beforeSend: (x)=>
     @AvalancheDangerObsID = x
+
+
+    
+    
+    
     
 ###
 class AvalancheEvaluation
@@ -141,74 +146,84 @@ class AvalancheEvaluation
 "AvalancheEvaluation1": "Partnerforum:Invitasjon til spesialseminar om beredskap ut fra et forskningsperspektiv \r\n\r\nNVE har en viktig beredskapsfunksjon i samfunnet. Gjennom dette seminaret �nsker vi � gi �p�fyll� og stimulere til videreutvikling av v�rt beredskapsarbeid.",
 "InternalComment": "Dette er hemmelig.",
 "Comment"
-###	
+###  
 class AvalancheEvaluation
-	url : ()  -> "#{SERVER_URL}AvalancheEvaluation"
-	constructor: (@RegID, @CanPublish, @AvalancheDangerTID, @ValidExposition, @ValidHeightRelative, @ValidHeightFrom, @ValidHeigtTo, @AvalancheProblemTID1, @AvalancheProblemTID2, @AvalancheProblemTID3, @UsageFlagTID, @AvalancheEvaluation1, @InternalComment, @Comment) ->
+  url : ()  -> "#{SERVER_URL}AvalancheEvaluation"
+  constructor: (@RegID, @CanPublish, @AvalancheDangerTID, @ValidExposition, @ValidHeightRelative, @ValidHeightFrom, @ValidHeigtTo, @AvalancheProblemTID1, @AvalancheProblemTID2, @AvalancheProblemTID3, @UsageFlagTID, @AvalancheEvaluation1, @InternalComment, @Comment) ->
 
 class AvalancheKD
   url : null
   constructor: (@AvalancheTID, @LangKey, @AvalancheName, @AvalancheDescr ) ->
     @url = "#{SERVER_URL}Language(#{LANGUAGE})/AvalancheKD"
-	
+  
 class AvalancheObs
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class AvalancheProblemKD
-	constructor: ( ) ->
-	
+  constructor: ( ) ->
+  
 class AvalanchePublisherKD
-	constructor: ( ) ->
-	
+  constructor: ( ) ->
+  
 class AvalancheTriggerKD
-	constructor: ( ) ->
-	
+  constructor: ( ) ->
+  
 class AvalancheWarning
-	constructor: ( ) ->
-	
+  constructor: ( ) ->
+  
 class CompetenceLevelKD
-	constructor: ( ) ->
-	
+  constructor: ( ) ->
+  
 class CompressionTest
-	constructor: ( ) ->	
+  constructor: ( ) ->  
 
 class CompressionTestKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class ComprTestFractureKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class CriticalLayerKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class DamageExtentKD
-	url : null
-	constructor : () ->
-		@url = "#{SERVER_URL}Language(#{LANGUAGE})/DamageExtentKD"
+  url : null
+  constructor : () ->
+    @url = "#{SERVER_URL}Language(#{LANGUAGE})/DamageExtentKD"
 
 class DangerSignKD
-	url : null
-	constructor: ()->
-		@url = "#{SERVER_URL}Language(#{LANGUAGE})/DangerSignKD"
+  url : null
+  constructor: ()->
+    @url = "#{SERVER_URL}Language(#{LANGUAGE})/DangerSignKD"
 
 class DangerObs extends Observation
-	url : ()  -> "#{SERVER_URL}DangerObs"
-	constructor: (@DangerObsID, @RegID, @GeoHazardTID, @DangerSignTID, @UsageFlagTID, @Comment) ->
-	  @model = "DangerObs"
-	  
-	beforeSend: (index) =>
-	  @DangerObsID = index
-	  
+  url : ()  -> "#{SERVER_URL}DangerObs"
+  constructor: (@DangerObsID, @RegID, @GeoHazardTID, @DangerSignTID, @UsageFlagTID, @Comment) ->
+    @model = "DangerObs"
+    
+  beforeSend: (index) =>
+    @DangerObsID = index
+    
 
 class SnowSurfaceObservation extends Observation
   url : () -> "#{SERVER_URL}SnowSurfaceObservation"
   constructor: (@RegID, @SnowDepth, @NewSnowDepth24, @NewSnowLine, @SnowWindDepth24, @SurfaceWaterContentTID, @SnowDriftTID, @SnowSurfaceTID, @SurfaceRougnessTID, @FootPenetration, @UsageFlagTID, @Comment) ->
     @model = "SnowSurfaceObservation"
-	
+  
 class AvalancheActivityObs extends Observation
   url : () -> "#{SERVER_URL}AvalancheActivityObs"
   constructor: (@RegID, @AvalancheActivityObsID, @Aspect,@HeigthStartZone,@DestructiveSizeTID,@EstimatedNumTID,@AvalancheTID,@AvalancheTriggerTID,@TerrainStartZoneTID,@DtAvalancheTime,@SnowLine,@UsageFlagTID,@Comment)->
     @model="AvalancheActivityObs"
+    
+class IceCoverObs extends Observation
+  url : () -> "#{SERVER_URL}IceCoverObs"
+  constructor: (@RegID, @IceCoverBeforeTID, @IceCoverTID, @UsageFlagTID, @Comment) ->
+    @model = "IceCoverObs"
+
+class IceThickness extends Observation
+  url : () -> "#{SERVER_URL}IceThickness"
+  constructor: (@RegID, @SnowDepth, @SlushSnow, @IceThicknessSum, @IceHeightBefore, @IceHeightAfter, @UsageFlagTID, @Comment) ->
+    @model = "IceThickness"
 
 class DestructiveSizeKD
   url : null
@@ -219,26 +234,31 @@ class EstimatedNumKD
   url : null
   constructor: (@EstimatedNumTID, @LangKey, @EstimatedNumName, @EstimatedNumDescr) ->
     @url = "#{SERVER_URL}Language(#{LANGUAGE})/EstimatedNumKD"
-    console.log(@url)
+    
+class IceCoverBeforeKD
+  url: null
+  constructor: (@IceCoverBeforeTID, @LangKey, @IceCoverBeforeName, @IceCoverBeforeDescr) ->
+    @url = "#{SERVER_URL}IceCoverBeforeKD?Language eq #{LANGUAGE}"
 
+class IceCoverKD
+  url : null
+  constructor : (@IceCoverTID, @LangKey, @IceCoverName, @IceCoverDescr) ->
+    @url = "#{SERVER_URL}IceCoverKD?Language eq #{LANGUAGE}"
 
 class ForecastAccurateKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class ForecastRegionKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class GeoHazardKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class IceLayerKD
-	constructor: ( ) ->
-
-class IceThickness
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class IceThicknessLayer
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 ###
 class Incident
@@ -261,22 +281,22 @@ class Incident
   constructor: (@RegID, @GeoHazardTID, @ActivityInfluencedTID, @DamageExtentTID, @ForecastAccurateTID, @DtEndTime, @IncidentHeader, @IncidentIngress, @IncidentText, @SensitiveText, @UsageFlagTID, @Comment ) ->
 
 class IncidentURLs
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class Language
-	constructor: ( ) ->
-	
+  constructor: ( ) ->
+  
 class Observer
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class ObserverGroup
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class ObserverGroupMember
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class ObserverHazardsComp
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 ###
 class ObsLocation
@@ -301,135 +321,135 @@ class ObsLocation
 "Comment": null,
 ###
 class ObsLocation
-	url : ()  -> "#{SERVER_URL}ObsLocation"
-	constructor: (@LocationName, @UTMZone, @UTMEast, @UTMNorth, @UTMSourceTID, @AreaUsageTID, @ForecastRegionTID, @HeigthMax, @HeigthMin, @Area, @HeigthTreeLine, @DtRegTime, @AreaSize, @SlopeAngel, @SlopeDirection, @MunicipalNo, @Comment) ->
+  url : ()  -> "#{SERVER_URL}ObsLocation"
+  constructor: (@LocationName, @UTMZone, @UTMEast, @UTMNorth, @UTMSourceTID, @AreaUsageTID, @ForecastRegionTID, @HeigthMax, @HeigthMin, @Area, @HeigthTreeLine, @DtRegTime, @AreaSize, @SlopeAngel, @SlopeDirection, @MunicipalNo, @Comment) ->
 
 class Picture
-	url: ()  -> "#{SERVER_URL}Picture"
-	constructor: (@PictureID, @RegID, @PictureImage, @Photographer, @Copyright, @Aspect, @GeoHazardTID, @Comment, @RegistrationTID) ->
+  url: ()  -> "#{SERVER_URL}Picture"
+  constructor: (@PictureID, @RegID, @PictureImage, @Photographer, @Copyright, @Aspect, @GeoHazardTID, @Comment, @RegistrationTID) ->
 
 class PrecipitationKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class PropagationKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class RegistrationKD
-	url: null
-	constructor: ( ) ->
-		 @url = "#{SERVER_URL}Language(#{LANGUAGE})/RegistrationKD"
+  url: null
+  constructor: ( ) ->
+     @url = "#{SERVER_URL}Language(#{LANGUAGE})/RegistrationKD"
 
 class SnowCoverObs
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class SnowDriftKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class SnowSurfaceKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 
 
 
 class StabilityEvalKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class SurfaceRoughnessKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class SurfaceWaterContentKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class TerrainStartZoneKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class UsageFlagKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class UTMSourceKD
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class WeatherObservation
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class ActivityInfluencedW
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class AvalancheDangerObsV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class AvalancheEvaluationV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class AvalancheWarningV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class CompetenceLevelW
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class ForecastRegionW
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class IncidentNoV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class IncidentV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class ObserverHazardsCompW
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class ObserverLocationV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class PictureV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class SnowCoverObsNoV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class SnowCoverObsV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class SnowSurfaceObservationV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class WeatherObservationV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class AvalancheWarningSummaryV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class AllRegistrationsV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class ObserverGroupObsLocationV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class ObserverGroupMemberV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class AvalancheActivityObsV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class AvalancheWarningNoV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class AvalancheWarningInternalCommentsV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class AvalancheWarningObsLocation
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class County
-	constructor: ( ) -> 
+  constructor: ( ) -> 
 
 class AvalancheWarningPublishedSummaryV
-	constructor: ( ) ->
+  constructor: ( ) ->
 
 class ObsLocationV
-	constructor: ( ) ->
-	  
+  constructor: ( ) ->
+    
 class LandSlideSizeKD
   url: null
   constructor: (@LandSlideSizeTID, @LangKey, @LandSlideSizeName, @LandSlideSizeDescr) ->
@@ -440,7 +460,7 @@ class LandSlideTriggerKD
   url: null
   constructor: () ->
     @url = "#{SERVER_URL}/LandSlideTriggerKD?$filter=LangKey eq #{ LANGUAGE }"
-	  
+    
 class LandSlideKD
   url: null
   constructor: (@LandSlideTID, @LangKey, @LandSlideName, @LandSlideDescr) ->
@@ -453,10 +473,10 @@ class LandSlideObs extends Observation
     @model = "LandSlideObs"
     
 class WaterLevel
-	url : ()  -> "#{SERVER_URL}WaterLevel"
-	constructor: (@RegID, @WaterLevelDescribed, @WaterLevelValue, @WaterLevelRefTID, @UsageFlagTID, @Comment) ->
-		@model = "WaterLevel"
-	    
+  url : ()  -> "#{SERVER_URL}WaterLevel"
+  constructor: (@RegID, @WaterLevelDescribed, @WaterLevelValue, @WaterLevelRefTID, @UsageFlagTID, @Comment) ->
+    @model = "WaterLevel"
+      
     
 class WaterLevelRefKD
   url: null

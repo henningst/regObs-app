@@ -96,6 +96,19 @@ DIRT_TEXT =
 		"Gjelder for fylket/ varslingsregionen.",
 	 ];
 
+SNOW_ACTIVTY_HEIGHT = [{value: 0, name: "0"}];
+
+for(var i = 0; i < 25 ; i++){
+	var value = i * 100;
+	SNOW_ACTIVTY_HEIGHT.push({value: value, name: value + " moh"})
+};
+			
+SNOW_ACTIVITY_ASPECT = [{value: 0, name: "0"}];
+for(var i = 0; i <= 315/45 ; i++){
+	var value = i * 45;
+	SNOW_ACTIVITY_ASPECT.push({value: value, name: value + "&deg;"})
+};
+
 
 /*
  * Hjelpetekst til observasjonene

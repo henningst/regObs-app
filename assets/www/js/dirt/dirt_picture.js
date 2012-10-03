@@ -39,6 +39,11 @@ var dirt_picture  = {
 		smallImage.src = imageData;
 		dirt_picture.updatePictureButtons("#dirt_picture");
 		main.hideDialog();
+		setTimeout(
+				function(){main.resetHeights(); setTimeout(main.resetHeights, 2000);}, 
+				2000
+			);
+		
 		main.showHideFooter("dirt_picture");
 	},
 
