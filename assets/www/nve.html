@@ -87,6 +87,7 @@
 <script type="text/javascript" src="js/ice/ice_picture.js"></script>
 <script type="text/javascript" src="js/ice/ice_hendelse.js"></script>
 <script type="text/javascript" src="js/ice/ice_cover.js"></script>
+<script type="text/javascript" src="js/ice/ice_thickness.js"></script>
 <script type="text/javascript" src="js/ice/ice_faresign.js"></script>
 
 <script type="text/javascript" src="js/water/water.js"></script>
@@ -414,6 +415,8 @@ body {
                     </li>
                     <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('ice_cover');">Isdekningsgrad <span id="ice_cover_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
                     </li>
+                    <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('ice_thickness');">Istykkelse <span id="ice_thickness_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                    </li>
                     <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('ice_picture');">Bilde <span id="ice_picture_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
                     </li>
                     
@@ -478,12 +481,37 @@ body {
                     </p>
                 </div>
                 
-                
             </div>
 
             <div class="addAbort c_color_gradient">
                 <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="ice_cover.addIceCoverObs();">Legg til</button>
                 <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="ice_cover.abort(); ">Avbryt</button>
+            </div>
+        </div>
+        
+         <div id="ice_thickness" class="c_center_page standartTextSize">
+            <div class="pageScroller">
+                <div class="scrollable" id="ice_cover_scroller">
+                    <p>
+                        <label for="ice_thickness_depth" style="margin: 15px; display: inline">Tørr snø før boring:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> 
+                        <input type="number" step="any" placeholder="cm" name="ice_thickness_snow_depth" id="ice_thickness_snow_depth" class="large" />
+                    </p>
+                      <label for="ice_thickness_slush_depth" style="margin: 15px; display: inline">Sørpe før boring:</label> 
+                      <input type="number" step="any" placeholder="cm" name="ice_thickness_slush_depth" id="ice_thickness_slush_depth" class="large" />
+                    <p>
+                      <label for="ice_thickness_sum" style="margin: 15px; display: inline">Total istykkelse:</label> 
+                      <input type="number" step="any" placeholder="cm" name="ice_thickness_sum" id="ice_thickness_sum" class="large" />  
+                    </p>
+                    <p>
+                      <textarea id="ice_thickness_comment" placeholder="Kommentar" rows="5" class="bigWidth"></textarea>
+                    </p>
+                </div>
+                
+            </div>
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention add" onclick="ice_thickness.addIceThickness();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention abort" onclick="ice_thickness.abort(); ">Avbryt</button>
             </div>
         </div>
 

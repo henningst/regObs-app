@@ -256,6 +256,7 @@ var main = (function()
 	      	        		'ice_hendelse',
 	      	        		'ice_faresign',
 	      	        		'ice_cover',
+	      	        		'ice_thickness',
 	      	        		'ice_picture',
 	      	        		'water',
 	      	        		'water_see_obs',
@@ -1068,6 +1069,12 @@ var main = (function()
         		case 'ice_cover':
         			if(status == 'start') {
         				ice_cover.init();
+        			}
+        			break;
+        			
+        		case 'ice_thickness':
+        			if(status == 'start') {
+        				ice_thickness.init();
         			}
         			break;
         			
