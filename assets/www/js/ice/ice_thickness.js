@@ -2,12 +2,12 @@ var ice_thickness = {
 		shouldShowFooter : false,
 		
 		clear: function(){
-			jQuery.each(this.fields, function(index, name){
-				name.val("");
+			jQuery.each(ice_thickness.fields, function(index, name){
+				this.val("");
 			});
 		},
 		afterSendRegistration: function() {
-			this.clear();
+			ice_thickness.clear();
 		},
 		
 		init: function() {
@@ -22,14 +22,11 @@ var ice_thickness = {
 		},
 		
 		addIceThickness : function(){
-			//(@RegID, @SnowDepth, @SlushSnow, @IceThicknessSum, @IceHeightBefore, @IceHeightAfter, @UsageFlagTID, @Comment) ->
-			console.log("pp: about to send icethickness");
+			
 			var obs = new IceThickness(0, ice_thickness.snow_depth.val(), ice_thickness.slush_depth.val(), ice_thickness.sum.val(), null, null, 0, ice_thickness.comment.val()); 
-			console.log("pp: addnig obs " + JSON.stringify(obs))
+			
 			ice_page.updateLocation(function(){
-				console.log("pp: got location " + JSON.strinigfy(obs));
 				ice_thickness.clear();
-				console.log("adding " + JSON.stringify(obs));
 				main.store.getIce().addObs(obs);
 				main.panels.slideBack();
 			}, true);

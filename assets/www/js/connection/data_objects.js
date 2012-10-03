@@ -703,14 +703,6 @@ IceLayerKD = (function() {
 
 })();
 
-IceThickness = (function() {
-
-  function IceThickness() {}
-
-  return IceThickness;
-
-})();
-
 IceThicknessLayer = (function() {
 
   function IceThicknessLayer() {}

@@ -257,9 +257,6 @@ class GeoHazardKD
 class IceLayerKD
   constructor: ( ) ->
 
-class IceThickness
-  constructor: ( ) ->
-
 class IceThicknessLayer
   constructor: ( ) ->
 
