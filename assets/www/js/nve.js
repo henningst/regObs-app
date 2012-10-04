@@ -461,6 +461,8 @@ var main = (function()
 			
 			main.initialised = true;
 			geo.requestPosition(main.nothing, false);
+			
+			new ErrorHandler().hookInto();
         },
         
         backKeyDown: function() 
@@ -1158,8 +1160,8 @@ var main = (function()
         }
     };
     
-    window.addEventListener('load', wink.bind(main.init, main), false);
-    document.addEventListener("deviceready", main.initPhonegap, false);
+    window.addEventListener('load', E(wink.bind(main.init, main)), false);
+    document.addEventListener("deviceready", E(main.initPhonegap), false);
             
     document.addEventListener("resume", geo.resume, false);
     document.addEventListener("pause", geo.pause, false);

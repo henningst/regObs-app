@@ -6,7 +6,9 @@ var information_page = {
 			jQuery("#regobs-name").hide();
 			
 			jQuery("#information p").html(ABOUT_REGOBS);
-
+			
+			jQuery("#appversion").text(APP_VERSION);
+			
 		}
 		
 }

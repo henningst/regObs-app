@@ -15,6 +15,9 @@
   jQuery.noConflict();
 </script>
 
+<script type="text/javascript" src="js/dependencies/bugsense.js"></script>
+<script type="text/javascript" src="js/connection/error_handling.js"></script>
+
 <link rel="stylesheet" href="js/wink-1.4.2-all-default.min.css" type="text/css">
 <script type="text/javascript" src="js/wink-1.4.2-all-default.min.js"></script>
 <script type="text/javascript" src="js/backwardcompat-1.4.1.js"></script>
@@ -199,7 +202,7 @@ body {
 
         <div id="information">
             <div>
-                <div>Versjon: 0.12.13</div>
+                <div>Versjon: <span id="appversion"></span></div>
                 <div id="information_content">
                     <p>Her kommer det tekst om regobs og appen.</p>
                 </div>

@@ -66,6 +66,7 @@ var snow_picture  = {
 		var make = this.make;
 		var page = this;
 		this.setMakePictureHandlers(function(pictureSource){ make.call(page, pictureSource);});
+		
 	}
 };
 
