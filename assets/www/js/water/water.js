@@ -26,6 +26,7 @@ var water_page = {
 		water_page.resetCounter('water_picture_count');
 		water_page.resetCounter('water_level_count');
 		jQuery('#water_hendelse_count').removeClass("checked").text("0");
+		jQuery('#water_level_count').removeClass("checked").text("0");
 		jQuery('#water_group').val(0);
 	},
 	
@@ -40,8 +41,8 @@ var water_page = {
 
 		water_page.setCounter('water_faresign_count', waterStore.getObs('DangerObs').length);
 		water_page.setCounter('water_picture_count', waterStore.getPictures().length);
-		water_page.setCounter('water_level_count', waterStore.getObs('WaterLevel').length);
 		
+
 		jQuery("#water_obs .sendAndGroup").html(Handlebars.templates.sendGroup({sendFunction: "main.store.sendWater", hazard:"water"}));
 		login_page.showGroupStatus();
 		
