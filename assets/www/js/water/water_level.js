@@ -72,6 +72,8 @@ var water_level = {
 				main.panels.slideBack()
 			},true);
 				
+			water_page.check("water_level_count");
+			
 			$("water_level_reference_list").selectedIndex = 0;
 			$("water_level_value").value = "";
 			$("water_level_comment").value = "";
