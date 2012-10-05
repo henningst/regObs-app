@@ -626,6 +626,8 @@ var main = (function()
         },
         
         setHeights: function(){
+        	
+        	
         	var height = jQuery(".sl_container").height();
         	var bodyHeight = jQuery("body").height();
         	var top = height - 52;

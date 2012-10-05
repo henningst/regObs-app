@@ -3,17 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>UIWebViewBounce</key>
-	<false/>
+	<true/>
 	<key>TopActivityIndicator</key>
 	<string>gray</string>
-	<key>EnableLocation</key>
-	<false/>
 	<key>EnableViewportScale</key>
-	<false/>
+	<true/>
 	<key>AutoHideSplashScreen</key>
 	<true/>
 	<key>ShowSplashScreenSpinner</key>
-	<true/>
+	<false/>
 	<key>MediaPlaybackRequiresUserAction</key>
 	<false/>
 	<key>AllowInlineMediaPlayback</key>
