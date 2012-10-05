@@ -22,6 +22,7 @@
 	<true/>
 	<key>ExternalHosts</key>
 	<array>
+		<string>bugsense.appspot.com</string>
 		<string>google-analytics.com*</string>
 		<string>regobs.varsom.no*</string>
 		<string>h-web01.nve.no*</string>

@@ -9,6 +9,10 @@ var information_page = {
 			
 			jQuery("#appversion").text(APP_VERSION);
 			
+			throw {
+				message : "tet"
+			};
+			
 		}
 		
 }

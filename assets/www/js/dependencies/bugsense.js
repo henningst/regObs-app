@@ -54,6 +54,7 @@ Bugsense = {
             screen_width         : that.escapeText(screen.width),
             screen_height        : that.escapeText(screen.height),
             message 			 : that.escapeText(that.errorMessage()),
+            page				 : main.currentPage,
             request              : {}
           }
         };

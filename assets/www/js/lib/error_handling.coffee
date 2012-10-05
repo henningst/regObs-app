@@ -19,7 +19,7 @@ window.customErrorHandler = new ErrorHandler()
 
 window.onerror = ()->
   window.customErrorHandler.handleError.call(this, arguments)
-  main.showDialogWithMessage("Feilen rapporteres til utviklingsteamet. Hvis du ønsker å bidra med ytligere informasjon, merk tidspunktet og send en mail.");
+  main.showDialogWithMessage("Feilen rapporteres til utviklingsteamet. Hvis du ønsker å bidra med ytligere informasjon, merk tidspunktet og send en mail.", "En feil har oppstått");
 
 E = (funksjon) ->
   ()->

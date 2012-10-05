@@ -129,6 +129,8 @@ var main = (function()
     	
     	currentlyLoggedIn : false,
     	
+    	currentPage: "",
+    	
     	lastRegID: [],
     	
     	caruselListeners: [],
@@ -887,7 +889,7 @@ var main = (function()
         	
         	
         	main.setHeights();
-        	
+        	main.currentPage = params.id;
         	switch(params.id) {
         		case 'home':
         			if(status == 'end') {
