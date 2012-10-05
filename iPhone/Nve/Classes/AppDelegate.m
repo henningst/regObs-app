@@ -60,29 +60,27 @@
  * This is main kick off after the app inits, the views and Settings are setup here. (preferred - iOS4 and up)
  */
 - (BOOL) application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
-{    
+{
     NSURL* url = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
+    NSString* invokeString = nil;
+    
     if (url && [url isKindOfClass:[NSURL class]]) {
-        self.invokeString = [url absoluteString];
+        invokeString = [url absoluteString];
 		NSLog(@"Nve launchOptions = %@", url);
-    }    
+    }
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     self.window = [[UIWindow alloc] initWithFrame:screenBounds];
     self.window.autoresizesSubviews = YES;
     
-    CGRect viewBounds = [[UIScreen mainScreen] applicationFrame];
-    
     self.viewController = [[MainViewController alloc] init];
     self.viewController.useSplashScreen = YES;
     self.viewController.wwwFolderName = @"www";
     self.viewController.startPage = @"nve.html";
-    self.viewController.view.frame = viewBounds;
+    self.viewController.invokeString = invokeString;
     
-    // over-ride delegates
-    self.viewController.webView.delegate = self;
-    self.viewController.commandDelegate = self;
-
+    // NOTE: To control the view's frame size, override [self.viewController viewWillAppear:] in your view controller.
+    
     // check whether the current orientation is supported: if it is, keep it, rather than forcing a rotation
     BOOL forceStartupRotation = YES;
     UIDeviceOrientation curDevOrientation = [[UIDevice currentDevice] orientation];
@@ -93,23 +91,27 @@
     }
     
     if (UIDeviceOrientationIsValidInterfaceOrientation(curDevOrientation)) {
-        for (NSNumber *orient in self.viewController.supportedOrientations) {
-            if ([orient intValue] == curDevOrientation) {
-                forceStartupRotation = NO;
-                break;
-            }
+        if ([self.viewController supportsOrientation:curDevOrientation]) {
+            forceStartupRotation = NO;
         }
-    } 
+    }
     
     if (forceStartupRotation) {
-        NSLog(@"supportedOrientations: %@", self.viewController.supportedOrientations);
-        // The first item in the supportedOrientations array is the start orientation (guaranteed to be at least Portrait)
-        UIInterfaceOrientation newOrient = [[self.viewController.supportedOrientations objectAtIndex:0] intValue];
+        UIInterfaceOrientation newOrient;
+        if ([self.viewController supportsOrientation:UIInterfaceOrientationPortrait])
+            newOrient = UIInterfaceOrientationPortrait;
+        else if ([self.viewController supportsOrientation:UIInterfaceOrientationLandscapeLeft])
+            newOrient = UIInterfaceOrientationLandscapeLeft;
+        else if ([self.viewController supportsOrientation:UIInterfaceOrientationLandscapeRight])
+            newOrient = UIInterfaceOrientationLandscapeRight;
+        else
+            newOrient = UIInterfaceOrientationPortraitUpsideDown;
+        
         NSLog(@"AppDelegate forcing status bar to: %d from: %d", newOrient, curDevOrientation);
         [[UIApplication sharedApplication] setStatusBarOrientation:newOrient];
     }
     
-    [self.window addSubview:self.viewController.view];
+    self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
     return YES;
@@ -232,5 +234,13 @@
         
         application.applicationIconBadgeNumber = 0;
     }
+}
+
+
+- (NSUInteger) application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    // IPhone doesn't support upside down by default, while the IPad does.  Override to allow all orientations always, and let the root view controller decide whats allowed (the supported orientations mask gets intersected).
+    NSUInteger supportedInterfaceOrientations = (1 << UIInterfaceOrientationPortrait) | (1 << UIInterfaceOrientationLandscapeLeft) | (1 << UIInterfaceOrientationLandscapeRight) | (1 << UIInterfaceOrientationPortraitUpsideDown);
+    return supportedInterfaceOrientations;
 }
 @end
