@@ -3,11 +3,13 @@
 class ErrorHandler
   constructor: () ->
     
-  handleError: ()->
-    console.log("Sending error: #{JSON.stringify(arguments)}");
+  handleError: (exception)->  
+    console.log("Sending error: #{JSON.stringify(exception)}");
     Bugsense.notify({
-      error: arguments
+      error: exception
     });
+    main.showDialogWithMessage("Feilen rapporteres til utviklingsteamet. Hvis du ønsker å bidra med ytligere informasjon, merk tidspunktet og send en mail.", "En feil har oppstått");
+ 
   
   hookInto : ()->
     jQuery("[onclick]").each (index, obj) ->
@@ -17,16 +19,16 @@ class ErrorHandler
 
 window.customErrorHandler = new ErrorHandler()
 
-window.onerror = ()->
-  window.customErrorHandler.handleError.call(this, arguments)
-  main.showDialogWithMessage("Feilen rapporteres til utviklingsteamet. Hvis du ønsker å bidra med ytligere informasjon, merk tidspunktet og send en mail.", "En feil har oppstått");
+window.onerror = (error)-> window.customErrorhandler.handleError(error)
+  
 
 E = (funksjon) ->
   ()->
     try
       funksjon()
     catch e 
-      window.onerror.call(this, e)
+      console.log("catched #{JSON.stringify(e)}")
+      window.customErrorHandler.handleError(e)
   
 
 

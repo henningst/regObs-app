@@ -20,7 +20,7 @@ Bugsense = {
         environment: 'development', // modify me if you like
         // TODO: find a way to detect the mobile device, maybe with WURFL or so…?
         appver: APP_VERSION || 'unknown',
-        osver: window.navigator.oscpu || 'unknown'
+        osver: device.platform || 'unknown'
       },
 
       // bugsense client
@@ -32,7 +32,7 @@ Bugsense = {
 
       // basics about the exception
       exception: {
-        klass: that.notice.error[0].message || "Unknown",
+        klass: that.notice.error.message || "Unknown",
         where: "n/a:0", 
         message: that.errorMessage(),
         backtrace : that.errorMessage()

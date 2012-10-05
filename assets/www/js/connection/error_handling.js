@@ -5,11 +5,12 @@ ErrorHandler = (function() {
 
   function ErrorHandler() {}
 
-  ErrorHandler.prototype.handleError = function() {
-    console.log("Sending error: " + (JSON.stringify(arguments)));
-    return Bugsense.notify({
-      error: arguments
+  ErrorHandler.prototype.handleError = function(exception) {
+    console.log("Sending error: " + (JSON.stringify(exception)));
+    Bugsense.notify({
+      error: exception
     });
+    return main.showDialogWithMessage("Feilen rapporteres til utviklingsteamet. Hvis du ønsker å bidra med ytligere informasjon, merk tidspunktet og send en mail.", "En feil har oppstått");
   };
 
   ErrorHandler.prototype.hookInto = function() {
@@ -28,9 +29,8 @@ ErrorHandler = (function() {
 
 window.customErrorHandler = new ErrorHandler();
 
-window.onerror = function() {
-  window.customErrorHandler.handleError.call(this, arguments);
-  return main.showDialogWithMessage("Feilen rapporteres til utviklingsteamet. Hvis du ønsker å bidra med ytligere informasjon, merk tidspunktet og send en mail.");
+window.onerror = function(error) {
+  return window.customErrorhandler.handleError(error);
 };
 
 E = function(funksjon) {
@@ -38,7 +38,8 @@ E = function(funksjon) {
     try {
       return funksjon();
     } catch (e) {
-      return window.onerror.call(this, e);
+      console.log("catched " + (JSON.stringify(e)));
+      return window.customErrorHandler.handleError(e);
     }
   };
 };
