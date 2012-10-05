@@ -102,7 +102,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 - (void) dealloc
 {
 	[[GANTracker sharedTracker] stopTracker];
-	[ super dealloc ];
 }
 
 @end
