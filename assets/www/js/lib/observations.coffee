@@ -24,7 +24,7 @@ class ObservationFetcher
       title = entry.find("title").text().trim()
       updated = entry.find("updated").text().trim()
       url = entry.find("link").attr("href")
-      content = entry.find("content").html().trim()
+      content = entry.find("content")[0]
       
       new ObservationView(author, title, updated, url, content)  
     )
@@ -34,6 +34,8 @@ class ObservationViewRendrer
   constructor: (@domNode, @listOfView) ->
     
   render: ()->
+    console.log(@domNode)
     jQuery(@domNode).html(Handlebars.templates.viewList({list: @listOfView}));
+    console.log(jQuery(@domNode))
     
   setListOfView: (@listOfView)-> 

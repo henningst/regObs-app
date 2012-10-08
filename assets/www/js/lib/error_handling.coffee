@@ -21,7 +21,7 @@ class ErrorHandler
 
 window.customErrorHandler = new ErrorHandler()
 
-window.onerror = (error)-> window.customErrorhandler.handleError(error)
+window.onerror = (error)-> window.customErrorHandler.handleError(error)
   
 
 E = (funksjon) ->

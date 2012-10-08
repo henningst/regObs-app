@@ -33,7 +33,7 @@ describe("Observations", function(){
 		 expect(view.title).toEqual('02.10.2012 kl 00:00, Skredfaretegn, Ferske skred, .');
 		 expect(view.updated).toEqual('02.10.2012 00:00:37');
 		 expect(view.url).toEqual('http://h-web01.nve.no/stage_RegObsWeb/Registration?regId=5290'); 
-		 expect(view.content).toEqual("<div>\
+		 expect(view.content.innerHTML.trim()).toEqual("<div>\
 							<strong>02.10.2012 kl 00:00, Skredfaretegn, Ferske skred, . </strong>\
 							Snøobservasjon ved (Ingen varslingsregion/BÆRUM) av <i>Ukjent observatør</i>\
 							</div>");

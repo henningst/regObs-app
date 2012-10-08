@@ -45,7 +45,7 @@ ObservationFetcher = (function() {
       title = entry.find("title").text().trim();
       updated = entry.find("updated").text().trim();
       url = entry.find("link").attr("href");
-      content = entry.find("content").html().trim();
+      content = entry.find("content")[0];
       return new ObservationView(author, title, updated, url, content);
     });
   };
@@ -62,9 +62,11 @@ ObservationViewRendrer = (function() {
   }
 
   ObservationViewRendrer.prototype.render = function() {
-    return jQuery(this.domNode).html(Handlebars.templates.viewList({
+    console.log(this.domNode);
+    jQuery(this.domNode).html(Handlebars.templates.viewList({
       list: this.listOfView
     }));
+    return console.log(jQuery(this.domNode));
   };
 
   ObservationViewRendrer.prototype.setListOfView = function(listOfView) {
