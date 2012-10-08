@@ -70,8 +70,6 @@ var geo = {
 
 var omerade = {
 		parseArea : function(data){
-			console.log("omerade");
-			console.log(data);
 			var res = JSON.parse(data);
 			
 			if(res != null && res.features != undefined && res.features.length > 0) {
@@ -449,11 +447,8 @@ var main = (function()
         	if(window.analytics)
 			{
         		window.analytics.start(GA_TRACKER_CODE);
-			}else
-			{
-				window.analytics = {
-						trackPageView  : function(){}
-				}
+			}else{
+				console.log("no analytics");
 			}
 
             main.populateBoxes(true);
@@ -884,7 +879,11 @@ var main = (function()
         	
         	if(status == 'start' && main.initialised) {
         		//google analytics
-    			window.analytics.trackPageView(params.id);
+        		console.log("analytics " + window.analytics);
+    			window.analytics.trackPageView(params.id, 
+    					function(d){console.log("success " + JSON.stringify(d) )}, 
+    					function(d){console.log("fail " + JSON.stringify(d) )}
+    			);
         	}
         	
         	main.showHideFooter(params.id);

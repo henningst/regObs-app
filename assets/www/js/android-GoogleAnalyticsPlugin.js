@@ -1,5 +1,5 @@
 /*
- * PhoneGap is available under *either* the terms of the modified BSD license
+ * cordova is available under *either* the terms of the modified BSD license
  * *or* the MIT License (2008). See http://opensource.org/licenses/alphabetical
  * for full text.
  * 
@@ -10,6 +10,7 @@
  * Constructor
  */
 function GoogleAnalyticsPlugin() {
+	console.log("created analytics")
 }
 
 /**
@@ -24,7 +25,7 @@ function GoogleAnalyticsPlugin() {
  */
 GoogleAnalyticsPlugin.prototype.start = function(accountId, successCallback,
 		failureCallback) {
-	return PhoneGap.exec(successCallback, failureCallback,
+	return cordova.exec(successCallback, failureCallback,
 			'GoogleAnalyticsTracker', 'start', [ accountId ]);
 };
 
@@ -41,7 +42,7 @@ GoogleAnalyticsPlugin.prototype.start = function(accountId, successCallback,
  */
 GoogleAnalyticsPlugin.prototype.trackPageView = function(key, successCallback,
 		failureCallback) {
-	return PhoneGap.exec(successCallback, failureCallback,
+	return cordova.exec(successCallback, failureCallback,
 			'GoogleAnalyticsTracker', 'trackPageView', [ key ]);
 };
 
@@ -68,7 +69,8 @@ GoogleAnalyticsPlugin.prototype.trackPageView = function(key, successCallback,
 
 GoogleAnalyticsPlugin.prototype.trackEvent = function(category, action, label, value,
 		successCallback, failureCallback) {
-	return PhoneGap.exec(successCallback, failureCallback,
+	console.log("tracking");
+	return cordova.exec(successCallback, failureCallback,
 			'GoogleAnalyticsTracker', 'trackEvent', [ category, action,
 					typeof label === "undefined" ? "" : label,
 					(isNaN(parseInt(value, 10))) ? 0 : parseInt(value, 10) ]);
@@ -76,22 +78,11 @@ GoogleAnalyticsPlugin.prototype.trackEvent = function(category, action, label, v
 
 GoogleAnalyticsPlugin.prototype.setCustomVar = function(index, label, value, scope,
 		successCallback, failureCallback) {
-	return PhoneGap.exec(successCallback, failureCallback,
+	return cordova.exec(successCallback, failureCallback,
 			'GoogleAnalyticsTracker', 'setCustomVariable', [
 					(isNaN(parseInt(index, 10))) ? 0 : parseInt(index, 10),
 					label, value,
 					(isNaN(parseInt(scope, 10))) ? 0 : parseInt(scope, 10) ]);
 };
 
-/**
- * Load Analytics
- */
-PhoneGap.addConstructor(function() {
-	PhoneGap.addPlugin('googleAnalyticsPlugin', new GoogleAnalyticsPlugin());
-
-	// @deprecated: No longer needed in PhoneGap 1.0. Uncomment the addService
-	// code for earlier
-	// PhoneGap releases.
-	// PluginManager.addService("GoogleAnalyticsTracker",
-	// "com.phonegap.plugins.analytics.GoogleAnalyticsTracker");
-});
+window.analytics = new GoogleAnalyticsPlugin();

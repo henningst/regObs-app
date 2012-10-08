@@ -34,8 +34,7 @@ Bugsense = {
       exception: {
         klass: that.notice.error.message || "Unknown",
         where: "n/a:0", 
-        message: that.errorMessage(),
-        backtrace : that.errorMessage()
+        message: that.errorMessage()
       },
 
       // details & custom data about the exception including url, request, response,…
@@ -53,7 +52,6 @@ Bugsense = {
             navigator_language   : that.escapeText(navigator.language),
             screen_width         : that.escapeText(screen.width),
             screen_height        : that.escapeText(screen.height),
-            message 			 : that.escapeText(that.errorMessage()),
             page				 : main.currentPage,
             request              : {}
           }
