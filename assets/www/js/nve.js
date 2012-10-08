@@ -933,9 +933,7 @@ var main = (function()
         			
         		case 'snow_see_obs':
         			if(status == 'start') {
-        				if( $('snow_see_obs').innerHTML == "")
-        					$('snow_see_obs').innerHTML = '<iframe  src="http://regobs.varsom.no/Avalanche"></iframe></div>';
-//        				snow_see_obs.init();
+        				snow_see_obs.init();
         			}
         			break;
         			

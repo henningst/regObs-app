@@ -1,4 +1,5 @@
 
+
 describe("Observer comp", function(){
 	it("should fetchdata, and find level", function(){
 		var user = {userId: 188};
