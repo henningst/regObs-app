@@ -34,7 +34,4 @@ GoogleAnalyticsPlugin.prototype.trackerDispatchDidComplete = function(count) {
 	//console.log("trackerDispatchDidComplete :: " + count);
 };
 
-PhoneGap.addConstructor(function() {
-  if(!window.plugins) window.plugins = {};
-  window.plugins.googleAnalyticsPlugin = new GoogleAnalyticsPlugin();
-});
+window.analytics = new GoogleAnalyticsPlugin();

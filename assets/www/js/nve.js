@@ -877,6 +877,7 @@ var main = (function()
         	
         	if(status == 'start' && main.initialised) {
         		//google analytics
+        		console.log("analytics " + window.analytics);
     			window.analytics.trackPageView(params.id, 
     					function(d){console.log("success " + JSON.stringify(d) )}, 
     					function(d){console.log("fail " + JSON.stringify(d) )}
