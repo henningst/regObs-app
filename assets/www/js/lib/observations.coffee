@@ -1,7 +1,8 @@
 
 class ObservationView
-  constructor: (@author,  @title, @updated, @url, @content) ->
+  constructor: (@author, @updated, @url, @content) ->
     
+  
 
 class ObservationFetcher
   
@@ -21,21 +22,37 @@ class ObservationFetcher
     jQuery.map(entrys, (e)->
       entry = jQuery(e)
       author = entry.find("author").text().trim()
-      title = entry.find("title").text().trim()
       updated = entry.find("updated").text().trim()
       url = entry.find("link").attr("href")
-      content = entry.find("content")[0]
+      content = new Handlebars.SafeString(entry.find("content div").html().trim());
       
-      new ObservationView(author, title, updated, url, content)  
+      obs = new ObservationView(author, updated, url, content)
+      console.log(JSON.stringify(obs))
+      obs  
     )
+    
+   
+class FullViewRenderer
+  constructor: (@domNode, @url)->
+    
+  render : ()->
+    jQuery(@domNode).html(Handlebars.templates.fullView({url: @url}))
+    
+  setUrl : (@url)->
+
 
 
 class ObservationViewRendrer
   constructor: (@domNode, @listOfView) ->
     
   render: ()->
-    console.log(@domNode)
     jQuery(@domNode).html(Handlebars.templates.viewList({list: @listOfView}));
-    console.log(jQuery(@domNode))
+    main.resetHeights()
+    jQuery(@domNode).find("li").click ()->
+      url = jQuery(this).attr("data-url")
+      navigator.app.loadUrl(url, { openExternal:true } ); 
+    
     
   setListOfView: (@listOfView)-> 
+
+

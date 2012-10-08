@@ -1,9 +1,13 @@
-<ul>
-    {{#each list}}
-        <li>{{title}}</li>
-    {{/each}}
-</ul>
 
+<div class="pageScroller">
+	<ul class="w_list w_border scrollable" id="snow_observation_list">
+	    {{#each list}}
+	        <li class="w_list_item w_border_bottom w_bg_light" data-url="{{url}}">
+	          {{content}}
+	        </li>
+	    {{/each}}
+	</ul>
+</div>
 {{^list}}
     Loading ...
 {{/list}}

@@ -698,10 +698,15 @@ ul.actions li{
   content:'...';
 }
 
-.listScroller, .pageScroller{
-	overflow: hidden;
+.w_list_item, .w_list{
+	height: inherit;
+  line-height: inherit;
+  white-space: inherit;	
 }
 
+.listScroller, .pageScroller, .iframeScroller{
+	overflow: hidden;
+}
 
 
 .listScroller ul, .listScroller .scrollable, .pageScroller .scrollable{

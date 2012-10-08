@@ -1,5 +1,16 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['fullView'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div style=\"width: 300px; height: 400px; overflow:hidden; \">\n	<div class=\"iframeScroller\">\n	  <div class=\"scrollable\" id=\"iframeScrollerPane\">\n	    <div style=\"width: 3000px; height: 4000px; float:left; border: 2px solid red\">\n	       <iframe src=\"";
+  foundHelper = helpers.url;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.url; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\"></iframe>\n	    </div>\n	  </div>\n	</div>\n</div>\n";
+  return buffer;});
 templates['sendGroup'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression;
@@ -49,11 +60,15 @@ templates['viewList'] = template(function (Handlebars,depth0,helpers,partials,da
 function program1(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n        <li>";
-  foundHelper = helpers.title;
+  buffer += "\n	        <li class=\"w_list_item w_border_bottom w_bg_light\" data-url=\"";
+  foundHelper = helpers.url;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</li>\n    ";
+  else { stack1 = depth0.url; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\">\n	          ";
+  foundHelper = helpers.content;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.content; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\n	        </li>\n	    ";
   return buffer;}
 
 function program3(depth0,data) {
@@ -61,11 +76,11 @@ function program3(depth0,data) {
   
   return "\n    Loading ...\n";}
 
-  buffer += "<ul>\n    ";
+  buffer += "\n<div class=\"pageScroller\">\n	<ul class=\"w_list w_border scrollable\" id=\"snow_observation_list\">\n	    ";
   stack1 = depth0.list;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</ul>\n\n";
+  buffer += "\n	</ul>\n</div>\n";
   foundHelper = helpers.list;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.program(3, program3, data),fn:self.noop}); }
   else { stack1 = depth0.list; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
