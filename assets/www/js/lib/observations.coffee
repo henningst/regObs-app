@@ -2,29 +2,48 @@
 class ObservationView
   constructor: (@author, @updated, @url, @content) ->
     
+class AllRegistrationsVUrlGenerator
+  baseurl : "http://h-web01.nve.no/stage_regobsservices/Atom/AllRegistrationsV?"
+  queryString : "$filter=LangKey eq #{LANGUAGE} and UTMEast gt %UTM_EAST_MIN% and UTMEast lt %UTM_EAST_MAX% and UTMNorth le %UTM_NORTH_MAX% and UTMNorth gt %UTM_NORTH_MIN%&$orderby=RegID desc"
+  diameter : 10000
+  constructor: (@currentPosition)->
+    
+  url : ()->
+    currentUrl = @queryString
+      .replace("%UTM_EAST_MIN%", @currentPosition.east - @radius())
+      .replace("%UTM_EAST_MAX%", @currentPosition.east + @radius())
+      .replace("%UTM_NORTH_MIN%", @currentPosition.north - @radius())
+      .replace("%UTM_NORTH_MAX%", @currentPosition.north + @radius())
+    console.log("currrent position " + JSON.stringify(@currentPosition))
+    console.log("currrent url " + currentUrl )
+    @baseurl + encodeURIComponent(currentUrl)
+      
+  radius : ()->
+    @diameter / 2
   
 
 class ObservationFetcher
   
-  
+  constructor: (@urlGenerator)->
 
   getObservations: (callback)=>
     jQuery.ajax({
       type: "GET",
-      url: "http://h-web01.nve.no/stage_regobsservices/Atom/AllRegistrationsV?$filter=LangKey%20eq%201%20and%20UTMEast%20gt%20240000%20and%20UTMEast%20lt%20250000%20and%20UTMNorth%20le%206660000%20and%20UTMNorth%20gt%206650000&$orderby=RegID%20desc",
+      url: @urlGenerator.url(),
       dataType: "text",
       success: @fetchedDataHandler(callback) ,
-      
+      error :  (e)->
+        console.log("failed #{JSON.stringify(e)}" )
     })
   
-  fetchedDataHandler: (callback)->
+  fetchedDataHandler: (callback)=>
     ( data )=>
       xml = jQuery.parseXML(data)
       obs = @entryToObservationView(jQuery(xml).find("entry"))
       callback(obs)
     
-  entryToObservationView: (entrys) ->
-    jQuery.map(entrys, (e)->
+  entryToObservationView: (entrys) =>
+    jQuery.map(entrys, (e) =>
       entry = jQuery(e)
       author = entry.find("author").text().trim()
       updated = entry.find("updated").text().trim()
