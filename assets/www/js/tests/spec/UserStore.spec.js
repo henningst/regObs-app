@@ -1,5 +1,9 @@
 var NORMAL_MODE = "NORMAL_MODE"
 describe("UserStore", function(){
+	beforeEach(function () {
+	    UserStore.clear(NORMAL_MODE);
+    }),
+	
 	it("should save a user", function(){
 			var user = new User(1, "bruker", "pass");
 			UserStore.save(NORMAL_MODE, user);
@@ -61,7 +65,7 @@ describe("UserStore", function(){
 		var user = new User(1, "a", "p")
 		user.groups = [new Group(1, "a"), new Group(2, "b")]
 		
-		UserStore.save(NORMAL_MODE, user);
+		UserStore.saveGroups(NORMAL_MODE, user);
 		
 		var fetched_user = UserStore.get(NORMAL_MODE);
 		
@@ -73,7 +77,7 @@ describe("UserStore", function(){
 	it("should save comp", function(){
 	    var user = new User(1, "a", "p");
 	    user.competancy = new ObserverCompetancy([new Competancy(10, 149)]);
-	    UserStore.save(NORMAL_MODE, (user));
+	    UserStore.saveComp(NORMAL_MODE, (user));
 	    
 	    var fetched_user = UserStore.get(NORMAL_MODE, user);
 	    
