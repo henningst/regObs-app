@@ -6,16 +6,21 @@ class ObservationView
 
 class ObservationFetcher
   
+  
 
   getObservations: (callback)=>
-    jQuery.get("http://h-web01.nve.no/stage_regobsservices/Atom/AllRegistrationsV?$filter=LangKey%20eq%201%20and%20UTMEast%20gt%20240000%20and%20UTMEast%20lt%20250000%20and%20UTMNorth%20le%206660000%20and%20UTMNorth%20gt%206650000&$orderby=RegID%20desc")
-      .success(@fetchedDataHandler(callback))
-      .error(@error)
+    jQuery.ajax({
+      type: "GET",
+      url: "http://h-web01.nve.no/stage_regobsservices/Atom/AllRegistrationsV?$filter=LangKey%20eq%201%20and%20UTMEast%20gt%20240000%20and%20UTMEast%20lt%20250000%20and%20UTMNorth%20le%206660000%20and%20UTMNorth%20gt%206650000&$orderby=RegID%20desc",
+      dataType: "text",
+      success: @fetchedDataHandler(callback) ,
+      
+    })
   
   fetchedDataHandler: (callback)->
     ( data )=>
-      xml = jQuery(data)
-      obs = @entryToObservationView(xml.find("entry"))
+      xml = jQuery.parseXML(data)
+      obs = @entryToObservationView(jQuery(xml).find("entry"))
       callback(obs)
     
   entryToObservationView: (entrys) ->
@@ -24,11 +29,9 @@ class ObservationFetcher
       author = entry.find("author").text().trim()
       updated = entry.find("updated").text().trim()
       url = entry.find("link").attr("href")
-      content = new Handlebars.SafeString(entry.find("content div").html().trim());
+      content = entry.find("title").text().trim()
       
-      obs = new ObservationView(author, updated, url, content)
-      console.log(JSON.stringify(obs))
-      obs  
+      new ObservationView(author, updated, url, content)
     )
     
    
@@ -46,6 +49,7 @@ class ObservationViewRendrer
   constructor: (@domNode, @listOfView) ->
     
   render: ()->
+    jQuery(@domNode).html("")
     jQuery(@domNode).html(Handlebars.templates.viewList({list: @listOfView}));
     main.resetHeights()
     jQuery(@domNode).find("li").click ()->

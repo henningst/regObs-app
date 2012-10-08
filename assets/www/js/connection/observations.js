@@ -23,30 +23,33 @@ ObservationFetcher = (function() {
   }
 
   ObservationFetcher.prototype.getObservations = function(callback) {
-    return jQuery.get("http://h-web01.nve.no/stage_regobsservices/Atom/AllRegistrationsV?$filter=LangKey%20eq%201%20and%20UTMEast%20gt%20240000%20and%20UTMEast%20lt%20250000%20and%20UTMNorth%20le%206660000%20and%20UTMNorth%20gt%206650000&$orderby=RegID%20desc").success(this.fetchedDataHandler(callback)).error(this.error);
+    return jQuery.ajax({
+      type: "GET",
+      url: "http://h-web01.nve.no/stage_regobsservices/Atom/AllRegistrationsV?$filter=LangKey%20eq%201%20and%20UTMEast%20gt%20240000%20and%20UTMEast%20lt%20250000%20and%20UTMNorth%20le%206660000%20and%20UTMNorth%20gt%206650000&$orderby=RegID%20desc",
+      dataType: "text",
+      success: this.fetchedDataHandler(callback)
+    });
   };
 
   ObservationFetcher.prototype.fetchedDataHandler = function(callback) {
     var _this = this;
     return function(data) {
       var obs, xml;
-      xml = jQuery(data);
-      obs = _this.entryToObservationView(xml.find("entry"));
+      xml = jQuery.parseXML(data);
+      obs = _this.entryToObservationView(jQuery(xml).find("entry"));
       return callback(obs);
     };
   };
 
   ObservationFetcher.prototype.entryToObservationView = function(entrys) {
     return jQuery.map(entrys, function(e) {
-      var author, content, entry, obs, updated, url;
+      var author, content, entry, updated, url;
       entry = jQuery(e);
       author = entry.find("author").text().trim();
       updated = entry.find("updated").text().trim();
       url = entry.find("link").attr("href");
-      content = new Handlebars.SafeString(entry.find("content div").html().trim());
-      obs = new ObservationView(author, updated, url, content);
-      console.log(JSON.stringify(obs));
-      return obs;
+      content = entry.find("title").text().trim();
+      return new ObservationView(author, updated, url, content);
     });
   };
 
@@ -83,6 +86,7 @@ ObservationViewRendrer = (function() {
   }
 
   ObservationViewRendrer.prototype.render = function() {
+    jQuery(this.domNode).html("");
     jQuery(this.domNode).html(Handlebars.templates.viewList({
       list: this.listOfView
     }));
