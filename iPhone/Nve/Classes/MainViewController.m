@@ -60,6 +60,12 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    CGRect viewBounds = [[UIScreen mainScreen] applicationFrame];
+    self.view.frame = viewBounds;
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
