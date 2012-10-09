@@ -75,6 +75,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 {
 	NSString* pageUri = [arguments objectAtIndex:0];
 	NSError *error;
+    NSLog(@"DEBUG", @"Test reaching");
 	if (![[GANTracker sharedTracker] trackPageview:pageUri
 										 withError:&error]) {
 		// TODO: Handle error here
@@ -85,7 +86,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 {
 	NSString* callback = [NSString stringWithFormat:@"window.plugins.googleAnalyticsPlugin.hitDispatched(%d);",
 						  hitString];
-	[ self.webView stringByEvaluatingJavaScriptFromString:callback];
+            NSLog(@"DEBUG dispatch hit");
+	//[ self.webView stringByEvaluatingJavaScriptFromString:callback];
 
 }
 
@@ -95,7 +97,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 {
 	NSString* callback = [NSString stringWithFormat:@"window.plugins.googleAnalyticsPlugin.trackerDispatchDidComplete(%d);",
 							hitsDispatched];
-	[ self.webView stringByEvaluatingJavaScriptFromString:callback];
+        NSLog(@"DEBUG dispatch finished");
+	//[ self.webView stringByEvaluatingJavaScriptFromString:callback];
 
 }
 
