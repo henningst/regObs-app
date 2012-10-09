@@ -13,7 +13,7 @@ var snow_see_obs = {
 		console.log("------------------");
 		console.log(JSON.stringify(position));
 		
-		this.updatePagePosition(position);
+		super_page.updatePagePosition.call(snow_see_obs,position);
 		
 		snow_see_obs.fetcher = new ObservationFetcher(new AllRegistrationsVUrlGenerator({east: this.longitude, north: this.latitute}));
 		var _this = snow_see_obs;
