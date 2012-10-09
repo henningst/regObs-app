@@ -13,7 +13,9 @@ var snow_see_obs = {
 	loadObservations : function(position){
 		super_page.updatePagePosition.call(snow_see_obs,position);
 		
-		snow_see_obs.fetcher = new ObservationFetcher(new AllRegistrationsVUrlGenerator({east: this.longitude, north: this.latitute}));
+		
+		var pos = {"east": snow_see_obs.longitude, "north": snow_see_obs.latitute};
+		snow_see_obs.fetcher = new ObservationFetcher(new AllRegistrationsVUrlGenerator(pos));
 		var _this = snow_see_obs;
 		
 		snow_see_obs.fetcher.getObservations(

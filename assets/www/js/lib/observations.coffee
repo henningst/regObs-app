@@ -73,6 +73,15 @@ class ObservationViewRendrer
     main.resetHeights()
     jQuery(@domNode).find("li").click ()->
       url = jQuery(this).attr("data-url")
+      
+      cb = window.plugins.childBrowser;
+
+      if(cb != null) {
+        cb.onLocationChange = () -> console.log("called locationcahnge")
+        cb.onClose = () -> console.log("called close")
+        cb.onOpenExternal = () -> console.log("called open external")
+      }
+      
       window.plugins.childBrowser.showWebPage(url); 
     
     

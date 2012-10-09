@@ -28,6 +28,7 @@
 		<string>api.nve.no*</string>
 		<string>localhost</string>
 		<string>docs.google.com*</string>
+		<string>ajax.aspnetcdn.com*</string>
 	</array>
 	<key>Plugins</key>
 	<dict>
