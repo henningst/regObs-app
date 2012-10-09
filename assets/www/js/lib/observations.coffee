@@ -73,7 +73,7 @@ class ObservationViewRendrer
     main.resetHeights()
     jQuery(@domNode).find("li").click ()->
       url = jQuery(this).attr("data-url")
-      navigator.app.loadUrl(url, { openExternal:true } ); 
+      window.plugins.childBrowser.showWebPage(url); 
     
     
   setListOfView: (@listOfView)-> 

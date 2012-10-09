@@ -40,6 +40,10 @@
 		CE14702715EE4209000C8612 /* LocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = CE14702515EE1748000C8612 /* LocalNotification.m */; };
 		CE8C9BDB156D2F5500D940C3 /* regobs-114.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8C9BDA156D2F5500D940C3 /* regobs-114.png */; };
 		CE8C9BDD156D2F6E00D940C3 /* regobs-57.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8C9BDC156D2F6E00D940C3 /* regobs-57.png */; };
+		CEA915D31624181D005E3544 /* ChildBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CEA915CC1624181D005E3544 /* ChildBrowser.bundle */; };
+		CEA915D51624181D005E3544 /* ChildBrowserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA915CF1624181D005E3544 /* ChildBrowserCommand.m */; };
+		CEA915D61624181D005E3544 /* ChildBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA915D11624181D005E3544 /* ChildBrowserViewController.m */; };
+		CEA915D71624181D005E3544 /* ChildBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA915D21624181D005E3544 /* ChildBrowserViewController.xib */; };
 		CEBAB448161ED1E100C89E5B /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBAB445161ED1B400C89E5B /* libCordova.a */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +109,12 @@
 		CE7D94F815F5D71700CF978C /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
 		CE8C9BDA156D2F5500D940C3 /* regobs-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "regobs-114.png"; sourceTree = "<group>"; };
 		CE8C9BDC156D2F6E00D940C3 /* regobs-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "regobs-57.png"; sourceTree = "<group>"; };
+		CEA915CC1624181D005E3544 /* ChildBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ChildBrowser.bundle; sourceTree = "<group>"; };
+		CEA915CE1624181D005E3544 /* ChildBrowserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildBrowserCommand.h; sourceTree = "<group>"; };
+		CEA915CF1624181D005E3544 /* ChildBrowserCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildBrowserCommand.m; sourceTree = "<group>"; };
+		CEA915D01624181D005E3544 /* ChildBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildBrowserViewController.h; sourceTree = "<group>"; };
+		CEA915D11624181D005E3544 /* ChildBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildBrowserViewController.m; sourceTree = "<group>"; };
+		CEA915D21624181D005E3544 /* ChildBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChildBrowserViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +314,7 @@
 		B5F0D5A21525D3DC001774E4 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				CEA915CB1624181D005E3544 /* childbrowser */,
 				CE14702615EE41C6000C8612 /* LocalNotification */,
 				1784EC17157E345F00287D8E /* GoogleAnalytics */,
 				B5F0D5A31525D3DC001774E4 /* README */,
@@ -326,6 +337,20 @@
 				CE14702515EE1748000C8612 /* LocalNotification.m */,
 			);
 			name = LocalNotification;
+			sourceTree = "<group>";
+		};
+		CEA915CB1624181D005E3544 /* childbrowser */ = {
+			isa = PBXGroup;
+			children = (
+				CEA915CC1624181D005E3544 /* ChildBrowser.bundle */,
+				CEA915CE1624181D005E3544 /* ChildBrowserCommand.h */,
+				CEA915CF1624181D005E3544 /* ChildBrowserCommand.m */,
+				CEA915D01624181D005E3544 /* ChildBrowserViewController.h */,
+				CEA915D11624181D005E3544 /* ChildBrowserViewController.m */,
+				CEA915D21624181D005E3544 /* ChildBrowserViewController.xib */,
+			);
+			name = childbrowser;
+			path = Plugins/childbrowser;
 			sourceTree = "<group>";
 		};
 		CEBAB441161ED1B400C89E5B /* Products */ = {
@@ -420,6 +445,8 @@
 				CE8C9BDB156D2F5500D940C3 /* regobs-114.png in Resources */,
 				CE8C9BDD156D2F6E00D940C3 /* regobs-57.png in Resources */,
 				1784EC22157E345F00287D8E /* README.md in Resources */,
+				CEA915D31624181D005E3544 /* ChildBrowser.bundle in Resources */,
+				CEA915D71624181D005E3544 /* ChildBrowserViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +462,8 @@
 				B5F0D59F1525D3DC001774E4 /* MainViewController.m in Sources */,
 				1784EC20157E345F00287D8E /* GoogleAnalyticsPlugin.m in Sources */,
 				CE14702715EE4209000C8612 /* LocalNotification.m in Sources */,
+				CEA915D51624181D005E3544 /* ChildBrowserCommand.m in Sources */,
+				CEA915D61624181D005E3544 /* ChildBrowserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

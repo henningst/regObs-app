@@ -38,4 +38,5 @@
     <plugin name="NativeLocation" value="no.nlink.nve.RegObsGeoLocationPlugin"/>
     <plugin name="LocalNotification" value="com.phonegap.plugin.localnotification.LocalNotification" />
     <plugin name="GoogleAnalyticsTracker" value="com.phonegap.plugins.analytics.GoogleAnalyticsTracker"/>
+    <plugin name="ChildBrowser" value="com.phonegap.plugins.childBrowser.ChildBrowser"/>
 </plugins>

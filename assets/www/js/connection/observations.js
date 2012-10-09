@@ -131,9 +131,7 @@ ObservationViewRendrer = (function() {
     return jQuery(this.domNode).find("li").click(function() {
       var url;
       url = jQuery(this).attr("data-url");
-      return navigator.app.loadUrl(url, {
-        openExternal: true
-      });
+      return window.plugins.childBrowser.showWebPage(url);
     });
   };
 
