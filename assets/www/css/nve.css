@@ -698,13 +698,7 @@ ul.actions li{
   content:'...';
 }
 
-.w_list_item, .w_list{
-	height: inherit;
-  line-height: inherit;
-  white-space: inherit;	
-}
-
-.listScroller, .pageScroller, .iframeScroller{
+.listScroller, .pageScroller{
 	overflow: hidden;
 }
 
