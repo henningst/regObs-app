@@ -702,6 +702,20 @@ ul.actions li{
 	overflow: hidden;
 }
 
+.list_element{
+	width: 80%;
+	margin: 0 2%;
+	white-space: normal;
+	line-height: normal;
+	text-indent: 0;
+	padding: 13px 0;
+}
+
+.w_list_item{
+	height: inherit !important;
+}
+	
+
 
 .listScroller ul, .listScroller .scrollable, .pageScroller .scrollable{
   position: relative;	

@@ -3,7 +3,9 @@
 	<ul class="w_list w_border scrollable" id="snow_observation_list">
 	    {{#each list}}
 	        <li class="w_list_item w_border_bottom w_bg_light" data-url="{{url}}">
-	          {{content}}
+	          <div class="list_element">
+	           {{content}}
+	          </div>
 	        </li>
 	    {{/each}}
 	</ul>

@@ -64,11 +64,11 @@ function program1(depth0,data) {
   foundHelper = helpers.url;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.url; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n	          ";
+  buffer += escapeExpression(stack1) + "\">\n	          <div class=\"list_element\">\n	           ";
   foundHelper = helpers.content;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.content; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\n	        </li>\n	    ";
+  buffer += escapeExpression(stack1) + "\n	          </div>\n	        </li>\n	    ";
   return buffer;}
 
 function program3(depth0,data) {
