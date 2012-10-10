@@ -60,27 +60,27 @@ templates['viewList'] = template(function (Handlebars,depth0,helpers,partials,da
 function program1(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n	        <li class=\"w_list_item w_border_bottom w_bg_light\" data-url=\"";
+  buffer += "\n		        <li class=\"w_list_item w_border_bottom w_bg_light\" data-url=\"";
   foundHelper = helpers.url;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.url; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n	          <div class=\"list_element\">\n	           ";
+  buffer += escapeExpression(stack1) + "\">\n		          <div class=\"list_element\">\n		           ";
   foundHelper = helpers.content;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.content; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\n	          </div>\n	        </li>\n	    ";
+  buffer += escapeExpression(stack1) + "\n		          </div>\n		        </li>\n		    ";
   return buffer;}
 
 function program3(depth0,data) {
   
   
-  return "\n    Loading ...\n";}
+  return "\n<div class=\"loading popup c_color_gradient\">\n    Laster ...  <span class=\"spinner\"/>\n</div>\n";}
 
-  buffer += "\n<div class=\"pageScroller\">\n	<ul class=\"w_list w_border scrollable\" id=\"snow_observation_list\">\n	    ";
+  buffer += "<div class=\"pageScroller\">\n		<ul class=\"w_list  scrollable\" id=\"snow_observation_list\">\n		    ";
   stack1 = depth0.list;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n	</ul>\n</div>\n";
+  buffer += "\n		</ul>\n</div>\n\n";
   foundHelper = helpers.list;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.program(3, program3, data),fn:self.noop}); }
   else { stack1 = depth0.list; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
