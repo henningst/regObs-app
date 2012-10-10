@@ -202,8 +202,8 @@ var main = (function()
 		  }else{
 	        jQuery(".numPackages").hide();
         	console.log("------------ removeing ------------- ")
-//        	new LocalNotification().cancelAll();
-//        	new LocalNotification().cancel(4);
+        	new LocalNotification().cancelAll();
+        	new LocalNotification().cancel(4);
         	main.store.setNotificationId(null);
 		  }
 		},
@@ -622,8 +622,11 @@ var main = (function()
         },
         
         setHeights: function(){
-        	
-        	
+        	main.setScrollerHeights();
+        	main.insertScroller();
+        },
+        
+        setScrollerHeights: function(){
         	var height = jQuery(".sl_container").height();
         	var bodyHeight = jQuery("body").height();
         	var top = height - 52;
@@ -633,7 +636,9 @@ var main = (function()
         	
         	jQuery(".listScroller").css("height", (top- 100) + "px");
         	jQuery(".pageScroller").css("height", (bodyHeight - 55 - 52)+"px")
-            
+        },
+        
+        insertScroller : function(){
         	jQuery(".scrollable:visible:not(.scrolling)").each(function(){
         		console.log("pp: adding scroller");
         		var functions = {
@@ -707,7 +712,6 @@ var main = (function()
 		    		showingKeyboard();
 	    		}, false);
         	});
-        	
         },
         
         attachToGroup: function(id){
