@@ -38,6 +38,10 @@ AllRegistrationsVUrlGenerator = (function() {
     return this.diameter / 2;
   };
 
+  AllRegistrationsVUrlGenerator.prototype.setPos = function(currentPosition) {
+    this.currentPosition = currentPosition;
+  };
+
   return AllRegistrationsVUrlGenerator;
 
 })();

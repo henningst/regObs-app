@@ -217,3 +217,21 @@ var super_obs = {
 			main.panels.slideBack();
 		}
 };
+
+var super_observations = {
+	setPosAndUpdateObservations: function(position){
+		this.updatePagePosition(position);
+		var pos = {"east": this.longitude, "north": this.latitute};
+		this.urlGenerator.setPos(pos);
+		this.fetcher = new ObservationFetcher(this.urlGenerator);
+		
+		var _this = this;
+		this.fetcher.getObservations(
+			function(listOfViews){
+				_this.renderer.setListOfView(listOfViews);
+				_this.renderer.render();
+			}
+		);
+	}
+};
+jQuery.extend(super_observations, super_page);

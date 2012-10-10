@@ -21,6 +21,8 @@ class AllRegistrationsVUrlGenerator
   radius : ()->
     @diameter / 2
   
+  setPos : (@currentPosition)->
+  
 
 class ObservationFetcher
   

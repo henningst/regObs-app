@@ -3,6 +3,8 @@ var snow_see_obs = {
 	init: function(){
 		this.renderer = new ObservationViewRendrer(this.domNodeId, []);
 		this.renderer.render();
+		
+		this.urlGenerator = new AllRegistrationsVUrlGenerator({}, SNOW_GEO_HAZARD);
 
 		geo.requestPosition("snow_see_obs.loadObservations");
 		//debug for running in browser
@@ -11,21 +13,8 @@ var snow_see_obs = {
 	},
 	
 	loadObservations : function(position){
-		super_page.updatePagePosition.call(snow_see_obs,position);
-		
-		
-		var pos = {"east": snow_see_obs.longitude, "north": snow_see_obs.latitute};
-		var urlGenerator = new AllRegistrationsVUrlGenerator(pos, SNOW_GEO_HAZARD);
-		snow_see_obs.fetcher = new ObservationFetcher(urlGenerator);
-		var _this = snow_see_obs;
-		
-		snow_see_obs.fetcher.getObservations(
-			function(listOfViews){
-				_this.renderer.setListOfView(listOfViews);
-				_this.renderer.render();
-			}
-		);
+		snow_see_obs.setPosAndUpdateObservations.call(snow_see_obs, position);
 	}
 };
 
-jQuery.extend(snow_see_obs, super_page);
+jQuery.extend(snow_see_obs, super_observations);
