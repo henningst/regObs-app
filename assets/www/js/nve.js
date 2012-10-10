@@ -1045,8 +1045,7 @@ var main = (function()
         			
         		case 'ice_see_obs':
         			if(status == 'start') {
-        				if( $('ice_see_obs').innerHTML == "" )
-        					$('ice_see_obs').innerHTML = '<iframe src="http://regobs.varsom.no/Ice"></iframe>';
+        				ice_see_obs.init();
         			}
         			break;
         			
