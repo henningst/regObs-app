@@ -998,8 +998,7 @@ var main = (function()
         			
         		case 'water_see_obs':
         			if(status == 'start') {
-        				if( $('water_see_obs').innerHTML == "" )
-        					$('water_see_obs').innerHTML = '<iframe src="http://regobs.varsom.no/Flood"></iframe>';
+        				water_see_obs.init()
         			}
         			break;
         			
