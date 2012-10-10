@@ -74,7 +74,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "\n<div class=\"loading popup c_color_gradient\">\n    Laster ...  <span class=\"spinner\"/>\n</div>\n";}
+  return "\n<div class=\"loading popup c_color_gradient\">\n    Laster ... \n</div>\n";}
 
   buffer += "<div class=\"pageScroller\">\n		<ul class=\"w_list  scrollable\" id=\"snow_observation_list\">\n		    ";
   stack1 = depth0.list;
