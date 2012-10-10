@@ -1,8 +1,10 @@
 var map_page = {
 	map: null,
+	geo_hazard : null,
 	init: function(){
+		
 		var mapOptions = {
-				zoom: 8,
+				zoom: 5,
 				center: new google.maps.LatLng(60.1, 10.0),
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
@@ -19,7 +21,7 @@ var map_page = {
 	showObsNearby : function(latlng){
 		console.log("latlng " + JSON.stringify(latlng) );
 		
-		map_obs_page.geo_hazard = SNOW_GEO_HAZARD;
+		map_obs_page.geo_hazard = this.geo_hazard;
 		map_obs_page.init();
 		map_obs_page.loadObservations(latlng);
 		main.panels.slideTo('map_obs_page');
@@ -27,5 +29,21 @@ var map_page = {
 	
 	center : function(position){
 		map_page.map.setCenter(new  google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+	},
+	
+	slide : function(){
+		this.init();
+		main.panels.slideTo("map_page");
+	},
+	
+	snowMap : function(){
+		this.geo_hazard = SNOW_GEO_HAZARD;
+		this.slide();
+	},
+	
+	iceMap: function(){
+		this.geo_hazard = ICE_GEO_HAZARD;
+		this.slide();
 	}
+	
 };

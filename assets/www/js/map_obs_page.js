@@ -2,7 +2,6 @@ var map_obs_page = {
 	domNodeId : '#map_obs_page',
 	geo_hazard : null,
 	init: function(){
-		console.log("rendring map-obs");
 		this.renderer = new ObservationViewRendrer(this.domNodeId, []);
 		this.renderer.render();
 		

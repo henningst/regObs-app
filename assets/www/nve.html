@@ -242,7 +242,7 @@ body {
                 <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('snow_obs');" /> 
                 <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('snow_see_obs')" />
                 
-                <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se kart" onclick="main.panels.slideTo('map_page')" />
+                <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se kart" onclick="map_page.snowMap()" />
             </div>
         </div>
 
@@ -415,7 +415,10 @@ body {
             </div>
             <div class="c_align_central">
 
-                <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('ice_obs');" /> <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('ice_see_obs')" /> 
+                <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('ice_obs');" /> 
+                <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('ice_see_obs')" />
+                
+                <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se kart" onclick="map_page.iceMap()" /> 
 
             </div>
         </div>
