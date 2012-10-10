@@ -36,6 +36,7 @@
 <script type="text/javascript" src="js/dependencies/handlebars.runtime-1.0.0.beta.6.js"></script>
 <script type="text/javascript" src="js/templates.js"></script>
 <script type="text/javascript" src="js/connection/template_wireing.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 <script src="http://192.168.1.62:8080/target/target-script-min.js#anonymous"></script>
 
@@ -76,6 +77,9 @@
 <script type="text/javascript" src="js/settings_page.js"></script>
 <script type="text/javascript" src="js/login_page.js"></script>
 <script type="text/javascript" src="js/register.js"></script>
+<script type="text/javascript" src="js/map_page.js"></script>
+<script type="text/javascript" src="js/map_obs_page.js"></script>
+
 
 
 <script type="text/javascript" src="js/snow/snow.js"></script>
@@ -191,7 +195,7 @@ body {
                 <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Oppdater dropdowns' onclick="main.populateBoxes(true);" /> <br>
                 <p>
                   <div class="description">Diameter for observasjonssøk(meter)</div>
-                  <input type="number" step="1" class="smallWidth large" id="setting_search_diameter" placeholder="meter" onblur="settings_page.changedSearchDiameter()"/>
+                  <input type="number" step="1" class="large smallWidth" id="setting_search_diameter" placeholder="meter" onblur="settings_page.changedSearchDiameter()"/>
                 </p>
             </div>
         </div>
@@ -237,8 +241,16 @@ body {
             <div class="c_align_central">
                 <input type="button" class="c_big_button c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Nye observasjoner +" onclick="main.panels.slideTo('snow_obs');" /> 
                 <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se observasjoner" onclick="main.panels.slideTo('snow_see_obs')" />
+                
+                <input type="button" class="c_mainpage_button w_bg_light c_button bigWidth w_button w_radius" value="Se kart" onclick="main.panels.slideTo('map_page')" />
             </div>
         </div>
+
+        <div id="map_page">
+          <div id="map"></div>
+        </div>
+        
+        <div id="map_obs_page"></div>
 
         <div id="snow_see_obs"></div>
 

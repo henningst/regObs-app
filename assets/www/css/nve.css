@@ -776,3 +776,8 @@ ul.actions li{
 	font-size: .8em;
 	width: 80%;
 }
+
+#map{
+	width: 500px;
+	height: 500px;
+}

@@ -29,6 +29,7 @@ class ObservationFetcher
   constructor: (@urlGenerator)->
 
   getObservations: (callback)=>
+    console.log("calling" + @urlGenerator.url())
     jQuery.ajax({
       type: "GET",
       cache: false,
@@ -42,6 +43,7 @@ class ObservationFetcher
   fetchedDataHandler: (callback)=>
     ( data )=>
       xml = jQuery.parseXML(data)
+      console.log("fetched data " + jQuery(xml).find("entry").length)
       obs = @entryToObservationView(jQuery(xml).find("entry"))
       callback(obs)
     
@@ -73,7 +75,7 @@ class ObservationViewRendrer
   render: ()->
     jQuery(@domNode).html("")
     jQuery(@domNode).html(Handlebars.templates.viewList({list: @listOfView}));
-    main.resetHeights()
+    main.resetHeights();
     jQuery(@domNode).find("li").click ()->
       url = jQuery(this).attr("data-url")
       window.plugins.childBrowser.onClose = ()->

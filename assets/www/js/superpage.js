@@ -220,11 +220,11 @@ var super_obs = {
 
 var super_observations = {
 	setPosAndUpdateObservations: function(position){
+		console.log("position " + JSON.stringify(position))
 		this.updatePagePosition(position);
 		var pos = {"east": this.longitude, "north": this.latitute};
 		this.urlGenerator.setPos(pos);
 		this.fetcher = new ObservationFetcher(this.urlGenerator);
-		
 		var _this = this;
 		this.fetcher.getObservations(
 			function(listOfViews){

@@ -61,6 +61,7 @@ ObservationFetcher = (function() {
   }
 
   ObservationFetcher.prototype.getObservations = function(callback) {
+    console.log("calling" + this.urlGenerator.url());
     return jQuery.ajax({
       type: "GET",
       cache: false,
@@ -78,6 +79,7 @@ ObservationFetcher = (function() {
     return function(data) {
       var obs, xml;
       xml = jQuery.parseXML(data);
+      console.log("fetched data " + jQuery(xml).find("entry").length);
       obs = _this.entryToObservationView(jQuery(xml).find("entry"));
       return callback(obs);
     };
