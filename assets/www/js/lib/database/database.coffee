@@ -10,6 +10,8 @@ GROUP = "regobs_group"
 
 COMP = "regobs_comp"
 
+SEARCH_DIAMETER_KEY = "search_diameter_key";
+
 
 DataAccess = {
   storage : window.localStorage

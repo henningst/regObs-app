@@ -5,7 +5,7 @@ class ObservationView
 class AllRegistrationsVUrlGenerator
   baseurl : "http://h-web01.nve.no/stage_regobsservices/Atom/AllRegistrationsV?"
   queryString : "$filter=LangKey eq %LANGUAGE% and UTMEast gt %UTM_EAST_MIN% and UTMEast lt %UTM_EAST_MAX% and UTMNorth le %UTM_NORTH_MAX% and UTMNorth gt %UTM_NORTH_MIN% and GeoHazardTID eq %GEOHAZARDTID%&$orderby=RegID desc"
-  diameter : 10000
+  diameter : ()-> main.getObservationSearchDiameter()
   constructor: (@currentPosition, @geoHazard)->
     
   url : ()->
@@ -19,7 +19,7 @@ class AllRegistrationsVUrlGenerator
     @baseurl + currentUrl
       
   radius : ()->
-    @diameter / 2
+    @diameter() / 2
   
   setPos : (@currentPosition)->
   

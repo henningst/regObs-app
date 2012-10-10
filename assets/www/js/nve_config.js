@@ -68,3 +68,7 @@ CAROUSEL_STANDART = 0;
  */
 OMRAADE_ID_OFFSET = 100;
 
+/*
+ * Defaul "diameter" på sirkel/firkant som vi søker etter observasjoner i
+ */
+SEARCH_DIAMETER = 40000;

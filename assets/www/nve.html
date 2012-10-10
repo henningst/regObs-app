@@ -189,6 +189,10 @@ body {
             <div class="standartTextSize c_align_central">
                 <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Bruk testmode' onclick="main.gotoTest();" /> <br>
                 <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Oppdater dropdowns' onclick="main.populateBoxes(true);" /> <br>
+                <p>
+                  <div class="description">Diameter for observasjonssøk(meter)</div>
+                  <input type="number" step="1" class="smallWidth large" id="setting_search_diameter" placeholder="meter" onblur="settings_page.changedSearchDiameter()"/>
+                </p>
             </div>
         </div>
 

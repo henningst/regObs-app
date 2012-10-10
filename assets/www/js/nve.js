@@ -844,6 +844,12 @@ var main = (function()
         	main.saveAndCall(WaterLevelRefKD, data, [water_level.fillWaterLevelKD])
         },
         
+        getObservationSearchDiameter : function(){
+        	var saved = DataAccess.get(SEARCH_DIAMETER_KEY);
+        	
+        	return saved || SEARCH_DIAMETER;
+        },
+        
         hideNve: function(){
         	jQuery("#regobs-info").hide();
         },
