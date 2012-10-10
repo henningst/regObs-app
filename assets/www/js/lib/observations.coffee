@@ -74,6 +74,8 @@ class ObservationViewRendrer
     main.resetHeights()
     jQuery(@domNode).find("li").click ()->
       url = jQuery(this).attr("data-url")
+      window.plugins.childBrowser.onClose = ()->
+        snow_see_obs.init();
       window.plugins.childBrowser.showWebPage(url); 
     
     

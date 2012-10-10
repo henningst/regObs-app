@@ -47,7 +47,7 @@
 
 - (void)onClose
 {
-    //[self.webView stringByEvaluatingJavaScriptFromString:@"window.plugins.childBrowser.onClose();"];
+    [self.webView stringByEvaluatingJavaScriptFromString:@"window.plugins.childBrowser.onClose();"];
 }
 
 - (void)onOpenInSafari

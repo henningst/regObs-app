@@ -131,6 +131,9 @@ ObservationViewRendrer = (function() {
     return jQuery(this.domNode).find("li").click(function() {
       var url;
       url = jQuery(this).attr("data-url");
+      window.plugins.childBrowser.onClose = function() {
+        return snow_see_obs.init();
+      };
       return window.plugins.childBrowser.showWebPage(url);
     });
   };
