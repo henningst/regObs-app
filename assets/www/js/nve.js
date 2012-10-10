@@ -242,7 +242,6 @@ var main = (function()
 	      	        		'register',
 	      	        		'snow',
 	      	        		'snow_see_obs',
-	      	        		'snow_show_obs',
 	      	        		'snow_see_varsel',
 	      	        		'snow_obs',
 	      	        		'snow_hendelse',
@@ -302,6 +301,7 @@ var main = (function()
 			var wrapperHeight = wink.ux.window.height - 2* 45;
 			$('wrapper').style.height = wrapperHeight + "px";
 			//main.scroller = new iScroll('wrapper');
+			
 			
         },
         
@@ -934,16 +934,11 @@ var main = (function()
         			
         		case 'snow_see_obs':
         			if(status == 'start') {
-        				snow_show_obs.unload();
         				snow_see_obs.init();
         			}
         			break;
         			
-        		case 'snow_show_obs':
-        			if(status == 'start') {
-        				snow_show_obs.init();
-        			}
-        			break;
+        		
         			
         		case 'snow_see_varsel':
         			if(status == 'start') 

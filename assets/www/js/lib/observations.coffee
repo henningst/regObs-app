@@ -4,9 +4,9 @@ class ObservationView
     
 class AllRegistrationsVUrlGenerator
   baseurl : "http://h-web01.nve.no/stage_regobsservices/Atom/AllRegistrationsV?"
-  queryString : "$filter=LangKey eq #{LANGUAGE} and UTMEast gt %UTM_EAST_MIN% and UTMEast lt %UTM_EAST_MAX% and UTMNorth le %UTM_NORTH_MAX% and UTMNorth gt %UTM_NORTH_MIN%&$orderby=RegID desc"
+  queryString : "$filter=LangKey eq %LANGUAGE% and UTMEast gt %UTM_EAST_MIN% and UTMEast lt %UTM_EAST_MAX% and UTMNorth le %UTM_NORTH_MAX% and UTMNorth gt %UTM_NORTH_MIN% and GeoHazardTID eq %GEOHAZARDTID%&$orderby=RegID desc"
   diameter : 10000
-  constructor: (@currentPosition)->
+  constructor: (@currentPosition, @geoHazard)->
     
   url : ()->
     currentUrl = @queryString
@@ -14,9 +14,9 @@ class AllRegistrationsVUrlGenerator
       .replace("%UTM_EAST_MAX%", @currentPosition.east + @radius())
       .replace("%UTM_NORTH_MIN%", @currentPosition.north - @radius())
       .replace("%UTM_NORTH_MAX%", @currentPosition.north + @radius())
-    console.log("currrent position " + JSON.stringify(@currentPosition))
-    console.log("currrent url " + currentUrl )
-    @baseurl + encodeURIComponent(currentUrl)
+      .replace("%GEOHAZARDTID%", @geoHazard)
+      .replace("%LANGUAGE%", LANGUAGE)
+    @baseurl + currentUrl
       
   radius : ()->
     @diameter / 2
@@ -29,6 +29,7 @@ class ObservationFetcher
   getObservations: (callback)=>
     jQuery.ajax({
       type: "GET",
+      cache: false,
       url: @urlGenerator.url(),
       dataType: "text",
       success: @fetchedDataHandler(callback) ,
@@ -73,15 +74,6 @@ class ObservationViewRendrer
     main.resetHeights()
     jQuery(@domNode).find("li").click ()->
       url = jQuery(this).attr("data-url")
-      
-      cb = window.plugins.childBrowser;
-
-      if(cb != null) {
-        cb.onLocationChange = () -> console.log("called locationcahnge")
-        cb.onClose = () -> console.log("called close")
-        cb.onOpenExternal = () -> console.log("called open external")
-      }
-      
       window.plugins.childBrowser.showWebPage(url); 
     
     

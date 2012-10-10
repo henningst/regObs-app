@@ -47,12 +47,12 @@
 
 - (void)onClose
 {
-    [self.webView stringByEvaluatingJavaScriptFromString:@"window.plugins.childBrowser.onClose();"];
+    //[self.webView stringByEvaluatingJavaScriptFromString:@"window.plugins.childBrowser.onClose();"];
 }
 
 - (void)onOpenInSafari
 {
-    [self.webView stringByEvaluatingJavaScriptFromString:@"window.plugins.childBrowser.onOpenExternal();"];
+    //[self.webView stringByEvaluatingJavaScriptFromString:@"window.plugins.childBrowser.onOpenExternal();"];
 }
 
 - (void)onChildLocationChange:(NSString*)newLoc
@@ -62,7 +62,7 @@
 
     NSString* jsCallback = [NSString stringWithFormat:@"window.plugins.childBrowser.onLocationChange('%@');", encUrl];
 
-    [self.webView stringByEvaluatingJavaScriptFromString:jsCallback];
+    //[self.webView stringByEvaluatingJavaScriptFromString:jsCallback];
 }
 
 

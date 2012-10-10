@@ -17,7 +17,6 @@ ErrorHandler = (function() {
     return jQuery("[onclick]").each(function(index, obj) {
       var funksjon;
       if (obj.onclick) {
-        console.log("hookin to " + obj);
         funksjon = obj.onclick;
         return obj.onclick = E(funksjon);
       }

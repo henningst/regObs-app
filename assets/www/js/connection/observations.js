@@ -19,20 +19,19 @@ AllRegistrationsVUrlGenerator = (function() {
 
   AllRegistrationsVUrlGenerator.prototype.baseurl = "http://h-web01.nve.no/stage_regobsservices/Atom/AllRegistrationsV?";
 
-  AllRegistrationsVUrlGenerator.prototype.queryString = "$filter=LangKey eq " + LANGUAGE + " and UTMEast gt %UTM_EAST_MIN% and UTMEast lt %UTM_EAST_MAX% and UTMNorth le %UTM_NORTH_MAX% and UTMNorth gt %UTM_NORTH_MIN%&$orderby=RegID desc";
+  AllRegistrationsVUrlGenerator.prototype.queryString = "$filter=LangKey eq %LANGUAGE% and UTMEast gt %UTM_EAST_MIN% and UTMEast lt %UTM_EAST_MAX% and UTMNorth le %UTM_NORTH_MAX% and UTMNorth gt %UTM_NORTH_MIN% and GeoHazardTID eq %GEOHAZARDTID%&$orderby=RegID desc";
 
   AllRegistrationsVUrlGenerator.prototype.diameter = 10000;
 
-  function AllRegistrationsVUrlGenerator(currentPosition) {
+  function AllRegistrationsVUrlGenerator(currentPosition, geoHazard) {
     this.currentPosition = currentPosition;
+    this.geoHazard = geoHazard;
   }
 
   AllRegistrationsVUrlGenerator.prototype.url = function() {
     var currentUrl;
-    currentUrl = this.queryString.replace("%UTM_EAST_MIN%", this.currentPosition.east - this.radius()).replace("%UTM_EAST_MAX%", this.currentPosition.east + this.radius()).replace("%UTM_NORTH_MIN%", this.currentPosition.north - this.radius()).replace("%UTM_NORTH_MAX%", this.currentPosition.north + this.radius());
-    console.log("currrent position " + JSON.stringify(this.currentPosition));
-    console.log("currrent url " + currentUrl);
-    return this.baseurl + encodeURIComponent(currentUrl);
+    currentUrl = this.queryString.replace("%UTM_EAST_MIN%", this.currentPosition.east - this.radius()).replace("%UTM_EAST_MAX%", this.currentPosition.east + this.radius()).replace("%UTM_NORTH_MIN%", this.currentPosition.north - this.radius()).replace("%UTM_NORTH_MAX%", this.currentPosition.north + this.radius()).replace("%GEOHAZARDTID%", this.geoHazard).replace("%LANGUAGE%", LANGUAGE);
+    return this.baseurl + currentUrl;
   };
 
   AllRegistrationsVUrlGenerator.prototype.radius = function() {
@@ -58,6 +57,7 @@ ObservationFetcher = (function() {
   ObservationFetcher.prototype.getObservations = function(callback) {
     return jQuery.ajax({
       type: "GET",
+      cache: false,
       url: this.urlGenerator.url(),
       dataType: "text",
       success: this.fetchedDataHandler(callback),

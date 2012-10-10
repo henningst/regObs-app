@@ -14,7 +14,6 @@ class ErrorHandler
   hookInto : ()->
     jQuery("[onclick]").each (index, obj) ->
       if(obj.onclick)
-        console.log("hookin to " + obj);
         funksjon = obj.onclick
         obj.onclick = E(funksjon)
 

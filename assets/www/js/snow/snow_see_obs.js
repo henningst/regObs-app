@@ -15,7 +15,8 @@ var snow_see_obs = {
 		
 		
 		var pos = {"east": snow_see_obs.longitude, "north": snow_see_obs.latitute};
-		snow_see_obs.fetcher = new ObservationFetcher(new AllRegistrationsVUrlGenerator(pos));
+		var urlGenerator = new AllRegistrationsVUrlGenerator(pos, SNOW_GEO_HAZARD);
+		snow_see_obs.fetcher = new ObservationFetcher(urlGenerator);
 		var _this = snow_see_obs;
 		
 		snow_see_obs.fetcher.getObservations(
