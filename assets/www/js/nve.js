@@ -1103,8 +1103,7 @@ var main = (function()
 
         		case 'dirt_see_obs':
         			if(status == 'start') {
-        				if($('dirt_see_obs').innerHTML == "")
-        					$('dirt_see_obs').innerHTML = '<iframe src="http://regobs.varsom.no/LandSlide"></iframe>';
+        				dirt_see_obs.init()
         			}
         			break;
         			
