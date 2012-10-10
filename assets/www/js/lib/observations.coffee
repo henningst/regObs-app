@@ -70,11 +70,11 @@ class FullViewRenderer
 
 
 class ObservationViewRendrer
-  constructor: (@domNode, @listOfView) ->
+  constructor: (@domNode, @listOfView, @handler) ->
     
   render: ()->
     jQuery(@domNode).html("")
-    jQuery(@domNode).html(Handlebars.templates.viewList({list: @listOfView}));
+    jQuery(@domNode).html(Handlebars.templates.viewList({list: @listOfView, map_handler: @handler}));
     main.resetHeights();
     jQuery(@domNode).find("li").click ()->
       url = jQuery(this).attr("data-url")

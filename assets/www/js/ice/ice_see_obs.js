@@ -1,7 +1,7 @@
 var ice_see_obs = {
 	domNodeId : '#ice_see_obs',
 	init: function(){
-		this.renderer = new ObservationViewRendrer(this.domNodeId, []);
+		this.renderer = new ObservationViewRendrer(this.domNodeId, [], "map_page.iceMap()");
 		this.renderer.render();
 		
 		this.urlGenerator = new AllRegistrationsVUrlGenerator({}, ICE_GEO_HAZARD);

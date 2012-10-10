@@ -1,7 +1,7 @@
 var snow_see_obs = {
 	domNodeId : '#snow_see_obs',
 	init: function(){
-		this.renderer = new ObservationViewRendrer(this.domNodeId, []);
+		this.renderer = new ObservationViewRendrer(this.domNodeId, [], "map_page.snowMap()");
 		this.renderer.render();
 		
 		this.urlGenerator = new AllRegistrationsVUrlGenerator({}, SNOW_GEO_HAZARD);

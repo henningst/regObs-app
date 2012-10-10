@@ -125,15 +125,17 @@ FullViewRenderer = (function() {
 
 ObservationViewRendrer = (function() {
 
-  function ObservationViewRendrer(domNode, listOfView) {
+  function ObservationViewRendrer(domNode, listOfView, handler) {
     this.domNode = domNode;
     this.listOfView = listOfView;
+    this.handler = handler;
   }
 
   ObservationViewRendrer.prototype.render = function() {
     jQuery(this.domNode).html("");
     jQuery(this.domNode).html(Handlebars.templates.viewList({
-      list: this.listOfView
+      list: this.listOfView,
+      map_handler: this.handler
     }));
     main.resetHeights();
     return jQuery(this.domNode).find("li").click(function() {

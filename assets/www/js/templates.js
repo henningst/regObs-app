@@ -59,6 +59,14 @@ templates['viewList'] = template(function (Handlebars,depth0,helpers,partials,da
 
 function program1(depth0,data) {
   
+  var buffer = "";
+  buffer += "\n			<div class=\"top_button\">\n			  <input type=\"button\" class=\"w_bg_light c_button fullWidth w_button\" value=\"Se obs. fra andre steder\" onclick=\"";
+  depth0 = typeof depth0 === functionType ? depth0() : depth0;
+  buffer += escapeExpression(depth0) + "\" />\n			</div>\n    ";
+  return buffer;}
+
+function program3(depth0,data) {
+  
   var buffer = "", stack1, foundHelper;
   buffer += "\n		        <li class=\"w_list_item w_border_bottom w_bg_light\" data-url=\"";
   foundHelper = helpers.url;
@@ -71,20 +79,26 @@ function program1(depth0,data) {
   buffer += escapeExpression(stack1) + "\n		          </div>\n		        </li>\n		    ";
   return buffer;}
 
-function program3(depth0,data) {
+function program5(depth0,data) {
   
   
   return "\n<div class=\"loading popup c_color_gradient\">\n    Laster ... \n</div>\n";}
 
-  buffer += "<div class=\"pageScroller\">\n		<ul class=\"w_list  scrollable\" id=\"snow_observation_list\">\n		    ";
+  buffer += "<div class=\"pageScroller\">\n    ";
+  foundHelper = helpers.map_handler;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  else { stack1 = depth0.map_handler; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  if (!helpers.map_handler) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n		<ul class=\"w_list  scrollable\" id=\"snow_observation_list\">\n		    ";
   stack1 = depth0.list;
-  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
+  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n		</ul>\n</div>\n\n";
   foundHelper = helpers.list;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.program(3, program3, data),fn:self.noop}); }
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.program(5, program5, data),fn:self.noop}); }
   else { stack1 = depth0.list; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  if (!helpers.list) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.noop}); }
+  if (!helpers.list) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(5, program5, data),fn:self.noop}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   return buffer;});
 })();

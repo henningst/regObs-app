@@ -4,7 +4,7 @@ var map_page = {
 	init: function(){
 		
 		var mapOptions = {
-				zoom: 5,
+				zoom: 9,
 				center: new google.maps.LatLng(60.1, 10.0),
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
