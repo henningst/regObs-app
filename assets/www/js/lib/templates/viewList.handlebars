@@ -1,10 +1,11 @@
+
+{{#map_handler}}
+    <div class="top_button">
+      <input type="button" class="w_bg_light c_button fullWidth w_button" value="Se obs. fra andre steder" onclick="{{this}}" />
+    </div>
+{{/map_handler}}
 <div class="pageScroller">
-    {{#map_handler}}
-			<div class="top_button">
-			  <input type="button" class="w_bg_light c_button fullWidth w_button" value="Se obs. fra andre steder" onclick="{{this}}" />
-			</div>
-    {{/map_handler}}
-		<ul class="w_list  scrollable" id="snow_observation_list">
+		<ul class="w_list scrollable" id="{{scrollerid}}">
 		    {{#each list}}
 		        <li class="w_list_item w_border_bottom w_bg_light" data-url="{{url}}">
 		          <div class="list_element">

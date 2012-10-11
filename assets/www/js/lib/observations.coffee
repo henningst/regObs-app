@@ -74,8 +74,8 @@ class ObservationViewRendrer
     
   render: ()->
     jQuery(@domNode).html("")
-    jQuery(@domNode).html(Handlebars.templates.viewList({list: @listOfView, map_handler: @handler}));
-    main.resetHeights();
+    jQuery(@domNode).html(Handlebars.templates.viewList({list: @listOfView, map_handler: @handler, scrollerid: "#{@domNode}_scroller_id"}));
+    main.resetHeights()
     jQuery(@domNode).find("li").click ()->
       url = jQuery(this).attr("data-url")
       window.plugins.childBrowser.onClose = ()->

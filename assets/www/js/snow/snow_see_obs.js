@@ -1,6 +1,7 @@
 var snow_see_obs = {
 	domNodeId : '#snow_see_obs',
 	init: function(){
+		console.log("init snow_see")
 		this.renderer = new ObservationViewRendrer(this.domNodeId, [], "map_page.snowMap()");
 		this.renderer.render();
 		

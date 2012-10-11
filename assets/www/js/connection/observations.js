@@ -135,7 +135,8 @@ ObservationViewRendrer = (function() {
     jQuery(this.domNode).html("");
     jQuery(this.domNode).html(Handlebars.templates.viewList({
       list: this.listOfView,
-      map_handler: this.handler
+      map_handler: this.handler,
+      scrollerid: "" + this.domNode + "_scroller_id"
     }));
     main.resetHeights();
     return jQuery(this.domNode).find("li").click(function() {

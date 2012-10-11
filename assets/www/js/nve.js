@@ -597,7 +597,7 @@ var main = (function() {
 
 		isFocuse : false,
 		resetHeights : function() {
-			jQuery("#.scrollable.scrolling:visible").removeClass("scrolling");
+			jQuery(".scrollable.scrolling:visible").removeClass("scrolling");
 			main.setHeights();
 		},
 
@@ -620,8 +620,7 @@ var main = (function() {
 		},
 
 		insertScroller : function() {
-			jQuery(".scrollable:visible:not(.scrolling)")
-					.each(
+			jQuery(".scrollable:visible:not(.scrolling)").each(
 							function() {
 								console.log("pp: adding scroller");
 								var functions = {
@@ -647,8 +646,7 @@ var main = (function() {
 											} else if (this._disable) {
 												console.log("pp: on");
 												window.scrollTo(0, 0);
-												jQuery("body").css("overflow",
-														"none");
+												jQuery("body").css("overflow", "none");
 												scroller.enable();
 												this._selectNode = null;
 												this._disable = false;
@@ -657,13 +655,13 @@ var main = (function() {
 									}
 
 								};
+								console.log("id " + jQuery(this).attr("id"))
 								scroller = new wink.ui.layout.Scroller({
 									target : jQuery(this).attr("id"),
 									direction : "y",
 									callbacks : {
 										scrollerTouched : {
-											context : functions,
-											method : 'enableContainingElements'
+											context : functions, method : 'enableContainingElements'
 										}
 									}
 								});
