@@ -807,6 +807,7 @@ ul.actions li{
 .description{
 	font-size: .8em;
 	width: 80%;
+	margin-bottom: 10px;
 }
 
 #map, #map_page{

@@ -5,6 +5,12 @@ var settings_page = {
 		$('header_middle_text').innerHTML = "Innstillinger";
 		jQuery("#regobs-name").hide();
 		this.search_diameter().val(main.getObservationSearchDiameter());
+		
+		jQuery("#setting_mode_description").html(SETTING_MODE_DESCRIPTION);
+		jQuery("#setting_update_description").html(SETTING_UPDATE_DESCRIPTION);
+		jQuery("#setting_reset_description").html(SETTING_RESET_DESCRIPTION);
+		jQuery("#setting_diameter_description").html(SETTING_DIAMETER_DESCRIPTION);
+		
 	},
 	
 	changedSearchDiameter : function(){

@@ -40,7 +40,14 @@ SEND_EMAIL = "Kvittering på epost";
 
 OBSERVATION_REGISTERED = "<h3>Registrering sent til regObs</h3><p>Takk for bidraget!</p>";
 
+/**
+ * setting page descriptionstext
+ */
 
+SETTING_UPDATE_DESCRIPTION = "setting update  description <strong>!</strong>";
+SETTING_RESET_DESCRIPTION = "setting reset description <strong>!</strong>";
+SETTING_MODE_DESCRIPTION = "setting mode description <strong>!</strong>";
+SETTING_DIAMETER_DESCRIPTION = "setting diameter description <strong>!</strong>"
 
 /*
  * 
