@@ -82,7 +82,7 @@ function program3(depth0,data) {
 function program5(depth0,data) {
   
   
-  return "\n<div class=\"loading popup c_color_gradient\">\n    Laster ... \n</div>\n";}
+  return "\n<div class=\"loading popup c_color_gradient\">\n    Ingen observasjoner funnet\n</div>\n";}
 
   buffer += "\n";
   foundHelper = helpers.map_handler;

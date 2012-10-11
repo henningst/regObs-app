@@ -21,7 +21,7 @@ SERVER_LOGIN_URL = TEST_LOGIN;
 
 WEB_LINK_URL_STAGE = "http://regobs.varsom.no/";
 WEB_LINK_URL_TEST = "http://h-web01.nve.no/stage_RegObsWeb/";
-WEB_LINK_URL = WEB_LINK_TEST;
+WEB_LINK_URL = WEB_LINK_URL_TEST;
 
 
 STAGE_REGISTER_URL = "http://h-web01.nve.no/stage_RegObsServices/Account/Register";
@@ -34,8 +34,8 @@ GA_TRACKER_CODE = "UA-32394009-1";
  * Platform
  */
 var device = {
-	platform: 'android'
-//	platform: 'iphone'
+//	platform: 'android'
+	platform: 'iphone'
 };
 
 

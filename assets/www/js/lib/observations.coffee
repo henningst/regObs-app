@@ -34,6 +34,7 @@ class ObservationFetcher
     
 
   getObservations: (callback)=>
+    main.showWaitingDialogWithMessage("Henter observasjoner"); 
     jQuery.ajax({
       type: "GET",
       cache: false,
@@ -47,6 +48,7 @@ class ObservationFetcher
   fetchedDataHandler: (callback)=>
     ( data )=>
       obs = @entryToObservationView(data.d.results)
+      main.hideDialog();
       callback(obs)
     
   entryToObservationView: (entrys) =>

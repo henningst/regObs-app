@@ -69,6 +69,7 @@ ObservationFetcher = (function() {
   }
 
   ObservationFetcher.prototype.getObservations = function(callback) {
+    main.showWaitingDialogWithMessage("Henter observasjoner");
     return jQuery.ajax({
       type: "GET",
       cache: false,
@@ -86,6 +87,7 @@ ObservationFetcher = (function() {
     return function(data) {
       var obs;
       obs = _this.entryToObservationView(data.d.results);
+      main.hideDialog();
       return callback(obs);
     };
   };
