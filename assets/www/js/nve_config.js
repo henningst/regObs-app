@@ -39,7 +39,7 @@ var device = {
 };
 
 
-APP_VERSION = "0.13.0";
+APP_VERSION = "0.13.1";
 	
 //BUGSENS_KEY = '1e74c587';//test
 BUGSENS_KEY = '5eb4c461';//prod
