@@ -1,6 +1,7 @@
 var snow_page = {	
 	name : "snow_page",
 	favorite_name : SNOW,
+	shouldShowFooter : false,
 		
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains

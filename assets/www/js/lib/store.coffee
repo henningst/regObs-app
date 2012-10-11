@@ -46,17 +46,19 @@ class NveStore
         @m_snowPackage.init()
         @m_snowPackage
       
-      
+  clearSnow : ()->
+    @m_snowPackage.afterSendRegistration() if @m_snowPackage
+     
+    @resetGroups()
+    @m_snowPackage =  null 
+    DataAccess.save(SnowPackage.name, null)
       
   sendSnow: (callback) =>
       if @m_snowPackage and not IsEmpty(@m_snowPackage)
         @m_snowPackage.setGroup(jQuery("#snow_obs .selectedGroup").val());
         @packageCollection.add(@m_snowPackage)
-        @m_snowPackage.afterSendRegistration()
         
-        @resetGroups()
-        @m_snowPackage =  null 
-        DataAccess.save(SnowPackage.name, null)
+        @clearSnow()
       
       @packageCollection.forall (p) => @sendAndHandlePackage(p)
       callback() if callback

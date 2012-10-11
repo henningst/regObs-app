@@ -62,15 +62,21 @@ NveStore = (function() {
     }
   };
 
+  NveStore.prototype.clearSnow = function() {
+    if (this.m_snowPackage) {
+      this.m_snowPackage.afterSendRegistration();
+    }
+    this.resetGroups();
+    this.m_snowPackage = null;
+    return DataAccess.save(SnowPackage.name, null);
+  };
+
   NveStore.prototype.sendSnow = function(callback) {
     var _this = this;
     if (this.m_snowPackage && !IsEmpty(this.m_snowPackage)) {
       this.m_snowPackage.setGroup(jQuery("#snow_obs .selectedGroup").val());
       this.packageCollection.add(this.m_snowPackage);
-      this.m_snowPackage.afterSendRegistration();
-      this.resetGroups();
-      this.m_snowPackage = null;
-      DataAccess.save(SnowPackage.name, null);
+      this.clearSnow();
     }
     this.packageCollection.forall(function(p) {
       return _this.sendAndHandlePackage(p);

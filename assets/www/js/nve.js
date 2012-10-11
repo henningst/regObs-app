@@ -208,8 +208,8 @@ var main = (function() {
 			} else {
 				jQuery(".numPackages").hide();
 				console.log("------------ removeing ------------- ")
-				new LocalNotification().cancelAll();
-				new LocalNotification().cancel(4);
+//				new LocalNotification().cancelAll();
+//				new LocalNotification().cancel(4);
 				main.store.setNotificationId(null);
 			}
 		},
@@ -1185,6 +1185,7 @@ var main = (function() {
 			button.removeAttr("disable");
 		}, 500);
 	});
+	
 
 	return main;
 }());
