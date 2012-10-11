@@ -1,7 +1,7 @@
 var water_see_obs = {
 	domNodeId : '#water_see_obs',
 	init: function(){
-		this.renderer = new ObservationViewRendrer(this.domNodeId, []);
+		this.renderer = new ObservationViewRendrer(this.domNodeId, [], "map_page.waterMap()");
 		this.renderer.render();
 		
 		this.urlGenerator = new AllRegistrationsVUrlGenerator({}, WATER_GEO_HAZARD);

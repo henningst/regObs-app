@@ -1,7 +1,7 @@
 var dirt_see_obs = {
 	domNodeId : '#dirt_see_obs',
 	init: function(){
-		this.renderer = new ObservationViewRendrer(this.domNodeId, []);
+		this.renderer = new ObservationViewRendrer(this.domNodeId, [], "map_page.dirtMap()");
 		this.renderer.render();
 		
 		this.urlGenerator = new AllRegistrationsVUrlGenerator({}, DIRT_GEO_HAZARD);

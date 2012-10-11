@@ -44,6 +44,16 @@ var map_page = {
 	iceMap: function(){
 		this.geo_hazard = ICE_GEO_HAZARD;
 		this.slide();
+	},
+	
+	dirtMap: function(){
+		this.geo_hazard = DIRT_GEO_HAZARD;
+		this.slide();
+	},
+	
+	waterMap: function(){
+		this.geo_hazard = WATER_GEO_HAZARD;
+		this.slide();
 	}
 	
 };
