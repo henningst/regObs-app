@@ -113,14 +113,18 @@ class NveStore
         @m_icePackage.init()
         @m_icePackage
       
+      
+  clearIce : ()->
+    @m_icePackage.afterSendRegistration() if @m_icePackage
+      
+    @m_icePackage = null
+    DataAccess.save(IcePackage.name, null)
+    
   sendIce: (callback) ->
     if @m_icePackage and not IsEmpty(@m_icePackage)
       @m_icePackage.setGroup(jQuery("#ice_group").val());
       @packageCollection.add(@m_icePackage)
-      @m_icePackage.afterSendRegistration()
-      
-      @m_icePackage = null
-      DataAccess.save(IcePackage.name, null)
+      @clearIce()
       
     @packageCollection.forall (p) => @sendAndHandlePackage(p)
     

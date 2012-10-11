@@ -150,14 +150,20 @@ NveStore = (function() {
     }
   };
 
+  NveStore.prototype.clearIce = function() {
+    if (this.m_icePackage) {
+      this.m_icePackage.afterSendRegistration();
+    }
+    this.m_icePackage = null;
+    return DataAccess.save(IcePackage.name, null);
+  };
+
   NveStore.prototype.sendIce = function(callback) {
     var _this = this;
     if (this.m_icePackage && !IsEmpty(this.m_icePackage)) {
       this.m_icePackage.setGroup(jQuery("#ice_group").val());
       this.packageCollection.add(this.m_icePackage);
-      this.m_icePackage.afterSendRegistration();
-      this.m_icePackage = null;
-      DataAccess.save(IcePackage.name, null);
+      this.clearIce();
     }
     this.packageCollection.forall(function(p) {
       return _this.sendAndHandlePackage(p);
