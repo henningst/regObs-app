@@ -121,7 +121,11 @@ ObservationFetcher = (function() {
     hour = this.padZero(date.getUTCHours());
     minute = this.padZero(date.getUTCMinutes());
     sec = date.getUTCSeconds();
-    return "" + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + sec;
+    if (date.toDateString() === new Date().toDateString()) {
+      return "" + hour + ":" + minute + ":" + sec;
+    } else {
+      return "" + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + sec;
+    }
   };
 
   ObservationFetcher.prototype.padZero = function(text) {

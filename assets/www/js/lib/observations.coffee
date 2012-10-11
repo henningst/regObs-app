@@ -72,7 +72,10 @@ class ObservationFetcher
     hour = @padZero(date.getUTCHours())
     minute = @padZero(date.getUTCMinutes())
     sec = date.getUTCSeconds()
-    "#{day}.#{month}.#{year} #{hour}:#{minute}:#{sec}"
+    if(date.toDateString() == new Date().toDateString())
+      "#{hour}:#{minute}:#{sec}"
+    else
+      "#{day}.#{month}.#{year} #{hour}:#{minute}:#{sec}" 
     
   padZero : (text) ->
     number = parseInt(text)
