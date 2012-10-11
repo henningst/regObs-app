@@ -23,6 +23,9 @@ class NveStore
     
     @packageCollection.callback(@packageCollection)
 
+  clearPackageCollection : ()->
+    @packageCollection =  new PackageCollection()
+    DataAccess.save("PackageCollection", @packageCollection)
 
   getNotificationId: () =>
     if @notificationId and @notificationId.id 
@@ -52,6 +55,11 @@ class NveStore
     @resetGroups()
     @m_snowPackage =  null 
     DataAccess.save(SnowPackage.name, null)
+    
+  deleteSnow : ()->
+    @clearSnow()
+    @clearPackageCollection()
+  
       
   sendSnow: (callback) =>
       if @m_snowPackage and not IsEmpty(@m_snowPackage)
@@ -93,6 +101,10 @@ class NveStore
       
     @m_dirtPackage = null
     DataAccess.save(DirtPackage.name, null)
+    
+  deleteDirt : ()->
+    @clearDirt()
+    @clearPackageCollection()
       
   sendDirt: (callback) ->
     if @m_dirtPackage and not IsEmpty(@m_dirtPackage)
@@ -124,6 +136,10 @@ class NveStore
     @m_icePackage = null
     DataAccess.save(IcePackage.name, null)
     
+  deleteIce : ()->
+    @clearIce()
+    @clearPackageCollection()
+    
   sendIce: (callback) ->
     if @m_icePackage and not IsEmpty(@m_icePackage)
       @m_icePackage.setGroup(jQuery("#ice_group").val());
@@ -152,6 +168,10 @@ class NveStore
       
       @m_waterPackage = null
       DataAccess.save(WaterPackage.name, null)
+      
+  deleteWater : ()->
+    @clearWater()
+    @clearPackageCollection()
       
   sendWater: (callback) ->
     if @m_waterPackage and not IsEmpty(@m_waterPackage)

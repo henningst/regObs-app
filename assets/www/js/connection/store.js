@@ -32,6 +32,11 @@ NveStore = (function() {
     this.packageCollection.callback(this.packageCollection);
   }
 
+  NveStore.prototype.clearPackageCollection = function() {
+    this.packageCollection = new PackageCollection();
+    return DataAccess.save("PackageCollection", this.packageCollection);
+  };
+
   NveStore.prototype.getNotificationId = function() {
     if (this.notificationId && this.notificationId.id) {
       return this.notificationId.id;
@@ -69,6 +74,11 @@ NveStore = (function() {
     this.resetGroups();
     this.m_snowPackage = null;
     return DataAccess.save(SnowPackage.name, null);
+  };
+
+  NveStore.prototype.deleteSnow = function() {
+    this.clearSnow();
+    return this.clearPackageCollection();
   };
 
   NveStore.prototype.sendSnow = function(callback) {
@@ -125,6 +135,11 @@ NveStore = (function() {
     return DataAccess.save(DirtPackage.name, null);
   };
 
+  NveStore.prototype.deleteDirt = function() {
+    this.clearDirt();
+    return this.clearPackageCollection();
+  };
+
   NveStore.prototype.sendDirt = function(callback) {
     var _this = this;
     if (this.m_dirtPackage && !IsEmpty(this.m_dirtPackage)) {
@@ -164,6 +179,11 @@ NveStore = (function() {
     return DataAccess.save(IcePackage.name, null);
   };
 
+  NveStore.prototype.deleteIce = function() {
+    this.clearIce();
+    return this.clearPackageCollection();
+  };
+
   NveStore.prototype.sendIce = function(callback) {
     var _this = this;
     if (this.m_icePackage && !IsEmpty(this.m_icePackage)) {
@@ -201,6 +221,11 @@ NveStore = (function() {
     }
     this.m_waterPackage = null;
     return DataAccess.save(WaterPackage.name, null);
+  };
+
+  NveStore.prototype.deleteWater = function() {
+    this.clearWater();
+    return this.clearPackageCollection();
   };
 
   NveStore.prototype.sendWater = function(callback) {
