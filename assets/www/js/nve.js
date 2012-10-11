@@ -399,6 +399,7 @@ var main = (function() {
 				SERVER_URL = STAGE;
 				SERVER_LOGIN_URL = STAGE_LOGIN;
 				REGISTER_URL = PROD_REGISTER_URL;
+				WEB_LINK_URL = WEB_LINK_URL_STAGE;
 				main.inTestMode = false;
 				$('test_button').value = USE_TESTMODE_BUTTON;
 				jQuery('#header').removeClass('testMode');
@@ -407,6 +408,7 @@ var main = (function() {
 				SERVER_URL = TEST;
 				SERVER_LOGIN_URL = TEST_LOGIN;
 				REGISTER_URL = STAGE_REGISTER_URL;
+				WEB_LINK_URL = WEB_LINK_URL_TEST;
 				main.inTestMode = true;
 				$('test_button').value = USE_PROD_BUTTON;
 				jQuery('#header').addClass('testMode');
