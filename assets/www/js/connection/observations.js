@@ -17,7 +17,9 @@ ObservationView = (function() {
 
 AllRegistrationsVUrlGenerator = (function() {
 
-  AllRegistrationsVUrlGenerator.prototype.baseurl = "" + SERVER_URL + "AllRegistrationsV?";
+  AllRegistrationsVUrlGenerator.prototype.baseurl = function() {
+    return "" + SERVER_URL + "AllRegistrationsV?";
+  };
 
   AllRegistrationsVUrlGenerator.prototype.queryString = "$filter=LangKey eq %LANGUAGE% and UTMEast gt %UTM_EAST_MIN% and UTMEast lt %UTM_EAST_MAX% and UTMNorth le %UTM_NORTH_MAX% and UTMNorth gt %UTM_NORTH_MIN% and GeoHazardTID eq %GEOHAZARDTID%&$orderby=RegID desc";
 
@@ -33,7 +35,7 @@ AllRegistrationsVUrlGenerator = (function() {
   AllRegistrationsVUrlGenerator.prototype.url = function() {
     var currentUrl;
     currentUrl = this.queryString.replace("%UTM_EAST_MIN%", this.currentPosition.east - this.radius()).replace("%UTM_EAST_MAX%", this.currentPosition.east + this.radius()).replace("%UTM_NORTH_MIN%", this.currentPosition.north - this.radius()).replace("%UTM_NORTH_MAX%", this.currentPosition.north + this.radius()).replace("%GEOHAZARDTID%", this.geoHazard).replace("%LANGUAGE%", LANGUAGE);
-    return this.baseurl + currentUrl;
+    return this.baseurl() + currentUrl;
   };
 
   AllRegistrationsVUrlGenerator.prototype.radius = function() {
@@ -70,6 +72,7 @@ ObservationFetcher = (function() {
 
   ObservationFetcher.prototype.getObservations = function(callback) {
     main.showWaitingDialogWithMessage("Henter observasjoner");
+    console.log("henter url " + this.urlGenerator.url());
     return jQuery.ajax({
       type: "GET",
       cache: false,
@@ -97,8 +100,6 @@ ObservationFetcher = (function() {
     return jQuery.map(entrys, function(e) {
       var author, content, entry, updated, url;
       entry = e;
-      console.log("handling " + JSON.stringify(entry));
-      console.log(entry);
       author = entry.NickName;
       updated = _this.localDateString(_this.toDate(entry.DtObsTime));
       url = "" + WEB_LINK_URL + "Registration?regId=" + entry.RegID;

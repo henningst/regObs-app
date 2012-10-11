@@ -3,7 +3,7 @@ class ObservationView
   constructor: (@author, @updated, @url, @content) ->
     
 class AllRegistrationsVUrlGenerator
-  baseurl : "#{SERVER_URL}AllRegistrationsV?"
+  baseurl :  ()-> "#{SERVER_URL}AllRegistrationsV?"
   queryString : "$filter=LangKey eq %LANGUAGE% and UTMEast gt %UTM_EAST_MIN% and UTMEast lt %UTM_EAST_MAX% and UTMNorth le %UTM_NORTH_MAX% and UTMNorth gt %UTM_NORTH_MIN% and GeoHazardTID eq %GEOHAZARDTID%&$orderby=RegID desc"
   diameter : ()-> main.getObservationSearchDiameter()
   constructor: (@currentPosition, @geoHazard)->
@@ -16,7 +16,7 @@ class AllRegistrationsVUrlGenerator
       .replace("%UTM_NORTH_MAX%", @currentPosition.north + @radius())
       .replace("%GEOHAZARDTID%", @geoHazard)
       .replace("%LANGUAGE%", LANGUAGE)
-    @baseurl + currentUrl
+    @baseurl() + currentUrl
       
   radius : ()->
     @diameter() / 2
@@ -34,7 +34,8 @@ class ObservationFetcher
     
 
   getObservations: (callback)=>
-    main.showWaitingDialogWithMessage("Henter observasjoner"); 
+    main.showWaitingDialogWithMessage("Henter observasjoner");
+    console.log("henter url "+ @urlGenerator.url()) 
     jQuery.ajax({
       type: "GET",
       cache: false,
@@ -54,8 +55,6 @@ class ObservationFetcher
   entryToObservationView: (entrys) =>
     jQuery.map(entrys, (e) =>
       entry = e
-      console.log("handling " + JSON.stringify(entry))
-      console.log(entry)
       author = entry.NickName
       updated = @localDateString(@toDate(entry.DtObsTime))
       url = "#{WEB_LINK_URL}Registration?regId=#{entry.RegID}"
