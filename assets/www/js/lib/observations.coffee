@@ -3,7 +3,7 @@ class ObservationView
   constructor: (@author, @updated, @url, @content) ->
     
 class AllRegistrationsVUrlGenerator
-  baseurl : "http://h-web01.nve.no/stage_regobsservices/Atom/AllRegistrationsV?"
+  baseurl : "#{SERVER_URL}AllRegistrationsV?"
   queryString : "$filter=LangKey eq %LANGUAGE% and UTMEast gt %UTM_EAST_MIN% and UTMEast lt %UTM_EAST_MAX% and UTMNorth le %UTM_NORTH_MAX% and UTMNorth gt %UTM_NORTH_MIN% and GeoHazardTID eq %GEOHAZARDTID%&$orderby=RegID desc"
   diameter : ()-> main.getObservationSearchDiameter()
   constructor: (@currentPosition, @geoHazard)->
@@ -27,14 +27,18 @@ class AllRegistrationsVUrlGenerator
 class ObservationFetcher
   
   constructor: (@urlGenerator)->
+    @regType = {}
+    data = DataAccess.get(RegistrationKD.name)
+    for reg in data.results
+      @regType[reg.RegistrationTID] = reg.RegistrationName 
+    
 
   getObservations: (callback)=>
-    console.log("calling" + @urlGenerator.url())
     jQuery.ajax({
       type: "GET",
       cache: false,
       url: @urlGenerator.url(),
-      dataType: "text",
+      dataType: "json",
       success: @fetchedDataHandler(callback) ,
       error :  (e)->
         console.log("failed #{JSON.stringify(e)}" )
@@ -42,21 +46,55 @@ class ObservationFetcher
   
   fetchedDataHandler: (callback)=>
     ( data )=>
-      xml = jQuery.parseXML(data)
-      console.log("fetched data " + jQuery(xml).find("entry").length)
-      obs = @entryToObservationView(jQuery(xml).find("entry"))
+      obs = @entryToObservationView(data.d.results)
       callback(obs)
     
   entryToObservationView: (entrys) =>
     jQuery.map(entrys, (e) =>
-      entry = jQuery(e)
-      author = entry.find("author").text().trim()
-      updated = entry.find("updated").text().trim()
-      url = entry.find("link").attr("href")
-      content = entry.find("title").text().trim()
+      entry = e
+      console.log("handling " + JSON.stringify(entry))
+      console.log(entry)
+      author = entry.NickName
+      updated = @localDateString(@toDate(entry.DtObsTime))
+      url = "#{WEB_LINK_URL}Registration?regId=#{entry.RegID}"
+      content = new Handlebars.SafeString("<strong>#{updated}, #{entry.RegistrationName}, #{@trim(entry.TypicalValue1)}, #{@trim(entry.TypicalValue2)}.</strong> #{@toRegistrationType(entry.RegistrationTID)} ved (#{entry.ForecastRegionName}/#{entry.Kommunenavn}) <i>#{author}</i>")
       
       new ObservationView(author, updated, url, content)
     )
+    
+  toDate : (dateString) ->
+    time = dateString.replace("/Date(", "").replace(")/", "")
+    new Date(parseInt(time))
+  localDateString : (date)->
+    day = @padZero(date.getUTCDate())
+    month = @padZero(parseInt(date.getUTCMonth()) + 1) 
+    year = @padZero(date.getUTCFullYear())
+    hour = @padZero(date.getUTCHours())
+    minute = @padZero(date.getUTCMinutes())
+    sec = date.getUTCSeconds()
+    "#{day}.#{month}.#{year} #{hour}:#{minute}:#{sec}"
+    
+  padZero : (text) ->
+    number = parseInt(text)
+    if number < 10
+      "0#{number}"
+    else
+      number
+  
+  trim : (text)->
+    if(text == null)
+      ""
+    else
+      text.replace(/^\s+|\s+$/g, "")
+      
+  toRegistrationType : (tid) ->
+    @registrationType(tid)
+    
+  registrationType : (tid)->
+    if(@regType[tid] == null)
+      ""
+    else
+      @regType[tid]
     
    
 class FullViewRenderer

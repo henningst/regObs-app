@@ -1,7 +1,9 @@
 
+
 describe("Observations", function(){
 	it("should fetch observations", function(){
-		var observation = new ObservationFetcher();
+		main = {resetHeights: function(){}, getObservationSearchDiameter: function(){return 10000;}};
+		var observation = new ObservationFetcher(new AllRegistrationsVUrlGenerator({}, 10));
 		var callback = function(observations){
 			console.log(observations);
 		};
@@ -9,22 +11,38 @@ describe("Observations", function(){
 	});
 	
 	it("should parse xml correctly", function(){
-		 var entry = "<entry>\
-						<id>http://h-web01.nve.no/stage_regobsservices/OData.svc/AllRegistrationsV(9862L)</id>\
-						<title type='text'>02.10.2012 kl 00:00, Skredfaretegn, Ferske skred, . </title>\
-						<link rel='alternate' href='http://h-web01.nve.no/stage_RegObsWeb/Registration?regId=5290'/>\
-						<updated>02.10.2012 00:00:37</updated>\
-						<author>\
-							<name>Ukjent observatør</name>\
-						</author>\
-						<content type='xhtml'>\
-							<div>\
-							<strong>02.10.2012 kl 00:00, Skredfaretegn, Ferske skred, . </strong>\
-							Snøobservasjon ved (Ingen varslingsregion/BÆRUM) av <i>Ukjent observatør</i>\
-							</div>\
-						</content>\
-					</entry>";
-		 
+		 var entry = {
+	               "__metadata":
+	               {
+	                   "uri": "http://h-web01.nve.no/stage_regobsservices/OData.svc/AllRegistrationsV(9862L)",
+	                   "type": "RegObsModel.AllRegistrationsV"
+	               },
+	               "RadNummer": "9862",
+	               "RegID": 5290,
+	               "DtObsTime": "/Date(1349136037267)/",
+	               "DtRegTime": "/Date(1349136066970)/",
+	               "Kommunenr": "0219",
+	               "Kommunenavn": "BÆRUM",
+	               "ForecastRegionTID": 0,
+	               "ForecastRegionName": "Ingen varslingsregion",
+	               "LocationName": "",
+	               "ObserverGroupName": null,
+	               "NickName": "Ukjent observatør",
+	               "CompetenceLevelTID": 0,
+	               "CompetenceLevelName": "Helt ukjent",
+	               "GeoHazardTID": 10,
+	               "GeoHazardName": "Snø",
+	               "RegistrationTID": 24,
+	               "RegistrationName": "Skredfaretegn",
+	               "TypicalValue1": "Ferske skred ",
+	               "TypicalValue2": " ",
+	               "LangKey": 1,
+	               "ObserverId": 105,
+	               "LocationID": 3714,
+	               "UTMZone": 33,
+	               "UTMEast": 248666,
+	               "UTMNorth": 6651945
+	           };
 		 var fetcher = new ObservationFetcher();
 		 var obsView = fetcher.entryToObservationView([entry]);
 		 
