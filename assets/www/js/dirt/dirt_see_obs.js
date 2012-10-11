@@ -1,4 +1,5 @@
 var dirt_see_obs = {
+	shouldShowFooter : false,
 	domNodeId : '#dirt_see_obs',
 	init: function(){
 		this.renderer = new ObservationViewRendrer(this.domNodeId, [], "map_page.dirtMap()");

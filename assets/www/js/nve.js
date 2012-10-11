@@ -614,11 +614,13 @@ var main = (function() {
 			var top = height - 52;
 
 			jQuery(".addAbort").css("top", (top + 45) + "px");
-			jQuery(".sendGroup").css("top", (top) + "px");
+			jQuery(".sendGroup").css("top", (top + 45) + "px");
 
-			jQuery(".listScroller").css("height", (top - 100) + "px");
-			jQuery(".pageScroller")
-					.css("height", (bodyHeight - 55 - 52) + "px")
+			jQuery(".listScroller").css("height", (top - 55) + "px");
+			jQuery(".pageScroller").css("height", (bodyHeight - 55 - 52) + "px")
+			jQuery(".pageScroller.full, #map_page").css("height", (bodyHeight - 55 ) + "px")
+			
+			
 		},
 
 		insertScroller : function() {
@@ -751,6 +753,7 @@ var main = (function() {
 			jQuery("body").css("overflow", "hidden");
 			jQuery('#dialog').hide().unbind("touchmove");
 			jQuery("#footer, .sendGroup").show();
+			main.showHideFooter(main.currentPage);
 		},
 
 		saveAndCall : function(kdObject, data, callingFunctions) {
@@ -861,11 +864,12 @@ var main = (function() {
 		},
 
 		showHideFooter : function(id) {
-			if (eval(id).shouldShowFooter == false) {
+			if (eval(id).shouldShowFooter == false || !jQuery.inArray(id ,["snow_obs", "water_obs", "dirt_obs", "ice_obs"])) {
 				jQuery(".footer").hide();
 			} else {
 				jQuery(".footer").show();
 			}
+			
 		},
 
 		toggleBackButtonDisplay : function(params, status) {

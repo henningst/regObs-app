@@ -90,7 +90,7 @@ function program5(depth0,data) {
   else { stack1 = depth0.map_handler; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   if (!helpers.map_handler) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n<div class=\"pageScroller\">\n		<ul class=\"w_list scrollable\" id=\"";
+  buffer += "\n\n<div class=\"pageScroller full\">\n		<ul class=\"w_list scrollable\" id=\"";
   foundHelper = helpers.scrollerid;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.scrollerid; stack1 = typeof stack1 === functionType ? stack1() : stack1; }

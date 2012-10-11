@@ -1,4 +1,5 @@
 var water_see_obs = {
+	shouldShowFooter : false,
 	domNodeId : '#water_see_obs',
 	init: function(){
 		this.renderer = new ObservationViewRendrer(this.domNodeId, [], "map_page.waterMap()");
