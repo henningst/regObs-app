@@ -117,14 +117,20 @@ NveStore = (function() {
     }
   };
 
+  NveStore.prototype.clearDirt = function() {
+    if (this.m_dirtPackage) {
+      this.m_dirtPackage.afterSendRegistration();
+    }
+    this.m_dirtPackage = null;
+    return DataAccess.save(DirtPackage.name, null);
+  };
+
   NveStore.prototype.sendDirt = function(callback) {
     var _this = this;
     if (this.m_dirtPackage && !IsEmpty(this.m_dirtPackage)) {
       this.m_dirtPackage.setGroup(jQuery("#dirt_group").val());
       this.packageCollection.add(this.m_dirtPackage);
-      this.m_dirtPackage.afterSendRegistration();
-      this.m_dirtPackage = null;
-      DataAccess.save(DirtPackage.name, null);
+      this.clearDirt();
     }
     this.packageCollection.forall(function(p) {
       return _this.sendAndHandlePackage(p);
@@ -189,14 +195,20 @@ NveStore = (function() {
     }
   };
 
+  NveStore.prototype.clearWater = function() {
+    if (this.m_waterPackage) {
+      this.m_waterPackage.afterSendRegistration();
+    }
+    this.m_waterPackage = null;
+    return DataAccess.save(WaterPackage.name, null);
+  };
+
   NveStore.prototype.sendWater = function(callback) {
     var _this = this;
     if (this.m_waterPackage && !IsEmpty(this.m_waterPackage)) {
       this.m_waterPackage.setGroup(jQuery("#water_group").val());
       this.packageCollection.add(this.m_waterPackage);
-      this.m_waterPackage.afterSendRegistration();
-      this.m_waterPackage = null;
-      DataAccess.save(WaterPackage.name, null);
+      this.clearWater();
     }
     this.packageCollection.forall(function(p) {
       return _this.sendAndHandlePackage(p);

@@ -88,14 +88,18 @@ class NveStore
         @m_dirtPackage.init()
         @m_dirtPackage
       
+  clearDirt : ()->
+    @m_dirtPackage.afterSendRegistration() if @m_dirtPackage
+      
+    @m_dirtPackage = null
+    DataAccess.save(DirtPackage.name, null)
+      
   sendDirt: (callback) ->
     if @m_dirtPackage and not IsEmpty(@m_dirtPackage)
       @m_dirtPackage.setGroup(jQuery("#dirt_group").val());
       @packageCollection.add(@m_dirtPackage)
-      @m_dirtPackage.afterSendRegistration()
+      @clearDirt()
       
-      @m_dirtPackage = null
-      DataAccess.save(DirtPackage.name, null)
       
     @packageCollection.forall (p) => @sendAndHandlePackage(p)
     callback() if callback
@@ -143,14 +147,17 @@ class NveStore
         @m_waterPackage.init()
         @m_waterPackage
       
+  clearWater :()->
+      @m_waterPackage.afterSendRegistration() if @m_waterPackage
+      
+      @m_waterPackage = null
+      DataAccess.save(WaterPackage.name, null)
+      
   sendWater: (callback) ->
     if @m_waterPackage and not IsEmpty(@m_waterPackage)
       @m_waterPackage.setGroup(jQuery("#water_group").val());
       @packageCollection.add(@m_waterPackage)
-      @m_waterPackage.afterSendRegistration()
-      
-      @m_waterPackage = null
-      DataAccess.save(WaterPackage.name, null)
+      @clearWater()
       
     @packageCollection.forall (p) => @sendAndHandlePackage(p)
     
