@@ -437,6 +437,8 @@ var main = (function() {
 		},
 
 		initPhonegap : function() {
+			DataAccess.handleCompatibility(APP_VERSION);
+			
 			document.addEventListener("backbutton", main.backKeyDown, true);
 			if (window.analytics) {
 				window.analytics.start(GA_TRACKER_CODE);

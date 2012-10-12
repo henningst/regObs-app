@@ -12,6 +12,8 @@ COMP = "regobs_comp"
 
 SEARCH_DIAMETER_KEY = "search_diameter_key";
 
+DATA_VERSION_KEY = "data_version_key";
+
 
 DataAccess = {
   storage : window.localStorage
@@ -38,6 +40,20 @@ DataAccess = {
       
   clear : ()->
     DataAccess.storage.clear()
+    
+  handleCompatibility : (version)->
+    currectDataVersion = DataAccess.get(DATA_VERSION_KEY);
+    if(currectDataVersion && version > currectDataVersion)
+      user_normal = UserStore.get(TEST_MODE)
+      user_stage  = UserStore.get(STAGE_MODE)
+      main.resetApp()
+      
+      UserStore.save(TEST_MODE, user_normal)
+      UserStore.save(STAGE_MODE, user_stage)
+    else
+      console.log("Data migration ok");
+      
+    DataAccess.save(DATA_VERSION_KEY, version);
 }
 
 
