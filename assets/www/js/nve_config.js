@@ -34,12 +34,12 @@ GA_TRACKER_CODE = "UA-32394009-1";
  * Platform
  */
 var device = {
-//	platform: 'android'
-	platform: 'iphone'
+	platform: 'android'
+//	platform: 'iphone'
 };
 
 
-APP_VERSION = "0.13.7";
+APP_VERSION = "0.13.3";
 	
 //BUGSENS_KEY = '1e74c587';//test
 BUGSENS_KEY = '5eb4c461';//prod

@@ -50,6 +50,7 @@ DataAccess = {
       
       UserStore.save(TEST_MODE, user_normal)
       UserStore.save(STAGE_MODE, user_stage)
+      
     else
       console.log("Data migration ok");
       
