@@ -35,6 +35,9 @@ DataAccess = {
         ret
     else
       null
+      
+  clear : ()->
+    DataAccess.storage.clear()
 }
 
 

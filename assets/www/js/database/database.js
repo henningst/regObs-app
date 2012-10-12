@@ -39,6 +39,9 @@ DataAccess = {
     } else {
       return null;
     }
+  },
+  clear: function() {
+    return DataAccess.storage.clear();
   }
 };
 

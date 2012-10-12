@@ -213,6 +213,14 @@ var main = (function() {
 				main.store.setNotificationId(null);
 			}
 		},
+		
+		resetApp: function(){
+			DataAccess.clear();
+			main.populateBoxes(true);
+
+			login_page.showLoginStatus(false);
+			login_page.relogin();
+		},
 
 		starred : function() {
 			if (DataAccess.get(STARTUP_PAGE) == main.actualPage) {
