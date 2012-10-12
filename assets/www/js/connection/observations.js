@@ -105,7 +105,9 @@ ObservationFetcher = (function() {
       url = "" + WEB_LINK_URL + "Registration?regId=" + entry.RegID;
       content = new Handlebars.SafeString("<strong>" + updated + ", " + ([entry.RegistrationName, _this.trim(entry.TypicalValue1), _this.trim(entry.TypicalValue2)].filter(function(o) {
         return o.length > 0;
-      }).join(", ")) + ".</strong> ved (" + entry.ForecastRegionName + "/" + entry.Kommunenavn + ") <i>" + author + "</i>");
+      }).join(", ")) + ".</strong> ved " + ([entry.LocationName, entry.ForecastRegionName, entry.Kommunenavn].filter(function(o) {
+        return o && o.length > 0;
+      }).join('/')) + " <i>" + author + "</i>");
       return new ObservationView(author, updated, url, content);
     });
   };

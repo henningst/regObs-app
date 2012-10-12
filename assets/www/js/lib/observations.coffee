@@ -58,7 +58,7 @@ class ObservationFetcher
       author = entry.NickName
       updated = @localDateString(@toDate(entry.DtObsTime))
       url = "#{WEB_LINK_URL}Registration?regId=#{entry.RegID}"
-      content = new Handlebars.SafeString("<strong>#{updated}, #{[entry.RegistrationName, @trim(entry.TypicalValue1), @trim(entry.TypicalValue2)].filter((o)->o.length > 0).join(", ")}.</strong> ved (#{entry.ForecastRegionName}/#{entry.Kommunenavn}) <i>#{author}</i>")
+      content = new Handlebars.SafeString("<strong>#{updated}, #{[entry.RegistrationName, @trim(entry.TypicalValue1), @trim(entry.TypicalValue2)].filter((o)->o.length > 0).join(", ")}.</strong> ved #{[entry.LocationName, entry.ForecastRegionName, entry.Kommunenavn].filter((o) -> o && o.length > 0).join('/') } <i>#{author}</i>")
       
       new ObservationView(author, updated, url, content)
     )
