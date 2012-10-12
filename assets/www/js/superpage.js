@@ -25,6 +25,7 @@ var super_page = {
 			
 			this.longitude = Math.round(p.x);
 			this.latitute  = Math.round(p.y);
+			this.accuracy = position.coords.accuracy;
 		},
 		add: function(id)
 		{
@@ -39,7 +40,7 @@ var super_page = {
 		setStoredLocation : function(position){
 			console.log("setting lat long " + this);
 			this.updatePagePosition(position);
-			this.danger_store().setLatLong(this.latitute, this.longitude);
+			this.danger_store().setLatLong(this.latitute, this.longitude, this.accuracy);
 			
 			var page = this;
 			var store = this.danger_store();

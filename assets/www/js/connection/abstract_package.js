@@ -153,9 +153,10 @@ AbstractPackage = (function() {
     return this.m_incident;
   };
 
-  AbstractPackage.prototype.setLatLong = function(lat, long) {
+  AbstractPackage.prototype.setLatLong = function(lat, long, accuracy) {
     this.lat = lat;
     this.long = long;
+    this.accuracy = accuracy;
     return DataAccess.save(this.name, this);
   };
 
@@ -359,7 +360,7 @@ AbstractPackage = (function() {
     }
     if (area) {
       if (this.filterPicture(true).length !== 0 || this.m_dangerObs.length !== 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, true, null, this.regDate, null, null, null, komm_string);
+        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
         return SendObjectToServer(location, (function(data) {
           return _this.afterLocation(data, true, false);
         }), function(error) {
@@ -369,7 +370,7 @@ AbstractPackage = (function() {
         if (this.filterPicture(false).length !== 0) {
           return this.onSend(page, false);
         } else {
-          location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, true, null, this.regDate, null, null, null, komm_string);
+          location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
           return SendObjectToServer(location, (function(data) {
             return _this.afterLocation(data, true, true);
           }), function(error) {
@@ -379,7 +380,7 @@ AbstractPackage = (function() {
       }
     } else {
       if (this.filterPicture(false).length !== 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, false, null, this.regDate, null, null, null, komm_string);
+        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, false, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
         return SendObjectToServer(location, (function(data) {
           return _this.afterLocation(data, false);
         }), function(error) {

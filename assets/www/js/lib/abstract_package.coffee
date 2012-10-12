@@ -51,9 +51,10 @@ class AbstractPackage
   getIncident: () =>
     @m_incident
     
-  setLatLong: (lat, long) =>
+  setLatLong: (lat, long, accuracy) =>
     @lat = lat
     @long = long
+    @accuracy = accuracy
     DataAccess.save(@name, this)
     
   setKommunenr: (nr) =>
@@ -213,18 +214,18 @@ class AbstractPackage
        
     if area
       if @filterPicture(true).length isnt 0 || @m_dangerObs.length isnt 0
-        location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, @regDate, null, null, null, komm_string);
+        location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
         SendObjectToServer(location, ((data) => @afterLocation(data, true, false)) , (error) => @onError(error))
       else 
         if @filterPicture(false).length isnt 0
           @onSend(page, false)
         else
-          location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, @regDate, null, null, null, komm_string);
+          location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
           SendObjectToServer(location, ((data) => @afterLocation(data, true, true)) , (error) => @onError(error))
 
     else
       if @filterPicture(false).length isnt 0
-        location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, false, null, @regDate, null, null, null, komm_string);
+        location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, false, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
         SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
       else
         @callCallback()
