@@ -6,11 +6,14 @@ ErrorHandler = (function() {
   function ErrorHandler() {}
 
   ErrorHandler.prototype.handleError = function(exception) {
+    var error_code;
+    error_code = this.errorCode();
     console.log("Sending error: " + (JSON.stringify(exception)));
     Bugsense.notify({
-      error: exception
+      error: exception,
+      code: error_code
     });
-    return main.showDialogWithMessage("Feilen rapporteres til utviklingsteamet. Hvis du ønsker å bidra med ytligere informasjon, merk tidspunktet og send en mail.", "En feil har oppstått");
+    return main.showDialogWithMessage("Feilen rapporteres til utviklingsteamet. Hvis du ønsker å bidra med ytligere informasjon, noter koden \"" + error_code + "\" og send en mail.", "En feil har oppstått");
   };
 
   ErrorHandler.prototype.hookInto = function() {
@@ -21,6 +24,10 @@ ErrorHandler = (function() {
         return obj.onclick = E(funksjon);
       }
     });
+  };
+
+  ErrorHandler.prototype.errorCode = function() {
+    return Math.floor(Math.random() * 0x10000).toString(16);
   };
 
   return ErrorHandler;

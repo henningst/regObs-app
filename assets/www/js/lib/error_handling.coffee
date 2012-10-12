@@ -20,9 +20,7 @@ class ErrorHandler
         obj.onclick = E(funksjon)
         
   errorCode : ()->
-    return Math.floor(
-                Math.random() * 0x10000 /* 65536 */
-            ).toString(16);
+    Math.floor(Math.random() * 0x10000).toString(16)
 
   
 
