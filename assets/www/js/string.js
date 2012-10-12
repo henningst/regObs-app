@@ -44,10 +44,10 @@ OBSERVATION_REGISTERED = "<h3>Registrering sent til regObs</h3><p>Takk for bidra
  * setting page descriptionstext
  */
 
-SETTING_UPDATE_DESCRIPTION = "setting update  description <strong>!</strong>";
-SETTING_RESET_DESCRIPTION = "setting reset description <strong>!</strong>";
-SETTING_MODE_DESCRIPTION = "setting mode description <strong>!</strong>";
-SETTING_DIAMETER_DESCRIPTION = "setting diameter description <strong>!</strong>"
+SETTING_UPDATE_DESCRIPTION = "Lorem Ipsum er rett og slett dummytekst fra og for trykkeindustrien. Lorem Ipsum har vært bransjens standard for dummytekst helt siden 1500-tallet, da en ukjent boktrykker stokket en mengde bokstaver for å lage et prøveeksemplar av en bok. Lorem Ipsum har tålt tidens tann usedvanlig godt, og ";
+SETTING_RESET_DESCRIPTION = "Lorem Ipsum er rett og slett dummytekst fra og for trykkeindustrien. Lorem Ipsum har vært bransjens standard for dummytekst helt siden 1500-tallet, da en ukjent boktrykker stokket en mengde bokstaver for å lage et prøveeksemplar av en bok. Lorem Ipsum har tålt tidens tann usedvanlig godt, og ";
+SETTING_MODE_DESCRIPTION = "Lorem Ipsum er rett og slett dummytekst fra og for trykkeindustrien. Lorem Ipsum har vært bransjens standard for dummytekst helt siden 1500-tallet, da en ukjent boktrykker stokket en mengde bokstaver for å lage et prøveeksemplar av en bok. Lorem Ipsum har tålt tidens tann usedvanlig godt, og ";
+SETTING_DIAMETER_DESCRIPTION = "Lorem Ipsum er rett og slett dummytekst fra og for trykkeindustrien. Lorem Ipsum har vært bransjens standard for dummytekst helt siden 1500-tallet, da en ukjent boktrykker stokket en mengde bokstaver for å lage et prøveeksemplar av en bok. Lorem Ipsum har tålt tidens tann usedvanlig godt, og "
 
 /*
  * 

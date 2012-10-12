@@ -11,6 +11,8 @@ var settings_page = {
 		jQuery("#setting_reset_description").html(SETTING_RESET_DESCRIPTION);
 		jQuery("#setting_diameter_description").html(SETTING_DIAMETER_DESCRIPTION);
 		
+		jQuery("#setting_version").text(APP_VERSION);
+		
 	},
 	
 	changedSearchDiameter : function(){
