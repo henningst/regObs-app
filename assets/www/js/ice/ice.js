@@ -1,5 +1,6 @@
-var ice_page = {
+var ice_obs = ice_page = {
 	name: "ice_page",
+	shouldShowFooter : false,
 
 	favorite_name: ICE,
 	// onSuccess Callback

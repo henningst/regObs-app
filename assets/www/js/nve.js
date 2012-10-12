@@ -875,7 +875,7 @@ var main = (function() {
 		},
 
 		showHideFooter : function(id) {
-			if (eval(id) !== undefined && (eval(id).shouldShowFooter == false || !jQuery.inArray(id ,["snow_obs", "water_page", "dirt_page", "ice_page"]))) {
+			if (eval(id) !== undefined && (eval(id).shouldShowFooter == false )) {
 				jQuery(".footer").hide();
 			} else {
 				jQuery(".footer").show();

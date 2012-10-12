@@ -1,5 +1,6 @@
-var dirt_page = {
+var dirt_obs =  dirt_page = {
 	name: "dirt_page",
+	shouldShowFooter : false,
 
 	favorite_name: DIRT,
 		

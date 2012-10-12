@@ -1,5 +1,6 @@
-var water_page = {
+var water_obs=  water_page = {
 	name:"water_page",
+	shouldShowFooter : false,
 	favorite_name : WATER,
 	// onSuccess Callback
 	//   This method accepts a `Position` object, which contains
