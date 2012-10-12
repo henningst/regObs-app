@@ -77,8 +77,7 @@ NveStore = (function() {
   };
 
   NveStore.prototype.deleteSnow = function() {
-    this.clearSnow();
-    return this.clearPackageCollection();
+    return this.clearSnow();
   };
 
   NveStore.prototype.sendSnow = function(callback) {
@@ -136,8 +135,7 @@ NveStore = (function() {
   };
 
   NveStore.prototype.deleteDirt = function() {
-    this.clearDirt();
-    return this.clearPackageCollection();
+    return this.clearDirt();
   };
 
   NveStore.prototype.sendDirt = function(callback) {
@@ -180,8 +178,7 @@ NveStore = (function() {
   };
 
   NveStore.prototype.deleteIce = function() {
-    this.clearIce();
-    return this.clearPackageCollection();
+    return this.clearIce();
   };
 
   NveStore.prototype.sendIce = function(callback) {
@@ -224,8 +221,7 @@ NveStore = (function() {
   };
 
   NveStore.prototype.deleteWater = function() {
-    this.clearWater();
-    return this.clearPackageCollection();
+    return this.clearWater();
   };
 
   NveStore.prototype.sendWater = function(callback) {

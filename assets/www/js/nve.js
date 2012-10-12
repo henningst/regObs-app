@@ -157,7 +157,7 @@ var main = (function() {
 
 		scroller : null,
 
-		inTestMode : false,
+		inTestMode : true,
 
 		initialised : false,
 
@@ -550,23 +550,26 @@ var main = (function() {
 				}
 			}, 15000);
 		},
+		
+		warnDeletionBefore : function(delete_function){
+			main.warnBefore("Sletting", "Er du sikker du ønsker å slette observasjonene?", OK, delete_function + "; main.hideDialog();", ABORT, 'main.hideDialog()');
+		},
 
+		warnBefore: function(header, text, ok, ok_method, cancel, cancel_method){
+			main.showDialog("<h3>"+ header +"</h3>"
+					+ "<div><p>"
+					+ text
+					+ "</p>"
+					+ "<button type='button' class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='"+ ok_method +"'>"
+						+ ok
+					+ "</button>"
+					+ "<button type='button' class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='"+cancel_method+"'>"
+					+ cancel + "</button>" + "</div>");
+		},
+		
 		warnLoginBefore : function(after) {
 			if (!main.currentlyLoggedIn) {
-				main
-						.showDialog("<h3>Ikke innlogget</h3>"
-								+ "<div><p>"
-								+ NOT_LOGGED_IN_WARNING
-								+ "</p>"
-								+ "<button type='button' "
-								+ "class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='"
-								+ after
-								+ "()'>"
-								+ OK
-								+ "</button>"
-								+ "<button type='button' "
-								+ "class='w_bg_light c_button w_button w_radius popupbutton-dual' onclick='main.goToAndHide(\"login_page\");'>"
-								+ LOGIN_BUTTON + "</button>" + "</div>");
+				main.warnBefore("Ikke innlogget", NOT_LOGGED_IN_WARNING, OK, after + "()", LOGIN_BUTTON, 'main.goToAndHide(\"login_page\")');
 			} else {
 				eval(after + "()");
 			}

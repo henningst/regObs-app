@@ -57,8 +57,8 @@ class NveStore
     DataAccess.save(SnowPackage.name, null)
     
   deleteSnow : ()->
+    
     @clearSnow()
-    @clearPackageCollection()
   
       
   sendSnow: (callback) =>
@@ -104,7 +104,6 @@ class NveStore
     
   deleteDirt : ()->
     @clearDirt()
-    @clearPackageCollection()
       
   sendDirt: (callback) ->
     if @m_dirtPackage and not IsEmpty(@m_dirtPackage)
@@ -138,7 +137,6 @@ class NveStore
     
   deleteIce : ()->
     @clearIce()
-    @clearPackageCollection()
     
   sendIce: (callback) ->
     if @m_icePackage and not IsEmpty(@m_icePackage)
@@ -171,7 +169,6 @@ class NveStore
       
   deleteWater : ()->
     @clearWater()
-    @clearPackageCollection()
       
   sendWater: (callback) ->
     if @m_waterPackage and not IsEmpty(@m_waterPackage)

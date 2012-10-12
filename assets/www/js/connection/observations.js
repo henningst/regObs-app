@@ -105,7 +105,7 @@ ObservationFetcher = (function() {
       url = "" + WEB_LINK_URL + "Registration?regId=" + entry.RegID;
       content = new Handlebars.SafeString("<strong>" + updated + ", " + ([entry.RegistrationName, _this.trim(entry.TypicalValue1), _this.trim(entry.TypicalValue2)].filter(function(o) {
         return o.length > 0;
-      }).join(", ")) + ".</strong> " + (_this.toRegistrationType(entry.RegistrationTID)) + " ved (" + entry.ForecastRegionName + "/" + entry.Kommunenavn + ") <i>" + author + "</i>");
+      }).join(", ")) + ".</strong> ved (" + entry.ForecastRegionName + "/" + entry.Kommunenavn + ") <i>" + author + "</i>");
       return new ObservationView(author, updated, url, content);
     });
   };
@@ -125,9 +125,9 @@ ObservationFetcher = (function() {
     minute = this.padZero(date.getUTCMinutes());
     sec = date.getUTCSeconds();
     if (date.toDateString() === new Date().toDateString()) {
-      return "" + hour + ":" + minute + ":" + sec;
+      return "" + hour + ":" + minute;
     } else {
-      return "" + day + "." + month + "." + year + " " + hour + ":" + minute + ":" + sec;
+      return "" + day + "." + month + "." + year + " " + hour + ":" + minute;
     }
   };
 
