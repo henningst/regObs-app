@@ -255,16 +255,19 @@ AbstractPackage = (function() {
     console.log("models complete area " + JSON.stringify(this.pointModels(this.m_dangerObs).area));
     _ref = this.pointModels(this.m_dangerObs).area;
     _fn = function(obs) {
+      var model;
       console.log("model area " + JSON.stringify(obs));
       obs.RegID = data.RegID;
       obs = _this.castedModel(obs);
       if (obs.beforeSend) {
         obs.beforeSend(x++);
       }
+      model = obs.model;
       if (obs.model) {
         delete obs.model;
       }
-      return SendObjectToServer(obs);
+      SendObjectToServer(obs);
+      return obs["model"] = model;
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       obs = _ref[_i];
@@ -525,8 +528,13 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.castedModel = function(obs, x) {
-    obs = jQuery.extend(obs, eval("new " + obs.model + "()"));
-    return obs;
+    console.log("casting model " + obs.model + " -> " + JSON.stringify(obs));
+    if (obs.model) {
+      obs = jQuery.extend(obs, eval("new " + obs.model + "()"));
+      return obs;
+    } else {
+      return obs;
+    }
   };
 
   return AbstractPackage;

@@ -127,9 +127,12 @@ class AbstractPackage
         obs.RegID = data.RegID
         obs = @castedModel(obs)
         obs.beforeSend(x++) if obs.beforeSend
+        model = obs.model
         delete obs.model if obs.model          
-      
         SendObjectToServer(obs)
+        
+        obs["model"] = model 
+        
 
     @removeAreaModels()
 
@@ -311,7 +314,11 @@ class AbstractPackage
       (picture for picture in @m_pictures when picture.RegistrationTID in [21, 22, 23, 25, 26, 50, 51, 61, 71])
       
   castedModel: (obs, x) =>
-    obs = jQuery.extend(obs, eval("new #{obs.model}()"))
-    obs
+    console.log("casting model " + obs.model + " -> " + JSON.stringify(obs))
+    if(obs.model)
+      obs = jQuery.extend(obs, eval("new #{obs.model}()"))
+      obs
+    else
+      obs
 
 

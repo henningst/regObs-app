@@ -22,8 +22,9 @@ var ice_thickness = {
 		},
 		
 		addIceThickness : function(){
+			var cm = function(val){ return  "" + (parseInt(val) / 100); };
 			
-			var obs = new IceThickness(0, ice_thickness.snow_depth.val(), ice_thickness.slush_depth.val(), ice_thickness.sum.val(), null, null, 0, ice_thickness.comment.val()); 
+			var obs = new IceThickness(0, cm(ice_thickness.snow_depth.val()), cm(ice_thickness.slush_depth.val()), cm(ice_thickness.sum.val()), null, null, 0, ice_thickness.comment.val()); 
 			
 			ice_page.updateLocation(function(){
 				ice_thickness.clear();
