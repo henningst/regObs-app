@@ -4,7 +4,7 @@ class ObservationView
     
 class AllRegistrationsVUrlGenerator
   baseurl :  ()-> "#{SERVER_URL}AllRegistrationsV?"
-  queryString : "$filter=LangKey eq %LANGUAGE% and UTMEast gt %UTM_EAST_MIN% and UTMEast lt %UTM_EAST_MAX% and UTMNorth le %UTM_NORTH_MAX% and UTMNorth gt %UTM_NORTH_MIN% and GeoHazardTID eq %GEOHAZARDTID%&$orderby=RegID desc"
+  queryString : "$filter=LangKey eq %LANGUAGE% and UTMEast gt %UTM_EAST_MIN% and UTMEast lt %UTM_EAST_MAX% and UTMNorth le %UTM_NORTH_MAX% and UTMNorth gt %UTM_NORTH_MIN% and GeoHazardTID eq %GEOHAZARDTID%&$orderby=DtObsTime desc"
   diameter : ()-> main.getObservationSearchDiameter()
   constructor: (@currentPosition, @geoHazard)->
     

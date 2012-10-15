@@ -21,7 +21,7 @@ AllRegistrationsVUrlGenerator = (function() {
     return "" + SERVER_URL + "AllRegistrationsV?";
   };
 
-  AllRegistrationsVUrlGenerator.prototype.queryString = "$filter=LangKey eq %LANGUAGE% and UTMEast gt %UTM_EAST_MIN% and UTMEast lt %UTM_EAST_MAX% and UTMNorth le %UTM_NORTH_MAX% and UTMNorth gt %UTM_NORTH_MIN% and GeoHazardTID eq %GEOHAZARDTID%&$orderby=RegID desc";
+  AllRegistrationsVUrlGenerator.prototype.queryString = "$filter=LangKey eq %LANGUAGE% and UTMEast gt %UTM_EAST_MIN% and UTMEast lt %UTM_EAST_MAX% and UTMNorth le %UTM_NORTH_MAX% and UTMNorth gt %UTM_NORTH_MIN% and GeoHazardTID eq %GEOHAZARDTID%&$orderby=DtObsTime desc";
 
   AllRegistrationsVUrlGenerator.prototype.diameter = function() {
     return main.getObservationSearchDiameter();
