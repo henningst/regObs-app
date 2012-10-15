@@ -110,25 +110,28 @@ class AbstractPackage
     @onAfterLocation(data, area, force)
   
   afterRegistration: (data, area, force) =>
+    console.log("after reg area " + area + " force " + force)
     if area
       @completeAreaRegistration(data, force)
     else 
       @completePointRegistration(data)
     
   completeAreaRegistration: (data, force) =>
+    console.log("complete force " + force  )
     x = 0
     n = @name
-    for obs in @m_dangerObs 
+    console.log("models complete area " + JSON.stringify(@pointModels(@m_dangerObs).area))
+    for obs in @pointModels(@m_dangerObs).area 
       do(obs) =>
-        
+        console.log("model area "+ JSON.stringify(obs))
         obs.RegID = data.RegID
         obs = @castedModel(obs)
         obs.beforeSend(x++) if obs.beforeSend
         delete obs.model if obs.model          
       
         SendObjectToServer(obs)
-        
-    @m_dangerObs.length = 0
+
+    @removeAreaModels()
 
     i = 0
     bilde = @cutOutPictures(true)
@@ -164,6 +167,20 @@ class AbstractPackage
       @m_incident.RegID = data.RegID
       SendObjectToServer(@m_incident)
       @m_incident = null
+      
+    
+    
+    x = 0
+    for obs in @pointModels(@m_dangerObs).point 
+      do(obs) =>
+        obs.RegID = data.RegID
+        obs = @castedModel(obs)
+        obs.beforeSend(x++) if obs.beforeSend
+        delete obs.model if obs.model          
+      
+        SendObjectToServer(obs)
+        
+    @removePointModels()
 
     i = 0
     bilde = @cutOutPictures(false)
@@ -194,7 +211,6 @@ class AbstractPackage
   
   
   onSend: (page, area) =>
-    console.log("pp: onsend")
     if area
       main.showWaitingDialogWithMessage(UPLOADING);
   
@@ -213,24 +229,50 @@ class AbstractPackage
       komm_string = @komm_nr.toString()
        
     if area
-      if @filterPicture(true).length isnt 0 || @m_dangerObs.length isnt 0
+      if @areaPictures().length > 0 || @pointModels(@m_dangerObs).area.length > 0
         location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
         SendObjectToServer(location, ((data) => @afterLocation(data, true, false)) , (error) => @onError(error))
       else 
-        if @filterPicture(false).length isnt 0
+        if @pointPictures().length > 0 || @pointModels(@m_dangerObs).point.length > 0
           @onSend(page, false)
         else
           location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
           SendObjectToServer(location, ((data) => @afterLocation(data, true, true)) , (error) => @onError(error))
 
     else
-      if @filterPicture(false).length isnt 0
+      if @pointPictures().length > 0 || @pointModels(@m_dangerObs).point.length > 0
         location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, false, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
         SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
       else
         @callCallback()
         main.showFinishedUploadMessage()
     
+    
+  pointModels : (models)->
+    point = []
+    area = []
+    pointModelName = ["SnowSurfaceObservation", "SnowCoverObs", "AvalancheActivityObs", "IceCoverObs", "IceThickness", "WaterLevel", "LandSlideObs"]
+    
+    for model in models
+      if model.model &&  model.model in pointModelName
+        point.push(model)
+      else
+        area.push(model)
+        
+    {"point": point, "area": area}
+   
+  
+  removeAreaModels: ()->
+    area = @pointModels(@m_dangerObs).area
+    @m_dangerObs = jQuery.grep(@m_dangerObs, (obs)->
+      !(obs in area)  
+    )    
+   
+  removePointModels: ()->
+    points = @pointModels(@m_dangerObs).point
+    @m_dangerObs = jQuery.grep(@m_dangerObs, (obs)->
+      !(obs in points)  
+    )     
     
   onAfterLocation: (data, area, force) ->
     groupId = parseInt(@groupId)
@@ -257,6 +299,10 @@ class AbstractPackage
         else
           i++
     erg
+    
+  areaPictures : ()-> @filterPicture(true)
+  pointPictures : ()-> @filterPicture(false)
+    
     
   filterPicture: (area) ->
     if area
