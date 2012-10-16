@@ -106,7 +106,7 @@ var login_page = {
     	jQuery.each(user.groups, function(i, group){
     		list = list + "<div><input type='radio' name='group' value='"+ group.id +"' title='"+ group.name +"'/>"+ group.name +"</div>";
     	});
-		var dialog = "<div class='list'><div><input type='radio' name='group' value='0' checked='checked' title='Gruppe'>Ingen gruppe</div>"+ list +"</div>";
+		var dialog = "<div class='max80px divScroller'><div class='list scrollable' id='group_scroller'><div><input type='radio' name='group' value='0' checked='checked' title='Gruppe'>Ingen gruppe</div>"+ list +"</div></div>";
 		jQuery(".groups").html(dialog);
 		jQuery("input[name=group]").live('click', function(){
 			login_page.groupChangedTo(this);

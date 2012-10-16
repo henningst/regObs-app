@@ -756,7 +756,7 @@ ul.actions li{
   content:'...';
 }
 
-.listScroller, .pageScroller{
+.listScroller, .pageScroller, .divScroller{
 	overflow: hidden;
 }
 
@@ -814,4 +814,8 @@ ul.actions li{
 #map, #map_page{
 	width: 100%;
 	height: 100%;
+}
+
+.max80px{
+	max-height: 80px;
 }

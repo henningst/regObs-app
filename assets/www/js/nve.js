@@ -208,8 +208,8 @@ var main = (function() {
 			} else {
 				jQuery(".numPackages").hide();
 				console.log("------------ removeing ------------- ")
-				new LocalNotification().cancelAll();
-				new LocalNotification().cancel(4);
+//				new LocalNotification().cancelAll();
+//				new LocalNotification().cancel(4);
 				main.store.setNotificationId(null);
 			}
 		},
@@ -728,6 +728,7 @@ var main = (function() {
 		attachToGroup : function(id) {
 			var dialog = jQuery("#" + id + "_obs .groups")[0]
 			main.showDialogWithMessage(jQuery(dialog), "Velg gruppe");
+			main.resetHeights();
 		},
 
 		goToAndHide : function(page) {
