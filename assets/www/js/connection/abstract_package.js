@@ -60,6 +60,8 @@ AbstractPackage = (function() {
 
     this.superInit = __bind(this.superInit, this);
 
+    this.onError = __bind(this.onError, this);
+
     this.absConstructor = __bind(this.absConstructor, this);
 
   }
@@ -78,7 +80,8 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.onError = function(data) {
-    return main.errorDialog();
+    main.errorDialog();
+    return main.updateCollection(main.store.packageCollection);
   };
 
   AbstractPackage.prototype.superInit = function() {
@@ -266,7 +269,9 @@ AbstractPackage = (function() {
       if (obs.model) {
         delete obs.model;
       }
-      SendObjectToServer(obs);
+      SendObjectToServer(obs, void 0, function(error) {
+        return _this.onError(error);
+      });
       return obs["model"] = model;
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -310,7 +315,9 @@ AbstractPackage = (function() {
     if (this.m_incident) {
       this.m_incident = jQuery.extend(this.m_incident, new Incident());
       this.m_incident.RegID = data.RegID;
-      SendObjectToServer(this.m_incident);
+      SendObjectToServer(this.m_incident, void 0, function(error) {
+        return _this.onError(error);
+      });
       this.m_incident = null;
     }
     x = 0;
@@ -324,7 +331,9 @@ AbstractPackage = (function() {
       if (obs.model) {
         delete obs.model;
       }
-      return SendObjectToServer(obs);
+      return SendObjectToServer(obs, void 0, function(e) {
+        return _this.onError(e);
+      });
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       obs = _ref[_i];

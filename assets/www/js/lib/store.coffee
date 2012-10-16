@@ -15,10 +15,6 @@ class NveStore
     
     
     @packageCollection.callback = (collection)->
-      setTimeout(()-> 
-        main.updateCollection(collection) 
-      ,1000) if main
-      
       DataAccess.save("PackageCollection", collection)
     
     @packageCollection.callback(@packageCollection)
@@ -57,7 +53,6 @@ class NveStore
     DataAccess.save(SnowPackage.name, null)
     
   deleteSnow : ()->
-    
     @clearSnow()
   
       
@@ -80,6 +75,7 @@ class NveStore
       collection = main.store.packageCollection 
       pkg.freezed = true
       collection.remove(pkg)
+      main.updateCollection(collection)
     
     p.send()
 

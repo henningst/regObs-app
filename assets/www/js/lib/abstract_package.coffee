@@ -12,8 +12,9 @@ class AbstractPackage
     @freezed = false
     @pages = []
 
-  onError: (data) ->
+  onError: (data) =>
     main.errorDialog()
+    main.updateCollection(main.store.packageCollection)
   
   superInit: () =>
     @pages = [@page, @picturePage, @hendelsePage]
@@ -129,7 +130,7 @@ class AbstractPackage
         obs.beforeSend(x++) if obs.beforeSend
         model = obs.model
         delete obs.model if obs.model          
-        SendObjectToServer(obs)
+        SendObjectToServer(obs, undefined, (error) => @onError(error))
         
         obs["model"] = model 
         
@@ -168,7 +169,7 @@ class AbstractPackage
     if @m_incident
       @m_incident = jQuery.extend(@m_incident, new Incident())
       @m_incident.RegID = data.RegID
-      SendObjectToServer(@m_incident)
+      SendObjectToServer(@m_incident, undefined, (error) => @onError(error))
       @m_incident = null
       
     
@@ -181,7 +182,7 @@ class AbstractPackage
         obs.beforeSend(x++) if obs.beforeSend
         delete obs.model if obs.model          
       
-        SendObjectToServer(obs)
+        SendObjectToServer(obs, undefined, (e) => @onError(e))
         
     @removePointModels()
 
@@ -211,7 +212,6 @@ class AbstractPackage
     
   fillObs: (obs) =>
     @castedModel(obs)
-  
   
   onSend: (page, area) =>
     if area

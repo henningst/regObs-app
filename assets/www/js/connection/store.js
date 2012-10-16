@@ -22,11 +22,6 @@ NveStore = (function() {
       DataAccess.save("PackageCollection", this.packageCollection);
     }
     this.packageCollection.callback = function(collection) {
-      if (main) {
-        setTimeout(function() {
-          return main.updateCollection(collection);
-        }, 1000);
-      }
       return DataAccess.save("PackageCollection", collection);
     };
     this.packageCollection.callback(this.packageCollection);
@@ -105,7 +100,8 @@ NveStore = (function() {
       var collection;
       collection = main.store.packageCollection;
       pkg.freezed = true;
-      return collection.remove(pkg);
+      collection.remove(pkg);
+      return main.updateCollection(collection);
     };
     return p.send();
   };
