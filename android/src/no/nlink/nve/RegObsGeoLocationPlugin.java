@@ -29,8 +29,12 @@ public class RegObsGeoLocationPlugin extends Plugin {
   private LocationManager manager;
   private boolean shouldHandleError;
   private boolean sendt = false;
+  private Thread locationThread;
+  
+  private static RegObsGeoLocationPlugin instance;
   @Override
   public PluginResult execute(String action, JSONArray data, String callbackId) {
+    instance = this;
     Log.d("GeoPlugin", "I Plugin");
     this.action = action;
     
@@ -40,17 +44,19 @@ public class RegObsGeoLocationPlugin extends Plugin {
     
     manager = (LocationManager) ctx.getSystemService(Context.LOCATION_SERVICE);
     locationListener = new MyLocationListener(this);
+    locationThread = null;
     try{
       Thread runner = new Thread(){
         public void run(){
           Looper.prepare();
           Log.d("GeoPlugin", "Register ....");
-          manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 2, locationListener);
-          manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 2, locationListener);
+          manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 2, locationListener);
+          manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 500, 2, locationListener);
           Log.d("GeoPlugin", "Registered");
         }
       };
       runner.start();
+      locationThread = runner;
       }catch(Exception e){
         Log.e("GeoPlugin","Register location listeneres", e);
       }
@@ -87,17 +93,32 @@ public class RegObsGeoLocationPlugin extends Plugin {
       }
       
       
-      if(locationListener != null)
-        manager.removeUpdates(locationListener);
+      clearListener();
       
     }catch(Throwable e){
       Log.e("GeoPlugin", "register failed", e);
+    }finally{
+      clearListener();
     }
     
     return new PluginResult(Status.OK);
   }
+
+
+
+  private void clearListener() {
+    if(locationListener != null){
+      Log.d("GeoPlugin", "clearing listener");
+      locationThread.interrupt();
+      manager.removeUpdates(locationListener);
+    }
+  }
   
-  
+  public static void clear(){
+    if(RegObsGeoLocationPlugin.instance != null){
+      RegObsGeoLocationPlugin.instance.clearListener();
+    }
+  }
   
   private boolean locationGoodEnough(Location location) {
     return newLocationReceived(location, false);

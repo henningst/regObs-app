@@ -11,4 +11,10 @@ public class NveActivity extends DroidGap {
 
 		super.loadUrl("file:///android_asset/www/nve.html");
 	}
+	
+	@Override
+	public void onPause(){
+	  super.onPause();
+	  RegObsGeoLocationPlugin.clear();
+	}
 }
