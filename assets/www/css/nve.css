@@ -392,7 +392,18 @@ ul.actions li{
   background-image: url("../img/bakgrunn.png");
   background-repeat: no-repeat;
   background-size: auto 100%;
+  
+  position:static;
 }
+
+.sl_page, .content_page{
+	padding-top: 0px !important;
+}
+
+.spacer{
+	height: 45px;
+}
+
 .w_header_custom{
 	z-index: 200;
 }

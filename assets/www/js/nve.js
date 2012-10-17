@@ -208,8 +208,8 @@ var main = (function() {
 			} else {
 				jQuery(".numPackages").hide();
 				console.log("------------ removeing ------------- ")
-				new LocalNotification().cancelAll();
-				new LocalNotification().cancel(4);
+//				new LocalNotification().cancelAll();
+//				new LocalNotification().cancel(4);
 				main.store.setNotificationId(null);
 			}
 		},
@@ -626,8 +626,8 @@ var main = (function() {
 			var bodyHeight = jQuery("body").height();
 			var top = height - 52;
 
-			jQuery(".addAbort").css("top", (top + 45) + "px");
-			jQuery(".sendGroup").css("top", (top + 45) + "px");
+			jQuery(".addAbort").css("top", (top + 45 + 45) + "px");
+			jQuery(".sendGroup").css("top", (top + 45 ) + "px");
 
 			jQuery(".listScroller").css("height", (top - 55) + "px");
 			jQuery(".pageScroller").css("height", (bodyHeight - 55 - 52) + "px")
