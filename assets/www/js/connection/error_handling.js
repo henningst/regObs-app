@@ -8,6 +8,7 @@ ErrorHandler = (function() {
   ErrorHandler.prototype.handleError = function(exception) {
     var error_code;
     error_code = this.errorCode();
+    exception.stacktrace = printStackTrace();
     console.log("Sending error: " + (JSON.stringify(exception)));
     Bugsense.notify({
       error: exception,

@@ -8,7 +8,6 @@ var information_page = {
 			jQuery("#information p").html(ABOUT_REGOBS);
 			
 			jQuery("#appversion").text(APP_VERSION);
-			
 		}
 		
 };
