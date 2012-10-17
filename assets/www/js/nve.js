@@ -683,6 +683,7 @@ var main = (function() {
 									}
 								});
 
+								console.log("adding scroller")
 								jQuery(this).addClass("scrolling");
 
 								function hiddenKeyboard() {
