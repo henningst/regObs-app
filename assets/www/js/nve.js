@@ -627,11 +627,11 @@ var main = (function() {
 			var top = height - 52;
 
 			jQuery(".addAbort").css("top", (top + 45 + 45) + "px");
-			jQuery(".sendGroup").css("top", (top + 45 ) + "px");
+			jQuery(".sendGroup").css("top", (top + 45 + 45 ) + "px");
 
 			jQuery(".listScroller").css("height", (top - 55) + "px");
-			jQuery(".pageScroller").css("height", (bodyHeight - 55 - 52) + "px")
-			jQuery(".pageScroller.full, #map_page").css("height", (bodyHeight - 55 ) + "px")
+			jQuery(".pageScroller").css("height", (bodyHeight - 55) + "px")
+			jQuery(".pageScroller.full, #map_page").css("height", (bodyHeight - 50 ) + "px")
 			
 			
 		},

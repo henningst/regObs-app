@@ -84,7 +84,7 @@ function program5(depth0,data) {
   
   return "\n<div class=\"loading popup c_color_gradient\">\n    Ingen observasjoner funnet\n</div>\n";}
 
-  buffer += "\n";
+  buffer += "<div class=\"spacer\"></div>\n";
   foundHelper = helpers.map_handler;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)}); }
   else { stack1 = depth0.map_handler; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
