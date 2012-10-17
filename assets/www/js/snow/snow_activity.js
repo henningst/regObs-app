@@ -18,10 +18,12 @@ var snow_activity = {
 			snow_page.updateLocation(function(){
 				main.store.getSnow().addObs(obs);
 				main.panels.slideBack();
+				snow_activity.afterSendRegitration();
 			}, true);
 		},
 		
 		afterSendRegitration: function(){
+			jQuery("#snow_acitivity_no_observed").attr('checked', false);
 			jQuery("#snow_activity_slider").slider("value", 0);
 			jQuery('#snow_activity_carusel_count').html("");
 			jQuery('#snow_activity_carusel_size').html("");
@@ -58,7 +60,7 @@ var snow_activity = {
 			
 			this.listOfCarusels = ['snow_activity_carusel_count', 'snow_activity_carusel_count', 'snow_activity_carusel_size', 'snow_activity_carusel_type', 'snow_activity_carusel_aspect', 'snow_activity_carusel_height'];
 			
-			jQuery("#snow_acitivity_no_observed").click	(function(){
+			function nothingObservedChanged(){
 				var nothingToObserved = jQuery(this).is(":checked");
 				
 				if(nothingToObserved){
@@ -68,7 +70,8 @@ var snow_activity = {
 					snow_activity.clearForm();
 					snow_activity.showObservations();
 				}
-			});
+			};
+			jQuery("#snow_acitivity_no_observed").click	(nothingObservedChanged);
 			
 		},
 		
