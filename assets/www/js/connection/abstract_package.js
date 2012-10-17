@@ -258,21 +258,20 @@ AbstractPackage = (function() {
     console.log("models complete area " + JSON.stringify(this.pointModels(this.m_dangerObs).area));
     _ref = this.pointModels(this.m_dangerObs).area;
     _fn = function(obs) {
-      var model;
+      var clone;
       console.log("model area " + JSON.stringify(obs));
       obs.RegID = data.RegID;
-      obs = _this.castedModel(obs);
-      if (obs.beforeSend) {
-        obs.beforeSend(x++);
+      clone = JSON.parse(JSON.stringify(obs));
+      clone = _this.castedModel(clone);
+      if (clone.beforeSend) {
+        clone.beforeSend(x++);
       }
-      model = obs.model;
-      if (obs.model) {
-        delete obs.model;
+      if (clone.model) {
+        delete clone.model;
       }
-      SendObjectToServer(obs, void 0, function(error) {
+      return SendObjectToServer(clone, void 0, function(error) {
         return _this.onError(error);
       });
-      return obs["model"] = model;
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       obs = _ref[_i];
@@ -323,16 +322,18 @@ AbstractPackage = (function() {
     x = 0;
     _ref = this.pointModels(this.m_dangerObs).point;
     _fn = function(obs) {
+      var clone;
       obs.RegID = data.RegID;
-      obs = _this.castedModel(obs);
-      if (obs.beforeSend) {
-        obs.beforeSend(x++);
+      clone = JSON.parse(JSON.stringify(obs));
+      clone = _this.castedModel(clone);
+      if (clone.beforeSend) {
+        clone.beforeSend(x++);
       }
-      if (obs.model) {
-        delete obs.model;
+      if (clone.model) {
+        delete clone.model;
       }
-      return SendObjectToServer(obs, void 0, function(e) {
-        return _this.onError(e);
+      return SendObjectToServer(clone, void 0, function(error) {
+        return _this.onError(error);
       });
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {

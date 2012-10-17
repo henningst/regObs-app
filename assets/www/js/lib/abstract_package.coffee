@@ -126,13 +126,13 @@ class AbstractPackage
       do(obs) =>
         console.log("model area "+ JSON.stringify(obs))
         obs.RegID = data.RegID
-        obs = @castedModel(obs)
-        obs.beforeSend(x++) if obs.beforeSend
-        model = obs.model
-        delete obs.model if obs.model          
-        SendObjectToServer(obs, undefined, (error) => @onError(error))
-        
-        obs["model"] = model 
+        clone = JSON.parse(JSON.stringify(obs))
+        clone = @castedModel(clone)
+        clone.beforeSend(x++) if clone.beforeSend
+                
+        delete clone.model if clone.model          
+        SendObjectToServer(clone, undefined, (error) => @onError(error))
+          
         
 
     @removeAreaModels()
@@ -178,12 +178,14 @@ class AbstractPackage
     for obs in @pointModels(@m_dangerObs).point 
       do(obs) =>
         obs.RegID = data.RegID
-        obs = @castedModel(obs)
-        obs.beforeSend(x++) if obs.beforeSend
-        delete obs.model if obs.model          
-      
-        SendObjectToServer(obs, undefined, (e) => @onError(e))
         
+        clone = JSON.parse(JSON.stringify(obs))
+        clone = @castedModel(clone)
+        clone.beforeSend(x++) if clone.beforeSend
+                
+        delete clone.model if clone.model          
+        SendObjectToServer(clone, undefined, (error) => @onError(error))
+          
     @removePointModels()
 
     i = 0
