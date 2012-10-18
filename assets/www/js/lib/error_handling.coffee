@@ -5,10 +5,13 @@ class ErrorHandler
     
   handleError: (exception)->  
     error_code = @errorCode()
+    stacktrace = printStackTrace();
     console.log("Sending error: #{JSON.stringify(exception)}");
+    
     Bugsense.notify({
       error: exception
       code: error_code
+      stack : stacktrace
     });
     main.showDialogWithMessage("Feilen rapporteres til utviklingsteamet. Hvis du ønsker å bidra med ytligere informasjon, noter koden \"#{error_code}\" og send en mail.", "En feil har oppstått");
  

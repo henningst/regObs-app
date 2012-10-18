@@ -107,6 +107,11 @@ returnCountOnly=false&returnIdsOnly=false&
 returnGeometry=false&maxAllowableOffset=&
 outSR=&outFields=*&f=pjson"
 
+class RegineDetails
+  url: ""
+  constructor:(@Lat, @Long)->
+    @url = "http://gis.nve.no/ArcGIS/rest/services/Mapservices/Hydrografi/MapServer/2/query?text=&geometry=#{@Long},#{@Lat}&geometryType=esriGeometryPoint&inSR=32633&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=false&maxAllowableOffset=&outSR=&outFields=*&f=pjson"
+
 class AvalancheActivityObs
   url : ()  -> "#{SERVER_URL}AvalancheActivityObs"
   constructor: (@RegID, @Aspect, @HeigthStartZone, @DestructiveSizeTID, @EstimatedNumTID, @AvalancheTID, @AvalancheTriggerTID, @TerrainStartZoneTID, @DtAvalancheTime, @SnowLine, @UsageFlagTID, @Comment) ->
@@ -238,12 +243,12 @@ class EstimatedNumKD
 class IceCoverBeforeKD
   url: null
   constructor: (@IceCoverBeforeTID, @LangKey, @IceCoverBeforeName, @IceCoverBeforeDescr) ->
-    @url = "#{SERVER_URL}IceCoverBeforeKD?Language eq #{LANGUAGE}"
+    @url = "#{SERVER_URL}IceCoverBeforeKD?$filter=LangKey eq #{LANGUAGE}"
 
 class IceCoverKD
   url : null
   constructor : (@IceCoverTID, @LangKey, @IceCoverName, @IceCoverDescr) ->
-    @url = "#{SERVER_URL}IceCoverKD?Language eq #{LANGUAGE}"
+    @url = "#{SERVER_URL}IceCoverKD?$filter=LangKey eq #{LANGUAGE}"
 
 class ForecastAccurateKD
   constructor: ( ) ->

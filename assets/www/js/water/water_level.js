@@ -62,7 +62,7 @@ var water_level = {
 			}
 			else{
 				waterLevelDescribed = waterLevelValueInput;
-				waterLevelValue = waterLevelValue.toString();
+				waterLevelValue = null;
 			}
 						
 			var waterLevel = new WaterLevel("", waterLevelDescribed, waterLevelValue, list[list.selectedIndex].value, 0, waterLevelComment);					

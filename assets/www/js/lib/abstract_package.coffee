@@ -36,7 +36,6 @@ class AbstractPackage
   
   setRegDate : ()=>
     date = new Date()
-    
     @regDate = new Date(date.setHours(date.getHours() + 2))
    
   setGroup: (groupId)=>
@@ -60,9 +59,16 @@ class AbstractPackage
     
   setKommunenr: (nr) =>
     @komm_nr = nr if nr
+  
+  setFylkenr: (nr) =>
+    @fylke_nr = nr if nr
     
   setArea: (nr) =>
     @omrade_id = nr
+    
+  setRegine: (nr) =>
+    console.log("Setting regine nr" + nr)
+    @regine_nr = nr if nr
     
   addObs: (obs) =>
     @setRegDate()
@@ -104,6 +110,16 @@ class AbstractPackage
     console.log("current hazard is " + page + "=" + currentHazard)
     currentHazard
     
+  omradeIdByCurrentHazard : ()=>
+    id = switch @currentHazard()
+      when SNOW_GEO_HAZARD then parseInt(@omrade_id)
+      when DIRT_GEO_HAZARD then parseInt(@fylke_nr) + 200
+      when ICE_GEO_HAZARD then parseInt(@fylke_nr) + 700
+      when WATER_GEO_HAZARD then parseInt(@regine_nr) + 2000
+      
+    console.log("current id " + id)
+    id
+    
   callCallback: ()=>
     @callback(this) if @callback 
    
@@ -126,13 +142,13 @@ class AbstractPackage
       do(obs) =>
         console.log("model area "+ JSON.stringify(obs))
         obs.RegID = data.RegID
-        obs = @castedModel(obs)
-        obs.beforeSend(x++) if obs.beforeSend
-        model = obs.model
-        delete obs.model if obs.model          
-        SendObjectToServer(obs, undefined, (error) => @onError(error))
-        
-        obs["model"] = model 
+        clone = JSON.parse(JSON.stringify(obs))
+        clone = @castedModel(clone)
+        clone.beforeSend(x++) if clone.beforeSend
+                
+        delete clone.model if clone.model          
+        SendObjectToServer(clone, undefined, (error) => @onError(error))
+          
         
 
     @removeAreaModels()
@@ -178,12 +194,14 @@ class AbstractPackage
     for obs in @pointModels(@m_dangerObs).point 
       do(obs) =>
         obs.RegID = data.RegID
-        obs = @castedModel(obs)
-        obs.beforeSend(x++) if obs.beforeSend
-        delete obs.model if obs.model          
-      
-        SendObjectToServer(obs, undefined, (e) => @onError(e))
         
+        clone = JSON.parse(JSON.stringify(obs))
+        clone = @castedModel(clone)
+        clone.beforeSend(x++) if clone.beforeSend
+                
+        delete clone.model if clone.model          
+        SendObjectToServer(clone, undefined, (error) => @onError(error))
+          
     @removePointModels()
 
     i = 0
@@ -233,18 +251,18 @@ class AbstractPackage
        
     if area
       if @areaPictures().length > 0 || @pointModels(@m_dangerObs).area.length > 0
-        location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
+        location = new ObsLocation("", 33, @long, @lat, source, 0, @omradeIdByCurrentHazard(), null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
         SendObjectToServer(location, ((data) => @afterLocation(data, true, false)) , (error) => @onError(error))
       else 
         if @pointPictures().length > 0 || @pointModels(@m_dangerObs).point.length > 0
           @onSend(page, false)
         else
-          location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
+          location = new ObsLocation("", 33, @long, @lat, source, 0, @omradeIdByCurrentHazard(), null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
           SendObjectToServer(location, ((data) => @afterLocation(data, true, true)) , (error) => @onError(error))
 
     else
       if @pointPictures().length > 0 || @pointModels(@m_dangerObs).point.length > 0
-        location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, false, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
+        location = new ObsLocation("", 33, @long, @lat, source, 0, @omradeIdByCurrentHazard(), null, null, false, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
         SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
       else
         @callCallback()
@@ -280,6 +298,9 @@ class AbstractPackage
   onAfterLocation: (data, area, force) ->
     groupId = parseInt(@groupId)
     groupId = undefined if groupId == 0
+    
+    if typeof @regDate == "string"
+      @regDate = new Date(@regDate)
     
     registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, @regDate, @competancy, groupId)
     SendObjectToServer(registration, ((data) => @afterRegistration(data, area, force)) , (error) => @onError(error))

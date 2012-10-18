@@ -39,13 +39,10 @@ var snow_picture  = {
 		snow_picture.pictureData = imageData;
 
 		var smallImage = document.getElementById('snow_picture_img');
+		smallImage.onload = function() { main.resetHeights(); }
 		smallImage.src = imageData;
 		snow_picture.updatePictureButtons("#snow_picture");
 		main.hideDialog();
-		setTimeout(
-				function(){main.resetHeights(); setTimeout(main.resetHeights, 2000);}, 
-				2000
-			);
 		main.showHideFooter("snow_picture");
 	},
 

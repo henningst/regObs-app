@@ -93,11 +93,12 @@ var omerade = {
 
 	parseKommune : function(data) {
 		var res = JSON.parse(data);
-
 		if (res != null && res.features != undefined && res.features.length > 0) {
 			return {
 				kommunenavn : res.features[0].attributes.KOMMNAVN,
 				kommunenummer : res.features[0].attributes.KOMM_NR,
+				fylkenavn : res.features[0].attributes.FYLKENAVN,
+				fylkenummer : res.features[0].attributes.FY_NR,
 				oppdatert : true
 			};
 		}
@@ -105,8 +106,28 @@ var omerade = {
 		return {
 			kommunenavn : null,
 			kommunenummer : null,
+			fylkenavn : null,
+			fylkenummer : null,
 			oppdatert : false
 		};
+	},
+	
+	parseRegine: function(data){
+		var res = JSON.parse(data);
+		if(res != null && res.features!= undefined && res.features.length >0){
+			return {
+				reginenavn : res.features[0].attributes.NAVNVASSOMR,
+				reginenummer : res.features[0].attributes.VASSOMR,
+				oppdatert : true
+			};
+		}
+		
+		return {
+			reginenavn : null,
+			reginenummer : null,
+			oppdatert : true
+		};
+			
 	}
 };
 
@@ -626,12 +647,12 @@ var main = (function() {
 			var bodyHeight = jQuery("body").height();
 			var top = height - 52;
 
-			jQuery(".addAbort").css("top", (top + 45) + "px");
-			jQuery(".sendGroup").css("top", (top + 45) + "px");
+			jQuery(".addAbort").css("top", (top + 45 + 45) + "px");
+			jQuery(".sendGroup").css("top", (top + 45 + 45 ) + "px");
 
 			jQuery(".listScroller").css("height", (top - 55) + "px");
-			jQuery(".pageScroller").css("height", (bodyHeight - 55 - 52) + "px")
-			jQuery(".pageScroller.full, #map_page").css("height", (bodyHeight - 55 ) + "px")
+			jQuery(".pageScroller").css("height", (bodyHeight - 55) + "px")
+			jQuery(".pageScroller.full, #map_page").css("height", (bodyHeight - 50 ) + "px")
 			
 			
 		},
@@ -683,6 +704,7 @@ var main = (function() {
 									}
 								});
 
+								console.log("adding scroller")
 								jQuery(this).addClass("scrolling");
 
 								function hiddenKeyboard() {

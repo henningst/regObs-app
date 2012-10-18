@@ -6,12 +6,14 @@ ErrorHandler = (function() {
   function ErrorHandler() {}
 
   ErrorHandler.prototype.handleError = function(exception) {
-    var error_code;
+    var error_code, stacktrace;
     error_code = this.errorCode();
+    stacktrace = printStackTrace();
     console.log("Sending error: " + (JSON.stringify(exception)));
     Bugsense.notify({
       error: exception,
-      code: error_code
+      code: error_code,
+      stack: stacktrace
     });
     return main.showDialogWithMessage("Feilen rapporteres til utviklingsteamet. Hvis du ønsker å bidra med ytligere informasjon, noter koden \"" + error_code + "\" og send en mail.", "En feil har oppstått");
   };

@@ -3,15 +3,16 @@
 <head>
 <title>PhoneGap</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="height=device-height; width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
 <meta name="format-detection" content="telephone=no">
+
 
 
 <script type="text/javascript" src="js/dependencies/jquery.min.js"></script>
 <script type="text/javascript" src="js/dependencies/iscroll.js"></script>
 <script type="text/javascript" src="js/dependencies/jquery-ui-1.8.23.custom.min.js"></script>
 <script type="text/javascript" src="js/dependencies/jquery.ui.touch-punch.min.js"></script>
-
+<script type="text/javascript" src="js/dependencies/stacktrace-min-0.4.js"></script>
 <script>
   jQuery.noConflict();
 </script>
@@ -123,6 +124,7 @@
 
 <script type="text/javascript" src="js/nve.js"></script>
 
+
 <style>
 body {
 	background-color: white;
@@ -173,7 +175,9 @@ body {
         </p>
     </div>
     <div id="wrapper">
+        
         <div id="home">
+            <div class="spacer"></div>
             <div class="c_align_central" style="display: table; width: 100%; margin-top: 10%">
 
                 <div class="table_row">
@@ -191,6 +195,7 @@ body {
         <div id="settings">
             <div class="pageScroller">
 	            <div class="standartTextSize c_align_central scrollable" id="setting_scroller">
+	              <div class="spacer"></div>
 	              <p>
 	                <div class="description" id="setting_mode_description"></div>
 	                <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Bruk testmode' onclick="main.gotoTest();" /> <br>
@@ -220,6 +225,7 @@ body {
         </div>
 
         <div id="login_page">
+            <div class="spacer"></div>
             <div class="standartTextSize c_align_central">
                 <label for="login_username">e-post</label> 
                 <input type="email" id="login_username" class="large settingsInput" value="" /> 
@@ -237,17 +243,18 @@ body {
         </div>
 
         <div id="information">
+            <div class="spacer"></div>
             <div>
                 <div>Versjon: <span id="appversion"></span></div>
                 <div id="information_content">
                     <p>Her kommer det tekst om regobs og appen.</p>
                 </div>
-
             </div>
         </div>
 
         <!-- 	SNOW - PAGES -->
         <div id="snow">
+            <div class="spacer"></div>
             <div class="c_position_header">
                 <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
                 <div class="position_header_county">
@@ -264,6 +271,7 @@ body {
         </div>
 
         <div id="map_page">
+          <div class="spacer"></div>
           <div id="map"></div>
         </div>
         
@@ -274,6 +282,7 @@ body {
         <div id="snow_see_varsel"></div>
 
         <div id="snow_obs">
+            <div class="spacer"></div>
             <div class="c_position_header">
                 <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
                 <div class="position_header_county">
@@ -309,6 +318,7 @@ body {
         <div id="snow_hendelse" class="c_center_page standartTextSize content_page">
             <div class="pageScroller">
                 <div class="scrollable" id="snow_hendelse_scroller">
+                    <div class="spacer"></div>
                     <label for="snow_hendelse_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
                     <textarea id="snow_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>
 
@@ -327,6 +337,7 @@ body {
         <div id="snow_faresign" class="c_center_page standartTextSize content_page">
             <div class="pageScroller">
                 <div class="scrollable" id="snow_faresign_scroller">
+                    <div class="spacer"></div>  
                     <label for="snow_danger_sign_list" style="margin: 15px; display: inline">Faretegn:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <select id="snow_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
                     </select>
 
@@ -346,6 +357,7 @@ body {
         <div id="snow_surface" class="c_center_page standartTextSize content_page">
             <div class="pageScroller">
                 <div class="scrollable" id="snow_surface_scroller">
+                    <div class="spacer"></div>
                     <p>
                         <label for="snow_surface_snow_height" style="margin: 15px; display: inline">Sn&oslash;dybde:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> 
                         <input type="number" step="any" placeholder="cm" name="snow_surface_snow_height" id="snow_surface_snow_height" class="large" />
@@ -373,6 +385,7 @@ body {
         <div id="snow_activity" class="c_center_page standartTextSize content_page">
             <div class="pageScroller">
                 <div class="scrollable" id="snow_activity_scroller">
+                    <div class="spacer"></div>
                     <div class="oneline-label"> 
                       <input type="checkbox" id="snow_acitivity_no_observed"/><label>Ingen skredaktivitet</label>
                     </div> 
@@ -409,6 +422,7 @@ body {
         <div id="snow_picture" class="c_center_page observation">
             <div class="pageScroller">
                 <div class="scrollable" id="snow_picture_scroller">
+                    <div class="spacer"></div>
                     <a class="learning_icon right" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <a class="make hidden button-image"> <img id="snow_picture_img" alt="Trykk her for å ta bilde" class="c_image container-image" src="" /> </a>
                     <div class="no-image make">Trykk her for å ta bilde</div>
 
@@ -429,6 +443,7 @@ body {
 
         <!-- 	ICE - PAGES -->
         <div id="ice">
+            <div class="spacer"></div>
             <div class="c_position_header">
                 <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
                 <div class="position_header_county">
@@ -449,6 +464,7 @@ body {
         <div id="ice_see_varsel"></div>
 
         <div id="ice_obs">
+            <div class="spacer"></div>
             <div class="c_position_header">
                 <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
                 <div class="position_header_county">
@@ -487,6 +503,7 @@ body {
         <div id="ice_hendelse" class="c_center_page standartTextSize">
             <div class="pageScroller">
                 <div class="scrollable" id="ice_hendelse_scroller">
+                    <div class="spacer"></div>
                     <label for="ice_hendelse_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
                     <textarea id="ice_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>
 
@@ -506,6 +523,7 @@ body {
         <div id="ice_faresign" class="c_center_page standartTextSize">
             <div class="pageScroller">
                 <div class="scrollable" id="ice_faresign_scroller">
+                    <div class="spacer"></div>
                     <label for="ice_danger_sign_list" style="margin: 15px; display: inline">Faresign:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <select id="ice_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
                     </select>
 
@@ -525,6 +543,7 @@ body {
         <div id="ice_cover" class="c_center_page standartTextSize">
             <div class="pageScroller">
                 <div class="scrollable" id="ice_cover_scroller">
+                    <div class="spacer"></div>
                     <p>
                         <label for="ice_cover_list">Isdekning:</label> <select name="ice_cover_list" id="ice_cover_list" class="bigWidth w_select c_selectBox">
                         </select>
@@ -551,6 +570,7 @@ body {
          <div id="ice_thickness" class="c_center_page standartTextSize">
             <div class="pageScroller">
                 <div class="scrollable" id="ice_cover_scroller">
+                    <div class="spacer"></div>
                     <p>
                         <label for="ice_thickness_depth" style="margin: 15px; display: inline">Tørr snø før boring:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> 
                         <input type="number" step="any" placeholder="cm" name="ice_thickness_snow_depth" id="ice_thickness_snow_depth" class="large" />
@@ -577,6 +597,7 @@ body {
         <div id="ice_picture" class="c_center_page observation">
             <div class="pageScroller">
                 <div class="scrollable" id="ice_picture_scroller">
+                    <div class="spacer"></div>
                     <a class="learning_icon right" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <a class="hidden button-image make"> <img id="ice_picture_img" alt="trykk her for å ta bilde" class="c_image container-image" src="" /> </a>
                     <div class="no-image make">Trykk her for å ta bilde</div>
 
@@ -595,6 +616,7 @@ body {
 
         <!-- 	WATER - PAGES -->
         <div id="water">
+            <div class="spacer"></div>
             <div class="c_position_header">
                 <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
                 <div class="position_header_county">
@@ -615,6 +637,7 @@ body {
         <div id="water_see_varsel"></div>
 
         <div id="water_obs">
+            <div class="spacer"></div>
             <div class="c_position_header">
                 <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
                 <div class="position_header_county">
@@ -648,6 +671,7 @@ body {
         <div id="water_hendelse" class="c_center_page standartTextSize">
             <div class="pageScroller">
                 <div class="scrollable" id="water_hendelse_scroller">
+                    <div class="spacer"></div>
                     <label for="water_hendelse_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
                     <textarea id="water_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>
 
@@ -667,6 +691,7 @@ body {
         <div id="water_faresign" class="c_center_page standartTextSize">
             <div class="pageScroller">
                 <div class="scrollable" id="water_faresign_scroller">
+                    <div class="spacer"></div>
                     <label for="water_danger_sign_list" style="margin: 15px; display: inline">Faresign:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <select id="water_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
                     </select>
 
@@ -686,6 +711,7 @@ body {
         <div id="water_picture" class="c_center_page observation">
             <div class="pageScroller">
                 <div class="scrollable" id="water_picture_scroller">
+                    <div class="spacer"></div>
                     <a class="learning_icon right" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <a class="hidden button-image make"> <img id="water_picture_img" alt="trykk her for å ta bilde" class="c_image container-image" src="" /> </a>
                     <div class="no-image make">Trykk her for å ta bilde</div>
 
@@ -704,6 +730,7 @@ body {
 
             <div class="pageScroller">
                 <div class="scrollable" id="water_level_scroller">
+                    <div class="spacer"></div>
                     <label for="water_leve_description" style="display: inline;">Vannstand</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
                     <textarea id="water_level_value" placeholder="Moh eller fritekst" class="c_textarea bigWidth" rows="1"></textarea>
                     <div>
@@ -724,6 +751,7 @@ body {
 
         <!-- 	DIRT PAGES -->
         <div id="dirt">
+            <div class="spacer"></div>
             <div class="c_position_header">
                 <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
                 <div class="position_header_county">
@@ -747,6 +775,7 @@ body {
         <!-- 	</div> -->
 
         <div id="dirt_obs">
+            <div class="spacer"></div>
             <div class="c_position_header">
                 <span class="position_header_position">UTM33</span> <span class="position_header_town"></span>
                 <div class="position_header_county">
@@ -781,6 +810,7 @@ body {
         <div id="dirt_hendelse" class="c_center_page standartTextSize">
             <div class="pageScroller">
                 <div class="scrollable" id="dirt_hendelse_scroller">
+                    <div class="spacer"></div>
                     <label for="dirt_hendelse_comment" style="display: inline">Beskrivelse:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
                     <textarea id="dirt_hendelse_comment" class="c_textarea bigWidth" rows="5"></textarea>
 
@@ -801,6 +831,7 @@ body {
         <div id="dirt_faresign" class="c_center_page standartTextSize">
             <div class="pageScroller">
                 <div class="scrollable" id="dirt_faresign_scroller">
+                    <div class="spacer"></div>
                     <label for="dirt_danger_sign_list" style="margin: 15px; display: inline">Faresign:</label><a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <select id="dirt_danger_sign_list" class="bigWidth w_select c_selectBox" style="margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px;">
                     </select>
 
@@ -820,6 +851,7 @@ body {
         <div id="dirt_avalange" class="c_center_page standartTextSize observation">
             <div class="pageScroller">
                 <div id="dirt_avalange_scroller" class="scrollable">
+                    <div class="spacer"></div>
                     <a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /></a>
                     <div id="dirt_avalange_slider_placeholder"></div>
                     
@@ -848,6 +880,7 @@ body {
         <div id="dirt_picture" class="c_center_page observation">
             <div class="pageScroller">
                 <div class="scrollable" id="dirt_picture_scroller">
+                    <div class="spacer"></div>
                     <a class="learning_icon right" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a> <a class="hidden button-image make"> 
                     <img id="dirt_picture_img" alt="trykk her for å ta bilde" class="c_image container-image" src="" /> </a>
                     <div class="no-image make">Trykk her for å ta bilde</div>
@@ -866,6 +899,7 @@ body {
         </div>
 
         <div id="learning_page" class="c_center_page">
+            <div class="spacer"></div>
             <div id="learning_content"></div>
         </div>
     </div>

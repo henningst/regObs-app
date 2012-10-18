@@ -1,6 +1,6 @@
 var settings_page = {
 		
-	search_diameter : function(){return jQuery("#setting_search_diameter")},
+	search_diameter : function(){return jQuery("#setting_search_diameter");},
 	init: function() {
 		$('header_middle_text').innerHTML = "Innstillinger";
 		jQuery("#regobs-name").hide();
@@ -12,7 +12,6 @@ var settings_page = {
 		jQuery("#setting_diameter_description").html(SETTING_DIAMETER_DESCRIPTION);
 		
 		jQuery("#setting_version").text(APP_VERSION);
-		
 	},
 	
 	changedSearchDiameter : function(){

@@ -26,6 +26,8 @@ AbstractPackage = (function() {
 
     this.callCallback = __bind(this.callCallback, this);
 
+    this.omradeIdByCurrentHazard = __bind(this.omradeIdByCurrentHazard, this);
+
     this.currentHazard = __bind(this.currentHazard, this);
 
     this.send = __bind(this.send, this);
@@ -38,7 +40,11 @@ AbstractPackage = (function() {
 
     this.addObs = __bind(this.addObs, this);
 
+    this.setRegine = __bind(this.setRegine, this);
+
     this.setArea = __bind(this.setArea, this);
+
+    this.setFylkenr = __bind(this.setFylkenr, this);
 
     this.setKommunenr = __bind(this.setKommunenr, this);
 
@@ -170,8 +176,21 @@ AbstractPackage = (function() {
     }
   };
 
+  AbstractPackage.prototype.setFylkenr = function(nr) {
+    if (nr) {
+      return this.fylke_nr = nr;
+    }
+  };
+
   AbstractPackage.prototype.setArea = function(nr) {
     return this.omrade_id = nr;
+  };
+
+  AbstractPackage.prototype.setRegine = function(nr) {
+    console.log("Setting regine nr" + nr);
+    if (nr) {
+      return this.regine_nr = nr;
+    }
   };
 
   AbstractPackage.prototype.addObs = function(obs) {
@@ -230,6 +249,24 @@ AbstractPackage = (function() {
     return currentHazard;
   };
 
+  AbstractPackage.prototype.omradeIdByCurrentHazard = function() {
+    var id;
+    id = (function() {
+      switch (this.currentHazard()) {
+        case SNOW_GEO_HAZARD:
+          return parseInt(this.omrade_id);
+        case DIRT_GEO_HAZARD:
+          return parseInt(this.fylke_nr) + 200;
+        case ICE_GEO_HAZARD:
+          return parseInt(this.fylke_nr) + 700;
+        case WATER_GEO_HAZARD:
+          return parseInt(this.regine_nr) + 2000;
+      }
+    }).call(this);
+    console.log("current id " + id);
+    return id;
+  };
+
   AbstractPackage.prototype.callCallback = function() {
     if (this.callback) {
       return this.callback(this);
@@ -258,21 +295,20 @@ AbstractPackage = (function() {
     console.log("models complete area " + JSON.stringify(this.pointModels(this.m_dangerObs).area));
     _ref = this.pointModels(this.m_dangerObs).area;
     _fn = function(obs) {
-      var model;
+      var clone;
       console.log("model area " + JSON.stringify(obs));
       obs.RegID = data.RegID;
-      obs = _this.castedModel(obs);
-      if (obs.beforeSend) {
-        obs.beforeSend(x++);
+      clone = JSON.parse(JSON.stringify(obs));
+      clone = _this.castedModel(clone);
+      if (clone.beforeSend) {
+        clone.beforeSend(x++);
       }
-      model = obs.model;
-      if (obs.model) {
-        delete obs.model;
+      if (clone.model) {
+        delete clone.model;
       }
-      SendObjectToServer(obs, void 0, function(error) {
+      return SendObjectToServer(clone, void 0, function(error) {
         return _this.onError(error);
       });
-      return obs["model"] = model;
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       obs = _ref[_i];
@@ -323,16 +359,18 @@ AbstractPackage = (function() {
     x = 0;
     _ref = this.pointModels(this.m_dangerObs).point;
     _fn = function(obs) {
+      var clone;
       obs.RegID = data.RegID;
-      obs = _this.castedModel(obs);
-      if (obs.beforeSend) {
-        obs.beforeSend(x++);
+      clone = JSON.parse(JSON.stringify(obs));
+      clone = _this.castedModel(clone);
+      if (clone.beforeSend) {
+        clone.beforeSend(x++);
       }
-      if (obs.model) {
-        delete obs.model;
+      if (clone.model) {
+        delete clone.model;
       }
-      return SendObjectToServer(obs, void 0, function(e) {
-        return _this.onError(e);
+      return SendObjectToServer(clone, void 0, function(error) {
+        return _this.onError(error);
       });
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -395,7 +433,7 @@ AbstractPackage = (function() {
     }
     if (area) {
       if (this.areaPictures().length > 0 || this.pointModels(this.m_dangerObs).area.length > 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
+        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
         return SendObjectToServer(location, (function(data) {
           return _this.afterLocation(data, true, false);
         }), function(error) {
@@ -405,7 +443,7 @@ AbstractPackage = (function() {
         if (this.pointPictures().length > 0 || this.pointModels(this.m_dangerObs).point.length > 0) {
           return this.onSend(page, false);
         } else {
-          location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
+          location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
           return SendObjectToServer(location, (function(data) {
             return _this.afterLocation(data, true, true);
           }), function(error) {
@@ -415,7 +453,7 @@ AbstractPackage = (function() {
       }
     } else {
       if (this.pointPictures().length > 0 || this.pointModels(this.m_dangerObs).point.length > 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, false, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
+        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, false, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
         return SendObjectToServer(location, (function(data) {
           return _this.afterLocation(data, false);
         }), function(error) {
@@ -469,6 +507,9 @@ AbstractPackage = (function() {
     groupId = parseInt(this.groupId);
     if (groupId === 0) {
       groupId = void 0;
+    }
+    if (typeof this.regDate === "string") {
+      this.regDate = new Date(this.regDate);
     }
     registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, this.regDate, this.competancy, groupId);
     return SendObjectToServer(registration, (function(data) {
