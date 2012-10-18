@@ -36,7 +36,6 @@ class AbstractPackage
   
   setRegDate : ()=>
     date = new Date()
-    
     @regDate = new Date(date.setHours(date.getHours() + 2))
    
   setGroup: (groupId)=>
@@ -113,7 +112,7 @@ class AbstractPackage
     
   omradeIdByCurrentHazard : ()=>
     id = switch @currentHazard()
-      when SNOW_GEO_HAZARD then parseInt(@omrade_id) + 100
+      when SNOW_GEO_HAZARD then parseInt(@omrade_id)
       when DIRT_GEO_HAZARD then parseInt(@fylke_nr) + 200
       when ICE_GEO_HAZARD then parseInt(@fylke_nr) + 700
       when WATER_GEO_HAZARD then parseInt(@regine_nr) + 2000
@@ -299,6 +298,9 @@ class AbstractPackage
   onAfterLocation: (data, area, force) ->
     groupId = parseInt(@groupId)
     groupId = undefined if groupId == 0
+    
+    if typeof @regDate == "string"
+      @regDate = new Date(@regDate)
     
     registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, @regDate, @competancy, groupId)
     SendObjectToServer(registration, ((data) => @afterRegistration(data, area, force)) , (error) => @onError(error))

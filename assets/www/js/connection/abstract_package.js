@@ -254,7 +254,7 @@ AbstractPackage = (function() {
     id = (function() {
       switch (this.currentHazard()) {
         case SNOW_GEO_HAZARD:
-          return parseInt(this.omrade_id) + 100;
+          return parseInt(this.omrade_id);
         case DIRT_GEO_HAZARD:
           return parseInt(this.fylke_nr) + 200;
         case ICE_GEO_HAZARD:
@@ -507,6 +507,9 @@ AbstractPackage = (function() {
     groupId = parseInt(this.groupId);
     if (groupId === 0) {
       groupId = void 0;
+    }
+    if (typeof this.regDate === "string") {
+      this.regDate = new Date(this.regDate);
     }
     registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, this.regDate, this.competancy, groupId);
     return SendObjectToServer(registration, (function(data) {

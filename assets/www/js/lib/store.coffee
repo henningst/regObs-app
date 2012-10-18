@@ -11,8 +11,6 @@ class NveStore
     if not @packageCollection
       @packageCollection = new PackageCollection()
       DataAccess.save("PackageCollection", @packageCollection)
-       
-    
     
     @packageCollection.callback = (collection)->
       DataAccess.save("PackageCollection", collection)
