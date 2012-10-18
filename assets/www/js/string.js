@@ -36,7 +36,7 @@ OK = "Ok";
 
 ABORT= "Avbryt"
 
-SEND_EMAIL = "Kvittering på epost";
+SEND_EMAIL = "Send kvittering";
 
 OBSERVATION_REGISTERED = "<h3>Registrering sent til regObs</h3><p>Takk for bidraget!</p>";
 
