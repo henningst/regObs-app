@@ -677,14 +677,13 @@ var main = (function() {
 															".ca_items").length > 0) {
 												scroller.disable();
 												this._disable = true;
-												jQuery("body").css("overflow",
-														"inherit");
+												//jQuery("body").css("overflow","inherit");
 												console.log("pp: off");
 
 											} else if (this._disable) {
 												console.log("pp: on");
-												window.scrollTo(0, 0);
-												jQuery("body").css("overflow", "none");
+												//window.scrollTo(0, 0);
+												//jQuery("body").css("overflow", "none");
 												scroller.enable();
 												this._selectNode = null;
 												this._disable = false;
@@ -713,8 +712,8 @@ var main = (function() {
 										if (main.isFocuse === true)
 											return;
 
-										window.scrollTo(0, 0);
-										jQuery("body").css("overflow", "none");
+										//window.scrollTo(0, 0);
+										//jQuery("body").css("overflow", "none");
 										scroller.enable();
 										_this._selectNode = null;
 										_this._disable = false;
@@ -725,7 +724,7 @@ var main = (function() {
 								function showingKeyboard() {
 									scroller.disable();
 									this._disable = true;
-									jQuery("body").css("overflow", "inherit");
+									//jQuery("body").css("overflow", "inherit");
 									console.log("pp: off");
 								}
 								document.addEventListener("hidekeyboard",
