@@ -38,7 +38,11 @@ AbstractPackage = (function() {
 
     this.addObs = __bind(this.addObs, this);
 
+    this.setRegine = __bind(this.setRegine, this);
+
     this.setArea = __bind(this.setArea, this);
+
+    this.setFylkenr = __bind(this.setFylkenr, this);
 
     this.setKommunenr = __bind(this.setKommunenr, this);
 
@@ -170,8 +174,21 @@ AbstractPackage = (function() {
     }
   };
 
+  AbstractPackage.prototype.setFylkenr = function(nr) {
+    if (nr) {
+      return this.fylke_nr = nr;
+    }
+  };
+
   AbstractPackage.prototype.setArea = function(nr) {
     return this.omrade_id = nr;
+  };
+
+  AbstractPackage.prototype.setRegine = function(nr) {
+    console.log("Setting regine nr" + nr);
+    if (nr) {
+      return this.regine_nr = nr;
+    }
   };
 
   AbstractPackage.prototype.addObs = function(obs) {

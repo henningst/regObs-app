@@ -60,9 +60,16 @@ class AbstractPackage
     
   setKommunenr: (nr) =>
     @komm_nr = nr if nr
+  
+  setFylkenr: (nr) =>
+    @fylke_nr = nr if nr
     
   setArea: (nr) =>
     @omrade_id = nr
+    
+  setRegine: (nr) =>
+    console.log("Setting regine nr" + nr)
+    @regine_nr = nr if nr
     
   addObs: (obs) =>
     @setRegDate()
