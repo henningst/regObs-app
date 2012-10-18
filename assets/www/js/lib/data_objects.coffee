@@ -243,12 +243,12 @@ class EstimatedNumKD
 class IceCoverBeforeKD
   url: null
   constructor: (@IceCoverBeforeTID, @LangKey, @IceCoverBeforeName, @IceCoverBeforeDescr) ->
-    @url = "#{SERVER_URL}IceCoverBeforeKD?Language eq #{LANGUAGE}"
+    @url = "#{SERVER_URL}IceCoverBeforeKD?$filter=LangKey eq #{LANGUAGE}"
 
 class IceCoverKD
   url : null
   constructor : (@IceCoverTID, @LangKey, @IceCoverName, @IceCoverDescr) ->
-    @url = "#{SERVER_URL}IceCoverKD?Language eq #{LANGUAGE}"
+    @url = "#{SERVER_URL}IceCoverKD?$filter=LangKey eq #{LANGUAGE}"
 
 class ForecastAccurateKD
   constructor: ( ) ->

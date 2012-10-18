@@ -662,7 +662,7 @@ IceCoverBeforeKD = (function() {
     this.LangKey = LangKey;
     this.IceCoverBeforeName = IceCoverBeforeName;
     this.IceCoverBeforeDescr = IceCoverBeforeDescr;
-    this.url = "" + SERVER_URL + "IceCoverBeforeKD?Language eq " + LANGUAGE;
+    this.url = "" + SERVER_URL + "IceCoverBeforeKD?$filter=LangKey eq " + LANGUAGE;
   }
 
   return IceCoverBeforeKD;
@@ -678,7 +678,7 @@ IceCoverKD = (function() {
     this.LangKey = LangKey;
     this.IceCoverName = IceCoverName;
     this.IceCoverDescr = IceCoverDescr;
-    this.url = "" + SERVER_URL + "IceCoverKD?Language eq " + LANGUAGE;
+    this.url = "" + SERVER_URL + "IceCoverKD?$filter=LangKey eq " + LANGUAGE;
   }
 
   return IceCoverKD;
