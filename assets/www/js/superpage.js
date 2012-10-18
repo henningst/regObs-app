@@ -46,12 +46,12 @@ var super_page = {
 			var store = this.danger_store();
 			GetObjectFromServer(new AreaInformation(this.latitute, this.longitude), function(response) { page.onSaveAreaInfo(response, store);});
 			GetObjectFromServer(new PositionDetails(this.latitute, this.longitude), function(response) { page.onSaveKommuneInfo(response, store);});
+			
 		},
 		
 		onSaveKommuneInfo: function(result, store){
 			if(store == undefined) store = this.danger_store();
 			
-			console.log("test " + result + " " + store);
 			var kommune = omerade.parseKommune(result);
 			store.setKommunenr(kommune.kommunenummer);
 		},
@@ -59,7 +59,6 @@ var super_page = {
 		onSaveAreaInfo : function(result, store){
 			if(store == undefined) store = this.danger_store();
 			
-			console.log("test " + result + " " + store);
 			var area = omerade.parseArea(result);
 			store.setArea(area.omeradeid);
 		},
