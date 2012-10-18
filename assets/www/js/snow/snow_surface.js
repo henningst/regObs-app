@@ -4,7 +4,7 @@ var snow_surface = {
 		
 		addSnowSurface: function() {
 			function intOr(string, defaultValue){
-				if(parseInt(string) === NaN)
+				if(isNaN(parseInt(string)))
 					return defaultValue;
 				else
 					return parseInt(string);
@@ -18,7 +18,7 @@ var snow_surface = {
 			var fresh_snow_limit = jQuery("#snow_surface_fresh_snow_limit")
 		
 			
-			var obs = new SnowSurfaceObservation(0, snow_height_cm.toString(), intOr(fresh_snow_amount.val(),0), intOr(fresh_snow_limit.val(),0), null, 0, list.val(), 0, 0, null, 0, null); 
+			var obs = new SnowSurfaceObservation(0, snow_height_cm.toString(), intOr(fresh_snow_amount.val(),0).toString(), intOr(fresh_snow_limit.val(),0).toString(), null, 0, list.val(), 0, 0, null, 0, null); 
 			
 			snow_page.updateLocation(function(){
 				list.val(0);
