@@ -111,6 +111,16 @@ class AbstractPackage
     console.log("current hazard is " + page + "=" + currentHazard)
     currentHazard
     
+  omradeIdByCurrentHazard : ()=>
+    id = switch @currentHazard()
+      when SNOW_GEO_HAZARD then parseInt(@omrade_id) + 100
+      when DIRT_GEO_HAZARD then parseInt(@fylke_nr) + 200
+      when ICE_GEO_HAZARD then parseInt(@fylke_nr) + 700
+      when WATER_GEO_HAZARD then parseInt(@regine_nr) + 2000
+      
+    console.log("current id " + id)
+    id
+    
   callCallback: ()=>
     @callback(this) if @callback 
    
@@ -242,18 +252,18 @@ class AbstractPackage
        
     if area
       if @areaPictures().length > 0 || @pointModels(@m_dangerObs).area.length > 0
-        location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
+        location = new ObsLocation("", 33, @long, @lat, source, 0, @omradeIdByCurrentHazard(), null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
         SendObjectToServer(location, ((data) => @afterLocation(data, true, false)) , (error) => @onError(error))
       else 
         if @pointPictures().length > 0 || @pointModels(@m_dangerObs).point.length > 0
           @onSend(page, false)
         else
-          location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
+          location = new ObsLocation("", 33, @long, @lat, source, 0, @omradeIdByCurrentHazard(), null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
           SendObjectToServer(location, ((data) => @afterLocation(data, true, true)) , (error) => @onError(error))
 
     else
       if @pointPictures().length > 0 || @pointModels(@m_dangerObs).point.length > 0
-        location = new ObsLocation("", 33, @long, @lat, source, 0, @omrade_id, null, null, false, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
+        location = new ObsLocation("", 33, @long, @lat, source, 0, @omradeIdByCurrentHazard(), null, null, false, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
         SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
       else
         @callCallback()

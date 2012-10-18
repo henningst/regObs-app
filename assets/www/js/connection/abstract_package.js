@@ -26,6 +26,8 @@ AbstractPackage = (function() {
 
     this.callCallback = __bind(this.callCallback, this);
 
+    this.omradeIdByCurrentHazard = __bind(this.omradeIdByCurrentHazard, this);
+
     this.currentHazard = __bind(this.currentHazard, this);
 
     this.send = __bind(this.send, this);
@@ -247,6 +249,24 @@ AbstractPackage = (function() {
     return currentHazard;
   };
 
+  AbstractPackage.prototype.omradeIdByCurrentHazard = function() {
+    var id;
+    id = (function() {
+      switch (this.currentHazard()) {
+        case SNOW_GEO_HAZARD:
+          return parseInt(this.omrade_id) + 100;
+        case DIRT_GEO_HAZARD:
+          return parseInt(this.fylke_nr) + 200;
+        case ICE_GEO_HAZARD:
+          return parseInt(this.fylke_nr) + 700;
+        case WATER_GEO_HAZARD:
+          return parseInt(this.regine_nr) + 2000;
+      }
+    }).call(this);
+    console.log("current id " + id);
+    return id;
+  };
+
   AbstractPackage.prototype.callCallback = function() {
     if (this.callback) {
       return this.callback(this);
@@ -413,7 +433,7 @@ AbstractPackage = (function() {
     }
     if (area) {
       if (this.areaPictures().length > 0 || this.pointModels(this.m_dangerObs).area.length > 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
+        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
         return SendObjectToServer(location, (function(data) {
           return _this.afterLocation(data, true, false);
         }), function(error) {
@@ -423,7 +443,7 @@ AbstractPackage = (function() {
         if (this.pointPictures().length > 0 || this.pointModels(this.m_dangerObs).point.length > 0) {
           return this.onSend(page, false);
         } else {
-          location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
+          location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
           return SendObjectToServer(location, (function(data) {
             return _this.afterLocation(data, true, true);
           }), function(error) {
@@ -433,7 +453,7 @@ AbstractPackage = (function() {
       }
     } else {
       if (this.pointPictures().length > 0 || this.pointModels(this.m_dangerObs).point.length > 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omrade_id, null, null, false, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
+        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, false, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
         return SendObjectToServer(location, (function(data) {
           return _this.afterLocation(data, false);
         }), function(error) {
