@@ -44,10 +44,11 @@ OBSERVATION_REGISTERED = "<h3>Registrering sent til regObs</h3><p>Takk for bidra
  * setting page descriptionstext
  */
 
-SETTING_UPDATE_DESCRIPTION = "Lorem Ipsum er rett og slett dummytekst fra og for trykkeindustrien. Lorem Ipsum har vært bransjens standard for dummytekst helt siden 1500-tallet, da en ukjent boktrykker stokket en mengde bokstaver for å lage et prøveeksemplar av en bok. Lorem Ipsum har tålt tidens tann usedvanlig godt, og ";
-SETTING_RESET_DESCRIPTION = "Lorem Ipsum er rett og slett dummytekst fra og for trykkeindustrien. Lorem Ipsum har vært bransjens standard for dummytekst helt siden 1500-tallet, da en ukjent boktrykker stokket en mengde bokstaver for å lage et prøveeksemplar av en bok. Lorem Ipsum har tålt tidens tann usedvanlig godt, og ";
-SETTING_MODE_DESCRIPTION = "Lorem Ipsum er rett og slett dummytekst fra og for trykkeindustrien. Lorem Ipsum har vært bransjens standard for dummytekst helt siden 1500-tallet, da en ukjent boktrykker stokket en mengde bokstaver for å lage et prøveeksemplar av en bok. Lorem Ipsum har tålt tidens tann usedvanlig godt, og ";
-SETTING_DIAMETER_DESCRIPTION = "Lorem Ipsum er rett og slett dummytekst fra og for trykkeindustrien. Lorem Ipsum har vært bransjens standard for dummytekst helt siden 1500-tallet, da en ukjent boktrykker stokket en mengde bokstaver for å lage et prøveeksemplar av en bok. Lorem Ipsum har tålt tidens tann usedvanlig godt, og "
+SETTING_UPDATE_DESCRIPTION = "Hver gang du starter app\'en oppdateres den mot eventuelle endringer i regObs. Du kan også gjøre dette manuelt.";
+SETTING_RESET_DESCRIPTION = "Har du problemer med app\'en kan du forsøke resette den.";
+SETTING_MODE_DESCRIPTION = "App\'en kan settes i test-modus for øvelse. Hver modus skilles med farge, svart for normal-modus og rød for test. HUSK: Hver modus krever egen bruker.";
+SETTING_DIAMETER_DESCRIPTION = "Observasjoner fra regObs hentes ut i en radius rundt deg. Radius gitt i meter.";
+
 
 /*
  * 
@@ -191,44 +192,38 @@ ICE_INCIDENT =
 
 
 DIRT_AVALANGE = "<h3>Jord- og flomskred</h3>"
-	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
-	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
-	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
++ "<p>Hvilken type jordskred har du observert? For varslingstjenesten er dette nyttig informasjon for å gjøre varslingen bedre. Er det jordskred (har ikke gått i bekkeløp), er det flomskred (i bekkeløp), steinsprang (mest stein), leirskred (utglidninger i fine masser) eller noe annet? Det er også svært viktig å registrere når du antar skredet har gått, selv om dette kan være vanskelig å anslå dersom du faktisk ikke var tilstede da det skjedde. Størrelse og trigger (utløsningsmekanisme) kan du gjerne registrere, men dette kan selvsagt være vanskelig å anslå.</p>";
+
 
 DIRT_PICTURE =  "<h3>Ta bilde</h3>"
-	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
-	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
-	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
++ "<p>Et bilde av jordskred som har gått eller faretegn i terrenget er til stor hjelp for forstå bedre hva som har hendt og øker kvaliteten på registreringen. Jordskredvarslingen får med et bilde et raskt og godt inntrykk av hva som er situasjonen ute i terrenget. Et godt bilde viser skredmateriale (er det jord, stein eller kanskje leire?), størrelsen på skredet, skredbanen og løsneområdet. Alt dette kan være vanskelig å få inn på et bilde, så ta gjerne flere bilder! I bildebeskrivelsen er det nyttig å angi i hvilken retning bildet er tatt og hvor.</p>";
+
 
 DIRT_DANGERSIGN = "<h3>Faretegn</h3>"
-	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
-	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
-	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
++ "<p>Et registrert faretegn for jordskred gir jordskredvarslinga et inntrykk av hvordan situasjonen er i terrenget med de værforholdene som er på tidspunktet. Dette gir nyttig tilleggsinfo til den som skal vurdere faregraden for området. Bruk feltet for beskrivelse visst de forhåndsdefinerte faretegnene ikke helt passer inn i det du ønsker å rapportere, eller for å beskrive omfanget/utstrekningen av det du registrerer.</p>";
+
 
 DIRT_INCIDENT = "<h3>Ulykker, nestenulykker og hendelser</h3>"
-	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
-	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
-	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>"; 
++ "<p>Hvilke konsekvenser har jordskredet du har observert? Er det skade på hus, vei eller annen infrastruktur? Har det påvirket mennesker, dyr eller trafikk? Demmes bekk eller elv opp av skredmassene? Her kan du beskrive jordskredet uten tekniske finesser. Tenk at du vil opplyse andre som beveger seg i området om konsekvensene jordskredet har.</p>";
+
 
 WATER_LEVEL = "<h3>Vannstand</h3>"
-	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
-	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
-	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
++ "<p>Her kan du registrere observert vannstand, i forhold til en kjent skala eller andre referansepunkt. Er det vann opp til dørklinka? Ta et bilde og referer til bildet med en kommentar her. </p>";
+
 
 WATER_PICTURE =  "<h3>Ta bilde</h3>"
-	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
-	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
-	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
++ "<p>Et bilde kan si mer enn tusen ord! Er det mer vann enn vanlig der du ferdes? Står det vann på jordene, i kjellere eller opp av kumlokk? Del det, så får flomvarslingen en viktig statusrapport og andre interesserte kan for eksempel planlegge ferdsel. Er du ved en målestasjon for vannstand kan du ta bilde av vannstandskalaen, dette er god informasjon for NVE sine felthydrologer.</p>";
+
 
 WATER_DANGERSIGN = "<h3>Faretegn</h3>"
-	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
-	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
-	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
++ "<p>Observerer du vann på ville veier, og årsaken til det? Er det tette stikkrenner eller andre avløpsveier? Er det is i bekkeløp eller kulverter som tvinger vannet til å ta nye veier? Stiger vannet faretruende fort? Slik type informasjon kan hjelpe flomvarslingen og andre til å forstå hvilke effekt en nedbør- eller snøsmeltingssituajson har. Eller kanskje ansvarlig beredskapsmyndighet får et tips om hvor det er aktuelt å rykke ut nettopp nå?</p>";
+
 
 WATER_INCIDENT = "<h3>Ulykker, nestenulykker og hendelser</h3>"
-	+ "<p>Her skal det komme hjelpetekst til denne observasjonen.</p>"
-	+ "<p>Et forslag til beskrivende tekst mottas med takk!</p>"
-	+ "<p>E-post: <a href=\"mailto:raek@nve.no\">raek@nve.no</a></p>";
++ "<p>Hva er konsekvensen av det du registrerer? Er det vann på ville veier som skader veg, jernbane, hus eller en målestasjon? Er noen skadet som følge av dette? Tenk at du vil opplyse andre som beveger seg i området om konsekvensene av at det er mye (eller lite?) vann i elva/bekken.</p>";
+
+
+
 
 /*
  * Text om appen og regObs. Vises på førstesiden bak regObssymbolet
