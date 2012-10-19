@@ -71,6 +71,7 @@ var snow_activity = {
 					snow_activity.showObservations();
 				}
 			};
+			
 			jQuery("#snow_acitivity_no_observed").click	(nothingObservedChanged);
 			
 		},

@@ -229,8 +229,8 @@ var main = (function() {
 			} else {
 				jQuery(".numPackages").hide();
 				console.log("------------ removeing ------------- ")
-				new LocalNotification().cancelAll();
-				new LocalNotification().cancel(4);
+//				new LocalNotification().cancelAll();
+//				new LocalNotification().cancel(4);
 				main.store.setNotificationId(null);
 			}
 		},
@@ -1217,6 +1217,11 @@ var main = (function() {
 	document.addEventListener("resume", geo.resume, false);
 	document.addEventListener("pause", geo.pause, false);
 
+	jQuery("textarea").live("focus", function(){
+		var top = jQuery(this).position().top;
+		jQuery(this).parents(".scrollable").css("-webkit-transform","translate3d(0px, -"+ (top - 50) +"px, 0px)");
+	});
+	
 	jQuery("button.doubleTapPrevention").on("click", function() {
 		jQuery(this).attr("disable", "disable");
 		var button = jQuery(this);
