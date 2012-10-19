@@ -785,7 +785,7 @@ var main = (function() {
 			main.dialogShowing = false;
 			main.dialogStarted = null;
 
-			jQuery("body").css("overflow", "hidden");
+			//jQuery("body").css("overflow", "hidden");
 			jQuery('#dialog').hide().unbind("touchmove");
 			jQuery("#footer, .sendGroup").show();
 			main.showHideFooter(main.currentPage);
