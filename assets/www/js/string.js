@@ -47,7 +47,7 @@ OBSERVATION_REGISTERED = "<h3>Registrering sent til regObs</h3><p>Takk for bidra
 SETTING_UPDATE_DESCRIPTION = "Hver gang du starter app\'en oppdateres den mot eventuelle endringer i regObs. Du kan også gjøre dette manuelt.";
 SETTING_RESET_DESCRIPTION = "Har du problemer med app\'en kan du forsøke resette den.";
 SETTING_MODE_DESCRIPTION = "App\'en kan settes i test-modus for øvelse. Hver modus skilles med farge, svart for normal-modus og rød for test. HUSK: Hver modus krever egen bruker.";
-SETTING_DIAMETER_DESCRIPTION = "Observasjoner fra regObs hentes ut i en radius rundt deg. Radius gitt i meter.";
+SETTING_DIAMETER_DESCRIPTION = "Observasjoner fra regObs hentes ut i et område rundt deg. Diameter gitt i meter.";
 
 
 /*
