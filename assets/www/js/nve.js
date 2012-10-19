@@ -785,7 +785,7 @@ var main = (function() {
 			main.dialogShowing = false;
 			main.dialogStarted = null;
 
-			jQuery("body").css("overflow", "hidden");
+			//jQuery("body").css("overflow", "hidden");
 			jQuery('#dialog').hide().unbind("touchmove");
 			jQuery("#footer, .sendGroup").show();
 			main.showHideFooter(main.currentPage);
@@ -1217,6 +1217,15 @@ var main = (function() {
 	document.addEventListener("resume", geo.resume, false);
 	document.addEventListener("pause", geo.pause, false);
 
+	jQuery("textarea").live("focus", function(){
+		console.log(device.platform)
+		if(device.platform === "android")
+		{
+			var top = jQuery(this).position().top;
+			jQuery(this).parents(".scrollable").css("-webkit-transform","translate3d(0px, -"+ (top - 50) +"px, 0px)");
+		}
+	});
+	
 	jQuery("button.doubleTapPrevention").on("click", function() {
 		jQuery(this).attr("disable", "disable");
 		var button = jQuery(this);

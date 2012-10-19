@@ -404,6 +404,11 @@ ul.actions li{
 	height: 45px;
 }
 
+.scrollSpacer{
+	height: 120px;
+}
+	
+
 .w_header_custom{
 	z-index: 200;
 }
