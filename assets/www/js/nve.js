@@ -159,6 +159,8 @@ var main = (function() {
 		currentPage : "",
 
 		lastRegID : [],
+		
+		scrollers : {},
 
 		caruselListeners : [],
 
@@ -692,7 +694,8 @@ var main = (function() {
 									}
 
 								};
-								console.log("id " + jQuery(this).attr("id"))
+								console.log("id " + jQuery(this).attr("id"));
+								var scroller_id = jQuery(this).attr("id");
 								scroller = new wink.ui.layout.Scroller({
 									target : jQuery(this).attr("id"),
 									direction : "y",
@@ -703,6 +706,8 @@ var main = (function() {
 									}
 								});
 
+								main.scrollers[scroller_id] = scroller;
+								
 								console.log("adding scroller")
 								jQuery(this).addClass("scrolling");
 
@@ -714,7 +719,7 @@ var main = (function() {
 
 										//window.scrollTo(0, 0);
 										//jQuery("body").css("overflow", "none");
-										scroller.enable();
+										//scroller.enable();
 										_this._selectNode = null;
 										_this._disable = false;
 										console.log("pp: on");
@@ -722,7 +727,7 @@ var main = (function() {
 								}
 
 								function showingKeyboard() {
-									scroller.disable();
+									//scroller.disable();
 									this._disable = true;
 									//jQuery("body").css("overflow", "inherit");
 									console.log("pp: off");
