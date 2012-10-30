@@ -36,7 +36,8 @@ class AbstractPackage
   
   setRegDate : ()=>
     date = new Date()
-    @regDate = new Date(date.setHours(date.getHours() + 2))
+    hourOffset = (date.getTimezoneOffset() / 60) * -1
+    @regDate = new Date(date.setHours(date.getHours() + hourOffset))
    
   setGroup: (groupId)=>
     @groupId = groupId

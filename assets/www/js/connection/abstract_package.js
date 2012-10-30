@@ -131,9 +131,10 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.setRegDate = function() {
-    var date;
+    var date, hourOffset;
     date = new Date();
-    return this.regDate = new Date(date.setHours(date.getHours() + 2));
+    hourOffset = (date.getTimezoneOffset() / 60) * -1;
+    return this.regDate = new Date(date.setHours(date.getHours() + hourOffset));
   };
 
   AbstractPackage.prototype.setGroup = function(groupId) {
