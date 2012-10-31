@@ -635,7 +635,16 @@ var main = (function() {
 
 		isFocuse : false,
 		resetHeights : function() {
+			jQuery(".scrollable.scrolling:visible").each(function(){
+				var id = jQuery(this).attr("id");
+				var currentScroller = main.scrollers[id];
+				if(currentScroller != null){
+					currentScroller.destroy();
+					delete main.scrollers[id];
+				}
+			})
 			jQuery(".scrollable.scrolling:visible").removeClass("scrolling");
+			
 			main.setHeights();
 		},
 
