@@ -13,7 +13,7 @@ class AbstractPackage
     @pages = []
 
   onError: (data) =>
-    main.errorDialog()
+    new ErrorHandler().handleError(data)
     main.updateCollection(main.store.packageCollection)
   
   superInit: () =>

@@ -86,7 +86,7 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.onError = function(data) {
-    main.errorDialog();
+    new ErrorHandler().handleError(data);
     return main.updateCollection(main.store.packageCollection);
   };
 

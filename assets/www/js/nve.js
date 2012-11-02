@@ -573,7 +573,7 @@ var main = (function() {
 					main.hideDialog();
 					main.showDialogWithMessage(ERROR_TIMEOUT, "Tidsavbrudd");
 				}
-			}, 15000);
+			}, 20000);
 		},
 		
 		warnDeletionBefore : function(delete_function){
