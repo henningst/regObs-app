@@ -148,7 +148,8 @@ var super_picture = {
 		{
 			main.showWaitingDialogWithMessage(PROCESS_PICTURE);	
 
-			if(device.platform != 'Android') {
+			console.log("pp: platform picture " + device.platform)
+			if(device.platform != 'iphone') {
 				if(pictureSource == "cam")
 				{
 					navigator.camera.getPicture(
@@ -174,10 +175,12 @@ var super_picture = {
 			} 
 			else
 			{			
-				if(pictureSource == "cam")
+				console.log("pp: pic types " + JSON.stringify(Camera.PictureSourceType))
+				if(pictureSource == "cam"){
 					pictureSource = Camera.PictureSourceType.CAMERA;
-				else
+				} else {
 					pictureSource = Camera.PictureSourceType.PHOTOLIBRARY;
+				}
 						
 				
 				navigator.camera.getPicture(
@@ -187,7 +190,7 @@ var super_picture = {
 						quality : 50,
 						destinationType : Camera.DestinationType.FILE_URI,
 						sourceType : pictureSource,
-						allowEdit : true,
+						allowEdit : false,
 						encodingType: Camera.EncodingType.JPEG,
 						targetWidth: 1024,
 						targetHeight: 1024,
