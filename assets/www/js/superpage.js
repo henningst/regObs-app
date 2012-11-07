@@ -147,19 +147,15 @@ var super_picture = {
 		make: function(pictureSource)
 		{
 			main.showWaitingDialogWithMessage(PROCESS_PICTURE);	
-			
+
 			if(device.platform != 'Android') {
 				navigator.camera.getPicture(
 					this.onSuccess, 
 					this.onFail, 
 					{ 
 						quality : 50, 
-						destinationType: Camera.DestinationType.FILE_URI, 
-						sourceType : pictureSource, 
 						targetWidth: 1024,
-						targetHeight: 1024,
-						encodingType: Camera.EncodingType.JPEG,
-		                correctOrientation: true
+						targetHeight: 1024
 		            }
 				);
 			} 
@@ -211,7 +207,8 @@ var super_picture = {
 	            "</button>" +
 	          "</div>");
 				
-				div.find(".camera").click(function(){callback(Camera.PictureSourceType.CAMERA)})
+				
+				div.find(".camera").click(function(){callback()})
 				div.find(".gallery").click(function(){callback(Camera.PictureSourceType.PHOTOLIBRARY);})
 				main.showDialog(div);
 			});

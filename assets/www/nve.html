@@ -60,6 +60,10 @@
 	IncludeJavaScript("js/" + device.platform + "-GoogleAnalyticsPlugin.js");
 	IncludeJavaScript("js/" + device.platform + "-LocalNotification.js");
 	IncludeJavaScript("js/" + device.platform + "-childbrowser.js");
+	
+	if(device.platform === "android"){
+	   IncludeJavaScript("js/" + device.platform + "-camera.js");
+	}
 	//IncludeJavaScript("libs/" +device.platform +"-LocalNotification.js");
 </script>
 <script type="text/javascript" src="js/connection/validation.js"></script>
