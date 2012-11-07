@@ -713,6 +713,14 @@ var main = (function() {
 
 								};
 								console.log("id " + jQuery(this).attr("id"));
+								
+								//hack to handle redring bug on android 2.3.6
+								jQuery(this).find("select").each(function(){
+									jQuery(this).change(function(){
+										jQuery(this).hide().show();
+									})
+								});
+								
 								var scroller_id = jQuery(this).attr("id");
 								scroller = new wink.ui.layout.Scroller({
 									target : jQuery(this).attr("id"),

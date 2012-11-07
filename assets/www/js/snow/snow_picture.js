@@ -15,6 +15,8 @@ var snow_picture  = {
 				snow_picture.pictureData = null;
 				$("snow_picture_img").src =""; 
 				$('snow_picture_spec_list').selectedIndex = 0;
+				$("snow_picture_comment").value = "";
+				
 				snow_picture.updatePictureButtons("#snow_picture");
 				
 				snow_page.add('snow_picture_count');
@@ -63,9 +65,6 @@ var snow_picture  = {
 		var make = this.make;
 		var page = this;
 		this.setMakePictureHandlers(function(pictureSource){ make.call(page, pictureSource);});
-		
-		console.log("pp: running init")
-		jQuery(jQuery(".scrolling:visible")[0]).css("-webkit-transform","");
 		
 	}
 };

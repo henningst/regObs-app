@@ -143,6 +143,9 @@ public class RegObsGeoLocationPlugin extends Plugin {
     if(location == null)
       return false;
     
+    if(action == null || action.equals("null"))
+      return true;
+    
     if(accuracy > location.getAccuracy())
         accuracy = location.getAccuracy();
     
