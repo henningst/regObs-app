@@ -1253,6 +1253,10 @@ var main = (function() {
 
 	document.addEventListener("resume", geo.resume, false);
 	document.addEventListener("pause", geo.pause, false);
+	window.onorientationchange = function(e){
+		console.log("orientation changed");
+		main.resetHeights();
+	};
 
 	jQuery("textarea").live("focus", function(){
 		console.log(device.platform)

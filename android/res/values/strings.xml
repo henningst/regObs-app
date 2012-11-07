@@ -5,4 +5,6 @@
     <string name="app_name">regObs</string>
     <string name="lblCapturar">Ta bilde</string>
     <string name="lblCancelar">Avbryt</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Galleri</string>
 </resources>

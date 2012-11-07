@@ -149,18 +149,37 @@ var super_picture = {
 			main.showWaitingDialogWithMessage(PROCESS_PICTURE);	
 
 			if(device.platform != 'Android') {
-				navigator.camera.getPicture(
-					this.onSuccess, 
-					this.onFail, 
-					{ 
-						quality : 50, 
-						targetWidth: 1024,
-						targetHeight: 1024
-		            }
-				);
+				if(pictureSource == "cam")
+				{
+					navigator.camera.getPicture(
+						this.onSuccess, 
+						this.onFail, 
+						{ 
+							quality : 50, 
+							targetWidth: 1024,
+							targetHeight: 1024
+			            }
+					);
+				}else{
+					navigator.gallery.getPicture(
+							this.onSuccess, 
+							this.onFail, 
+							{ 
+								quality : 50, 
+								targetWidth: 1024,
+								targetHeight: 1024
+				            }
+						)
+				}
 			} 
 			else
 			{			
+				if(pictureSource == "cam")
+					pictureSource = Camera.PictureSourceType.CAMERA;
+				else
+					pictureSource = Camera.PictureSourceType.PHOTOLIBRARY;
+						
+				
 				navigator.camera.getPicture(
 					this.onSuccess,
 					this.onFail,
@@ -208,8 +227,8 @@ var super_picture = {
 	          "</div>");
 				
 				
-				div.find(".camera").click(function(){callback()})
-				div.find(".gallery").click(function(){callback(Camera.PictureSourceType.PHOTOLIBRARY);})
+				div.find(".camera").click(function(){callback("cam")})
+				div.find(".gallery").click(function(){callback("lib");})
 				main.showDialog(div);
 			});
 		}
