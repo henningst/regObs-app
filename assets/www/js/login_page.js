@@ -5,7 +5,6 @@ var login_page = {
 		jQuery("#regobs-name").hide();
 		
 		var user = UserStore.get(main.currentMode());
-		console.log(user.username);
 		if(user.isDefined()){
 			$('login_username').value = user.username;
 			$('login_password').value = user.password;

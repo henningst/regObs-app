@@ -2,6 +2,13 @@ var snow_activity = {
 		shouldShowFooter : false,
 		
 		addSnowActivity: function() {
+			function intOr(string, defaultValue){
+				if(isNaN(parseInt(string)))
+					return defaultValue;
+				else
+					return parseInt(string);
+			}
+			
 			var hours = jQuery("#snow_acitivty_time_since");
 			var date = new Date();
 			date.setHours(date.getHours() - parseInt(hours.val()));
@@ -14,7 +21,7 @@ var snow_activity = {
 			var comment = jQuery("#snow_activity_comment");
 			
 			//(@RegID, @AvalancheActivityObsID, @Aspect,@HeigthStartZone,@DestructiveSizeTID,@EstimatedNumTID,@AvalancheTID,@AvalancheTriggerTID,@TerrainStartZoneTID,@DtAvalancheTime,@SnowLine,@UsageFlagTID,@Comment)->
-			var obs = new AvalancheActivityObs(0,0, aspect.val(), height.val(), size.val(), count.val(), type.val(),0,0,date, null, 0, comment.val());
+			var obs = new AvalancheActivityObs(0,0, intOr(aspect.val(), 0), intOr(height.val(),0), intOr(size.val(), 0), intOr(count.val(),0), intOr(type.val(),0),0,0,date, null, 0, comment.val());
 			snow_page.updateLocation(function(){
 				main.store.getSnow().addObs(obs);
 				main.panels.slideBack();
