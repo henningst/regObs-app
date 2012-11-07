@@ -154,8 +154,10 @@ var super_picture = {
 					this.onFail, 
 					{ 
 						quality : 50, 
-						 destinationType: Camera.DestinationType.FILE_URI, 
+						destinationType: Camera.DestinationType.FILE_URI, 
 						sourceType : pictureSource, 
+						targetWidth: 1024,
+						targetHeight: 1024,
 						encodingType: Camera.EncodingType.JPEG,
 		                correctOrientation: true
 		            }

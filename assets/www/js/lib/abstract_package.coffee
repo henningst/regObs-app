@@ -13,6 +13,9 @@ class AbstractPackage
     @pages = []
 
   onError: (data) =>
+    if(data.statusCode != undefined && data.statusCode == 0)
+      return;
+      
     new ErrorHandler().handleError(data)
     main.updateCollection(main.store.packageCollection)
   

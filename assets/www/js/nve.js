@@ -4,7 +4,7 @@ STAGE_MODE = "stage_mode";
 var geo = {
 	last_page_location : null,
 	requestPosition : function(callback, shouldHandlePosition) {
-		if (window.PhoneGap === undefined)
+		if (window.PhoneGap === undefined || cordova.exec === undefined)
 			return;
 		
 		console.log("requesting position to function " + callback)
@@ -237,11 +237,13 @@ var main = (function() {
 							});
 				}
 			} else {
-				jQuery(".numPackages").hide();
-				console.log("------------ removeing ------------- ")
-				new LocalNotification().cancelAll();
-				new LocalNotification().cancel(4);
-				main.store.setNotificationId(null);
+				if(cordova.exec !== undefined){
+					jQuery(".numPackages").hide();
+					console.log("------------ removeing ------------- ")
+					new LocalNotification().cancelAll();
+					new LocalNotification().cancel(4);
+					main.store.setNotificationId(null);
+				}
 			}
 		},
 		
@@ -468,6 +470,7 @@ var main = (function() {
 		},
 
 		initPhonegap : function() {
+			console.log("started");
 			DataAccess.handleCompatibility(APP_VERSION);
 			
 			document.addEventListener("backbutton", main.backKeyDown, true);
@@ -697,24 +700,24 @@ var main = (function() {
 															".ca_items").length > 0) {
 												scroller.disable();
 												this._disable = true;
-												//jQuery("body").css("overflow","inherit");
+												// jQuery("body").css("overflow","inherit");
 												console.log("pp: off");
 
 											} else if (this._disable) {
 												console.log("pp: on");
-												//window.scrollTo(0, 0);
-												//jQuery("body").css("overflow", "none");
+												// window.scrollTo(0, 0);
+												// jQuery("body").css("overflow",
+												// "none");
 												scroller.enable();
 												this._selectNode = null;
 												this._disable = false;
 											}
 										}
 									}
-
 								};
 								console.log("id " + jQuery(this).attr("id"));
 								
-								//hack to handle redring bug on android 2.3.6
+								// hack to handle redring bug on android 2.3.6
 								jQuery(this).find("select").each(function(){
 									jQuery(this).change(function(){
 										jQuery(this).hide().show();
@@ -743,19 +746,22 @@ var main = (function() {
 										if (main.isFocuse === true)
 											return;
 
-										//window.scrollTo(0, 0);
-										//jQuery("body").css("overflow", "none");
-										//scroller.enable();
+										// window.scrollTo(0, 0);
+										// jQuery("body").css("overflow",
+										// "none");
+										// scroller.enable();
 										_this._selectNode = null;
 										_this._disable = false;
 										console.log("pp: on");
+										
 									}, 100);
 								}
 
 								function showingKeyboard() {
-									//scroller.disable();
+									// scroller.disable();
 									this._disable = true;
-									//jQuery("body").css("overflow", "inherit");
+									// jQuery("body").css("overflow",
+									// "inherit");
 									console.log("pp: off");
 								}
 								document.addEventListener("hidekeyboard",
@@ -816,7 +822,7 @@ var main = (function() {
 			main.dialogShowing = false;
 			main.dialogStarted = null;
 
-			//jQuery("body").css("overflow", "hidden");
+			// jQuery("body").css("overflow", "hidden");
 			jQuery('#dialog').hide().unbind("touchmove");
 			jQuery("#footer, .sendGroup").show();
 			main.showHideFooter(main.currentPage);
@@ -1252,8 +1258,17 @@ var main = (function() {
 		console.log(device.platform)
 		if(device.platform === "android")
 		{
+			var textarea = this;
 			var top = jQuery(this).position().top;
 			jQuery(this).parents(".scrollable").css("-webkit-transform","translate3d(0px, -"+ (top - 50) +"px, 0px)");
+			
+			
+			var button = jQuery("<input class='done-button' type='button' value='OK'/>");
+			button.find("input").click(function(){
+				jQuery(textarea).trigger("blur");
+				jQuery(this).hide();
+			})
+			jQuery(this).after(button)
 		}
 	});
 	

@@ -86,6 +86,9 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.onError = function(data) {
+    if (data.statusCode !== void 0 && data.statusCode === 0) {
+      return;
+    }
     new ErrorHandler().handleError(data);
     return main.updateCollection(main.store.packageCollection);
   };

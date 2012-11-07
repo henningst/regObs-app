@@ -4,7 +4,7 @@ class ObservationView
     
 class AllRegistrationsVUrlGenerator
   baseurl :  ()-> "#{SERVER_URL}AllRegistrationsV?"
-  queryString : "$filter=LangKey eq %LANGUAGE% and UTMEast gt %UTM_EAST_MIN% and UTMEast lt %UTM_EAST_MAX% and UTMNorth le %UTM_NORTH_MAX% and UTMNorth gt %UTM_NORTH_MIN% and GeoHazardTID eq %GEOHAZARDTID%&$orderby=DtObsTime desc"
+  queryString : "$filter=LangKey eq %LANGUAGE% and UTMEast gt %UTM_EAST_MIN% and UTMEast lt %UTM_EAST_MAX% and UTMNorth le %UTM_NORTH_MAX% and UTMNorth gt %UTM_NORTH_MIN% and GeoHazardTID eq %GEOHAZARDTID%&$top=30&$orderby=DtObsTime desc"
   diameter : ()-> main.getObservationSearchDiameter()
   constructor: (@currentPosition, @geoHazard)->
     
@@ -35,7 +35,7 @@ class ObservationFetcher
 
   getObservations: (callback)=>
     main.showWaitingDialogWithMessage("Henter observasjoner");
-    console.log("henter url "+ @urlGenerator.url()) 
+    console.log("henter url "+ @urlGenerator.url());
     jQuery.ajax({
       type: "GET",
       cache: false,
@@ -117,6 +117,7 @@ class ObservationViewRendrer
   render: ()->
     jQuery(@domNode).html("")
     jQuery(@domNode).html(Handlebars.templates.viewList({list: @listOfView, map_handler: @handler, scrollerid: "#{@domNode}_scroller_id"}));
+    
     main.resetHeights()
     jQuery(@domNode).find("li").click ()->
       url = jQuery(this).attr("data-url")
