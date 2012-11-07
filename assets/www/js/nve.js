@@ -643,6 +643,7 @@ var main = (function() {
 
 		isFocuse : false,
 		resetHeights : function() {
+			console.log("pp: reseting scroller")
 			jQuery(".scrollable.scrolling:visible").each(function(){
 				var id = jQuery(this).attr("id");
 				var currentScroller = main.scrollers[id];
@@ -957,7 +958,7 @@ var main = (function() {
 
 			main.showHideFooter(params.id);
 
-			main.setHeights();
+			main.resetHeights();
 			main.currentPage = params.id;
 			switch (params.id) {
 			case 'home':

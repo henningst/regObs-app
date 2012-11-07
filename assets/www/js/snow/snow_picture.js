@@ -64,6 +64,9 @@ var snow_picture  = {
 		var page = this;
 		this.setMakePictureHandlers(function(pictureSource){ make.call(page, pictureSource);});
 		
+		console.log("pp: running init")
+		jQuery(jQuery(".scrolling:visible")[0]).css("-webkit-transform","");
+		
 	}
 };
 
