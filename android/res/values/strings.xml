@@ -3,6 +3,6 @@
 
     <string name="hello">Hello World, NveActivity!</string>
     <string name="app_name">regObs</string>
-    <string name="lblCapturar">Capture</string>
-    <string name="lblCancelar">Cancel</string>
+    <string name="lblCapturar">Ta bilde</string>
+    <string name="lblCancelar">Avbryt</string>
 </resources>

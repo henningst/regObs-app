@@ -64,8 +64,8 @@
 				</receiver>
 				
 				<activity
-	        android:name=" com.foregroundcameraplugin.CameraActivity"
-	        android:label="ForegroundCameraPlugin"
+	        android:name="com.foregroundcameraplugin.CameraActivity"
+	        android:label="Ta bildet til regObs"
 	        android:screenOrientation="landscape" >
         </activity>
     </application>
