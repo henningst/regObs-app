@@ -6,11 +6,19 @@ var geo = {
 	requestPosition : function(callback, shouldHandlePosition) {
 		if (window.PhoneGap === undefined)
 			return;
+		
+		console.log("requesting position to function " + callback)
+		if(typeof eval(callback) !== 'function') { 
+			console.log("no function like " + callback)
+			new ErrorHandler().handleError("try to call geofunction with error callback : " + callback);
+			return;
+		}
 
 		console.log("henter geo position");
 
 		if (shouldHandlePosition == undefined)
 			shouldHandlePosition = false;
+		
 		console.log("requestiong position for " + device.platform);
 		if (device.platform == "android") {
 			PhoneGap.exec(function() {
