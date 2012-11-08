@@ -9,7 +9,7 @@ ErrorHandler = (function() {
     var error_code, stacktrace;
     error_code = this.errorCode();
     stacktrace = printStackTrace();
-    console.log("pp: feil catched " + exception);
+    console.log("pp: feil catched " + JSON.stringify(exception));
     Bugsense.notify({
       error: exception,
       code: error_code,
@@ -21,7 +21,6 @@ ErrorHandler = (function() {
   ErrorHandler.prototype.hookInto = function() {
     return jQuery("[onclick]").each(function(index, obj) {
       var funksjon;
-      console.log("pp: onclick hook " + obj);
       if (obj.onclick) {
         funksjon = obj.onclick;
         return obj.onclick = E(funksjon);

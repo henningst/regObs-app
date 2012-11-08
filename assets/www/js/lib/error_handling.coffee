@@ -6,7 +6,7 @@ class ErrorHandler
   handleError: (exception)->  
     error_code = @errorCode()
     stacktrace = printStackTrace();
-    console.log("pp: feil catched " + exception)
+    console.log("pp: feil catched " + JSON.stringify(exception))
     
     Bugsense.notify({
       error: exception
@@ -18,7 +18,6 @@ class ErrorHandler
   
   hookInto : ()->
     jQuery("[onclick]").each (index, obj) ->
-      console.log("pp: onclick hook "+ obj)
       if(obj.onclick)
         funksjon = obj.onclick
         obj.onclick = E(funksjon)

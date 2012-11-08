@@ -561,6 +561,10 @@ var main = (function() {
 		errorDialog : function() {
 			main.showDialogWithMessage(AN_ERROR_OCCURED);
 		},
+		
+		noConnectionDialog: function(){
+			main.showDialogWithMessage(NO_CONNECTION);
+		},
 
 		showDialogWithMessage : function(message, header) {
 			if (header == undefined)

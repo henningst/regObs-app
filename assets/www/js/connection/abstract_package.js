@@ -86,7 +86,8 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.onError = function(data) {
-    if (data.statusCode !== void 0 && data.statusCode === 0) {
+    if (data.message !== void 0 && data.message === "HTTP request failed") {
+      main.noConnectionDialog();
       return;
     }
     console.log("pp: error occured sending package " + data);
