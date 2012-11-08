@@ -491,11 +491,16 @@ var main = (function() {
 			new ErrorHandler().hookInto();
 		},
 
-		backKeyDown : function() {
+		backKeyDown : function(e) {
+			e.preventDefault();
+			
+			if(main.dialogShowing)
+				return;
+			
 			if (main.actualPage != 0) {
-
 				main.panels.slideBack();
 			} else {
+				console.log("pp: about to exit")
 				navigator.app.exitApp();
 			}
 		},
