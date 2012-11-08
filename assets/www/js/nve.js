@@ -651,6 +651,7 @@ var main = (function() {
 
 		isFocuse : false,
 		resetHeights : function() {
+			return;
 			console.log("pp: reseting scroller")
 			jQuery(".scrollable.scrolling:visible").each(function(){
 				var id = jQuery(this).attr("id");
@@ -666,11 +667,13 @@ var main = (function() {
 		},
 
 		setHeights : function() {
+			return;
 			main.setScrollerHeights();
 			main.insertScroller();
 		},
 
 		setScrollerHeights : function() {
+			return;
 			var height = jQuery(".sl_container").height();
 			var bodyHeight = jQuery("body").height();
 			var top = height - 52;
