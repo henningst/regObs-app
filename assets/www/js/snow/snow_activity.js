@@ -88,12 +88,14 @@ var snow_activity = {
 				jQuery("#" + name).hide();
 				jQuery("#snow_activity_slider_placeholder").hide();
 			});
+			main.resetHeights();
 		},
 		showObservations: function(){
 			jQuery.each(this.listOfCarusels, function(index, name){
 				jQuery("#" + name).show();
 				jQuery("#snow_activity_slider_placeholder").show();
 			});
+			main.resetHeights();
 		},
 		
 		clearForm: function(){
