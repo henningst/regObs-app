@@ -48,7 +48,7 @@ class ObservationFetcher
   
   fetchedDataHandler: (callback)=>
     ( data )=>
-      obs = @entryToObservationView(data.d.results)
+      obs = @entryToObservationView(data.d)
       main.hideDialog();
       callback(obs)
     

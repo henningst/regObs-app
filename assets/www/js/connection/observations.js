@@ -89,7 +89,7 @@ ObservationFetcher = (function() {
     var _this = this;
     return function(data) {
       var obs;
-      obs = _this.entryToObservationView(data.d.results);
+      obs = _this.entryToObservationView(data.d);
       main.hideDialog();
       return callback(obs);
     };

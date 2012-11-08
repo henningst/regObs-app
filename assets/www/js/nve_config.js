@@ -34,9 +34,10 @@ GA_TRACKER_CODE = "UA-32394009-1";
  * Platform
  */
 var device = {
-//	platform: 'android'
-	platform: 'iphone'
+	platform: 'android'
+//	platform: 'iphone'
 };
+
 
 
 APP_VERSION = "0.14.1";
