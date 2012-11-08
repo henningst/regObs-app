@@ -893,6 +893,7 @@ var main = (function() {
 			main.updateCollection(main.store.packageCollection);
 			main.updateLoginStatusAndBehaviour();
 
+			
 			if (status == 'start' && main.initialised) {
 				// google analytics
 				console.log("analytics " + window.analytics);
@@ -1178,6 +1179,7 @@ var main = (function() {
 
 			main.lastPage = params.id;
 
+			console.log("pp: done init")
 		}
 	};
 

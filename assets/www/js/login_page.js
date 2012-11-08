@@ -14,7 +14,6 @@ var login_page = {
 		}
 	},
 	loggedInAsCallback: function (data) {
-		console.log(JSON.stringify(data));
     	if(data.EMail == 'anonym@nve.no') {
     		login_page.showLoginStatus(false);
     		main.showDialogWithMessage(ERROR_WRONG_LOGIN, "Login");

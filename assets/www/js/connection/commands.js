@@ -9,8 +9,9 @@ ErrorHandlingCommand = (function() {
   function ErrorHandlingCommand() {}
 
   ErrorHandlingCommand.prototype.fail = function(err, data) {
+    console.log("pp: error handling command");
     console.log(err);
-    return console.log(JSON.stringify(data));
+    return console.log("error handling command " + JSON.stringify(data));
   };
 
   return ErrorHandlingCommand;
@@ -97,7 +98,6 @@ ObserversGroupsCommand = (function(_super) {
 
   ObserversGroupsCommand.prototype.gotData = function(data) {
     var _this = this;
-    console.log(JSON.stringify(data));
     jQuery.each(data.results, function(i, result) {
       return _this.groups.push({
         id: result.ObserverGroup.ObserverGroupID,

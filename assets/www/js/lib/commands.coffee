@@ -1,8 +1,9 @@
 
 class ErrorHandlingCommand
   fail: (err, data)->
+    console.log("pp: error handling command");
     console.log(err)
-    console.log(JSON.stringify(data))
+    console.log("error handling command "+ JSON.stringify(data))
 
 class SendInPictureCommand
 	constructor: (@picture) ->
@@ -49,7 +50,6 @@ class ObserversGroupsCommand extends ErrorHandlingCommand
     GetObjectFromServer(this, @gotData, @fail)
     
   gotData:(data)=>
-    console.log(JSON.stringify(data))
     jQuery.each(data.results, (i, result)=>
       @groups.push({id: result.ObserverGroup.ObserverGroupID, name: result.ObserverGroup.ObserverGroupName})  
     )

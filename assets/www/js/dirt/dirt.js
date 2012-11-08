@@ -9,11 +9,13 @@ var dirt_obs =  dirt_page = {
 	//   the current GPS coordinates
 	//
 	onSuccess: function(position) {
+		console.log("pp: onsuccess start")
 		dirt_page.updatePagePosition(position);
 		dirt_page.displayPosition(position);
 		
 		GetObjectFromServer(new PositionDetails(dirt_page.latitute, dirt_page.longitude), dirt_page.onKommuneResult);
 		GetObjectFromServer(new AreaInformation(dirt_page.latitute, dirt_page.longitude), dirt_page.onAreaInformationResult);
+		console.log("pp: onsuccess end")
 	},
 	
 	savePosition: function(position){

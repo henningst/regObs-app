@@ -9,6 +9,7 @@ ErrorHandler = (function() {
     var error_code, stacktrace;
     error_code = this.errorCode();
     stacktrace = printStackTrace();
+    console.log("pp: feil catched " + exception);
     Bugsense.notify({
       error: exception,
       code: error_code,
@@ -20,6 +21,7 @@ ErrorHandler = (function() {
   ErrorHandler.prototype.hookInto = function() {
     return jQuery("[onclick]").each(function(index, obj) {
       var funksjon;
+      console.log("pp: onclick hook " + obj);
       if (obj.onclick) {
         funksjon = obj.onclick;
         return obj.onclick = E(funksjon);
@@ -38,6 +40,7 @@ ErrorHandler = (function() {
 window.customErrorHandler = new ErrorHandler();
 
 window.onerror = function(error) {
+  console.log("pp: window error " + error);
   return window.customErrorHandler.handleError(error);
 };
 
@@ -46,7 +49,7 @@ E = function(funksjon) {
     try {
       return funksjon();
     } catch (e) {
-      console.log("catched " + (JSON.stringify(e)));
+      console.log("E catched " + (JSON.stringify(e)));
       return window.customErrorHandler.handleError(e);
     }
   };

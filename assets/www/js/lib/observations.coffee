@@ -43,6 +43,7 @@ class ObservationFetcher
       dataType: "json",
       success: @fetchedDataHandler(callback) ,
       error :  (e)->
+        console.log("pp: failed fetching observations")
         console.log("failed #{JSON.stringify(e)}" )
     })
   

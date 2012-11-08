@@ -109,7 +109,9 @@ public class RegObsGeoLocationPlugin extends Plugin {
   private void clearListener() {
     if(locationListener != null){
       Log.d("GeoPlugin", "clearing listener");
-      locationThread.interrupt();
+      if(locationThread != null)
+        locationThread.interrupt();
+      
       manager.removeUpdates(locationListener);
     }
   }

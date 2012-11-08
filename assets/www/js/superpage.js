@@ -92,6 +92,7 @@ var super_page = {
 		},
 		
 		onAreaInformationResult: function(data) {
+			console.log("pp: onarea start")
 			var area = omerade.parseArea(data);
 			if(area.oppdatert){
 				this.omrade_id = area.omeradeid;
@@ -100,9 +101,11 @@ var super_page = {
 				this.omrade_id = null;
 				jQuery('.county_b').html("");
 			}
+			console.log("pp: onarea end")
 		},
 		
 		onKommuneResult : function(data) {
+			console.log("pp: onkommune start")
 			var kommune = omerade.parseKommune(data);
 			if(kommune.oppdatert) {
 				jQuery(".county_a").html(kommune.kommunenavn);
@@ -111,6 +114,7 @@ var super_page = {
 				jQuery(".county_a").html("");
 				this.komm_nr = null;
 			}
+			console.log("pp: onkommune end")
 		},
 		
 		// onError Callback receives a PositionError object
@@ -251,7 +255,6 @@ var super_obs = {
 
 var super_observations = {
 	setPosAndUpdateObservations: function(position){
-		console.log("position " + JSON.stringify(position))
 		this.updatePagePosition(position);
 		var pos = {"east": this.longitude, "north": this.latitute};
 		this.urlGenerator.setPos(pos);

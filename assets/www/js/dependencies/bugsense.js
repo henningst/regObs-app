@@ -3,8 +3,15 @@ Bugsense = {
 
     var that    = this;
     this.notice = notice;
-    this.errorMessage = function(){ return JSON.stringify(that.notice);};
+    this.errorMessage = function(){
+    	try{
+    		return JSON.stringify(that.notice);
+    	}catch(e){
+    		return "" +that.notice;
+    	}
+    };
 
+    
 
     // bugsense parameters (required)
     this.defaults = {
@@ -59,7 +66,7 @@ Bugsense = {
           }
         };
         
-        // stringify it
+        // stringify it 
         request.custom_data.request = JSON.stringify(request.custom_data.request);
         return request;
       }())

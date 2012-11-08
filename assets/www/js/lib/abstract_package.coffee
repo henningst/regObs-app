@@ -15,7 +15,9 @@ class AbstractPackage
   onError: (data) =>
     if(data.statusCode != undefined && data.statusCode == 0)
       return;
-      
+    
+    console.log("pp: error occured sending package "+ data)
+     
     new ErrorHandler().handleError(data)
     main.updateCollection(main.store.packageCollection)
   
@@ -141,10 +143,8 @@ class AbstractPackage
     console.log("complete force " + force  )
     x = 0
     n = @name
-    console.log("models complete area " + JSON.stringify(@pointModels(@m_dangerObs).area))
     for obs in @pointModels(@m_dangerObs).area 
       do(obs) =>
-        console.log("model area "+ JSON.stringify(obs))
         obs.RegID = data.RegID
         clone = JSON.parse(JSON.stringify(obs))
         clone = @castedModel(clone)

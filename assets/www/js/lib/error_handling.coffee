@@ -6,6 +6,7 @@ class ErrorHandler
   handleError: (exception)->  
     error_code = @errorCode()
     stacktrace = printStackTrace();
+    console.log("pp: feil catched " + exception)
     
     Bugsense.notify({
       error: exception
@@ -17,6 +18,7 @@ class ErrorHandler
   
   hookInto : ()->
     jQuery("[onclick]").each (index, obj) ->
+      console.log("pp: onclick hook "+ obj)
       if(obj.onclick)
         funksjon = obj.onclick
         obj.onclick = E(funksjon)
@@ -25,11 +27,11 @@ class ErrorHandler
     Math.floor(Math.random() * 0x10000).toString(16)
 
   
-
-
 window.customErrorHandler = new ErrorHandler()
 
-window.onerror = (error)-> window.customErrorHandler.handleError(error)
+window.onerror = (error)-> 
+  console.log("pp: window error " + error)
+  window.customErrorHandler.handleError(error)
   
 
 E = (funksjon) ->
@@ -37,7 +39,7 @@ E = (funksjon) ->
     try
       funksjon()
     catch e 
-      console.log("catched #{JSON.stringify(e)}")
+      console.log("E catched #{JSON.stringify(e)}") 
       window.customErrorHandler.handleError(e)
   
 

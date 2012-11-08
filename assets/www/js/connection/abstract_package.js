@@ -89,6 +89,7 @@ AbstractPackage = (function() {
     if (data.statusCode !== void 0 && data.statusCode === 0) {
       return;
     }
+    console.log("pp: error occured sending package " + data);
     new ErrorHandler().handleError(data);
     return main.updateCollection(main.store.packageCollection);
   };
@@ -296,11 +297,9 @@ AbstractPackage = (function() {
     console.log("complete force " + force);
     x = 0;
     n = this.name;
-    console.log("models complete area " + JSON.stringify(this.pointModels(this.m_dangerObs).area));
     _ref = this.pointModels(this.m_dangerObs).area;
     _fn = function(obs) {
       var clone;
-      console.log("model area " + JSON.stringify(obs));
       obs.RegID = data.RegID;
       clone = JSON.parse(JSON.stringify(obs));
       clone = _this.castedModel(clone);

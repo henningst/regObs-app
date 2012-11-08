@@ -80,6 +80,7 @@ ObservationFetcher = (function() {
       dataType: "json",
       success: this.fetchedDataHandler(callback),
       error: function(e) {
+        console.log("pp: failed fetching observations");
         return console.log("failed " + (JSON.stringify(e)));
       }
     });
