@@ -651,29 +651,25 @@ var main = (function() {
 
 		isFocuse : false,
 		resetHeights : function() {
-			return;
 			console.log("pp: reseting scroller")
-			jQuery(".scrollable.scrolling:visible").each(function(){
+			jQuery(".scrolling:visible").each(function(){
 				var id = jQuery(this).attr("id");
+				console.log("pp: refreshing scroller " + id)
 				var currentScroller = main.scrollers[id];
 				if(currentScroller != null){
-					currentScroller.destroy();
-					delete main.scrollers[id];
+					currentScroller.refresh();
 				}
 			})
-			jQuery(".scrollable.scrolling:visible").removeClass("scrolling");
 			
 			main.setHeights();
 		},
 
 		setHeights : function() {
-			return;
 			main.setScrollerHeights();
 			main.insertScroller();
 		},
 
 		setScrollerHeights : function() {
-			return;
 			var height = jQuery(".sl_container").height();
 			var bodyHeight = jQuery("body").height();
 			var top = height - 52;
@@ -687,108 +683,26 @@ var main = (function() {
 			
 			
 		},
+		
 
 		insertScroller : function() {
-			jQuery(".scrollable:visible:not(.scrolling)").each(
-							function() {
-								console.log("pp: adding scroller");
-								var functions = {
-									enableContainingElements : function(arg) {
-										if (arg.uxEvent) {
-											var e = arg.uxEvent;
-											var target = arg.uxEvent.target;
+			jQuery(".listScroller:visible:not(.scrolling), .pageScroller:visible:not(.scrolling)").each(function(){
+				var currentDiv = jQuery(this);
+				currentDiv.addClass("scrolling");
+				console.log("pp: adding scroller " + currentDiv.attr("id"));
+				
+				var currentScroller = new iScroll(currentDiv.attr("id"), {
+					onBeforeScrollStart: function (e) {
+						var target = e.target;
+						while (target.nodeType != 1) target = target.parentNode;
 
-											if (target instanceof HTMLSelectElement
-													|| target instanceof HTMLAnchorElement
-													|| target instanceof HTMLInputElement
-													|| target instanceof HTMLTextAreaElement
-													|| jQuery(target).is(
-															".ca_items")
-													|| jQuery(target).parents(
-															".ca_items").length > 0) {
-												scroller.disable();
-												this._disable = true;
-												// jQuery("body").css("overflow","inherit");
-												console.log("pp: off");
-
-											} else if (this._disable) {
-												console.log("pp: on");
-												// window.scrollTo(0, 0);
-												// jQuery("body").css("overflow",
-												// "none");
-												scroller.enable();
-												this._selectNode = null;
-												this._disable = false;
-											}
-										}
-									}
-								};
-								console.log("id " + jQuery(this).attr("id"));
-								
-								// hack to handle redring bug on android 2.3.6
-								jQuery(this).find("select").each(function(){
-									jQuery(this).change(function(){
-										jQuery(this).hide().show();
-									})
-								});
-								
-								var scroller_id = jQuery(this).attr("id");
-								scroller = new wink.ui.layout.Scroller({
-									target : jQuery(this).attr("id"),
-									direction : "y",
-									callbacks : {
-										scrollerTouched : {
-											context : functions, method : 'enableContainingElements'
-										}
-									}
-								});
-
-								main.scrollers[scroller_id] = scroller;
-								
-								console.log("adding scroller")
-								jQuery(this).addClass("scrolling");
-
-								function hiddenKeyboard() {
-									var _this = this;
-									setTimeout(function() {
-										if (main.isFocuse === true)
-											return;
-
-										// window.scrollTo(0, 0);
-										// jQuery("body").css("overflow",
-										// "none");
-										// scroller.enable();
-										_this._selectNode = null;
-										_this._disable = false;
-										console.log("pp: on");
-										
-									}, 100);
-								}
-
-								function showingKeyboard() {
-									// scroller.disable();
-									this._disable = true;
-									// jQuery("body").css("overflow",
-									// "inherit");
-									console.log("pp: off");
-								}
-								document.addEventListener("hidekeyboard",
-										function() {
-											// does not fire on iphone...
-											hiddenKeyboard();
-										}, false);
-
-								jQuery(this).find(
-										"input[type=text], textarea, select")
-										.bind("focus", function(e) {
-											main.isFocuse = false;
-											showingKeyboard();
-										});
-								document.addEventListener("showkeyboard",
-										function() {
-											showingKeyboard();
-										}, false);
-							});
+						if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
+							e.preventDefault();
+					}
+				}); 
+				main.scrollers[currentDiv.attr("id")] = currentScroller;
+			})
+							
 		},
 
 		attachToGroup : function(id) {
@@ -1261,6 +1175,8 @@ var main = (function() {
 
 	document.addEventListener("resume", geo.resume, false);
 	document.addEventListener("pause", geo.pause, false);
+	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	
 	window.onorientationchange = function(e){
 		console.log("orientation changed");
 		main.resetHeights();
@@ -1270,17 +1186,16 @@ var main = (function() {
 		console.log(device.platform)
 		if(device.platform === "android")
 		{
-			var textarea = this;
-			var top = jQuery(this).position().top;
-			jQuery(this).parents(".scrollable").css("-webkit-transform","translate3d(0px, -"+ (top - 50) +"px, 0px)");
-			
-			
-			var button = jQuery("<input class='done-button' type='button' value='OK'/>");
-			button.find("input").click(function(){
-				jQuery(textarea).trigger("blur");
-				jQuery(this).hide();
-			})
-			jQuery(this).after(button)
+//			var textarea = this;
+//			var top = jQuery(this).position().top;
+//			
+//			
+//			var button = jQuery("<input class='done-button' type='button' value='OK'/>");
+//			button.find("input").click(function(){
+//				jQuery(textarea).trigger("blur");
+//				jQuery(this).hide();
+//			})
+//			jQuery(this).after(button)
 		}
 	});
 	

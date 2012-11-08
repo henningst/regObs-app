@@ -53,10 +53,7 @@ var snow_obs =  snow_page = {
 		login_page.showGroupStatus();
 		
 		this.showStar();
-		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-		setTimeout(function(){
-			myScroll = new iScroll('snow_obs_iscroll');
-		}, 2000)
+		
 	}
 };
 

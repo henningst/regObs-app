@@ -46,6 +46,8 @@ var snow_picture  = {
 		snow_picture.updatePictureButtons("#snow_picture");
 		main.hideDialog();
 		main.showHideFooter("snow_picture");
+		
+		main.resetHeights();
 	},
 
 	onFail: function(message) {
