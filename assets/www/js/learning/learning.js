@@ -94,6 +94,9 @@ var learning_page = {
     			break;
 			
 			}
+			
+			
+			main.resetHeights();
 		}
 		
 }
