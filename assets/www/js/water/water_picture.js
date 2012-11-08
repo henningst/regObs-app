@@ -13,6 +13,7 @@ var water_picture  = {
 				water_picture.pictureData = null;
 				$("water_picture_img").src ="";
 				$('water_picture_spec_list').selectedIndex = 0;
+				$("water_picture_comment").value = "";
 				water_picture.updatePictureButtons("#water_picture");
 	
 				water_page.add('water_picture_count');

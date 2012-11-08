@@ -226,6 +226,7 @@ var main = (function() {
 							+ collection.size() + " ------------- ")
 					main.store.setNotificationId(4);
 					var notification = new LocalNotification();
+					console.log("pp: notification " + notification);
 					notification
 							.add({
 								date : new Date(),
@@ -235,6 +236,10 @@ var main = (function() {
 								id : 4,
 								badge : "" + collection.size(),
 							});
+					
+					
+					
+					console.log("pp: test done location");
 				}
 			} else {
 				if(cordova.exec !== undefined){
@@ -868,6 +873,11 @@ var main = (function() {
 		},
 
 		toggleBackButtonDisplay : function(params, status) {
+			if(!main.initialised){
+				setTimeout(function(){main.toggleBackButtonDisplay(params, status);}, 200);
+				return; 
+			}
+			
 			console.log("-------backbutton display");
 			console.log(params.id);
 			console.log(status);

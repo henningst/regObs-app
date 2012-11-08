@@ -9,7 +9,6 @@ ErrorHandler = (function() {
     var error_code, stacktrace;
     error_code = this.errorCode();
     stacktrace = printStackTrace();
-    console.log("Sending error: " + (JSON.stringify(exception)));
     Bugsense.notify({
       error: exception,
       code: error_code,

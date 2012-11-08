@@ -6,7 +6,6 @@ class ErrorHandler
   handleError: (exception)->  
     error_code = @errorCode()
     stacktrace = printStackTrace();
-    console.log("Sending error: #{JSON.stringify(exception)}");
     
     Bugsense.notify({
       error: exception

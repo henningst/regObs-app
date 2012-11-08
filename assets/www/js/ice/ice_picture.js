@@ -13,6 +13,7 @@ var ice_picture  = {
 				ice_picture.pictureData = null;
 				$("ice_picture_img").src ="";
 				$('ice_picture_spec_list').selectedIndex = 0;
+				$("ice_picture_comment").value = "";
 				ice_picture.updatePictureButtons("#ice_picture");
 				
 				ice_page.add('ice_picture_count');

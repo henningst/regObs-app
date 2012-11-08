@@ -13,6 +13,7 @@ var dirt_picture  = {
 				dirt_picture.pictureData = null;
 				$("dirt_picture_img").src ="";
 				$('dirt_picture_spec_list').selectedIndex = 0;
+				$("dirt_picture_comment").value = "";
 				dirt_picture.updatePictureButtons("#dirt_picture");
 	
 				dirt_page.add('dirt_picture_count');
