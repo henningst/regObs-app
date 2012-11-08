@@ -674,13 +674,14 @@ var main = (function() {
 			var bodyHeight = jQuery("body").height();
 			var top = height - 52;
 
+			console.log("pp: heights " + height + " , " + bodyHeight);
+			
 			jQuery(".addAbort").css("top", (top + 45 + 45) + "px");
 			jQuery(".sendGroup").css("top", (top + 45 + 45 ) + "px");
 
 			jQuery(".listScroller").css("height", (top - 55) + "px");
-			jQuery(".pageScroller").css("height", (bodyHeight - 55) + "px")
-			jQuery(".pageScroller.full, #map_page").css("height", (bodyHeight - 50 ) + "px")
-			
+			jQuery(".pageScroller").css("height", (height + 38) + "px");
+			jQuery(".pageScroller.full, #map_page").css("height", (bodyHeight - 50 ) + "px");
 			
 		},
 		
