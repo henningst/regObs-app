@@ -12,8 +12,8 @@ var map_obs_page = {
 	loadObservations : function(position){
 		var packaged_pos = { 
 				coords: {
-					latitude : position.Xa,
-					longitude : position.Ya
+					latitude : position.lat(),
+					longitude : position.lng()
 				}
 		};
 		map_obs_page.setPosAndUpdateObservations.call(map_obs_page, packaged_pos);
