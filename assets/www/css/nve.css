@@ -10,10 +10,6 @@ body{
 	
 }
 
-* {
-  -webkit-tap-highlight-color: rgba(142, 142, 142, 1);
-  -webkit-user-modify: read-write-plaintext-only;
-}
 
 .testMode
 {

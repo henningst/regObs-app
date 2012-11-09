@@ -610,6 +610,7 @@ var main = (function() {
 			content.find("p").wrap(messageText);
 			main.showDialog(content);
 		},
+		
 
 		showWaitingDialogWithMessage : function(message) {
 			main.dialogShowing = true;
