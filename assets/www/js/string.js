@@ -260,3 +260,8 @@ ERROR_TIMEOUT = "Vi kunne dessverre ikke avslutte oprasjonen i tide. Prøv igjen
 
 NO_CONNECTION = "Det er ikke mulig å nå regObs når du ikke er kobliet til internett."
 
+BAD_REQUEST = "regObs kunne ikke ta i mot registeringen. Forsøk på nytt, eller nullstill appen å gjenta registeringen."
+	
+INTERNAL_ERROR = "regObs har middlertidige problemer. Forsøk innsending igjen senere."
+	
+UVENTET_FEIL = "Det har oppstått en uventet feil ifb. innsending av registering. Forsøk igjen senere. Feilen er rapportert."

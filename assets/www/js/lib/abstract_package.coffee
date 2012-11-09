@@ -13,15 +13,22 @@ class AbstractPackage
     @pages = []
 
   onError: (data) =>
-    if(data.message != undefined && data.message == "HTTP request failed")
-      main.noConnectionDialog()
-      return
-    
-    
-    console.log("pp: error occured sending package "+ data)
+    if(main.haveConnection())
+      @handleStatusCode(data.response.statusCode)
+      
+      console.log("pp: error occured sending package "+ data)
      
-    new ErrorHandler().handleError(data)
-    main.updateCollection(main.store.packageCollection)
+      new ErrorHandler().handleErrorSilent(data)
+      main.updateCollection(main.store.packageCollection)  
+    else
+      main.noConnectionDialog()
+  
+  handleStatusCode: (code) ->
+    console.log("pp: statusCode " + code + ", is " + typeof code)
+    switch code
+      when 400 then main.showDialogWithMessage(BAD_REQUEST)
+      when 500 then main.showDialogWithMessage(INTERNAL_ERROR)
+      else main.showDialogWithMessage(UVENTET_FEIL)
   
   superInit: () =>
     @pages = [@page, @picturePage, @hendelsePage]
@@ -152,7 +159,7 @@ class AbstractPackage
         clone = @castedModel(clone)
         clone.beforeSend(x++) if clone.beforeSend
                 
-        delete clone.model if clone.model          
+        #delete clone.model if clone.model          
         SendObjectToServer(clone, undefined, (error) => @onError(error))
           
         

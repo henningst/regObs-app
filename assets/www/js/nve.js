@@ -637,11 +637,6 @@ var main = (function() {
 		},
 		
 		warnLoginBefore : function(after) {
-			if(!main.haveConnection()){
-				main.noConnectionDialog();
-				return;
-			}
-			
 			if (!main.currentlyLoggedIn) {
 				main.warnBefore("Ikke innlogget", NOT_LOGGED_IN_WARNING, OK, after + "()", LOGIN_BUTTON, 'main.goToAndHide(\"login_page\")');
 			} else {

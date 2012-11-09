@@ -55,16 +55,16 @@ class NveStore
   
       
   sendSnow: (callback) =>
-      main.hideDialog() 
-      if @m_snowPackage and not IsEmpty(@m_snowPackage)
-        @m_snowPackage.setGroup(jQuery("#snow_obs .selectedGroup").val());
-        @packageCollection.add(@m_snowPackage)
-        
-        @clearSnow()
+    main.hideDialog()
+    if @m_snowPackage and not IsEmpty(@m_snowPackage)
+      @m_snowPackage.setGroup(jQuery("#snow_obs .selectedGroup").val());
+      @packageCollection.add(@m_snowPackage)
       
-      @packageCollection.forall (p) => @sendAndHandlePackage(p)
-      callback() if callback
-      
+      @clearSnow()
+    
+    @packageCollection.forall (p) => @sendAndHandlePackage(p)
+    callback() if callback
+
   resetGroups : () =>
     jQuery(".selectedGroup").val(0);
     jQuery(".groupButton").attr("value", "Gruppe").removeClass("pressed");

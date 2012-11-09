@@ -5,16 +5,20 @@ ErrorHandler = (function() {
 
   function ErrorHandler() {}
 
-  ErrorHandler.prototype.handleError = function(exception) {
+  ErrorHandler.prototype.handleErrorSilent = function(exception) {
     var error_code, stacktrace;
     error_code = this.errorCode();
     stacktrace = printStackTrace();
     console.log("pp: feil catched " + JSON.stringify(exception));
-    Bugsense.notify({
+    return Bugsense.notify({
       error: exception,
       code: error_code,
       stack: stacktrace
     });
+  };
+
+  ErrorHandler.prototype.handleError = function(exception) {
+    this.handleErrorSilent(exception);
     return main.showDialogWithMessage("Feilen rapporteres til utviklingsteamet. Hvis du ønsker å bidra med ytligere informasjon, noter koden \"" + error_code + "\" og send en mail.", "En feil har oppstått");
   };
 

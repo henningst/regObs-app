@@ -86,13 +86,26 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.onError = function(data) {
-    if (data.message !== void 0 && data.message === "HTTP request failed") {
-      main.noConnectionDialog();
-      return;
+    if (main.haveConnection()) {
+      this.handleStatusCode(data.response.statusCode);
+      console.log("pp: error occured sending package " + data);
+      new ErrorHandler().handleErrorSilent(data);
+      return main.updateCollection(main.store.packageCollection);
+    } else {
+      return main.noConnectionDialog();
     }
-    console.log("pp: error occured sending package " + data);
-    new ErrorHandler().handleError(data);
-    return main.updateCollection(main.store.packageCollection);
+  };
+
+  AbstractPackage.prototype.handleStatusCode = function(code) {
+    console.log("pp: statusCode " + code + ", is " + typeof code);
+    switch (code) {
+      case 400:
+        return main.showDialogWithMessage(BAD_REQUEST);
+      case 500:
+        return main.showDialogWithMessage(INTERNAL_ERROR);
+      default:
+        return main.showDialogWithMessage(UVENTET_FEIL);
+    }
   };
 
   AbstractPackage.prototype.superInit = function() {
@@ -306,9 +319,6 @@ AbstractPackage = (function() {
       clone = _this.castedModel(clone);
       if (clone.beforeSend) {
         clone.beforeSend(x++);
-      }
-      if (clone.model) {
-        delete clone.model;
       }
       return SendObjectToServer(clone, void 0, function(error) {
         return _this.onError(error);

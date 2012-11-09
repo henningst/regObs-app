@@ -3,7 +3,7 @@
 class ErrorHandler
   constructor: () ->
     
-  handleError: (exception)->  
+  handleErrorSilent : (exception) ->
     error_code = @errorCode()
     stacktrace = printStackTrace();
     console.log("pp: feil catched " + JSON.stringify(exception))
@@ -13,6 +13,10 @@ class ErrorHandler
       code: error_code
       stack : stacktrace
     });
+    
+    
+  handleError: (exception)->  
+    @handleErrorSilent(exception)
     main.showDialogWithMessage("Feilen rapporteres til utviklingsteamet. Hvis du ønsker å bidra med ytligere informasjon, noter koden \"#{error_code}\" og send en mail.", "En feil har oppstått");
  
   
