@@ -513,12 +513,12 @@ var main = (function() {
 			geo.requestPosition(main.nothing, false);
 
 			new ErrorHandler().hookInto();
-			
-			jQuery("[onclick]").each(function(index, obj){
-				var click = obj.onclick
-				jQuery(obj).bind('tapone', click);
-				jQuery(obj).attr("onclick", "");
-			})
+//			
+//			jQuery("[onclick]").each(function(index, obj){
+//				var click = obj.onclick
+//				jQuery(obj).bind('tapone', click);
+//				jQuery(obj).attr("onclick", "");
+//			})
 		},
 
 		backKeyDown : function(e) {
