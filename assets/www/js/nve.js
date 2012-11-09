@@ -1233,16 +1233,8 @@ var main = (function() {
 		console.log(device.platform)
 		if(device.platform === "android")
 		{
-//			var textarea = this;
-//			var top = jQuery(this).position().top;
-//			
-//			
-//			var button = jQuery("<input class='done-button' type='button' value='OK'/>");
-//			button.find("input").click(function(){
-//				jQuery(textarea).trigger("blur");
-//				jQuery(this).hide();
-//			})
-//			jQuery(this).after(button)
+			var id = jQuery(this).parents(".scrolling").attr("id");
+			main.scrollers[id].scrollToElement(this);
 		}
 	});
 	
