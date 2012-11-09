@@ -159,7 +159,7 @@ class AbstractPackage
         clone = @castedModel(clone)
         clone.beforeSend(x++) if clone.beforeSend
                 
-        #delete clone.model if clone.model          
+        delete clone.model if clone.model          
         SendObjectToServer(clone, undefined, (error) => @onError(error))
           
         

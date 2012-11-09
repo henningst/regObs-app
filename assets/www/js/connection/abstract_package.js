@@ -320,6 +320,9 @@ AbstractPackage = (function() {
       if (clone.beforeSend) {
         clone.beforeSend(x++);
       }
+      if (clone.model) {
+        delete clone.model;
+      }
       return SendObjectToServer(clone, void 0, function(error) {
         return _this.onError(error);
       });
