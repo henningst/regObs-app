@@ -134,6 +134,7 @@ public class ForegroundGalleryLauncher extends CameraLauncher
         }
         else if (resultCode == Activity.RESULT_CANCELED)
         {
+            this.error("Selection cancelled.", this.callbackId);
             this.failPicture("Selection cancelled.");
         }
         else
