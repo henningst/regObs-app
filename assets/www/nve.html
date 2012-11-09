@@ -315,7 +315,7 @@ body {
                     </ul>
                     
                     <div class="bottom_button c_center_page">
-                      <input type="button" class="center w_button w_radius w_border c_red_gradient bigWidth" value="Slett observasjoner" onclick="main.store.deleteSnow(); snow_page.init();"/>
+                      <input type="button" class="center w_button w_radius w_border c_red_gradient bigWidth" value="Slett observasjoner" onclick="main.warnDeletionBefore(main.store.deleteSnow(); snow_page.init());"/>
                     </div>
                 </div>
                 
@@ -674,7 +674,7 @@ body {
     
                     </ul>
                     <div class="bottom_button c_center_page">
-                      <input type="button" class="center w_button w_radius w_border c_red_gradient bigWidth" value="Slett observasjoner" onclick="main.store.deleteWater(); water_page.init();"/>
+                      <input type="button" class="center w_button w_radius w_border c_red_gradient bigWidth" value="Slett observasjoner" onclick="main.warnDeletionBefore(main.store.deleteWater(); water_page.init());"/>
                     </div>
                 </div>
             </div>
@@ -813,7 +813,7 @@ body {
     
                     </ul>
                     <div class="bottom_button c_center_page">
-                      <input type="button" class="center w_button w_radius w_border c_red_gradient bigWidth" value="Slett observasjoner" onclick="main.store.deleteDirt(); dirt_page.init();"/>
+                      <input type="button" class="center w_button w_radius w_border c_red_gradient bigWidth" value="Slett observasjoner" onclick="main.warnDeletionBefore(main.store.deleteDirt(); dirt_page.init());"/>
                     </div>
                 </div>
             </div>

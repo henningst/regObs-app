@@ -48,6 +48,7 @@ var water_obs=  water_page = {
 		login_page.showGroupStatus();
 		
 		this.showStar();
+		main.updateCollection(main.store.packageCollection);
 	},
 };
 

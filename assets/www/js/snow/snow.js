@@ -53,7 +53,7 @@ var snow_obs =  snow_page = {
 		login_page.showGroupStatus();
 		
 		this.showStar();
-		
+		main.updateCollection(main.store.packageCollection);
 	}
 };
 
