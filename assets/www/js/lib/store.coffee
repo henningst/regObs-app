@@ -55,6 +55,7 @@ class NveStore
   
       
   sendSnow: (callback) =>
+      main.hideDialog() 
       if @m_snowPackage and not IsEmpty(@m_snowPackage)
         @m_snowPackage.setGroup(jQuery("#snow_obs .selectedGroup").val());
         @packageCollection.add(@m_snowPackage)

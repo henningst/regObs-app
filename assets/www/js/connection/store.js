@@ -77,6 +77,7 @@ NveStore = (function() {
 
   NveStore.prototype.sendSnow = function(callback) {
     var _this = this;
+    main.hideDialog();
     if (this.m_snowPackage && !IsEmpty(this.m_snowPackage)) {
       this.m_snowPackage.setGroup(jQuery("#snow_obs .selectedGroup").val());
       this.packageCollection.add(this.m_snowPackage);

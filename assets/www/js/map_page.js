@@ -3,7 +3,7 @@ var map_page = {
 	map: null,
 	geo_hazard : null,
 	init: function(){
-		
+		main.handleNoConnection();
 		var mapOptions = {
 				zoom: 6,
 				center: new google.maps.LatLng(60.1, 10.0),

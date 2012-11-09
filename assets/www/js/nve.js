@@ -218,6 +218,12 @@ var main = (function() {
 			return navigator.network.connection.type !== Connection.NONE;
 		},
 		
+		handleNoConnection: function(){
+			if(!main.haveConnection()){
+				main.noConnectionDialog();
+			}
+		},
+		
 		handleConnectionFailed: function(e){
 			if(main.haveConnection()){
 				console.log("pp: connection failed but we have internett:" + JSON.stringify(e))
@@ -631,6 +637,11 @@ var main = (function() {
 		},
 		
 		warnLoginBefore : function(after) {
+			if(!main.haveConnection()){
+				main.noConnectionDialog();
+				return;
+			}
+			
 			if (!main.currentlyLoggedIn) {
 				main.warnBefore("Ikke innlogget", NOT_LOGGED_IN_WARNING, OK, after + "()", LOGIN_BUTTON, 'main.goToAndHide(\"login_page\")');
 			} else {

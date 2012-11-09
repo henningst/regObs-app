@@ -258,5 +258,5 @@ ERROR_NO_LOGIN_CURRENT_MODE = "Du er ikke logget på i denne versjonen av regObs
 
 ERROR_TIMEOUT = "Vi kunne dessverre ikke avslutte oprasjonen i tide. Prøv igjen.";
 
-NO_CONNECTION = "Det er ikke mulig å nå regObs da du ikke er kobliet til internett."
+NO_CONNECTION = "Det er ikke mulig å nå regObs når du ikke er kobliet til internett."
 
