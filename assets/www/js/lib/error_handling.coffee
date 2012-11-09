@@ -5,13 +5,18 @@ class ErrorHandler
     
   handleErrorSilent : (exception) ->
     error_code = @errorCode()
-    stacktrace = printStackTrace();
+    
+    if(exception.request != undefined)
+      delete exception.request
+      
+    if(exception.response != undefined)
+      delete exception.response
+    
     console.log("pp: feil catched " + JSON.stringify(exception))
     
     Bugsense.notify({
       error: exception
       code: error_code
-      stack : stacktrace
     });
     
     

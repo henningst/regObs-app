@@ -6,14 +6,18 @@ ErrorHandler = (function() {
   function ErrorHandler() {}
 
   ErrorHandler.prototype.handleErrorSilent = function(exception) {
-    var error_code, stacktrace;
+    var error_code;
     error_code = this.errorCode();
-    stacktrace = printStackTrace();
+    if (exception.request !== void 0) {
+      delete exception.request;
+    }
+    if (exception.response !== void 0) {
+      delete exception.response;
+    }
     console.log("pp: feil catched " + JSON.stringify(exception));
     return Bugsense.notify({
       error: exception,
-      code: error_code,
-      stack: stacktrace
+      code: error_code
     });
   };
 
