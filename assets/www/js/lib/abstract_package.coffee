@@ -19,9 +19,10 @@ class AbstractPackage
       console.log("pp: error occured sending package "+ data)
      
       new ErrorHandler().handleErrorSilent(data)
-      main.updateCollection(main.store.packageCollection)  
     else
       main.noConnectionDialog()
+
+    main.updateCollection(main.store.packageCollection)  
   
   handleStatusCode: (code) ->
     console.log("pp: statusCode " + code + ", is " + typeof code)

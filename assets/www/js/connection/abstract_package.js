@@ -90,10 +90,10 @@ AbstractPackage = (function() {
       this.handleStatusCode(data.response.statusCode);
       console.log("pp: error occured sending package " + data);
       new ErrorHandler().handleErrorSilent(data);
-      return main.updateCollection(main.store.packageCollection);
     } else {
-      return main.noConnectionDialog();
+      main.noConnectionDialog();
     }
+    return main.updateCollection(main.store.packageCollection);
   };
 
   AbstractPackage.prototype.handleStatusCode = function(code) {
