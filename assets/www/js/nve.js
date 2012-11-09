@@ -592,6 +592,9 @@ var main = (function() {
 		},
 
 		showDialogWithMessage : function(message, header) {
+			main.dialogShowing = false;
+			main.dialogStarted = null;
+			
 			if (header == undefined)
 				header = "Melding";
 
