@@ -242,6 +242,7 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 
 		// If cancelled
 		else if (resultCode == Activity.RESULT_CANCELED) {
+		  this.error("Camera cancelled", this.callbackId);
 			this.failPicture("Camera cancelled.");
 		}
 

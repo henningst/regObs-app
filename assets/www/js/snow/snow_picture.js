@@ -52,6 +52,7 @@ var snow_picture  = {
 
 	onFail: function(message) {
 //		alert("Lagre bilde feil");
+		console.log("pp: image fail");
 		main.hideDialog();
 	},
 	
