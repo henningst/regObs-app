@@ -215,7 +215,7 @@ var main = (function() {
 		},
 
 		haveConnection: function(){
-			return navigator.network.connection.type !== Connection.NONE;
+			return navigator.network.connection.type !== Connection.NONE && navigator.network.connection.type !== Connection.UNKNOWN;
 		},
 		
 		handleNoConnection: function(){

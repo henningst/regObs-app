@@ -5,7 +5,6 @@ class ErrorHandler
     
   handleErrorSilent : (exception) ->
     error_code = @errorCode()
-    
     if(exception.request != undefined)
       delete exception.request
       
