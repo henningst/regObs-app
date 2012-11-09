@@ -24,6 +24,8 @@ var login_page = {
 
     		login_page.showLoginStatus(true);
     		main.hideDialog();
+    		
+    		main.panels.slideBack();
     	}
     	
     	login_page.updateGroups(login_page.showGroupStatus());
@@ -57,10 +59,7 @@ var login_page = {
 	},
 	
 	loginErrorCallback: function(data) {
-//		alert("errir");
-//		login_page.showLoginStatus(false);
-//		setTimeout(main.errorDialog, 5000);
-		main.errorDialog();
+		main.handleConnectionFailed(data);
 	},
 	
 	clickLogOut: function() {

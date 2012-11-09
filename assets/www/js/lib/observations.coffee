@@ -44,7 +44,7 @@ class ObservationFetcher
       success: @fetchedDataHandler(callback) ,
       error :  (e)->
         console.log("pp: failed fetching observations")
-        console.log("failed #{JSON.stringify(e)}" )
+        main.handleConnectionFailed(e);
     })
   
   fetchedDataHandler: (callback)=>

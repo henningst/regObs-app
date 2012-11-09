@@ -214,6 +214,19 @@ var main = (function() {
 			return SERVER_URL;
 		},
 
+		haveConnection: function(){
+			return navigator.network.connection.type !== Connection.NONE;
+		},
+		
+		handleConnectionFailed: function(e){
+			if(main.haveConnection()){
+				console.log("pp: connection failed but we have internett:" + JSON.stringify(e))
+			}else{
+				main.noConnectionDialog();
+			}
+				
+		},
+		
 		updateCollection : function(collection) {
 			if (collection.size() > 0) {
 				jQuery(".numPackages").hide().text(collection.size()).show();
@@ -897,6 +910,7 @@ var main = (function() {
 			main.updateCollection(main.store.packageCollection);
 			main.updateLoginStatusAndBehaviour();
 
+			console.log("pp: have connection " + main.haveConnection());
 			
 			if (status == 'start' && main.initialised) {
 				// google analytics
