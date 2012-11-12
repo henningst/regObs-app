@@ -11,7 +11,7 @@ class SendInPictureCommand
 	
 	send: () =>
 		console.log("pp: sending picture " + JSON.stringify(@picture.PictureImage) )
-		if(device.platform == "andoid")
+		if(device.platform == "android")
 		  prefix = "file://"
 		else
 		  prefix = ""

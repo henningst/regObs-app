@@ -36,7 +36,7 @@ SendInPictureCommand = (function() {
   SendInPictureCommand.prototype.send = function() {
     var prefix;
     console.log("pp: sending picture " + JSON.stringify(this.picture.PictureImage));
-    if (device.platform === "andoid") {
+    if (device.platform === "android") {
       prefix = "file://";
     } else {
       prefix = "";
