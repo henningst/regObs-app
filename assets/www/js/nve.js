@@ -513,7 +513,7 @@ var main = (function() {
 			geo.requestPosition(main.nothing, false);
 
 			new ErrorHandler().hookInto();
-			
+
 			main.clickToTap();
 			
 		},
@@ -521,13 +521,13 @@ var main = (function() {
 		clickToTap: function(){
 			jQuery("[onclick]").each(function(index, obj){
 				try{
-					var click = obj.onclick
-					jQuery(obj).bind('tapone', click);
+					var click = obj.onclick;
+					jQuery(obj).bind('tapone', click );
 					jQuery(obj).attr("onclick", "");
 				}catch(e){
 					console.log("pp: tap hookup failed " + e );
 				}
-			})
+			});
 		},
 
 		backKeyDown : function(e) {
