@@ -53,6 +53,8 @@ class AbstractPackage
     date = new Date()
     hourOffset = (date.getTimezoneOffset() / 60) * -1
     @regDate = new Date(date.setHours(date.getHours() + hourOffset))
+    console.log("pp: setting regdate " + JSON.stringify(@regDate))
+    
    
   setGroup: (groupId)=>
     @groupId = groupId

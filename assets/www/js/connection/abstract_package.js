@@ -152,7 +152,8 @@ AbstractPackage = (function() {
     var date, hourOffset;
     date = new Date();
     hourOffset = (date.getTimezoneOffset() / 60) * -1;
-    return this.regDate = new Date(date.setHours(date.getHours() + hourOffset));
+    this.regDate = new Date(date.setHours(date.getHours() + hourOffset));
+    return console.log("pp: setting regdate " + JSON.stringify(this.regDate));
   };
 
   AbstractPackage.prototype.setGroup = function(groupId) {

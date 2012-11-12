@@ -34,8 +34,8 @@ SendInPictureCommand = (function() {
   }
 
   SendInPictureCommand.prototype.send = function() {
-    console.log("sending picture");
-    return window.resolveLocalFileSystemURI(this.picture.PictureImage, this.gotFileEntry, this.fail);
+    console.log("pp: sending picture " + JSON.stringify(this.picture.PictureImage));
+    return window.resolveLocalFileSystemURI("file://" + this.picture.PictureImage, this.gotFileEntry, this.fail);
   };
 
   SendInPictureCommand.prototype.gotFS = function(fileSystem) {

@@ -10,8 +10,8 @@ class SendInPictureCommand
 		console.log("createing send in picture command")
 	
 	send: () =>
-		console.log("sending picture")
-		window.resolveLocalFileSystemURI(@picture.PictureImage, @gotFileEntry, @fail);
+		console.log("pp: sending picture " + JSON.stringify(@picture.PictureImage) )
+		window.resolveLocalFileSystemURI("file://" + @picture.PictureImage, @gotFileEntry, @fail);
 		
 	gotFS: (fileSystem) =>
 		console.log("got file system")
