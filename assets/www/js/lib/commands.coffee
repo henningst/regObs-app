@@ -11,7 +11,12 @@ class SendInPictureCommand
 	
 	send: () =>
 		console.log("pp: sending picture " + JSON.stringify(@picture.PictureImage) )
-		window.resolveLocalFileSystemURI("file://" + @picture.PictureImage, @gotFileEntry, @fail);
+		if(device.platform == "andoid")
+		  prefix = "file://"
+		else
+		  prefix = ""
+		  
+		window.resolveLocalFileSystemURI(prefix + @picture.PictureImage, @gotFileEntry, @fail);
 		
 	gotFS: (fileSystem) =>
 		console.log("got file system")

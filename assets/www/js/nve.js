@@ -226,7 +226,7 @@ var main = (function() {
 		
 		handleConnectionFailed: function(e){
 			if(main.haveConnection()){
-				console.log("pp: connection failed but we have internett:" + JSON.stringify(e))
+				console.log("pp: connection failed but we have internett:") // + JSON.stringify(e))
 			}else{
 				main.noConnectionDialog();
 			}
@@ -513,12 +513,21 @@ var main = (function() {
 			geo.requestPosition(main.nothing, false);
 
 			new ErrorHandler().hookInto();
-//			
-//			jQuery("[onclick]").each(function(index, obj){
-//				var click = obj.onclick
-//				jQuery(obj).bind('tapone', click);
-//				jQuery(obj).attr("onclick", "");
-//			})
+			
+			main.clickToTap();
+			
+		},
+		
+		clickToTap: function(){
+			jQuery("[onclick]").each(function(index, obj){
+				try{
+					var click = obj.onclick
+					jQuery(obj).bind('tapone', click);
+					jQuery(obj).attr("onclick", "");
+				}catch(e){
+					console.log("pp: tap hookup failed " + e );
+				}
+			})
 		},
 
 		backKeyDown : function(e) {
@@ -581,6 +590,8 @@ var main = (function() {
 							+ "<button type='button' "
 							+ "class='w_bg_light c_button w_button w_radius popupbutton-dual emailButton' onclick='main.sendEmail();'>"
 							+ SEND_EMAIL + "</button>" + "</div>");
+			
+			main.clickToTap();
 		},
 
 		errorDialog : function() {
@@ -770,6 +781,7 @@ var main = (function() {
 			jQuery("#footer, .sendGroup").hide();
 			jQuery("#dialog").show();
 
+			main.clickToTap();
 			var dialog = jQuery("#dialog");
 			if (dialog != null) {
 				dialog.bind("touchmove", function(event) {
@@ -932,9 +944,9 @@ var main = (function() {
 				// google analytics
 				console.log("analytics " + window.analytics);
 				window.analytics.trackPageView(params.id, function(d) {
-					console.log("success " + JSON.stringify(d))
+					//console.log("success " + JSON.stringify(d))
 				}, function(d) {
-					console.log("fail " + JSON.stringify(d))
+					//console.log("fail " + JSON.stringify(d))
 				});
 			}
 
@@ -1217,6 +1229,9 @@ var main = (function() {
 		}
 	};
 
+	
+	
+	
 	window.addEventListener('load', E(wink.bind(main.init, main)), false);
 	document.addEventListener("deviceready", E(main.initPhonegap), false);
 
@@ -1229,6 +1244,9 @@ var main = (function() {
 		main.resetHeights();
 	};
 
+	
+	
+	
 	jQuery("textarea").live("focus", function(){
 		console.log(device.platform)
 		if(device.platform === "android")

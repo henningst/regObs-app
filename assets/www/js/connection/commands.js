@@ -34,8 +34,14 @@ SendInPictureCommand = (function() {
   }
 
   SendInPictureCommand.prototype.send = function() {
+    var prefix;
     console.log("pp: sending picture " + JSON.stringify(this.picture.PictureImage));
-    return window.resolveLocalFileSystemURI("file://" + this.picture.PictureImage, this.gotFileEntry, this.fail);
+    if (device.platform === "andoid") {
+      prefix = "file://";
+    } else {
+      prefix = "";
+    }
+    return window.resolveLocalFileSystemURI(prefix + this.picture.PictureImage, this.gotFileEntry, this.fail);
   };
 
   SendInPictureCommand.prototype.gotFS = function(fileSystem) {

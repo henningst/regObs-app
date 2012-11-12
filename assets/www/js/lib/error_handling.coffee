@@ -3,8 +3,14 @@
 class ErrorHandler
   constructor: () ->
     
-  handleErrorSilent : (exception) ->
-    error_code = @errorCode()
+    
+  errorCode : ()->
+    Math.floor(Math.random() * 0x10000).toString(16)
+    
+  handleErrorSilent : (exception, error_code) ->
+    if not error_code
+      error_code = @errorCode()
+      
     if(exception.request != undefined)
       delete exception.request
       
@@ -20,18 +26,22 @@ class ErrorHandler
     
     
   handleError: (exception)->  
-    @handleErrorSilent(exception)
+    error_code = @errorCode()
+    @handleErrorSilent(exception, error_code)
     main.showDialogWithMessage("Feilen rapporteres til utviklingsteamet. Hvis du ønsker å bidra med ytligere informasjon, noter koden \"#{error_code}\" og send en mail.", "En feil har oppstått");
  
   
   hookInto : ()->
-    jQuery("[onclick]").each (index, obj) ->
-      if(obj.onclick)
-        funksjon = obj.onclick
-        obj.onclick = E(funksjon)
+    jQuery("[onclick]").each( (index, obj) ->
+      try
+        if(obj.onclick)
+          funksjon = obj.onclick
+          obj.onclick = E(funksjon)
+      catch e
+        console.log("pp: hook into failed " + e)
+    )
         
-  errorCode : ()->
-    Math.floor(Math.random() * 0x10000).toString(16)
+  
 
   
 window.customErrorHandler = new ErrorHandler()

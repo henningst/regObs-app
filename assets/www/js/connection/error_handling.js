@@ -5,9 +5,14 @@ ErrorHandler = (function() {
 
   function ErrorHandler() {}
 
-  ErrorHandler.prototype.handleErrorSilent = function(exception) {
-    var error_code;
-    error_code = this.errorCode();
+  ErrorHandler.prototype.errorCode = function() {
+    return Math.floor(Math.random() * 0x10000).toString(16);
+  };
+
+  ErrorHandler.prototype.handleErrorSilent = function(exception, error_code) {
+    if (!error_code) {
+      error_code = this.errorCode();
+    }
     if (exception.request !== void 0) {
       delete exception.request;
     }
@@ -22,22 +27,24 @@ ErrorHandler = (function() {
   };
 
   ErrorHandler.prototype.handleError = function(exception) {
-    this.handleErrorSilent(exception);
+    var error_code;
+    error_code = this.errorCode();
+    this.handleErrorSilent(exception, error_code);
     return main.showDialogWithMessage("Feilen rapporteres til utviklingsteamet. Hvis du ønsker å bidra med ytligere informasjon, noter koden \"" + error_code + "\" og send en mail.", "En feil har oppstått");
   };
 
   ErrorHandler.prototype.hookInto = function() {
     return jQuery("[onclick]").each(function(index, obj) {
       var funksjon;
-      if (obj.onclick) {
-        funksjon = obj.onclick;
-        return obj.onclick = E(funksjon);
+      try {
+        if (obj.onclick) {
+          funksjon = obj.onclick;
+          return obj.onclick = E(funksjon);
+        }
+      } catch (e) {
+        return console.log("pp: hook into failed " + e);
       }
     });
-  };
-
-  ErrorHandler.prototype.errorCode = function() {
-    return Math.floor(Math.random() * 0x10000).toString(16);
   };
 
   return ErrorHandler;
