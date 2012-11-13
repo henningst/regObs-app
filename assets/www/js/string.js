@@ -252,16 +252,17 @@ ERROR_WRONG_LOGIN = "Pålogging feilet, sjekk bruker navn og passord";
 /*
  * Popup hvis vi ikke finner god nok posisjon. 
  */
-ERROR_NO_POSITION = "Det er ikke mulig &aring; finne en posisjon. Sjekk instillinger, forbedre GPS motakk og pr&oslash;v igjen";
+ERROR_NO_POSITION = "Det er ikke mulig &aring; finne en posisjon. Sjekk instillinger, forbedre GPS mottakk og pr&oslash;v igjen";
 
 ERROR_NO_LOGIN_CURRENT_MODE = "Du er ikke logget på i denne versjonen av regObs.";
 
-ERROR_TIMEOUT = "Vi kunne dessverre ikke avslutte oprasjonen i tide. Prøv igjen.";
+ERROR_TIMEOUT = "Vi kunne dessverre ikke avslutte operasjonen i tide. Prøv igjen.";
 
-NO_CONNECTION = "Det er ikke mulig å nå regObs når du ikke er kobliet til internett."
+NO_CONNECTION = "Det er ikke mulig å nå regObs når du ikke er koblet til internett."
 
 BAD_REQUEST = "regObs kunne ikke ta i mot registeringen. Forsøk på nytt, eller nullstill appen å gjenta registeringen."
 	
 INTERNAL_ERROR = "regObs har middlertidige problemer. Forsøk innsending igjen senere."
 	
 UVENTET_FEIL = "Det har oppstått en uventet feil ifb. innsending av registering. Forsøk igjen senere. Feilen er rapportert."
+
