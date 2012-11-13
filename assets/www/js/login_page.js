@@ -19,13 +19,15 @@ var login_page = {
     		main.showDialogWithMessage(ERROR_WRONG_LOGIN, "Login");
     	} else {
     		var user = UserStore.get(main.currentMode());
+    		console.log("pp: relogin user " + JSON.stringify(user))
     		user.id = data.ObserverID;
     		UserStore.save(main.currentMode(), user);
 
     		login_page.showLoginStatus(true);
     		main.hideDialog();
     		
-    		main.panels.slideBack();
+    		if(main.currentPage == "login_page")
+    			main.panels.slideBack();
     	}
     	
     	login_page.updateGroups(login_page.showGroupStatus());

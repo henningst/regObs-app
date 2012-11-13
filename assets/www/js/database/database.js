@@ -51,7 +51,7 @@ DataAccess = {
     if (currectDataVersion && version > currectDataVersion) {
       user_normal = UserStore.get(TEST_MODE);
       user_stage = UserStore.get(STAGE_MODE);
-      main.resetApp();
+      DataAccess.clear();
       UserStore.save(TEST_MODE, user_normal);
       UserStore.save(STAGE_MODE, user_stage);
     } else {
