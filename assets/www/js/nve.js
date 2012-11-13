@@ -455,11 +455,8 @@ var main = (function() {
 
 			var user = UserStore.get(main.currentMode());
 			if (!user.isDefined()) {
-				main
-						.showDialogWithMessage(ERROR_NO_LOGIN_CURRENT_MODE,
-								"Login");
+				main.warnBefore("Login", ERROR_NO_LOGIN_CURRENT_MODE, "OK", "main.hideDialog()", "Login", 'main.panels.slideTo("login_page"); main.hideDialog();');
 			}
-
 		},
 
 		toogleTestMode : function() {
