@@ -526,9 +526,11 @@ AbstractPackage = (function() {
     if (groupId === 0) {
       groupId = void 0;
     }
+    console.log("pp: regdate is " + this.regDate + ", " + typeof this.regDate);
     if (typeof this.regDate === "string") {
-      this.regDate = new Date(this.regDate);
+      this.regDate = new Date(Date.fromISOString(this.regDate));
     }
+    console.log("pp: regdate is now " + this.regDate + ", " + typeof this.regDate);
     registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, this.regDate, this.competancy, groupId);
     return SendObjectToServer(registration, (function(data) {
       return _this.afterRegistration(data, area, force);
