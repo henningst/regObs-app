@@ -248,6 +248,7 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 
 		// If something else
 		else {
+		  this.error("Camera unavailable", this.callbackId);
 			this.failPicture("Did not complete!");
 		}
 	}

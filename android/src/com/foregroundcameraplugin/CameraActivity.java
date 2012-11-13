@@ -41,7 +41,7 @@ import android.widget.FrameLayout;
 public class CameraActivity extends Activity {
 
 	private static final String TAG = "CameraActivity";
-
+	public static final int CAMERA_UNAVAILABLE = 0x1001;
 	private Camera mCamera;
 	private ForegroundCameraPreview mPreview;
 	private boolean pressed = false;
@@ -53,6 +53,10 @@ public class CameraActivity extends Activity {
 
 		// Create an instance of Camera
 		mCamera = getCameraInstance();
+		if(mCamera== null){
+		  setResult(CAMERA_UNAVAILABLE);
+      finish();
+		}
 
 		// Create a Preview and set it as the content of activity.
 		mPreview = new ForegroundCameraPreview(this, mCamera);
@@ -106,6 +110,7 @@ public class CameraActivity extends Activity {
 		Camera c = null;
 		try {
 			c = Camera.open(); // attempt to get a Camera instance
+			
 		} catch (Exception e) {
 			// Camera is not available (in use or does not exist)
 		}

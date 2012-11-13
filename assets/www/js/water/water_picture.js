@@ -49,6 +49,11 @@ var water_picture  = {
 	},
 
 	onFail: function(message) {
+		if(message === "Camera unavailable"){
+			main.showDialogWithMessage("Vi finner ikke eller kan ikke få tak i kameraet på denne telefonen.", "Kamera");
+			return;
+		}
+		
 		main.hideDialog();
 	},
 	

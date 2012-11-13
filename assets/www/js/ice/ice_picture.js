@@ -48,7 +48,11 @@ var ice_picture  = {
 	},
 
 	onFail: function(message) {
-//		alert("Lagre bilde feil");
+		if(message === "Camera unavailable"){
+			main.showDialogWithMessage("Vi finner ikke eller kan ikke få tak i kameraet på denne telefonen.", "Kamera");
+			return;
+		}
+		
 		main.hideDialog();
 	},
 	

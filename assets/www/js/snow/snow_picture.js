@@ -51,8 +51,12 @@ var snow_picture  = {
 	},
 
 	onFail: function(message) {
-//		alert("Lagre bilde feil");
-		console.log("pp: image fail");
+		if(message === "Camera unavailable"){
+			main.showDialogWithMessage("Vi finner ikke eller kan ikke få tak i kameraet på denne telefonen.", "Kamera");
+			return;
+		}
+		
+		console.log("pp: image fail " + message);
 		main.hideDialog();
 	},
 	
