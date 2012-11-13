@@ -1255,7 +1255,8 @@ var main = (function() {
 			if(jQuery(this).hasClass("noscroll"))
 				return;
 			
-			main.scrollers[id].scrollToElement(this);
+			main.scrollers[id].scrollToElement(this, 0);
+			main.scrollers[id].scrollTo(0, -60, 0, true);
 		}
 	});
 	
