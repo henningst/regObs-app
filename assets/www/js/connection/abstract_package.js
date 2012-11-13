@@ -488,7 +488,7 @@ AbstractPackage = (function() {
     var area, model, point, pointModelName, _i, _len, _ref;
     point = [];
     area = [];
-    pointModelName = ["SnowSurfaceObservation", "SnowCoverObs", "AvalancheActivityObs", "IceCoverObs", "IceThickness", "WaterLevel", "LandSlideObs"];
+    pointModelName = ["SnowSurfaceObservation", "SnowCoverObs", "IceCoverObs", "IceThickness", "WaterLevel", "LandSlideObs"];
     for (_i = 0, _len = models.length; _i < _len; _i++) {
       model = models[_i];
       if (model.model && (_ref = model.model, __indexOf.call(pointModelName, _ref) >= 0)) {

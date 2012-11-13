@@ -288,7 +288,7 @@ class AbstractPackage
   pointModels : (models)->
     point = []
     area = []
-    pointModelName = ["SnowSurfaceObservation", "SnowCoverObs", "AvalancheActivityObs", "IceCoverObs", "IceThickness", "WaterLevel", "LandSlideObs"]
+    pointModelName = ["SnowSurfaceObservation", "SnowCoverObs", "IceCoverObs", "IceThickness", "WaterLevel", "LandSlideObs"]
     
     for model in models
       if model.model &&  model.model in pointModelName
