@@ -17,7 +17,7 @@ var ice_cover = {
 		},
 		
 		fillIceCoverBeforeKD : function(data){
-			var options = jQuery("#ice_cover_list");
+			var options = jQuery("#ice_cover_before_list");
 			
 			//remove if previously inserted
 			jQuery.each(options, function() {jQuery(this).find('option').remove();});
@@ -28,7 +28,7 @@ var ice_cover = {
 		},
 		
 		fillIceCoverKD : function(data){
-			var options = jQuery("#ice_cover_before_list");
+			var options = jQuery("#ice_cover_list");
 			
 			//remove if previously inserted
 			jQuery.each(options, function() {jQuery(this).find('option').remove();});
@@ -43,7 +43,7 @@ var ice_cover = {
 			var before_list = jQuery("#ice_cover_before_list");
 			var comment = jQuery("#ice_cover_comment");
 
-			var obs = new IceCoverObs(0, list.val(), before_list.val(), 0, comment.val()); 
+			var obs = new IceCoverObs(0, before_list.val(), list.val(), 0, comment.val()); 
 			
 			ice_page.updateLocation(function(){
 				ice_cover.clear();
