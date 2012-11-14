@@ -530,6 +530,13 @@ ul.actions li{
   vertical-align: bottom;	
 }
 
+.learning_icon{
+  margin: 20px;
+  position: absolute;
+  right: 0px;
+  top: 35px;
+}
+
 .content_page{
   padding-top:10px;	
 }
@@ -841,5 +848,6 @@ ul.actions li{
 .max80px{
 	max-height: 80px;
 }
+
 
 

@@ -121,6 +121,10 @@ for(var i = 0; i <= 315/45 ; i++){
 /*
  * Hjelpetekst til observasjonene
  */
+
+LOGIN_PAGE = "<H3>Logg inn</H3>"
+	+ "<div>Logg inn med brukernavn og passord</div>";
+
 SNOW_PICTURE = "<H3>Ta bilde</H3>"
 	+ "<div>Gode bilder er svært nyttig for varslingsgruppa og andre som vil ha et inntrykk av hvordan snøforholdene er.</div>"
 	+ "<ul>"
@@ -265,4 +269,12 @@ BAD_REQUEST = "regObs kunne ikke ta i mot registeringen. Forsøk på nytt, eller
 INTERNAL_ERROR = "regObs har middlertidige problemer. Forsøk innsending igjen senere."
 	
 UVENTET_FEIL = "Det har oppstått en uventet feil ifb. innsending av registering. Forsøk igjen senere. Feilen er rapportert."
+	
+	
+/*
+ * Settings side
+ */
+UPDATE_DATA_HEADER = 'Oppdatere data';
+UPDATE_DATA_BODY = 'Ønsker du å laste ned all bakgrunnsdata på nytt?';
+
 

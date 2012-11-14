@@ -7,6 +7,11 @@ var learning_page = {
 			
 			switch(lastPage) 
 			{
+			case 'login_page':
+				$('learning_content').innerHTML = LOGIN_PAGE;
+				break;
+				
+			
 			case 'snow': 
     			break;
     			
