@@ -19,7 +19,7 @@ TEST_LOGIN = "http://h-web01.nve.no/stage_RegObsServices/Authentication_JSON_App
 STAGE_LOGIN = "http://api.nve.no/hydrology/regobs/v0.8.2/Authentication_JSON_AppService.axd/";
 SERVER_LOGIN_URL = TEST_LOGIN;
 
-WEB_LINK_URL_STAGE = "http://regobs.varsom.no/";
+WEB_LINK_URL_STAGE = "http://www.regobs.no/";
 WEB_LINK_URL_TEST = "http://h-web01.nve.no/stage_RegObsWeb/";
 WEB_LINK_URL = WEB_LINK_URL_TEST;
 
