@@ -81,6 +81,13 @@ var snow_activity = {
 			
 			jQuery("#snow_acitivity_no_observed").click	(nothingObservedChanged);
 			
+			jQuery("#snow_acitivity_no_observed").parent().click(function(){
+				if(jQuery("#snow_acitivity_no_observed").is(":checked"))
+					jQuery("#snow_acitivity_no_observed").attr('checked', true);
+				else
+					jQuery("#snow_acitivity_no_observed").attr('checked', false);
+			});
+			
 		},
 		
 		hideObservations: function(){

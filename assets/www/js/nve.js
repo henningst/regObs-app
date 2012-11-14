@@ -275,7 +275,7 @@ var main = (function() {
 		},
 		
 		showRegister: function(){
-			window.plugins.childBrowser.onClose = function(){}
+			window.plugins.childBrowser.onClose = function(){};
 			window.plugins.childBrowser.showWebPage(REGISTER_URL);
 		},
 		
@@ -314,7 +314,7 @@ var main = (function() {
 				duration : 500,
 				transitionType : 'default',
 				uId : 5,
-				pages : [ 'home', 'settings', 'register', 'map_page',
+				pages : [ 'home', 'settings', 'map_page',
 						'map_obs_page', 'snow', 'snow_see_obs',
 						'snow_see_varsel', 'snow_obs', 'snow_hendelse',
 						'snow_faresign', 'snow_picture', 'snow_surface',
@@ -981,13 +981,7 @@ var main = (function() {
 				$('star').style.display = 'none';
 
 				break;
-
-			case 'register':
-				register.init();
-				$('star').style.display = 'none';
-
-				break;
-
+			
 			case 'login_page':
 				login_page.init();
 				$("star").style.display = 'none';
