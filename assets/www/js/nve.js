@@ -604,6 +604,11 @@ var main = (function() {
 			main.showDialogWithMessage(AN_ERROR_OCCURED);
 		},
 		
+		openUrl: function(url){
+			window.plugins.childBrowser.onClose = function(){};
+			window.plugins.childBrowser.showWebPage(url);
+		},
+		
 		noConnectionDialog: function(){
 			main.showDialogWithMessage(NO_CONNECTION);
 		},

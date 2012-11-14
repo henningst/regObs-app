@@ -238,7 +238,7 @@ ABOUT_REGOBS =
 	  "<H3>Om regObs</H3>"
 	+ "<p>regObs er en del av verktøyene NVE har laget gjennom arbeidet knyttet til varsling og beredskap. regObs er en del av Varsom familien og varsom.no.</p>"
 	+ "<p>I regObs legger vi opp til at du kan dele informasjon med oss slik at våre produkter til samfunnet blir bedre. Vi har også lagt opp til at du skal kunne dele med dine egne venner, kollegaer, gjester, kunder... og at det er et verktøy som kan brukes av flere, for egne formål.</p>"
-	+ "<p>Vi hører gjerne om dine bruker opplevelser på godt og vondt og har <a href=\"https://docs.google.com/spreadsheet/embeddedform?formkey=dE5HSDcxMjV4bVAyLTVPdGN2ZEViSEE6MQ\">et skjema</a> for nettopp det.</p>"
+	+ "<p>Vi hører gjerne om dine bruker opplevelser på godt og vondt og har <a href='#' onclick='main.openUrl(\"https://docs.google.com/spreadsheet/embeddedform?formkey=dE5HSDcxMjV4bVAyLTVPdGN2ZEViSEE6MQ\");'>et skjema</a> for nettopp det.</p>"
 	+ "<p>Lykke til!</p>";
 
 
