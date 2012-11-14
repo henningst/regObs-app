@@ -59,9 +59,9 @@ var snow_activity = {
 			
 			TemplateWireing.insertSlider("snow_activity_slider_placeholder", "snow_acitivty");
 			
-			this.caruselInit("snow_activity_carusel_count", snow_activity.setCount, this.estimatedNumKD, function(elem){return elem.EstimatedNumName;});
-			this.caruselInit("snow_activity_carusel_size", snow_activity.setSize, this.destructiveSizeKD, function(elem){return elem.DestructiveSizeName;});
-			this.caruselInit("snow_activity_carusel_type", snow_activity.setType, this.avalancheKD, function(elem){return elem.AvalancheName;});
+			this.caruselInit("snow_activity_carusel_count",  snow_activity.setCount, this.estimatedNumKD, function(elem){return elem.EstimatedNumName;});
+			this.caruselInit("snow_activity_carusel_size",   snow_activity.setSize, this.destructiveSizeKD, function(elem){return elem.DestructiveSizeName;});
+			this.caruselInit("snow_activity_carusel_type",   snow_activity.setType, this.avalancheKD, function(elem){return elem.AvalancheName;});
 			this.caruselInit("snow_activity_carusel_aspect", snow_activity.setAspect, this.aspectKD, function(elem){return elem.name;}, 100);
 			this.caruselInit("snow_activity_carusel_height", snow_activity.setHeight, this.heightKD, function(elem){return elem.name;}, 100);
 			
@@ -88,6 +88,8 @@ var snow_activity = {
 				
 				nothingObservedChanged();
 			})
+			
+			this.showObservations();
 		},
 		
 		hideObservations: function(){
