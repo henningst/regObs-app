@@ -1,5 +1,6 @@
 var snow_activity = {
 		shouldShowFooter : false,
+		carusele : {},
 		
 		addSnowActivity: function() {
 			function intOr(string, defaultValue){
@@ -42,11 +43,10 @@ var snow_activity = {
 		
 		caruselInit: function(id, onSet, values, nameMapper, widthOfCaruselElement){
 			
-			var carusel = this[id] = main.createCarousel(id + "_carusel", jQuery.map(values, nameMapper), widthOfCaruselElement);
+			var car = main.createCarousel(id + "_carusel", jQuery.map(values, nameMapper), widthOfCaruselElement);
+			this.carusele[id] = car;
 			
-			jQuery('#' + id).html(
-			  carusel.getDomNode()
-			);
+			$(id).appendChild(car.getDomNode());
 			
 			main.listenForCaruselEvent(id + "_carusel", onSet);
 		},
@@ -68,7 +68,7 @@ var snow_activity = {
 			this.listOfCarusels = ['snow_activity_carusel_count', 'snow_activity_carusel_count', 'snow_activity_carusel_size', 'snow_activity_carusel_type', 'snow_activity_carusel_aspect', 'snow_activity_carusel_height'];
 			
 			function nothingObservedChanged(){
-				var nothingToObserved = jQuery(this).is(":checked");
+				var nothingToObserved = jQuery("#snow_acitivity_no_observed").is(":checked");
 				
 				if(nothingToObserved){
 					snow_activity.clearForm();
@@ -80,14 +80,14 @@ var snow_activity = {
 			};
 			
 			jQuery("#snow_acitivity_no_observed").click	(nothingObservedChanged);
-			
-			jQuery("#snow_acitivity_no_observed").parent().click(function(){
+			jQuery("#snow_activity .oneline-label").click(function(){
 				if(jQuery("#snow_acitivity_no_observed").is(":checked"))
-					jQuery("#snow_acitivity_no_observed").attr('checked', true);
+					jQuery("#snow_acitivity_no_observed").attr("checked", false);
 				else
-					jQuery("#snow_acitivity_no_observed").attr('checked', false);
-			});
-			
+					jQuery("#snow_acitivity_no_observed").attr("checked", true);
+				
+				nothingObservedChanged();
+			})
 		},
 		
 		hideObservations: function(){
@@ -110,7 +110,7 @@ var snow_activity = {
 			jQuery("#snow_acitivty_time, #snow_acitivty_time_since").val(0);
 			var _this = this;
 			jQuery.each(this.listOfCarusels, function(index, name){
-				_this[name].goToItem(0);
+				_this.carusele[name].goToItem(0);
 			});
 		},
 
