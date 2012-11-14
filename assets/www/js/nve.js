@@ -274,12 +274,18 @@ var main = (function() {
 			}
 		},
 		
+		showRegister: function(){
+			window.plugins.childBrowser.onClose = function(){}
+			window.plugins.childBrowser.showWebPage(REGISTER_URL);
+		},
+		
 		resetApp: function(){
 			DataAccess.clear();
 			main.populateBoxes(true);
 
 			login_page.showLoginStatus(false);
 			login_page.relogin();
+			main.updateCollection(main.store.packageCollection);
 		},
 
 		starred : function() {

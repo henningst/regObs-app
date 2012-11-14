@@ -17,12 +17,15 @@ class ErrorHandler
     if(exception.response != undefined)
       delete exception.response
     
-    console.log("pp: feil catched " + JSON.stringify(exception))
-    
-    Bugsense.notify({
-      error: exception
-      code: error_code
-    });
+    try
+      console.log("pp: feil catched " + JSON.stringify(exception))
+      
+      Bugsense.notify({
+        error: exception
+        code: error_code
+      });
+    catch e
+      console.log("pp: feil in error handling " + e)
     
     
   handleError: (exception)->  

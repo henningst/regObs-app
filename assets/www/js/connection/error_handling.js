@@ -19,11 +19,15 @@ ErrorHandler = (function() {
     if (exception.response !== void 0) {
       delete exception.response;
     }
-    console.log("pp: feil catched " + JSON.stringify(exception));
-    return Bugsense.notify({
-      error: exception,
-      code: error_code
-    });
+    try {
+      console.log("pp: feil catched " + JSON.stringify(exception));
+      return Bugsense.notify({
+        error: exception,
+        code: error_code
+      });
+    } catch (e) {
+      return console.log("pp: feil in error handling " + e);
+    }
   };
 
   ErrorHandler.prototype.handleError = function(exception) {
