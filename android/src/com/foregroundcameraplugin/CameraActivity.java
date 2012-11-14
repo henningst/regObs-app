@@ -24,6 +24,7 @@ import java.io.IOException;
 import no.nlink.nve.R;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.PictureCallback;
@@ -123,6 +124,8 @@ public class CameraActivity extends Activity {
 
 			Uri fileUri = (Uri) getIntent().getExtras().get(
 					MediaStore.EXTRA_OUTPUT);
+			
+			sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, fileUri));
 
 			File pictureFile = new File(fileUri.getPath());
 
