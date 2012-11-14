@@ -11,6 +11,9 @@ var learning_page = {
 				$('learning_content').innerHTML = LOGIN_PAGE;
 				break;
 				
+			case 'snow_activity':
+				$('learning_content').innerHTML = SNOW_ACTIVITY;
+				break;
 			
 			case 'snow': 
     			break;

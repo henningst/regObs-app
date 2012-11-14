@@ -535,6 +535,7 @@ ul.actions li{
   position: absolute;
   right: 0px;
   top: 35px;
+  zindex: 10;
 }
 
 .content_page{

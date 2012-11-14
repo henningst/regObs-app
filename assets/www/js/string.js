@@ -125,6 +125,8 @@ for(var i = 0; i <= 315/45 ; i++){
 LOGIN_PAGE = "<H3>Logg inn</H3>"
 	+ "<div>Logg inn med brukernavn og passord</div>";
 
+SNOW_ACTIVITY = "<h3>Snow activity</h3>";
+
 SNOW_PICTURE = "<H3>Ta bilde</H3>"
 	+ "<div>Gode bilder er svært nyttig for varslingsgruppa og andre som vil ha et inntrykk av hvordan snøforholdene er.</div>"
 	+ "<ul>"
