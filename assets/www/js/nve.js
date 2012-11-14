@@ -721,9 +721,9 @@ var main = (function() {
 		setScrollerHeights : function() {
 			var height = jQuery(".sl_container").height();
 			var bodyHeight = jQuery("body").height();
-			var top = height - 52;
+			var top = bodyHeight - 139;
 
-			console.log("pp: heights " + height + " , " + bodyHeight);
+			console.log("pp: heights " + height + " , " + bodyHeight + ", " + jQuery(window).height() + ", " + top);
 			
 			jQuery(".addAbort").css("top", (top + 45 + 45) + "px");
 			jQuery(".sendGroup").css("top", (top + 45 + 45 ) + "px");
@@ -1241,11 +1241,10 @@ var main = (function() {
 	
 	window.onorientationchange = function(e){
 		console.log("orientation changed");
+		main.setScrollerHeights();
 		main.resetHeights();
 	};
 
-	
-	
 	
 	jQuery("textarea").live("focus", function(){
 		console.log(device.platform)

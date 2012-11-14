@@ -1,160 +1,160 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>PhoneGap</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="height=device-height; width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
-<meta name="format-detection" content="telephone=no">
-
-
-<script type="text/javascript" src="js/dependencies/jquery.min.js"></script>
-<script type="text/javascript" src="js/dependencies/iscroll.js"></script>
-<script type="text/javascript" src="js/dependencies/jquery-ui-1.8.23.custom.min.js"></script>
-<script type="text/javascript" src="js/dependencies/jquery.ui.touch-punch.min.js"></script>
-<script type="text/javascript" src="js/dependencies/stacktrace-min-0.4.js"></script>
-<script type="text/javascript" src="js/dependencies/jgestures.min.js"></script>
-<script type="text/javascript" src="js/dependencies/date_time_convertion.js"></script>
-
-<script>
-  jQuery.noConflict();
-</script>
-
-<script type="text/javascript" src="js/dependencies/bugsense.js"></script>
-<script type="text/javascript" src="js/connection/error_handling.js"></script>
-
-<link rel="stylesheet" href="js/wink-1.4.2-all-default.min.css" type="text/css">
-<script type="text/javascript" src="js/wink-1.4.2-all-default.min.js"></script>
-<script type="text/javascript" src="js/backwardcompat-1.4.1.js"></script>
-<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.23.custom.css" type="text/css">
-
-<link rel="stylesheet" href="css/btn.css" type="text/css">
-<link rel="stylesheet" href="css/nve.css" type="text/css">
-
-
-
-<script type="text/javascript" src="js/nve_config.js"></script>
-<script type="text/javascript" src="js/dependencies/proj4js-compressed.js"></script>
-<script type="text/javascript" src="js/dependencies/datajs-1.0.2.js"></script>
-<script type="text/javascript" src="js/dependencies/json2.js"></script>
-<script type="text/javascript" src="js/dependencies/handlebars.runtime-1.0.0.beta.6.js"></script>
-<script type="text/javascript" src="js/templates.js"></script>
-<script type="text/javascript" src="js/connection/template_wireing.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
-
-
-<script type="text/javascript">
+	<title>PhoneGap</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="height=device-height; width=device-width; initial-scale=1; maximum-scale=1.0; user-scalable=no" />
+	<meta name="format-detection" content="telephone=no">
 	
-	Proj4js.defs["EPSG:32633"] = "+title=Zone33NOR +proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs";
-
-	// Function to allow one JavaScript file to be included by another.
-	// Copyright (C) 2006-08 www.cryer.co.uk
-	function IncludeJavaScript(jsFile) {
-		document
-				.write('<script type="text/javascript" src="' + jsFile + '"><\/scr' + 'ipt>');
-	}
-</script>
-<script type="text/javascript">
-	IncludeJavaScript("js/" + device.platform + "-cordova-2.1.0.js");
-	IncludeJavaScript("js/" + device.platform + "-GoogleAnalyticsPlugin.js");
-	IncludeJavaScript("js/" + device.platform + "-LocalNotification.js");
-	IncludeJavaScript("js/" + device.platform + "-childbrowser.js");
 	
-	if(device.platform === "android"){
-	   IncludeJavaScript("js/" + device.platform + "-camera.js");
-	   IncludeJavaScript("js/" + device.platform + "-gallery.js");
+	<script type="text/javascript" src="js/dependencies/jquery.min.js"></script>
+	<script type="text/javascript" src="js/dependencies/iscroll.js"></script>
+	<script type="text/javascript" src="js/dependencies/jquery-ui-1.8.23.custom.min.js"></script>
+	<script type="text/javascript" src="js/dependencies/jquery.ui.touch-punch.min.js"></script>
+	<script type="text/javascript" src="js/dependencies/stacktrace-min-0.4.js"></script>
+	<script type="text/javascript" src="js/dependencies/jgestures.min.js"></script>
+	<script type="text/javascript" src="js/dependencies/date_time_convertion.js"></script>
+	
+	<script>
+	  jQuery.noConflict();
+	</script>
+	
+	<script type="text/javascript" src="js/dependencies/bugsense.js"></script>
+	<script type="text/javascript" src="js/connection/error_handling.js"></script>
+	
+	<link rel="stylesheet" href="js/wink-1.4.2-all-default.min.css" type="text/css">
+	<script type="text/javascript" src="js/wink-1.4.2-all-default.min.js"></script>
+	<script type="text/javascript" src="js/backwardcompat-1.4.1.js"></script>
+	<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.23.custom.css" type="text/css">
+	
+	<link rel="stylesheet" href="css/btn.css" type="text/css">
+	<link rel="stylesheet" href="css/nve.css" type="text/css">
+	
+	
+	
+	<script type="text/javascript" src="js/nve_config.js"></script>
+	<script type="text/javascript" src="js/dependencies/proj4js-compressed.js"></script>
+	<script type="text/javascript" src="js/dependencies/datajs-1.0.2.js"></script>
+	<script type="text/javascript" src="js/dependencies/json2.js"></script>
+	<script type="text/javascript" src="js/dependencies/handlebars.runtime-1.0.0.beta.6.js"></script>
+	<script type="text/javascript" src="js/templates.js"></script>
+	<script type="text/javascript" src="js/connection/template_wireing.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	
+	
+	
+	<script type="text/javascript">
+		
+		Proj4js.defs["EPSG:32633"] = "+title=Zone33NOR +proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs";
+	
+		// Function to allow one JavaScript file to be included by another.
+		// Copyright (C) 2006-08 www.cryer.co.uk
+		function IncludeJavaScript(jsFile) {
+			document
+					.write('<script type="text/javascript" src="' + jsFile + '"><\/scr' + 'ipt>');
+		}
+	</script>
+	<script type="text/javascript">
+		IncludeJavaScript("js/" + device.platform + "-cordova-2.1.0.js");
+		IncludeJavaScript("js/" + device.platform + "-GoogleAnalyticsPlugin.js");
+		IncludeJavaScript("js/" + device.platform + "-LocalNotification.js");
+		IncludeJavaScript("js/" + device.platform + "-childbrowser.js");
+		
+		if(device.platform === "android"){
+		   IncludeJavaScript("js/" + device.platform + "-camera.js");
+		   IncludeJavaScript("js/" + device.platform + "-gallery.js");
+		}
+		//IncludeJavaScript("libs/" +device.platform +"-LocalNotification.js");
+	</script>
+	<script type="text/javascript" src="js/connection/validation.js"></script>
+	<script type="text/javascript" src="js/string.js"></script>
+	<script type="text/javascript" src="js/superpage.js"></script>
+	
+	<script type="text/javascript" src="js/database/database.js"></script>
+	
+	<script type="text/javascript" src="js/connection/data_objects.js"></script>
+	<script type="text/javascript" src="js/connection/abstract_package.js"></script>
+	<script type="text/javascript" src="js/connection/package_collection.js"></script>
+	<script type="text/javascript" src="js/connection/observations.js"></script>
+	
+	<script type="text/javascript" src="js/connection/send.js"></script>
+	
+	<script type="text/javascript" src="js/connection/store.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/settings_page.js"></script>
+	<script type="text/javascript" src="js/login_page.js"></script>
+	<script type="text/javascript" src="js/register.js"></script>
+	<script type="text/javascript" src="js/map_page.js"></script>
+	<script type="text/javascript" src="js/map_obs_page.js"></script>
+	
+	
+	
+	<script type="text/javascript" src="js/snow/snow.js"></script>
+	<script type="text/javascript" src="js/snow/snow_picture.js"></script>
+	<script type="text/javascript" src="js/snow/snow_hendelse.js"></script>
+	<script type="text/javascript" src="js/snow/snow_faresign.js"></script>
+	<script type="text/javascript" src="js/snow/snow_surface.js"></script>
+	<script type="text/javascript" src="js/snow/snow_activity.js"></script>
+	<script type="text/javascript" src="js/snow/snow_see_obs.js"></script>
+	
+	<script type="text/javascript" src="js/dirt/dirt.js"></script>
+	<script type="text/javascript" src="js/dirt/dirt_picture.js"></script>
+	<script type="text/javascript" src="js/dirt/dirt_hendelse.js"></script>
+	<script type="text/javascript" src="js/dirt/dirt_faresign.js"></script>
+	<script type="text/javascript" src="js/dirt/dirt_avalange.js"></script>
+	<script type="text/javascript" src="js/dirt/dirt_see_obs.js"></script>
+	
+	<script type="text/javascript" src="js/ice/ice.js"></script>
+	<script type="text/javascript" src="js/ice/ice_picture.js"></script>
+	<script type="text/javascript" src="js/ice/ice_hendelse.js"></script>
+	<script type="text/javascript" src="js/ice/ice_cover.js"></script>
+	<script type="text/javascript" src="js/ice/ice_thickness.js"></script>
+	<script type="text/javascript" src="js/ice/ice_faresign.js"></script>
+	<script type="text/javascript" src="js/ice/ice_see_obs.js"></script>
+	
+	<script type="text/javascript" src="js/water/water.js"></script>
+	<script type="text/javascript" src="js/water/water_picture.js"></script>
+	<script type="text/javascript" src="js/water/water_hendelse.js"></script>
+	<script type="text/javascript" src="js/water/water_faresign.js"></script>
+	<script type="text/javascript" src="js/water/water_level.js"></script>
+	<script type="text/javascript" src="js/water/water_see_obs.js"></script>
+	
+	<script type="text/javascript" src="js/connection/PackageWithDangerObs.js"></script>
+	<script type="text/javascript" src="js/connection/vann_package.js"></script>
+	<script type="text/javascript" src="js/connection/snow_package.js"></script>
+	<script type="text/javascript" src="js/connection/dirt_package.js"></script>
+	<script type="text/javascript" src="js/connection/ice_package.js"></script>
+	<script type="text/javascript" src="js/connection/commands.js"></script>
+	
+	<script type="text/javascript" src="js/learning/learning.js"></script>
+	<script type="text/javascript" src="js/information/information.js"></script>
+	
+	<script type="text/javascript" src="js/nve.js"></script>
+	
+	
+	<style>
+	body {
+		background-color: white;
 	}
-	//IncludeJavaScript("libs/" +device.platform +"-LocalNotification.js");
-</script>
-<script type="text/javascript" src="js/connection/validation.js"></script>
-<script type="text/javascript" src="js/string.js"></script>
-<script type="text/javascript" src="js/superpage.js"></script>
-
-<script type="text/javascript" src="js/database/database.js"></script>
-
-<script type="text/javascript" src="js/connection/data_objects.js"></script>
-<script type="text/javascript" src="js/connection/abstract_package.js"></script>
-<script type="text/javascript" src="js/connection/package_collection.js"></script>
-<script type="text/javascript" src="js/connection/observations.js"></script>
-
-<script type="text/javascript" src="js/connection/send.js"></script>
-
-<script type="text/javascript" src="js/connection/store.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/settings_page.js"></script>
-<script type="text/javascript" src="js/login_page.js"></script>
-<script type="text/javascript" src="js/register.js"></script>
-<script type="text/javascript" src="js/map_page.js"></script>
-<script type="text/javascript" src="js/map_obs_page.js"></script>
-
-
-
-<script type="text/javascript" src="js/snow/snow.js"></script>
-<script type="text/javascript" src="js/snow/snow_picture.js"></script>
-<script type="text/javascript" src="js/snow/snow_hendelse.js"></script>
-<script type="text/javascript" src="js/snow/snow_faresign.js"></script>
-<script type="text/javascript" src="js/snow/snow_surface.js"></script>
-<script type="text/javascript" src="js/snow/snow_activity.js"></script>
-<script type="text/javascript" src="js/snow/snow_see_obs.js"></script>
-
-<script type="text/javascript" src="js/dirt/dirt.js"></script>
-<script type="text/javascript" src="js/dirt/dirt_picture.js"></script>
-<script type="text/javascript" src="js/dirt/dirt_hendelse.js"></script>
-<script type="text/javascript" src="js/dirt/dirt_faresign.js"></script>
-<script type="text/javascript" src="js/dirt/dirt_avalange.js"></script>
-<script type="text/javascript" src="js/dirt/dirt_see_obs.js"></script>
-
-<script type="text/javascript" src="js/ice/ice.js"></script>
-<script type="text/javascript" src="js/ice/ice_picture.js"></script>
-<script type="text/javascript" src="js/ice/ice_hendelse.js"></script>
-<script type="text/javascript" src="js/ice/ice_cover.js"></script>
-<script type="text/javascript" src="js/ice/ice_thickness.js"></script>
-<script type="text/javascript" src="js/ice/ice_faresign.js"></script>
-<script type="text/javascript" src="js/ice/ice_see_obs.js"></script>
-
-<script type="text/javascript" src="js/water/water.js"></script>
-<script type="text/javascript" src="js/water/water_picture.js"></script>
-<script type="text/javascript" src="js/water/water_hendelse.js"></script>
-<script type="text/javascript" src="js/water/water_faresign.js"></script>
-<script type="text/javascript" src="js/water/water_level.js"></script>
-<script type="text/javascript" src="js/water/water_see_obs.js"></script>
-
-<script type="text/javascript" src="js/connection/PackageWithDangerObs.js"></script>
-<script type="text/javascript" src="js/connection/vann_package.js"></script>
-<script type="text/javascript" src="js/connection/snow_package.js"></script>
-<script type="text/javascript" src="js/connection/dirt_package.js"></script>
-<script type="text/javascript" src="js/connection/ice_package.js"></script>
-<script type="text/javascript" src="js/connection/commands.js"></script>
-
-<script type="text/javascript" src="js/learning/learning.js"></script>
-<script type="text/javascript" src="js/information/information.js"></script>
-
-<script type="text/javascript" src="js/nve.js"></script>
-
-
-<style>
-body {
-	background-color: white;
-}
-
-.disabled {
-	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.47, #AAA),
-		color-stop(0.74, #AAA) );
-}
-
-.thumbnail {
-	width: 90px;
-	text-align: center;
-}
-
-.text {
-	font-size: 18px;
-	line-height: 65px;
-	height: 65px;
-	width: 120px;
-	text-align: center;
-}
-</style>
+	
+	.disabled {
+		background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.47, #AAA),
+			color-stop(0.74, #AAA) );
+	}
+	
+	.thumbnail {
+		width: 90px;
+		text-align: center;
+	}
+	
+	.text {
+		font-size: 18px;
+		line-height: 65px;
+		height: 65px;
+		width: 120px;
+		text-align: center;
+	}
+	</style>
 </head>
 
 <body id="mainBody" class="notLoggedIn">
