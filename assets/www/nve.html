@@ -208,7 +208,7 @@
 	              <p>
 	              <p>
 	                <div class="description" id="setting_update_description"></div>
-	                <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Oppdater verdier' onclick="main.populateBoxes(true);" /> <br>
+	                <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Oppdater verdier' onclick="main.areYouSure('Oppdatere data', 'Ønsker du å laste ned all bakgrunnsdata på nytt?', 'main.populateBoxes(true)');" /> <br>
 	              <p>
 	                <div class="description" id="setting_diameter_description">Diameter for observasjonssøk(meter)</div>
 	                <input type="number" step="1" class="large smallWidth" id="setting_search_diameter" placeholder="meter" onblur="settings_page.changedSearchDiameter()"/>
@@ -216,7 +216,7 @@
 	              
 	              <p>
 	                <div class="description" id="setting_reset_description"></div>
-	                <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Nullstill appen' onclick="main.resetApp()" /> <br>
+	                <input type='button' class="c_button smallWidth confirmButton w_button w_radius c_color_gradient" id="test_button" value='Nullstill appen' onclick="main.areYouSure('Resete appen', 'Ønsker du å slette alt av data og instillinger?','main.resetApp()')" /> <br>
 	              </p>
 	              
 	              

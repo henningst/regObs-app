@@ -648,7 +648,11 @@ var main = (function() {
 		},
 		
 		warnDeletionBefore : function(delete_function){
-			main.warnBefore("Sletting", "Er du sikker du ønsker å slette observasjonene?", OK, delete_function + "; main.hideDialog();", ABORT, 'main.hideDialog()');
+			main.areYouSure("Sletting", "Er du sikker du ønsker å slette observasjonene?", delete_function);
+		},
+		
+		areYouSure: function(header, text, delete_function){
+			main.warnBefore(header, text, OK, delete_function + "; main.hideDialog();", ABORT, 'main.hideDialog()');
 		},
 
 		warnBefore: function(header, text, ok, ok_method, cancel, cancel_method){

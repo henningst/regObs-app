@@ -40,7 +40,7 @@ var device = {
 
 
 
-APP_VERSION = "0.14.7";
+APP_VERSION = "0.15.0";
 	
 //BUGSENS_KEY = '1e74c587';//test
 BUGSENS_KEY = '5eb4c461';//prod
