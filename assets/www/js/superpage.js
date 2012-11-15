@@ -186,9 +186,14 @@ var super_picture = {
 					pictureSource = Camera.PictureSourceType.PHOTOLIBRARY;
 				}
 						
-				
+				var _this = this; 
 				navigator.camera.getPicture(
-					this.onSuccess,
+					function(imageData){
+						if(pictureSource == Camera.PictureSourceType.CAMERA)
+							window.plugins.SaveImage.saveImage(imageData);
+						
+						_this.onSuccess(imageData);
+					},
 					this.onFail,
 					{
 						quality : 50,

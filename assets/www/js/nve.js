@@ -539,8 +539,9 @@ var main = (function() {
 			
 			jQuery("input, textarea").each(function(index, obj){
 				try{
+					var _current = obj;
 					jQuery(obj).bind('tapone', function(){
-						jQuery(obj).trigger('focus');
+						jQuery(_current).trigger('focus');
 					})
 				}catch(e){
 					console.log("pp: tap hookup inputs failed" + e)

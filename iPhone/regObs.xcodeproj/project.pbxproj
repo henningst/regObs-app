@@ -38,6 +38,9 @@
 		B5F0D59F1525D3DC001774E4 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F0D59E1525D3DC001774E4 /* MainViewController.m */; };
 		B5F0D5A11525D3DC001774E4 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F0D5A01525D3DC001774E4 /* MainViewController.xib */; };
 		CE14702715EE4209000C8612 /* LocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = CE14702515EE1748000C8612 /* LocalNotification.m */; };
+		CE3BC2361654F4F900A37C19 /* README in Resources */ = {isa = PBXBuildFile; fileRef = CE3BC2321654F4F900A37C19 /* README */; };
+		CE3BC2371654F4F900A37C19 /* SaveImage.js in Sources */ = {isa = PBXBuildFile; fileRef = CE3BC2341654F4F900A37C19 /* SaveImage.js */; };
+		CE3BC2381654F4F900A37C19 /* SaveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3BC2351654F4F900A37C19 /* SaveImage.m */; };
 		CE8C9BDB156D2F5500D940C3 /* regobs-114.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8C9BDA156D2F5500D940C3 /* regobs-114.png */; };
 		CE8C9BDD156D2F6E00D940C3 /* regobs-57.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8C9BDC156D2F6E00D940C3 /* regobs-57.png */; };
 		CEA915D31624181D005E3544 /* ChildBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CEA915CC1624181D005E3544 /* ChildBrowser.bundle */; };
@@ -106,6 +109,10 @@
 		CE00D89C15F0C69700E6CF1E /* libCordova.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCordova.a; path = "../../../Library/Developer/Xcode/DerivedData/regObs-ailzkepymidcqqcdddcyswxycnvl/Build/Products/Debug-iphoneos/libCordova.a"; sourceTree = "<group>"; };
 		CE14702415EE1748000C8612 /* LocalNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalNotification.h; sourceTree = "<group>"; };
 		CE14702515EE1748000C8612 /* LocalNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalNotification.m; sourceTree = "<group>"; };
+		CE3BC2321654F4F900A37C19 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		CE3BC2331654F4F900A37C19 /* SaveImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveImage.h; sourceTree = "<group>"; };
+		CE3BC2341654F4F900A37C19 /* SaveImage.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SaveImage.js; sourceTree = "<group>"; };
+		CE3BC2351654F4F900A37C19 /* SaveImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveImage.m; sourceTree = "<group>"; };
 		CE7D94F815F5D71700CF978C /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
 		CE8C9BDA156D2F5500D940C3 /* regobs-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "regobs-114.png"; sourceTree = "<group>"; };
 		CE8C9BDC156D2F6E00D940C3 /* regobs-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "regobs-57.png"; sourceTree = "<group>"; };
@@ -219,9 +226,9 @@
 		B5F0D56D1525D3DB001774E4 /* Nve */ = {
 			isa = PBXGroup;
 			children = (
+				B5F0D5A21525D3DC001774E4 /* Plugins */,
 				B5F0D5781525D3DC001774E4 /* Resources */,
 				B5F0D5991525D3DC001774E4 /* Classes */,
-				B5F0D5A21525D3DC001774E4 /* Plugins */,
 				B5F0D56E1525D3DC001774E4 /* Supporting Files */,
 			);
 			path = Nve;
@@ -314,6 +321,7 @@
 		B5F0D5A21525D3DC001774E4 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				CE3BC2311654F4F900A37C19 /* SaveImage */,
 				CEA915CB1624181D005E3544 /* childbrowser */,
 				CE14702615EE41C6000C8612 /* LocalNotification */,
 				1784EC17157E345F00287D8E /* GoogleAnalytics */,
@@ -337,6 +345,18 @@
 				CE14702515EE1748000C8612 /* LocalNotification.m */,
 			);
 			name = LocalNotification;
+			sourceTree = "<group>";
+		};
+		CE3BC2311654F4F900A37C19 /* SaveImage */ = {
+			isa = PBXGroup;
+			children = (
+				CE3BC2321654F4F900A37C19 /* README */,
+				CE3BC2331654F4F900A37C19 /* SaveImage.h */,
+				CE3BC2341654F4F900A37C19 /* SaveImage.js */,
+				CE3BC2351654F4F900A37C19 /* SaveImage.m */,
+			);
+			name = SaveImage;
+			path = Plugins/SaveImage;
 			sourceTree = "<group>";
 		};
 		CEA915CB1624181D005E3544 /* childbrowser */ = {
@@ -447,6 +467,7 @@
 				1784EC22157E345F00287D8E /* README.md in Resources */,
 				CEA915D31624181D005E3544 /* ChildBrowser.bundle in Resources */,
 				CEA915D71624181D005E3544 /* ChildBrowserViewController.xib in Resources */,
+				CE3BC2361654F4F900A37C19 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +485,8 @@
 				CE14702715EE4209000C8612 /* LocalNotification.m in Sources */,
 				CEA915D51624181D005E3544 /* ChildBrowserCommand.m in Sources */,
 				CEA915D61624181D005E3544 /* ChildBrowserViewController.m in Sources */,
+				CE3BC2371654F4F900A37C19 /* SaveImage.js in Sources */,
+				CE3BC2381654F4F900A37C19 /* SaveImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
