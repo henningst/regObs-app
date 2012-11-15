@@ -1255,8 +1255,10 @@ var main = (function() {
 	
 	window.onorientationchange = function(e){
 		console.log("orientation changed");
-		main.setScrollerHeights();
-		main.resetHeights();
+		setTimeout(function(){
+			main.setScrollerHeights();
+			main.resetHeights();
+		}, 800);
 	};
 
 	
