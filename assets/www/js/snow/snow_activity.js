@@ -90,6 +90,7 @@ var snow_activity = {
 			})
 			
 			this.showObservations();
+			jQuery("#snow_acitivity_no_observed").attr("checked", false);
 		},
 		
 		hideObservations: function(){

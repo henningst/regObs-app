@@ -536,6 +536,16 @@ var main = (function() {
 					console.log("pp: tap hookup failed " + e );
 				}
 			});
+			
+			jQuery("input, textarea").each(function(index, obj){
+				try{
+					jQuery(obj).bind('tapone', function(){
+						jQuery(obj).trigger('focus');
+					})
+				}catch(e){
+					console.log("pp: tap hookup inputs failed" + e)
+				}
+			});
 		},
 
 		backKeyDown : function(e) {
