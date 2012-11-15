@@ -37,6 +37,7 @@ var water_faresign = {
 				
 				$("water_danger_sign_list").selectedIndex = 0;
 				$("water_danger_sign_comment").value = "";
+				main.carusels[WATER].goToItem(0);
 			},true);
 		},
 		

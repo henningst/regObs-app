@@ -174,6 +174,8 @@ var main = (function() {
 		scrollers : {},
 
 		caruselListeners : [],
+		
+		carusels : [],
 
 		addLastRegID : function(regId) {
 			console.log("adding regid " + regId);
@@ -706,7 +708,10 @@ var main = (function() {
 				});
 			}
 
-			return new wink.ui.xy.Carousel(properties);
+			var carusel = new wink.ui.xy.Carousel(properties);
+			main.carusels[id] = carusel;
+			
+			return carusel;
 		},
 
 		nothing : function() {

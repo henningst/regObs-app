@@ -32,6 +32,8 @@ var snow_faresign = {
 			snow_page.updateLocation(function(){
 				$("snow_danger_sign_list").selectedIndex = 0;
 				$("snow_danger_sign_comment").value = "";
+				
+				main.carusels[SNOW].goToItem(0);
 				main.store.getSnow().addObs(obs);
 				main.panels.slideBack();
 			}, true);

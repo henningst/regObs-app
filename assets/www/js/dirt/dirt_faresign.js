@@ -38,6 +38,7 @@ var dirt_faresign = {
 				
 				$("dirt_danger_sign_list").selectedIndex = 0;
 				$("dirt_danger_sign_comment").value = "";
+				main.carusels[DIRT].goToItem(0);
 			},true);
 		},
 		

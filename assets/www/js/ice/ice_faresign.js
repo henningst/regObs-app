@@ -35,6 +35,8 @@ var ice_faresign = {
 				ice_page.add('ice_faresign_count');
 				$("ice_danger_sign_list").selectedIndex = 0;
 				$("ice_danger_sign_comment").value = "";
+				main.carusels[ICE].goToItem(0);
+				
 				main.panels.slideBack();
 			}, true);
 			
