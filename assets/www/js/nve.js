@@ -537,7 +537,7 @@ var main = (function() {
 				}
 			});
 			
-			jQuery("input, textarea").each(function(index, obj){
+			jQuery("input").each(function(index, obj){
 				try{
 					var _current = obj;
 					jQuery(obj).bind('tapone', function(){
