@@ -750,17 +750,16 @@ var main = (function() {
 		},
 
 		setScrollerHeights : function() {
-			var height = jQuery(".sl_container").height();
 			var bodyHeight = jQuery("body").height();
 			var top = bodyHeight - 139;
 
-			console.log("pp: heights " + height + " , " + bodyHeight + ", " + jQuery(window).height() + ", " + top);
+			console.log("pp: heights " + bodyHeight + ", " + jQuery(window).height() + ", " + top);
 			
 			jQuery(".addAbort").css("top", (top + 45 + 45) + "px");
 			jQuery(".sendGroup").css("top", (top + 45 + 45 ) + "px");
 
 			jQuery(".listScroller").css("height", (top - 55) + "px");
-			jQuery(".pageScroller").css("height", (height + 38) + "px");
+			jQuery(".pageScroller").css("height", (bodyHeight + 38) + "px");
 			jQuery(".pageScroller.full, #map_page").css("height", (bodyHeight - 50 ) + "px");
 			
 		},
