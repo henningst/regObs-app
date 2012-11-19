@@ -177,7 +177,7 @@ class AbstractPackage
         picture.RegID = data.RegID
         picture.PictureID = i++
         sendPicture = new SendInPictureCommand(picture)
-        sendPicture.send()  
+        sendPicture.send((err, test) -> )  
 
     if @m_incident and (i isnt 0 or x isnt 0 or force)
       @m_incident = jQuery.extend(@m_incident, new Incident())
@@ -198,45 +198,68 @@ class AbstractPackage
       
   
   completePointRegistration: (data) =>
-    if @m_incident
-      @m_incident = jQuery.extend(@m_incident, new Incident())
-      @m_incident.RegID = data.RegID
-      SendObjectToServer(@m_incident, undefined, (error) => @onError(error))
-      @m_incident = null
-      
+    sendFunctions = []
     
+    sendIncident = (callback ) ->
+      if @m_incident
+        @m_incident = jQuery.extend(@m_incident, new Incident())
+        @m_incident.RegID = data.RegID
+        success = () -> callback(null, "incident sendt")
+        error = (error) -> callback(error)
+        
+        SendObjectToServer(@m_incident, success, error)
+        @m_incident = null
+      else
+        callback(null, "no incident")
+      
+    sendFunctions.push(sendIncident)
     
     x = 0
     for obs in @pointModels(@m_dangerObs).point 
       do(obs) =>
-        obs.RegID = data.RegID
-        
-        clone = JSON.parse(JSON.stringify(obs))
-        clone = @castedModel(clone)
-        clone.beforeSend(x++) if clone.beforeSend
-                
-        delete clone.model if clone.model          
-        SendObjectToServer(clone, undefined, (error) => @onError(error))
+        sendFunc = (callback)=>
+          obs.RegID = data.RegID
           
-    @removePointModels()
+          clone = JSON.parse(JSON.stringify(obs))
+          clone = @castedModel(clone)
+          clone.beforeSend(x++) if clone.beforeSend
+                  
+          delete clone.model if clone.model       
+          success = ()-> callback(null, obs.RegID)
+          error = ()-> callback("problem with " + obs.RegID)   
+          SendObjectToServer(clone, success, error)
+        
+        sendFunctions.push(sendFunc)
+          
 
     i = 0
     bilde = @cutOutPictures(false)
     for picture in bilde
-      do(picture) ->
-        picture = jQuery.extend(picture, new Picture())
-        picture.RegID = data.RegID
-        picture.PictureID = i++
-        sendPicture = new SendInPictureCommand(picture)
-        sendPicture.send()        
+      do(picture) =>
+        sendFunc = (callback) =>
+          picture = jQuery.extend(picture, new Picture())
+          picture.RegID = data.RegID
+          picture.PictureID = i++
+          sendPicture = new SendInPictureCommand(picture)
+          sendPicture.send(callback)     
+        sendFunctions.push(sendFunc)   
         
-
-    @m_pictures.length = 0
     
-    main.addLastRegID(data.RegID)
-    DataAccess.save(@name, this)
-    @callCallback()
-    main.showFinishedUploadMessage()  
+    async.series(sendFunctions, (err, result) =>
+      console.log("done with " + result + ", error " + err)
+      if(err)
+        @onError(err)
+      else
+        @m_pictures.length = 0  
+        @removePointModels()
+        
+        main.addLastRegID(data.RegID)
+        DataAccess.save(@name, this)
+        @callCallback()
+        main.showFinishedUploadMessage()  
+    )
+    
+    
   
   fillIncident: (incident) =>  
     new Incident(incident.RegID, incident.GeoHazardTID, incident.ActivityInfluencedTID, incident.DamageExtentTID, incident.ForecastAccurateTID, incident.DtEndTime, incident.IncidentHeader, incident.IncidentIngress, incident.IncidentText, incident.SensitiveText, incident.UsageFlagTID, incident.Comment)

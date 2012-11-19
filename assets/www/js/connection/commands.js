@@ -28,13 +28,13 @@ SendInPictureCommand = (function() {
 
     this.gotFS = __bind(this.gotFS, this);
 
-    this.send = __bind(this.send, this);
-
     console.log("createing send in picture command");
   }
 
-  SendInPictureCommand.prototype.send = function() {
+  SendInPictureCommand.prototype.send = function(callback) {
     var prefix;
+    this.callback = callback;
+    console.log("pp: callback is " + this.callback);
     console.log("pp: sending picture " + JSON.stringify(this.picture.PictureImage));
     if (device.platform === "android") {
       prefix = "file://";
@@ -63,8 +63,15 @@ SendInPictureCommand = (function() {
     console.log("got file");
     reader = new FileReader();
     reader.onloadend = function(evt) {
+      var error, success;
       _this.picture.PictureImage = evt.target.result.substring(23);
-      return SendObjectToServer(_this.picture);
+      success = function() {
+        return _this.callback(null, "picture sendt");
+      };
+      error = function(error) {
+        return _this.callback(error, "picuter");
+      };
+      return SendObjectToServer(_this.picture, success, error);
     };
     return reader.readAsDataURL(file);
   };
