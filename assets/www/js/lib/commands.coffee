@@ -9,15 +9,21 @@ class SendInPictureCommand
   constructor: (@picture) ->
     console.log("createing send in picture command")
   
-  send: (@callback) ->
-    console.log("pp: callback is " + @callback )
-    console.log("pp: sending picture " + JSON.stringify(@picture.PictureImage) )
-    if(device.platform == "android")
-      prefix = "file://"
+  send: (@callback) =>
+    console.log("pp: platform is " + device.platform  )
+    if(@isBase64Image(@picture.PictureImage))
+      @sendPicture(@picture.PictureImage.substring(23))
     else
-      prefix = ""
-      
-    window.resolveLocalFileSystemURI(prefix + @picture.PictureImage, @gotFileEntry, @fail);
+      if(device.platform == "android")
+        prefix = "file://"
+      else
+        prefix = ""
+        
+      window.resolveLocalFileSystemURI(prefix + @picture.PictureImage, @gotFileEntry, @fail);
+    
+  isBase64Image: (picture) ->
+    picture.lastIndexOf("data:", 0) == 0
+    
     
   gotFS: (fileSystem) =>
     console.log("got file system")
@@ -34,19 +40,23 @@ class SendInPictureCommand
     console.log("got file")
     reader = new FileReader();
     reader.onloadend = (evt) =>
-      @picture.PictureImage = evt.target.result.substring(23)
-      success = () => @callback(null, "picture sendt")
-      error = (error) => @callback(error, "picuter")
-      SendObjectToServer(@picture, success, error)
+      @sendPicture(evt.target.result.substring(23))
     
     reader.readAsDataURL(file);
 
-  fail: (e) ->
+  sendPicture : (base64Picture) =>
+    @picture.PictureImage = base64Picture 
+    success = () => @callback(null, "picture sendt")
+    error = (error) => @callback(error, "picuter")
+    SendObjectToServer(@picture, success, error)
+
+  fail: (e) =>
     console.log("sending in picture failed:")
     for k,v of e
       console.log(k + " -> " + v)
       
     console.log("value of secur err " + FileError.SECURITY_ERR  + " not found err " + FileError.NOT_FOUND_ERR)
+    @callback(e)
     
 
 class ObserversGroupsCommand extends ErrorHandlingCommand

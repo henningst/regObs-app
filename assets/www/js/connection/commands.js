@@ -22,11 +22,17 @@ SendInPictureCommand = (function() {
 
   function SendInPictureCommand(picture) {
     this.picture = picture;
+    this.fail = __bind(this.fail, this);
+
+    this.sendPicture = __bind(this.sendPicture, this);
+
     this.gotFile = __bind(this.gotFile, this);
 
     this.gotFileEntry = __bind(this.gotFileEntry, this);
 
     this.gotFS = __bind(this.gotFS, this);
+
+    this.send = __bind(this.send, this);
 
     console.log("createing send in picture command");
   }
@@ -34,14 +40,21 @@ SendInPictureCommand = (function() {
   SendInPictureCommand.prototype.send = function(callback) {
     var prefix;
     this.callback = callback;
-    console.log("pp: callback is " + this.callback);
-    console.log("pp: sending picture " + JSON.stringify(this.picture.PictureImage));
-    if (device.platform === "android") {
-      prefix = "file://";
+    console.log("pp: platform is " + device.platform);
+    if (this.isBase64Image(this.picture.PictureImage)) {
+      return this.sendPicture(this.picture.PictureImage.substring(23));
     } else {
-      prefix = "";
+      if (device.platform === "android") {
+        prefix = "file://";
+      } else {
+        prefix = "";
+      }
+      return window.resolveLocalFileSystemURI(prefix + this.picture.PictureImage, this.gotFileEntry, this.fail);
     }
-    return window.resolveLocalFileSystemURI(prefix + this.picture.PictureImage, this.gotFileEntry, this.fail);
+  };
+
+  SendInPictureCommand.prototype.isBase64Image = function(picture) {
+    return picture.lastIndexOf("data:", 0) === 0;
   };
 
   SendInPictureCommand.prototype.gotFS = function(fileSystem) {
@@ -63,17 +76,22 @@ SendInPictureCommand = (function() {
     console.log("got file");
     reader = new FileReader();
     reader.onloadend = function(evt) {
-      var error, success;
-      _this.picture.PictureImage = evt.target.result.substring(23);
-      success = function() {
-        return _this.callback(null, "picture sendt");
-      };
-      error = function(error) {
-        return _this.callback(error, "picuter");
-      };
-      return SendObjectToServer(_this.picture, success, error);
+      return _this.sendPicture(evt.target.result.substring(23));
     };
     return reader.readAsDataURL(file);
+  };
+
+  SendInPictureCommand.prototype.sendPicture = function(base64Picture) {
+    var error, success,
+      _this = this;
+    this.picture.PictureImage = base64Picture;
+    success = function() {
+      return _this.callback(null, "picture sendt");
+    };
+    error = function(error) {
+      return _this.callback(error, "picuter");
+    };
+    return SendObjectToServer(this.picture, success, error);
   };
 
   SendInPictureCommand.prototype.fail = function(e) {
@@ -83,7 +101,8 @@ SendInPictureCommand = (function() {
       v = e[k];
       console.log(k + " -> " + v);
     }
-    return console.log("value of secur err " + FileError.SECURITY_ERR + " not found err " + FileError.NOT_FOUND_ERR);
+    console.log("value of secur err " + FileError.SECURITY_ERR + " not found err " + FileError.NOT_FOUND_ERR);
+    return this.callback(e);
   };
 
   return SendInPictureCommand;
