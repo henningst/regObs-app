@@ -285,12 +285,13 @@ AvalancheDangerKD = (function() {
 
   AvalancheDangerKD.prototype.url = null;
 
-  function AvalancheDangerKD(LangKey, AvalancheDangerName, AvalancheDangerDescr, Language) {
+  function AvalancheDangerKD(AvalancheDangerTID, LangKey, AvalancheDangerName, AvalancheDangerDescr, Language) {
+    this.AvalancheDangerTID = AvalancheDangerTID;
     this.LangKey = LangKey;
     this.AvalancheDangerName = AvalancheDangerName;
     this.AvalancheDangerDescr = AvalancheDangerDescr;
     this.Language = Language;
-    this.url = "" + SERVER_URL + "AvalancheDangerKD";
+    this.url = "" + SERVER_URL + "AvalancheDangerKD?$filter=LangKey eq " + LANGUAGE;
   }
 
   return AvalancheDangerKD;

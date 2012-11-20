@@ -406,6 +406,8 @@ var main = (function() {
 					force);
 			main.fillDropdown(IceCoverKD, main.fillIceCoverKD, force);
 
+			main.fillDropdown(AvalancheDangerKD, main.fillAvalancheDangerKD, force);
+
 		},
 
 		carouselMoved : function(data) {
@@ -847,6 +849,10 @@ var main = (function() {
 					[ snow_activity.fillEstimatedNumKD ]);
 		},
 
+		fillAvalancheDangerKD:function(data){
+			main.saveAndCall(AvalancheDangerKD, data, [ snow_problem.fillAvalancheDangerKD ]);
+		},
+		
 		fillIceCoverKD : function(data) {
 			main.saveAndCall(IceCoverKD, data, [ ice_cover.fillIceCoverKD ]);
 		},

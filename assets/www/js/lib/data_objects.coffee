@@ -118,8 +118,8 @@ class AvalancheActivityObs
 
 class AvalancheDangerKD
   url : null
-  constructor: (@LangKey, @AvalancheDangerName, @AvalancheDangerDescr, @Language ) ->
-    @url = "#{SERVER_URL}AvalancheDangerKD"
+  constructor: (@AvalancheDangerTID, @LangKey, @AvalancheDangerName, @AvalancheDangerDescr, @Language ) ->
+    @url = "#{SERVER_URL}AvalancheDangerKD?$filter=LangKey eq #{LANGUAGE}"
   
 class AvalancheDangerObs extends Observation
   url : ()  -> "#{SERVER_URL}AvalancheDangerObs"
