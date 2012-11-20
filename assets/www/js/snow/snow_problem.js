@@ -22,6 +22,51 @@ var snow_problem = {
 			main.resetHeights();
 		},
 		
+		pickExposition : function(){
+			main.showDialogWithMessage("<div id='expositionButtons'>\
+		            <table class='expositions'>\
+		            <tr>\
+		                <td><input class='w_button w_radius c_color_gradient' type='button' value='NV'     onclick='snow_problem.clickedExposition(this);'/></td>\
+		                <td><input class='w_button w_radius c_color_gradient' type='button' value='N'      onclick='snow_problem.clickedExposition(this);'/></td>\
+		                <td><input class='w_button w_radius c_color_gradient' type='button' value='NØ'     onclick='snow_problem.clickedExposition(this);'/></td>\
+		            </tr>\
+		            <tr>\
+		                <td><input class='w_button w_radius c_color_gradient' type='button' value='V'      onclick='snow_problem.clickedExposition(this);'/></td>\
+		                <td><input class='w_button w_radius c_color_gradient' type='button' value='Alle'   onclick='snow_problem.clickedExposition(this);'/></td>\
+		                <td><input class='w_button w_radius c_color_gradient' type='button' value='Ø'      onclick='snow_problem.clickedExposition(this);'/></td>\
+		            </tr>\
+		            <tr>\
+		                <td><input class='w_button w_radius c_color_gradient' type='button' value='SV'     onclick='snow_problem.clickedExposition(this);'/></td>\
+		                <td><input class='w_button w_radius c_color_gradient' type='button' value='S'      onclick='snow_problem.clickedExposition(this);'/></td>\
+		                <td><input class='w_button w_radius c_color_gradient' type='button' value='SØ'     onclick='snow_problem.clickedExposition(this);'/></td>\
+		            </tr>\
+		        </table>\
+		    </div>", "Velg rettning");
+			var controller = new Exposition(jQuery("#exposition").val(), callbacks);
+			controller.refresh();
+		},
+		
+		clickedExposition : function(obj){
+			var callbacks = {
+					'NV' 	: function(on){jQuery('.expositions input[value="NV"]').toggleClass('pressed', on)},
+					'N' 	: function(on){jQuery('.expositions input[value="N"]').toggleClass('pressed', on)},
+					'NØ'	: function(on){jQuery('.expositions input[value="NØ"]').toggleClass('pressed', on)},
+					'Ø'		: function(on){jQuery('.expositions input[value="Ø"]').toggleClass('pressed', on)},
+					'SØ'	: function(on){jQuery('.expositions input[value="SØ"]').toggleClass('pressed', on)},
+					'S'		: function(on){jQuery('.expositions input[value="S"]').toggleClass('pressed', on)},
+					'SV'	: function(on){jQuery('.expositions input[value="SV"]').toggleClass('pressed', on)},
+					'V'		: function(on){jQuery('.expositions input[value="V"]').toggleClass('pressed', on)},
+			};
+			
+			var exposition = jQuery(obj).attr("value");
+			console.log("clicked " + exposition)
+			var controller = new Exposition(jQuery("#exposition").val(), callbacks);
+			controller.toggle(exposition);
+			jQuery("#exposition").val(controller.toString());
+			
+			controller.refresh();
+		},
+		
 
 		fillAvalancheDangerKD: function(data){
 			if(data == null)
