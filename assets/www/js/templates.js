@@ -55,10 +55,82 @@ templates['slider'] = template(function (Handlebars,depth0,helpers,partials,data
   return buffer;});
 templates['snow_problem'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
   
+  var buffer = "", stack1, foundHelper;
+  buffer += "\n        <option value=\"";
+  foundHelper = helpers.value;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.value; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\">";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "</option>\n    ";
+  return buffer;}
 
+function program3(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\n        <option value=\"";
+  foundHelper = helpers.value;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.value; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\">";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "</option>\n    ";
+  return buffer;}
 
-  return "<label>Legg til skredproblem:</label>\n<select class=\"problem_1\" class=\"bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Skredtype 1</option>\n</select>\n<select class=\"problem_2\" class=\"bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Skredtype 2</option>\n</select>\n<select class=\"problem_3\" class=\"bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Skredtype 3</option>\n</select>\n\n<label>Legg til sannsynlighet:</label>\n<select class=\"sannsynlighet\" class=\"bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Sannsynlighet</option>\n</select>\n<select class=\"tilleggsbelastning\" class=\"bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Tilleggsbelastning</option>\n</select>\n<select class=\"storrelse\" class=\"bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Størrelse</option>\n</select>\n\n<label>Legg til plassering i snødekket:</label>\n<select class=\"plassering\" class=\"bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Hvor i snødekket</option>\n</select>\n\n";});
+function program5(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\n        <option value=\"";
+  foundHelper = helpers.value;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.value; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\">";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "</option>\n    ";
+  return buffer;}
+
+function program7(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\n        <option value=\"";
+  foundHelper = helpers.value;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.value; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\">";
+  foundHelper = helpers.name;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "</option>\n    ";
+  return buffer;}
+
+  buffer += "<label>Legg til skredproblem:</label>\n<select class=\"problem_1 bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Skredtype 1</option>\n</select>\n<select class=\"problem_2 bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Skredtype 2</option>\n</select>\n<select class=\"problem_3 bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Skredtype 3</option>\n</select>\n\n<label>Legg til sannsynlighet:</label>\n<select class=\"sannsynlighet bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    ";
+  stack1 = depth0.sannsynlighet;
+  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</select>\n<select class=\"tilleggsbelastning bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    ";
+  stack1 = depth0.tilleggsbelastning;
+  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</select>\n<select class=\"storrelse bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    ";
+  stack1 = depth0.storrelse;
+  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</select>\n\n<label>Legg til plassering i snødekket:</label>\n<select class=\"plassering bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    ";
+  stack1 = depth0.plassering;
+  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</select>\n\n";
+  return buffer;});
 templates['viewList'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;

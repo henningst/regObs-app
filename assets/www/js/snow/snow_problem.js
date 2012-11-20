@@ -9,8 +9,19 @@ var snow_problem = {
 			}
 			$('header_middle_text').innerHTML = "Problem " + problemId;
 			
-			jQuery("#"+ id + " .snow_problem_content").html(Handlebars.templates.snow_problem());
+			var _this = this;
+			jQuery("#"+ id + " .snow_problem_content").html(Handlebars.templates.snow_problem({
+					"sannsynlighet": _this.AvalProbabilityKD,
+					"tilleggsbelastning" : _this.AvalTriggerSimpleKD,
+					"storrelse" :  _this.DestructiveSizeExtKD,
+					"plassering" : _this.AvalReleaseHeightKD
+				}	
+			));
+			
+			main.setScrollerHeights();
+			main.resetHeights();
 		},
+		
 
 		fillAvalancheDangerKD: function(data){
 			if(data == null)
@@ -23,7 +34,34 @@ var snow_problem = {
 			jQuery.each(data.results, function() {
 				options.append(jQuery("<option />").val(this.AvalancheDangerTID).text(this.AvalancheDangerName));
 			});
-		}
+		},
+		
+		holdAvalProbabilityKD: function(data){
+			snow_problem.AvalProbabilityKD = jQuery.map(data.results, function(o) {
+				return { 
+					value: o.AvalProbabilityTID, 
+					name : o.AvalProbabilityName
+				};
+			});
+		},
+		holdAvalTriggerSimpleKD: function(data){
+			snow_problem.AvalTriggerSimpleKD = jQuery.map(data.results, function(o) {
+				return {value: o.AvalTriggerSimpleTID, name : o.AvalTriggerSimpleName};
+			});
+		},
+		holdDestructiveSizeExtKD: function(data){
+			snow_problem.DestructiveSizeExtKD = jQuery.map(data.results, function(o) {
+				return {value: o.DestructiveSizeExtTID, name : o.DestructiveSizeExtName};
+			});
+		},
+		holdAvalReleaseHeightKD: function(data){
+			snow_problem.AvalReleaseHeightKD = jQuery.map(data.results, function(o) {
+				return {value: o.AvalReleaseHeightTID, name : o.AvalReleaseHeighName };
+			});
+		},
+
+		
+		
 };
 
 jQuery.extend(snow_problem, super_obs);

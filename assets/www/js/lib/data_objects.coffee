@@ -130,6 +130,26 @@ class AvalancheDangerObs extends Observation
     @AvalancheDangerObsID = x
 
 
+class AvalProbabilityKD
+  url : null
+  constructor : (@AvalProbabilityTID, @LangKey, @AvalProbabilityName, @AvalProbabilityDescr) ->
+    @url = "#{SERVER_URL}AvalProbabilityKD?$filter=LangKey eq #{LANGUAGE}" 
+    
+class AvalTriggerSimpleKD
+  url : null
+  constructor : (@AvalTriggerSimpleTID, @LangKey, @AvalTriggerSimpleName, @AvalTriggerSimpleDescr) ->
+    @url = "#{SERVER_URL}AvalTriggerSimpleKD?$filter=LangKey eq #{LANGUAGE}" 
+    
+class DestructiveSizeExtKD
+  url : null
+  constructor : (@DestructiveSizeExtTID, @LangKey, @DestructiveSizeExtName, @DestructiveSizeExtDescr) ->
+    @url = "#{SERVER_URL}DestructiveSizeExtKD?$filter=LangKey eq #{LANGUAGE}"
+    
+class AvalReleaseHeightKD
+  url : null
+  constructor : (@AvalReleaseHeightTID, @LangKey, @AvalReleaseHeighName, @AvalReleaseHeighDescr)->
+    @url = "#{SERVER_URL}AvalReleaseHeightKD?$filter=LangKey eq #{LANGUAGE}"
+ 
     
     
     

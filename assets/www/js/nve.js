@@ -407,8 +407,13 @@ var main = (function() {
 			main.fillDropdown(IceCoverKD, main.fillIceCoverKD, force);
 
 			main.fillDropdown(AvalancheDangerKD, main.fillAvalancheDangerKD, force);
-
+			
+			main.fillDropdown(AvalProbabilityKD, main.fillAvalProbabilityKD, force);
+			main.fillDropdown(AvalTriggerSimpleKD, main.fillAvalTriggerSimpleKD, force);
+			main.fillDropdown(DestructiveSizeExtKD, main.fillDestructiveSizeExtKD, force);
+			main.fillDropdown(AvalReleaseHeightKD, main.fillAvalReleaseHeightKD, force);
 		},
+		
 
 		carouselMoved : function(data) {
 			switch (data.carouselId) {
@@ -843,7 +848,21 @@ var main = (function() {
 				f(data);
 			});
 		},
-
+		
+		fillAvalProbabilityKD : function(data) {
+			console.log("filling " + JSON.stringify(data))
+			main.saveAndCall(AvalProbabilityKD, data, [ snow_problem.holdAvalProbabilityKD ]);
+		},
+		fillAvalTriggerSimpleKD : function(data) {
+			main.saveAndCall(AvalTriggerSimpleKD, data, [ snow_problem.holdAvalTriggerSimpleKD ]);
+		},
+		fillDestructiveSizeExtKD : function(data) {
+			main.saveAndCall(DestructiveSizeExtKD, data, [ snow_problem.holdDestructiveSizeExtKD ]);
+		},
+		fillAvalReleaseHeightKD : function(data) {
+			main.saveAndCall(AvalReleaseHeightKD , data, [ snow_problem.holdAvalReleaseHeightKD ]);
+		},
+		
 		fillEstimatedNumKD : function(data) {
 			main.saveAndCall(EstimatedNumKD, data,
 					[ snow_activity.fillEstimatedNumKD ]);
