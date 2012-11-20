@@ -821,3 +821,11 @@ ul.actions li{
 	text-shadow: #ccc 1px -1px 1px;
 }
 
+.expositions{
+  margin: auto	
+}
+
+.expositions input{
+  width: 60px;
+}
+
