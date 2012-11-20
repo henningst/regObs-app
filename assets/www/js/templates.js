@@ -53,6 +53,12 @@ templates['slider'] = template(function (Handlebars,depth0,helpers,partials,data
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "_slider\"></div>\n</div>";
   return buffer;});
+templates['snow_problem'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  
+
+
+  return "<label>Legg til skredproblem:</label>\n<select class=\"problem_1\" class=\"bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Skredtype 1</option>\n</select>\n<select class=\"problem_2\" class=\"bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Skredtype 2</option>\n</select>\n<select class=\"problem_3\" class=\"bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Skredtype 3</option>\n</select>\n\n<label>Legg til sannsynlighet:</label>\n<select class=\"sannsynlighet\" class=\"bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Sannsynlighet</option>\n</select>\n<select class=\"tilleggsbelastning\" class=\"bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Tilleggsbelastning</option>\n</select>\n<select class=\"storrelse\" class=\"bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Størrelse</option>\n</select>\n\n<label>Legg til plassering i snødekket:</label>\n<select class=\"plassering\" class=\"bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Hvor i snødekket</option>\n</select>\n\n";});
 templates['viewList'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;

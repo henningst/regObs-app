@@ -317,7 +317,8 @@ var main = (function() {
 				transitionType : 'default',
 				uId : 5,
 				pages : [ 'home', 'settings', 'map_page',
-						'map_obs_page', 'snow', 'snow_see_obs',
+						'map_obs_page', 'snow', 'snow_see_obs', 'snow_evaluation',
+						'snow_problem_1','snow_problem_2','snow_problem_3',
 						'snow_see_varsel', 'snow_obs', 'snow_hendelse',
 						'snow_faresign', 'snow_picture', 'snow_surface',
 						'snow_activity', 'ice', 'ice_see_obs',
@@ -1030,6 +1031,20 @@ var main = (function() {
 			case 'snow_see_obs':
 				if (status == 'start') {
 					snow_see_obs.init();
+				}
+				break;
+				
+			case 'snow_evaluation':
+				if(status == 'start'){
+					snow_evaluation.init();
+				}
+				break;
+				
+			case 'snow_problem_1':
+			case 'snow_problem_2':
+			case 'snow_problem_3':
+				if(status == 'start'){
+					snow_problem.init(params.id);
 				}
 				break;
 

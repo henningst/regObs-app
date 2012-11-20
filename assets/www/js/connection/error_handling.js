@@ -57,11 +57,6 @@ ErrorHandler = (function() {
 
 window.customErrorHandler = new ErrorHandler();
 
-window.onerror = function(error) {
-  console.log("pp: window error " + error);
-  return window.customErrorHandler.handleError(error);
-};
-
 E = function(funksjon) {
   return function() {
     try {

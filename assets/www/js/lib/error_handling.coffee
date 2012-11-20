@@ -49,9 +49,9 @@ class ErrorHandler
   
 window.customErrorHandler = new ErrorHandler()
 
-window.onerror = (error)-> 
-  console.log("pp: window error " + error)
-  window.customErrorHandler.handleError(error)
+# window.onerror = (error)-> 
+  # console.log("pp: window error " + error)
+  # window.customErrorHandler.handleError(error)
   
 
 E = (funksjon) ->
