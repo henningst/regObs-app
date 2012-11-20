@@ -10,6 +10,7 @@ Exposition = (function() {
     } else {
       this.expositions = string.split("");
     }
+    this.callbacks["*"](this.toHumanString());
   }
 
   Exposition.prototype.toggle = function(expo) {
@@ -38,12 +39,34 @@ Exposition = (function() {
     }
   };
 
+  Exposition.prototype.indexToExpo = function(index) {
+    switch (index) {
+      case 0:
+        return "NV";
+      case 1:
+        return "N";
+      case 2:
+        return "NØ";
+      case 3:
+        return "Ø";
+      case 4:
+        return "SØ";
+      case 5:
+        return "S";
+      case 6:
+        return "SV";
+      case 7:
+        return "V";
+    }
+  };
+
   Exposition.prototype.change = function(index) {
     if (this.expositions[index] === "1") {
-      return this.expositions[index] = "0";
+      this.expositions[index] = "0";
     } else {
-      return this.expositions[index] = "1";
+      this.expositions[index] = "1";
     }
+    return this.callbacks["*"](this.toHumanString());
   };
 
   Exposition.prototype.callCallback = function(expo) {
@@ -61,6 +84,18 @@ Exposition = (function() {
 
   Exposition.prototype.toString = function() {
     return this.expositions.join("");
+  };
+
+  Exposition.prototype.toHumanString = function() {
+    var letters,
+      _this = this;
+    letters = [];
+    jQuery.each(this.expositions, function(i, letter) {
+      if (letter === "1") {
+        return letters.push(_this.indexToExpo(i));
+      }
+    });
+    return letters.join(",");
   };
 
   return Exposition;

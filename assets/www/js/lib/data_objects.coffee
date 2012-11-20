@@ -176,6 +176,9 @@ class AvalancheEvaluation
   url : ()  -> "#{SERVER_URL}AvalancheEvaluation"
   constructor: (@RegID, @CanPublish, @AvalancheDangerTID, @ValidExposition, @ValidHeightRelative, @ValidHeightFrom, @ValidHeigtTo, @AvalancheProblemTID1, @AvalancheProblemTID2, @AvalancheProblemTID3, @UsageFlagTID, @AvalancheEvaluation1, @InternalComment, @Comment) ->
 
+
+
+
 class AvalancheKD
   url : null
   constructor: (@AvalancheTID, @LangKey, @AvalancheName, @AvalancheDescr ) ->
@@ -228,7 +231,12 @@ class DangerObs extends Observation
     
   beforeSend: (index) =>
     @DangerObsID = index
-    
+
+class AvalancheEvaluation2 extends Observation
+  url : () -> "#{SERVER_URL}AvalancheEvaluation2"
+  constructor: (@RegID, @AvalancheEvaluation, @AvalancheDevelopment, @ValidExposition, @ExposedHeight1, @ExposedHeight2, @ExposedHeightComboTID, @ExposedClimateTID, @AvalancheDangerTID, @UsageFlagTID )->
+    @model = "AvalancheEvaluation2"
+       
 
 class SnowSurfaceObservation extends Observation
   url : () -> "#{SERVER_URL}SnowSurfaceObservation"

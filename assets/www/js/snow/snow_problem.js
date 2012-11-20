@@ -1,5 +1,6 @@
 var snow_problem = {
 		shouldShowFooter: false,
+		buttonText : "Velg utsatte retninger",
 		
 		expositionsCallbacks: {
 				'NV' 	: function(on){jQuery('.expositions input[value="NV"]').toggleClass('pressed', on)},
@@ -10,6 +11,26 @@ var snow_problem = {
 				'S'		: function(on){jQuery('.expositions input[value="S"]').toggleClass('pressed', on)},
 				'SV'	: function(on){jQuery('.expositions input[value="SV"]').toggleClass('pressed', on)},
 				'V'		: function(on){jQuery('.expositions input[value="V"]').toggleClass('pressed', on)},
+				'*'		: function(text) {jQuery("#expositionButton").text(text.length > 0 ? text : snow_problem.buttonText ); }
+		},
+		
+		
+		addEvaluation: function(){
+			var comment = 				jQuery("#snow_evaluation_comment").val();
+			var exposition = 			jQuery("#exposition").val();
+			var avalancheDangerTID = 	jQuery("#snow_evaluation_danger_level").val();
+			
+			//(@RegID, @AvalancheEvaluation, @AvalancheDevelopment, @ValidExposition, @ExposedHeight1, @ExposedHeight2, @ExposedHeightComboTID, @ExposedClimateTID, @AvalancheDangerTID, @UsageFlagTID )->
+			var obs = new AvalancheEvaluation2(0, comment, null, exposition, null, null, null, null, avalancheDangerTID, 0)
+			
+			snow_page.updateLocation(function(){
+				jQuery("#snow_evaluation_comment").val("");
+				jQuery("#exposition").val("00000000");
+				jQuery("#snow_evaluation_danger_level").val(0);
+				
+				main.store.getSnow().addObs(obs);
+				main.panels.slideBack();
+			}, true);
 		},
 		
 		init: function(id){
@@ -20,6 +41,8 @@ var snow_problem = {
 			case "snow_problem_3": problemId = 3; break;
 			}
 			$('header_middle_text').innerHTML = "Problem " + problemId;
+			
+			jQuery("#exposition").val("00000000");
 			
 			var _this = this;
 			jQuery("#"+ id + " .snow_problem_content").html(Handlebars.templates.snow_problem({
