@@ -113,7 +113,7 @@ function program7(depth0,data) {
   buffer += escapeExpression(stack1) + "</option>\n    ";
   return buffer;}
 
-  buffer += "<label>Legg til skredproblem:</label>\n<select class=\"problem_1 bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Skredtype 1</option>\n</select>\n<select class=\"problem_2 bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Skredtype 2</option>\n</select>\n<select class=\"problem_3 bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Skredtype 3</option>\n</select>\n\n<label>Legg til sannsynlighet:</label>\n<select class=\"sannsynlighet bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    ";
+  buffer += "<label>Legg til skredproblem:</label>\n<select class=\"problem_1 bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Skredtype 1</option>\n</select>\n<select class=\"problem_2 bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Aventer valg</option>\n</select>\n<select class=\"problem_3 bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    <option>Aventer valg</option>\n</select>\n\n<label>Legg til sannsynlighet:</label>\n<select class=\"sannsynlighet bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    ";
   stack1 = depth0.sannsynlighet;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }

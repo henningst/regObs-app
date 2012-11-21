@@ -1,6 +1,7 @@
 var snow_evaluation = {
 	shouldShowFooter : false,
 	buttonText : "Velg utsatte retninger",
+	problems : [],
 		
 	init: function(){
 		$('header_middle_text').innerHTML = "Skredvurdering";
@@ -24,6 +25,10 @@ var snow_evaluation = {
 			'*'		: function(text) {jQuery("#expositionButton").text(text.length > 0 ? text : snow_evaluation.buttonText ); }
 	},
 	
+	addProblem: function(obs){
+		snow_evaluation.problems.push(obs);
+	},
+	
 	addEvaluation: function(){
 		var comment = 				jQuery("#snow_evaluation_comment").val();
 		var exposition = 			jQuery("#exposition").val();
@@ -44,7 +49,17 @@ var snow_evaluation = {
 			controller.refresh();
 			jQuery("#snow_evaluation_danger_level").val(0);
 			
+			console.log("pp evaluation2 obs ", obs)
 			main.store.getSnow().addObs(obs);
+			
+			for(var i = 0; i < snow_evaluation.problems.length; i++){
+				var obsProblem = snow_evaluation.problems[i];
+				obsProblem .AvalancheEvalProblemID = i;
+				console.log("pp: adding problem ", obsProblem );
+				main.store.getSnow().addObs(obsProblem );
+			}
+			snow_evaluation.problems = [];
+			
 			main.panels.slideBack();
 		}, true);
 	},

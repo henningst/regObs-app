@@ -412,6 +412,15 @@ var main = (function() {
 			main.fillDropdown(AvalTriggerSimpleKD, main.fillAvalTriggerSimpleKD, force);
 			main.fillDropdown(DestructiveSizeExtKD, main.fillDestructiveSizeExtKD, force);
 			main.fillDropdown(AvalReleaseHeightKD, main.fillAvalReleaseHeightKD, force);
+			
+			main.fillDropdown(AvalancheExtKD, main.fillAvalancheExtKD, force);
+			main.fillDropdown(AvalCauseKD, main.fillAvalCauseKD, force);
+			main.fillDropdown(AvalCauseExtKD, main.fillAvalCauseExtKD, force);
+			
+			main.fillDropdown(AvalancheProblemMenu1V, main.fillAvalancheProblemMenu1V, force);
+			main.fillDropdown(AvalancheProblemMenu2V, main.fillAvalancheProblemMenu2V, force);
+			
+			
 		},
 		
 
@@ -849,8 +858,27 @@ var main = (function() {
 			});
 		},
 		
+		fillAvalancheProblemMenu1V : function(data){
+			main.saveAndCall(AvalancheProblemMenu1V, data, [ snow_problem.holdAvalancheProblemMenu1V ]);
+		},  
+		
+
+		fillAvalancheProblemMenu2V : function(data){
+			main.saveAndCall(AvalancheProblemMenu2V, data, [ snow_problem.holdAvalancheProblemMenu2V ]);
+		},  
+		
+		fillAvalancheExtKD : function(data){
+			main.saveAndCall(AvalancheExtKD, data, [ snow_problem.holdAvalancheExtKD ]);
+		},
+		
+		fillAvalCauseKD : function(data){
+			main.saveAndCall(AvalCauseKD, data, [ snow_problem.holdAvalCauseKD ]);
+		},
+		fillAvalCauseExtKD : function(data){
+			main.saveAndCall(AvalCauseExtKD, data, [ snow_problem.holdAvalCauseExtKD ]);
+		},
+		
 		fillAvalProbabilityKD : function(data) {
-			console.log("filling " + JSON.stringify(data))
 			main.saveAndCall(AvalProbabilityKD, data, [ snow_problem.holdAvalProbabilityKD ]);
 		},
 		fillAvalTriggerSimpleKD : function(data) {

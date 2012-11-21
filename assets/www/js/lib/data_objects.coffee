@@ -151,7 +151,30 @@ class AvalReleaseHeightKD
     @url = "#{SERVER_URL}AvalReleaseHeightKD?$filter=LangKey eq #{LANGUAGE}"
  
     
+class AvalancheExtKD
+  url : null
+  constructor : (@AvalancheExtTID, @LangKey, @AvalancheExtName, @AvalancheExtDescr) ->
+    @url = "#{SERVER_URL}AvalancheExtKD?$filter=LangKey eq #{LANGUAGE}"
+
+class AvalCauseKD
+  url : null
+  constructor : (@AvalCauseTID, @LangKey, @AvalCauseName, @AvalCauseDescr) ->
+    @url = "#{SERVER_URL}AvalCauseKD?$filter=LangKey eq #{LANGUAGE}"
     
+class AvalCauseExtKD
+  url : null
+  constructor : (@AvalCauseExtTID, @LangKey, @AvalCauseExtName, @AvalCauseExtDescr) ->
+    @url = "#{SERVER_URL}AvalCauseExtKD?$filter=LangKey eq #{LANGUAGE}"
+        
+class AvalancheProblemMenu1V
+  url:null
+  constructor : ()->
+    @url = "#{SERVER_URL}AvalancheProblemMenu1V?$filter=LangKey eq #{LANGUAGE}"
+    
+class AvalancheProblemMenu2V
+  url:null
+  constructor : ()->
+    @url = "#{SERVER_URL}AvalancheProblemMenu2V?$filter=LangKey eq #{LANGUAGE}"
     
     
 ###
@@ -257,6 +280,11 @@ class IceThickness extends Observation
   url : () -> "#{SERVER_URL}IceThickness"
   constructor: (@RegID, @SnowDepth, @SlushSnow, @IceThicknessSum, @IceHeightBefore, @IceHeightAfter, @UsageFlagTID, @Comment) ->
     @model = "IceThickness"
+
+class AvalancheEvalProblem extends Observation
+  url: () -> "#{SERVER_URL}AvalancheEvalProblem"
+  constructor: (@RegID, @AvalancheEvalProblemID, @AvalProbabilityTID, @AvalTriggerSimpleTID, @DestructiveSizeExtTID, @AvalancheExtTID, @AvalCauseTID, @AvalReleaseHeightTID, @Comment) ->
+    @model = "AvalancheEvalProblem"
 
 class DestructiveSizeKD
   url : null
