@@ -5,7 +5,10 @@ var snow_evaluation = {
 	init: function(){
 		$('header_middle_text').innerHTML = "Skredvurdering";
 		
-		
+		jQuery("#snow_evaluation_utstrekning option").remove();
+		jQuery.each(SNOW_EVALUATION_TEXT, function(i, obj){
+			jQuery("#snow_evaluation_utstrekning").append("<option>" + obj + "</option>");
+		})
 	},
 	
 	
@@ -25,6 +28,11 @@ var snow_evaluation = {
 		var comment = 				jQuery("#snow_evaluation_comment").val();
 		var exposition = 			jQuery("#exposition").val();
 		var avalancheDangerTID = 	jQuery("#snow_evaluation_danger_level").val();
+		var utstrekning = 			jQuery("#snow_evaluation_utstrekning").val();
+		
+		if(utstrekning != "Ikke angit"){
+			comment = utstrekning + " " + comment
+		}
 		
 		//(@RegID, @AvalancheEvaluation, @AvalancheDevelopment, @ValidExposition, @ExposedHeight1, @ExposedHeight2, @ExposedHeightComboTID, @ExposedClimateTID, @AvalancheDangerTID, @UsageFlagTID )->
 		var obs = new AvalancheEvaluation2(0, comment, null, exposition, null, null, null, null, avalancheDangerTID, 0)
