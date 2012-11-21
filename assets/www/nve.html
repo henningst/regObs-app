@@ -345,18 +345,22 @@
                         <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_problem_3')">Skredproblem 3 <span id="snow_problem3_count" class="notification_buble">0</span> <span class="w_icon arrow"></span></li>
                     </ul>
                     
+                    <label>Faregrad:</label>
                     <select id="snow_evaluation_danger_level" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
                         <option>Ikke angit</option>
                     </select>
                     
-                    
-                    <button id="expositionButton" class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_evaluation.pickExposition()" >Velg utsatte retninger</button>
-                    <input type="hidden" id="exposition"/>
-                    
-                    <select id="snow_evaluation_utstrekning" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
-                        <option>Ikke angit</option>
-                        <option>Omeråde skredvurdering gjelder for</option>
-                    </select>
+                    <p>
+	                    <button id="expositionButton" class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_evaluation.pickExposition()" >Velg utsatte retninger</button>
+	                    <input type="hidden" id="exposition"/>
+                    </p>
+                    <p>
+                      <label>Utstrekning:</label>
+	                    <select id="snow_evaluation_utstrekning" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+	                        <option>Ikke angit</option>
+	                        <option>Omeråde skredvurdering gjelder for</option>
+	                    </select>
+                    </p>
                     
                     <label>Skredvurdering:</label>
                     <textarea id="snow_evaluation_comment" class="c_textarea bigWidth" rows="5"></textarea>
