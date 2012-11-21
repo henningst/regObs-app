@@ -30,6 +30,7 @@ var snow_obs =  snow_page = {
 		snow_page.resetCounter('snow_picture_count');
 		snow_page.resetCounter('snow_surface_count');
 		snow_page.resetCounter('snow_activity_count');
+		snow_page.resetCounter('snow_evaluation_count');
 		jQuery('#snow_hendelse_count').removeClass("checked").text("0");
 		jQuery('#snow_group').val(0);
 		
