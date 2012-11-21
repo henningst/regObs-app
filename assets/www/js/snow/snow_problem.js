@@ -1,37 +1,5 @@
 var snow_problem = {
 		shouldShowFooter: false,
-		buttonText : "Velg utsatte retninger",
-		
-		expositionsCallbacks: {
-				'NV' 	: function(on){jQuery('.expositions input[value="NV"]').toggleClass('pressed', on)},
-				'N' 	: function(on){jQuery('.expositions input[value="N"]').toggleClass('pressed', on)},
-				'NØ'	: function(on){jQuery('.expositions input[value="NØ"]').toggleClass('pressed', on)},
-				'Ø'		: function(on){jQuery('.expositions input[value="Ø"]').toggleClass('pressed', on)},
-				'SØ'	: function(on){jQuery('.expositions input[value="SØ"]').toggleClass('pressed', on)},
-				'S'		: function(on){jQuery('.expositions input[value="S"]').toggleClass('pressed', on)},
-				'SV'	: function(on){jQuery('.expositions input[value="SV"]').toggleClass('pressed', on)},
-				'V'		: function(on){jQuery('.expositions input[value="V"]').toggleClass('pressed', on)},
-				'*'		: function(text) {jQuery("#expositionButton").text(text.length > 0 ? text : snow_problem.buttonText ); }
-		},
-		
-		
-		addEvaluation: function(){
-			var comment = 				jQuery("#snow_evaluation_comment").val();
-			var exposition = 			jQuery("#exposition").val();
-			var avalancheDangerTID = 	jQuery("#snow_evaluation_danger_level").val();
-			
-			//(@RegID, @AvalancheEvaluation, @AvalancheDevelopment, @ValidExposition, @ExposedHeight1, @ExposedHeight2, @ExposedHeightComboTID, @ExposedClimateTID, @AvalancheDangerTID, @UsageFlagTID )->
-			var obs = new AvalancheEvaluation2(0, comment, null, exposition, null, null, null, null, avalancheDangerTID, 0)
-			
-			snow_page.updateLocation(function(){
-				jQuery("#snow_evaluation_comment").val("");
-				jQuery("#exposition").val("00000000");
-				jQuery("#snow_evaluation_danger_level").val(0);
-				
-				main.store.getSnow().addObs(obs);
-				main.panels.slideBack();
-			}, true);
-		},
 		
 		init: function(id){
 			var problemId = 1;
@@ -57,44 +25,7 @@ var snow_problem = {
 			main.resetHeights();
 		},
 		
-		pickExposition : function(){
-			main.showDialogWithMessage("<div id='expositionButtons'>\
-		            <table class='expositions'>\
-		            <tr>\
-		                <td><input class='w_button w_radius c_color_gradient' type='button' value='NV'     onclick='snow_problem.clickedExposition(this);'/></td>\
-		                <td><input class='w_button w_radius c_color_gradient' type='button' value='N'      onclick='snow_problem.clickedExposition(this);'/></td>\
-		                <td><input class='w_button w_radius c_color_gradient' type='button' value='NØ'     onclick='snow_problem.clickedExposition(this);'/></td>\
-		            </tr>\
-		            <tr>\
-		                <td><input class='w_button w_radius c_color_gradient' type='button' value='V'      onclick='snow_problem.clickedExposition(this);'/></td>\
-		                <td><input class='w_button w_radius c_color_gradient' type='button' value='Alle'   onclick='snow_problem.clickedAllExpositions();'/></td>\
-		                <td><input class='w_button w_radius c_color_gradient' type='button' value='Ø'      onclick='snow_problem.clickedExposition(this);'/></td>\
-		            </tr>\
-		            <tr>\
-		                <td><input class='w_button w_radius c_color_gradient' type='button' value='SV'     onclick='snow_problem.clickedExposition(this);'/></td>\
-		                <td><input class='w_button w_radius c_color_gradient' type='button' value='S'      onclick='snow_problem.clickedExposition(this);'/></td>\
-		                <td><input class='w_button w_radius c_color_gradient' type='button' value='SØ'     onclick='snow_problem.clickedExposition(this);'/></td>\
-		            </tr>\
-		        </table>\
-		    </div>", "Velg rettning");
-			var controller = new Exposition(jQuery("#exposition").val(), snow_problem.expositionsCallbacks);
-			controller.refresh();
-		},
 		
-		clickedAllExpositions: function(){
-			jQuery("#exposition").val("11111111");
-			var controller = new Exposition(jQuery("#exposition").val(), snow_problem.expositionsCallbacks);
-			controller.refresh();
-		},
-		
-		clickedExposition : function(obj){
-			var exposition = jQuery(obj).attr("value");
-			var controller = new Exposition(jQuery("#exposition").val(), snow_problem.expositionsCallbacks);
-			controller.toggle(exposition);
-			jQuery("#exposition").val(controller.toString());
-			
-			controller.refresh();
-		},
 		
 
 		fillAvalancheDangerKD: function(data){

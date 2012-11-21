@@ -76,6 +76,17 @@ SNOW_TEXT =
 		"Gjelder for fylket/ varslingsregionen.",
 	 ];
 
+SNOW_EVALUATION_TEXT = 
+	[
+	 	"Ikke angit", 
+		"Gjelder på dette stedet.",
+		"Gjelder i denne fjellsiden.",
+		"Gjelder generelt på fjellet.",
+		"Gjelder i dalen/fjorden.",
+		"Gjelder for kommunen.",
+		"Gjelder for fylket/ varslingsregionen.",
+	 ];
+
 ICE_TEXT = 
 	[
 	 	"", //ikkeangit

@@ -350,7 +350,7 @@
                     </select>
                     
                     
-                    <button id="expositionButton" class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_problem.pickExposition()" >Velg utsatte retninger</button>
+                    <button id="expositionButton" class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_evaluation.pickExposition()" >Velg utsatte retninger</button>
                     <input type="hidden" id="exposition"/>
                     
                     <select id="snow_evaluation_utstrekning" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
@@ -358,13 +358,13 @@
                         <option>Omeråde skredvurdering gjelder for</option>
                     </select>
                     
-                    <label>Skredvrudering:</label>
+                    <label>Skredvurdering:</label>
                     <textarea id="snow_evaluation_comment" class="c_textarea bigWidth" rows="5"></textarea>
                 </div>
             </div>
             <div class="addAbort c_color_gradient">
-                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_problem.addEvaluation();">Legg til</button>
-                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_problem.abort();    ">Avbryt</button>
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_evaluation.addEvaluation();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_evaluation.abort();">Avbryt</button>
             </div>
         </div>
         
