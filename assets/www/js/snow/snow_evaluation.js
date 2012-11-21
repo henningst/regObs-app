@@ -27,6 +27,7 @@ var snow_evaluation = {
 	
 	addProblem: function(obs){
 		snow_evaluation.problems.push(obs);
+		snow_page.check("snow_problem"+ snow_evaluation.problems.length +"_count")
 	},
 	
 	addEvaluation: function(){

@@ -70,22 +70,18 @@ var snow_problem = {
 		},
 		
 		filter: function(list, inputOutput, currentVal){
-			console.log("pp: current val " + parseInt(currentVal))
 			var allowedRows = jQuery.grep(inputOutput, function(element){
 				return element.input === parseInt(currentVal);
 			});
-			console.log("pp: allowedRows " , allowedRows);
 			
 			var allowedValues = jQuery.map(allowedRows, function(element){
 				return element.output;
 			});
 			
-			console.log("pp: allowed values", allowedValues);
-			
+			allowedValues.push(0); // ikke angit altid gyldig.
 			var returning = jQuery.grep(list, function(element){
 				return jQuery.inArray(element.value, allowedValues) >= 0;
 			});
-			console.log("pp: filtered list", returning);
 			return returning;
 		},
 		

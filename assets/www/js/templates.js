@@ -117,11 +117,11 @@ function program7(depth0,data) {
   stack1 = depth0.sannsynlighet;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</select>\n<select class=\"tilleggsbelastning bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    ";
+  buffer += "\n</select>\n<label>Tilleggsbelastning:</label>\n<select class=\"tilleggsbelastning bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    ";
   stack1 = depth0.tilleggsbelastning;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</select>\n<select class=\"storrelse bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    ";
+  buffer += "\n</select>\n<label>Størrelse:</label>\n<select class=\"storrelse bigWidth w_select c_selectBox\" style=\"padding-bottom: 20px; margin-bottom: 20px;\">\n    ";
   stack1 = depth0.storrelse;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
