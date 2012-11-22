@@ -1353,6 +1353,11 @@ var main = (function() {
 		}
 	});
 	
+	jQuery("textarea, select").live("blur", function(){
+		window.scrollTo(0,0);
+	});
+	
+	
 	jQuery("button.doubleTapPrevention").on("click", function() {
 		jQuery(this).attr("disable", "disable");
 		var button = jQuery(this);

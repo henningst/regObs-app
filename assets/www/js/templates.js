@@ -129,7 +129,7 @@ function program7(depth0,data) {
   stack1 = depth0.plassering;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(7, program7, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</select>\n\n";
+  buffer += "\n</select>\n\n<div class=\"scrollSpacer\"></div>";
   return buffer;});
 templates['viewList'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
