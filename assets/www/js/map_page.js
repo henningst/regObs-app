@@ -1,5 +1,5 @@
 var map_page = {
-	shouldShowFooter : false,
+	shouldShowFooter : true,
 	map: null,
 	geo_hazard : null,
 	init: function(){

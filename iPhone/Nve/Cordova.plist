@@ -34,7 +34,8 @@
 		<string>*.googleapis.com</string>
 		<string>*.gstatic.com</string>
 		<string>serverapi.arcgisonline.com</string>
-		<string>192.168.1.33*</string>
+		<string>*.regobs.no</string>
+		<string>192.168.1.61*</string>
 	</array>
 	<key>Plugins</key>
 	<dict>

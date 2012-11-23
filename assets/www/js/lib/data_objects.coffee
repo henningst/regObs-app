@@ -118,8 +118,8 @@ class AvalancheActivityObs
 
 class AvalancheDangerKD
   url : null
-  constructor: (@LangKey, @AvalancheDangerName, @AvalancheDangerDescr, @Language ) ->
-    @url = "#{SERVER_URL}AvalancheDangerKD"
+  constructor: (@AvalancheDangerTID, @LangKey, @AvalancheDangerName, @AvalancheDangerDescr, @Language ) ->
+    @url = "#{SERVER_URL}AvalancheDangerKD?$filter=LangKey eq #{LANGUAGE}"
   
 class AvalancheDangerObs extends Observation
   url : ()  -> "#{SERVER_URL}AvalancheDangerObs"
@@ -130,8 +130,51 @@ class AvalancheDangerObs extends Observation
     @AvalancheDangerObsID = x
 
 
+class AvalProbabilityKD
+  url : null
+  constructor : (@AvalProbabilityTID, @LangKey, @AvalProbabilityName, @AvalProbabilityDescr) ->
+    @url = "#{SERVER_URL}AvalProbabilityKD?$filter=LangKey eq #{LANGUAGE}" 
     
+class AvalTriggerSimpleKD
+  url : null
+  constructor : (@AvalTriggerSimpleTID, @LangKey, @AvalTriggerSimpleName, @AvalTriggerSimpleDescr) ->
+    @url = "#{SERVER_URL}AvalTriggerSimpleKD?$filter=LangKey eq #{LANGUAGE}" 
     
+class DestructiveSizeExtKD
+  url : null
+  constructor : (@DestructiveSizeExtTID, @LangKey, @DestructiveSizeExtName, @DestructiveSizeExtDescr) ->
+    @url = "#{SERVER_URL}DestructiveSizeExtKD?$filter=LangKey eq #{LANGUAGE}"
+    
+class AvalReleaseHeightKD
+  url : null
+  constructor : (@AvalReleaseHeightTID, @LangKey, @AvalReleaseHeighName, @AvalReleaseHeighDescr)->
+    @url = "#{SERVER_URL}AvalReleaseHeightKD?$filter=LangKey eq #{LANGUAGE}"
+ 
+    
+class AvalancheExtKD
+  url : null
+  constructor : (@AvalancheExtTID, @LangKey, @AvalancheExtName, @AvalancheExtDescr) ->
+    @url = "#{SERVER_URL}AvalancheExtKD?$filter=LangKey eq #{LANGUAGE}"
+
+class AvalCauseKD
+  url : null
+  constructor : (@AvalCauseTID, @LangKey, @AvalCauseName, @AvalCauseDescr) ->
+    @url = "#{SERVER_URL}AvalCauseKD?$filter=LangKey eq #{LANGUAGE}"
+    
+class AvalCauseExtKD
+  url : null
+  constructor : (@AvalCauseExtTID, @LangKey, @AvalCauseExtName, @AvalCauseExtDescr) ->
+    @url = "#{SERVER_URL}AvalCauseExtKD?$filter=LangKey eq #{LANGUAGE}"
+        
+class AvalancheProblemMenu1V
+  url:null
+  constructor : ()->
+    @url = "#{SERVER_URL}AvalancheProblemMenu1V?$filter=LangKey eq #{LANGUAGE}"
+    
+class AvalancheProblemMenu2V
+  url:null
+  constructor : ()->
+    @url = "#{SERVER_URL}AvalancheProblemMenu2V?$filter=LangKey eq #{LANGUAGE}"
     
     
 ###
@@ -155,6 +198,9 @@ class AvalancheEvaluation
 class AvalancheEvaluation
   url : ()  -> "#{SERVER_URL}AvalancheEvaluation"
   constructor: (@RegID, @CanPublish, @AvalancheDangerTID, @ValidExposition, @ValidHeightRelative, @ValidHeightFrom, @ValidHeigtTo, @AvalancheProblemTID1, @AvalancheProblemTID2, @AvalancheProblemTID3, @UsageFlagTID, @AvalancheEvaluation1, @InternalComment, @Comment) ->
+
+
+
 
 class AvalancheKD
   url : null
@@ -208,7 +254,12 @@ class DangerObs extends Observation
     
   beforeSend: (index) =>
     @DangerObsID = index
-    
+
+class AvalancheEvaluation2 extends Observation
+  url : () -> "#{SERVER_URL}AvalancheEvaluation2"
+  constructor: (@RegID, @AvalancheEvaluation, @AvalancheDevelopment, @ValidExposition, @ExposedHeight1, @ExposedHeight2, @ExposedHeightComboTID, @ExposedClimateTID, @AvalancheDangerTID, @UsageFlagTID )->
+    @model = "AvalancheEvaluation2"
+       
 
 class SnowSurfaceObservation extends Observation
   url : () -> "#{SERVER_URL}SnowSurfaceObservation"
@@ -229,6 +280,11 @@ class IceThickness extends Observation
   url : () -> "#{SERVER_URL}IceThickness"
   constructor: (@RegID, @SnowDepth, @SlushSnow, @IceThicknessSum, @IceHeightBefore, @IceHeightAfter, @UsageFlagTID, @Comment) ->
     @model = "IceThickness"
+
+class AvalancheEvalProblem extends Observation
+  url: () -> "#{SERVER_URL}AvalancheEvalProblem"
+  constructor: (@RegID, @AvalancheEvalProblemID, @AvalProbabilityTID, @AvalTriggerSimpleTID, @DestructiveSizeExtTID, @AvalancheExtTID, @AvalCauseTID, @AvalReleaseHeightTID, @Comment) ->
+    @model = "AvalancheEvalProblem"
 
 class DestructiveSizeKD
   url : null

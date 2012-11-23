@@ -40,10 +40,10 @@ var device = {
 
 
 
-APP_VERSION = "0.15.1";
+APP_VERSION = "0.15.7";
 	
-//BUGSENS_KEY = '1e74c587';//test
-BUGSENS_KEY = '5eb4c461';//prod
+BUGSENS_KEY = '1e74c587';//test
+//BUGSENS_KEY = '5eb4c461';//prod
 	
 /*
  * 1 = Norsk

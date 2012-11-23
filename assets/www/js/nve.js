@@ -317,7 +317,8 @@ var main = (function() {
 				transitionType : 'default',
 				uId : 5,
 				pages : [ 'home', 'settings', 'map_page',
-						'map_obs_page', 'snow', 'snow_see_obs',
+						'map_obs_page', 'snow', 'snow_see_obs', 'snow_evaluation',
+						'snow_problem_1','snow_problem_2','snow_problem_3',
 						'snow_see_varsel', 'snow_obs', 'snow_hendelse',
 						'snow_faresign', 'snow_picture', 'snow_surface',
 						'snow_activity', 'ice', 'ice_see_obs',
@@ -405,7 +406,23 @@ var main = (function() {
 					force);
 			main.fillDropdown(IceCoverKD, main.fillIceCoverKD, force);
 
+			main.fillDropdown(AvalancheDangerKD, main.fillAvalancheDangerKD, force);
+			
+			main.fillDropdown(AvalProbabilityKD, main.fillAvalProbabilityKD, force);
+			main.fillDropdown(AvalTriggerSimpleKD, main.fillAvalTriggerSimpleKD, force);
+			main.fillDropdown(DestructiveSizeExtKD, main.fillDestructiveSizeExtKD, force);
+			main.fillDropdown(AvalReleaseHeightKD, main.fillAvalReleaseHeightKD, force);
+			
+			main.fillDropdown(AvalancheExtKD, main.fillAvalancheExtKD, force);
+			main.fillDropdown(AvalCauseKD, main.fillAvalCauseKD, force);
+			main.fillDropdown(AvalCauseExtKD, main.fillAvalCauseExtKD, force);
+			
+			main.fillDropdown(AvalancheProblemMenu1V, main.fillAvalancheProblemMenu1V, force);
+			main.fillDropdown(AvalancheProblemMenu2V, main.fillAvalancheProblemMenu2V, force);
+			
+			
 		},
+		
 
 		carouselMoved : function(data) {
 			switch (data.carouselId) {
@@ -625,6 +642,10 @@ var main = (function() {
 		noConnectionDialog: function(){
 			main.showDialogWithMessage(NO_CONNECTION);
 		},
+		
+		showSendingDialog : function(){
+			main.showDialogWithMessage(SENDING_IN_BACKGROUND);
+		},
 
 		showDialogWithMessage : function(message, header) {
 			main.dialogShowing = false;
@@ -650,7 +671,7 @@ var main = (function() {
 		},
 		
 
-		showWaitingDialogWithMessage : function(message) {
+		showWaitingDialogWithMessage : function(message, callback) {
 			main.dialogShowing = true;
 			main.dialogStarted = new Date().toString();
 			main.showDialog("<div class='waitingDialog'>" + message
@@ -660,7 +681,10 @@ var main = (function() {
 			setTimeout(function() {
 				if (main.dialogShowing && dateStarted === main.dialogStarted) {
 					main.hideDialog();
-					main.showDialogWithMessage(ERROR_TIMEOUT, "Tidsavbrudd");
+					if(callback !== undefined )
+						callback()
+					else
+						main.showDialogWithMessage(ERROR_TIMEOUT, "Tidsavbrudd");
 				}
 			}, 20000);
 		},
@@ -840,12 +864,49 @@ var main = (function() {
 				f(data);
 			});
 		},
+		
+		fillAvalancheProblemMenu1V : function(data){
+			main.saveAndCall(AvalancheProblemMenu1V, data, [ snow_problem.holdAvalancheProblemMenu1V ]);
+		},  
+		
 
+		fillAvalancheProblemMenu2V : function(data){
+			main.saveAndCall(AvalancheProblemMenu2V, data, [ snow_problem.holdAvalancheProblemMenu2V ]);
+		},  
+		
+		fillAvalancheExtKD : function(data){
+			main.saveAndCall(AvalancheExtKD, data, [ snow_problem.holdAvalancheExtKD ]);
+		},
+		
+		fillAvalCauseKD : function(data){
+			main.saveAndCall(AvalCauseKD, data, [ snow_problem.holdAvalCauseKD ]);
+		},
+		fillAvalCauseExtKD : function(data){
+			main.saveAndCall(AvalCauseExtKD, data, [ snow_problem.holdAvalCauseExtKD ]);
+		},
+		
+		fillAvalProbabilityKD : function(data) {
+			main.saveAndCall(AvalProbabilityKD, data, [ snow_problem.holdAvalProbabilityKD ]);
+		},
+		fillAvalTriggerSimpleKD : function(data) {
+			main.saveAndCall(AvalTriggerSimpleKD, data, [ snow_problem.holdAvalTriggerSimpleKD ]);
+		},
+		fillDestructiveSizeExtKD : function(data) {
+			main.saveAndCall(DestructiveSizeExtKD, data, [ snow_problem.holdDestructiveSizeExtKD ]);
+		},
+		fillAvalReleaseHeightKD : function(data) {
+			main.saveAndCall(AvalReleaseHeightKD , data, [ snow_problem.holdAvalReleaseHeightKD ]);
+		},
+		
 		fillEstimatedNumKD : function(data) {
 			main.saveAndCall(EstimatedNumKD, data,
 					[ snow_activity.fillEstimatedNumKD ]);
 		},
 
+		fillAvalancheDangerKD:function(data){
+			main.saveAndCall(AvalancheDangerKD, data, [ snow_problem.fillAvalancheDangerKD ]);
+		},
+		
 		fillIceCoverKD : function(data) {
 			main.saveAndCall(IceCoverKD, data, [ ice_cover.fillIceCoverKD ]);
 		},
@@ -1030,6 +1091,20 @@ var main = (function() {
 			case 'snow_see_obs':
 				if (status == 'start') {
 					snow_see_obs.init();
+				}
+				break;
+				
+			case 'snow_evaluation':
+				if(status == 'start'){
+					snow_evaluation.init();
+				}
+				break;
+				
+			case 'snow_problem_1':
+			case 'snow_problem_2':
+			case 'snow_problem_3':
+				if(status == 'start'){
+					snow_problem.init(params.id);
 				}
 				break;
 
@@ -1284,6 +1359,11 @@ var main = (function() {
 			main.scrollers[id].scrollTo(0, -60, 0, true);
 		}
 	});
+	
+	jQuery("textarea, select").live("blur", function(){
+			window.scrollTo(0,0);
+	});
+	
 	
 	jQuery("button.doubleTapPrevention").on("click", function() {
 		jQuery(this).attr("disable", "disable");

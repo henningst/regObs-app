@@ -87,9 +87,13 @@ AbstractPackage = (function() {
 
   AbstractPackage.prototype.onError = function(data) {
     if (main.haveConnection()) {
-      this.handleStatusCode(data.response.statusCode);
-      console.log("pp: error occured sending package " + data);
-      new ErrorHandler().handleErrorSilent(data);
+      if (data.response) {
+        this.handleStatusCode(data.response.statusCode);
+        console.log("pp: error occured sending package " + data);
+        new ErrorHandler().handleErrorSilent(data);
+      } else {
+        new ErrorHandler().handleError(data);
+      }
     } else {
       main.noConnectionDialog();
     }
@@ -307,114 +311,177 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.completeAreaRegistration = function(data, force) {
-    var bilde, i, n, obs, picture, x, _fn, _fn1, _i, _j, _len, _len1, _ref,
+    var bilde, i, incidentFunc, n, obs, picture, sendingFunctions, x, _fn, _fn1, _i, _j, _len, _len1, _ref,
       _this = this;
     console.log("complete force " + force);
+    sendingFunctions = [];
     x = 0;
     n = this.name;
     _ref = this.pointModels(this.m_dangerObs).area;
     _fn = function(obs) {
-      var clone;
-      obs.RegID = data.RegID;
-      clone = JSON.parse(JSON.stringify(obs));
-      clone = _this.castedModel(clone);
-      if (clone.beforeSend) {
-        clone.beforeSend(x++);
-      }
-      if (clone.model) {
-        delete clone.model;
-      }
-      return SendObjectToServer(clone, void 0, function(error) {
-        return _this.onError(error);
-      });
+      var sendFunc;
+      sendFunc = function(callback) {
+        var clone, error, success;
+        obs.RegID = data.RegID;
+        clone = JSON.parse(JSON.stringify(obs));
+        clone = _this.castedModel(clone);
+        if (clone.beforeSend) {
+          clone.beforeSend(x++);
+        }
+        if (clone.model) {
+          delete clone.model;
+        }
+        success = function() {
+          return callback(null, obs.RegID);
+        };
+        error = function(error) {
+          return callback(error);
+        };
+        return SendObjectToServer(clone, success, error);
+      };
+      return sendingFunctions.push(sendFunc);
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       obs = _ref[_i];
       _fn(obs);
     }
-    this.removeAreaModels();
     i = 0;
     bilde = this.cutOutPictures(true);
     _fn1 = function(picture) {
-      var sendPicture;
-      picture = jQuery.extend(picture, new Picture());
-      picture.RegID = data.RegID;
-      picture.PictureID = i++;
-      sendPicture = new SendInPictureCommand(picture);
-      return sendPicture.send();
+      var sendFunc;
+      sendFunc = function(callback) {
+        var sendPicture;
+        picture = jQuery.extend(picture, new Picture());
+        picture.RegID = data.RegID;
+        picture.PictureID = i++;
+        sendPicture = new SendInPictureCommand(picture);
+        return sendPicture.send(callback);
+      };
+      return sendingFunctions.push(sendFunc);
     };
     for (_j = 0, _len1 = bilde.length; _j < _len1; _j++) {
       picture = bilde[_j];
       _fn1(picture);
     }
-    if (this.m_incident && (i !== 0 || x !== 0 || force)) {
-      this.m_incident = jQuery.extend(this.m_incident, new Incident());
-      this.m_incident.RegID = data.RegID;
-      SendObjectToServer(this.m_incident);
-      this.m_incident = null;
-    }
-    main.addLastRegID(data.RegID);
-    DataAccess.save(this.name, this);
-    if (!force) {
-      return this.onSend(this.page, false);
-    } else {
-      this.callCallback();
-      return main.showFinishedUploadMessage();
-    }
+    incidentFunc = function(callback) {
+      var error, success;
+      if (_this.m_incident && (i !== 0 || x !== 0 || force)) {
+        _this.m_incident = jQuery.extend(_this.m_incident, new Incident());
+        _this.m_incident.RegID = data.RegID;
+        success = function() {
+          return callback(null, "incident sendt");
+        };
+        error = function(error) {
+          return callback(error);
+        };
+        SendObjectToServer(_this.m_incident, success, error);
+        return _this.m_incident = null;
+      } else {
+        return callback(null, "no incident");
+      }
+    };
+    sendingFunctions.push(incidentFunc);
+    return async.series(sendingFunctions, function(err, result) {
+      console.log("done sending " + result);
+      if (err) {
+        console.log("pp: error " + JSON.stringify(err));
+        return _this.onError(err);
+      } else {
+        _this.removeAreaModels();
+        main.addLastRegID(data.RegID);
+        DataAccess.save(_this.name, _this);
+        if (!force) {
+          return _this.onSend(_this.page, false);
+        } else {
+          _this.callCallback();
+          return main.showFinishedUploadMessage();
+        }
+      }
+    });
   };
 
   AbstractPackage.prototype.completePointRegistration = function(data) {
-    var bilde, i, obs, picture, x, _fn, _fn1, _i, _j, _len, _len1, _ref,
+    var bilde, i, obs, picture, sendFunctions, sendIncident, x, _fn, _fn1, _i, _j, _len, _len1, _ref,
       _this = this;
-    if (this.m_incident) {
-      this.m_incident = jQuery.extend(this.m_incident, new Incident());
-      this.m_incident.RegID = data.RegID;
-      SendObjectToServer(this.m_incident, void 0, function(error) {
-        return _this.onError(error);
-      });
-      this.m_incident = null;
-    }
+    sendFunctions = [];
+    sendIncident = function(callback) {
+      var error, success;
+      if (_this.m_incident) {
+        _this.m_incident = jQuery.extend(_this.m_incident, new Incident());
+        _this.m_incident.RegID = data.RegID;
+        success = function() {
+          return callback(null, "incident sendt");
+        };
+        error = function(error) {
+          return callback(error);
+        };
+        SendObjectToServer(_this.m_incident, success, error);
+        return _this.m_incident = null;
+      } else {
+        return callback(null, "no incident");
+      }
+    };
+    sendFunctions.push(sendIncident);
     x = 0;
     _ref = this.pointModels(this.m_dangerObs).point;
     _fn = function(obs) {
-      var clone;
-      obs.RegID = data.RegID;
-      clone = JSON.parse(JSON.stringify(obs));
-      clone = _this.castedModel(clone);
-      if (clone.beforeSend) {
-        clone.beforeSend(x++);
-      }
-      if (clone.model) {
-        delete clone.model;
-      }
-      return SendObjectToServer(clone, void 0, function(error) {
-        return _this.onError(error);
-      });
+      var sendFunc;
+      sendFunc = function(callback) {
+        var clone, error, success;
+        obs.RegID = data.RegID;
+        clone = JSON.parse(JSON.stringify(obs));
+        clone = _this.castedModel(clone);
+        if (clone.beforeSend) {
+          clone.beforeSend(x++);
+        }
+        if (clone.model) {
+          delete clone.model;
+        }
+        success = function() {
+          return callback(null, obs.RegID);
+        };
+        error = function() {
+          return callback("problem with " + obs.RegID);
+        };
+        return SendObjectToServer(clone, success, error);
+      };
+      return sendFunctions.push(sendFunc);
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       obs = _ref[_i];
       _fn(obs);
     }
-    this.removePointModels();
     i = 0;
     bilde = this.cutOutPictures(false);
     _fn1 = function(picture) {
-      var sendPicture;
-      picture = jQuery.extend(picture, new Picture());
-      picture.RegID = data.RegID;
-      picture.PictureID = i++;
-      sendPicture = new SendInPictureCommand(picture);
-      return sendPicture.send();
+      var sendFunc;
+      sendFunc = function(callback) {
+        var sendPicture;
+        picture = jQuery.extend(picture, new Picture());
+        picture.RegID = data.RegID;
+        picture.PictureID = i++;
+        sendPicture = new SendInPictureCommand(picture);
+        return sendPicture.send(callback);
+      };
+      return sendFunctions.push(sendFunc);
     };
     for (_j = 0, _len1 = bilde.length; _j < _len1; _j++) {
       picture = bilde[_j];
       _fn1(picture);
     }
-    this.m_pictures.length = 0;
-    main.addLastRegID(data.RegID);
-    DataAccess.save(this.name, this);
-    this.callCallback();
-    return main.showFinishedUploadMessage();
+    return async.series(sendFunctions, function(err, result) {
+      console.log("done with " + result + ", error " + err);
+      if (err) {
+        return _this.onError(err);
+      } else {
+        _this.m_pictures.length = 0;
+        _this.removePointModels();
+        main.addLastRegID(data.RegID);
+        DataAccess.save(_this.name, _this);
+        _this.callCallback();
+        return main.showFinishedUploadMessage();
+      }
+    });
   };
 
   AbstractPackage.prototype.fillIncident = function(incident) {
@@ -433,7 +500,9 @@ AbstractPackage = (function() {
     var elapsedInMinutes, komm_string, location, pos, source,
       _this = this;
     if (area) {
-      main.showWaitingDialogWithMessage(UPLOADING);
+      main.showWaitingDialogWithMessage(UPLOADING, function() {
+        return main.showSendingDialog();
+      });
     }
     source = 0;
     pos = page.pos_obj;

@@ -1,5 +1,5 @@
 var snow_see_obs = {
-	shouldShowFooter : false,
+	shouldShowFooter : true,
 	domNodeId : '#snow_see_obs',
 	init: function(){
 		this.renderer = new ObservationViewRendrer(this.domNodeId, [], "map_page.snowMap()");

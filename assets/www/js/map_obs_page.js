@@ -1,5 +1,5 @@
 var map_obs_page = {
-	shouldShowFooter : false,
+	shouldShowFooter : true,
 	domNodeId : '#map_obs_page',
 	geo_hazard : null,
 	init: function(){

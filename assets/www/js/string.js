@@ -19,6 +19,8 @@ AN_ERROR_OCCURED = "Telefonen får ikke kontakt med regObs. Registreringen blir 
 
 LOGGING_IN = "Logger på... ";
 
+SENDING_IN_BACKGROUND = "Telefonen jobber med å sende registeringer til regobs. Trykk ok for å gjøre dette i bakgrunnen."
+
 /*
  * Message shown while loading the picture from the camera
  */
@@ -68,6 +70,17 @@ HENDELSE_ERROR = "Du må skrive en kommentar!";
 SNOW_TEXT = 
 	[
 	 	"", //ikkeangit
+		"Gjelder på dette stedet.",
+		"Gjelder i denne fjellsiden.",
+		"Gjelder generelt på fjellet.",
+		"Gjelder i dalen/fjorden.",
+		"Gjelder for kommunen.",
+		"Gjelder for fylket/ varslingsregionen.",
+	 ];
+
+SNOW_EVALUATION_TEXT = 
+	[
+	 	"Ikke angit", 
 		"Gjelder på dette stedet.",
 		"Gjelder i denne fjellsiden.",
 		"Gjelder generelt på fjellet.",

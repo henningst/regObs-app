@@ -201,7 +201,7 @@ input.large
 	color: #333;
 }
 
-.c_darker_gradient{
+.c_darker_gradient, input.pressed{
 	background: #5a5a5a; /* Old browsers */
 	background: -moz-linear-gradient(top,  #5a5a5a 0%, #5a5a5a 50%, #4d4d4d 51%, #4d4d4d 71%, #4d4d4d 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5a5a5a), color-stop(50%,#5a5a5a), color-stop(51%,#4d4d4d), color-stop(71%,#4d4d4d), color-stop(100%,#4d4d4d)); /* Chrome,Safari4+ */
@@ -819,5 +819,13 @@ ul.actions li{
 	
 	color: white;
 	text-shadow: #ccc 1px -1px 1px;
+}
+
+.expositions{
+  margin: auto	
+}
+
+.expositions input{
+  width: 60px;
 }
 

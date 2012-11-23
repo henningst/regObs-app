@@ -138,6 +138,7 @@ var super_page = {
 		},
 		
 		resetCounter: function(id){
+			jQuery("#" + id ).removeClass("checked")
 			this.setCounter(id, "0");
 		},
 		

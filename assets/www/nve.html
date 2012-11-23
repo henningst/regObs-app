@@ -6,7 +6,6 @@
 	<meta name="viewport" content="height=device-height; width=device-width; initial-scale=1; maximum-scale=1.0; user-scalable=no" />
 	<meta name="format-detection" content="telephone=no">
 
-  
 
 	<script type="text/javascript" src="js/dependencies/jquery.min.js"></script>
 	<script type="text/javascript" src="js/dependencies/iscroll.js"></script>
@@ -15,6 +14,7 @@
 	<script type="text/javascript" src="js/dependencies/stacktrace-min-0.4.js"></script>
 	<script type="text/javascript" src="js/dependencies/jgestures.min.js"></script>
 	<script type="text/javascript" src="js/dependencies/date_time_convertion.js"></script>
+	<script type="text/javascript" src="js/dependencies/async.js"></script>
 	
 	<script>
 	  jQuery.noConflict();
@@ -75,6 +75,7 @@
 	
 	<script type="text/javascript" src="js/database/database.js"></script>
 	
+	<script type="text/javascript" src="js/connection/exposition.js"></script>
 	<script type="text/javascript" src="js/connection/data_objects.js"></script>
 	<script type="text/javascript" src="js/connection/abstract_package.js"></script>
 	<script type="text/javascript" src="js/connection/package_collection.js"></script>
@@ -98,6 +99,8 @@
 	<script type="text/javascript" src="js/snow/snow_surface.js"></script>
 	<script type="text/javascript" src="js/snow/snow_activity.js"></script>
 	<script type="text/javascript" src="js/snow/snow_see_obs.js"></script>
+	<script type="text/javascript" src="js/snow/snow_evaluation.js"></script>
+	<script type="text/javascript" src="js/snow/snow_problem.js"></script>
 	
 	<script type="text/javascript" src="js/dirt/dirt.js"></script>
 	<script type="text/javascript" src="js/dirt/dirt_picture.js"></script>
@@ -310,6 +313,7 @@
                         </li>
                         <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_surface');">Sn&oslash;overflate <span id="snow_surface_count" class="notification_buble">0</span> <span class="w_icon arrow"></span></li>
                         <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_activity');">Skredaktivitet <span id="snow_activity_count" class="notification_buble">0</span> <span class="w_icon arrow"></span></li>
+                        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_evaluation');">Skredvurdering <span id="snow_evaluation_count" class="notification_buble">0</span> <span class="w_icon arrow"></span></li>
                         <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_picture');">Bilde <span id="snow_picture_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
                         </li>
                     </ul>
@@ -323,6 +327,92 @@
 
             <div class="sendAndGroup"></div>
 
+        </div>
+        
+        <div id="snow_evaluation" class="c_center_page standardTextSize content_page">
+            <div class="spacer"></div>
+            <div class="pageScroller" id="snow_evaluation_scroller">
+                <div class="scrollable">
+                    <a class="learning_icon" onclick="main.panels.slideTo('learning_page')"><img src="img/get_info.png" height="25px" width="25px" /> </a>
+                    
+                    <ul class="w_list actions w_radius w_border bigWidth center" >
+                        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_problem_1')">Skredproblem 1 <span id="snow_problem1_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                        </li>
+                        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_problem_2')">Skredproblem 2 <span id="snow_problem2_count" class="notification_buble">0</span> <span class="w_icon arrow"></span>
+                        </li>
+                        <li class="w_list_item w_border_bottom" onclick="main.panels.slideTo('snow_problem_3')">Skredproblem 3 <span id="snow_problem3_count" class="notification_buble">0</span> <span class="w_icon arrow"></span></li>
+                    </ul>
+                    
+                    <label>Faregrad:</label>
+                    <select id="snow_evaluation_danger_level" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+                        <option>Ikke angit</option>
+                    </select>
+                    
+                    <p>
+	                    <button id="expositionButton" class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_evaluation.pickExposition()" >Velg utsatte retninger</button>
+	                    <input type="hidden" id="exposition"/>
+                    </p>
+                    <p>
+                      <label>Utstrekning:</label>
+	                    <select id="snow_evaluation_utstrekning" class="bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+	                        <option>Ikke angit</option>
+	                        <option>Omeråde skredvurdering gjelder for</option>
+	                    </select>
+                    </p>
+                    
+                    <label>Skredvurdering:</label>
+                    <textarea id="snow_evaluation_comment" class="c_textarea bigWidth" rows="5"></textarea>
+                    <div class="scrollSpacer"></div>
+                </div>
+            </div>
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_evaluation.addEvaluation();">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_evaluation.abort();">Avbryt</button>
+            </div>
+        </div>
+        
+       <div id="snow_problem_1" class="c_center_page standartTextSize content_page">
+            <div class="spacer"></div>
+            <div class="pageScroller" id="snow_problem_1_scroller">
+                <div class="scrollable">
+                    <div class="snow_problem_content"></div>
+                </div>
+            </div>
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_problem.addProblem('snow_problem_1');">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_problem.abort(this);    ">Avbryt</button>
+            </div>
+        </div>
+        
+        
+        <div id="snow_problem_2" class="c_center_page standartTextSize content_page">
+		        <div class="spacer"></div>
+            <div class="pageScroller" id="snow_problem_2_scroller">
+                <div class="scrollable">
+                    <div class="snow_problem_content"></div>
+                </div>
+            </div>
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_problem.addProblem('snow_problem_2');">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_problem.abort(this);    ">Avbryt</button>
+            </div>
+        </div>
+        
+        
+        <div id="snow_problem_3" class="c_center_page standartTextSize content_page">
+            <div class="spacer"></div>
+            <div class="pageScroller" id="snow_problem_3_scroller">
+                <div class="scrollable">
+                    <div class="snow_problem_content"></div>
+                </div>
+            </div>
+
+            <div class="addAbort c_color_gradient">
+                <button class="span2 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_problem.addProblem('snow_problem_3');">Legg til</button>
+                <button class="span1 spanPadding w_button w_radius c_color_gradient doubleTapPrevention" onclick="snow_problem.abort(this);    ">Avbryt</button>
+            </div>
         </div>
 
         <div id="snow_hendelse" class="c_center_page standartTextSize content_page">
@@ -355,6 +445,7 @@
 
                     <label for="snow_danger_sign_comment">Beskrivelse:</label>
                     <textarea id="snow_danger_sign_comment" class="c_textarea bigWidth" rows="5"></textarea>
+                    <div class="scrollSpacer"></div>
                 </div>
             </div>
 

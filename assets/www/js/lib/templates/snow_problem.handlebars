@@ -1,0 +1,38 @@
+<label>Legg til skredproblem:</label>
+<select class="problem_1 bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+    <option>Skredtype 1</option>
+</select>
+<select class="problem_2 bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+    <option>Aventer valg</option>
+</select>
+<select class="problem_3 bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+    <option>Aventer valg</option>
+</select>
+
+<label>Legg til sannsynlighet:</label>
+<select class="sannsynlighet bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+    {{#each sannsynlighet}}
+        <option value="{{value}}">{{name}}</option>
+    {{/each}}
+</select>
+<label>Tilleggsbelastning:</label>
+<select class="tilleggsbelastning bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+    {{#each tilleggsbelastning}}
+        <option value="{{value}}">{{name}}</option>
+    {{/each}}
+</select>
+<label>Størrelse:</label>
+<select class="storrelse bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+    {{#each storrelse}}
+        <option value="{{value}}">{{name}}</option>
+    {{/each}}
+</select>
+
+<label>Legg til plassering i snødekket:</label>
+<select class="plassering bigWidth w_select c_selectBox" style="padding-bottom: 20px; margin-bottom: 20px;">
+    {{#each plassering}}
+        <option value="{{value}}">{{name}}</option>
+    {{/each}}
+</select>
+
+<div class="scrollSpacer"></div>
