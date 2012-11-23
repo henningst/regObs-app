@@ -60,9 +60,9 @@ var snow_evaluation = {
 				main.store.getSnow().addObs(obsProblem );
 			}
 			snow_evaluation.problems = [];
-			snow_page.cresetCounter("snow_problem1_count");
-			snow_page.cresetCounter("snow_problem2_count");
-			snow_page.cresetCounter("snow_problem3_count");
+			snow_page.resetCounter("snow_problem1_count");
+			snow_page.resetCounter("snow_problem2_count");
+			snow_page.resetCounter("snow_problem3_count");
 			
 			main.panels.slideBack();
 		}, true);
