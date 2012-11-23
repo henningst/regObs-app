@@ -62,6 +62,8 @@ var login_page = {
 	
 	loginErrorCallback: function(data) {
 		main.handleConnectionFailed(data);
+		
+		login_page.relogin();
 	},
 	
 	clickLogOut: function() {
@@ -69,13 +71,9 @@ var login_page = {
 		document.getElementById('login_password').value = "";
 		
 		UserStore.clear(main.currentMode());
-		Logout(login_page.logoutCallback, login_page.ert);
+		Logout(login_page.logoutCallback, login_page.logoutCallback);
 	},
 	
-	ert: function(data) 
-	{
-		alert("error");
-	},
 	
 	logoutCallback: function() {
 		console.log("logged out...");
@@ -84,7 +82,18 @@ var login_page = {
 	},
 	
 	showLoginStatus: function(loggedIn){
-    	main.currentlyLoggedIn = loggedIn;
+		if(loggedIn === DEFINED){
+			loggedIn = true;
+			jQuery('#login').attr("style", 'background-image: url(img/might-loggedin.png)');
+    		$('loginLogoutButton').value = LOGOUT_BUTTON;
+    		jQuery("body").removeClass("notLoggedIn");
+			
+    		main.currentlyLoggedIn = loggedIn;
+    		login_page.showGroupStatus();
+    		return;
+		}
+			
+		
     	if(loggedIn == true) {
     		jQuery('#login').attr("style", 'background-image: url(img/loggedin.png)');
     		$('loginLogoutButton').value = LOGOUT_BUTTON;
@@ -134,6 +143,10 @@ var login_page = {
     	var user = UserStore.get(main.currentMode());
     	
 		if(user.isDefined()) {
+			if(!main.haveConnection()){
+				login_page.showLoginStatus(DEFINED);	
+			}
+				
 			Login(user.username, user.password, login_page.loginCallback);
 			login_page.updateGroups(login_page.showGroupStatus());
     	} else {
