@@ -642,6 +642,10 @@ var main = (function() {
 		noConnectionDialog: function(){
 			main.showDialogWithMessage(NO_CONNECTION);
 		},
+		
+		showSendingDialog : function(){
+			main.showDialogWithMessage(SENDING_IN_BACKGROUND);
+		},
 
 		showDialogWithMessage : function(message, header) {
 			main.dialogShowing = false;
@@ -667,7 +671,7 @@ var main = (function() {
 		},
 		
 
-		showWaitingDialogWithMessage : function(message) {
+		showWaitingDialogWithMessage : function(message, callback) {
 			main.dialogShowing = true;
 			main.dialogStarted = new Date().toString();
 			main.showDialog("<div class='waitingDialog'>" + message
@@ -677,7 +681,10 @@ var main = (function() {
 			setTimeout(function() {
 				if (main.dialogShowing && dateStarted === main.dialogStarted) {
 					main.hideDialog();
-					main.showDialogWithMessage(ERROR_TIMEOUT, "Tidsavbrudd");
+					if(callback !== undefined )
+						callback()
+					else
+						main.showDialogWithMessage(ERROR_TIMEOUT, "Tidsavbrudd");
 				}
 			}, 20000);
 		},

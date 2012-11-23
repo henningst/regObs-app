@@ -19,6 +19,8 @@ AN_ERROR_OCCURED = "Telefonen får ikke kontakt med regObs. Registreringen blir 
 
 LOGGING_IN = "Logger på... ";
 
+SENDING_IN_BACKGROUND = "Telefonen jobber med å sende registeringer til regobs. Trykk ok for å gjøre dette i bakgrunnen."
+
 /*
  * Message shown while loading the picture from the camera
  */

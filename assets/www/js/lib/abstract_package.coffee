@@ -304,7 +304,7 @@ class AbstractPackage
   
   onSend: (page, area) =>
     if area
-      main.showWaitingDialogWithMessage(UPLOADING);
+      main.showWaitingDialogWithMessage(UPLOADING, ()-> main.showSendingDialog());
   
     source = 0
     pos = page.pos_obj 

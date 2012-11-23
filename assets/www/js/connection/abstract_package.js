@@ -500,7 +500,9 @@ AbstractPackage = (function() {
     var elapsedInMinutes, komm_string, location, pos, source,
       _this = this;
     if (area) {
-      main.showWaitingDialogWithMessage(UPLOADING);
+      main.showWaitingDialogWithMessage(UPLOADING, function() {
+        return main.showSendingDialog();
+      });
     }
     source = 0;
     pos = page.pos_obj;
