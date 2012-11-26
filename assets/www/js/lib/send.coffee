@@ -17,7 +17,7 @@ Login = (name, pass, callback, onError) ->
 			"Content-Type": "application/json; charset=utf-8"
 		}
 		success: (data) ->
-			console.log("logged in " + data)
+			console.log("logged in " + JSON.stringify(data))
 			callback(data) if callback
 		error: (data) ->
 			console.log("login failed")

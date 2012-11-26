@@ -205,8 +205,7 @@ var main = (function() {
 
 				var user = new User(0, username, password);
 				UserStore.save(main.currentMode(), user);
-				Login(username, password, login_page.loginCallback,
-						login_page.loginErrorCallback);
+				Login(username, password, login_page.loginCallback, login_page.loginErrorCallback);
 			} else {
 				// logout
 				login_page.clickLogOut();

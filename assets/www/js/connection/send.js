@@ -18,7 +18,7 @@ Login = function(name, pass, callback, onError) {
       "Content-Type": "application/json; charset=utf-8"
     },
     success: function(data) {
-      console.log("logged in " + data);
+      console.log("logged in " + JSON.stringify(data));
       if (callback) {
         return callback(data);
       }
