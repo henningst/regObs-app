@@ -480,6 +480,8 @@ var main = (function() {
 			if (!user.isDefined()) {
 				main.warnBefore("Login", ERROR_NO_LOGIN_CURRENT_MODE, "OK", "main.hideDialog()", "Login", 'main.panels.slideTo("login_page"); main.hideDialog();');
 			}
+			
+			main.populateBoxes(false);
 		},
 
 		toogleTestMode : function() {
