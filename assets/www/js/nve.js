@@ -731,7 +731,7 @@ var main = (function() {
 				'uId' : id,
 				'items' : [ {
 					'type' : 'string',
-					'content' : "<div style='font-size: 0.8em'>Ikke angit</div>"
+					'content' : "<div style='font-size: 0.8em'>Ikke angitt</div>"
 				} ]
 			};
 

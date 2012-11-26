@@ -36,7 +36,7 @@ var snow_evaluation = {
 		var avalancheDangerTID = 	jQuery("#snow_evaluation_danger_level").val();
 		var utstrekning = 			jQuery("#snow_evaluation_utstrekning").val();
 		
-		if(utstrekning != "Ikke angit"){
+		if(utstrekning != "Ikke angitt"){
 			comment = utstrekning + " " + comment
 		}
 		

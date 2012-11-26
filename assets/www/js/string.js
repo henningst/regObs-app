@@ -80,7 +80,7 @@ SNOW_TEXT =
 
 SNOW_EVALUATION_TEXT = 
 	[
-	 	"Ikke angit", 
+	 	"Ikke angitt", 
 		"Gjelder på dette stedet.",
 		"Gjelder i denne fjellsiden.",
 		"Gjelder generelt på fjellet.",
