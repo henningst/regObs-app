@@ -222,6 +222,9 @@ AbstractPackage = (function() {
     if (obs.setRegDate) {
       obs.setRegDate(this.regDate);
     }
+    if (obs.beforeSend) {
+      obs.beforeSend(this.m_dangerObs.length);
+    }
     this.m_dangerObs.push(obs);
     return DataAccess.save(this.name, this);
   };
@@ -325,9 +328,6 @@ AbstractPackage = (function() {
         obs.RegID = data.RegID;
         clone = JSON.parse(JSON.stringify(obs));
         clone = _this.castedModel(clone);
-        if (clone.beforeSend) {
-          clone.beforeSend(x++);
-        }
         if (clone.model) {
           delete clone.model;
         }

@@ -95,6 +95,7 @@ class AbstractPackage
   addObs: (obs) =>
     @setRegDate()
     obs.setRegDate(@regDate) if obs.setRegDate
+    obs.beforeSend(@m_dangerObs.length) if obs.beforeSend
     @m_dangerObs.push(obs)
     DataAccess.save(@name, this)
     
@@ -168,7 +169,7 @@ class AbstractPackage
           obs.RegID = data.RegID
           clone = JSON.parse(JSON.stringify(obs))
           clone = @castedModel(clone)
-          clone.beforeSend(x++) if clone.beforeSend
+          
                   
           delete clone.model if clone.model
           success = () -> callback(null, obs.RegID)
