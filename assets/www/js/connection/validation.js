@@ -12,8 +12,15 @@ Validation = (function() {
     this.rules = rules;
     allElements = this._fieldElements();
     jQuery.each(allElements, function(i, e) {
-      return jQuery(e).keypress(function() {
-        return _this.validate();
+      jQuery(e).keypress(function() {
+        return setTimeout(function() {
+          return _this.validate();
+        }, 200);
+      });
+      return jQuery(e).change(function() {
+        return setTimeout(function() {
+          return _this.validate();
+        }, 200);
       });
     });
     return this.validate();
@@ -28,7 +35,8 @@ Validation = (function() {
     } else {
       jQuery(this.button).fadeTo(0, 1);
     }
-    return console.log("disable button: " + !status);
+    console.log("disable button: " + !status);
+    return status;
   };
 
   Validation.prototype._fieldElements = function() {
@@ -69,7 +77,8 @@ NonEmpty = (function() {
     jQuery.each(this.element, function(index, e) {
       var thisElement;
       thisElement = jQuery(e).val() && jQuery(e).val().length > 0;
-      return allElementsValidated = allElementsValidated && thisElement;
+      allElementsValidated = allElementsValidated === true && thisElement === true;
+      return console.log("this element, all " + thisElement + ", " + allElementsValidated);
     });
     return allElementsValidated;
   };

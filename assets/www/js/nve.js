@@ -1351,7 +1351,7 @@ var main = (function() {
 		if(device.platform === "android")
 		{
 			var id = jQuery(this).parents(".scrolling").attr("id");
-			if(jQuery(this).hasClass("noscroll"))
+			if(jQuery(this).hasClass("noscroll") || main.scrollers[id] === undefined)
 				return;
 			
 			main.scrollers[id].scrollToElement(this, 0);

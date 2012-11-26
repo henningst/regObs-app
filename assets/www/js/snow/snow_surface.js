@@ -3,6 +3,9 @@ var snow_surface = {
 		i: 0,
 		
 		addSnowSurface: function() {
+			if(!validation.validate())
+				return;
+			
 			function intOr(string, defaultValue){
 				if(isNaN(parseInt(string)))
 					return defaultValue;
@@ -35,6 +38,13 @@ var snow_surface = {
 		
 		init: function() {
 			$('header_middle_text').innerHTML = "Sn&oslash;overflate";
+			
+			validation.register(
+					jQuery("#snow_surface button.add"),
+					[
+					 	new NonEmpty(jQuery("#snow_surface_snow_height, #snow_surface_fresh_snow_amount, #snow_surface_fresh_snow_limit"))
+					]
+			);
 			
 		},
 		
