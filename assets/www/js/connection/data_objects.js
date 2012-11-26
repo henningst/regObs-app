@@ -312,8 +312,6 @@ AvalancheDangerObs = (function(_super) {
     this.DangerSignTID = DangerSignTID;
     this.UsageFlagTID = UsageFlagTID;
     this.Comment = Comment;
-    this.beforeSend = __bind(this.beforeSend, this);
-
     this.model = "AvalancheDangerObs";
   }
 

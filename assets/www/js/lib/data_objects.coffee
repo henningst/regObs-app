@@ -126,7 +126,7 @@ class AvalancheDangerObs extends Observation
   constructor: (@AvalancheDangerObsID, @RegID, @DangerSignTID, @UsageFlagTID, @Comment) ->
     @model = "AvalancheDangerObs"
 
-  beforeSend: (x)=>
+  beforeSend: (x)->
     @AvalancheDangerObsID = x
 
 

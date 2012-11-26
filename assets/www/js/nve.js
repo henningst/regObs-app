@@ -2,8 +2,6 @@ TEST_MODE = "test_mode";
 STAGE_MODE = "stage_mode";
 
 
-
-
 var geo = {
 	last_page_location : null,
 	requestPosition : function(callback, shouldHandlePosition) {

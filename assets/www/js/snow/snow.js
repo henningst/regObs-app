@@ -12,8 +12,8 @@ var snow_obs =  snow_page = {
 		snow_page.updatePagePosition(position);
 		snow_page.displayPosition(position);
 
-		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult);
-		GetObjectFromServer(new AreaInformation(snow_page.latitute, snow_page.longitude), snow_page.onAreaInformationResult);
+		GetObjectFromServer(new PositionDetails(snow_page.latitute, snow_page.longitude), snow_page.onKommuneResult, snow_page.onError);
+		GetObjectFromServer(new AreaInformation(snow_page.latitute, snow_page.longitude), snow_page.onAreaInformationResult, snow_page.onError);
 	},
 	
 	savePosition: function(position){

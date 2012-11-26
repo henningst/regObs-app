@@ -120,12 +120,12 @@ var super_page = {
 		// onError Callback receives a PositionError object
 		//
 		onError: function(error) {
-			jQuery('.position_header_town').html("no" +" , " +"geodata");
-
 			this.longitude = 0;
 			this.latitute  = 0;
 			this.komm_nr = 0;
 			this.omrade_id = 0;
+			jQuery(".county_a").html("");
+			jQuery('.county_b').html("");
 		},
 		
 		showStar : function(){
