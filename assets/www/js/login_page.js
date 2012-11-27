@@ -96,6 +96,7 @@ var login_page = {
 		
     	if(loggedIn == true) {
     		jQuery('#login').attr("style", 'background-image: url(img/loggedin.png)');
+    		main.currentlyLoggedIn = loggedIn;
     		$('loginLogoutButton').value = LOGOUT_BUTTON;
     		jQuery("body").removeClass("notLoggedIn");
     	} else {
