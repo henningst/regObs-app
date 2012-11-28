@@ -4,7 +4,7 @@ var snow_evaluation = {
 	problems : [],
 		
 	init: function(){
-		$('header_middle_text').innerHTML = "Skredvurdering";
+		$('header_middle_text').innerHTML = "Skredfarevurd.";
 		
 		jQuery("#snow_evaluation_utstrekning option").remove();
 		jQuery.each(SNOW_EVALUATION_TEXT, function(i, obj){

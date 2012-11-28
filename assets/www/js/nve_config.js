@@ -11,12 +11,12 @@ var GPS_TIMEOUT_IN_MINUTES = 20;
  * 
  */
 TEST = "http://h-web01.nve.no/stage_regobsservices/Odata.svc/";
-STAGE = "http://api.nve.no/hydrology/regobs/v0.8.2/Odata.svc/";
+STAGE = "http://api.nve.no/hydrology/regobs/v0.8.3/Odata.svc/";
 //SERVER_URL = 
 SERVER_URL = TEST;
 
 TEST_LOGIN = "http://h-web01.nve.no/stage_RegObsServices/Authentication_JSON_AppService.axd/";
-STAGE_LOGIN = "http://api.nve.no/hydrology/regobs/v0.8.2/Authentication_JSON_AppService.axd/";
+STAGE_LOGIN = "http://api.nve.no/hydrology/regobs/v0.8.3/Authentication_JSON_AppService.axd/";
 SERVER_LOGIN_URL = TEST_LOGIN;
 
 WEB_LINK_URL_STAGE = "http://www.regobs.no/";
@@ -25,7 +25,7 @@ WEB_LINK_URL = WEB_LINK_URL_TEST;
 
 
 STAGE_REGISTER_URL = "http://h-web01.nve.no/stage_RegObsServices/Account/Register";
-PROD_REGISTER_URL = "http://api.nve.no/hydrology/regobs/v0.8.2/Account/Register";
+PROD_REGISTER_URL = "http://api.nve.no/hydrology/regobs/v0.8.3/Account/Register";
 REGISTER_URL = STAGE_REGISTER_URL;
 
 GA_TRACKER_CODE = "UA-32394009-1";
