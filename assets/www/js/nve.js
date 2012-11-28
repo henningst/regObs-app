@@ -164,6 +164,8 @@ var main = (function() {
 		panels : null,
 
 		currentlyLoggedIn : false,
+		
+		notConfirmedLogin : true,
 
 		currentPage : "",
 
@@ -708,9 +710,11 @@ var main = (function() {
 					+ cancel + "</button>" + "</div>");
 		},
 		
-		warnLoginBefore : function(after) {
+		warnLoginBefore : function(after, shouldNotRetry) {
 			if (!main.currentlyLoggedIn) {
 				main.warnBefore("Ikke innlogget", NOT_LOGGED_IN_WARNING, OK, after + "()", LOGIN_BUTTON, 'main.goToAndHide(\"login_page\")');
+			} else if(main.notConfirmedLogin === true && main.haveConnection() && !shouldNotRetry){
+				login_page.relogin(main.warnLoginBefore(after, true));
 			} else {
 				eval(after + "()");
 			}

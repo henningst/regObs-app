@@ -89,6 +89,7 @@ var login_page = {
     		jQuery("body").removeClass("notLoggedIn");
 			
     		main.currentlyLoggedIn = loggedIn;
+    		main.notConfirmedLogin = true;
     		login_page.showGroupStatus();
     		return;
 		}
@@ -96,7 +97,6 @@ var login_page = {
 		
     	if(loggedIn == true) {
     		jQuery('#login').attr("style", 'background-image: url(img/loggedin.png)');
-    		main.currentlyLoggedIn = loggedIn;
     		$('loginLogoutButton').value = LOGOUT_BUTTON;
     		jQuery("body").removeClass("notLoggedIn");
     	} else {
@@ -104,7 +104,10 @@ var login_page = {
     		jQuery('#login').attr("style", 'background-image: url(img/loggedout.png)');
     		$('loginLogoutButton').value = LOGIN_BUTTON;
     		jQuery("body").addClass("notLoggedIn");
+    		
     	}
+    	main.currentlyLoggedIn = loggedIn;
+    	main.notConfirmedLogin = false;
     	login_page.showGroupStatus();
 	},
 	
@@ -140,7 +143,7 @@ var login_page = {
     		jQuery(".groupButton").removeClass("pressed");
     },
     
-    relogin: function(){
+    relogin: function(callback){
     	var user = UserStore.get(main.currentMode());
     	
 		if(user.isDefined()) {
@@ -148,7 +151,12 @@ var login_page = {
 				login_page.showLoginStatus(DEFINED);	
 			}
 				
-			Login(user.username, user.password, login_page.loginCallback);
+			Login(user.username, user.password, function(data){
+				login_page.loginCallback(data);
+				if(callback){
+					callback();
+				}
+			});
 			login_page.updateGroups(login_page.showGroupStatus());
     	} else {
     		login_page.showLoginStatus(false);	
