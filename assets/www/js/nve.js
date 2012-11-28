@@ -539,7 +539,7 @@ var main = (function() {
 			geo.requestPosition(main.nothing, false);
 
 			new ErrorHandler().hookInto();
-			main.clickToTap();
+//			main.clickToTap();
 		},
 		
 		clickToTap: function(){
