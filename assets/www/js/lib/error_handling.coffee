@@ -18,7 +18,7 @@ class ErrorHandler
       delete exception.response
     
     try
-      console.log("pp: feil catched " + JSON.stringify(exception))
+      console.log("pp: feil catched " + JSON.stringify(exception), exception)
       
       Bugsense.notify({
         error: exception
@@ -50,7 +50,7 @@ class ErrorHandler
 window.customErrorHandler = new ErrorHandler()
 
 window.onerror = (error)-> 
-  console.log("pp: window error " + error)
+  console.log("pp: window error ", error)
   window.customErrorHandler.handleError(error)
   
 

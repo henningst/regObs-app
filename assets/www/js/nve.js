@@ -539,9 +539,7 @@ var main = (function() {
 			geo.requestPosition(main.nothing, false);
 
 			new ErrorHandler().hookInto();
-
 			main.clickToTap();
-			
 		},
 		
 		clickToTap: function(){
@@ -1331,7 +1329,6 @@ var main = (function() {
 		}
 	};
 
-	
 	
 	
 	window.addEventListener('load', E(wink.bind(main.init, main)), false);

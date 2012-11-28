@@ -20,7 +20,7 @@ ErrorHandler = (function() {
       delete exception.response;
     }
     try {
-      console.log("pp: feil catched " + JSON.stringify(exception));
+      console.log("pp: feil catched " + JSON.stringify(exception), exception);
       return Bugsense.notify({
         error: exception,
         code: error_code
@@ -58,7 +58,7 @@ ErrorHandler = (function() {
 window.customErrorHandler = new ErrorHandler();
 
 window.onerror = function(error) {
-  console.log("pp: window error " + error);
+  console.log("pp: window error ", error);
   return window.customErrorHandler.handleError(error);
 };
 
