@@ -1,6 +1,7 @@
 package no.nlink.nve;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import no.nlink.nve.RegObsGeoLocationPlugin.MyLocationListener;
@@ -30,6 +31,7 @@ public class RegObsGeoLocationPlugin extends Plugin {
   private boolean shouldHandleError;
   private boolean sendt = false;
   private Thread locationThread;
+  private Date timeMade;
   
   private static RegObsGeoLocationPlugin instance;
   @Override
@@ -137,7 +139,21 @@ public class RegObsGeoLocationPlugin extends Plugin {
   }
 
   public boolean didNotReceiveGodAccuracy(){
-    return accuracy > 80;
+    boolean isToOld = true;
+    if(timeMade != null){
+      Date now = new Date();
+      
+      long oldMillis = timeMade.getTime() - now.getTime();
+      long oldSec = oldMillis / 1000;
+      
+      Log.d("GeoPlugin", "location is sec old; " + oldSec);
+      if(oldSec > 60 * 30)
+        isToOld = true;
+      else
+        isToOld = false;
+    }
+    
+    return accuracy > 80 || isToOld;
   }
   
   public boolean newLocationReceived(Location location, boolean force){
@@ -150,6 +166,8 @@ public class RegObsGeoLocationPlugin extends Plugin {
     
     if(accuracy > location.getAccuracy())
         accuracy = location.getAccuracy();
+    
+    timeMade = new Date(location.getTime());
     
     String javascript = action + "(geo.convertToPosition(" +location.getLatitude()  +","+  location.getLongitude() +","+ location.getAccuracy() +","+ location.getTime()+ "))";
     
