@@ -362,7 +362,6 @@ var main = (function() {
 
 			main.slideToFavorite();
 			main.toogleFavorite();
-			main.toogleTestMode();
 
 			var wrapperHeight = wink.ux.window.height - 2 * 45;
 			$('wrapper').style.height = wrapperHeight + "px";
@@ -533,10 +532,11 @@ var main = (function() {
 			main.populateBoxes(true);
 
 			login_page.showLoginStatus(false);
-			login_page.relogin();
+			main.toogleTestMode();
 
 			main.initialised = true;
 			geo.requestPosition(main.nothing, false);
+			
 
 			new ErrorHandler().hookInto();
 //			main.clickToTap();

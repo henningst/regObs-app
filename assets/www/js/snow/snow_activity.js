@@ -98,6 +98,7 @@ var snow_activity = {
 				jQuery("#" + name).hide();
 				jQuery("#snow_activity_slider_placeholder").hide();
 			});
+			snow_activity.setCount(1); // ingen sett
 			main.resetHeights();
 		},
 		showObservations: function(){

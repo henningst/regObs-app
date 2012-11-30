@@ -103,7 +103,7 @@ ObservationFetcher = (function() {
       entry = e;
       author = entry.NickName;
       updated = _this.localDateString(_this.toDate(entry.DtObsTime));
-      url = "" + WEB_LINK_URL + "Registration?regId=" + entry.RegID;
+      url = "" + WEB_LINK_URL + "Registration/" + entry.RegID;
       content = new Handlebars.SafeString("<strong>" + updated + ", " + ([entry.RegistrationName, _this.trim(entry.TypicalValue1), _this.trim(entry.TypicalValue2)].filter(function(o) {
         return o.length > 0;
       }).join(", ")) + ".</strong> ved " + ([entry.LocationName, entry.ForecastRegionName, entry.Kommunenavn].filter(function(o) {
