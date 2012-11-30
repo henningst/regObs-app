@@ -9,7 +9,9 @@ var snow_evaluation = {
 		jQuery("#snow_evaluation_utstrekning option").remove();
 		jQuery.each(SNOW_EVALUATION_TEXT, function(i, obj){
 			jQuery("#snow_evaluation_utstrekning").append("<option>" + obj + "</option>");
-		})
+		});
+		
+		jQuery("#exposition").val("00000000");
 	},
 	
 	
