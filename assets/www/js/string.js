@@ -159,6 +159,10 @@ SNOW_INCIDENT =  "<h3>Ulykker, nestenulykker og hendelser</h3>"
 	+ "</ul>"
 	+ "<p>NB: Dersom du ønsker å være anonym kan du legge inn informasjonen som anonym bruker (dersom du har en bruker og er pålogget må du logge ut først).</p>";
 
+SNOW_EVALUATION = "<h3>Snø evaluering</h3>";
+
+SNOW_PROBLEM = "<h3>Snø problem</h3>";
+
 SNOW_DANGERSIGN = "<h3>Faretegn</h3>"
 	+ "<p>Det er svært nyttig for varslingsgruppa å få informasjon om faretegn fordi de gir gode hint om hvor ustabilt snødekket er.</p>"
 	+ "<p>For eksempel:</p>"
@@ -208,6 +212,8 @@ ICE_INCIDENT =
 	+ "<ul>"
 	+ "<li>Hvis man kan få tall på hvor ofte ulike typer ulykker eller nestenulykker forrekommer gir man grunnlaget for å jobbe prevantivt med opplæring og informasjon.</li>"
 	+ "</ul>";
+
+ICE_COVER = "<h3>Is dekke</h3>";
 
 
 DIRT_AVALANGE = "<h3>Jord- og flomskred</h3>"

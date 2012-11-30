@@ -474,7 +474,7 @@ ul.actions li{
 }
 
 .learning_icon img{
-  vertical-align: bottom;	
+  vertical-align: bottom;
 }
 
 .learning_icon{
@@ -482,7 +482,11 @@ ul.actions li{
   position: absolute;
   right: 0px;
   top: 35px;
-  zindex: 10;
+  zindex: 1000;
+}
+
+.snow_problem_content .learning_icon{
+	top: 0;
 }
 
 .content_page{

@@ -36,6 +36,16 @@ var learning_page = {
     			$('learning_content').innerHTML = SNOW_SURFACE;
     			break;
     			
+    		case 'snow_evaluation':
+    			$('learning_content').innerHTML = SNOW_EVALUATION;
+    			break;
+    			
+    		case 'snow_problem_1':
+    		case 'snow_problem_2':
+    		case 'snow_problem_3':
+    			$('learning_content').innerHTML = SNOW_PROBLEM;
+    			break;
+    			
     		case 'water': 
     			break;
 
@@ -62,6 +72,10 @@ var learning_page = {
     			break;
     			
     		case 'ice_obs': 
+    			break;
+    			
+    		case 'ice_cover':
+    			$('learning_content').innerHTML = ICE_COVER;
     			break;
     			
     		case 'ice_picture': 
