@@ -512,12 +512,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -532,8 +529,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "A5C28913-4D07-41E7-81F7-890A213923F6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A5C28913-4D07-41E7-81F7-890A213923F6";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -542,12 +539,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ravi  Hansen";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ravi  Hansen";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -555,8 +549,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "4D674606-A8D7-4A3B-9591-44E10B3B3E2B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D674606-A8D7-4A3B-9591-44E10B3B3E2B";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -566,7 +560,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = armv7;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
@@ -581,6 +575,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1,";
 				"HEADER_SEARCH_PATHS[arch=*]" = "\"$(TARGET_BUILD_DIR)/usr/local/lib/include\"\n\n\n\"$(OBJROOT)/UninstalledProducts/include\"\n\n\n\"$(BUILT_PRODUCTS_DIR)\"";
 				INFOPLIST_FILE = "Nve/regObs-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Nve/GoogleAnalytics/GoogSDK/\"",
@@ -612,10 +607,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = armv7;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ravi  Hansen";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ravi  Hansen";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -627,6 +622,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "NDEBUG=1,";
 				"HEADER_SEARCH_PATHS[arch=*]" = "\"$(TARGET_BUILD_DIR)/usr/local/lib/include\"\n\n\n\"$(OBJROOT)/UninstalledProducts/include\"\n\n\n\"$(BUILT_PRODUCTS_DIR)\"";
 				INFOPLIST_FILE = "Nve/regObs-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Nve/GoogleAnalytics/GoogSDK/\"",
@@ -645,8 +641,8 @@
 					"-Obj-C",
 				);
 				PRODUCT_NAME = regObs;
-				PROVISIONING_PROFILE = "A5C28913-4D07-41E7-81F7-890A213923F6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A5C28913-4D07-41E7-81F7-890A213923F6";
+				PROVISIONING_PROFILE = "4D674606-A8D7-4A3B-9591-44E10B3B3E2B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D674606-A8D7-4A3B-9591-44E10B3B3E2B";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/usr/local/lib/include\" \"$(OBJROOT)/UninstalledProducts/include\" \"$(BUILT_PRODUCTS_DIR)\"";
 				VALIDATE_PRODUCT = YES;
