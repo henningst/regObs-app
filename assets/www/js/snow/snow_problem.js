@@ -50,12 +50,12 @@ var snow_problem = {
 			
 			//console.log(problem_1, problem_2, problem_3, sansynlighet, tileggsbelastning, storrelse, plassering);
 			
-			//(@RegID, @AvalancheEvalProblemID, @AvalProbabilityTID, @AvalTriggerSimpleTID, @DestructiveSizeExtTID, @AvalancheExtTID, @AvalCauseTID, @AvalReleaseHeightTID, @Comment) ->
+			//(@RegID, @AvalancheEvalProblemID, @AvalProbabilityTID, @AvalTriggerSimpleTID, @DestructiveSizeExtTID, @AvalancheExtTID, @AvalCauseTID,@AvalCauseExtTID, @AvalReleaseHeightTID, @Comment) ->
 			
 			var obs = new AvalancheEvalProblem(
 						0, 0, parseInt(sansynlighet), 
 						parseInt(tileggsbelastning), parseInt(storrelse), parseInt(problem_1), 
-						parseInt(problem_2), parseInt(plassering), null);
+						parseInt(problem_2),parseInt(problem_3), parseInt(plassering), null);
 			console.log("pp: obs " + JSON.stringify(obs));
 			
 			jQuery(page).find("select").val(0);
