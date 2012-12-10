@@ -99,6 +99,20 @@ class AbstractPackage
     @m_dangerObs.push(obs)
     DataAccess.save(@name, this)
     
+  replaceObs: (obs)=>
+  	model = obs.model
+  	if model 
+  		position = -1
+  		for current, i in @m_dangerObs
+  			if(current.model == model)
+  					position = i
+  		
+  		if position >= 0
+  			@m_dangerObs.splice(position, 1)
+  	
+  		console.log(JSON.stringify(@m_dangerObs))		
+  		@addObs(obs)
+    
   getObs: (type) =>
     if(type == undefined)
       @m_dangerObs

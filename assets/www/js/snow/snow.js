@@ -46,9 +46,14 @@ var snow_obs =  snow_page = {
 		var snowStore = main.store.getSnow();
 
 		snow_page.setCounter('snow_faresign_count', snowStore.getObs('AvalancheDangerObs').length);
-		snow_page.setCounter('snow_surface_count', snowStore.getObs('SnowSurfaceObservation').length);
+		if(snowStore.getObs('SnowSurfaceObservation').length > 0){
+			snow_page.check('snow_surface_count');
+		}
+		
 		snow_page.setCounter('snow_activity_count', snowStore.getObs('AvalancheActivityObs').length);
-		snow_page.setCounter('snow_evaluation_count', snowStore.getObs('AvalancheEvaluation2').length);
+		if(snowStore.getObs('AvalancheEvaluation2').length > 0){
+			snow_page.check('snow_evaluation_count');
+		}
 		snow_page.setCounter('snow_picture_count', snowStore.getPictures().length);
 		
 		jQuery("#snow_obs .sendAndGroup").html(Handlebars.templates.sendGroup({sendFunction: "main.store.sendSnow", hazard:"snow"}));

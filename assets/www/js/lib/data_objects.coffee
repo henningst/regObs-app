@@ -283,7 +283,7 @@ class IceThickness extends Observation
 
 class AvalancheEvalProblem extends Observation
   url: () -> "#{SERVER_URL}AvalancheEvalProblem"
-  constructor: (@RegID, @AvalancheEvalProblemID, @AvalProbabilityTID, @AvalTriggerSimpleTID, @DestructiveSizeExtTID, @AvalancheExtTID, @AvalCauseTID, @AvalReleaseHeightTID, @Comment) ->
+  constructor: (@RegID, @AvalancheEvalProblemID, @AvalProbabilityTID, @AvalTriggerSimpleTID, @DestructiveSizeExtTID, @AvalancheExtTID, @AvalCauseTID, @AvalCauseExtTID, @AvalReleaseHeightTID, @Comment) ->
     @model = "AvalancheEvalProblem"
 
 class DestructiveSizeKD

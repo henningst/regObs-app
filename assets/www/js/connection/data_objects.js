@@ -790,7 +790,7 @@ AvalancheEvalProblem = (function(_super) {
     return "" + SERVER_URL + "AvalancheEvalProblem";
   };
 
-  function AvalancheEvalProblem(RegID, AvalancheEvalProblemID, AvalProbabilityTID, AvalTriggerSimpleTID, DestructiveSizeExtTID, AvalancheExtTID, AvalCauseTID, AvalReleaseHeightTID, Comment) {
+  function AvalancheEvalProblem(RegID, AvalancheEvalProblemID, AvalProbabilityTID, AvalTriggerSimpleTID, DestructiveSizeExtTID, AvalancheExtTID, AvalCauseTID, AvalCauseExtTID, AvalReleaseHeightTID, Comment) {
     this.RegID = RegID;
     this.AvalancheEvalProblemID = AvalancheEvalProblemID;
     this.AvalProbabilityTID = AvalProbabilityTID;
@@ -798,6 +798,7 @@ AvalancheEvalProblem = (function(_super) {
     this.DestructiveSizeExtTID = DestructiveSizeExtTID;
     this.AvalancheExtTID = AvalancheExtTID;
     this.AvalCauseTID = AvalCauseTID;
+    this.AvalCauseExtTID = AvalCauseExtTID;
     this.AvalReleaseHeightTID = AvalReleaseHeightTID;
     this.Comment = Comment;
     this.model = "AvalancheEvalProblem";
