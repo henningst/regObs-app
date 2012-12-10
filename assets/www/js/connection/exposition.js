@@ -20,21 +20,21 @@ Exposition = (function() {
 
   Exposition.prototype.indexFromExpo = function(expo) {
     switch (expo) {
-      case "NV":
-        return 0;
       case "N":
-        return 1;
+        return 0;
       case "NØ":
-        return 2;
+        return 1;
       case "Ø":
-        return 3;
+        return 2;
       case "SØ":
-        return 4;
+        return 3;
       case "S":
-        return 5;
+        return 4;
       case "SV":
-        return 6;
+        return 5;
       case "V":
+        return 6;
+      case "NV":
         return 7;
     }
   };
@@ -42,21 +42,21 @@ Exposition = (function() {
   Exposition.prototype.indexToExpo = function(index) {
     switch (index) {
       case 0:
-        return "NV";
-      case 1:
         return "N";
-      case 2:
+      case 1:
         return "NØ";
-      case 3:
+      case 2:
         return "Ø";
-      case 4:
+      case 3:
         return "SØ";
-      case 5:
+      case 4:
         return "S";
-      case 6:
+      case 5:
         return "SV";
-      case 7:
+      case 6:
         return "V";
+      case 7:
+        return "NV";
     }
   };
 
@@ -77,7 +77,7 @@ Exposition = (function() {
 
   Exposition.prototype.refresh = function() {
     var _this = this;
-    return jQuery.each(["NV", "N", "NØ", "Ø", "SØ", "S", "SV", "V"], function(i, expo) {
+    return jQuery.each(["N", "NØ", "Ø", "SØ", "S", "SV", "V", "NV"], function(i, expo) {
       return _this.callCallback(expo);
     });
   };
