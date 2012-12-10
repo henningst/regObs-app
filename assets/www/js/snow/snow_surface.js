@@ -31,7 +31,7 @@ var snow_surface = {
 				snow_height.val(null);
 				fresh_snow_amount.val(null);
 				fresh_snow_limit.val(null);
-				main.store.getSnow().addObs(obs);
+				main.store.getSnow().replaceObs(obs);
 				main.panels.slideBack();
 			}, true);
 		},
