@@ -90,6 +90,10 @@ var learning_page = {
     			$('learning_content').innerHTML = ICE_DANGERSIGN;
     			break;
     			
+    		case 'ice_thickness':
+                	$('learning_content').innerHTML = ICE_THICKNESS;
+                	break;
+    			
     		case 'dirt': 
     			break;
     			
