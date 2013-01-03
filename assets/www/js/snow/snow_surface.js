@@ -42,7 +42,7 @@ var snow_surface = {
 			validation.register(
 					jQuery("#snow_surface button.add"),
 					[
-					 	new NonEmpty(jQuery("#snow_surface_snow_height, #snow_surface_fresh_snow_amount, #snow_surface_fresh_snow_limit"))
+					 	new AtLeastOneFilled(jQuery("#snow_surface_snow_height, #snow_surface_fresh_snow_amount, #snow_surface_fresh_snow_limit"))
 					]
 			);
 			

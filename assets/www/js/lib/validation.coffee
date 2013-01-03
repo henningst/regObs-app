@@ -66,10 +66,22 @@ class Selected
   isValidated : ->
     allElementsValidated = true
     jQuery.each(@element, (index, e) ->
-      thisElement =jQuery(e).val() && jQuery(e).val() > 0
+      thisElement = jQuery(e).val() && jQuery(e).val() > 0
       allElementsValidated = allElementsValidated && thisElement
     )
 
+    allElementsValidated
+    
+class AtLeastOneFilled
+  constructor : (@element) ->
+  
+  isValidated : ->
+    allElementsValidated = false
+    jQuery.each(@element, (index, e) ->
+      thisElement = jQuery(e).val() && jQuery(e).val().length > 0 
+      allElementsValidated = allElementsValidated == true || thisElement == true
+    )
+    
     allElementsValidated
   
   
