@@ -26,8 +26,7 @@ var snow_faresign = {
 			
 			var comment = $("snow_danger_sign_comment").value;
 			comment += " " +SNOW_TEXT[snow_faresign.carouselId];
-			
-			var obs = new AvalancheDangerObs(snow_faresign.i++, null, list[list.selectedIndex].value, 0, comment);
+			var obs = new DangerObs(snow_faresign.i++, null, SNOW_GEO_HAZARD, list[list.selectedIndex].value, 0, comment);
 			
 			snow_page.updateLocation(function(){
 				$("snow_danger_sign_list").selectedIndex = 0;

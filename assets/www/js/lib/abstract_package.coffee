@@ -390,8 +390,16 @@ class AbstractPackage
       @regDate = new Date(Date.fromISOString(@regDate))
     console.log("pp: regdate is now " + @regDate + ", " + typeof @regDate)
     
-    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, @regDate, @competancy, groupId)
+    observerId = @getObserverID(main.login.data)
+    
+    registration = new Registration(observerId, data.ObsLocationID, null, @regDate, @competancy, groupId)
     SendObjectToServer(registration, ((data) => @afterRegistration(data, area, force)) , (error) => @onError(error))
+    
+  getObserverID: (data) ->
+  	if data.EMail == "anonym@nve.no"
+  		if main.currentMode() == STAGE_MODE then 0 else 105
+  	else
+  		data.ObserverID
     
   cutOutPictures: (area) ->
     i = 0

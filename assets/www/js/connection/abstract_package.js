@@ -611,7 +611,7 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.onAfterLocation = function(data, area, force) {
-    var groupId, registration,
+    var groupId, observerId, registration,
       _this = this;
     groupId = parseInt(this.groupId);
     if (groupId === 0) {
@@ -622,12 +622,25 @@ AbstractPackage = (function() {
       this.regDate = new Date(Date.fromISOString(this.regDate));
     }
     console.log("pp: regdate is now " + this.regDate + ", " + typeof this.regDate);
-    registration = new Registration(main.login.data.ObserverID, data.ObsLocationID, null, this.regDate, this.competancy, groupId);
+    observerId = this.getObserverID(main.login.data);
+    registration = new Registration(observerId, data.ObsLocationID, null, this.regDate, this.competancy, groupId);
     return SendObjectToServer(registration, (function(data) {
       return _this.afterRegistration(data, area, force);
     }), function(error) {
       return _this.onError(error);
     });
+  };
+
+  AbstractPackage.prototype.getObserverID = function(data) {
+    if (data.EMail === "anonym@nve.no") {
+      if (main.currentMode() === STAGE_MODE) {
+        return 0;
+      } else {
+        return 105;
+      }
+    } else {
+      return data.ObserverID;
+    }
   };
 
   AbstractPackage.prototype.cutOutPictures = function(area) {
