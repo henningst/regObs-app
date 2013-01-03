@@ -15,8 +15,27 @@
 	<script type="text/javascript" src="js/dependencies/date_time_convertion.js"></script>
 	<script type="text/javascript" src="js/dependencies/async.js"></script>
 	
-	<script>
+	<script type="text/javascript">
 	  jQuery.noConflict();
+	</script>
+	<script type="text/javascript">
+	jQuery.fn.quickChange = function(handler) {
+	    return this.each(function() {
+	        var self = this;
+	        self.qcindex = self.selectedIndex;
+	        var interval;
+	        function handleChange() {
+	            if (self.selectedIndex != self.qcindex) {
+	                self.qcindex = self.selectedIndex;
+	                handler.apply(self);
+	            }
+	        }
+	        jQuery(self).focus(function() {
+	            interval = setInterval(handleChange, 100);
+	        }).blur(function() { window.clearInterval(interval); })
+	        .change(handleChange); //also wire the change event in case the interval technique isn't supported (chrome on android)
+	    });
+	};
 	</script>
 	
 	<script type="text/javascript" src="js/dependencies/bugsense.js"></script>

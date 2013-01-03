@@ -22,12 +22,12 @@ var snow_problem = {
 			
 			this.fillDropdown(id, "problem_1", snow_problem.AvalancheExtKD);
 			var _this = this;
-			jQuery("#" + id + " .problem_1").change(function(){
+			jQuery("#" + id + " .problem_1").quickChange(function(){
 				_this.fillDropdown(id, "problem_2", _this.filter(snow_problem.AvalCauseKD, snow_problem.AvalancheProblemMenu1V, jQuery(this).val()));
 				_this.fillDropdown(id, "problem_3", _this.filter(snow_problem.AvalCauseExtKD, snow_problem.AvalancheProblemMenu2V, jQuery("#" + id + " .problem_2").val()));
 			});
 			
-			jQuery("#" + id + " .problem_2").change(function(){
+			jQuery("#" + id + " .problem_2").quickChange(function(){
 				_this.fillDropdown(id, "problem_3", _this.filter(snow_problem.AvalCauseExtKD, snow_problem.AvalancheProblemMenu2V, jQuery(this).val()));
 			});
 			
