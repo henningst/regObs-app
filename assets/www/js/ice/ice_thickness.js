@@ -24,7 +24,7 @@ var ice_thickness = {
 			validation.register(
 					leggTilButton, 
 					[
-					 	new NonEmpty(jQuery("#ice_thickness_snow_depth, #ice_thickness_slush_depth, #ice_thickness_sum"))
+					 	new AtLeastOneFilled(jQuery("#ice_thickness_snow_depth, #ice_thickness_slush_depth, #ice_thickness_sum"))
 					]);
 		},
 		
