@@ -35,11 +35,15 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.Surface;
+import android.view.WindowManager;
 
 /**
  * This class launches the camera view, allows the user to take a picture,
@@ -164,7 +168,8 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 	 *            An Intent, which can return result data to the caller (various
 	 *            data can be attached to Intent "extras").
 	 */
-	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+	@SuppressWarnings("deprecation")
+  public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 
 		// If image available
 		if (resultCode == Activity.RESULT_OK) {
@@ -189,6 +194,16 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 				}
 
 				bitmap = scaleBitmap(bitmap);
+				
+				int rotation = (cordova.getActivity().getWindowManager().getDefaultDisplay()).getOrientation();
+				if(rotation == Surface.ROTATION_0)
+				{
+				  Matrix m = new Matrix();
+  				m.setRotate(90,(float)bitmap.getWidth()/2, (float)bitmap.getHeight()/2);
+  				Bitmap b = Bitmap.createBitmap(bitmap, 0,0, bitmap.getWidth(), bitmap.getHeight(), m, true);
+  				bitmap = b;
+				}
+				
 
 				// Create entry in media store for image
 				// (Don't use insertImage() because it uses default compression
