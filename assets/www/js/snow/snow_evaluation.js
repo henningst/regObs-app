@@ -12,6 +12,25 @@ var snow_evaluation = {
 		});
 		
 		jQuery("#exposition").val("00000000");
+		
+		this.resetCounters();
+	},
+	
+	resetCounters: function(){
+		snow_page.resetCounter("snow_problem1_count");
+		snow_page.resetCounter("snow_problem2_count");
+		snow_page.resetCounter("snow_problem3_count");
+		
+		if(snow_evaluation.problems.length > 0)
+			snow_page.check("snow_problem1_count")
+		if(snow_evaluation.problems.length > 1)
+			snow_page.check("snow_problem2_count")
+		if(snow_evaluation.problems.length > 2)
+			snow_page.check("snow_problem3_count")
+	},
+	
+	deleteProblems: function(){
+		snow_evaluation.problems = [];
 	},
 	
 	
