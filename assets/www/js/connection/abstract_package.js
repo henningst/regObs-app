@@ -263,6 +263,9 @@ AbstractPackage = (function() {
 
   AbstractPackage.prototype.addPicture = function(picture) {
     this.setRegDate();
+    picture.Photographer = main.userNick();
+    picture.Copyright = main.userNick();
+    console.log("pp: usernick image is " + main.userNick());
     this.m_pictures.push(picture);
     return DataAccess.save(this.name, this);
   };

@@ -14,6 +14,8 @@ SEARCH_DIAMETER_KEY = "search_diameter_key";
 
 DATA_VERSION_KEY = "data_version_key";
 
+NICK = "nick";
+
 
 DataAccess = {
   storage : window.localStorage
@@ -61,6 +63,7 @@ DataAccess = {
 UserStore = {
   save: (mode, user) ->
     DataAccess.save(@useridKey(mode), user.id)
+    DataAccess.save(@userNick(mode), user.nick)
     DataAccess.save(@usernameKey(mode), user.username)
     DataAccess.save(@passwordKey(mode), user.password)
     ""
@@ -76,6 +79,7 @@ UserStore = {
   clear: (mode)->
     DataAccess.save(@useridKey(mode), "")
     DataAccess.save(@usernameKey(mode), "")
+    DataAccess.save(@userNick(mode), "")
     DataAccess.save(@passwordKey(mode), "")
     DataAccess.save(@groupKey(mode), "")
     DataAccess.save(@compKey(mode), "")
@@ -83,11 +87,12 @@ UserStore = {
   
   get: (mode) ->
     id =       DataAccess.get(@useridKey(mode))
+    nick = 		 DataAccess.get(@userNick(mode))
     username = DataAccess.get(@usernameKey(mode))
     password = DataAccess.get(@passwordKey(mode))
     groups = DataAccess.get(@groupKey(mode))
     comp = DataAccess.get(@compKey(mode), new ObserverCompetancy([]))
-    user = new User(id, username, password)
+    user = new User(id, username, password, nick)
     
     user.groups = jQuery.map(groups, (obj)-> 
       jQuery.extend(obj, new Group())
@@ -104,6 +109,8 @@ UserStore = {
   
   usernameKey : (mode) ->
     mode + "_" + USERNAME
+  userNick : (mode)->
+  	mode + "_" + NICK
     
   passwordKey: (mode) ->
     mode + "_" + PASSWORD

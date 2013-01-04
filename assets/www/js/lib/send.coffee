@@ -53,6 +53,7 @@ LoggedInAs = (callback) ->
 	}, (data) ->
 		result.ok = true
 		result.data = data.results[0]
+		console.log("pp: logged in as " + JSON.stringify(data.results[0]))
 		callback(data.results[0]) if callback
 		error: (data) ->	
 			console.log("how am i failed" + data)

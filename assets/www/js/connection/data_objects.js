@@ -59,10 +59,11 @@ Result = (function() {
 
 User = (function() {
 
-  function User(id, username, password) {
+  function User(id, username, password, nick) {
     this.id = id;
     this.username = username;
     this.password = password;
+    this.nick = nick;
     this.groups = [];
     this.competancy = new ObserverCompetancy([]);
   }

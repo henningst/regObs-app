@@ -20,7 +20,7 @@ class Result
     
     
 class User
-  constructor: (@id, @username, @password)->
+  constructor: (@id, @username, @password, @nick)->
     @groups = []
     @competancy = new ObserverCompetancy([])
     

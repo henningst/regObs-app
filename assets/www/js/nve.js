@@ -213,6 +213,11 @@ var main = (function() {
 				login_page.clickLogOut();
 			}
 		},
+		
+		userNick : function() {
+			var user = UserStore.get(main.currentMode());
+			return user.nick;
+		},
 
 		currentUrl : function() {
 			return SERVER_URL;

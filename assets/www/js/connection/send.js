@@ -69,6 +69,7 @@ LoggedInAs = function(callback) {
   }, function(data) {
     result.ok = true;
     result.data = data.results[0];
+    console.log("pp: logged in as " + JSON.stringify(data.results[0]));
     if (callback) {
       callback(data.results[0]);
     }

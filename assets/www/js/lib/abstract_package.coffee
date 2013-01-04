@@ -121,6 +121,9 @@ class AbstractPackage
     
   addPicture: (picture) =>
     @setRegDate()
+    picture.Photographer = main.userNick()
+    picture.Copyright = main.userNick()
+    console.log("pp: usernick image is " + main.userNick())
     @m_pictures.push(picture)
     DataAccess.save(@name, this)
     

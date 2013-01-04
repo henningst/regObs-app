@@ -21,6 +21,7 @@ var login_page = {
     		var user = UserStore.get(main.currentMode());
     		console.log("pp: relogin user " + JSON.stringify(user))
     		user.id = data.ObserverID;
+    		user.nick = data.NickName;
     		UserStore.save(main.currentMode(), user);
 
     		login_page.showLoginStatus(true);
