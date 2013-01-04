@@ -789,7 +789,7 @@ var main = (function() {
 			jQuery(".sendGroup").css("top", (top + 45 + 45 ) + "px");
 
 			jQuery(".listScroller").css("height", (top - 55) + "px");
-			jQuery(".pageScroller").css("height", (bodyHeight + 38) + "px");
+			jQuery(".pageScroller").css("height", (bodyHeight + 38 + 200) + "px");
 			jQuery(".pageScroller.full, #map_page").css("height", (bodyHeight - 50 ) + "px");
 			
 		},
