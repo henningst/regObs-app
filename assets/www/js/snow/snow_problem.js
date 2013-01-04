@@ -31,6 +31,13 @@ var snow_problem = {
 				_this.fillDropdown(id, "problem_3", _this.filter(snow_problem.AvalCauseExtKD, snow_problem.AvalancheProblemMenu2V, jQuery(this).val()));
 			});
 			
+			jQuery("#" + id + " select").blur(function(){
+				jQuery("#" +id+ " .addAbort").show();
+			});
+			jQuery("#" + id + " select").focus(function(){
+				jQuery("#" +id+ " .addAbort").hide();
+			});
+			
 			main.setScrollerHeights();
 			main.resetHeights();
 		},

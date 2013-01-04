@@ -6,7 +6,7 @@
 */
 
 body{
-	zoverflow: hidden !important;
+	overflow: hidden !important;
 	
 }
 

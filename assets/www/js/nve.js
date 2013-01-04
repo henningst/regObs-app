@@ -287,6 +287,11 @@ var main = (function() {
 			login_page.showLoginStatus(false);
 			login_page.relogin();
 			main.updateCollection(main.store.packageCollection);
+			main.resetPostHooks();
+		},
+		
+		resetPostHooks: function(){
+			snow_evaluation.deleteProblems();
 		},
 
 		starred : function() {
