@@ -87,7 +87,7 @@ var super_page = {
 		},
 		
 		displayPosition: function(position){
-			jQuery('.position_header_position').html("UTM33 ( &plusmn;" + position.coords.accuracy +"m )");
+			jQuery('.position_header_position').html("UTM33 (Feilmargin: &plusmn;" + position.coords.accuracy +"m)");
 			jQuery('.position_header_town').html("N:"+ this.latitute +" &Oslash;:" + this.longitude);
 		},
 		

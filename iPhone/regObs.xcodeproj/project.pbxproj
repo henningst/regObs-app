@@ -609,8 +609,8 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Ravi  Hansen";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ravi  Hansen";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ravi  Hansen (GG92M6XPTH)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -641,8 +641,8 @@
 					"-Obj-C",
 				);
 				PRODUCT_NAME = regObs;
-				PROVISIONING_PROFILE = "4D674606-A8D7-4A3B-9591-44E10B3B3E2B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D674606-A8D7-4A3B-9591-44E10B3B3E2B";
+				PROVISIONING_PROFILE = "75B1AD04-4F5F-4BD9-83A4-C46CD08DA0B2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75B1AD04-4F5F-4BD9-83A4-C46CD08DA0B2";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/usr/local/lib/include\" \"$(OBJROOT)/UninstalledProducts/include\" \"$(BUILT_PRODUCTS_DIR)\"";
 				VALIDATE_PRODUCT = YES;

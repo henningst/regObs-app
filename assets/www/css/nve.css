@@ -773,6 +773,14 @@ ul.actions li{
   margin-top: 10px;	
 }
 
+label.small{
+	color: #999;
+	font-size: .8em;
+	line-height: 1;
+	margin: 0;
+	text-shadow: 1px 1px #ccc;
+}
+
 .oneline-label {
 	text-align: left;	
 }
