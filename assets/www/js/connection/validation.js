@@ -115,14 +115,16 @@ AtLeastOneFilled = (function() {
   }
 
   AtLeastOneFilled.prototype.isValidated = function() {
-    var allElementsValidated;
-    allElementsValidated = false;
+    var oneValid;
+    oneValid = false;
     jQuery.each(this.element, function(index, e) {
       var thisElement;
       thisElement = jQuery(e).val() && jQuery(e).val().length > 0;
-      return allElementsValidated = allElementsValidated === true || thisElement === true;
+      if (thisElement === true) {
+        return oneValid = true;
+      }
     });
-    return allElementsValidated;
+    return oneValid;
   };
 
   return AtLeastOneFilled;
