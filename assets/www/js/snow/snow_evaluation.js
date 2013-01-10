@@ -73,7 +73,8 @@ var snow_evaluation = {
 			jQuery("#snow_evaluation_danger_level").val(0);
 			
 			console.log("pp evaluation2 obs ", obs)
-			main.store.getSnow().addObs(obs);
+			main.store.getSnow().replaceObs(obs);
+			main.store.getSnow().removeObs("AvalancheEvalProblem")
 			
 			for(var i = 0; i < snow_evaluation.problems.length; i++){
 				var obsProblem = snow_evaluation.problems[i];

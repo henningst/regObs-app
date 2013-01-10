@@ -111,6 +111,16 @@ class AbstractPackage
   	
   		console.log(JSON.stringify(@m_dangerObs))		
   		@addObs(obs)
+  		
+  removeObs: (model) =>
+    removeing = jQuery.grep(@m_dangerObs, (current, i) ->
+      current.model == model
+    )
+    
+    for remove in removeing
+      index = @m_dangerObs.indexOf(remove)
+      @m_dangerObs.splice(index, 1)
+    
     
   getObs: (type) =>
     if(type == undefined)

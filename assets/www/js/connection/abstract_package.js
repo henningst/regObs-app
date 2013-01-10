@@ -38,6 +38,8 @@ AbstractPackage = (function() {
 
     this.getObs = __bind(this.getObs, this);
 
+    this.removeObs = __bind(this.removeObs, this);
+
     this.replaceObs = __bind(this.replaceObs, this);
 
     this.addObs = __bind(this.addObs, this);
@@ -248,6 +250,20 @@ AbstractPackage = (function() {
       console.log(JSON.stringify(this.m_dangerObs));
       return this.addObs(obs);
     }
+  };
+
+  AbstractPackage.prototype.removeObs = function(model) {
+    var index, remove, removeing, _i, _len, _results;
+    removeing = jQuery.grep(this.m_dangerObs, function(current, i) {
+      return current.model === model;
+    });
+    _results = [];
+    for (_i = 0, _len = removeing.length; _i < _len; _i++) {
+      remove = removeing[_i];
+      index = this.m_dangerObs.indexOf(remove);
+      _results.push(this.m_dangerObs.splice(index, 1));
+    }
+    return _results;
   };
 
   AbstractPackage.prototype.getObs = function(type) {
