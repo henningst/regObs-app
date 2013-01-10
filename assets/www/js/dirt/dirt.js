@@ -44,7 +44,9 @@ var dirt_obs =  dirt_page = {
 
 		var dirtStore = main.store.getDirt();
 
-		dirt_page.setCounter('dirt_avalange_count', dirtStore.getObs('LandSlideObs').length);
+		if(dirtStore.getObs('LandSlideObs').length)
+			dirt_page.check('dirt_avalange_count');
+		
 		dirt_page.setCounter('dirt_faresign_count', dirtStore.getObs('DangerObs').length);
 		dirt_page.setCounter('dirt_picture_count', dirtStore.getPictures().length);
 		

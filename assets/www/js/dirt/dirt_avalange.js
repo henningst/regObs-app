@@ -14,8 +14,8 @@ var dirt_avalange = {
 			
 			dirt_page.updateLocation(function(){
 				dirt_avalange.clear();
-				main.store.getDirt().addObs(obs);
-				dirt_page.add('dirt_avalange_count');
+				main.store.getDirt().replaceObs(obs);
+				dirt_page.check('dirt_avalange_count');
 				
 				main.panels.slideBack();
 				
