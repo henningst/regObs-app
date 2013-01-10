@@ -43,7 +43,9 @@ var ice_obs = ice_page = {
 
 		ice_page.setCounter('ice_faresign_count', iceStore.getObs("DangerObs").length);
 		ice_page.setCounter('ice_cover_count', iceStore.getObs("IceCoverObs").length);
-		ice_page.setCounter('ice_thickness_count', iceStore.getObs("IceThickness").length);
+		if(iceStore.getObs("IceThickness").length)
+			ice_page.check('ice_thickness_count');
+		
 		ice_page.setCounter('ice_picture_count', iceStore.getPictures().length);
 		
 		jQuery("#ice_obs .sendAndGroup").html(Handlebars.templates.sendGroup({sendFunction: "main.store.sendIce", hazard:"ice"}));

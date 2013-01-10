@@ -33,12 +33,29 @@ var ice_thickness = {
 				return;
 			
 			var cm = function(val){ return  "" + (parseInt(val) / 100); };
+			function emptyOr(field, value){
+				if((field.val() != null && field.val().length === 0) === true)
+					return null;
+				else 
+					return value;
+			};
 			
-			var obs = new IceThickness(0, cm(ice_thickness.snow_depth.val()), cm(ice_thickness.slush_depth.val()), cm(ice_thickness.sum.val()), null, null, 0, ice_thickness.comment.val()); 
+			function intOr(string, defaultValue){
+				if(isNaN(parseInt(string)))
+					return defaultValue;
+				else
+					return parseInt(string);
+			};
+			
+			var obs = new IceThickness(0, 
+					emptyOr(ice_thickness.snow_depth, 	cm(ice_thickness.snow_depth.val())), 
+					emptyOr(ice_thickness.slush_depth, 	cm(ice_thickness.slush_depth.val())), 
+					emptyOr(ice_thickness.sum, 			cm(ice_thickness.sum.val())), 
+					null, null, 0, ice_thickness.comment.val()); 
 			
 			ice_page.updateLocation(function(){
 				ice_thickness.clear();
-				main.store.getIce().addObs(obs);
+				main.store.getIce().replaceObs(obs);
 				main.panels.slideBack();
 			}, true);
 		}
