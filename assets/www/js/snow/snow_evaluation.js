@@ -48,6 +48,7 @@ var snow_evaluation = {
 	
 	addProblem: function(obs){
 		snow_evaluation.problems.push(obs);
+		console.log("pp: number of problems " + snow_evaluation.problems.length)
 		snow_page.check("snow_problem"+ snow_evaluation.problems.length +"_count")
 	},
 	
@@ -77,8 +78,7 @@ var snow_evaluation = {
 			for(var i = 0; i < snow_evaluation.problems.length; i++){
 				var obsProblem = snow_evaluation.problems[i];
 				obsProblem.AvalancheEvalProblemID = i;
-				console.log("pp: adding problem ", obsProblem );
-				main.store.getSnow().replaceObs(obsProblem);
+				main.store.getSnow().addObs(obsProblem);
 			}
 			snow_evaluation.problems = [];
 			

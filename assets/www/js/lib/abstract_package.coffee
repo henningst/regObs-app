@@ -89,7 +89,6 @@ class AbstractPackage
     @omrade_id = nr
     
   setRegine: (nr) =>
-    console.log("Setting regine nr" + nr)
     @regine_nr = nr if nr
     
   addObs: (obs) =>

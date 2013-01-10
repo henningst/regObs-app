@@ -213,7 +213,6 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.setRegine = function(nr) {
-    console.log("Setting regine nr" + nr);
     if (nr) {
       return this.regine_nr = nr;
     }
