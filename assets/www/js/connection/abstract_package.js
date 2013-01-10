@@ -192,7 +192,7 @@ AbstractPackage = (function() {
   AbstractPackage.prototype.setLatLong = function(lat, long, accuracy) {
     this.lat = lat;
     this.long = long;
-    this.accuracy = accuracy;
+    this.accuracy = Math.round(accuracy);
     return DataAccess.save(this.name, this);
   };
 

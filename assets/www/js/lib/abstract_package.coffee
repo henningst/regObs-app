@@ -76,7 +76,7 @@ class AbstractPackage
   setLatLong: (lat, long, accuracy) =>
     @lat = lat
     @long = long
-    @accuracy = accuracy
+    @accuracy = Math.round(accuracy)
     DataAccess.save(@name, this)
     
   setKommunenr: (nr) =>
