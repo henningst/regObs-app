@@ -6,6 +6,7 @@ var snow_picture  = {
 		if(snow_picture.pictureData != null) {
 			var list = $('snow_picture_spec_list');
 			
+			console.log("pp: snow picture data is :" +snow_picture.pictureData)
 			var picture = new Picture(null, null, snow_picture.pictureData, null, null, null, SNOW_GEO_HAZARD, $("snow_picture_comment").value, parseInt(list[list.selectedIndex].value));
 			
 			
@@ -38,16 +39,18 @@ var snow_picture  = {
 	},
 	
 	onSuccess: function(imageData) {
-		snow_picture.pictureData = imageData;
 
 		var smallImage = document.getElementById('snow_picture_img');
 		smallImage.onload = function() { main.resetHeights(); }
 		smallImage.src = imageData;
-		snow_picture.updatePictureButtons("#snow_picture");
-		main.hideDialog();
-		main.showHideFooter("snow_picture");
-		
-		main.resetHeights();
+		new ImageDataConverter(imageData).convert(function(base64){
+			snow_picture.pictureData = base64;
+			snow_picture.updatePictureButtons("#snow_picture");
+			main.hideDialog();
+			main.showHideFooter("snow_picture");
+			
+			main.resetHeights();
+		})
 	},
 
 	onFail: function(message) {

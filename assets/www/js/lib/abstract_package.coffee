@@ -207,7 +207,7 @@ class AbstractPackage
     
 
     i = 0
-    bilde = @cutOutPictures(true)
+    bilde = @areaPictures()
     for picture in bilde
       do(picture) ->
         sendFunc = (callback) ->
@@ -240,6 +240,7 @@ class AbstractPackage
         @onError(err)
       else
         @removeAreaModels()
+        @cutOutPictures(true)
         main.addLastRegID(data.RegID)
         DataAccess.save(@name, this)
         
@@ -315,7 +316,7 @@ class AbstractPackage
         main.addLastRegID(data.RegID)
         DataAccess.save(@name, this)
         @callCallback()
-        main.showFinishedUploadMessage()  
+        main.showFinishedUploadMessage()
     )
     
     

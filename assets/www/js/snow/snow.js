@@ -45,7 +45,7 @@ var snow_obs =  snow_page = {
 
 		var snowStore = main.store.getSnow();
 
-		snow_page.setCounter('snow_faresign_count', snowStore.getObs('AvalancheDangerObs').length);
+		snow_page.setCounter('snow_faresign_count', snowStore.getObs('DangerObs').length);
 		if(snowStore.getObs('SnowSurfaceObservation').length > 0){
 			snow_page.check('snow_surface_count');
 		}

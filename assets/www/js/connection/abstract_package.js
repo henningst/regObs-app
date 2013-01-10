@@ -386,7 +386,7 @@ AbstractPackage = (function() {
       _fn(obs);
     }
     i = 0;
-    bilde = this.cutOutPictures(true);
+    bilde = this.areaPictures();
     _fn1 = function(picture) {
       var sendFunc;
       sendFunc = function(callback) {
@@ -428,6 +428,7 @@ AbstractPackage = (function() {
         return _this.onError(err);
       } else {
         _this.removeAreaModels();
+        _this.cutOutPictures(true);
         main.addLastRegID(data.RegID);
         DataAccess.save(_this.name, _this);
         if (!force) {

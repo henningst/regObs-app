@@ -5,24 +5,16 @@ class ErrorHandlingCommand
     console.log(err)
     console.log("error handling command "+ JSON.stringify(data))
 
-class SendInPictureCommand
-  constructor: (@picture) ->
-    console.log("createing send in picture command")
-  
-  send: (@callback) =>
-    console.log("pp: platform is " + device.platform  )
-    if(@isBase64Image(@picture.PictureImage))
-      @sendPicture(@picture.PictureImage.substring(23))
-    else
-      if(device.platform == "android")
+class ImageDataConverter
+  constructor: (@imagedata)->
+    
+  convert: (@successFunction)->
+    if(device.platform == "android")
         prefix = "file://"
       else
         prefix = ""
         
-      window.resolveLocalFileSystemURI(prefix + @picture.PictureImage, @gotFileEntry, @fail);
-    
-  isBase64Image: (picture) ->
-    picture.lastIndexOf("data:", 0) == 0
+    window.resolveLocalFileSystemURI(prefix + @imagedata, @gotFileEntry, @fail);
     
     
   gotFS: (fileSystem) =>
@@ -40,24 +32,28 @@ class SendInPictureCommand
     console.log("got file")
     reader = new FileReader();
     reader.onloadend = (evt) =>
-      @sendPicture(evt.target.result.substring(23))
+      @successFunction(evt.target.result.substring(23))
     
     reader.readAsDataURL(file);
-
-  sendPicture : (base64Picture) =>
-    @picture.PictureImage = base64Picture 
-    success = () => @callback(null, "picture sendt")
-    error = (error) => @callback(error, "picuter")
-    SendObjectToServer(@picture, success, error)
-
+    
   fail: (e) =>
     console.log("sending in picture failed:")
     for k,v of e
       console.log(k + " -> " + v)
       
     console.log("value of secur err " + FileError.SECURITY_ERR  + " not found err " + FileError.NOT_FOUND_ERR)
-    @callback(e)
+    throw e
+
+class SendInPictureCommand
+  constructor: (@picture) ->
+    console.log("createing send in picture command")
     
+  
+  send: (@callback) =>
+    success = () => @callback(null, "picture sendt")
+    error = (error) => @callback(error, "picuter")
+    SendObjectToServer(@picture, success, error)
+
 
 class ObserversGroupsCommand extends ErrorHandlingCommand
   constructor: (@user) ->
