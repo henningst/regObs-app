@@ -13,9 +13,10 @@ class NveStore
       DataAccess.save("PackageCollection", @packageCollection)
     
     @packageCollection.callback = (collection)->
+      collection.ids = {}
       DataAccess.save("PackageCollection", collection)
     
-    @packageCollection.callback(@packageCollection)
+    @packageCollection.callback(@packageCollection) if @packageCollection and @packageCollection.callback
 
   clearPackageCollection : ()->
     @packageCollection =  new PackageCollection()
@@ -59,23 +60,25 @@ class NveStore
     if @m_snowPackage and not IsEmpty(@m_snowPackage)
       @m_snowPackage.setGroup(jQuery("#snow_obs .selectedGroup").val());
       @packageCollection.add(@m_snowPackage)
-      
       @clearSnow()
     
-    @packageCollection.forall (p) => @sendAndHandlePackage(p)
+    @packageCollection.forall (p) => @sendAndHandlePackage(p, () => main.store.clearSnow())
     callback() if callback
 
   resetGroups : () =>
     jQuery(".selectedGroup").val(0);
     jQuery(".groupButton").attr("value", "Gruppe").removeClass("pressed");
     
-  sendAndHandlePackage: (p)->
+  sendAndHandlePackage: (p, clearFunc)->
     p.callback = (pkg) ->
       collection = main.store.packageCollection 
+      console.log("pr: removeing package " + JSON.stringify(collection))
       pkg.freezed = true
       collection.remove(pkg)
+      clearFunc()
+      DataAccess.save("PackageCollection", @packageCollection)
       main.updateCollection(collection)
-    
+      
     p.send()
 
   getDirt: () ->
@@ -107,7 +110,7 @@ class NveStore
       @clearDirt()
       
       
-    @packageCollection.forall (p) => @sendAndHandlePackage(p)
+    @packageCollection.forall (p) => @sendAndHandlePackage(p, () => main.store.clearDirt())
     callback() if callback
     
   getIce: () ->
@@ -139,7 +142,7 @@ class NveStore
       @packageCollection.add(@m_icePackage)
       @clearIce()
       
-    @packageCollection.forall (p) => @sendAndHandlePackage(p)
+    @packageCollection.forall (p) => @sendAndHandlePackage(p, () => main.store.clearIce())
     
     callback() if callback
 
@@ -171,7 +174,7 @@ class NveStore
       @packageCollection.add(@m_waterPackage)
       @clearWater()
       
-    @packageCollection.forall (p) => @sendAndHandlePackage(p)
+    @packageCollection.forall (p) => @sendAndHandlePackage(p, () => main.store.clearWater())
     
     callback() if callback
     

@@ -99,6 +99,7 @@ class AbstractPackage
     
   addObs: (obs) =>
     @setRegDate()
+    console.log("adding observation " + JSON.stringify(@))
     obs.setRegDate(@regDate) if obs.setRegDate
     obs.beforeSend(@m_dangerObs.length) if obs.beforeSend
     @m_dangerObs.push(obs)
@@ -115,7 +116,6 @@ class AbstractPackage
   		if position >= 0
   			@m_dangerObs.splice(position, 1)
   	
-  		console.log(JSON.stringify(@m_dangerObs))		
   		@addObs(obs)
   		
   removeObs: (model) =>
@@ -176,6 +176,7 @@ class AbstractPackage
     id
     
   callCallback: ()=>
+    @ids = {}
     @callback(this) if @callback 
    
   afterLocation: (data, area, force) =>
@@ -185,10 +186,13 @@ class AbstractPackage
   afterRegistration: (data, area, force) =>
     console.log("after reg area " + area + " force " + force)
     @setRegistration(area, data.RegID)
+    @onAfterRegistration(@getStore(area).regID, area, force)
+    
+  onAfterRegistration: (regid, area, force)->
     if area
-      @completeAreaRegistration(@getStore(area).regID, force)
+      @completeAreaRegistration(regid, force)
     else 
-      @completePointRegistration(@getStore(area).regID, force)
+      @completePointRegistration(regid, force)
     
   setRegistration : (area, regID) =>
     store = @getStore(area)
@@ -217,8 +221,11 @@ class AbstractPackage
           error = (error) -> callback(error)          
           
           SendObjectToServer(clone, success, error)
-        console.log("dr: have obs id " + obs.model + " - " + obs.RegID)
-        sendingFunctions.push(sendFunc)
+          
+        if(obs.RegID != null && obs.RegID > 0)
+          console.log("dr: skipping have obs id " + obs.model + " - " + obs.RegID)
+        else
+          sendingFunctions.push(sendFunc)
           
     
 
@@ -236,7 +243,11 @@ class AbstractPackage
          
           sendPicture = new SendInPictureCommand(picture)
           sendPicture.send(success)
-        sendingFunctions.push(sendFunc)  
+          
+        if(picture.RegID and picture.RegID > 0)
+          console.log("skipping picture")
+        else
+          sendingFunctions.push(sendFunc)  
 
     incidentFunc = (callback) =>
       if @m_incident and (i isnt 0 or x isnt 0 or force)
@@ -253,7 +264,10 @@ class AbstractPackage
       else
         callback(null, "no incident")
     
-    sendingFunctions.push(incidentFunc)
+    if(@m_incident and @m_incident.RegID > 0)
+      console.log("pr: skipping")
+    else
+      sendingFunctions.push(incidentFunc)
     
     async.series(sendingFunctions, (err, result)=>
       console.log("done sending " + result)
@@ -271,12 +285,7 @@ class AbstractPackage
         else
           @callCallback()
           main.showFinishedUploadMessage()  
-        
-        
     )  
-
-    
-    
       
   
   completePointRegistration: (regId) =>
@@ -296,7 +305,10 @@ class AbstractPackage
       else
         callback(null, "no incident")
       
-    sendFunctions.push(sendIncident)
+    if(@m_incident && @m_incident.RegID != null && @m_incident.RegID > 0)
+      console.log("dr: skipping have obs id " + obs.model + " - " + obs.RegID)
+    else
+      sendFunctions.push(sendIncident)
     
     x = 0
     for obs in @pointModels(@m_dangerObs).point 
@@ -316,7 +328,10 @@ class AbstractPackage
           SendObjectToServer(clone, success, error)
         
         console.log("dr: have obs id " + obs.model + " - " + obs.RegID)
-        sendFunctions.push(sendFunc)
+        if(obs.RegID != null && obs.RegID > 0)
+          console.log("dr: skipping have obs id " + obs.model + " - " + obs.RegID)
+        else
+          sendFunctions.push(sendFunc)
           
 
     i = 0
@@ -331,8 +346,11 @@ class AbstractPackage
             @save()
             callback(error, complete)
           sendPicture = new SendInPictureCommand(picture)
-          sendPicture.send(success)     
-        sendFunctions.push(sendFunc)   
+          sendPicture.send(success) 
+        if(picture.RegID != null && picture.RegID > 0)
+          console.log("dr: skipping have obs id " + obs.model + " - " + obs.RegID)
+        else    
+          sendFunctions.push(sendFunc)   
         
     
     async.series(sendFunctions, (err, result) =>
@@ -377,23 +395,35 @@ class AbstractPackage
     komm_string = "0"
     if @komm_nr
       komm_string = @komm_nr.toString()
-       
+
     console.log("dr: have obs location id " + @getStore(area).obsLocationID)
     if area
       if @areaPictures().length > 0 || @pointModels(@m_dangerObs).area.length > 0
-        location = new ObsLocation("", 33, @long, @lat, source, 0, @omradeIdByCurrentHazard(), null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
-        SendObjectToServer(location, ((data) => @afterLocation(data, true, false)) , (error) => @onError(error))
+        if(@getStore(area).obsLocationID > 0)
+          console.log("dr: skipping obslocation")
+          @onAfterLocation(@getStore(area).obsLocationID, area, false)
+        else
+          location = new ObsLocation("", 33, @long, @lat, source, 0, @omradeIdByCurrentHazard(), null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
+          SendObjectToServer(location, ((data) => @afterLocation(data, true, false)) , (error) => @onError(error))
       else 
         if @pointPictures().length > 0 || @pointModels(@m_dangerObs).point.length > 0
           @onSend(page, false)
         else
-          location = new ObsLocation("", 33, @long, @lat, source, 0, @omradeIdByCurrentHazard(), null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
-          SendObjectToServer(location, ((data) => @afterLocation(data, true, true)) , (error) => @onError(error))
+          if(@getStore(true).obsLocationID > 0)
+            console.log("dr: skipping obslocation")
+            @onAfterLocation(@getStore(true).obsLocationID, true, true)
+          else
+            location = new ObsLocation("", 33, @long, @lat, source, 0, @omradeIdByCurrentHazard(), null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
+            SendObjectToServer(location, ((data) => @afterLocation(data, true, true)) , (error) => @onError(error))
 
     else
       if @pointPictures().length > 0 || @pointModels(@m_dangerObs).point.length > 0
-        location = new ObsLocation("", 33, @long, @lat, source, 0, @omradeIdByCurrentHazard(), null, null, false, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
-        SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
+        if(@getStore(false).obsLocationID > 0)
+          console.log("dr: skipping obslocation")
+          @onAfterLocation(@getStore(false).obsLocationID, area)
+        else
+          location = new ObsLocation("", 33, @long, @lat, source, 0, @omradeIdByCurrentHazard(), null, null, false, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
+          SendObjectToServer(location, ((data) => @afterLocation(data, false)) , (error) => @onError(error))
       else
         @callCallback()
         main.showFinishedUploadMessage()
@@ -427,18 +457,23 @@ class AbstractPackage
     
   onAfterLocation: (obsLocationID, area, force) ->
     console.log("dr: have registration id " + @getStore(area).regID)
-    groupId = parseInt(@groupId)
-    groupId = undefined if groupId == 0
     
-    console.log("pp: regdate is " + @regDate + ", " + typeof @regDate)
-    if typeof @regDate == "string"
-      @regDate = new Date(Date.fromISOString(@regDate))
-    console.log("pp: regdate is now " + @regDate + ", " + typeof @regDate)
-    
-    observerId = @getObserverID(main.login.data)
-    
-    registration = new Registration(observerId, obsLocationID, null, @regDate, @competancy, groupId)
-    SendObjectToServer(registration, ((data) => @afterRegistration(data, area, force)) , (error) => @onError(error))
+    if @getStore(area).regID > 0
+      console.log("dr: skipping registration")
+      @onAfterRegistration(@getStore(area).regID, area, force)
+    else
+      groupId = parseInt(@groupId)
+      groupId = undefined if groupId == 0
+      
+      console.log("pp: regdate is " + @regDate + ", " + typeof @regDate)
+      if typeof @regDate == "string"
+        @regDate = new Date(Date.fromISOString(@regDate))
+      console.log("pp: regdate is now " + @regDate + ", " + typeof @regDate)
+      
+      observerId = @getObserverID(main.login.data)
+      
+      registration = new Registration(observerId, obsLocationID, null, @regDate, @competancy, groupId)
+      SendObjectToServer(registration, ((data) => @afterRegistration(data, area, force)) , (error) => @onError(error))
     
   getObserverID: (data) ->
   	if data.EMail == "anonym@nve.no"
@@ -489,7 +524,6 @@ class AbstractPackage
     @save()
     
   save : () =>
-    #DataAccess.save(@name, this)
     @savePackageCollection()
     
   savePackageCollection : ()->

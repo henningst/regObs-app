@@ -235,6 +235,7 @@ AbstractPackage = (function() {
 
   AbstractPackage.prototype.addObs = function(obs) {
     this.setRegDate();
+    console.log("adding observation " + JSON.stringify(this));
     if (obs.setRegDate) {
       obs.setRegDate(this.regDate);
     }
@@ -260,7 +261,6 @@ AbstractPackage = (function() {
       if (position >= 0) {
         this.m_dangerObs.splice(position, 1);
       }
-      console.log(JSON.stringify(this.m_dangerObs));
       return this.addObs(obs);
     }
   };
@@ -348,6 +348,7 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.callCallback = function() {
+    this.ids = {};
     if (this.callback) {
       return this.callback(this);
     }
@@ -361,10 +362,14 @@ AbstractPackage = (function() {
   AbstractPackage.prototype.afterRegistration = function(data, area, force) {
     console.log("after reg area " + area + " force " + force);
     this.setRegistration(area, data.RegID);
+    return this.onAfterRegistration(this.getStore(area).regID, area, force);
+  };
+
+  AbstractPackage.prototype.onAfterRegistration = function(regid, area, force) {
     if (area) {
-      return this.completeAreaRegistration(this.getStore(area).regID, force);
+      return this.completeAreaRegistration(regid, force);
     } else {
-      return this.completePointRegistration(this.getStore(area).regID, force);
+      return this.completePointRegistration(regid, force);
     }
   };
 
@@ -402,8 +407,11 @@ AbstractPackage = (function() {
         };
         return SendObjectToServer(clone, success, error);
       };
-      console.log("dr: have obs id " + obs.model + " - " + obs.RegID);
-      return sendingFunctions.push(sendFunc);
+      if (obs.RegID !== null && obs.RegID > 0) {
+        return console.log("dr: skipping have obs id " + obs.model + " - " + obs.RegID);
+      } else {
+        return sendingFunctions.push(sendFunc);
+      }
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       obs = _ref[_i];
@@ -425,7 +433,11 @@ AbstractPackage = (function() {
         sendPicture = new SendInPictureCommand(picture);
         return sendPicture.send(success);
       };
-      return sendingFunctions.push(sendFunc);
+      if (picture.RegID && picture.RegID > 0) {
+        return console.log("skipping picture");
+      } else {
+        return sendingFunctions.push(sendFunc);
+      }
     };
     for (_j = 0, _len1 = bilde.length; _j < _len1; _j++) {
       picture = bilde[_j];
@@ -449,7 +461,11 @@ AbstractPackage = (function() {
         return callback(null, "no incident");
       }
     };
-    sendingFunctions.push(incidentFunc);
+    if (this.m_incident && this.m_incident.RegID > 0) {
+      console.log("pr: skipping");
+    } else {
+      sendingFunctions.push(incidentFunc);
+    }
     return async.series(sendingFunctions, function(err, result) {
       console.log("done sending " + result);
       if (err) {
@@ -492,7 +508,11 @@ AbstractPackage = (function() {
         return callback(null, "no incident");
       }
     };
-    sendFunctions.push(sendIncident);
+    if (this.m_incident && this.m_incident.RegID !== null && this.m_incident.RegID > 0) {
+      console.log("dr: skipping have obs id " + obs.model + " - " + obs.RegID);
+    } else {
+      sendFunctions.push(sendIncident);
+    }
     x = 0;
     _ref = this.pointModels(this.m_dangerObs).point;
     _fn = function(obs) {
@@ -518,7 +538,11 @@ AbstractPackage = (function() {
         return SendObjectToServer(clone, success, error);
       };
       console.log("dr: have obs id " + obs.model + " - " + obs.RegID);
-      return sendFunctions.push(sendFunc);
+      if (obs.RegID !== null && obs.RegID > 0) {
+        return console.log("dr: skipping have obs id " + obs.model + " - " + obs.RegID);
+      } else {
+        return sendFunctions.push(sendFunc);
+      }
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       obs = _ref[_i];
@@ -540,7 +564,11 @@ AbstractPackage = (function() {
         sendPicture = new SendInPictureCommand(picture);
         return sendPicture.send(success);
       };
-      return sendFunctions.push(sendFunc);
+      if (picture.RegID !== null && picture.RegID > 0) {
+        return console.log("dr: skipping have obs id " + obs.model + " - " + obs.RegID);
+      } else {
+        return sendFunctions.push(sendFunc);
+      }
     };
     for (_j = 0, _len1 = bilde.length; _j < _len1; _j++) {
       picture = bilde[_j];
@@ -598,32 +626,47 @@ AbstractPackage = (function() {
     console.log("dr: have obs location id " + this.getStore(area).obsLocationID);
     if (area) {
       if (this.areaPictures().length > 0 || this.pointModels(this.m_dangerObs).area.length > 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
-        return SendObjectToServer(location, (function(data) {
-          return _this.afterLocation(data, true, false);
-        }), function(error) {
-          return _this.onError(error);
-        });
-      } else {
-        if (this.pointPictures().length > 0 || this.pointModels(this.m_dangerObs).point.length > 0) {
-          return this.onSend(page, false);
+        if (this.getStore(area).obsLocationID > 0) {
+          console.log("dr: skipping obslocation");
+          return this.onAfterLocation(this.getStore(area).obsLocationID, area, false);
         } else {
           location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
           return SendObjectToServer(location, (function(data) {
-            return _this.afterLocation(data, true, true);
+            return _this.afterLocation(data, true, false);
           }), function(error) {
             return _this.onError(error);
           });
         }
+      } else {
+        if (this.pointPictures().length > 0 || this.pointModels(this.m_dangerObs).point.length > 0) {
+          return this.onSend(page, false);
+        } else {
+          if (this.getStore(true).obsLocationID > 0) {
+            console.log("dr: skipping obslocation");
+            return this.onAfterLocation(this.getStore(true).obsLocationID, true, true);
+          } else {
+            location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
+            return SendObjectToServer(location, (function(data) {
+              return _this.afterLocation(data, true, true);
+            }), function(error) {
+              return _this.onError(error);
+            });
+          }
+        }
       }
     } else {
       if (this.pointPictures().length > 0 || this.pointModels(this.m_dangerObs).point.length > 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, false, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
-        return SendObjectToServer(location, (function(data) {
-          return _this.afterLocation(data, false);
-        }), function(error) {
-          return _this.onError(error);
-        });
+        if (this.getStore(false).obsLocationID > 0) {
+          console.log("dr: skipping obslocation");
+          return this.onAfterLocation(this.getStore(false).obsLocationID, area);
+        } else {
+          location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, false, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
+          return SendObjectToServer(location, (function(data) {
+            return _this.afterLocation(data, false);
+          }), function(error) {
+            return _this.onError(error);
+          });
+        }
       } else {
         this.callCallback();
         return main.showFinishedUploadMessage();
@@ -670,22 +713,27 @@ AbstractPackage = (function() {
     var groupId, observerId, registration,
       _this = this;
     console.log("dr: have registration id " + this.getStore(area).regID);
-    groupId = parseInt(this.groupId);
-    if (groupId === 0) {
-      groupId = void 0;
+    if (this.getStore(area).regID > 0) {
+      console.log("dr: skipping registration");
+      return this.onAfterRegistration(this.getStore(area).regID, area, force);
+    } else {
+      groupId = parseInt(this.groupId);
+      if (groupId === 0) {
+        groupId = void 0;
+      }
+      console.log("pp: regdate is " + this.regDate + ", " + typeof this.regDate);
+      if (typeof this.regDate === "string") {
+        this.regDate = new Date(Date.fromISOString(this.regDate));
+      }
+      console.log("pp: regdate is now " + this.regDate + ", " + typeof this.regDate);
+      observerId = this.getObserverID(main.login.data);
+      registration = new Registration(observerId, obsLocationID, null, this.regDate, this.competancy, groupId);
+      return SendObjectToServer(registration, (function(data) {
+        return _this.afterRegistration(data, area, force);
+      }), function(error) {
+        return _this.onError(error);
+      });
     }
-    console.log("pp: regdate is " + this.regDate + ", " + typeof this.regDate);
-    if (typeof this.regDate === "string") {
-      this.regDate = new Date(Date.fromISOString(this.regDate));
-    }
-    console.log("pp: regdate is now " + this.regDate + ", " + typeof this.regDate);
-    observerId = this.getObserverID(main.login.data);
-    registration = new Registration(observerId, obsLocationID, null, this.regDate, this.competancy, groupId);
-    return SendObjectToServer(registration, (function(data) {
-      return _this.afterRegistration(data, area, force);
-    }), function(error) {
-      return _this.onError(error);
-    });
   };
 
   AbstractPackage.prototype.getObserverID = function(data) {

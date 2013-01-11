@@ -34,18 +34,20 @@ var water_picture  = {
 	},
 	
 	onSuccess: function(imageData) {
-		water_picture.pictureData = imageData;
 
 		var smallImage = document.getElementById('water_picture_img');
 		smallImage.src = imageData;
-		water_picture.updatePictureButtons("#water_picture");
-
-		main.hideDialog();
-		setTimeout(
-				function(){main.resetHeights(); setTimeout(main.resetHeights, 2000);}, 
-				2000
-			);
-		main.showHideFooter("water_picture");
+		new ImageDataConverter(imageData).convert(function(base64){
+			water_picture.pictureData = base64;
+			water_picture.updatePictureButtons("#water_picture");
+	
+			main.hideDialog();
+			setTimeout(
+					function(){main.resetHeights(); setTimeout(main.resetHeights, 2000);}, 
+					2000
+				);
+			main.showHideFooter("water_picture");
+		});
 	},
 
 	onFail: function(message) {
