@@ -11,6 +11,8 @@ class AbstractPackage
     @regDate = null
     @freezed = false
     @pages = []
+    
+    @ids = {}
 
   onError: (data) =>
     if(main.haveConnection())
@@ -173,16 +175,26 @@ class AbstractPackage
     @callback(this) if @callback 
    
   afterLocation: (data, area, force) =>
-    @onAfterLocation(data, area, force)
+    @setObsLocation(area, data.ObsLocationID)
+    @onAfterLocation(@getStore(area).obsLocationID, area, force)
+  
+    
+  
   
   afterRegistration: (data, area, force) =>
     console.log("after reg area " + area + " force " + force)
+    @setRegistration(area, data.RegID)
     if area
-      @completeAreaRegistration(data, force)
+      @completeAreaRegistration(@getStore(area).regID, force)
     else 
-      @completePointRegistration(data)
+      @completePointRegistration(@getStore(area).regID, force)
     
-  completeAreaRegistration: (data, force) =>
+  setRegistration : (area, regID) =>
+    store = @getStore(area)
+    store.regID = regID
+    @save()
+    
+  completeAreaRegistration: (regID, force) =>
     console.log("complete force " + force  )
     
     sendingFunctions = []
@@ -192,13 +204,15 @@ class AbstractPackage
     for obs in @pointModels(@m_dangerObs).area 
       do(obs) =>
         sendFunc = (callback) =>
-          obs.RegID = data.RegID
+          obs.RegID = regID
           clone = JSON.parse(JSON.stringify(obs))
           clone = @castedModel(clone)
           
                   
           delete clone.model if clone.model
-          success = () -> callback(null, obs.RegID)
+          success = () => 
+            @save()
+            callback(null, obs.RegID)
           error = (error) -> callback(error)          
           
           SendObjectToServer(clone, success, error)
@@ -209,21 +223,27 @@ class AbstractPackage
     i = 0
     bilde = @areaPictures()
     for picture in bilde
-      do(picture) ->
-        sendFunc = (callback) ->
+      do(picture) =>
+        sendFunc = (callback) =>
           picture = jQuery.extend(picture, new Picture())
-          picture.RegID = data.RegID
+          picture.RegID = regID
           picture.PictureID = i++
+          success = (error, complete) =>
+            @save()
+            callback(error, complete)
+         
           sendPicture = new SendInPictureCommand(picture)
-          sendPicture.send(callback)
+          sendPicture.send(success)
         sendingFunctions.push(sendFunc)  
 
     incidentFunc = (callback) =>
       if @m_incident and (i isnt 0 or x isnt 0 or force)
         @m_incident = jQuery.extend(@m_incident, new Incident())
-        @m_incident.RegID = data.RegID
+        @m_incident.RegID = regID
         
-        success = ()-> callback(null, "incident sendt")
+        success = ()=>
+          @save() 
+          callback(null, "incident sendt")
         error = (error)-> callback(error)
         
         SendObjectToServer(@m_incident, success, error)
@@ -241,7 +261,7 @@ class AbstractPackage
       else
         @removeAreaModels()
         @cutOutPictures(true)
-        main.addLastRegID(data.RegID)
+        main.addLastRegID(regID)
         DataAccess.save(@name, this)
         
         if not force
@@ -257,14 +277,16 @@ class AbstractPackage
     
       
   
-  completePointRegistration: (data) =>
+  completePointRegistration: (regId) =>
     sendFunctions = []
     
     sendIncident = (callback ) =>
       if @m_incident
         @m_incident = jQuery.extend(@m_incident, new Incident())
-        @m_incident.RegID = data.RegID
-        success = () -> callback(null, "incident sendt")
+        @m_incident.RegID = regId
+        success = () =>
+          @save() 
+          callback(null, "incident sendt")
         error = (error) -> callback(error)
         
         SendObjectToServer(@m_incident, success, error)
@@ -278,15 +300,17 @@ class AbstractPackage
     for obs in @pointModels(@m_dangerObs).point 
       do(obs) =>
         sendFunc = (callback)=>
-          obs.RegID = data.RegID
+          obs.RegID = regId
           
           clone = JSON.parse(JSON.stringify(obs))
           clone = @castedModel(clone)
           clone.beforeSend(x++) if clone.beforeSend
                   
           delete clone.model if clone.model       
-          success = ()-> callback(null, obs.RegID)
-          error = ()-> callback("problem with " + obs.RegID)   
+          success = ()=>
+            @save() 
+            callback(null, regId)
+          error = ()-> callback("problem with " + regId)   
           SendObjectToServer(clone, success, error)
         
         sendFunctions.push(sendFunc)
@@ -298,10 +322,13 @@ class AbstractPackage
       do(picture) =>
         sendFunc = (callback) =>
           picture = jQuery.extend(picture, new Picture())
-          picture.RegID = data.RegID
+          picture.RegID = regId
           picture.PictureID = i++
+          success = (error, complete)=>
+            @save()
+            callback(error, complete)
           sendPicture = new SendInPictureCommand(picture)
-          sendPicture.send(callback)     
+          sendPicture.send(success)     
         sendFunctions.push(sendFunc)   
         
     
@@ -313,7 +340,7 @@ class AbstractPackage
         @m_pictures.length = 0  
         @removePointModels()
         
-        main.addLastRegID(data.RegID)
+        main.addLastRegID(regId)
         DataAccess.save(@name, this)
         @callCallback()
         main.showFinishedUploadMessage()
@@ -394,7 +421,7 @@ class AbstractPackage
       !(obs in points)  
     )     
     
-  onAfterLocation: (data, area, force) ->
+  onAfterLocation: (obsLocationID, area, force) ->
     groupId = parseInt(@groupId)
     groupId = undefined if groupId == 0
     
@@ -405,7 +432,7 @@ class AbstractPackage
     
     observerId = @getObserverID(main.login.data)
     
-    registration = new Registration(observerId, data.ObsLocationID, null, @regDate, @competancy, groupId)
+    registration = new Registration(observerId, obsLocationID, null, @regDate, @competancy, groupId)
     SendObjectToServer(registration, ((data) => @afterRegistration(data, area, force)) , (error) => @onError(error))
     
   getObserverID: (data) ->
@@ -450,5 +477,26 @@ class AbstractPackage
       obs
     else
       obs
+      
+  setObsLocation: (area, obsLocationID)=>
+    store = @getStore(area)
+    store.obsLocationID = obsLocationID
+    @save()
+    
+  save : () =>
+    DataAccess.save(@name, this)
+    
+  getStore: (area) =>
+    section = "point"
+    if(area)
+      section = "area"
 
+         
+    if @ids[section]
+      store = @ids[section]
+    else 
+      store = {}
+      @ids[section] = store   
+      
+    store
 
