@@ -23,6 +23,8 @@ DataAccess = {
   storage: window.localStorage,
   save: function(key, value) {
     var result;
+    window.lastsaved = value;
+    console.log("saving: (" + key + ", " + JSON.stringify(value) + ")");
     return result = DataAccess.storage.setItem(key, JSON.stringify(value));
   },
   get: function(key, generic) {

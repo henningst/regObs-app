@@ -6,6 +6,12 @@ var AbstractPackage,
 AbstractPackage = (function() {
 
   function AbstractPackage() {
+    this.getStore = __bind(this.getStore, this);
+
+    this.save = __bind(this.save, this);
+
+    this.setObsLocation = __bind(this.setObsLocation, this);
+
     this.castedModel = __bind(this.castedModel, this);
 
     this.onSend = __bind(this.onSend, this);
@@ -19,6 +25,8 @@ AbstractPackage = (function() {
     this.completePointRegistration = __bind(this.completePointRegistration, this);
 
     this.completeAreaRegistration = __bind(this.completeAreaRegistration, this);
+
+    this.setRegistration = __bind(this.setRegistration, this);
 
     this.afterRegistration = __bind(this.afterRegistration, this);
 
@@ -86,12 +94,17 @@ AbstractPackage = (function() {
     this.omrade_id = 0;
     this.regDate = null;
     this.freezed = false;
-    return this.pages = [];
+    this.pages = [];
+    return this.ids = {};
   };
 
   AbstractPackage.prototype.onError = function(data) {
     if (main.haveConnection()) {
-      if (data.response) {
+      if (data === null) {
+        new ErrorHandler().handleError("No error description, abstract package");
+        return;
+      }
+      if (data !== null && data.response) {
         this.handleStatusCode(data.response.statusCode);
         console.log("pp: error occured sending package " + data);
         new ErrorHandler().handleErrorSilent(data);
@@ -222,6 +235,7 @@ AbstractPackage = (function() {
 
   AbstractPackage.prototype.addObs = function(obs) {
     this.setRegDate();
+    console.log("adding observation " + JSON.stringify(this));
     if (obs.setRegDate) {
       obs.setRegDate(this.regDate);
     }
@@ -247,7 +261,6 @@ AbstractPackage = (function() {
       if (position >= 0) {
         this.m_dangerObs.splice(position, 1);
       }
-      console.log(JSON.stringify(this.m_dangerObs));
       return this.addObs(obs);
     }
   };
@@ -335,25 +348,39 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.callCallback = function() {
+    this.ids = {};
     if (this.callback) {
       return this.callback(this);
     }
   };
 
   AbstractPackage.prototype.afterLocation = function(data, area, force) {
-    return this.onAfterLocation(data, area, force);
+    this.setObsLocation(area, data.ObsLocationID);
+    return this.onAfterLocation(this.getStore(area).obsLocationID, area, force);
   };
 
   AbstractPackage.prototype.afterRegistration = function(data, area, force) {
     console.log("after reg area " + area + " force " + force);
+    this.setRegistration(area, data.RegID);
+    return this.onAfterRegistration(this.getStore(area).regID, area, force);
+  };
+
+  AbstractPackage.prototype.onAfterRegistration = function(regid, area, force) {
     if (area) {
-      return this.completeAreaRegistration(data, force);
+      return this.completeAreaRegistration(regid, force);
     } else {
-      return this.completePointRegistration(data);
+      return this.completePointRegistration(regid, force);
     }
   };
 
-  AbstractPackage.prototype.completeAreaRegistration = function(data, force) {
+  AbstractPackage.prototype.setRegistration = function(area, regID) {
+    var store;
+    store = this.getStore(area);
+    store.regID = regID;
+    return this.save();
+  };
+
+  AbstractPackage.prototype.completeAreaRegistration = function(regID, force) {
     var bilde, i, incidentFunc, n, obs, picture, sendingFunctions, x, _fn, _fn1, _i, _j, _len, _len1, _ref,
       _this = this;
     console.log("complete force " + force);
@@ -365,13 +392,14 @@ AbstractPackage = (function() {
       var sendFunc;
       sendFunc = function(callback) {
         var clone, error, success;
-        obs.RegID = data.RegID;
+        obs.RegID = regID;
         clone = JSON.parse(JSON.stringify(obs));
         clone = _this.castedModel(clone);
         if (clone.model) {
           delete clone.model;
         }
         success = function() {
+          _this.save();
           return callback(null, obs.RegID);
         };
         error = function(error) {
@@ -379,7 +407,11 @@ AbstractPackage = (function() {
         };
         return SendObjectToServer(clone, success, error);
       };
-      return sendingFunctions.push(sendFunc);
+      if (obs.RegID !== null && obs.RegID > 0) {
+        return console.log("dr: skipping have obs id " + obs.model + " - " + obs.RegID);
+      } else {
+        return sendingFunctions.push(sendFunc);
+      }
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       obs = _ref[_i];
@@ -390,14 +422,22 @@ AbstractPackage = (function() {
     _fn1 = function(picture) {
       var sendFunc;
       sendFunc = function(callback) {
-        var sendPicture;
+        var sendPicture, success;
         picture = jQuery.extend(picture, new Picture());
-        picture.RegID = data.RegID;
+        picture.RegID = regID;
         picture.PictureID = i++;
+        success = function(error, complete) {
+          _this.save();
+          return callback(error, complete);
+        };
         sendPicture = new SendInPictureCommand(picture);
-        return sendPicture.send(callback);
+        return sendPicture.send(success);
       };
-      return sendingFunctions.push(sendFunc);
+      if (picture.RegID && picture.RegID > 0) {
+        return console.log("skipping picture");
+      } else {
+        return sendingFunctions.push(sendFunc);
+      }
     };
     for (_j = 0, _len1 = bilde.length; _j < _len1; _j++) {
       picture = bilde[_j];
@@ -407,8 +447,9 @@ AbstractPackage = (function() {
       var error, success;
       if (_this.m_incident && (i !== 0 || x !== 0 || force)) {
         _this.m_incident = jQuery.extend(_this.m_incident, new Incident());
-        _this.m_incident.RegID = data.RegID;
+        _this.m_incident.RegID = regID;
         success = function() {
+          _this.save();
           return callback(null, "incident sendt");
         };
         error = function(error) {
@@ -420,7 +461,11 @@ AbstractPackage = (function() {
         return callback(null, "no incident");
       }
     };
-    sendingFunctions.push(incidentFunc);
+    if (this.m_incident && this.m_incident.RegID > 0) {
+      console.log("pr: skipping");
+    } else {
+      sendingFunctions.push(incidentFunc);
+    }
     return async.series(sendingFunctions, function(err, result) {
       console.log("done sending " + result);
       if (err) {
@@ -429,7 +474,7 @@ AbstractPackage = (function() {
       } else {
         _this.removeAreaModels();
         _this.cutOutPictures(true);
-        main.addLastRegID(data.RegID);
+        main.addLastRegID(regID);
         DataAccess.save(_this.name, _this);
         if (!force) {
           return _this.onSend(_this.page, false);
@@ -441,7 +486,7 @@ AbstractPackage = (function() {
     });
   };
 
-  AbstractPackage.prototype.completePointRegistration = function(data) {
+  AbstractPackage.prototype.completePointRegistration = function(regId) {
     var bilde, i, obs, picture, sendFunctions, sendIncident, x, _fn, _fn1, _i, _j, _len, _len1, _ref,
       _this = this;
     sendFunctions = [];
@@ -449,8 +494,9 @@ AbstractPackage = (function() {
       var error, success;
       if (_this.m_incident) {
         _this.m_incident = jQuery.extend(_this.m_incident, new Incident());
-        _this.m_incident.RegID = data.RegID;
+        _this.m_incident.RegID = regId;
         success = function() {
+          _this.save();
           return callback(null, "incident sendt");
         };
         error = function(error) {
@@ -462,14 +508,18 @@ AbstractPackage = (function() {
         return callback(null, "no incident");
       }
     };
-    sendFunctions.push(sendIncident);
+    if (this.m_incident && this.m_incident.RegID !== null && this.m_incident.RegID > 0) {
+      console.log("dr: skipping have obs id " + obs.model + " - " + obs.RegID);
+    } else {
+      sendFunctions.push(sendIncident);
+    }
     x = 0;
     _ref = this.pointModels(this.m_dangerObs).point;
     _fn = function(obs) {
       var sendFunc;
       sendFunc = function(callback) {
         var clone, error, success;
-        obs.RegID = data.RegID;
+        obs.RegID = regId;
         clone = JSON.parse(JSON.stringify(obs));
         clone = _this.castedModel(clone);
         if (clone.beforeSend) {
@@ -479,14 +529,20 @@ AbstractPackage = (function() {
           delete clone.model;
         }
         success = function() {
-          return callback(null, obs.RegID);
+          _this.save();
+          return callback(null, regId);
         };
         error = function() {
-          return callback("problem with " + obs.RegID);
+          return callback("problem with " + regId);
         };
         return SendObjectToServer(clone, success, error);
       };
-      return sendFunctions.push(sendFunc);
+      console.log("dr: have obs id " + obs.model + " - " + obs.RegID);
+      if (obs.RegID !== null && obs.RegID > 0) {
+        return console.log("dr: skipping have obs id " + obs.model + " - " + obs.RegID);
+      } else {
+        return sendFunctions.push(sendFunc);
+      }
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       obs = _ref[_i];
@@ -497,14 +553,22 @@ AbstractPackage = (function() {
     _fn1 = function(picture) {
       var sendFunc;
       sendFunc = function(callback) {
-        var sendPicture;
+        var sendPicture, success;
         picture = jQuery.extend(picture, new Picture());
-        picture.RegID = data.RegID;
+        picture.RegID = regId;
         picture.PictureID = i++;
+        success = function(error, complete) {
+          _this.save();
+          return callback(error, complete);
+        };
         sendPicture = new SendInPictureCommand(picture);
-        return sendPicture.send(callback);
+        return sendPicture.send(success);
       };
-      return sendFunctions.push(sendFunc);
+      if (picture.RegID !== null && picture.RegID > 0) {
+        return console.log("dr: skipping have obs id " + obs.model + " - " + obs.RegID);
+      } else {
+        return sendFunctions.push(sendFunc);
+      }
     };
     for (_j = 0, _len1 = bilde.length; _j < _len1; _j++) {
       picture = bilde[_j];
@@ -517,7 +581,7 @@ AbstractPackage = (function() {
       } else {
         _this.m_pictures.length = 0;
         _this.removePointModels();
-        main.addLastRegID(data.RegID);
+        main.addLastRegID(regId);
         DataAccess.save(_this.name, _this);
         _this.callCallback();
         return main.showFinishedUploadMessage();
@@ -559,34 +623,50 @@ AbstractPackage = (function() {
     if (this.komm_nr) {
       komm_string = this.komm_nr.toString();
     }
+    console.log("dr: have obs location id " + this.getStore(area).obsLocationID);
     if (area) {
       if (this.areaPictures().length > 0 || this.pointModels(this.m_dangerObs).area.length > 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
-        return SendObjectToServer(location, (function(data) {
-          return _this.afterLocation(data, true, false);
-        }), function(error) {
-          return _this.onError(error);
-        });
-      } else {
-        if (this.pointPictures().length > 0 || this.pointModels(this.m_dangerObs).point.length > 0) {
-          return this.onSend(page, false);
+        if (this.getStore(area).obsLocationID > 0) {
+          console.log("dr: skipping obslocation");
+          return this.onAfterLocation(this.getStore(area).obsLocationID, area, false);
         } else {
           location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
           return SendObjectToServer(location, (function(data) {
-            return _this.afterLocation(data, true, true);
+            return _this.afterLocation(data, true, false);
           }), function(error) {
             return _this.onError(error);
           });
         }
+      } else {
+        if (this.pointPictures().length > 0 || this.pointModels(this.m_dangerObs).point.length > 0) {
+          return this.onSend(page, false);
+        } else {
+          if (this.getStore(true).obsLocationID > 0) {
+            console.log("dr: skipping obslocation");
+            return this.onAfterLocation(this.getStore(true).obsLocationID, true, true);
+          } else {
+            location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
+            return SendObjectToServer(location, (function(data) {
+              return _this.afterLocation(data, true, true);
+            }), function(error) {
+              return _this.onError(error);
+            });
+          }
+        }
       }
     } else {
       if (this.pointPictures().length > 0 || this.pointModels(this.m_dangerObs).point.length > 0) {
-        location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, false, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
-        return SendObjectToServer(location, (function(data) {
-          return _this.afterLocation(data, false);
-        }), function(error) {
-          return _this.onError(error);
-        });
+        if (this.getStore(false).obsLocationID > 0) {
+          console.log("dr: skipping obslocation");
+          return this.onAfterLocation(this.getStore(false).obsLocationID, area);
+        } else {
+          location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, false, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
+          return SendObjectToServer(location, (function(data) {
+            return _this.afterLocation(data, false);
+          }), function(error) {
+            return _this.onError(error);
+          });
+        }
       } else {
         this.callCallback();
         return main.showFinishedUploadMessage();
@@ -629,25 +709,31 @@ AbstractPackage = (function() {
     });
   };
 
-  AbstractPackage.prototype.onAfterLocation = function(data, area, force) {
+  AbstractPackage.prototype.onAfterLocation = function(obsLocationID, area, force) {
     var groupId, observerId, registration,
       _this = this;
-    groupId = parseInt(this.groupId);
-    if (groupId === 0) {
-      groupId = void 0;
+    console.log("dr: have registration id " + this.getStore(area).regID);
+    if (this.getStore(area).regID > 0) {
+      console.log("dr: skipping registration");
+      return this.onAfterRegistration(this.getStore(area).regID, area, force);
+    } else {
+      groupId = parseInt(this.groupId);
+      if (groupId === 0) {
+        groupId = void 0;
+      }
+      console.log("pp: regdate is " + this.regDate + ", " + typeof this.regDate);
+      if (typeof this.regDate === "string") {
+        this.regDate = new Date(Date.fromISOString(this.regDate));
+      }
+      console.log("pp: regdate is now " + this.regDate + ", " + typeof this.regDate);
+      observerId = this.getObserverID(main.login.data);
+      registration = new Registration(observerId, obsLocationID, null, this.regDate, this.competancy, groupId);
+      return SendObjectToServer(registration, (function(data) {
+        return _this.afterRegistration(data, area, force);
+      }), function(error) {
+        return _this.onError(error);
+      });
     }
-    console.log("pp: regdate is " + this.regDate + ", " + typeof this.regDate);
-    if (typeof this.regDate === "string") {
-      this.regDate = new Date(Date.fromISOString(this.regDate));
-    }
-    console.log("pp: regdate is now " + this.regDate + ", " + typeof this.regDate);
-    observerId = this.getObserverID(main.login.data);
-    registration = new Registration(observerId, data.ObsLocationID, null, this.regDate, this.competancy, groupId);
-    return SendObjectToServer(registration, (function(data) {
-      return _this.afterRegistration(data, area, force);
-    }), function(error) {
-      return _this.onError(error);
-    });
   };
 
   AbstractPackage.prototype.getObserverID = function(data) {
@@ -728,6 +814,36 @@ AbstractPackage = (function() {
     } else {
       return obs;
     }
+  };
+
+  AbstractPackage.prototype.setObsLocation = function(area, obsLocationID) {
+    var store;
+    store = this.getStore(area);
+    store.obsLocationID = obsLocationID;
+    return this.save();
+  };
+
+  AbstractPackage.prototype.save = function() {
+    return this.savePackageCollection();
+  };
+
+  AbstractPackage.prototype.savePackageCollection = function() {
+    return main.store.packageCollection.save();
+  };
+
+  AbstractPackage.prototype.getStore = function(area) {
+    var section, store;
+    section = "point";
+    if (area) {
+      section = "area";
+    }
+    if (this.ids[section]) {
+      store = this.ids[section];
+    } else {
+      store = {};
+      this.ids[section] = store;
+    }
+    return store;
   };
 
   return AbstractPackage;

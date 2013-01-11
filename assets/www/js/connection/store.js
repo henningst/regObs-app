@@ -22,9 +22,12 @@ NveStore = (function() {
       DataAccess.save("PackageCollection", this.packageCollection);
     }
     this.packageCollection.callback = function(collection) {
+      collection.ids = {};
       return DataAccess.save("PackageCollection", collection);
     };
-    this.packageCollection.callback(this.packageCollection);
+    if (this.packageCollection && this.packageCollection.callback) {
+      this.packageCollection.callback(this.packageCollection);
+    }
   }
 
   NveStore.prototype.clearPackageCollection = function() {
@@ -84,7 +87,9 @@ NveStore = (function() {
       this.clearSnow();
     }
     this.packageCollection.forall(function(p) {
-      return _this.sendAndHandlePackage(p);
+      return _this.sendAndHandlePackage(p, function() {
+        return main.store.clearSnow();
+      });
     });
     if (callback) {
       return callback();
@@ -96,12 +101,15 @@ NveStore = (function() {
     return jQuery(".groupButton").attr("value", "Gruppe").removeClass("pressed");
   };
 
-  NveStore.prototype.sendAndHandlePackage = function(p) {
+  NveStore.prototype.sendAndHandlePackage = function(p, clearFunc) {
     p.callback = function(pkg) {
       var collection;
       collection = main.store.packageCollection;
+      console.log("pr: removeing package " + JSON.stringify(collection));
       pkg.freezed = true;
       collection.remove(pkg);
+      clearFunc();
+      DataAccess.save("PackageCollection", this.packageCollection);
       return main.updateCollection(collection);
     };
     return p.send();
@@ -143,7 +151,9 @@ NveStore = (function() {
       this.clearDirt();
     }
     this.packageCollection.forall(function(p) {
-      return _this.sendAndHandlePackage(p);
+      return _this.sendAndHandlePackage(p, function() {
+        return main.store.clearDirt();
+      });
     });
     if (callback) {
       return callback();
@@ -186,7 +196,9 @@ NveStore = (function() {
       this.clearIce();
     }
     this.packageCollection.forall(function(p) {
-      return _this.sendAndHandlePackage(p);
+      return _this.sendAndHandlePackage(p, function() {
+        return main.store.clearIce();
+      });
     });
     if (callback) {
       return callback();
@@ -229,7 +241,9 @@ NveStore = (function() {
       this.clearWater();
     }
     this.packageCollection.forall(function(p) {
-      return _this.sendAndHandlePackage(p);
+      return _this.sendAndHandlePackage(p, function() {
+        return main.store.clearWater();
+      });
     });
     if (callback) {
       return callback();

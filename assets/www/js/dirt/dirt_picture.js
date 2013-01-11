@@ -34,18 +34,20 @@ var dirt_picture  = {
 	},
 	
 	onSuccess: function(imageData) {
-		dirt_picture.pictureData = imageData;
 
 		var smallImage = document.getElementById('dirt_picture_img');
 		smallImage.src = imageData;
-		dirt_picture.updatePictureButtons("#dirt_picture");
-		main.hideDialog();
-		setTimeout(
-				function(){main.resetHeights(); setTimeout(main.resetHeights, 2000);}, 
-				2000
-			);
-		
-		main.showHideFooter("dirt_picture");
+		new ImageDataConverter(imageData).convert(function(base64){
+			dirt_picture.pictureData = base64;
+			dirt_picture.updatePictureButtons("#dirt_picture");
+			main.hideDialog();
+			setTimeout(
+					function(){main.resetHeights(); setTimeout(main.resetHeights, 2000);}, 
+					2000
+				);
+			
+			main.showHideFooter("dirt_picture");
+		});
 	},
 
 	onFail: function(message) {

@@ -34,17 +34,19 @@ var ice_picture  = {
 	},
 	
 	onSuccess: function(imageData) {
-		ice_picture.pictureData = imageData;
 
 		var smallImage = document.getElementById('ice_picture_img');
 		smallImage.src = imageData;
-		ice_picture.updatePictureButtons("#ice_picture");
-		main.hideDialog();
-		setTimeout(
-				function(){main.resetHeights(); setTimeout(main.resetHeights, 2000);}, 
-				2000
-			);
-		main.showHideFooter("ice_picture");
+		new ImageDataConverter(imageData).convert(function(base64){
+			ice_picture.pictureData = base64;
+			ice_picture.updatePictureButtons("#ice_picture");
+			main.hideDialog();
+			setTimeout(
+					function(){main.resetHeights(); setTimeout(main.resetHeights, 2000);}, 
+					2000
+				);
+			main.showHideFooter("ice_picture");
+		})
 	},
 
 	onFail: function(message) {

@@ -17,6 +17,10 @@ PackageCollection = (function() {
     return retur;
   };
 
+  PackageCollection.prototype.save = function() {
+    return DataAccess.save("PackageCollection", this);
+  };
+
   PackageCollection.prototype.get = function(name) {
     var found;
     found = this.packages.filter(function(pkg) {
