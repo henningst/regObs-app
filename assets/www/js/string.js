@@ -29,7 +29,7 @@ PROCESS_PICTURE = "Laster bilde... ";
 /*
  * Uploading progress message
  */
-UPLOADING = "Laster opp... ";
+UPLOADING = "Laster opp observasjonen. Vent på bekreftelse (og ikke steng telefonen) ... </br></br>";
 
 /*
  * Buttons for after registration is uploaded
