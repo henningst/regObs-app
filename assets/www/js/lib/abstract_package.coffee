@@ -16,7 +16,11 @@ class AbstractPackage
 
   onError: (data) =>
     if(main.haveConnection())
-      if(data.response)
+      if(data == null)
+        new ErrorHandler().handleError("No error description, abstract package")
+        return 
+        
+      if(data != null && data.response)
         @handleStatusCode(data.response.statusCode)
         console.log("pp: error occured sending package "+ data)
      
@@ -178,9 +182,6 @@ class AbstractPackage
     @setObsLocation(area, data.ObsLocationID)
     @onAfterLocation(@getStore(area).obsLocationID, area, force)
   
-    
-  
-  
   afterRegistration: (data, area, force) =>
     console.log("after reg area " + area + " force " + force)
     @setRegistration(area, data.RegID)
@@ -216,6 +217,7 @@ class AbstractPackage
           error = (error) -> callback(error)          
           
           SendObjectToServer(clone, success, error)
+        console.log("dr: have obs id " + obs.model + " - " + obs.RegID)
         sendingFunctions.push(sendFunc)
           
     
@@ -313,6 +315,7 @@ class AbstractPackage
           error = ()-> callback("problem with " + regId)   
           SendObjectToServer(clone, success, error)
         
+        console.log("dr: have obs id " + obs.model + " - " + obs.RegID)
         sendFunctions.push(sendFunc)
           
 
@@ -375,6 +378,7 @@ class AbstractPackage
     if @komm_nr
       komm_string = @komm_nr.toString()
        
+    console.log("dr: have obs location id " + @getStore(area).obsLocationID)
     if area
       if @areaPictures().length > 0 || @pointModels(@m_dangerObs).area.length > 0
         location = new ObsLocation("", 33, @long, @lat, source, 0, @omradeIdByCurrentHazard(), null, null, true, null, @regDate, null, null, null, komm_string, "Feilmargin: #{@accuracy}m");
@@ -422,6 +426,7 @@ class AbstractPackage
     )     
     
   onAfterLocation: (obsLocationID, area, force) ->
+    console.log("dr: have registration id " + @getStore(area).regID)
     groupId = parseInt(@groupId)
     groupId = undefined if groupId == 0
     
@@ -484,7 +489,13 @@ class AbstractPackage
     @save()
     
   save : () =>
-    DataAccess.save(@name, this)
+    #DataAccess.save(@name, this)
+    @savePackageCollection()
+    
+  savePackageCollection : ()->
+    main.store.packageCollection.save()
+  
+    
     
   getStore: (area) =>
     section = "point"

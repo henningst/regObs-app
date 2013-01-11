@@ -12,6 +12,9 @@ class PackageCollection
     @callCallback()
     retur
     
+  save : () ->
+    DataAccess.save("PackageCollection", this)
+    
   get : (name) ->
     found = @packages.filter (pkg) -> pkg.name == name 
     found[0]

@@ -100,7 +100,11 @@ AbstractPackage = (function() {
 
   AbstractPackage.prototype.onError = function(data) {
     if (main.haveConnection()) {
-      if (data.response) {
+      if (data === null) {
+        new ErrorHandler().handleError("No error description, abstract package");
+        return;
+      }
+      if (data !== null && data.response) {
         this.handleStatusCode(data.response.statusCode);
         console.log("pp: error occured sending package " + data);
         new ErrorHandler().handleErrorSilent(data);
@@ -398,6 +402,7 @@ AbstractPackage = (function() {
         };
         return SendObjectToServer(clone, success, error);
       };
+      console.log("dr: have obs id " + obs.model + " - " + obs.RegID);
       return sendingFunctions.push(sendFunc);
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -512,6 +517,7 @@ AbstractPackage = (function() {
         };
         return SendObjectToServer(clone, success, error);
       };
+      console.log("dr: have obs id " + obs.model + " - " + obs.RegID);
       return sendFunctions.push(sendFunc);
     };
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -589,6 +595,7 @@ AbstractPackage = (function() {
     if (this.komm_nr) {
       komm_string = this.komm_nr.toString();
     }
+    console.log("dr: have obs location id " + this.getStore(area).obsLocationID);
     if (area) {
       if (this.areaPictures().length > 0 || this.pointModels(this.m_dangerObs).area.length > 0) {
         location = new ObsLocation("", 33, this.long, this.lat, source, 0, this.omradeIdByCurrentHazard(), null, null, true, null, this.regDate, null, null, null, komm_string, "Feilmargin: " + this.accuracy + "m");
@@ -662,6 +669,7 @@ AbstractPackage = (function() {
   AbstractPackage.prototype.onAfterLocation = function(obsLocationID, area, force) {
     var groupId, observerId, registration,
       _this = this;
+    console.log("dr: have registration id " + this.getStore(area).regID);
     groupId = parseInt(this.groupId);
     if (groupId === 0) {
       groupId = void 0;
@@ -768,7 +776,11 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.save = function() {
-    return DataAccess.save(this.name, this);
+    return this.savePackageCollection();
+  };
+
+  AbstractPackage.prototype.savePackageCollection = function() {
+    return main.store.packageCollection.save();
   };
 
   AbstractPackage.prototype.getStore = function(area) {

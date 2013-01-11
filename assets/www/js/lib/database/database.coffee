@@ -21,6 +21,7 @@ DataAccess = {
   storage : window.localStorage
 
   save: (key, value) ->
+    window.lastsaved = value
     console.log("saving: (" + key + ", " + JSON.stringify(value) + ")");
     result = DataAccess.storage.setItem(key, JSON.stringify(value))
 
