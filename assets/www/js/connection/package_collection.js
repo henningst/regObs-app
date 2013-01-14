@@ -35,7 +35,7 @@ PackageCollection = (function() {
     removeIndex = this.packages.indexOf(obj);
     this.packages.splice(removeIndex, 1);
     if (prevSize === this.size()) {
-      throw "No matching object found in collection";
+      console.log("No matching object found in collection");
     }
     return this.callCallback();
   };

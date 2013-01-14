@@ -17,7 +17,7 @@ NveStore = (function() {
     this.m_dirtPackage = null;
     this.m_icePackage = null;
     this.packageCollection = DataAccess.get("PackageCollection", new PackageCollection());
-    if (!this.packageCollection) {
+    if (!this.packageCollection || this.packageCollection === "undefined") {
       this.packageCollection = new PackageCollection();
       DataAccess.save("PackageCollection", this.packageCollection);
     }
@@ -25,9 +25,7 @@ NveStore = (function() {
       collection.ids = {};
       return DataAccess.save("PackageCollection", collection);
     };
-    if (this.packageCollection && this.packageCollection.callback) {
-      this.packageCollection.callback(this.packageCollection);
-    }
+    this.packageCollection.callback(this.packageCollection);
   }
 
   NveStore.prototype.clearPackageCollection = function() {

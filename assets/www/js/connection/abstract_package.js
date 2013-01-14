@@ -422,17 +422,30 @@ AbstractPackage = (function() {
     _fn1 = function(picture) {
       var sendFunc;
       sendFunc = function(callback) {
-        var sendPicture, success;
+        var clone, sendPicture, success;
         picture = jQuery.extend(picture, new Picture());
-        picture.RegID = regID;
-        picture.PictureID = i++;
+        clone = JSON.parse(JSON.stringify(picture));
+        console.log("--: about to cast");
+        clone.model = "Picture";
+        clone = _this.castedModel(clone);
+        if (clone.model) {
+          delete clone.model;
+        }
+        clone.RegID = regID;
+        clone.PictureID = i++;
         success = function(error, complete) {
+          if (error === null) {
+            picture.RegID = regID;
+          }
+          console.log("--: success picture " + JSON.stringify(error));
+          console.log("--: saving picture check " + JSON.stringify(picture));
           _this.save();
           return callback(error, complete);
         };
-        sendPicture = new SendInPictureCommand(picture);
+        sendPicture = new SendInPictureCommand(clone);
         return sendPicture.send(success);
       };
+      console.log("--: about to check " + JSON.stringify(picture));
       if (picture.RegID && picture.RegID > 0) {
         return console.log("skipping picture");
       } else {
@@ -549,23 +562,32 @@ AbstractPackage = (function() {
       _fn(obs);
     }
     i = 0;
-    bilde = this.cutOutPictures(false);
+    bilde = this.pointPictures();
     _fn1 = function(picture) {
       var sendFunc;
       sendFunc = function(callback) {
-        var sendPicture, success;
+        var clone, sendPicture, success;
         picture = jQuery.extend(picture, new Picture());
-        picture.RegID = regId;
-        picture.PictureID = i++;
+        clone = JSON.parse(JSON.stringify(picture));
+        clone.model = "Picture";
+        clone = _this.castedModel(clone);
+        clone.RegID = regId;
+        clone.PictureID = i++;
+        if (clone.model) {
+          delete clone.model;
+        }
         success = function(error, complete) {
+          if (error === null) {
+            picture.RegID = regID;
+          }
           _this.save();
           return callback(error, complete);
         };
-        sendPicture = new SendInPictureCommand(picture);
+        sendPicture = new SendInPictureCommand(clone);
         return sendPicture.send(success);
       };
       if (picture.RegID !== null && picture.RegID > 0) {
-        return console.log("dr: skipping have obs id " + obs.model + " - " + obs.RegID);
+        return console.log("dr: skipping have obs id " + picture.model + " - " + picture.RegID);
       } else {
         return sendFunctions.push(sendFunc);
       }

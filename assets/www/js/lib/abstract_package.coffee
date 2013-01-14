@@ -235,20 +235,32 @@ class AbstractPackage
       do(picture) =>
         sendFunc = (callback) =>
           picture = jQuery.extend(picture, new Picture())
-          picture.RegID = regID
-          picture.PictureID = i++
+          
+          clone = JSON.parse(JSON.stringify(picture))
+          console.log("--: about to cast")
+          clone.model = "Picture"
+          clone = @castedModel(clone)
+          delete clone.model if clone.model
+          clone.RegID = regID
+          clone.PictureID = i++
           success = (error, complete) =>
+            if error == null
+              picture.RegID = regID
+              
+            console.log("--: success picture " + JSON.stringify(error))  
+            console.log("--: saving picture check " + JSON.stringify(picture))  
             @save()
             callback(error, complete)
          
-          sendPicture = new SendInPictureCommand(picture)
+          sendPicture = new SendInPictureCommand(clone)
           sendPicture.send(success)
           
+        console.log("--: about to check " + JSON.stringify(picture))    
         if(picture.RegID and picture.RegID > 0)
           console.log("skipping picture")
         else
           sendingFunctions.push(sendFunc)  
-
+    
     incidentFunc = (callback) =>
       if @m_incident and (i isnt 0 or x isnt 0 or force)
         @m_incident = jQuery.extend(@m_incident, new Incident())
@@ -335,20 +347,27 @@ class AbstractPackage
           
 
     i = 0
-    bilde = @cutOutPictures(false)
+    bilde = @pointPictures()
     for picture in bilde
       do(picture) =>
         sendFunc = (callback) =>
           picture = jQuery.extend(picture, new Picture())
-          picture.RegID = regId
-          picture.PictureID = i++
+          
+          clone = JSON.parse(JSON.stringify(picture))
+          clone.model = "Picture"
+          clone = @castedModel(clone)
+          clone.RegID = regId 
+          clone.PictureID = i++
+          delete clone.model if clone.model
           success = (error, complete)=>
+            if error == null
+              picture.RegID = regID
             @save()
             callback(error, complete)
-          sendPicture = new SendInPictureCommand(picture)
+          sendPicture = new SendInPictureCommand(clone)
           sendPicture.send(success) 
         if(picture.RegID != null && picture.RegID > 0)
-          console.log("dr: skipping have obs id " + obs.model + " - " + obs.RegID)
+          console.log("dr: skipping have obs id " + picture.model + " - " + picture.RegID)
         else    
           sendFunctions.push(sendFunc)   
         

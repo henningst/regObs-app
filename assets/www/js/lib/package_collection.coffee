@@ -26,7 +26,7 @@ class PackageCollection
     
     
     if(prevSize == @size())
-      throw "No matching object found in collection";
+      console.log("No matching object found in collection");
     @callCallback()
   
   forall : (work) ->

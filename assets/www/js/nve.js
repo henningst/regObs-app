@@ -246,7 +246,7 @@ var main = (function() {
 		
 		updateCollection : function(collection) {
 			console.log("pp: collection  = " + collection +", " + JSON.stringify(collection))
-			if(collection === undefined || collection === null)
+			if(collection === "undefined"|| collection === null)
 				return;
 			
 			if (collection.size() > 0) {

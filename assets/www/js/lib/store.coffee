@@ -8,7 +8,7 @@ class NveStore
     
     
     @packageCollection =  DataAccess.get("PackageCollection", new PackageCollection())
-    if not @packageCollection
+    if not @packageCollection || @packageCollection == "undefined"
       @packageCollection = new PackageCollection()
       DataAccess.save("PackageCollection", @packageCollection)
     
@@ -16,7 +16,7 @@ class NveStore
       collection.ids = {}
       DataAccess.save("PackageCollection", collection)
     
-    @packageCollection.callback(@packageCollection) if @packageCollection and @packageCollection.callback
+    @packageCollection.callback(@packageCollection) 
 
   clearPackageCollection : ()->
     @packageCollection =  new PackageCollection()
@@ -71,7 +71,7 @@ class NveStore
     
   sendAndHandlePackage: (p, clearFunc)->
     p.callback = (pkg) ->
-      collection = main.store.packageCollection 
+      collection = main.store.packageCollection
       console.log("pr: removeing package " + JSON.stringify(collection))
       pkg.freezed = true
       collection.remove(pkg)

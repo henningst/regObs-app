@@ -4,17 +4,20 @@ var map_page = {
 	geo_hazard : null,
 	init: function(){
 		main.handleNoConnection();
-		var mapOptions = {
-				zoom: 6,
-				center: new google.maps.LatLng(60.1, 10.0),
-				mapTypeId: google.maps.MapTypeId.ROADMAP
-				};
-		map_page.map = new google.maps.Map(document.getElementById('map'), mapOptions); 
-
-		var _this = this;
-		google.maps.event.addListener(map_page.map, 'click', function(e) {
-			_this.showObsNearby(e.latLng);
-		}); 
+		if(typeof google !== 'undefined')
+		{
+			var mapOptions = {
+					zoom: 6,
+					center: new google.maps.LatLng(60.1, 10.0),
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+					};
+			map_page.map = new google.maps.Map(document.getElementById('map'), mapOptions); 
+	
+			var _this = this;
+			google.maps.event.addListener(map_page.map, 'click', function(e) {
+				_this.showObsNearby(e.latLng);
+			});
+		}
 		
 		geo.requestPosition("map_page.center", false);
 	},
