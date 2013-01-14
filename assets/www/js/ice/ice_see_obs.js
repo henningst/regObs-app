@@ -1,5 +1,5 @@
 var ice_see_obs = {
-	shouldShowFooter : false,
+	shouldShowFooter : true,
 	domNodeId : '#ice_see_obs',
 	init: function(){
 		this.renderer = new ObservationViewRendrer(this.domNodeId, [], "map_page.iceMap()");
