@@ -578,7 +578,7 @@ AbstractPackage = (function() {
         }
         success = function(error, complete) {
           if (error === null) {
-            picture.RegID = regID;
+            picture.RegID = regId;
           }
           _this.save();
           return callback(error, complete);

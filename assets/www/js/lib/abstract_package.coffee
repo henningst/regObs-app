@@ -361,7 +361,7 @@ class AbstractPackage
           delete clone.model if clone.model
           success = (error, complete)=>
             if error == null
-              picture.RegID = regID
+              picture.RegID = regId
             @save()
             callback(error, complete)
           sendPicture = new SendInPictureCommand(clone)
