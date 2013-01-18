@@ -9,10 +9,17 @@ class ImageDataConverter
   constructor: (@imagedata)->
     
   convert: (@successFunction)->
+    
     if(device.platform == "android")
         prefix = "file://"
       else
         prefix = ""
+    
+    console.log("pp: image data is " + @imagedata)
+    if(@imagedata.slice(0, 4) == "data")
+      console.log("pp: base64 detected")
+      @successFunction(@imagedata.substring(23))
+      return
         
     window.resolveLocalFileSystemURI(prefix + @imagedata, @gotFileEntry, @fail);
     

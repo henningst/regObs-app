@@ -40,6 +40,12 @@ ImageDataConverter = (function() {
     } else {
       prefix = "";
     }
+    console.log("pp: image data is " + this.imagedata);
+    if (this.imagedata.slice(0, 4) === "data") {
+      console.log("pp: base64 detected");
+      this.successFunction(this.imagedata.substring(23));
+      return;
+    }
     return window.resolveLocalFileSystemURI(prefix + this.imagedata, this.gotFileEntry, this.fail);
   };
 

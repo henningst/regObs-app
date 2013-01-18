@@ -31,7 +31,9 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory.Options;
 import android.net.Uri;
 
 public class ForegroundGalleryLauncher extends CameraLauncher
@@ -116,10 +118,12 @@ public class ForegroundGalleryLauncher extends CameraLauncher
 
             Uri uri = intent.getData();
             ContentResolver resolver = this.cordova.getActivity().getContentResolver();
+            Options options = new BitmapFactory.Options();
+            options.inSampleSize = 2;
 
             try
             {
-                Bitmap bitmap = android.graphics.BitmapFactory.decodeStream(resolver.openInputStream(uri));
+                Bitmap bitmap = android.graphics.BitmapFactory.decodeStream(resolver.openInputStream(uri), null, options);
                 bitmap = scaleBitmap(bitmap);
                 this.processPicture(bitmap);
                 bitmap.recycle();

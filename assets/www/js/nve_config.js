@@ -38,7 +38,7 @@ var device = {
 //	platform: 'iphone'
 };
 
-APP_VERSION = "1.6";
+APP_VERSION = "1.7";
 	
 //BUGSENS_KEY = '1e74c587';//test
 BUGSENS_KEY = '5eb4c461';//prod

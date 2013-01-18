@@ -32,6 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -44,6 +45,7 @@ import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.MediaStore.Images.Media;
 import android.view.Surface;
 import android.view.WindowManager;
 
@@ -189,7 +191,7 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 				Options options = new BitmapFactory.Options();
 				options.inSampleSize = 2;
 				
-				android.content.ContentResolver resolver = this.cordova.getActivity().getContentResolver();
+				ContentResolver resolver = this.cordova.getActivity().getContentResolver();
 				bitmap = android.graphics.BitmapFactory.decodeStream(resolver.openInputStream(imageUri), null, options );
 
 				bitmap = scaleBitmap(bitmap);
