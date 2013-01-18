@@ -38,6 +38,8 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Environment;
@@ -183,15 +185,12 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 
 				// Read in bitmap of captured image
 				Bitmap bitmap;
-				try {
-					bitmap = android.provider.MediaStore.Images.Media
-							.getBitmap(this.cordova.getActivity().getContentResolver(), imageUri);
-				} catch (FileNotFoundException e) {
-					Uri uri = intent.getData();
-					android.content.ContentResolver resolver = this.cordova.getActivity().getContentResolver();
-					bitmap = android.graphics.BitmapFactory
-							.decodeStream(resolver.openInputStream(uri));
-				}
+			
+				Options options = new BitmapFactory.Options();
+				options.inSampleSize = 2;
+				
+				android.content.ContentResolver resolver = this.cordova.getActivity().getContentResolver();
+				bitmap = android.graphics.BitmapFactory.decodeStream(resolver.openInputStream(imageUri), null, options );
 
 				bitmap = scaleBitmap(bitmap);
 				

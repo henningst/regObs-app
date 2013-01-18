@@ -79,7 +79,6 @@ public class CameraActivity extends Activity {
 
 				// get an image from the camera
 				mCamera.autoFocus(new AutoFocusCallback() {
-
 					public void onAutoFocus(boolean success, Camera camera) {
 						mCamera.takePicture(null, null, mPicture);
 					}
