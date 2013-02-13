@@ -316,6 +316,8 @@ ERROR_NO_LOGIN_CURRENT_MODE = "Du er ikke logget på i denne versjonen av regObs
 ERROR_TIMEOUT = "Vi kunne dessverre ikke avslutte operasjonen i tide. Prøv igjen.";
 
 NO_CONNECTION = "Det er ikke mulig å nå regObs når du ikke er koblet til Internett."
+	
+MISSING_LOGIN = "Vi kunne ikke logge deg inn. Kontrollering innloggig og prøv på nytt.";
 
 BAD_REQUEST = "regObs kunne ikke ta i mot registreringen. Forsøk på nytt, eller nullstill app'en å gjenta registreringen."
 	

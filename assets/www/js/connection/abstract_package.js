@@ -303,11 +303,20 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.send = function() {
-    var competancy, user;
+    var competancy, fail, success, user,
+      _this = this;
     user = UserStore.get(main.currentMode());
     competancy = user.competancy;
     this.setCompetancy(competancy.getLevel(this.currentHazard()));
-    return this.onSend(this.page, true);
+    success = function() {
+      return _this.onSend(_this.page, true);
+    };
+    fail = function() {
+      return main.runIfConnection(function() {
+        return main.showDialogWithMessage(MISSING_LOGIN);
+      });
+    };
+    return login_page.relogin(success, fail);
   };
 
   AbstractPackage.prototype.currentHazard = function() {

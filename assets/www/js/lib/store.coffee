@@ -1,7 +1,7 @@
 class NveStore
   
   constructor: () ->
-    @m_waterPackage = null
+    @m_waterPack7age = null
     @m_snowPackage = null
     @m_dirtPackage = null
     @m_icePackage = null

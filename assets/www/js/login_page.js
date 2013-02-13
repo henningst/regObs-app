@@ -144,7 +144,7 @@ var login_page = {
     		jQuery(".groupButton").removeClass("pressed");
     },
     
-    relogin: function(callback){
+    relogin: function(callback, error){
     	var user = UserStore.get(main.currentMode());
     	
 		if(user.isDefined()) {
@@ -157,6 +157,9 @@ var login_page = {
 				if(callback){
 					callback();
 				}
+			}, function(data){
+				if(error)
+					error(data);
 			});
 			login_page.updateGroups(login_page.showGroupStatus());
     	} else {

@@ -12,7 +12,7 @@ NveStore = (function() {
     this.setNotificationId = __bind(this.setNotificationId, this);
 
     this.getNotificationId = __bind(this.getNotificationId, this);
-    this.m_waterPackage = null;
+    this.m_waterPack7age = null;
     this.m_snowPackage = null;
     this.m_dirtPackage = null;
     this.m_icePackage = null;

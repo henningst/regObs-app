@@ -150,8 +150,14 @@ class AbstractPackage
     competancy = user.competancy
     
     @setCompetancy(competancy.getLevel(@currentHazard()))
+    success = () => @onSend(@page, true)
+    fail = () =>
+      main.runIfConnection(()=>
+        main.showDialogWithMessage(MISSING_LOGIN);  
+      )
+      
+    login_page.relogin(success , fail)
     
-    @onSend(@page, true)
     
   currentHazard : ()=>
     page = @page.name

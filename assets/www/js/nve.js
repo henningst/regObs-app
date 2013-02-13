@@ -224,13 +224,23 @@ var main = (function() {
 		},
 
 		haveConnection: function(){
-			return navigator.network.connection.type !== Connection.NONE && navigator.network.connection.type !== Connection.UNKNOWN;
+			return navigator.network.connection.type !== Connection.NONE && navigator.network.connection.type !== Connection.UNKNOWN;
+		},
+		
+		runIfConnection: function(callback){
+			if(main.haveConnection()){
+				callback();
+			}else{
+				main.handleNoConnection();
+			}
 		},
 		
 		handleNoConnection: function(){
 			if(!main.haveConnection()){
 				main.noConnectionDialog();
 			}
+			
+			return main.haveConnection();
 		},
 		
 		handleConnectionFailed: function(e){
