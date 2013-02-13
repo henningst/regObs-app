@@ -56,6 +56,7 @@ class NveStore
   
       
   sendSnow: (callback) =>
+    console.log("package collection before send " + JSON.stringify(@packageCollection))
     main.hideDialog()
     if @m_snowPackage and not IsEmpty(@m_snowPackage)
       @m_snowPackage.setGroup(jQuery("#snow_obs .selectedGroup").val());
@@ -80,6 +81,8 @@ class NveStore
       main.updateCollection(collection)
       
     p.errorCallback = ()=>
+      @packageCollection = DataAccess.get("PackageCollection", new PackageCollection())
+      console.log("error callback " + JSON.stringify(@packageCollection))
       main.updateCollection(main.store.packageCollection)
       
     p.send()
@@ -139,12 +142,13 @@ class NveStore
   deleteIce : ()->
     @clearIce()
     
-  sendIce: (callback) ->
+  sendIce: (callback) =>
     if @m_icePackage and not IsEmpty(@m_icePackage)
       @m_icePackage.setGroup(jQuery("#ice_group").val());
       @packageCollection.add(@m_icePackage)
       @clearIce()
       
+    console.log("package collection before send " + JSON.stringify(@packageCollection))
     @packageCollection.forall (p) => @sendAndHandlePackage(p, () => main.store.clearIce())
     
     callback() if callback

@@ -99,6 +99,9 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.onError = function(data) {
+    if (this.errorCallback) {
+      this.errorCallback();
+    }
     if (main.haveConnection()) {
       if (data === null) {
         new ErrorHandler().handleError("No error description, abstract package");
@@ -411,6 +414,7 @@ AbstractPackage = (function() {
           delete clone.model;
         }
         success = function() {
+          console.log("success have sendt " + JSON.stringify(obs));
           _this.save();
           return callback(null, obs.RegID);
         };
@@ -554,11 +558,12 @@ AbstractPackage = (function() {
           delete clone.model;
         }
         success = function() {
+          console.log("success have sendt " + JSON.stringify(obs));
           _this.save();
           return callback(null, regId);
         };
         error = function() {
-          return callback("problem with " + regId);
+          return callback("problem with " + regId + " " + JSON.stringify(obs));
         };
         return SendObjectToServer(clone, success, error);
       };

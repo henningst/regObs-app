@@ -15,20 +15,20 @@ class AbstractPackage
     @ids = {}
 
   onError: (data) =>
+    @errorCallback() if @errorCallback
     if(main.haveConnection())
       if(data == null)
         new ErrorHandler().handleError("No error description, abstract package")
         return 
-        
+             
       if(data != null && data.response)
         @handleStatusCode(data.response.statusCode)
         console.log("pp: error occured sending package "+ data)
-     
+        
         new ErrorHandler().handleErrorSilent(data)
       else
         new ErrorHandler().handleError(data)
-        
-      
+
     else
       main.noConnectionDialog()
 
@@ -224,6 +224,7 @@ class AbstractPackage
                   
           delete clone.model if clone.model
           success = () => 
+            console.log("success have sendt " + JSON.stringify(obs))
             @save()
             callback(null, obs.RegID)
           error = (error) -> callback(error)          
@@ -342,9 +343,10 @@ class AbstractPackage
                   
           delete clone.model if clone.model       
           success = ()=>
+            console.log("success have sendt " + JSON.stringify(obs))
             @save() 
             callback(null, regId)
-          error = ()-> callback("problem with " + regId)   
+          error = ()-> callback("problem with " + regId + " " + JSON.stringify(obs))   
           SendObjectToServer(clone, success, error)
         
         console.log("dr: have obs id " + obs.model + " - " + obs.RegID)
