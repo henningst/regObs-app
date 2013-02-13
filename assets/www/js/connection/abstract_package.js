@@ -312,9 +312,12 @@ AbstractPackage = (function() {
       return _this.onSend(_this.page, true);
     };
     fail = function() {
-      return main.runIfConnection(function() {
+      main.runIfConnection(function() {
         return main.showDialogWithMessage(MISSING_LOGIN);
       });
+      if (_this.errorCallback) {
+        return _this.errorCallback();
+      }
     };
     return login_page.relogin(success, fail);
   };

@@ -156,6 +156,8 @@ class AbstractPackage
         main.showDialogWithMessage(MISSING_LOGIN);  
       )
       
+      @errorCallback() if @errorCallback 
+      
     login_page.relogin(success , fail)
     
     

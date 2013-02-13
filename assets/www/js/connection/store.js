@@ -12,7 +12,7 @@ NveStore = (function() {
     this.setNotificationId = __bind(this.setNotificationId, this);
 
     this.getNotificationId = __bind(this.getNotificationId, this);
-    this.m_waterPack7age = null;
+    this.m_waterPackage = null;
     this.m_snowPackage = null;
     this.m_dirtPackage = null;
     this.m_icePackage = null;
@@ -100,6 +100,7 @@ NveStore = (function() {
   };
 
   NveStore.prototype.sendAndHandlePackage = function(p, clearFunc) {
+    var _this = this;
     p.callback = function(pkg) {
       var collection;
       collection = main.store.packageCollection;
@@ -109,6 +110,9 @@ NveStore = (function() {
       clearFunc();
       DataAccess.save("PackageCollection", this.packageCollection);
       return main.updateCollection(collection);
+    };
+    p.errorCallback = function() {
+      return main.updateCollection(main.store.packageCollection);
     };
     return p.send();
   };

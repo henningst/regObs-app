@@ -1,7 +1,7 @@
 class NveStore
   
   constructor: () ->
-    @m_waterPack7age = null
+    @m_waterPackage = null
     @m_snowPackage = null
     @m_dirtPackage = null
     @m_icePackage = null
@@ -78,6 +78,9 @@ class NveStore
       clearFunc()
       DataAccess.save("PackageCollection", @packageCollection)
       main.updateCollection(collection)
+      
+    p.errorCallback = ()=>
+      main.updateCollection(main.store.packageCollection)
       
     p.send()
 
