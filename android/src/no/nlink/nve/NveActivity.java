@@ -2,10 +2,10 @@ package no.nlink.nve;
 
 import org.apache.cordova.DroidGap;
 
-import com.bugsense.trace.BugSenseHandler;
-
 import android.os.Bundle;
 import android.view.KeyEvent;
+
+import com.bugsense.trace.BugSenseHandler;
 
 public class NveActivity extends DroidGap {
 	/** Called when the activity is first created. */
@@ -14,7 +14,8 @@ public class NveActivity extends DroidGap {
 		super.onCreate(savedInstanceState);
 		BugSenseHandler.initAndStartSession(this.getBaseContext(), "d879d6ce");
    
-		super.loadUrl("file:///android_asset/www/nve.html");
+		super.setIntegerProperty("splashscreen", R.drawable.splash);
+		super.loadUrl("file:///android_asset/www/nve.html", 200);
 	}
 	
 	@Override

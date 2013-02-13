@@ -4,7 +4,6 @@ import java.util.Calendar;
 
 import no.nlink.nve.NveActivity;
 import no.nlink.nve.R;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;

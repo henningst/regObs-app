@@ -2,16 +2,14 @@ package com.phonegap.plugin.localnotification;
 
 import java.util.Calendar;
 
+import org.apache.cordova.api.Plugin;
+import org.apache.cordova.api.PluginResult;
 import org.json.JSONArray;
 
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
-
-import org.apache.cordova.api.Plugin;
-import org.apache.cordova.api.PluginResult;
 
 /**
  * This plugin utilizes the Android AlarmManager in combination with StatusBar

@@ -22,7 +22,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import no.nlink.nve.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.hardware.Camera;

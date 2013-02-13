@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import no.nlink.nve.R;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;

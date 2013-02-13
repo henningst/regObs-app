@@ -376,6 +376,7 @@ var main = (function() {
 				arguments : 'end'
 			});
 
+			
 			main.slideToFavorite();
 			main.toogleFavorite();
 
