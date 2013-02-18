@@ -21,6 +21,7 @@ import java.io.FileNotFoundException;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.cordova.CameraLauncher;
+import org.apache.cordova.api.CallbackContext;
 import org.apache.cordova.api.Plugin;
 import org.apache.cordova.api.PluginResult;
 import org.json.JSONArray;
@@ -43,7 +44,6 @@ public class ForegroundGalleryLauncher extends CameraLauncher
     // high compression, 100=compress of max quality)
     private int targetWidth; // desired width of the image
     private int targetHeight; // desired height of the image	
-    public String callbackId;
        
     /**
      * Executes the request and returns PluginResult.
@@ -55,10 +55,11 @@ public class ForegroundGalleryLauncher extends CameraLauncher
      * @param callbackId
      *            The callback id used when calling back into JavaScript.
      * @return A PluginResult object with a status and message.
+     * @throws JSONException 
      */
-    public PluginResult execute(String action, JSONArray args, String callbackId)
+    public boolean execute(String action, JSONArray args, CallbackContext context) throws JSONException
     {
-        this.callbackId = callbackId;
+        this.callbackContext = context;
 
         try
         {
@@ -77,12 +78,11 @@ public class ForegroundGalleryLauncher extends CameraLauncher
 
             PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
             r.setKeepCallback(true);
-            return r;
+            return true;
         }
         catch (JSONException e)
         {
-            e.printStackTrace();
-            return new PluginResult(PluginResult.Status.JSON_EXCEPTION);
+            throw new JSONException("Could not get image from gallery");
         }
     }
 
