@@ -22,6 +22,7 @@ import java.io.OutputStream;
 
 import org.apache.cordova.CameraLauncher;
 import org.apache.cordova.ExifHelper;
+import org.apache.cordova.api.CallbackContext;
 import org.apache.cordova.api.CordovaInterface;
 import org.apache.cordova.api.LOG;
 import org.apache.cordova.api.Plugin;
@@ -83,14 +84,17 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 	 * @param callbackId
 	 *            The callback id used when calling back into JavaScript.
 	 * @return A PluginResult object with a status and message.
+	 * @throws JSONException 
 	 */
-	public PluginResult execute(String action, JSONArray args, String callbackId) {
+	public boolean execute(String action, JSONArray args, CallbackContext context) throws JSONException {
+	  System.out.println("starting execute");
 		PluginResult.Status status = PluginResult.Status.OK;
 		String result = "";
-		this.callbackId = callbackId;
+		this.callbackContext = context;
 
 		try {
 			if (action.equals("takePicture")) {
+			  System.out.println("1");
 				this.targetHeight = 0;
 				this.targetWidth = 0;
 				this.mQuality = 80;
@@ -101,17 +105,20 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 					this.targetWidth = options.getInt("targetWidth");
 					this.mQuality = options.getInt("quality");
 				}
+				System.out.println("2");
 
 				this.takePicture();
+				System.out.println("3");
 
 				PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
 				r.setKeepCallback(true);
-				return r;
+				System.out.println("4");
+				
 			}
-			return new PluginResult(status, result);
+			return true;
 		} catch (JSONException e) {
 			e.printStackTrace();
-			return new PluginResult(PluginResult.Status.JSON_EXCEPTION);
+			throw new JSONException("Cant capture image");
 		}
 	}
 
@@ -133,6 +140,7 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 	 */
 	public void takePicture() {
 		// Save the number of images currently on disk for later
+	  System.out.println("taking picture");
 		this.numPics = queryImgDB().getCount();
 
 		Intent intent = new Intent(this.cordova.getActivity().getApplicationContext(), CameraActivity.class);
