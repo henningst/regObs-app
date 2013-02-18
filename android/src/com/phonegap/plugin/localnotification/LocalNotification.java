@@ -32,7 +32,7 @@ public class LocalNotification extends Plugin {
   @Override
   public PluginResult execute(String action, JSONArray optionsArr,
       String callBackId) {
-    alarm = new AlarmHelper(this.cordova.getContext());
+    alarm = new AlarmHelper(this.cordova.getActivity().getApplicationContext());
     Log.d(PLUGIN_NAME, "Plugin execute called with action: " + action);
 
     PluginResult result = null;

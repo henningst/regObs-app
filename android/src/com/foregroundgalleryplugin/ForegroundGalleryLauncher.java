@@ -92,7 +92,7 @@ public class ForegroundGalleryLauncher extends CameraLauncher
     public void getImage()
     {
         Intent intent = new Intent(this.cordova.getActivity().getApplicationContext() , GalleryActivity.class);
-        this.cordova.startActivityForResult((Plugin) this, intent, 11);
+        this.cordova.startActivityForResult(this, intent, 11);
     }
 
     /**
@@ -138,7 +138,7 @@ public class ForegroundGalleryLauncher extends CameraLauncher
         }
         else if (resultCode == Activity.RESULT_CANCELED)
         {
-            this.error("Selection cancelled.", this.callbackId);
+            this.callbackContext.error("Selection cancelled.");
             this.failPicture("Selection cancelled.");
         }
         else
@@ -157,8 +157,7 @@ public class ForegroundGalleryLauncher extends CameraLauncher
                 byte[] code = jpeg_data.toByteArray();
                 byte[] output = Base64.encodeBase64(code);
                 String js_out = new String(output);
-                this.success(new PluginResult(PluginResult.Status.OK,
-                        "data:image/jpeg;base64," + js_out), this.callbackId);
+                this.callbackContext.success("data:image/jpeg;base64," + js_out);
                 js_out = null;
                 output = null;
                 code = null;

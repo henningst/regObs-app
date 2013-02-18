@@ -140,7 +140,7 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 		this.imageUri = Uri.fromFile(photo);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, this.imageUri);
 
-		this.cordova.startActivityForResult((Plugin) this, intent, 1);
+		this.cordova.startActivityForResult(this, intent, 1);
 	}
 
 	/**
@@ -234,12 +234,12 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 				os.close();
 
 				// Restore exif data to file
-				exif.createOutFile(getRealPathFromURI(uri, this.ctx));
+				exif.createOutFile(getRealPathFromURI(uri, this.cordova));
 				exif.writeExifData();
 
 				// Send Uri back to JavaScript for viewing image
-				this.success(new PluginResult(PluginResult.Status.OK,
-						getRealPathFromURI(uri, this.ctx)), this.callbackId);
+				
+				this.callbackContext.success(getRealPathFromURI(uri, this.cordova));
 
 				bitmap.recycle();
 				bitmap = null;
@@ -254,13 +254,13 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 
 		// If cancelled
 		else if (resultCode == Activity.RESULT_CANCELED) {
-		  this.error("Camera cancelled", this.callbackId);
+		  this.callbackContext.error("Camera cancelled");
 			this.failPicture("Camera cancelled.");
 		}
 
 		// If something else
 		else {
-		  this.error("Camera unavailable", this.callbackId);
+		  this.callbackContext.error("Camera unavailable");
 			this.failPicture("Did not complete!");
 		}
 	}
