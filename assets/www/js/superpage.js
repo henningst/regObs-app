@@ -154,7 +154,7 @@ var super_picture = {
 			main.showWaitingDialogWithMessage(PROCESS_PICTURE);	
 
 			console.log("pp: platform picture " + device.platform)
-			if(device.platform != 'iOS') {
+			if(device.platform != 'iphone') {
 				if(pictureSource == "cam")
 				{
 					navigator.camera.getPicture(

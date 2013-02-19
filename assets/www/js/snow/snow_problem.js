@@ -31,7 +31,7 @@ var snow_problem = {
 				_this.fillDropdown(id, "problem_3", _this.filter(snow_problem.AvalCauseExtKD, snow_problem.AvalancheProblemMenu2V, jQuery(this).val()));
 			});
 			
-			if(device.platform === "iOS")
+			if(device.platform === "iphone")
 			{
 				jQuery("#" + id + " select").blur(function(){
 					jQuery("#" +id+ " .addAbort").show();

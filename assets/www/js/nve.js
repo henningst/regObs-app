@@ -264,7 +264,7 @@ var main = (function() {
 
 				console.log("setting platform for: " + device.platform + " - "
 						+ main.store.getNotificationId())
-				if (device.platform === "iOS"
+				if (device.platform === "iphone"
 						|| main.store.getNotificationId() == null) {
 					console.log("------------ adding a notification "
 							+ collection.size() + " ------------- ")
