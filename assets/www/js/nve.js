@@ -309,6 +309,8 @@ var main = (function() {
 			login_page.relogin();
 			main.updateCollection(main.store.packageCollection);
 			main.resetPostHooks();
+			
+			navigator.app.exitApp();
 		},
 		
 		resetPostHooks: function(){
@@ -677,6 +679,10 @@ var main = (function() {
 		},
 
 		showDialogWithMessage : function(message, header) {
+			main.showDialogWithMessageAndFunction(message,header, OK, "main.hideDialog();")
+		},
+		
+		showDialogWithMessageAndFunction : function(message, header, buttonText, buttonFunction){
 			main.dialogShowing = false;
 			main.dialogStarted = null;
 			
@@ -686,8 +692,8 @@ var main = (function() {
 			var content = jQuery("<div><h3>"
 					+ header
 					+ "</h3><p></p><button type='button' "
-					+ "class='w_bg_light c_button w_button w_radius popupbutton-single' onclick='main.hideDialog();'>"
-					+ OK + "</button></div>");
+					+ "class='w_bg_light c_button w_button w_radius popupbutton-single' onclick='"+ buttonFunction +"'>"
+					+ buttonText + "</button></div>");
 
 			var messageText = message;
 			if (message.html)

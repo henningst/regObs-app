@@ -22,43 +22,39 @@ DataAccess = {
 
   save: (key, value) ->
     window.lastsaved = value
-    
+
     console.log("saving: (" + key + ", " + JSON.stringify(value) + ")");
     result = DataAccess.storage.setItem(key, JSON.stringify(value))
 
   get: (key, generic) ->
     result = DataAccess.storage.getItem(key)
-    
+
     if result
       try
         ret = JSON.parse(result)
       catch error
-        return result 
-      
+        return result
+
       if generic
         ret = jQuery.extend(generic, ret);
       else
         ret
     else
       null
-      
+
   clear : ()->
     DataAccess.storage.clear()
-    
+
   handleCompatibility : (version)->
     currectDataVersion = DataAccess.get(DATA_VERSION_KEY);
     if(currectDataVersion && version > currectDataVersion)
-      user_normal = UserStore.get(TEST_MODE)
-      user_stage  = UserStore.get(STAGE_MODE)
-      DataAccess.clear();
-      
-      UserStore.save(TEST_MODE, user_normal)
-      UserStore.save(STAGE_MODE, user_stage)
-      
+      DataAccess.clear()
+      DataAccess.save(DATA_VERSION_KEY, version)
+      main.showDialogWithMessageAndFunction("For å fullføre oppdateringen må vi starte appen på nytt. Etter at appen er avsluttet må du starte den på nytt.", "Oppdatering", "Avslutt", "navigator.app.exitApp();")
     else
       console.log("Data migration ok");
-      
-    DataAccess.save(DATA_VERSION_KEY, version);
+
+
 }
 
 
@@ -69,15 +65,15 @@ UserStore = {
     DataAccess.save(@usernameKey(mode), user.username)
     DataAccess.save(@passwordKey(mode), user.password)
     ""
-    
+
   saveComp :(mode, user) ->
     DataAccess.save(@compKey(mode), user.competancy)
     ""
-    
+
   saveGroups: (mode, user) ->
     DataAccess.save(@groupKey(mode), user.groups)
     ""
-    
+
   clear: (mode)->
     DataAccess.save(@useridKey(mode), "")
     DataAccess.save(@usernameKey(mode), "")
@@ -86,7 +82,7 @@ UserStore = {
     DataAccess.save(@groupKey(mode), "")
     DataAccess.save(@compKey(mode), "")
     ""
-  
+
   get: (mode) ->
     id =       DataAccess.get(@useridKey(mode))
     nick = 		 DataAccess.get(@userNick(mode))
@@ -95,31 +91,31 @@ UserStore = {
     groups = DataAccess.get(@groupKey(mode))
     comp = DataAccess.get(@compKey(mode), new ObserverCompetancy([]))
     user = new User(id, username, password, nick)
-    
-    user.groups = jQuery.map(groups, (obj)-> 
+
+    user.groups = jQuery.map(groups, (obj)->
       jQuery.extend(obj, new Group())
     ) if groups
-    
+
     if(comp)
       user.competancy = comp
     else
       user.competancy = new ObserverCompetancy([])
     user
-  
+
   useridKey : (mode) ->
     mode + "_" + ID
-  
+
   usernameKey : (mode) ->
     mode + "_" + USERNAME
   userNick : (mode)->
   	mode + "_" + NICK
-    
+
   passwordKey: (mode) ->
     mode + "_" + PASSWORD
-    
+
   groupKey : (mode) ->
     mode + "_" + GROUP
-    
+
   compKey : (mode) ->
     mode + "_" + COMP
 }
