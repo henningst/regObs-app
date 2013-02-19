@@ -18,7 +18,13 @@ Login = (name, pass, callback, onError) ->
 		}
 		success: (data) ->
 			console.log("logged in " + JSON.stringify(data))
-			callback(data) if callback
+			
+			content = data
+			if(content.d == true)
+			  callback(data) if callback
+			else 
+			  onError(data) if onError
+			  
 		error: (data) ->
 			console.log("login failed")
 			for k,v of data
@@ -55,8 +61,8 @@ LoggedInAs = (callback) ->
 		result.data = data.results[0]
 		console.log("pp: logged in as " + JSON.stringify(data.results[0]))
 		callback(data.results[0]) if callback
-		error: (data) ->	
-			console.log("how am i failed" + data)
+	, (error) ->	
+			console.log("how am i failed" + error)
 	)
 	result
 	

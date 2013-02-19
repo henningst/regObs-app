@@ -18,9 +18,17 @@ Login = function(name, pass, callback, onError) {
       "Content-Type": "application/json; charset=utf-8"
     },
     success: function(data) {
+      var content;
       console.log("logged in " + JSON.stringify(data));
-      if (callback) {
-        return callback(data);
+      content = data;
+      if (content.d === true) {
+        if (callback) {
+          return callback(data);
+        }
+      } else {
+        if (onError) {
+          return onError(data);
+        }
       }
     },
     error: function(data) {
@@ -71,13 +79,10 @@ LoggedInAs = function(callback) {
     result.data = data.results[0];
     console.log("pp: logged in as " + JSON.stringify(data.results[0]));
     if (callback) {
-      callback(data.results[0]);
+      return callback(data.results[0]);
     }
-    return {
-      error: function(data) {
-        return console.log("how am i failed" + data);
-      }
-    };
+  }, function(error) {
+    return console.log("how am i failed" + error);
   });
   return result;
 };

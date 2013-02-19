@@ -224,13 +224,23 @@ var main = (function() {
 		},
 
 		haveConnection: function(){
-			return navigator.network.connection.type !== Connection.NONE && navigator.network.connection.type !== Connection.UNKNOWN;
+			return navigator.network.connection.type !== Connection.NONE && navigator.network.connection.type !== Connection.UNKNOWN;
+		},
+		
+		runIfConnection: function(callback){
+			if(main.haveConnection()){
+				callback();
+			}else{
+				main.handleNoConnection();
+			}
 		},
 		
 		handleNoConnection: function(){
 			if(!main.haveConnection()){
 				main.noConnectionDialog();
 			}
+			
+			return main.haveConnection();
 		},
 		
 		handleConnectionFailed: function(e){
@@ -539,6 +549,8 @@ var main = (function() {
 			console.log("started");
 			DataAccess.handleCompatibility(APP_VERSION);
 			
+			document.addEventListener("online", login_page.relogin , true)
+			
 			document.addEventListener("backbutton", main.backKeyDown, true);
 			if (window.analytics) {
 				window.analytics.start(GA_TRACKER_CODE);
@@ -727,7 +739,7 @@ var main = (function() {
 		
 		warnLoginBefore : function(after, shouldNotRetry) {
 			if (!main.currentlyLoggedIn) {
-				main.warnBefore("Ikke innlogget", NOT_LOGGED_IN_WARNING, OK, after + "()", LOGIN_BUTTON, 'main.goToAndHide(\"login_page\")');
+				main.warnBefore("Ikke innlogget", NOT_LOGGED_IN_WARNING, OK, "login_page.clickLogOut();" + after + "()", LOGIN_BUTTON, 'main.goToAndHide(\"login_page\")');
 			} else if(main.notConfirmedLogin === true && main.haveConnection() && !shouldNotRetry){
 				login_page.relogin(main.warnLoginBefore(after, true));
 			} else {

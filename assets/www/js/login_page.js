@@ -30,9 +30,10 @@ var login_page = {
     		if(main.currentPage == "login_page")
     			main.panels.slideBack();
     	}
-    	
-    	login_page.updateGroups(login_page.showGroupStatus());
-    	login_page.updateComp();
+    	if(main.haveConnection()){
+	    	login_page.updateGroups(login_page.showGroupStatus());
+	    	login_page.updateComp();
+    	}
     },
     
     updateComp : function(){
@@ -62,7 +63,9 @@ var login_page = {
 	},
 	
 	loginErrorCallback: function(data) {
-		main.handleConnectionFailed(data);
+		main.runIfConnection(function(){
+			main.showDialogWithMessage(ERROR_WRONG_LOGIN);
+		});
 		
 		login_page.relogin();
 	},
@@ -144,7 +147,7 @@ var login_page = {
     		jQuery(".groupButton").removeClass("pressed");
     },
     
-    relogin: function(callback){
+    relogin: function(callback, error){
     	var user = UserStore.get(main.currentMode());
     	
 		if(user.isDefined()) {
@@ -153,14 +156,20 @@ var login_page = {
 			}
 				
 			Login(user.username, user.password, function(data){
-				login_page.loginCallback(data);
+				login_page.loginCallback();
 				if(callback){
 					callback();
 				}
+			}, function(data){
+				login_page.loginCallback();
+				if(error)
+					error(data);
 			});
 			login_page.updateGroups(login_page.showGroupStatus());
     	} else {
-    		login_page.showLoginStatus(false);	
+    		login_page.showLoginStatus(false);
+    		if(callback)
+    			callback();
 		}
     }
 };

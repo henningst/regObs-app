@@ -5,6 +5,8 @@ var IsEmpty, NveStore,
 NveStore = (function() {
 
   function NveStore() {
+    this.sendIce = __bind(this.sendIce, this);
+
     this.resetGroups = __bind(this.resetGroups, this);
 
     this.sendSnow = __bind(this.sendSnow, this);
@@ -78,6 +80,7 @@ NveStore = (function() {
 
   NveStore.prototype.sendSnow = function(callback) {
     var _this = this;
+    console.log("package collection before send " + JSON.stringify(this.packageCollection));
     main.hideDialog();
     if (this.m_snowPackage && !IsEmpty(this.m_snowPackage)) {
       this.m_snowPackage.setGroup(jQuery("#snow_obs .selectedGroup").val());
@@ -100,6 +103,7 @@ NveStore = (function() {
   };
 
   NveStore.prototype.sendAndHandlePackage = function(p, clearFunc) {
+    var _this = this;
     p.callback = function(pkg) {
       var collection;
       collection = main.store.packageCollection;
@@ -109,6 +113,11 @@ NveStore = (function() {
       clearFunc();
       DataAccess.save("PackageCollection", this.packageCollection);
       return main.updateCollection(collection);
+    };
+    p.errorCallback = function() {
+      _this.packageCollection = DataAccess.get("PackageCollection", new PackageCollection());
+      console.log("error callback " + JSON.stringify(_this.packageCollection));
+      return main.updateCollection(main.store.packageCollection);
     };
     return p.send();
   };
@@ -193,6 +202,7 @@ NveStore = (function() {
       this.packageCollection.add(this.m_icePackage);
       this.clearIce();
     }
+    console.log("package collection before send " + JSON.stringify(this.packageCollection));
     this.packageCollection.forall(function(p) {
       return _this.sendAndHandlePackage(p, function() {
         return main.store.clearIce();

@@ -99,6 +99,9 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.onError = function(data) {
+    if (this.errorCallback) {
+      this.errorCallback();
+    }
     if (main.haveConnection()) {
       if (data === null) {
         new ErrorHandler().handleError("No error description, abstract package");
@@ -303,11 +306,23 @@ AbstractPackage = (function() {
   };
 
   AbstractPackage.prototype.send = function() {
-    var competancy, user;
+    var competancy, fail, success, user,
+      _this = this;
     user = UserStore.get(main.currentMode());
     competancy = user.competancy;
     this.setCompetancy(competancy.getLevel(this.currentHazard()));
-    return this.onSend(this.page, true);
+    success = function() {
+      return _this.onSend(_this.page, true);
+    };
+    fail = function() {
+      main.runIfConnection(function() {
+        return main.showDialogWithMessage(MISSING_LOGIN);
+      });
+      if (_this.errorCallback) {
+        return _this.errorCallback();
+      }
+    };
+    return login_page.relogin(success, fail);
   };
 
   AbstractPackage.prototype.currentHazard = function() {
@@ -399,6 +414,7 @@ AbstractPackage = (function() {
           delete clone.model;
         }
         success = function() {
+          console.log("success have sendt " + JSON.stringify(obs));
           _this.save();
           return callback(null, obs.RegID);
         };
@@ -542,11 +558,12 @@ AbstractPackage = (function() {
           delete clone.model;
         }
         success = function() {
+          console.log("success have sendt " + JSON.stringify(obs));
           _this.save();
           return callback(null, regId);
         };
         error = function() {
-          return callback("problem with " + regId);
+          return callback("problem with " + regId + " " + JSON.stringify(obs));
         };
         return SendObjectToServer(clone, success, error);
       };
