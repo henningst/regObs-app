@@ -72,6 +72,7 @@ GetObjectFromServer = (call, callback, onError) ->
 	OData.request({
 	requestUri: call.url,
 	method: "GET",
+	headers : { "DataServiceVersion": "2.0" },
 	data: ""
 	}, (data) ->
 		result.ok = true
@@ -91,6 +92,7 @@ SendObjectToServer = (obj, callback, onError) ->
 	OData.request({
 	requestUri: obj.url() ,
 	method: "POST",
+	headers : { "DataServiceVersion": "2.0" },
 	data: obj
 	}, (data) ->
 		console.log("got data back")
