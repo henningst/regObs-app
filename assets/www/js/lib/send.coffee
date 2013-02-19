@@ -115,6 +115,3 @@ SendObjectToServer = (obj, callback, onError) ->
 	)
 	console.log("fired")
 	result
-
-ObservationUrl = (hazard, regionId)->
-	"http://www.regobs.no/Search/SearchMobile?GeoHazard=#{hazard}&SelectedTypes=-1&SelectedRegions=#{regionId}&SelectedPeriode=2"
