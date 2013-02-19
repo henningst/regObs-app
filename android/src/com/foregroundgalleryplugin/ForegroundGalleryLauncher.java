@@ -21,6 +21,7 @@ import java.io.FileNotFoundException;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.cordova.CameraLauncher;
+import org.apache.cordova.api.CallbackContext;
 import org.apache.cordova.api.Plugin;
 import org.apache.cordova.api.PluginResult;
 import org.json.JSONArray;
@@ -31,8 +32,8 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.net.Uri;
 
@@ -43,7 +44,6 @@ public class ForegroundGalleryLauncher extends CameraLauncher
     // high compression, 100=compress of max quality)
     private int targetWidth; // desired width of the image
     private int targetHeight; // desired height of the image	
-    public String callbackId;
        
     /**
      * Executes the request and returns PluginResult.
@@ -55,10 +55,11 @@ public class ForegroundGalleryLauncher extends CameraLauncher
      * @param callbackId
      *            The callback id used when calling back into JavaScript.
      * @return A PluginResult object with a status and message.
+     * @throws JSONException 
      */
-    public PluginResult execute(String action, JSONArray args, String callbackId)
+    public boolean execute(String action, JSONArray args, CallbackContext context) throws JSONException
     {
-        this.callbackId = callbackId;
+        this.callbackContext = context;
 
         try
         {
@@ -77,12 +78,11 @@ public class ForegroundGalleryLauncher extends CameraLauncher
 
             PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
             r.setKeepCallback(true);
-            return r;
+            return true;
         }
         catch (JSONException e)
         {
-            e.printStackTrace();
-            return new PluginResult(PluginResult.Status.JSON_EXCEPTION);
+            throw new JSONException("Could not get image from gallery");
         }
     }
 
@@ -92,7 +92,7 @@ public class ForegroundGalleryLauncher extends CameraLauncher
     public void getImage()
     {
         Intent intent = new Intent(this.cordova.getActivity().getApplicationContext() , GalleryActivity.class);
-        this.cordova.startActivityForResult((Plugin) this, intent, 11);
+        this.cordova.startActivityForResult(this, intent, 11);
     }
 
     /**
@@ -138,7 +138,7 @@ public class ForegroundGalleryLauncher extends CameraLauncher
         }
         else if (resultCode == Activity.RESULT_CANCELED)
         {
-            this.error("Selection cancelled.", this.callbackId);
+            this.callbackContext.error("Selection cancelled.");
             this.failPicture("Selection cancelled.");
         }
         else
@@ -157,8 +157,7 @@ public class ForegroundGalleryLauncher extends CameraLauncher
                 byte[] code = jpeg_data.toByteArray();
                 byte[] output = Base64.encodeBase64(code);
                 String js_out = new String(output);
-                this.success(new PluginResult(PluginResult.Status.OK,
-                        "data:image/jpeg;base64," + js_out), this.callbackId);
+                this.callbackContext.success("data:image/jpeg;base64," + js_out);
                 js_out = null;
                 output = null;
                 code = null;

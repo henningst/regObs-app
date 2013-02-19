@@ -17,12 +17,12 @@
 package com.foregroundcameraplugin;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 
 import org.apache.cordova.CameraLauncher;
 import org.apache.cordova.ExifHelper;
+import org.apache.cordova.api.CallbackContext;
 import org.apache.cordova.api.CordovaInterface;
 import org.apache.cordova.api.LOG;
 import org.apache.cordova.api.Plugin;
@@ -36,7 +36,6 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -45,9 +44,7 @@ import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.provider.MediaStore.Images.Media;
 import android.view.Surface;
-import android.view.WindowManager;
 
 /**
  * This class launches the camera view, allows the user to take a picture,
@@ -87,14 +84,17 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 	 * @param callbackId
 	 *            The callback id used when calling back into JavaScript.
 	 * @return A PluginResult object with a status and message.
+	 * @throws JSONException 
 	 */
-	public PluginResult execute(String action, JSONArray args, String callbackId) {
+	public boolean execute(String action, JSONArray args, CallbackContext context) throws JSONException {
+	  System.out.println("starting execute");
 		PluginResult.Status status = PluginResult.Status.OK;
 		String result = "";
-		this.callbackId = callbackId;
+		this.callbackContext = context;
 
 		try {
 			if (action.equals("takePicture")) {
+			  System.out.println("1");
 				this.targetHeight = 0;
 				this.targetWidth = 0;
 				this.mQuality = 80;
@@ -105,17 +105,20 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 					this.targetWidth = options.getInt("targetWidth");
 					this.mQuality = options.getInt("quality");
 				}
+				System.out.println("2");
 
 				this.takePicture();
+				System.out.println("3");
 
 				PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
 				r.setKeepCallback(true);
-				return r;
+				System.out.println("4");
+				
 			}
-			return new PluginResult(status, result);
+			return true;
 		} catch (JSONException e) {
 			e.printStackTrace();
-			return new PluginResult(PluginResult.Status.JSON_EXCEPTION);
+			throw new JSONException("Cant capture image");
 		}
 	}
 
@@ -137,6 +140,7 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 	 */
 	public void takePicture() {
 		// Save the number of images currently on disk for later
+	  System.out.println("taking picture");
 		this.numPics = queryImgDB().getCount();
 
 		Intent intent = new Intent(this.cordova.getActivity().getApplicationContext(), CameraActivity.class);
@@ -144,7 +148,7 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 		this.imageUri = Uri.fromFile(photo);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, this.imageUri);
 
-		this.cordova.startActivityForResult((Plugin) this, intent, 1);
+		this.cordova.startActivityForResult(this, intent, 1);
 	}
 
 	/**
@@ -238,12 +242,12 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 				os.close();
 
 				// Restore exif data to file
-				exif.createOutFile(getRealPathFromURI(uri, this.ctx));
+				exif.createOutFile(getRealPathFromURI(uri, this.cordova));
 				exif.writeExifData();
 
 				// Send Uri back to JavaScript for viewing image
-				this.success(new PluginResult(PluginResult.Status.OK,
-						getRealPathFromURI(uri, this.ctx)), this.callbackId);
+				
+				this.callbackContext.success(getRealPathFromURI(uri, this.cordova));
 
 				bitmap.recycle();
 				bitmap = null;
@@ -258,13 +262,13 @@ public class ForegroundCameraLauncher extends CameraLauncher {
 
 		// If cancelled
 		else if (resultCode == Activity.RESULT_CANCELED) {
-		  this.error("Camera cancelled", this.callbackId);
+		  this.callbackContext.error("Camera cancelled");
 			this.failPicture("Camera cancelled.");
 		}
 
 		// If something else
 		else {
-		  this.error("Camera unavailable", this.callbackId);
+		  this.callbackContext.error("Camera unavailable");
 			this.failPicture("Did not complete!");
 		}
 	}

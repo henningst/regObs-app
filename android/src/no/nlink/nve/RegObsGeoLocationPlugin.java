@@ -1,17 +1,12 @@
 package no.nlink.nve;
 
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
-
-import no.nlink.nve.RegObsGeoLocationPlugin.MyLocationListener;
 
 import org.apache.cordova.api.Plugin;
 import org.apache.cordova.api.PluginResult;
 import org.apache.cordova.api.PluginResult.Status;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.content.Context;
 import android.location.Location;
@@ -20,7 +15,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
-import android.widget.TextView;
 
 public class RegObsGeoLocationPlugin extends Plugin {
   
