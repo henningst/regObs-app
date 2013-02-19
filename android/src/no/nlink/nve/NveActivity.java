@@ -15,7 +15,7 @@ public class NveActivity extends DroidGap {
 		BugSenseHandler.initAndStartSession(this.getBaseContext(), "d879d6ce");
    
 		super.setIntegerProperty("splashscreen", R.drawable.splash);
-		super.loadUrl("file:///android_asset/www/nve.html", 200);
+		super.loadUrl("file:///android_asset/www/nve.html", 20000);
 	}
 	
 	@Override

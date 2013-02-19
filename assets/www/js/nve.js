@@ -546,6 +546,7 @@ var main = (function() {
 		},
 
 		initPhonegap : function() {
+			navigator.splashscreen.hide();
 			console.log("started");
 			DataAccess.handleCompatibility(APP_VERSION);
 			
