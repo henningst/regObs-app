@@ -83,7 +83,7 @@ var geo = {
 var omerade = {
 	parseArea : function(data) {
 		var res = JSON.parse(data);
-
+		
 		if (res != null && res.features != undefined && res.features.length > 0) {
 			return {
 				omeradeid : res.features[0].attributes.OMRAADEID
@@ -93,11 +93,13 @@ var omerade = {
 			};
 		}
 
-		return {
+		omerade.last_area = {
 			omeradeid : null,
 			omeradenavn : null,
 			oppdater : false
 		};
+		
+		return omerade.last_area;
 	},
 
 	parseKommune : function(data) {

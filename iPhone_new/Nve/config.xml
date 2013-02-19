@@ -80,5 +80,6 @@
 	<access origin="regobs.varsom.no*"/>
 	<access origin="serverapi.arcgisonline.com"/>
 	<access origin="www.google-analytics.com"/>
+    <access origin="varsom.no*"/>
 
 </cordova>

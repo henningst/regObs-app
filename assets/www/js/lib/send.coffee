@@ -18,29 +18,29 @@ Login = (name, pass, callback, onError) ->
 		}
 		success: (data) ->
 			console.log("logged in " + JSON.stringify(data))
-			
+
 			content = data
 			if(content.d == true)
 			  callback(data) if callback
-			else 
+			else
 			  onError(data) if onError
-			  
+
 		error: (data) ->
 			console.log("login failed")
 			for k,v of data
 				console.log(k + " -> " + v)
-				
+
 			onError(data) if onError
 		}
 	)
-		
+
 Logout = (callback, onError) ->
 	jQuery.ajax({
 		type: 'POST',
 		url: "#{SERVER_LOGIN_URL}Logout",
 		data: "",
 		dataType: 'json',
-		headers: { 
+		headers: {
 			Accept : "application/json; charset=utf-8",
 			"Content-Type": "application/json; charset=utf-8"
 		},
@@ -49,7 +49,7 @@ Logout = (callback, onError) ->
 		error: (data) ->
 			onError(data) if onError
 		}
-	)	
+	)
 
 LoggedInAs = (callback) ->
 	result = new Result
@@ -61,11 +61,11 @@ LoggedInAs = (callback) ->
 		result.data = data.results[0]
 		console.log("pp: logged in as " + JSON.stringify(data.results[0]))
 		callback(data.results[0]) if callback
-	, (error) ->	
+	, (error) ->
 			console.log("how am i failed" + error)
 	)
 	result
-	
+
 GetObjectFromServer = (call, callback, onError) ->
 	console.log("getting " + call.url)
 	result = new Result
@@ -87,7 +87,7 @@ SendObjectToServer = (obj, callback, onError) ->
 	console.log("about to send : " + JSON.stringify(obj))
 	console.log("sending - " + obj.url()  );
 	result = new Result
-	
+
 	OData.request({
 	requestUri: obj.url() ,
 	method: "POST",
@@ -105,14 +105,16 @@ SendObjectToServer = (obj, callback, onError) ->
 		console.log("response " + err.response);
 		for k,v of err.response
 			console.log(k + " -> " + v)
-			
+
 		console.log("request " + err.request);
 		for k,v of err.request
 			console.log(k + " -> " + v)
-			
-			
-		onError(err) if onError 
+
+
+		onError(err) if onError
 	)
 	console.log("fired")
 	result
-	
+
+ObservationUrl = (hazard, regionId)->
+	"http://www.regobs.no/Search/SearchMobile?GeoHazard=#{hazard}&SelectedTypes=-1&SelectedRegions=#{regionId}&SelectedPeriode=2"

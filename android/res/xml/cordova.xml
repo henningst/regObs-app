@@ -27,6 +27,7 @@
 		<access origin="http://h-web01.nve.no*"/>
 		<access origin="google-analytics.com*"/>
 		<access origin="bugsense.appspot.com*"/>
+		<access origin="varsom.no*"/>
 	
 	<!-- <access origin="https://example.com" /> allow any secure requests to example.com -->
 	<!-- <access origin="https://example.com" subdomains="true" /> such as above, but including subdomains, such as www -->
