@@ -264,7 +264,7 @@ var main = (function() {
 
 				console.log("setting platform for: " + device.platform + " - "
 						+ main.store.getNotificationId())
-				if (device.platform === "iphone"
+				if (device.platform === "iOS"
 						|| main.store.getNotificationId() == null) {
 					console.log("------------ adding a notification "
 							+ collection.size() + " ------------- ")
@@ -1405,3 +1405,9 @@ var main = (function() {
 
 	return main;
 }());
+
+
+function isFunction(functionToCheck) {
+ var getType = {};
+ return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+}

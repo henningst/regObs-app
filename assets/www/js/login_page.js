@@ -168,7 +168,7 @@ var login_page = {
 			login_page.updateGroups(login_page.showGroupStatus());
     	} else {
     		login_page.showLoginStatus(false);
-    		if(callback)
+    		if(callback && isFunction(callback))
     			callback();
 		}
     }
