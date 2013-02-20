@@ -13,7 +13,7 @@ var login_page = {
 			$('login_password').value = "";
 		}
 	},
-	loggedInAsCallback: function (data) {
+	loggedInAsCallback: function (data, shouldPerserveDialog) {
     	if(data.EMail == 'anonym@nve.no') {
     		login_page.showLoginStatus(false);
     		main.showDialogWithMessage(ERROR_WRONG_LOGIN, "Login");
@@ -25,7 +25,9 @@ var login_page = {
     		UserStore.save(main.currentMode(), user);
 
     		login_page.showLoginStatus(true);
-    		main.hideDialog();
+    		
+    		if(shouldPerserveDialog !== true)
+    			main.hideDialog();
     		
     		if(main.currentPage == "login_page")
     			main.panels.slideBack();
@@ -45,8 +47,10 @@ var login_page = {
     	});
     },
     
-    loginCallback: function(data) {
-		main.login = LoggedInAs(login_page.loggedInAsCallback);
+    loginCallback: function(data, shouldPerserveDialog) {
+		main.login = LoggedInAs(function(d) {
+			login_page.loggedInAsCallback(d, shouldPerserveDialog); 
+		});
 	},
 	
 	updateGroups: function(callback){
@@ -147,7 +151,7 @@ var login_page = {
     		jQuery(".groupButton").removeClass("pressed");
     },
     
-    relogin: function(callback, error){
+    relogin: function(callback, error, shouldPerserveDialog){
     	var user = UserStore.get(main.currentMode());
     	
 		if(user.isDefined()) {
@@ -156,12 +160,12 @@ var login_page = {
 			}
 				
 			Login(user.username, user.password, function(data){
-				login_page.loginCallback();
+				login_page.loginCallback(data, shouldPerserveDialog);
 				if(callback){
 					callback();
 				}
 			}, function(data){
-				login_page.loginCallback();
+				login_page.loginCallback(data, shouldPerserveDialog);
 				if(error)
 					error(data);
 			});

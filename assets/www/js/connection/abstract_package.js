@@ -322,7 +322,7 @@ AbstractPackage = (function() {
         return _this.errorCallback();
       }
     };
-    return login_page.relogin(success, fail);
+    return login_page.relogin(success, fail, true);
   };
 
   AbstractPackage.prototype.currentHazard = function() {
