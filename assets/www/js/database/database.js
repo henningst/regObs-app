@@ -51,10 +51,12 @@ DataAccess = {
   handleCompatibility: function(version) {
     var currectDataVersion;
     currectDataVersion = DataAccess.get(DATA_VERSION_KEY);
-    if (currectDataVersion && version > currectDataVersion) {
+    if (currectDataVersion && version !== currectDataVersion) {
       DataAccess.clear();
       DataAccess.save(DATA_VERSION_KEY, version);
-      return main.showDialogWithMessageAndFunction("For å fullføre oppdateringen må vi starte appen på nytt. Etter at appen er avsluttet må du starte den på nytt.", "Oppdatering", "Avslutt", "navigator.app.exitApp();");
+      if (device.platform === 'android') {
+        return main.showDialogWithMessageAndFunction("For å fullføre oppdateringen må vi starte appen på nytt. Etter at appen er avsluttet må du starte den på nytt.", "Oppdatering", "Avslutt", "navigator.app.exitApp();");
+      }
     } else {
       return console.log("Data migration ok");
     }

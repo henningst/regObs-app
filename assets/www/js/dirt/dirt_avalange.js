@@ -10,7 +10,7 @@ var dirt_avalange = {
 			var date = new Date();
 			date.setHours(date.getHours() - parseInt(hours.val()));
 			
-			var obs = new LandSlideObs(0, date, null,null,null, type.val(), size.val(), trigger.val(), null, comment.val());
+			var obs = new LandSlideObs(0, date, null,null,null, type.val(), size.val(), trigger.val(), 0, comment.val());
 			
 			dirt_page.updateLocation(function(){
 				dirt_avalange.clear();

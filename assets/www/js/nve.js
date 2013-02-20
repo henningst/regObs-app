@@ -312,7 +312,8 @@ var main = (function() {
 			main.updateCollection(main.store.packageCollection);
 			main.resetPostHooks();
 			
-			navigator.app.exitApp();
+			if(device.platform == "android")
+				navigator.app.exitApp();
 		},
 		
 		resetPostHooks: function(){
