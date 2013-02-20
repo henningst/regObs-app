@@ -551,9 +551,9 @@ var main = (function() {
 		},
 
 		initPhonegap : function() {
+			DataAccess.handleCompatibility(APP_VERSION);
 			navigator.splashscreen.hide();
 			console.log("started");
-			DataAccess.handleCompatibility(APP_VERSION);
 			
 			document.addEventListener("online", login_page.relogin , true)
 			

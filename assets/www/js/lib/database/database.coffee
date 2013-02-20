@@ -23,10 +23,12 @@ DataAccess = {
   save: (key, value) ->
     window.lastsaved = value
 
+    key = APP_VERSION + "_" + key
     console.log("saving: (" + key + ", " + JSON.stringify(value) + ")");
     result = DataAccess.storage.setItem(key, JSON.stringify(value))
 
   get: (key, generic) ->
+    key = APP_VERSION + "_" + key
     result = DataAccess.storage.getItem(key)
 
     if result

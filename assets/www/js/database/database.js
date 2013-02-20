@@ -24,11 +24,13 @@ DataAccess = {
   save: function(key, value) {
     var result;
     window.lastsaved = value;
+    key = APP_VERSION + "_" + key;
     console.log("saving: (" + key + ", " + JSON.stringify(value) + ")");
     return result = DataAccess.storage.setItem(key, JSON.stringify(value));
   },
   get: function(key, generic) {
     var result, ret;
+    key = APP_VERSION + "_" + key;
     result = DataAccess.storage.getItem(key);
     if (result) {
       try {
