@@ -4,10 +4,17 @@ Nve består av to prosjekter og en felles www mappe. De to prosjketene er hver s
 PhoneGap for android og iphone. www mappen inneholder selve applikasjonen som kjøres i et
 webview inne i phonegap appen.
 
+For å komme igang med utviklingen så gjøre følgende.
+
+ # Sjekk ut koden
+ # Åpne iphone/regObs.xcodeproj
+ # Trykk play, og se at alt fungerer
+ # Gjør endringer
+
 Linker
- * phonegap
- * cordova
- * phonegappluggins
+ * phonegap [http://phonegap.com/]
+ * cordova [http://cordova.apache.org/]
+ * phonegappluggins [https://github.com/phonegap/phonegap-plugins]
 
 
 Applikasjonen består av en stor del delt funksjonalitet. All denne funksjonaliteten ligger i
@@ -15,9 +22,6 @@ javascript/html delen av applikasjonen. Hver av de to platformene har egene måt
 spesial funksjoner på. Disse funksjonene er implementert som phonegap plugins. Enten gjennom
 tredjeparts/community utviklere eller egenutviklet.
 
-### Iphone appliaksjonen
-
-### Android applikasjonen
 
 ## Javascript applikasjonen.
 
@@ -117,7 +121,7 @@ nve_config.js.
 
 ### Node.js / coffee script / handlebars
 
-For å kunne kjøre /assets/www/js/lib/comile.sh for å kompilere alle templatene og coffescriptene så
+For å kunne kjøre /assets/www/js/lib/compile.sh for å kompilere alle templatene og coffescriptene så
 må en ha coffee compiler og handlebars compiler på pathen. Dette gjør vi gjennom node.js.
 
  # Installer node.js fra: http://nodejs.org/
@@ -128,4 +132,13 @@ må en ha coffee compiler og handlebars compiler på pathen. Dette gjør vi gjen
 
 
 ### Android
-Her setter man opp en
+Her setter man opp et nytt android prosjekt. Dette gjøres gjennom å velge File -> Import -> Existing
+project into workspace. For så å gå til mappen med android prosjektet.
+
+For å kjøre prosjektet, så kontrollerer man at nve_config.js er satt opp til å være android. Også høyre
+klikker man på prosjektet og velger run as Android application.
+
+## Iphone
+Her må man ha siste versjon av XCode, for så å åpne regObs.xcodeproj.
+
+For å kjøre prosjektet så setter man nve_config.js til iphone. Også trykker man play i XCode.
