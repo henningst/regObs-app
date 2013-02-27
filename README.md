@@ -6,10 +6,12 @@ webview inne i phonegap appen.
 
 For å komme igang med utviklingen så gjøre følgende.
 
- # Sjekk ut koden
- # Åpne iphone/regObs.xcodeproj
- # Trykk play, og se at alt fungerer
- # Gjør endringer
+ 1. Sjekk ut koden
+ 2. Åpne iphone/regObs.xcodeproj
+ 3. Trykk play, og se at alt fungerer
+ 4. Gjør endringer
+
+Se "Oppsett av utviklermiljø" lenger nede, for utfyllende beskrivelser.
 
 Linker
  * phonegap [http://phonegap.com/]
@@ -124,9 +126,9 @@ nve_config.js.
 For å kunne kjøre /assets/www/js/lib/compile.sh for å kompilere alle templatene og coffescriptene så
 må en ha coffee compiler og handlebars compiler på pathen. Dette gjør vi gjennom node.js.
 
- # Installer node.js fra: http://nodejs.org/
- # Bruk npm, på kommandolinjen å kjør
- # sudo npm install -g coffee-script handlebars
+ 1. Installer node.js fra: http://nodejs.org/
+ 2. Bruk npm, på kommandolinjen å kjør
+ 3. sudo npm install -g coffee-script handlebars
 
 
 
