@@ -552,7 +552,7 @@ var main = (function() {
 
 		initPhonegap : function() {
 			DataAccess.handleCompatibility(APP_VERSION);
-			navigator.splashscreen.hide();
+			main.init();
 			console.log("started");
 			
 			document.addEventListener("online", login_page.relogin , true)
@@ -571,7 +571,7 @@ var main = (function() {
 
 			main.initialised = true;
 			geo.requestPosition(main.nothing, false);
-			
+			navigator.splashscreen.hide();
 
 			new ErrorHandler().hookInto();
 //			main.clickToTap();
@@ -1370,7 +1370,6 @@ var main = (function() {
 
 	
 	
-	window.addEventListener('load', E(wink.bind(main.init, main)), false);
 	document.addEventListener("deviceready", E(main.initPhonegap), false);
 
 	document.addEventListener("resume", geo.resume, false);
