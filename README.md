@@ -21,16 +21,16 @@ Se "Oppsett av utviklermiljø" lenger nede, for utfyllende beskrivelser.
  * phonegappluggins [https://github.com/phonegap/phonegap-plugins]
 
 
-Applikasjonen består av en stor del delt/kryssplattform funksjonalitet. All denne funksjonaliteten ligger i
-javascript/html delen av applikasjonen. Hver av de to plattformene har egne måter å håndtere
-spesial funksjoner på. Disse funksjonene er implementert som phonegap plugins. Enten gjennom
-tredjeparts/community utviklere eller egenutviklet av NVE teamet.
+Applikasjonen består av en stor del delt/kryssplattform-funksjonalitet. All denne funksjonaliteten ligger i
+javascript/html-delen av applikasjonen. Hver av de to plattformene har egne måter å håndtere
+spesialfunksjoner på. Disse funksjonene er implementert som phonegap-plugins. Enten gjennom
+tredjeparts/community-utviklere eller egenutviklet av NVE-teamet.
 
 
 ## Javascript applikasjonen.
 
-regObs mobil er i stor grad en spesiallisert javascript applikasjoen. Denne er implementert
-basert på flere rammeverk som hverfor seg leverer spesiallisert funksjonalitet. I listen under
+regObs mobil er i stor grad en spesialisert javascript-applikasjon. Denne er implementert
+basert på flere rammeverk, som hverfor seg leverer spesialisert funksjonalitet. I listen under
 er de viktigste listet opp.
 
  * jQuery [http://jquery.com/]
@@ -56,7 +56,7 @@ Disse kan sees på som servicer eller businessklasser. Dette gjør det enklere �
 funksjoner på tvers av sider.
 
 Servicene blir initialisert ved oppstart av appen. De blir montert i det globale scopet og
-vil så ledes holde tilstand så lenge appen lever. Dette kan være over svært lang tid. Derfor
+vil så holde tilstand så lenge appen lever. Dette kan være over svært lang tid. Derfor
 må disse klassene rydde opp når de er ferdige.
 
 ### Business klasser
@@ -76,7 +76,7 @@ innloging, offline støtte, dårlige connections og interaksjon med mobiletelefo
 Hovedformålet er å levere god og fersk data til regObs dette innebærer to ting. Det første er
 å levere data inn i regObs datamodell via tjenestelaget [http://api.nve.no/regobsdoc.html]. Dette gjøres gjennom å sende JSON strukturer som matcher
 regObs sine dataobjekter. Det andre er å sammenstille flere dataobjekter til en komplett
-registering. Dette gjøres i flere http kall via oData bibliotektet mot regObs servere. Dette
+registering. Dette gjøres i flere http-kall via oData bibliotektet mot regObs servere. Dette
 gjøres i en flyt hvor det er flere steg som alle avhenger av hverandre.
 
 AbstractPackage gjør hoveddelen av dette arbeidet. Klassen er 
